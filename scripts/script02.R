@@ -52,6 +52,8 @@ paste(nombre, apellido, sep = "") # todo junto
 paste0(nombre, apellido) # todo junto sin nada separando
 
 # Paquete glue
+install.packages("glue") # solo la primera vez
+library(glue)
 edad <- 32
 glue("La edad es de {edad} años")
 paste("La edad es de", edad, "años") # equivalente
@@ -88,4 +90,54 @@ edad > 32 & soltero # deben cumplirse ambas
 edad > 30 & soltero # deben cumplirse ambas
 
 # ----- Datos de tipo fecha -----
+
+# Cadena de texto
+fecha_char <- "2021-04-21"
+fecha_char + 1
+
+# Fecha, mostrada como un texto pero guardada internamente como un número
+fecha_date <- as.Date(fecha_char, format = "%Y-%m-%d")
+fecha_date + 1
+
+# Operaciones con fechas
+fecha <- Sys.Date()
+fecha
+fecha - 7 # una semana antes
+class(fecha) # de clase fecha
+
+# Convertir a fecha
+as.Date("2021-03-10")
+as.Date("10-03-2020", "%d-%m-%Y") # con día-mes-año (4 cifras)
+as.Date("10-03-20", "%d-%m-%y")  # con día-mes-año (2 cifras)
+as.Date("03-10-2020", "%m-%d-%Y") # con mes-día-año (4 cifras)
+as.Date("Octubre 21, 1995 21:24", "%B %d, %Y %H:%M") # fecha escrita
+
+# Funciones del paquete lubridate
+install.packages("lubridate")
+library(lubridate)
+ymd_hms("2017-11-28T14:02:00") # convertir a fecha una cadena año-mes-día + hora
+ydm_hms("2017-22-12 10:00:00") # convertir a fecha una cadena año-día-mes + hora
+dmy_hms("1 Jan 2017 23:59:59") # convertir a fecha una cadena textual de fecha + hora
+mdy("July 4th, 2000") # convertir a fecha una cadena textual de fecha
+ymd(20170131)
+
+# Funciones del hoy y ahora
+today()
+now()
+
+# Otras funciones
+fecha <- now()
+year(fecha)
+month(fecha)
+day(fecha)
+wday(fecha, week_start = 1) # Día de la semana (empezando por el lunes)
+hour(fecha)
+minute(fecha)
+second(fecha)
+week(fecha) # Número de semana (del año)
+
+# Comprando fechas
+fecha_actual <- now()
+fecha_actual > ymd(20170131) # Actual vs 2017-01-31
+fecha_actual > ymd(21000131) # Actual vs 2100-01-31
 

@@ -297,7 +297,117 @@ edad > 30 & soltero # deben cumplirse ambas
 - [X] Variables lógicas
 - [X] Variables de tipo fecha
 
-Por último, vamos a ver un tipo de datos muy especial: los <mark>**datos de tipo fecha**</mark>.
+Por último, vamos a ver un tipo de datos muy especial: los <mark>**datos de tipo fecha**</mark>. Una fecha podría ser a priori una simple cadena de texto `"2021-04-21"` pero podemos usar la función `as.Date()` para que `R` entienda que esa cadena de texto representa un instante temporal. Fíjate la diferencia entre una fecha en texto y una fecha con `as.Date()`.
+
+```{r error = TRUE}
+# Cadena de texto
+fecha_char <- "2021-04-21"
+fecha_char + 1
+
+# Fecha, mostrada como un texto pero guardada internamente como un número
+fecha_date <- as.Date(fecha_char, format = "%Y-%m-%d")
+fecha_date + 1
+```
+
+En el momento en que convertimos la cadena de texto a fecha, aunque se visualice como un texto, internamente es un número, por lo que podemos restar fechas (días entre ambas), **podemos sumar números a fechas (fecha días después)**, etc. Como ya hemos dicho, **las fechas y momentos temporales no serán meras cadenas de caracter sino que tienen clases especiales asociadas**. Las fechas serán guardadas internamente como el **número de días transcurridos desde el 1 de enero de 1970**, y las horas como **número de segundos desde el 1 de enero de 1970** (para la clase `POSIXct`) o una lista de segundos, minutos y horas (para la clase `POSIXlt`).
+
+¿Cómo <mark>**obtener automáticamente la fecha de hoy**</mark>? La función `Sys.Date()` nos devuelve directamente la fecha y hora en el momento de la ejecución de la orden.
+
+```{r}
+fecha <- Sys.Date()
+fecha
+fecha - 7 # una semana antes
+class(fecha) # de clase fecha
+``` 
+
+Para <mark>**convertir una cadena de texto a fecha**</mark>, basta usar la función `as.Date()`, pasándole como argumento la fecha en formato `"yyyy-mm-dd"` por defecto.
+
+```{r}
+as.Date("2021-03-10") # formato por defecto
+```
+
+Si **introducimos otro tipo de formato**, debemos especificárselo en un segundo argumento, para `R` sepa el formato de fecha que le estamos pasando
+
+```{r}
+as.Date("10-03-2020", "%d-%m-%Y") # con día-mes-año (4 cifras)
+as.Date("10-03-20", "%d-%m-%y")  # con día-mes-año (2 cifras)
+as.Date("03-10-2020", "%m-%d-%Y") # con mes-día-año (4 cifras)
+as.Date("Octubre 21, 1995 21:24", "%B %d, %Y %H:%M") # fecha escrita
+``` 
+
+&nbsp;
+
+**`r colorize("ERROR: sin pasar a fecha no se puede operar", "#dc3545")`**
+
+Si tenemos una fecha como caracter, nunca podremos hacer operaciones (por ejemplo, restarle una unidad temporal, en este caso un día).
+
+```{r error = TRUE}
+"2021-03-10" - 1 # error
+```
+
+Fíjate la diferencia cuando lo convertimos en fecha
+
+```{r error = TRUE}
+fecha <- as.Date("2021-03-10") - 1 # día previo
+fecha
+``` 
+
+
+&nbsp;
+
+
+Dentro del entorno del paquete `{lubridate}` tenemos bastantes funciones útiles para trabajar con fechas como las siguientes
+
+
+```{r lubridate-package, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://lubridate.tidyverse.org/', out.width = '100%'}
+knitr::include_graphics('img/lubridate.png')
+```
+
+```{r eval = FALSE}
+install.packages("lubridate") # solo la primera vez
+```
+
+```{r}
+library(lubridate)
+ymd_hms("2017-11-28T14:02:00") # convertir a fecha una cadena año-mes-día + hora
+ydm_hms("2017-22-12 10:00:00") # convertir a fecha una cadena año-día-mes + hora
+dmy_hms("1 Jan 2017 23:59:59") # convertir a fecha una cadena textual de fecha + hora
+mdy("July 4th, 2000") # convertir a fecha una cadena textual de fecha
+ymd(20170131)
+```
+
+Además el paquete nos proporciona **herramientas para extraer la fecha y hora actuales** con las funciones `today()` y `now()`
+
+```{r}
+today()
+now()
+```
+
+También tenemos disponibles en dicho paquete funciones para extraer facilmente algunas variables temporales como el **día de la semana, el mes o el cuatrimestre**, con las funciones `year()`, `months()`, `day()` o `wday()` (día de la semana).
+
+
+```{r}
+fecha <- now()
+year(fecha)
+month(fecha)
+day(fecha)
+wday(fecha, week_start = 1) # Día de la semana (empezando por el lunes)
+hour(fecha)
+minute(fecha)
+second(fecha)
+week(fecha) # Número de semana (del año)
+``` 
+
+Al igual que podemos realizar operaciones aritméticas sencillas con las fechas, también podemos **realizar comparaciones**, por ejemplo, si el día actual es menor o mayor que otra fecha dada. 
+
+```{r}
+fecha_actual <- now()
+fecha_actual > ymd(20170131) # Actual vs 2017-01-31
+fecha_actual > ymd(21000131) # Actual vs 2100-01-31
+``` 
+
+&nbsp;
+
 
 ## Consejos
 
@@ -312,6 +422,18 @@ Si haces click con el ratón en la consola y pulsas la flecha «arriba» del tec
 
 &nbsp;
 
+**`r colorize("Convertir tipos de datos",  "#20935E")`**
+
+A veces la lectura de variables numéricas de nuestros archivos puede hacer que un número, por ejemplo `1`, sea leído como la cadena de texto `"1"`, con la que no podemos operar como un número. Las funciones `as.numeric()`, `as.character()` y `as.logical()` nos permiten convertir una variable en tipo numérico, caracter o lógico, respectivamente.
+
+```{r error = TRUE}
+"1" + 1
+as.numeric("1") + 1
+as.character(1)
+as.logical(c(0, 1))
+```
+
+&nbsp;
 
 ## 📝 Ejercicios
 
