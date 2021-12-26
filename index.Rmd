@@ -1,0 +1,140 @@
+--- 
+title: "Analizando datos, visualizando información, contando historias"
+author: "Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé"
+date: 'Última actualización: `r format(as.Date(Sys.Date()), "%d-%m-%Y")`'
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+graphics: yes
+lot: yes
+lof: yes
+fontsize: 11pt
+mainfont: Palatino
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.8"
+site: bookdown::bookdown_site
+github-repo: dadosdelaplace/courses-ECI-2022
+header-includes:
+- \usepackage{setspace}\doublespacing
+- \usepackage{float}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{amsmath}
+- \usepackage{multicol}
+- \usepackage{threeparttable}
+- \usepackage{caption}
+description: "Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»"
+cover-image: img/logo_R.png
+---
+
+
+```{r settings, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, 
+                      dev = "ragg_png", res = 300, retina = 2,
+                      fig.width = 8, fig.height = 5)
+Sys.setlocale("LC_TIME", "C")
+```
+
+```{r color, echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# Prefacio {-}
+
+Este <mark>**material**</mark> ha sido diseñado como complemento y recursos de apoyo al curso de la [Escuela de Invierno de la UCM](https://www.ucm.es/eci//cursoecic02-pre) titulado <mark>**«Analizando datos, visualizando información, contando historias»**</mark>, celebrado presencialmente del 31 de enero al 4 de febrero de 2022 (16:00 a 21:00 horas, de lunes a viernes).
+
+```{r curso, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://github.com/dadosdelaplace/courses-ECI-2022', out.width = '70%'}
+knitr::include_graphics("img/imagen_curso.jpeg")
+```
+
+El presente material introductorio ha sido elaborado por [Javier Álvarez Liébana](https://dadosdelaplace.github.io) y Gabriel Valverde Castilla, y tiene como objetivo introducir en el lenguaje `R` a todas aquellas personas que quieran <mark>**aprender `R` desde cero**</mark>. Dicho manual ha sido elaborado a su vez en `R` con [{bookdown}](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de algunos paquetes documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/). El **código** de dicho manual se encuentra en [GitHub](https://github.com/dadosdelaplace/courses-ECI-2022).
+
+```{r me-github, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://github.com/dadosdelaplace/cursoR_intro_2021_2022', out.width = '50%'}
+knitr::include_graphics('img/me_github.jpg')
+```
+
+&nbsp;  
+
+Para **elaborar informes o libros** con una estructura similar (de forma nativa en `R`) el paquete `{bookdown}` puede ser instalado desde la plataforma CRAN o desde su versión en desarrollo actualizada en Github:
+
+```{r eval = FALSE, background = "#E75A5A"}
+install.packages("bookdown")
+# o desde su versión en desarrollo actualizada
+# devtools::install_github("rstudio/bookdown")
+```
+
+```{r hex-rmarkdown, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://github.com/rstudio/rmarkdown', out.width = '20%'}
+knitr::include_graphics('img/hex-rmarkdown.png')
+```
+
+
+
+## Propósito {-}
+
+El <mark>**objetivo**</mark> de este curso es introducir a la programación y análisis estadístico en `R` a toda aquella persona que nunca se haya iniciado en él, **sin necesitar conocimientos previos** de programación (aunque siempre ayuda, obviamente). No se pretende que adquieras un vasto y experto conocimiento de `R`, pero si lo suficiente como para lograr **5 objetivos**:
+
+* **No tener miedo** a programar
+* Entender los **conceptos básicos de `R`**.
+* Dotarte de **autonomía** para poder trabajar con datos.
+* Introducirte en el **análisis estadístico**.
+* Adquirir las <mark>**competencias necesarias para la visualización de datos**</mark> en `R`.
+
+
+
+## Contenidos {-}
+
+* \@ref(requisitos) [Requisitos](#requisitos) 
+* \@ref(instalacion) [Instalación de R y Rstudio](#instalacion) 
+* \@ref(que-es-R) [¿Qué es R?](#que-es-R) 
+* \@ref(primeros-pasos) [Primeros pasos](#primeros-pasos) 
+
+
+
+## Código de colores {-} 
+
+Puedes buscar los siguientes términos en el **buscador del documento**
+
+**`r colorize("ERROR:", "#dc3545")`**
+
+En **`r colorize("color rojo", "#dc3545")`** encontrarás **`r colorize("errores comunes", "#dc3545")`** o prácticas a evitar.
+
+
+**`r colorize("WARNING:", "#ffc107")`**
+
+En **`r colorize("color naranja/amarillo", "#ffc107")`** encontrarás **`r colorize("warnings o advertencias", "#ffc107")`** sobre cosas a tener en cuenta para evitar problemas.
+
+Algunas funciones pueden arrojar ciertas advertencias que nunca está de más leer. Pero si dichos mensajes de alerta los tenemos controlados, y no queremos que nos ensucie la ejecución en la consola, podemos poner al inicio del código ` assign("last.warning", NULL, envir = baseenv())` para limpiar los warnings antiguos y `options(warn = -1)` para desactivarlos.
+
+**`r colorize("CONSEJO:", "#20935E")`**
+
+En **`r colorize("color verde", "#20935E")`** encontrarás **`r colorize("consejos o tips", "#20935E")`** para ampliar y facilitar tu programación. Además en cada **cajita de código**, si pasas el ratón, encontrarás un botón 📄📄 en la esquina superior derecha de la caja para copiar el código directamente a tu consola. **Puedes encontrarlos todos escribiendo «consejo» en el buscador**.
+
+**`r colorize("GLOSARIO:", "#4197D2")`**
+
+En **`r colorize("color azul", "#4197D2")`** encontrarás un 📚 **`r colorize("glosario", "#4197D2")`** con algunos términos estadísticos y conceptos básicos.
+
+
+## Licencia {-}
+
+[![Licencia: GPLv3](img/license-GPLv3-blue.png)](https://www.gnu.org/licenses/gpl-3.0)
+
+Este documento es publicado bajo <mark>**licencia pública general GNU**</mark>,
+una licencia libre de copyleft que garantiza a los usuarios finales (personas, organizaciones, compañías) la **libertad de usar, estudiar, compartir (copiar) y modificar el software, citando adecuadamente al autor del mismo**. 
+
+

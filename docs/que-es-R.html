@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 3 ¿Qué es R? | Analizando datos, visualizando información, contando historias</title>
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
+<meta name="description" content="Una vez que tenemos todo instalado vamos a dar nuestros primeros pasos en R, pero antes veamos un poco de su historia y de una particularidad: R es un lenguaje modular (¿modu…qué?)  3.1 Historia...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 3 ¿Qué es R? | Analizando datos, visualizando información, contando historias">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/logo_R.png">
+<meta property="og:description" content="Una vez que tenemos todo instalado vamos a dar nuestros primeros pasos en R, pero antes veamos un poco de su historia y de una particularidad: R es un lenguaje modular (¿modu…qué?)  3.1 Historia...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 3 ¿Qué es R? | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:description" content="Una vez que tenemos todo instalado vamos a dar nuestros primeros pasos en R, pero antes veamos un poco de su historia y de una particularidad: R es un lenguaje modular (¿modu…qué?)  3.1 Historia...">
+<meta name="twitter:image" content="/img/logo_R.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analizando datos, visualizando información, contando historias</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Toma de contacto</li>
+<li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
+<li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
+<li><a class="active" href="que-es-R.html"><span class="header-section-number">3</span> ¿Qué es R?</a></li>
+<li><a class="" href="primeros-pasos.html"><span class="header-section-number">4</span> Primeros pasos</a></li>
+<li class="book-part">Conceptos básicos</li>
+<li><a class="" href="vectores.html"><span class="header-section-number">5</span> Tipos de datos: vectores</a></li>
+<li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="que-es-R" class="section level1">
+<h1>
+<span class="header-section-number">Capítulo 3</span> ¿Qué es R?<a class="anchor" aria-label="anchor" href="#que-es-R"><i class="fas fa-link"></i></a>
+</h1>
+<p>Una vez que tenemos todo instalado vamos a dar nuestros <mark><strong>primeros pasos</strong></mark> en <code>R</code>, pero antes veamos un poco de su historia y de una particularidad: <mark><code>R</code> es un <strong>lenguaje modular</strong></mark> (¿modu…qué?)</p>
+<div id="historia-de-r" class="section level2">
+<h2>
+<span class="header-section-number">3.1</span> Historia de R<a class="anchor" aria-label="anchor" href="#historia-de-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Veamos antes un poco de la <mark><strong>historia</strong><mark> de nuestra deidad.</mark></mark></p>
+<p>Allá por 1975, los <strong>laboratorios Bell</strong> (los que inventaron la radio moderna tal y como la conocemos), necesitaban una alternativa a los lenguajes más «rudos» y antiguos como <code>C++</code> o <code>Fortran</code>, lenguajes rápidos en la ejecución pero complejos en su uso, con una gran curva de aprendizaje y con <strong>muy poca capacidad en la visualización de datos</strong> que se empezaba a necesitar.</p>
+<p>Así que en <strong>1976 sacaron la primera versión del lenguaje conocido <code>S</code></strong> (hasta entonces estaba de moda lo de llamar a los lenguajes con una sola inicial). En <strong>1980</strong> se empezó a distribuir la primera versión pública de <code>S</code>, más allá de los laboratorios Bell, y en <strong>1988</strong> se añadieron bastantes funcionalidades nuevas como poder aplicar funciones a otras funciones (los famosos <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> que ya veremos). Años más tarde, en <strong>1991</strong>, dicho lenguaje se simplificó, reescribiendo muchas subrutinas de otros lenguajes más primitivos, para tener una versión muy parecida al actual <code>R</code>, permitiendo el usod de operadores, <code>data.frames</code> (que veremos) y otro tipo de objetos, sencillos en la programación pero muy versatiles.</p>
+<p>Sin embargo, salvo uso docente, <code>S</code> tenía licencia así que <strong>en 1992 Ross Ihaka y Robert Gentleman se lanzaron a crear una versión de <code>S</code> libre y gratuita</strong>, un trabajo de casi 8 años hasta que en el año 2000, ambos investigadores de la Universidad de Auckland en Nueva Zelanda lanzaron la primera versión estable del lenguaje.</p>
+<p>Tras dicho lanzamiento, se creó un <mark><strong>equipo de expertos en estadística computacional</strong></mark> (el conocido como <em>R Development Core Team</em>) que es el que se encarga de mantener toda la aerquitectura de <code>R</code> y los que se encargar de actualizar y mejorar el paquete <code>{base}</code>, una <strong>librería motor</strong> sobre la que se construye el resto de funciones.</p>
+<p>Y es precisamente ese hecho una de las principales diferencias entre <code>Python</code> y <code>R</code>: <code>R</code> fue creado por y para estadísticos. Te dejo esta <a href="https://dadosdelaplace.github.io/202112_R-python/">entrada en el blog</a> por si quieres curiosear las diferencias (aunque ambos pueden ser útiles para trabajos estadísticos muy generales).</p>
+</div>
+<div id="instalacionpaquetes" class="section level2">
+<h2>
+<span class="header-section-number">3.2</span> Comunidad de usuarios: paquetes<a class="anchor" aria-label="anchor" href="#instalacionpaquetes"><i class="fas fa-link"></i></a>
+</h2>
+<p>La pregunta del millón suele ser siempre la misma: <strong>¿qué lenguaje elegir?</strong> Podríamos hacer una comparativa técnico de distintos lenguajes pero vamos a quedarnos con dos <mark><strong>consejos fundamentales</strong></mark>: prioriza el software libre y aquellos lenguajes que tienen una <mark><strong>comunidad muy grande de usuarios</strong></mark> trabajando en los problemas o campo para el que vas a usar dicho lenguaje.</p>
+<p>El lenguaje <code>R</code> (también <code>Python</code>) tiene <mark><strong>3 ventajas principales</strong></mark>:</p>
+<ul>
+<li><p>Es un <strong>lenguaje creado por y para estadísticos/as</strong>.</p></li>
+<li><p>Es <mark><strong>software libre</strong></mark> (como C++, Python, Fortran, y otros tantos lenguajes). El software libre no solo tiene una ventaja evidente (es gratis, ok) sino que permite acceder libremente a código ajeno.</p></li>
+<li><p>Es un <mark><strong>lenguaje modular</strong></mark>: en la instalación que hemos realizado no se han instalado todas las funcionalidades, solo el mínimo para poder funcionar, de forma que se ahorra espacio en disco y en memoria. Al ser software libre, existen trozos de código hechos por otras personas llamados <mark><strong>paquetes</strong></mark>, que podemos ir instalando a nuestro gusto según los vayamos necesitando. Esto es una ventaja enorme ya que <code>R</code> tiene una comunidad de usuarios gigante para hacer estadística (<code>Python</code> tiene una enorme comunidad pero más enfocada al <em>Machine Learning</em>), con <strong>más de 17 000 paquetes</strong>: ¡hay más de 17 000 trozos de código, muchos de ellos programados por expertos/as en <code>R</code>, validados por la comunidad y la plataforma, y de forma gratuita!</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:paquetes-R"></span>
+<img src="img/paquetes_R.jpg" alt="Paquetes disponibles en R." width="70%"><p class="caption">
+Imagen/gráfica 3.1: Paquetes disponibles en R.
+</p>
+</div>
+<p>Esto nos ahorra muchísimo tiempo en nuestro día a día ya que <strong>casi todo lo que querramos hacer ya lo habrá querido hacer otra persona</strong> (y seguramente mejor que nosotros/as). Vamos a instalar, por ejemplo, un paquete gráfico (<a href="https://ggplot2.tidyverse.org">ggplot2</a>) que necesitaremos en el futuro. Para ello, escribe en tu consola el siguiente código y pulsa <em>enter</em>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></code></pre></div>
+<p>Dicha orden (puede tardar un poco la primera vez, depende de tu conexión a internet) lo que hará será <strong>acceder a la web de R</strong>, <strong>bajarse a tu ordenador los trozos de código</strong> incluidos en el paquete llamado <a href="https://ggplot2.tidyverse.org">ggplot2</a>, y dejarlos para siempre en él.</p>
+<p> </p>
+<p><strong><span style="color: #ffc107;">WARNING:</span></strong></p>
+<p>La <strong>instalación de paquetes SOLO ES NECESARIA la primera vez</strong> que se usa dicho paquete en la vida del ordenador, no hace falta hacerlo cada vez que lo usas.</p>
+<p> </p>
+<p>Una vez que tenemos los trozos de código (el paquete) en nuestro ordenador, en cada sesión de <code>R</code> que abramos (cada vez que cierres y abras <code>RStudio</code>) deberemos (si queremos) llamar a ese paquete que tenemos instalado, escribiendo el siguiente comando en consola</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<p><strong>Welcome to <mark>software libre</mark></strong></p>
+</div>
+<div id="por-qué-excel-no-es-tu-amigo" class="section level2">
+<h2>
+<span class="header-section-number">3.3</span> ¿Por qué Excel no es tu amigo?<a class="anchor" aria-label="anchor" href="#por-qu%C3%A9-excel-no-es-tu-amigo"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong><code>R</code> es un lenguaje de programación</strong>, de alto nivel para el usuario y modular. Los lenguajes de alto nivel como <code>R</code>, <code>Python</code> (curso interactivo de Python en <a href="https://checkio.org/" class="uri">https://checkio.org/</a>) o <code>Matlab</code>, facilitan la programación al usuario, teniendo que preocuparte solo de la tarea de programar. Son lenguajes con una <mark><strong>menor curva de aprendizaje</strong></mark> aunque suelen ser más lentos en su ejecución en comparación con lenguajes de bajo nivel (<code>C</code>, <code>C++</code> o <code>Fortran</code>), lenguajes muy rápidos en su ejecución pero cuya programación requiere un mayor tiempo y formación, teniendo que además estar pendiente del tipo de variables, espacio en memoria, etc.</p>
+<p>Por su arquitectura, <code>R</code> es un lenguaje que puede ser usado para un propósito general pero que está especialmente diseñado para el <strong>análisis estadístico de datos</strong>. Su <strong>modularidad</strong> nos da la ventaja de que podemos instalar las funcionalidades que vayamos necesitando de forma progresiva.</p>
+<p><strong><span style="color: #20935E;">¿Por qué no es recomendable usar Excel como base de datos ni para realizar análisis estadísticos complejos?</span></strong></p>
+<p> </p>
+<ul>
+<li><p><strong>Software de pago</strong>: Excel, al igual que el resto de programas de Microsoft o SPSS (por desgracia programa estrella de nuestro sistema sanitario), es un programa de pago. A nivel individual, todos hemos tenido una versión que no hemos pagado, pero dicha evasión no se la puede permitir una empresa o administración, que debe de pagar altas cantidades de dinero anuales por las licencias, dinero que no sería necesario si los investigadores y trabajadores tuvieran formación (remunerada) en otras herramientas de software libre.</p></li>
+<li><p><strong>Software cerrado</strong>: no solo es de pago sino que es cerrado, así que solo podemos hacer lo que Excel ha creído que interesante que podamos hacer. Incluso con la programación de MACROS, las funcionalidades de Excel siguen siendo mucho más limitadas ya que viene «programadas» de antemano</p></li>
+<li><p><strong>Alto consumo de memoria</strong>: dicha programación predeterminada hace que Excel ocupe muchísimo espacio en el disco duro y tenga un alto consumo de memoria (la memoria es lo que te permite hacer varias tareas a la vez en tu ordenador).</p></li>
+<li><p><strong>No es universal</strong>: no solo es de pago sino que además, dependiendo de la versión que tengas de Excel, tendrá un formato distinto para datos como fechas, teniendo incluso extensiones distintas, de forma que un archivo <code>.xls</code> abierto por un Excel moderno puede provocar errores en la carga.</p></li>
+<li><p><mark><strong>¡ES SOLO UNA HOJA DE CÁLCULO!</strong></mark>: el propio Microsoft desaconseja el uso de Excel para el análisis de grandes volúmenes de datos. El Excel es una herramienta maravillosa para ser usada como una sencilla hoja de cálculo: llevar las cuentas de tu familia, de tu pequeño negocio, una declaración de la Renta sencilla, planificar viajes, etc. Pero el programa <strong>NO ESTÁ DISEÑADO</strong> para ser una base de datos ni para análisis detallado, y muchos menos pensado para generar un entorno flexible para el análisis estadístico y la visualización de datos.</p></li>
+</ul>
+<p> </p>
+<p><strong>¿Puedes ser el mejor partiendo un filete con una cuchara?</strong> Seguramente puedas (en Excel puedes hasta programar con macros), y si siempre lo hiciste así, acabarás normalizándolo, pero seguirás siendo una persona comiendo filete con cuchara.</p>
+<p><strong>¿Qué sucede si usamos la herramienta equivocada?</strong> Tres ejemplos:</p>
+<ul>
+<li>
+<strong><span style="color: #dc3545;">Problemas para codificar fechas</span></strong>: en 2016 se publicó una <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7">revisión de artículos en genética</a>, descubriendo que 1 de cada 5 artículos contenían errores debido a una mala codificación de las fechas, conviertiendo por ejemplo los genes Septin-2 (conocido como SEPT2) en fechas, y al revés <span class="citation">(Ziemann, Eren, and El-Osta <a href="bibliograf%C3%ADa.html#ref-Ziemannetal16">2016</a>)</span>.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:excel-genes"></span>
+<img src="img/excel_genes.jpg" alt="Excel en una noche loca." width="50%"><p class="caption">
+Imagen/gráfica 3.2: Excel en una noche loca.
+</p>
+</div>
+<ul>
+<li>
+<strong><span style="color: #dc3545;">Problemas de memoria</span></strong>: un Excel permite por defecto una cantidad máxima de filas. Aunque dicha cantidad se puede ampliar, sigue siendo finita, por lo que cuando superas el umbral de filas, al añadir filas Excel te borra registros <strong>sin avisarte de que lo está haciendo</strong>. Esto es lo que sucedió con los <a href="https://www.redaccionmedica.com/secciones/sanidad-hoy/covid-reino-unido-pierden-16000-positivos-9989">registros de casos covid en Reino Unido</a>.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:excel-uk"></span>
+<img src="img/excel_uk.jpg" alt="Cuando Excel dice basta." width="50%"><p class="caption">
+Imagen/gráfica 3.3: Cuando Excel dice basta.
+</p>
+</div>
+<ul>
+<li>
+<strong><span style="color: #dc3545;">Problemas para codificar edades</span></strong>: una variable de tipo fecha, aunque nosotros la veamos con letras, en realidad es una variable numérica que representa los días que han pasado desde una fecha origen. En función de las distintas versiones de Excel, dicha fecha origen cambia. Además, si se codifica mal la fecha en formato <code>dd-mm-YY</code>, dicho formato cuando se exporta a otro excel en texto, no permite distinguir a un nacido en 1918 y a un nacido en 2018, así que podemos estar confundiendo personas de 103 años con niños de 3 años (y es lo que <a href="https://www.niusdiario.es/sociedad/sanidad/sanidad-reconoce-datos-muertes-ninos-covid-erroneos-contabilizaban-centenarios-como-menores_18_3107220241.html">sucedió en España</a>, observando unas tasas de mortalidad en niños muy pequeños equivalentes a personas mayores).</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:excel-edades"></span>
+<img src="img/excel_edades.jpg" alt="Los centenarios con biberón." width="50%"><p class="caption">
+Imagen/gráfica 3.4: Los centenarios con biberón.
+</p>
+</div>
+</div>
+<div id="glosario-1" class="section level2">
+<h2>
+<span class="header-section-number">3.4</span> Glosario<a class="anchor" aria-label="anchor" href="#glosario-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong><span style="color: #4197D2;">GLOSARIO</span></strong></p>
+<ul>
+<li>
+<strong><span style="color: #4197D2;">Paquete</span></strong>: trozos de código realizadas por otros usuarios de la comunidad (y validades por el equipo de CRAN si la descarga es mediante <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>) para ser usados. Una vez instalados (descargados) los trozos de código a nuestro ordenador, basta con «acudir» a ellos con <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</li>
+</ul>
+<p>Haciendo una metáfora con la colección de libros que tengas en casa: con la <strong>instalación hemos comprado el libro</strong> y lo tenemos en nuestra estantería (para siempre), con la llamada al paquete, por ejemplo <code><a href="https://ggplot2.tidyverse.org">library(ggplot2)</a></code>, lo que hacemos es decidir, de entre todos los libros de la estantería, cuales queremos llevarnos de viaje (en cada maleta que hagamos).</p>
+<p>Los <strong>paquetes usados</strong> los verás denotados como <code>{nombre_paquete}</code> a lo largo del manual.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></div>
+<div class="next"><a href="primeros-pasos.html"><span class="header-section-number">4</span> Primeros pasos</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#que-es-R"><span class="header-section-number">3</span> ¿Qué es R?</a></li>
+<li><a class="nav-link" href="#historia-de-r"><span class="header-section-number">3.1</span> Historia de R</a></li>
+<li><a class="nav-link" href="#instalacionpaquetes"><span class="header-section-number">3.2</span> Comunidad de usuarios: paquetes</a></li>
+<li><a class="nav-link" href="#por-qu%C3%A9-excel-no-es-tu-amigo"><span class="header-section-number">3.3</span> ¿Por qué Excel no es tu amigo?</a></li>
+<li><a class="nav-link" href="#glosario-1"><span class="header-section-number">3.4</span> Glosario</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/03-que_es_R.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/03-que_es_R.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 26-12-2021.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
