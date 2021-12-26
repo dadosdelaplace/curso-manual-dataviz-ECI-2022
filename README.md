@@ -1,4 +1,4 @@
-Curso introductorio de R (desde cero)
+Analizando datos, visualizando información, contando historias
 ======
 
 [![License:
@@ -24,26 +24,22 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org
   <a href="https://cartasdelaplace.com"><img border="0" alt="Newsletter" src="https://assets.dryicons.com/uploads/icon/svg/8007/c804652c-fae4-43d7-b539-187d6a408254.svg" width="30" height="30"></a>     
   
 <h1 style="font-weight:normal" align="left">
-  &nbsp;Bienvenido/a, aquí Javi (@DadosDeLaplace) :wave:
+  &nbsp;Materiales del curso
 </h1>
 
 </div>
 <div align="left">
             
+![image](https://user-images.githubusercontent.com/26646492/147409542-86195191-2733-42f8-a38c-94712cd25332.png)
 
-<div style="text-align: left;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Patreon_logomark.svg/1024px-Patreon_logomark.svg.png"  width="70" height="70" alt="Patreon">Puedes <b>contribuir al proyecto de divulgación estadística</b> pagando dos cafés ☕️ en la comunidad <a href="https://patreon.com/dadosdelaplace">Patreon</a></div>
-
-&nbsp;
+Descarga **todos los materiales en un archivo .zip** haciendo click en...
             
+* **Manual introductorio de R** (https://aprendiendo-r-intro.netlify.app) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana y Gabriel Valverde Castilla**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
+            
+* **Código Rmarkdown del manual** (https://github.com/dadosdelaplace/courses-ECI-2022)
+            
+* **Scripts de R** usados durante el curso (https://github.com/dadosdelaplace/courses-ECI-2022/scripts)
 
-**Manual básico de R** (https://aprendiendo-r-intro.netlify.app) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
-
-```{r eval = FALSE}
-install.packages("bookdown")
-# o desde su versión en desarrollo actualizada
-# devtools::install_github("rstudio/bookdown")
-```
-
-<img src="https://github.com/dadosdelaplace/cursoR_intro_2021_2022/blob/main/hex-rmarkdown.png" width="15%" />
-
-![image](https://user-images.githubusercontent.com/26646492/146846799-4636cc54-e1b8-45e4-be42-8b2e1f7f4cad.png)
+* **Datos** usados durante el curso** (https://github.com/dadosdelaplace/courses-ECI-2022/DATOS)
+            
+* **Diapositivas** (en construcción)
