@@ -32,7 +32,7 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org
             
 ![image](https://user-images.githubusercontent.com/26646492/147409542-86195191-2733-42f8-a38c-94712cd25332.png)
 
-Descarga **todos los materiales en un archivo .zip** haciendo click en...
+Descarga **todos los materiales en un archivo .zip** haciendo click en el botón [Code]() y después en [Download ZIP]()
             
 * **Manual introductorio de R** (https://aprendiendo-r-intro.netlify.app) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana y Gabriel Valverde Castilla**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
             
