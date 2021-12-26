@@ -104,6 +104,8 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 * \@ref(que-es-R) [¿Qué es R?](#que-es-R) 
 * \@ref(primeros-pasos) [Primeros pasos](#primeros-pasos) 
 
+* \@ref(tipos-datos) [Tipos de datos](#tipos-datos)
+* \@ref(vectores) [Vectores](#vectores)
 
 
 ## Código de colores {-} 

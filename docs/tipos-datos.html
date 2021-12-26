@@ -50,9 +50,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="vectores" class="section level1">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tipos-datos" class="section level1">
 <h1>
-<span class="header-section-number">Capítulo 5</span> Tipos de datos<a class="anchor" aria-label="anchor" href="#vectores"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capítulo 5</span> Tipos de datos<a class="anchor" aria-label="anchor" href="#tipos-datos"><i class="fas fa-link"></i></a>
 </h1>
 <div class="blackbox">
 <p>Scripts usados:</p>
@@ -73,10 +73,16 @@
 <li>A la pregunta «¿está usted soltero/a?» la respuesta será lo que llamamos una <mark><strong>variable binaria</strong></mark>: una variable que solo puede valer <code>TRUE</code> (si está soltero/a) y <code>FALSE</code> (en otro caso).</li>
 </ul>
 <p>Existen <strong>más tipos</strong> (como números complejos) pero con estos nos valdrá para nuestra introducción.</p>
-<div id="variables-numéricas" class="section level2">
+<div id="numericas" class="section level2">
 <h2>
-<span class="header-section-number">5.1</span> Variables numéricas<a class="anchor" aria-label="anchor" href="#variables-num%C3%A9ricas"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Variables numéricas<a class="anchor" aria-label="anchor" href="#numericas"><i class="fas fa-link"></i></a>
 </h2>
+<ul>
+<li>[X] Variables numéricas (individuales)</li>
+<li>[ ] Variables de caracteres</li>
+<li>[ ] Variables lógicas</li>
+<li>[ ] Variables de tipo fecha</li>
+</ul>
 <p>Probablemente el dato <strong>más sencillo y obvio</strong> de entender sean los datos numéricos, datos que ya hemos usado en nuestros primeros pasos como calculadora.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
@@ -114,50 +120,102 @@
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "integer"</code></pre>
-<p>Con los <mark><strong>datos numéricos</strong></mark> podemos realizar todas las operaciones que se nos ocurran</p>
-</div>
-<div id="variables-de-tipo-caracter-texto" class="section level2">
-<h2>
-<span class="header-section-number">5.2</span> Variables de tipo caracter (texto)<a class="anchor" aria-label="anchor" href="#variables-de-tipo-caracter-texto"><i class="fas fa-link"></i></a>
-</h2>
-<p>Un error común es asociar el concepto de vectores solo a números: un <mark><strong>vector es una colección o concatenación de elementos del mismo tipo</strong></mark> pero no tienen porque ser necesariamente números. Vamos a crear una frase de ejemplo, un vector de 4 elementos de tipo texto (en <code>R</code> se llaman <code>char</code>): <code>"Mi"</code>, <code>"nombre"</code>, <code>"es"</code> <code>"Javier"</code>.</p>
-<p>Como ves las variables de tipo <code>char</code> o <code>character</code> van entre comillas dobles, ya que es un <mark><strong>cadena de texto</strong></mark>.</p>
+<p>Con los <mark><strong>datos numéricos</strong></mark> podemos realizar todas las <strong>operaciones</strong> que se nos ocurriría hacer en una <strong>calculadora</strong>, como sumar (<code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>), restar (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>), multiplicar (<code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>), dividir (<code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>), raíz cuadrada (<code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>), valor absoluto (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>), elevar al cuadrado (<code>^2</code>), elevar al cubo (<code>^3</code>), etc.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mi_nombre</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mi"</span>, <span class="st">"nombre"</span>, <span class="st">"es"</span>, <span class="st">"Javier"</span><span class="op">)</span>
-<span class="va">mi_nombre</span></code></pre></div>
-<pre><code>## [1] "Mi"     "nombre" "es"     "Javier"</code></pre>
-<p>Ya tenemos nuestro primer vector de texto de longitud 4. Las <strong>cadenas de texto</strong> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas como la suma o la media, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Dicha función nos permite convertir un vector de 4 palabras en una frase, decidiendo que caracter queremos que vaya entre palabra con el argumento <code>collapse =</code>.</p>
+<code class="sourceCode R"><span class="co"># Definimos dos variables numéricas</span>
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span>
+
+<span class="co"># Suma y resta</span>
+<span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
+<pre><code>## [1] -1</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">mi_nombre</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># todo junto</span></code></pre></div>
-<pre><code>## [1] "MinombreesJavier"</code></pre>
+<code class="sourceCode R"><span class="va">a</span> <span class="op">-</span> <span class="va">b</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">mi_nombre</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="co"># separados por un espacio</span></code></pre></div>
-<pre><code>## [1] "Mi nombre es Javier"</code></pre>
+<code class="sourceCode R"><span class="co"># Multiplicación y división</span>
+<span class="va">a</span> <span class="op">*</span> <span class="va">b</span></code></pre></div>
+<pre><code>## [1] -2</code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">mi_nombre</span>, collapse <span class="op">=</span> <span class="st">"."</span><span class="op">)</span> <span class="co"># separados por un punto .</span></code></pre></div>
-<pre><code>## [1] "Mi.nombre.es.Javier"</code></pre>
-<p>Si queremos pegar los elementos de la cadena de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden <code><a href="https://rdrr.io/r/base/paste.html">paste(mi_nombre, collapse = "")</a></code>, usando la función <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code></p>
+<code class="sourceCode R"><span class="va">a</span> <span class="op">/</span> <span class="va">b</span></code></pre></div>
+<pre><code>## [1] -0.5</code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">mi_nombre</span><span class="op">)</span> <span class="co"># todo junto sin nada separando</span></code></pre></div>
-<pre><code>## [1] "Mi"     "nombre" "es"     "Javier"</code></pre>
-<p>Esta función es muy útil si queremos definir variables de texto que compartan por ejemplo un prefijo (<code>variable_1</code>, <code>variable_2</code>, …)</p>
+<code class="sourceCode R"><span class="co"># Raíz cuadrada</span>
+<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"variable"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span> <span class="co"># a la palabra «variable» le pegamos los números del 1 al 7</span></code></pre></div>
-<pre><code>## [1] "variable1" "variable2" "variable3" "variable4" "variable5" "variable6"
-## [7] "variable7"</code></pre>
+<code class="sourceCode R"><span class="co"># Valor absoluto</span>
+<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"variable"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span> <span class="co"># separado por una barra baja</span></code></pre></div>
-<pre><code>## [1] "variable_1" "variable_2" "variable_3" "variable_4" "variable_5"
-## [6] "variable_6" "variable_7"</code></pre>
-<div id="paquete-glue" class="section level3">
+<code class="sourceCode R"><span class="co"># Potencias</span>
+<span class="va">a</span><span class="op">^</span><span class="fl">2</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">b</span><span class="op">^</span><span class="fl">3</span></code></pre></div>
+<pre><code>## [1] -8</code></pre>
+</div>
+<div id="caracter" class="section level2">
+<h2>
+<span class="header-section-number">5.2</span> Variables de tipo caracter (texto)<a class="anchor" aria-label="anchor" href="#caracter"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>[X] Variables numéricas (individuales)</li>
+<li>[X] Variables de caracteres</li>
+<li>[ ] Variables lógicas</li>
+<li>[ ] Variables de tipo fecha</li>
+</ul>
+<p>Pero no solo de números viven los datos: imagina que además de la edad de una persona queremos guardar su nombre.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">32</span>
+<span class="va">nombre</span> <span class="op">&lt;-</span> <span class="st">"Javier"</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">edad</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "numeric"</code></pre>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">edad</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "double"</code></pre>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">nombre</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">nombre</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "character"</code></pre>
+<p>Fíjate que ahora tenemos en <code>nombre</code> una variable de tipo <em>character</em>, es decir, una cadena de texto (conocido en otros lenguajes como <em>string</em> o <em>char</em>): <strong>letras y caracteres entre comillas</strong>. Las <mark><strong>cadenas de texto</strong></mark> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>. Dicha función nos permite <strong>pegar dos cadenas de caracteres</strong>, decidiendo que caracter queremos que vaya entre palabra con el argumento <code>sep =</code>.</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nombre</span> <span class="op">&lt;-</span> <span class="st">"Javier"</span>
+<span class="va">apellido</span> <span class="op">&lt;-</span> <span class="st">"Álvarez"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># todo junto</span></code></pre></div>
+<pre><code>## [1] "JavierÁlvarez"</code></pre>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="co"># separados por un espacio</span></code></pre></div>
+<pre><code>## [1] "Javier Álvarez"</code></pre>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">"."</span><span class="op">)</span> <span class="co"># separados por un punto .</span></code></pre></div>
+<pre><code>## [1] "Javier.Álvarez"</code></pre>
+<p>Si queremos pegar cadenas de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden, usando la función <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code></p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Son equivalentes</span>
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># todo junto</span></code></pre></div>
+<pre><code>## [1] "JavierÁlvarez"</code></pre>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span><span class="op">)</span> <span class="co"># todo junto sin nada separando</span></code></pre></div>
+<pre><code>## [1] "JavierÁlvarez"</code></pre>
+<div id="nuestra-primera-función-pastepaste0" class="section level3">
 <h3>
-<span class="header-section-number">5.2.1</span> Paquete glue<a class="anchor" aria-label="anchor" href="#paquete-glue"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2.1</span> Nuestra primera función: paste/paste0<a class="anchor" aria-label="anchor" href="#nuestra-primera-funci%C3%B3n-pastepaste0"><i class="fas fa-link"></i></a>
+</h3>
+<p>dasda</p>
+</div>
+<div id="nuestro-primer-paquete-glue" class="section level3">
+<h3>
+<span class="header-section-number">5.2.2</span> Nuestro primer paquete: glue<a class="anchor" aria-label="anchor" href="#nuestro-primer-paquete-glue"><i class="fas fa-link"></i></a>
 </h3>
 <p>Otra <strong>forma más intuitiva de trabajar con textos y variables numéricas</strong> es usar el paquete <a href="https://github.com/tidyverse/glue">glue</a>, que nos permite pegar cadenas de texto a variables numéricas de <strong>forma simbólica</strong>.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"glue"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">:</span><span class="fl">15</span> <span class="co"># edades</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {edad} años"</span><span class="op">)</span></code></pre></div>
 <pre><code>## La edad es de 10 años
@@ -167,7 +225,7 @@
 ## La edad es de 14 años
 ## La edad es de 15 años</code></pre>
 <p>También podemos hacer uso de dicha función sin tener los valores numéricos previamente guardados en variables.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra forma sin definir variables a priori</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {10:15} años"</span><span class="op">)</span></code></pre></div>
 <pre><code>## La edad es de 10 años
@@ -178,103 +236,149 @@
 ## La edad es de 15 años</code></pre>
 <p>Ya sabemos trabajar con textos :)</p>
 <p>¿Y si queremos <strong>pasar todo a mayúscula</strong>? ¿O <strong>todo a minúscula</strong>? ¿Y si queremos <strong>sustituir un caracter (por ejemplo <code>.</code>) por otro en todos los elementos</strong>? <code>R</code> también nos proporciona algunas funciones muy sencillas (del paquete <code>{base}</code>) de usar para dichas tareas. Aquí un ejemplo de algunas de ellas.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hola."</span>, <span class="st">"qué"</span>, <span class="st">"ase?"</span>, <span class="st">"todo"</span>, <span class="st">"bien."</span>, <span class="st">"y yo"</span>,
            <span class="st">"que"</span>, <span class="st">"ME"</span>, <span class="st">"ALEGRO"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span> <span class="co"># todo a mayúscula</span></code></pre></div>
 <pre><code>## [1] "HOLA."  "QUÉ"    "ASE?"   "TODO"   "BIEN."  "Y YO"   "QUE"    "ME"    
 ## [9] "ALEGRO"</code></pre>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span> <span class="co"># todo a minúscula</span></code></pre></div>
 <pre><code>## [1] "hola."  "qué"    "ase?"   "todo"   "bien."  "y yo"   "que"    "me"    
 ## [9] "alegro"</code></pre>
 <p>El paquete <code>{base}</code> también nos permite buscar y reemplazar patrones concretos en cadenas de texta (por ejemplo, sustituir toda letra «o» por el caracter «*»).</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"o"</span>, <span class="st">"*"</span>, <span class="va">texto</span><span class="op">)</span> <span class="co"># toda "o" en el texto será sustituida por *</span></code></pre></div>
 <pre><code>## [1] "H*la."  "qué"    "ase?"   "t*d*"   "bien."  "y y*"   "que"    "ME"    
 ## [9] "ALEGRO"</code></pre>
 <p> </p>
 </div>
 </div>
-<div id="vectores-lógicos-truefalse" class="section level2">
+<div id="logicas" class="section level2">
 <h2>
-<span class="header-section-number">5.3</span> Vectores lógicos (TRUE/FALSE)<a class="anchor" aria-label="anchor" href="#vectores-l%C3%B3gicos-truefalse"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Variables lógicas (TRUE/FALSE)<a class="anchor" aria-label="anchor" href="#logicas"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>[X] Variables numéricas (individuales)</li>
-<li>[X] Vectores de números</li>
-<li>[X] Vectores de caracteres</li>
-<li>[ ] Vectores lógicos</li>
+<li>[X] Variables de caracteres</li>
+<li>[X] Variables lógicas</li>
+<li>[ ] Variables de tipo fecha</li>
 </ul>
-<p>Veamos un último tipo de vectores importante en todo lenguaje de programación: los <mark><strong>vectores de valores lógicos</strong></mark>. Un <strong>valor lógico</strong> puede tomar tres valores:</p>
+<p>Probablemente el tipo de datos más importante en todo lenguaje de programación son las <mark><strong>variables lógicas</strong></mark>. Un <strong>valor lógico</strong> puede tomar <strong>dos valores</strong> (en realidad pueden tomar un tercer valor, <code>NA</code>, las siglas de <em>not available</em> para representar datos ausentes, pero lo veremos más adelante):</p>
 <ul>
 <li>
 <code>TRUE</code> (guardado internamente como un <code>1</code>).</li>
 <li>
 <code>FALSE</code> (guardado internamente como un <code>0</code>).</li>
-<li>
-<code>NA</code> (dato ausente, son las siglas de <em>not available</em>, cuando pretendemos aplicar una comparación a un dato ya de por si ausente).</li>
 </ul>
-<p>Estos valores son resultado de evaluar <mark><strong>condiciones lógicas</strong></mark>. Por ejemplo, imaginemos que definimos un vector de números <code>x &lt;- c(1.5, -1, 2, 4, 3, -4)</code>. ¿Qué numeros del vector son menores que 2? Basta con que ejecutemos la orden <code>x &lt; 2</code>, que nos devolverá <code>TRUE/FALSE</code> en cada hueco, en función de si cumple (<code>TRUE</code>) o no (<code>FALSE</code>) la condición pedida.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE</code></pre>
-<p>El primer, segundo y sexto elemento del vector son los únicos elementos (estrictamente) menores que <code>2</code>, de ahí que en el primer, segundo y sexto elemento aparezca un <code>TRUE</code> y en el resto un <code>FALSE</code>. Es <strong>importante</strong> recordar que al <strong>evaluar una condición lógica sobre un vector</strong> de longitud <code>n</code>, la <strong>salida sigue siendo un vector</strong> de longitud <code>n</code> pero con valores lógicos.</p>
-<p>Dicha condición lógica puede hacerse con otros operadores como <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;=</a></code>, <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> o <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;=</a></code>.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] FALSE FALSE FALSE  TRUE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] FALSE FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
-<p> </p>
-<p>También podemos <strong>comparar si es igual a otro elemento</strong>, para lo que usaremos el operador <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>, pudiendo usar también su opuesto <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code> («distinto de»).</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">==</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">!=</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
-<p>Las <strong>condiciones pueden ser combinadas</strong>, principalmente de dos maneras:</p>
+<p>Este tipo de variables, también conocidas como <mark><strong>variables binarias (solo dos valores) o booleanas</strong></mark>, son la base de la programación ya que cada bit de nuestro ordenador puede guardar un <code>1</code> o un <code>0</code>.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">soltero</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># ¿Es soltero? --&gt; SÍ</span>
+<span class="va">carnet_conducir</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span> <span class="co"># ¿Tiene carnet de conducir? --&gt; NO</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">soltero</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "logical"</code></pre>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">soltero</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "logical"</code></pre>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">carnet_conducir</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "logical"</code></pre>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">carnet_conducir</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "logical"</code></pre>
+<p>Ahora nuestas variables son guardadas como <em>logical</em>, y pueden tomar los valores <code>TRUE/FALSE</code>, aunque internamente son guardados como <code>1/0</code>. Es importante entender que <mark><strong>no son variables de texto</strong></mark>:</p>
+<ul>
+<li>
+<code>"TRUE"</code> es un texto (internamente idéntico a <code>rojo</code> o <code>azul</code>)</li>
+<li>
+<code>TRUE</code> es una variable lógica</li>
+</ul>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Texto</span>
+<span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">"TRUE"</span>
+<span class="va">texto</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
+<pre><code>## Error in texto + 1: argumento no-numérico para operador binario</code></pre>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Lógica</span>
+<span class="va">logica</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span>
+<span class="va">logica</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Estos valores suelen ser resultado de evaluar <mark><strong>condiciones lógicas</strong></mark>. Por ejemplo, imaginemos que queremos comprobar si una persona está soltero o no, y si tiene carnet de conducir o no. Basta con que ejecutemos la orden <code>soltero == TRUE</code>, que nos devolverá <code>TRUE</code> si está soltero, y <code>FALSE</code> en caso contrario. De igual manera podremos hacer <code>carnet_conducir == TRUE</code>. <mark><strong>IMPORTANTE</strong></mark>: cuando queremos <strong>comparar si un elemento es igual a otro</strong>, usaremos el operador de comparación <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>, pudiendo usar también su opuesto <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code> («distinto de»).</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">soltero</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">soltero</span> <span class="op">!=</span> <span class="cn">TRUE</span> <span class="co"># igual que soltero == FALSE</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">carnet_conducir</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">carnet_conducir</span> <span class="op">!=</span> <span class="cn">TRUE</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Por el mismo razonamiento podemos <mark><strong>comparar si una variable numérica o de tipo caracter</strong></mark> es igual o distinto a un valor dado, incluso para las numéricas podemos <strong>comparar si son menores o mayores</strong> que un número.</p>
+<p>¿Tiene la persona menos de 32 años? ¿Tiene justo 32 años? ¿Tiene 32 años o más?</p>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">32</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">==</span> <span class="fl">32</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;=</span> <span class="fl">32</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>¿La persona se llama Carlos?</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nombre</span> <span class="op">==</span> <span class="st">"Carlos"</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Fíjate que para comparaciones tenemos «igual a» <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> frente distinto <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code>, pero también comparaciones de orden como <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;=</a></code>, <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> o <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;=</a></code>. Las <mark><strong>condiciones lógicas pueden ser combinadas</strong></mark>, principalmente de dos maneras:</p>
 <ul>
 <li><p><strong>Intersección</strong>: todas las condiciones concatenadas se deben cumplir (conjunción <code>y</code>, operador <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>) para devolver un <code>TRUE</code>.</p></li>
 <li><p><strong>Unión</strong>: basta con que una de las condiciones concatenadas se cumpla (conjunción <code>o</code>, operador <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>) para devolver un <code>TRUE</code>.</p></li>
 </ul>
-<p>Por ejemplo, vamos a calcular qué elementos del vector <code><a href="https://rdrr.io/r/base/c.html">c(1.5, -1, 2, 4, 3, -4)</a></code> sean menores que 3 pero (y) mayores que 0, y los elementos menores que 2 o mayores que 3.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;</span> <span class="fl">3</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="co"># Solo los que cumplen ambas condiciones</span></code></pre></div>
-<pre><code>## [1]  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="co"># Los cumplen al menos una de ellas</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
+<p>Por ejemplo, podríamos preguntarnos si la persona tiene más de 32 años y está soltero (AMBAS deben cumplirse).</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">&amp;</span> <span class="va">soltero</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Equivalente (al ser soltero un valor ya de por si lógico)</span>
+<span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">&amp;</span> <span class="va">soltero</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>Vemos que el resultado es <code>FALSE</code> ya que solo se cumple una de las condiciones: devolvería <code>TRUE</code> si preguntamos si tiene más de 30 años y está soltero, o si solo pedimos una de las dos condiciones (¿está soltero y/o tiene más de 32 años?).</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">|</span> <span class="va">soltero</span> <span class="co"># nos sirve con que alguna se cumpla</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">&amp;</span> <span class="va">soltero</span> <span class="co"># deben cumplirse ambas</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">soltero</span> <span class="co"># deben cumplirse ambas</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div id="fechas" class="section level2">
+<h2>
+<span class="header-section-number">5.4</span> Variables de tipo fecha<a class="anchor" aria-label="anchor" href="#fechas"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="ausentes" class="section level2">
+<h2>
+<span class="header-section-number">5.5</span> Datos ausentes<a class="anchor" aria-label="anchor" href="#ausentes"><i class="fas fa-link"></i></a>
+</h2>
 </div>
 <div id="consejos-2" class="section level2">
 <h2>
-<span class="header-section-number">5.4</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos-2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos-2"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong><span style="color: #20935E;">CONSEJOS</span></strong></p>
 <p> </p>
 <p><strong><span style="color: #20935E;">Recuperar un comando y autocompletar</span></strong></p>
 <p>Si haces click con el ratón en la consola y pulsas la flecha «arriba» del teclado, te irá apareciendo todo el <mark><strong>historial de órdenes ejecutadas</strong></mark>. Es una manera de ahorrar tiempo para ejecutar órdenes similares a las ya ejecutadas. Si empiezas a escribir el nombre de una variable pero no te acuerdas exactamente de su nombre, pulsando <strong>tabulador</strong> te <strong>autocompletará</strong> solo.</p>
 <p> </p>
-<p><strong><span style="color: #20935E;">Expresiones regulares</span></strong></p>
-<p>Dentro del entorno de paquetes <a href="https://tidyverse.tidyverse.org">tidyverse</a>, el paquete <a href="http://stringr.tidyverse.org">stringr</a> permite un manejo más complejo de cadenas de texo (como el uso de expresiones regulares).</p>
-<div class="figure">
-<span style="display:block;" id="fig:stringr2"></span>
-<img src="img/stringr.png" alt="Paquete stringr para manejar cadenas de texto más complejas" width="615"><p class="caption">
-Imagen/gráfica 5.1: Paquete stringr para manejar cadenas de texto más complejas
-</p>
-</div>
-<p> </p>
 </div>
 <div id="ejercicios-1" class="section level2">
 <h2>
-<span class="header-section-number">5.5</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>(haz click en las flechas para ver soluciones)</p>
 <details><p><summary>📝<strong>Ejercicio 1</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada <code>vector_num</code>. </summary></p>
@@ -282,7 +386,7 @@ Imagen/gráfica 5.1: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">vector_num</span></code></pre></div>
@@ -294,7 +398,7 @@ Imagen/gráfica 5.1: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definiendo el vector</span>
 <span class="va">vector_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hola"</span>, <span class="st">"me"</span>, <span class="st">"llamo"</span>, <span class="st">"Javier"</span>,
                  <span class="st">"Álvarez"</span>, <span class="st">"Liébana"</span><span class="op">)</span>
@@ -302,7 +406,7 @@ Imagen/gráfica 5.1: Paquete stringr para manejar cadenas de texto más compleja
 <span class="co"># Pegamos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">vector_char</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Hola me llamo Javier Álvarez Liébana"</code></pre>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Añadimos frase</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">vector_char</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>, <span class="st">" y tengo 30 años."</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Hola me llamo Javier Álvarez Liébana y tengo 30 años."</code></pre>

@@ -18,6 +18,16 @@ colorize <- function(x, color) {
 
 # Primeros pasos {#primeros-pasos}
 
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R): ejercicio 4. Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R>
+
+::::
+
+&nbsp;
+
 Vamos a empezar por lo sencillo: <mark>**¿cómo usar `R` como una calculadora?**</mark>
 
 ## Primeros pasos en R: calculadora
@@ -265,7 +275,7 @@ sqrt(c)
 
 
 <details>
-  <summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero `.R`, guardado en [script01.R](https://github.com/dadosdelaplace/intro-R/tree/main/scripts)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
+  <summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero `.R`, guardado en [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
   
 <!-- toc -->
 - Solución:

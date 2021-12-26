@@ -1,5 +1,6 @@
 bookdown::bs4_book:
   latex_engine: xelatex
+  css: css/style.css
   theme:
     primary: "#4197D2"   # default .rmdnote = blue #546f8a
     danger:  "#dc3545"   # default .rmdcaution = red

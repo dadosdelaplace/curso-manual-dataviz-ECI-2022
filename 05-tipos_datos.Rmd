@@ -1,0 +1,361 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# (PART) Conceptos básicos {-}
+
+# Tipos de datos {#tipos-datos}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script02.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R): tipos de datos y funciones usadas con ellos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R>
+
+::::
+
+&nbsp;
+
+Tras las lecciones anteriores, los ejercicios planteados y lo que hayas jugueteado por tu cuenta, deberíamos saber usar ya `R` como una calculadora. Vamos a ir más allá: <mark>**¿existen datos más allá de los números?**</mark> En este capítulo vamos a empezar a familiarizarnos con los tipos de datos (individuales) que podemos necesitar. Piensa por ejemplo en los datos guardados de una persona:
+
+* La edad será un <mark>**número (sin decimales)**</mark>
+* Su peso o estatura será otro <mark>**número (ahora con decimales)**</mark>.
+* Su nombre será una <mark>**cadena de texto**</mark>.
+* Su fecha de nacimiento será precisamente eso, una <mark>**fecha**</mark>.
+* A la pregunta «¿está usted soltero/a?» la respuesta será lo que llamamos una <mark>**variable binaria**</mark>: una variable que solo puede valer `TRUE` (si está soltero/a) y `FALSE` (en otro caso).
+
+Existen **más tipos** (como números complejos) pero con estos nos valdrá para nuestra introducción.
+
+
+## Variables numéricas {#numericas}
+
+- [X] Variables numéricas (individuales)
+- [ ] Variables de caracteres
+- [ ] Variables lógicas
+- [ ] Variables de tipo fecha
+
+Probablemente el dato **más sencillo y obvio** de entender sean los datos numéricos, datos que ya hemos usado en nuestros primeros pasos como calculadora.
+
+```{r}
+a <- 1
+b <- 2
+a + b
+```
+
+En el código anterior, tanto `a` como `b` como la suma `a + b` son de <mark>**tipo numérico**</mark>, algo que podemos comprobar con la función `class()` (nos devuelve _numeric_).
+
+```{r}
+# Clase de las variables
+class(a)
+class(b)
+class(a + b)
+```
+
+También podemos comprobar su naturaleza con `typeof()`, que nos devuelve la naturaleza del dato tal cual es guardada en `R`.
+
+```{r}
+# Topología interna
+typeof(a)
+typeof(b)
+typeof(a + b)
+```
+
+Fíjate que ambas órdenes combinadas nos dicen que las variables son de tipo numérico pero concretamente de tipo _double_: dichas variables son entendidas internamente como números con decimales (aunque no los veamos), lo que en **matemáticas se llaman números reales** (por curiosidad: el término _double_ viene de lenguajes de programación antiguos como `C`, que significa «doble precisión», para indicarle que reserve 8 bytes - 64 bits - de memoria). Durante el curso no distinguiremos entre distintos tipos de números, para nosotros serán siempre de clase _numeric_ y de tipo _double_, pero podríamos definir números enteros o _integer_ (sin decimales, ahorrando huecos en memoria).
+
+```{r}
+# Dato numérico (entero)
+a <- 1L
+class(a)
+typeof(a)
+```
+
+Con los <mark>**datos numéricos**</mark> podemos realizar todas las **operaciones** que se nos ocurriría hacer en una **calculadora**, como sumar (`+`), restar (`-`), multiplicar (`*`), dividir (`/`), raíz cuadrada (`sqrt()`), valor absoluto (`abs()`), elevar al cuadrado  (`^2`), elevar al cubo (`^3`), etc.
+
+
+```{r}
+# Definimos dos variables numéricas
+a <- 1
+b <- -2
+
+# Suma y resta
+a + b
+a - b
+
+# Multiplicación y división
+a * b
+a / b
+
+# Raíz cuadrada
+sqrt(a)
+
+# Valor absoluto
+abs(b)
+
+# Potencias
+a^2
+b^3
+```
+
+
+
+## Variables de tipo caracter (texto) {#caracter}
+
+- [X] Variables numéricas (individuales)
+- [X] Variables de caracteres
+- [ ] Variables lógicas
+- [ ] Variables de tipo fecha
+
+Pero no solo de números viven los datos: imagina que además de la edad de una persona queremos guardar su nombre.
+
+```{r}
+edad <- 32
+nombre <- "Javier"
+
+class(edad)
+typeof(edad)
+
+class(nombre)
+typeof(nombre)
+```
+
+Fíjate que ahora tenemos en `nombre` una variable de tipo _character_, es decir, una cadena de texto (conocido en otros lenguajes como _string_ o _char_): **letras y caracteres entre comillas**. 
+
+### Nuestra primera función: paste/paste0
+
+
+Las <mark>**cadenas de texto**</mark> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la función `paste()`. Dicha función nos permite **pegar dos cadenas de caracteres**, decidiendo que caracter queremos que vaya entre palabra con el argumento `sep =`.
+
+```{r}
+nombre <- "Javier"
+apellido <- "Álvarez"
+paste(nombre, apellido, sep = "") # todo junto
+paste(nombre, apellido, sep = " ") # separados por un espacio
+paste(nombre, apellido, sep = ".") # separados por un punto .
+```
+
+Si queremos pegar cadenas de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden, usando la función `paste0()` 
+
+```{r}
+# Son equivalentes
+paste(nombre, apellido, sep = "") # todo junto
+paste0(nombre, apellido) # todo junto sin nada separando
+```
+
+Cuando hemos ejecutado `paste()` estamos ejecutando lo que se conoce como una <mark>**función**</mark>: una palabra reservada que representa un **conjunto de órdenes**, y que se ejecuta a partir de unos <mark>**argumentos de entrada**</mark>. En el caso de la función `paste()` puede tener varios argumentos: las cadenas de texto que queremos copiar, y un **argumento opcional** llamado `sep`, que podemos darle un valor con concreto o dejarlo sin especificar. Lo que hará `R` será tomar su <mark>**valor por defecto**</mark> igual a `sep = " "` (por defecto, la función `paste()` pega cadenas de texto con un espacio entre ellas). Prueba a ejecutar `? paste` en consola para ver las opciones en el **panel de ayuda**.
+
+```{r}
+# Son equivalentes
+paste(nombre, apellido, sep = " ")
+paste(nombre, apellido)
+```
+
+### Nuestro primer paquete: glue
+
+  
+Otra **forma más intuitiva de trabajar con textos y variables numéricas** es usar el paquete `{glue}`, que nos permite pegar cadenas de texto a variables numéricas de **forma simbólica**.
+
+```{r eval = FALSE}
+install.packages("glue") # solo la primera vez
+```
+
+```{r}
+library(glue)
+```
+
+Recuerda que `install.packages()` es solo necesario la primera que «compramos el libro»: nos bajamos una serie de archivos a nuestro ordenador. Una vez que hemos comprado el libro, cada vez que queramos usarlo bastará con indicarle que nos traiga ese libro concreto con `library()`.
+
+El paquete `{glue}` nos permite pegar de una forma mucho más legible cadenas de texto
+
+```{r}
+# Ejemplo 1
+edad <- 32
+glue("La edad es de {edad} años")
+paste("La edad es de", edad, "años") # equivalente
+
+# Ejemplo 2
+edad <- 32
+unidades <- "años"
+glue("La edad es de {edad} {unidades}")
+```
+
+También podemos hacer uso de dicha función sin tener los valores numéricos previamente guardados en variables.
+
+```{r}
+# Otra forma sin definir variables a priori
+glue("La edad es de {32} años")
+```
+
+&nbsp;
+
+
+## Variables lógicas (TRUE/FALSE) {#logicas}
+
+- [X] Variables numéricas (individuales)
+- [X] Variables de caracteres
+- [X] Variables lógicas
+- [ ] Variables de tipo fecha
+
+Probablemente el tipo de datos más importante en todo lenguaje de programación son las <mark>**variables lógicas**</mark>. Un **valor lógico** puede tomar **dos valores** (en realidad pueden tomar un tercer valor, `NA`, las siglas de _not available_ para representar datos ausentes, pero lo veremos más adelante):
+
+* `TRUE` (guardado internamente como un `1`).
+* `FALSE` (guardado internamente como un `0`).
+
+Este tipo de variables, también conocidas como <mark>**variables binarias (solo dos valores) o booleanas**</mark>, son la base de la programación ya que cada bit de nuestro ordenador puede guardar un `1` o un `0`.
+
+```{r}
+soltero <- TRUE # ¿Es soltero? --> SÍ
+carnet_conducir <- FALSE # ¿Tiene carnet de conducir? --> NO
+
+class(soltero)
+typeof(soltero)
+
+class(carnet_conducir)
+typeof(carnet_conducir)
+```
+
+Ahora nuestas variables son guardadas como _logical_, y pueden tomar los valores `TRUE/FALSE`, aunque internamente son guardados como `1/0`. Es importante entender que <mark>**no son variables de texto**</mark>:
+
+* `"TRUE"` es un texto (internamente idéntico a `rojo` o `azul`)
+* `TRUE` es una variable lógica
+
+```{r error = TRUE}
+# Texto
+texto <- "TRUE"
+texto + 1
+
+# Lógica
+logica <- TRUE
+logica + 1
+```
+
+Estos valores suelen ser resultado de evaluar <mark>**condiciones lógicas**</mark>. Por ejemplo, imaginemos que queremos comprobar si una persona está soltero o no, y si tiene carnet de conducir o no. Basta con que ejecutemos la orden `soltero == TRUE`, que nos devolverá `TRUE` si está soltero, y `FALSE` en caso contrario. De igual manera podremos hacer `carnet_conducir == TRUE`. <mark>**IMPORTANTE**</mark>: cuando queremos **comparar si un elemento es igual a otro**, usaremos el operador de comparación `==`, pudiendo usar también su opuesto `!=` («distinto de»).
+
+
+```{r}
+soltero == TRUE
+soltero != TRUE # igual que soltero == FALSE
+carnet_conducir == TRUE
+carnet_conducir != TRUE
+```
+
+Por el mismo razonamiento podemos <mark>**comparar si una variable numérica o de tipo caracter**</mark> es igual o distinto a un valor dado, incluso para las numéricas podemos **comparar si son menores o mayores** que un número. 
+
+¿Tiene la persona menos de 32 años? ¿Tiene justo 32 años? ¿Tiene 32 años o más?
+
+```{r}
+edad < 32
+edad == 32
+edad >= 32
+```
+
+¿La persona se llama Carlos?
+
+```{r}
+nombre == "Carlos"
+```
+
+Fíjate que para comparaciones tenemos «igual a» `==` frente distinto `!=`, pero también comparaciones de orden como `<=`, `>` o `>=`. Las <mark>**condiciones lógicas pueden ser combinadas**</mark>, principalmente de dos maneras:
+
+- **Intersección**: todas las condiciones concatenadas se deben cumplir (conjunción `y`, operador `&`) para devolver un `TRUE`.
+
+- **Unión**: basta con que una de las condiciones concatenadas se cumpla (conjunción `o`, operador `|`) para devolver un `TRUE`.
+
+Por ejemplo, podríamos preguntarnos si la persona tiene más de 32 años y está soltero (AMBAS deben cumplirse).
+
+```{r}
+edad > 32 & soltero == TRUE
+# Equivalente (al ser soltero un valor ya de por si lógico)
+edad > 32 & soltero
+```
+
+Vemos que el resultado es `FALSE` ya que solo se cumple una de las condiciones: devolvería `TRUE` si preguntamos si tiene más de 30 años y está soltero, o si solo pedimos una de las dos condiciones (¿está soltero y/o tiene más de 32 años?).
+
+```{r}
+edad > 32 | soltero # nos sirve con que alguna se cumpla
+edad > 32 & soltero # deben cumplirse ambas
+edad > 30 & soltero # deben cumplirse ambas
+```
+
+## Variables de tipo fecha {#fechas}
+
+- [X] Variables numéricas (individuales)
+- [X] Variables de caracteres
+- [X] Variables lógicas
+- [X] Variables de tipo fecha
+
+Por último, vamos a ver un tipo de datos muy especial: los <mark>**datos de tipo fecha**</mark>.
+
+## Consejos
+
+
+**`r colorize("CONSEJOS", "#20935E")`**
+
+&nbsp;
+
+**`r colorize("Recuperar un comando y autocompletar", "#20935E")`**
+
+Si haces click con el ratón en la consola y pulsas la flecha «arriba» del teclado, te irá apareciendo todo el <mark>**historial de órdenes ejecutadas**</mark>. Es una manera de ahorrar tiempo para ejecutar órdenes similares a las ya ejecutadas. Si empiezas a escribir el nombre de una variable pero no te acuerdas exactamente de su nombre, pulsando **tabulador** te **autocompletará** solo.
+
+&nbsp;
+
+
+## 📝 Ejercicios
+
+(haz click en las flechas para ver soluciones)
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada `vector_num`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de números
+vector_num <- c(1, 10, -1, 2)
+vector_num
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: crea un vector con las palabras "Hola", "me", "llamo" (y tu nombre y apellidos), y pega luego sus elementos de forma que la frase esté correctamente escrita en castellano. Tras hacerlo, añade "y tengo 30 años". </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Definiendo el vector
+vector_char <- c("Hola", "me", "llamo", "Javier",
+                 "Álvarez", "Liébana")
+
+# Pegamos
+paste(vector_char, collapse = " ")
+
+# Añadimos frase
+paste0(paste(vector_char, collapse = " "), " y tengo 30 años.")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+

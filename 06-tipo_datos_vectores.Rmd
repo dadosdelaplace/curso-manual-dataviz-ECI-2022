@@ -16,9 +16,7 @@ colorize <- function(x, color) {
 }
 ```
 
-# (PART) Conceptos básicos {-}
-
-# Tipos de datos: vectores {#vectores}
+# Vectores {#vectores}
 
 Tras las lecciones anteriores, los ejercicios planteados y lo que hayas jugueteado por tu cuenta, deberíamos saber usar ya `R` como una calculadora. Vamos a ir más allá: ¿y si en lugar de tener un solo elemento, por ejemplo `a <- 1`, tenemos una <mark>**colección de elementos**</mark>? En este capítulo vamos a ver un clásico de cualquier lenguaje de programación: los <mark>**vectores o arrays**</mark>, que no son más que una <mark>**concatenación**</mark> de elementos del mismo tipo. De hecho un número individual (por ejemplo, `1`) es en realidad un vector de longitud uno (un solo elemento).
 
@@ -254,12 +252,6 @@ x < 2 | x > 3 # Los cumplen al menos una de ellas
 
 
 **`r colorize("CONSEJOS", "#20935E")`**
-
-&nbsp;
-
-**`r colorize("Recuperar un comando y autocompletar", "#20935E")`**
-
-Si haces click con el ratón en la consola y pulsas la flecha «arriba» del teclado, te irá apareciendo todo el <mark>**historial de órdenes ejecutadas**</mark>. Es una manera de ahorrar tiempo para ejecutar órdenes similares a las ya ejecutadas. Si empiezas a escribir el nombre de una variable pero no te acuerdas exactamente de su nombre, pulsando **tabulador** te **autocompletará** solo.
 
 &nbsp;
 
