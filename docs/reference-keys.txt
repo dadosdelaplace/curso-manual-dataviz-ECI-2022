@@ -67,7 +67,9 @@ ejercicios-2
 operacionesvectores
 operaciones-aritméticas-con-vectores-numéricos
 operaciones-estadísticas-con-vectores-numéricos
+operacionesausentes
 seleccionar-elementos
+nombrando-vectores
 which
 null
 ordenar
