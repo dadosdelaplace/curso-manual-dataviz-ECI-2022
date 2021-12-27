@@ -35,7 +35,7 @@ Descarga **todos los materiales en un archivo .zip** haciendo click en el botón
             
 
             
-* **Material introductorio del curso** (elaborado por Javier Álvarez Liébana y Gabriel Valverde Castilla)) (dadosdelaplace.github.io/courses-ECI-2022)
+* **Material introductorio del curso** (elaborado por Javier Álvarez Liébana y Gabriel Valverde Castilla) (https://dadosdelaplace.github.io/courses-ECI-2022)
             
 * **Código Rmarkdown del manual** (https://github.com/dadosdelaplace/courses-ECI-2022)
             
@@ -45,4 +45,4 @@ Descarga **todos los materiales en un archivo .zip** haciendo click en el botón
             
 * **Diapositivas** (https://github.com/dadosdelaplace/slides-ECI-2022)
   
-* **Manual introductorio de R** (dadosdelaplace.github.io/courses-intro-R) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
+* **Manual introductorio de R** (https://dadosdelaplace.github.io/courses-intro-R) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
