@@ -33,7 +33,9 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org
 
 Descarga **todos los materiales en un archivo .zip** haciendo click en el botón **Code** y después en [Download ZIP](https://github.com/dadosdelaplace/courses-ECI-2022/archive/refs/heads/main.zip)
             
-* **Manual introductorio de R** (https://aprendiendo-r-intro.netlify.app) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana y Gabriel Valverde Castilla**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
+
+            
+* **Material introductorio del curso** (elaborado por Javier Álvarez Liébana y Gabriel Valverde Castilla)) (dadosdelaplace.github.io/courses-ECI-2022)
             
 * **Código Rmarkdown del manual** (https://github.com/dadosdelaplace/courses-ECI-2022)
             
@@ -41,4 +43,6 @@ Descarga **todos los materiales en un archivo .zip** haciendo click en el botón
 
 * **Datos** usados durante el curso** (https://github.com/dadosdelaplace/courses-ECI-2022/DATOS)
             
-* **Diapositivas** (en construcción)
+* **Diapositivas** (https://github.com/dadosdelaplace/slides-ECI-2022)
+  
+* **Manual introductorio de R** (dadosdelaplace.github.io/courses-intro-R) diseñado para empezar desde cero, elaborado por **Javier Álvarez Liébana**. Dicho manual/tutorial ha sido elaborado en **R Markdown** y [bookdown](https://github.com/rstudio/bookdown). Puedes ver un resumen de las funcionalidades de dicho paquete, así como de otros documentados por el equipo de [R Studio](https://www.rstudio.com/) en sus [esquemas resumen](https://www.rstudio.com/resources/cheatsheets/).
