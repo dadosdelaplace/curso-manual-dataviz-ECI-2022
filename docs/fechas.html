@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.4 Variables de tipo fecha | Analizando datos, visualizando información, contando historias</title>
+  <meta name="description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.4 Variables de tipo fecha | Analizando datos, visualizando información, contando historias" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/img/logo_R.png" />
+  <meta property="og:description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="github-repo" content="dadosdelaplace/courses-ECI-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.4 Variables de tipo fecha | Analizando datos, visualizando información, contando historias" />
+  
+  <meta name="twitter:description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="twitter:image" content="/img/logo_R.png" />
+
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="logicas.html"/>
+<link rel="next" href="consejos-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analizando datos, visualizando información, contando historias</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="propósito.html"><a href="propósito.html"><i class="fa fa-check"></i>Propósito</a></li>
+<li class="chapter" data-level="" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i>Contenidos</a></li>
+<li class="chapter" data-level="" data-path="código-de-colores.html"><a href="código-de-colores.html"><i class="fa fa-check"></i>Código de colores</a></li>
+<li class="chapter" data-level="" data-path="licencia.html"><a href="licencia.html"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Toma de contacto</b></span></li>
+<li class="chapter" data-level="1" data-path="requisitos.html"><a href="requisitos.html"><i class="fa fa-check"></i><b>1</b> Requisitos</a></li>
+<li class="chapter" data-level="2" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>2</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalacionR.html"><a href="instalacionR.html"><i class="fa fa-check"></i><b>2.1</b> Instalación de R</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalacionR.html"><a href="instalacionR.html#primera-operación-sumar-dos-números"><i class="fa fa-check"></i><b>2.1.1</b> Primera operación: sumar dos números</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="instalacionRStudio.html"><a href="instalacionRStudio.html"><i class="fa fa-check"></i><b>2.2</b> Instalación de R Studio</a></li>
+<li class="chapter" data-level="2.3" data-path="glosario.html"><a href="glosario.html"><i class="fa fa-check"></i><b>2.3</b> Glosario</a></li>
+<li class="chapter" data-level="2.4" data-path="consejos.html"><a href="consejos.html"><i class="fa fa-check"></i><b>2.4</b> Consejos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="que-es-R.html"><a href="que-es-R.html"><i class="fa fa-check"></i><b>3</b> ¿Qué es R?</a><ul>
+<li class="chapter" data-level="3.1" data-path="historia-de-r.html"><a href="historia-de-r.html"><i class="fa fa-check"></i><b>3.1</b> Historia de R</a></li>
+<li class="chapter" data-level="3.2" data-path="instalacionpaquetes.html"><a href="instalacionpaquetes.html"><i class="fa fa-check"></i><b>3.2</b> Comunidad de usuarios: paquetes</a></li>
+<li class="chapter" data-level="3.3" data-path="por-qué-excel-no-es-tu-amigo.html"><a href="por-qué-excel-no-es-tu-amigo.html"><i class="fa fa-check"></i><b>3.3</b> ¿Por qué Excel no es tu amigo?</a></li>
+<li class="chapter" data-level="3.4" data-path="glosario-1.html"><a href="glosario-1.html"><i class="fa fa-check"></i><b>3.4</b> Glosario</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>4</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.1" data-path="primeros-pasos-en-r-calculadora.html"><a href="primeros-pasos-en-r-calculadora.html"><i class="fa fa-check"></i><b>4.1</b> Primeros pasos en R: calculadora</a></li>
+<li class="chapter" data-level="4.2" data-path="y-dónde-programamos.html"><a href="y-dónde-programamos.html"><i class="fa fa-check"></i><b>4.2</b> ¿Y dónde programamos?</a></li>
+<li class="chapter" data-level="4.3" data-path="tipos_errores.html"><a href="tipos_errores.html"><i class="fa fa-check"></i><b>4.3</b> Tipos de errores</a></li>
+<li class="chapter" data-level="4.4" data-path="glosario-2.html"><a href="glosario-2.html"><i class="fa fa-check"></i><b>4.4</b> Glosario</a></li>
+<li class="chapter" data-level="4.5" data-path="consejos-1.html"><a href="consejos-1.html"><i class="fa fa-check"></i><b>4.5</b> Consejos</a></li>
+<li class="chapter" data-level="4.6" data-path="ejercicios.html"><a href="ejercicios.html"><i class="fa fa-check"></i><b>4.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="part"><span><b>II Conceptos básicos</b></span></li>
+<li class="chapter" data-level="5" data-path="tipos-datos.html"><a href="tipos-datos.html"><i class="fa fa-check"></i><b>5</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericas.html"><a href="numericas.html"><i class="fa fa-check"></i><b>5.1</b> Variables numéricas</a></li>
+<li class="chapter" data-level="5.2" data-path="caracter.html"><a href="caracter.html"><i class="fa fa-check"></i><b>5.2</b> Variables de tipo caracter (texto)</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="caracter.html"><a href="caracter.html#nuestra-primera-función-pastepaste0"><i class="fa fa-check"></i><b>5.2.1</b> Nuestra primera función: paste/paste0</a></li>
+<li class="chapter" data-level="5.2.2" data-path="caracter.html"><a href="caracter.html#nuestro-primer-paquete-glue"><i class="fa fa-check"></i><b>5.2.2</b> Nuestro primer paquete: glue</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logicas.html"><a href="logicas.html"><i class="fa fa-check"></i><b>5.3</b> Variables lógicas (TRUE/FALSE)</a></li>
+<li class="chapter" data-level="5.4" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>5.4</b> Variables de tipo fecha</a></li>
+<li class="chapter" data-level="5.5" data-path="consejos-2.html"><a href="consejos-2.html"><i class="fa fa-check"></i><b>5.5</b> Consejos</a></li>
+<li class="chapter" data-level="5.6" data-path="ejercicios-1.html"><a href="ejercicios-1.html"><i class="fa fa-check"></i><b>5.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/" target="blank">Elaborado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analizando datos, visualizando información, contando historias</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fechas" class="section level2">
+<h2><span class="header-section-number">5.4</span> Variables de tipo fecha</h2>
+<ul>
+<li>[X] Variables numéricas (individuales)</li>
+<li>[X] Variables de caracteres</li>
+<li>[X] Variables lógicas</li>
+<li>[X] Variables de tipo fecha</li>
+</ul>
+<p>Por último, vamos a ver un tipo de datos muy especial: los <mark><strong>datos de tipo fecha</strong></mark>. Una fecha podría ser a priori una simple cadena de texto <code>&quot;2021-04-21&quot;</code> pero podemos usar la función <code>as.Date()</code> para que <code>R</code> entienda que esa cadena de texto representa un instante temporal. Fíjate la diferencia entre una fecha en texto y una fecha con <code>as.Date()</code>.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="co"># Cadena de texto</span></a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">fecha_char &lt;-<span class="st"> &quot;2021-04-21&quot;</span></a>
+<a class="sourceLine" id="cb155-3" data-line-number="3">fecha_char <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<pre><code>## Error in fecha_char + 1: argumento no-numérico para operador binario</code></pre>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="co"># Fecha, mostrada como un texto pero guardada internamente como un número</span></a>
+<a class="sourceLine" id="cb157-2" data-line-number="2">fecha_date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(fecha_char, <span class="dt">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</a>
+<a class="sourceLine" id="cb157-3" data-line-number="3">fecha_date <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<pre><code>## [1] &quot;2021-04-22&quot;</code></pre>
+<p>En el momento en que convertimos la cadena de texto a fecha, aunque se visualice como un texto, internamente es un número, por lo que podemos restar fechas (días entre ambas), <strong>podemos sumar números a fechas (fecha días después)</strong>, etc. Como ya hemos dicho, <strong>las fechas y momentos temporales no serán meras cadenas de caracter sino que tienen clases especiales asociadas</strong>. Las fechas serán guardadas internamente como el <strong>número de días transcurridos desde el 1 de enero de 1970</strong>, y las horas como <strong>número de segundos desde el 1 de enero de 1970</strong> (para la clase <code>POSIXct</code>) o una lista de segundos, minutos y horas (para la clase <code>POSIXlt</code>).</p>
+<p>¿Cómo <mark><strong>obtener automáticamente la fecha de hoy</strong></mark>? La función <code>Sys.Date()</code> nos devuelve directamente la fecha y hora en el momento de la ejecución de la orden.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1">fecha &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">fecha</a></code></pre></div>
+<pre><code>## [1] &quot;2021-12-27&quot;</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">fecha <span class="op">-</span><span class="st"> </span><span class="dv">7</span> <span class="co"># una semana antes</span></a></code></pre></div>
+<pre><code>## [1] &quot;2021-12-20&quot;</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">class</span>(fecha) <span class="co"># de clase fecha</span></a></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<p>Para <mark><strong>convertir una cadena de texto a fecha</strong></mark>, basta usar la función <code>as.Date()</code>, pasándole como argumento la fecha en formato <code>&quot;yyyy-mm-dd&quot;</code> por defecto.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">as.Date</span>(<span class="st">&quot;2021-03-10&quot;</span>) <span class="co"># formato por defecto</span></a></code></pre></div>
+<pre><code>## [1] &quot;2021-03-10&quot;</code></pre>
+<p>Si <strong>introducimos otro tipo de formato</strong>, debemos especificárselo en un segundo argumento, para <code>R</code> sepa el formato de fecha que le estamos pasando</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">as.Date</span>(<span class="st">&quot;10-03-2020&quot;</span>, <span class="st">&quot;%d-%m-%Y&quot;</span>) <span class="co"># con día-mes-año (4 cifras)</span></a></code></pre></div>
+<pre><code>## [1] &quot;2020-03-10&quot;</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">as.Date</span>(<span class="st">&quot;10-03-20&quot;</span>, <span class="st">&quot;%d-%m-%y&quot;</span>)  <span class="co"># con día-mes-año (2 cifras)</span></a></code></pre></div>
+<pre><code>## [1] &quot;2020-03-10&quot;</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">as.Date</span>(<span class="st">&quot;03-10-2020&quot;</span>, <span class="st">&quot;%m-%d-%Y&quot;</span>) <span class="co"># con mes-día-año (4 cifras)</span></a></code></pre></div>
+<pre><code>## [1] &quot;2020-03-10&quot;</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">as.Date</span>(<span class="st">&quot;Octubre 21, 1995 21:24&quot;</span>, <span class="st">&quot;%B %d, %Y %H:%M&quot;</span>) <span class="co"># fecha escrita</span></a></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p> </p>
+<p><strong><span style="color: #dc3545;">ERROR: sin pasar a fecha no se puede operar</span></strong></p>
+<p>Si tenemos una fecha como caracter, nunca podremos hacer operaciones (por ejemplo, restarle una unidad temporal, en este caso un día).</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="st">&quot;2021-03-10&quot;</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="co"># error</span></a></code></pre></div>
+<pre><code>## Error in &quot;2021-03-10&quot; - 1: argumento no-numérico para operador binario</code></pre>
+<p>Fíjate la diferencia cuando lo convertimos en fecha</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">fecha &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2021-03-10&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="co"># día previo</span></a>
+<a class="sourceLine" id="cb177-2" data-line-number="2">fecha</a></code></pre></div>
+<pre><code>## [1] &quot;2021-03-09&quot;</code></pre>
+<p> </p>
+<p>Dentro del entorno del paquete <code>{lubridate}</code> tenemos bastantes funciones útiles para trabajar con fechas como las siguientes</p>
+<p><a href="https://lubridate.tidyverse.org/" target="_blank"><img src="img/lubridate.png" width="100%" style="display: block; margin: auto;" /></a></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>) <span class="co"># solo la primera vez</span></a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="kw">ymd_hms</span>(<span class="st">&quot;2017-11-28T14:02:00&quot;</span>) <span class="co"># convertir a fecha una cadena año-mes-día + hora</span></a></code></pre></div>
+<pre><code>## [1] &quot;2017-11-28 14:02:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">ydm_hms</span>(<span class="st">&quot;2017-22-12 10:00:00&quot;</span>) <span class="co"># convertir a fecha una cadena año-día-mes + hora</span></a></code></pre></div>
+<pre><code>## [1] &quot;2017-12-22 10:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">dmy_hms</span>(<span class="st">&quot;1 Jan 2017 23:59:59&quot;</span>) <span class="co"># convertir a fecha una cadena textual de fecha + hora</span></a></code></pre></div>
+<pre><code>## [1] &quot;2017-01-01 23:59:59 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="kw">mdy</span>(<span class="st">&quot;July 4th, 2000&quot;</span>) <span class="co"># convertir a fecha una cadena textual de fecha</span></a></code></pre></div>
+<pre><code>## [1] &quot;2000-07-04&quot;</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="kw">ymd</span>(<span class="dv">20170131</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31&quot;</code></pre>
+<p>Además el paquete nos proporciona <strong>herramientas para extraer la fecha y hora actuales</strong> con las funciones <code>today()</code> y <code>now()</code></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="kw">today</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;2021-12-27&quot;</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">now</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;2021-12-27 00:30:28 CET&quot;</code></pre>
+<p>También tenemos disponibles en dicho paquete funciones para extraer facilmente algunas variables temporales como el <strong>día de la semana, el mes o el cuatrimestre</strong>, con las funciones <code>year()</code>, <code>months()</code>, <code>day()</code> o <code>wday()</code> (día de la semana).</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">fecha &lt;-<span class="st"> </span><span class="kw">now</span>()</a>
+<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="kw">year</span>(fecha)</a></code></pre></div>
+<pre><code>## [1] 2021</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="kw">month</span>(fecha)</a></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">day</span>(fecha)</a></code></pre></div>
+<pre><code>## [1] 27</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">wday</span>(fecha, <span class="dt">week_start =</span> <span class="dv">1</span>) <span class="co"># Día de la semana (empezando por el lunes)</span></a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">hour</span>(fecha)</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">minute</span>(fecha)</a></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">second</span>(fecha)</a></code></pre></div>
+<pre><code>## [1] 28.55104</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">week</span>(fecha) <span class="co"># Número de semana (del año)</span></a></code></pre></div>
+<pre><code>## [1] 52</code></pre>
+<p>Al igual que podemos realizar operaciones aritméticas sencillas con las fechas, también podemos <strong>realizar comparaciones</strong>, por ejemplo, si el día actual es menor o mayor que otra fecha dada.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1">fecha_actual &lt;-<span class="st"> </span><span class="kw">now</span>()</a>
+<a class="sourceLine" id="cb210-2" data-line-number="2">fecha_actual <span class="op">&gt;</span><span class="st"> </span><span class="kw">ymd</span>(<span class="dv">20170131</span>) <span class="co"># Actual vs 2017-01-31</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">fecha_actual <span class="op">&gt;</span><span class="st"> </span><span class="kw">ymd</span>(<span class="dv">21000131</span>) <span class="co"># Actual vs 2100-01-31</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p> </p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="logicas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="consejos-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": "curso_ECI_R.pdf",
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

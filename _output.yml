@@ -22,6 +22,7 @@ bookdown::bs4_book:
     engine: lunr
   toc_depth: 4
 bookdown::gitbook:
+  css: css/style.css
   split_by: section
   config:
     toc:
@@ -36,6 +37,7 @@ bookdown::gitbook:
       github: yes
       twitter: yes
 bookdown::pdf_book:
+  css: css/style.css
   includes:
     in_header: latex/preamble.tex
   latex_engine: xelatex

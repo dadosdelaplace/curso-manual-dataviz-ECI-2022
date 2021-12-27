@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.3 Vectores de caracteres (texto) | Analizando datos, visualizando información, contando historias</title>
+  <meta name="description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.3 Vectores de caracteres (texto) | Analizando datos, visualizando información, contando historias" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/img/logo_R.png" />
+  <meta property="og:description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="github-repo" content="dadosdelaplace/courses-ECI-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.3 Vectores de caracteres (texto) | Analizando datos, visualizando información, contando historias" />
+  
+  <meta name="twitter:description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="twitter:image" content="/img/logo_R.png" />
+
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="secuencias-numéricas-con-un-patrón.html"/>
+<link rel="next" href="vectores-lógicos-truefalse.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analizando datos, visualizando información, contando historias</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="propósito.html"><a href="propósito.html"><i class="fa fa-check"></i>Propósito</a></li>
+<li class="chapter" data-level="" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i>Contenidos</a></li>
+<li class="chapter" data-level="" data-path="código-de-colores.html"><a href="código-de-colores.html"><i class="fa fa-check"></i>Código de colores</a></li>
+<li class="chapter" data-level="" data-path="licencia.html"><a href="licencia.html"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Toma de contacto</b></span></li>
+<li class="chapter" data-level="1" data-path="requisitos.html"><a href="requisitos.html"><i class="fa fa-check"></i><b>1</b> Requisitos</a></li>
+<li class="chapter" data-level="2" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>2</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalacionR.html"><a href="instalacionR.html"><i class="fa fa-check"></i><b>2.1</b> Instalación de R</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalacionR.html"><a href="instalacionR.html#primera-operación-sumar-dos-números"><i class="fa fa-check"></i><b>2.1.1</b> Primera operación: sumar dos números</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="instalacionRStudio.html"><a href="instalacionRStudio.html"><i class="fa fa-check"></i><b>2.2</b> Instalación de R Studio</a></li>
+<li class="chapter" data-level="2.3" data-path="glosario.html"><a href="glosario.html"><i class="fa fa-check"></i><b>2.3</b> Glosario</a></li>
+<li class="chapter" data-level="2.4" data-path="consejos.html"><a href="consejos.html"><i class="fa fa-check"></i><b>2.4</b> Consejos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="que-es-R.html"><a href="que-es-R.html"><i class="fa fa-check"></i><b>3</b> ¿Qué es R?</a><ul>
+<li class="chapter" data-level="3.1" data-path="historia-de-r.html"><a href="historia-de-r.html"><i class="fa fa-check"></i><b>3.1</b> Historia de R</a></li>
+<li class="chapter" data-level="3.2" data-path="instalacionpaquetes.html"><a href="instalacionpaquetes.html"><i class="fa fa-check"></i><b>3.2</b> Comunidad de usuarios: paquetes</a></li>
+<li class="chapter" data-level="3.3" data-path="por-qué-excel-no-es-tu-amigo.html"><a href="por-qué-excel-no-es-tu-amigo.html"><i class="fa fa-check"></i><b>3.3</b> ¿Por qué Excel no es tu amigo?</a></li>
+<li class="chapter" data-level="3.4" data-path="glosario-1.html"><a href="glosario-1.html"><i class="fa fa-check"></i><b>3.4</b> Glosario</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>4</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.1" data-path="primeros-pasos-en-r-calculadora.html"><a href="primeros-pasos-en-r-calculadora.html"><i class="fa fa-check"></i><b>4.1</b> Primeros pasos en R: calculadora</a></li>
+<li class="chapter" data-level="4.2" data-path="y-dónde-programamos.html"><a href="y-dónde-programamos.html"><i class="fa fa-check"></i><b>4.2</b> ¿Y dónde programamos?</a></li>
+<li class="chapter" data-level="4.3" data-path="tipos_errores.html"><a href="tipos_errores.html"><i class="fa fa-check"></i><b>4.3</b> Tipos de errores</a></li>
+<li class="chapter" data-level="4.4" data-path="glosario-2.html"><a href="glosario-2.html"><i class="fa fa-check"></i><b>4.4</b> Glosario</a></li>
+<li class="chapter" data-level="4.5" data-path="consejos-1.html"><a href="consejos-1.html"><i class="fa fa-check"></i><b>4.5</b> Consejos</a></li>
+<li class="chapter" data-level="4.6" data-path="ejercicios.html"><a href="ejercicios.html"><i class="fa fa-check"></i><b>4.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="part"><span><b>II Conceptos básicos</b></span></li>
+<li class="chapter" data-level="5" data-path="tipos-datos.html"><a href="tipos-datos.html"><i class="fa fa-check"></i><b>5</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericas.html"><a href="numericas.html"><i class="fa fa-check"></i><b>5.1</b> Variables numéricas</a></li>
+<li class="chapter" data-level="5.2" data-path="caracter.html"><a href="caracter.html"><i class="fa fa-check"></i><b>5.2</b> Variables de tipo caracter (texto)</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="caracter.html"><a href="caracter.html#nuestra-primera-función-pastepaste0"><i class="fa fa-check"></i><b>5.2.1</b> Nuestra primera función: paste/paste0</a></li>
+<li class="chapter" data-level="5.2.2" data-path="caracter.html"><a href="caracter.html#nuestro-primer-paquete-glue"><i class="fa fa-check"></i><b>5.2.2</b> Nuestro primer paquete: glue</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logicas.html"><a href="logicas.html"><i class="fa fa-check"></i><b>5.3</b> Variables lógicas (TRUE/FALSE)</a></li>
+<li class="chapter" data-level="5.4" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>5.4</b> Variables de tipo fecha</a></li>
+<li class="chapter" data-level="5.5" data-path="consejos-2.html"><a href="consejos-2.html"><i class="fa fa-check"></i><b>5.5</b> Consejos</a></li>
+<li class="chapter" data-level="5.6" data-path="ejercicios-1.html"><a href="ejercicios-1.html"><i class="fa fa-check"></i><b>5.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="vectores.html"><a href="vectores.html"><i class="fa fa-check"></i><b>6</b> Vectores</a><ul>
+<li class="chapter" data-level="6.1" data-path="vectores-numéricos.html"><a href="vectores-numéricos.html"><i class="fa fa-check"></i><b>6.1</b> Vectores numéricos</a></li>
+<li class="chapter" data-level="6.2" data-path="secuencias-numéricas-con-un-patrón.html"><a href="secuencias-numéricas-con-un-patrón.html"><i class="fa fa-check"></i><b>6.2</b> Secuencias numéricas con un patrón</a></li>
+<li class="chapter" data-level="6.3" data-path="vectores-de-caracteres-texto.html"><a href="vectores-de-caracteres-texto.html"><i class="fa fa-check"></i><b>6.3</b> Vectores de caracteres (texto)</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="vectores-de-caracteres-texto.html"><a href="vectores-de-caracteres-texto.html#paquete-glue"><i class="fa fa-check"></i><b>6.3.1</b> Paquete glue</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="vectores-lógicos-truefalse.html"><a href="vectores-lógicos-truefalse.html"><i class="fa fa-check"></i><b>6.4</b> Vectores lógicos (TRUE/FALSE)</a></li>
+<li class="chapter" data-level="6.5" data-path="consejos-3.html"><a href="consejos-3.html"><i class="fa fa-check"></i><b>6.5</b> Consejos</a></li>
+<li class="chapter" data-level="6.6" data-path="ejercicios-2.html"><a href="ejercicios-2.html"><i class="fa fa-check"></i><b>6.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/" target="blank">Elaborado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analizando datos, visualizando información, contando historias</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vectores-de-caracteres-texto" class="section level2">
+<h2><span class="header-section-number">6.3</span> Vectores de caracteres (texto)</h2>
+<p>Un error común es asociar el concepto de vectores solo a números: un <mark><strong>vector es una colección o concatenación de elementos del mismo tipo</strong></mark> pero no tienen porque ser necesariamente números. Vamos a crear una frase de ejemplo, un vector de 4 elementos de tipo texto (en <code>R</code> se llaman <code>char</code>): <code>&quot;Mi&quot;</code>, <code>&quot;nombre&quot;</code>, <code>&quot;es&quot;</code> <code>&quot;Javier&quot;</code>.</p>
+<p>Como ves las variables de tipo <code>char</code> o <code>character</code> van entre comillas dobles, ya que es un <mark><strong>cadena de texto</strong></mark>.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">mi_nombre &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mi&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;es&quot;</span>, <span class="st">&quot;Javier&quot;</span>)</a>
+<a class="sourceLine" id="cb273-2" data-line-number="2">mi_nombre</a></code></pre></div>
+<pre><code>## [1] &quot;Mi&quot;     &quot;nombre&quot; &quot;es&quot;     &quot;Javier&quot;</code></pre>
+<p>Ya tenemos nuestro primer vector de texto de longitud 4. Las <strong>cadenas de texto</strong> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas como la suma o la media, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la función <code>paste()</code>. Dicha función nos permite convertir un vector de 4 palabras en una frase, decidiendo que caracter queremos que vaya entre palabra con el argumento <code>collapse =</code>.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">paste</span>(mi_nombre, <span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>) <span class="co"># todo junto</span></a></code></pre></div>
+<pre><code>## [1] &quot;MinombreesJavier&quot;</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">paste</span>(mi_nombre, <span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>) <span class="co"># separados por un espacio</span></a></code></pre></div>
+<pre><code>## [1] &quot;Mi nombre es Javier&quot;</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">paste</span>(mi_nombre, <span class="dt">collapse =</span> <span class="st">&quot;.&quot;</span>) <span class="co"># separados por un punto .</span></a></code></pre></div>
+<pre><code>## [1] &quot;Mi.nombre.es.Javier&quot;</code></pre>
+<p>Si queremos pegar los elementos de la cadena de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden <code>paste(mi_nombre, collapse = &quot;&quot;)</code>, usando la función <code>paste0()</code></p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">paste0</span>(mi_nombre) <span class="co"># todo junto sin nada separando</span></a></code></pre></div>
+<pre><code>## [1] &quot;Mi&quot;     &quot;nombre&quot; &quot;es&quot;     &quot;Javier&quot;</code></pre>
+<p>Esta función es muy útil si queremos definir variables de texto que compartan por ejemplo un prefijo (<code>variable_1</code>, <code>variable_2</code>, …)</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">paste0</span>(<span class="st">&quot;variable&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>) <span class="co"># a la palabra «variable» le pegamos los números del 1 al 7</span></a></code></pre></div>
+<pre><code>## [1] &quot;variable1&quot; &quot;variable2&quot; &quot;variable3&quot; &quot;variable4&quot; &quot;variable5&quot; &quot;variable6&quot;
+## [7] &quot;variable7&quot;</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">paste</span>(<span class="st">&quot;variable&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="co"># separado por una barra baja</span></a></code></pre></div>
+<pre><code>## [1] &quot;variable_1&quot; &quot;variable_2&quot; &quot;variable_3&quot; &quot;variable_4&quot; &quot;variable_5&quot;
+## [6] &quot;variable_6&quot; &quot;variable_7&quot;</code></pre>
+<div id="paquete-glue" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Paquete glue</h3>
+<p>Otra <strong>forma más intuitiva de trabajar con textos y variables numéricas</strong> es usar el paquete <code>{glue}</code>, que nos permite pegar cadenas de texto a variables numéricas de <strong>forma simbólica</strong>.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;glue&quot;</span>)</a>
+<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="kw">library</span>(glue)</a></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">edad &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">15</span> <span class="co"># edades</span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="kw">glue</span>(<span class="st">&quot;La edad es de {edad} años&quot;</span>)</a></code></pre></div>
+<pre><code>## La edad es de 10 años
+## La edad es de 11 años
+## La edad es de 12 años
+## La edad es de 13 años
+## La edad es de 14 años
+## La edad es de 15 años</code></pre>
+<p>También podemos hacer uso de dicha función sin tener los valores numéricos previamente guardados en variables.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="co"># Otra forma sin definir variables a priori</span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2"><span class="kw">glue</span>(<span class="st">&quot;La edad es de {10:15} años&quot;</span>)</a></code></pre></div>
+<pre><code>## La edad es de 10 años
+## La edad es de 11 años
+## La edad es de 12 años
+## La edad es de 13 años
+## La edad es de 14 años
+## La edad es de 15 años</code></pre>
+<p>Ya sabemos trabajar con textos :)</p>
+<p>¿Y si queremos <strong>pasar todo a mayúscula</strong>? ¿O <strong>todo a minúscula</strong>? ¿Y si queremos <strong>sustituir un caracter (por ejemplo <code>.</code>) por otro en todos los elementos</strong>? <code>R</code> también nos proporciona algunas funciones muy sencillas (del paquete <code>{base}</code>) de usar para dichas tareas. Aquí un ejemplo de algunas de ellas.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">texto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hola.&quot;</span>, <span class="st">&quot;qué&quot;</span>, <span class="st">&quot;ase?&quot;</span>, <span class="st">&quot;todo&quot;</span>, <span class="st">&quot;bien.&quot;</span>, <span class="st">&quot;y yo&quot;</span>,</a>
+<a class="sourceLine" id="cb292-2" data-line-number="2">           <span class="st">&quot;que&quot;</span>, <span class="st">&quot;ME&quot;</span>, <span class="st">&quot;ALEGRO&quot;</span>)</a>
+<a class="sourceLine" id="cb292-3" data-line-number="3"><span class="kw">toupper</span>(texto) <span class="co"># todo a mayúscula</span></a></code></pre></div>
+<pre><code>## [1] &quot;HOLA.&quot;  &quot;QUÉ&quot;    &quot;ASE?&quot;   &quot;TODO&quot;   &quot;BIEN.&quot;  &quot;Y YO&quot;   &quot;QUE&quot;    &quot;ME&quot;    
+## [9] &quot;ALEGRO&quot;</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="kw">tolower</span>(texto) <span class="co"># todo a minúscula</span></a></code></pre></div>
+<pre><code>## [1] &quot;hola.&quot;  &quot;qué&quot;    &quot;ase?&quot;   &quot;todo&quot;   &quot;bien.&quot;  &quot;y yo&quot;   &quot;que&quot;    &quot;me&quot;    
+## [9] &quot;alegro&quot;</code></pre>
+<p>El paquete <code>{base}</code> también nos permite buscar y reemplazar patrones concretos en cadenas de texta (por ejemplo, sustituir toda letra «o» por el caracter «*»).</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="kw">gsub</span>(<span class="st">&quot;o&quot;</span>, <span class="st">&quot;*&quot;</span>, texto) <span class="co"># toda &quot;o&quot; en el texto será sustituida por *</span></a></code></pre></div>
+<pre><code>## [1] &quot;H*la.&quot;  &quot;qué&quot;    &quot;ase?&quot;   &quot;t*d*&quot;   &quot;bien.&quot;  &quot;y y*&quot;   &quot;que&quot;    &quot;ME&quot;    
+## [9] &quot;ALEGRO&quot;</code></pre>
+<p> </p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="secuencias-numéricas-con-un-patrón.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vectores-lógicos-truefalse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": "curso_ECI_R.pdf",
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -339,6 +339,8 @@ as.Date("Octubre 21, 1995 21:24", "%B %d, %Y %H:%M") # fecha escrita
 
 **`r colorize("ERROR: sin pasar a fecha no se puede operar", "#dc3545")`**
 
+
+
 Si tenemos una fecha como caracter, nunca podremos hacer operaciones (por ejemplo, restarle una unidad temporal, en este caso un día).
 
 ```{r error = TRUE}
@@ -440,15 +442,16 @@ as.logical(c(0, 1))
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada `vector_num`. </summary>
+  <summary>📝<strong>Ejercicio 1</strong>: define una variable que guarde tu edad, otra con tu nombre, otra respondiendo a la pregunta «¿tengo hermanos?» y otra con la fecha de tu nacimiento. </summary>
   
 <!-- toc -->
 - Solución:
 
 ```{r}
-# Vector de números
-vector_num <- c(1, 10, -1, 2)
-vector_num
+edad <- 32 # tipo numeric
+nombre <- "Javier" # tipo caracter
+hermanos <- TRUE # tipo hermanos
+fecha_nacimiento <- as.Date("1989-09-10") # tipo fecha
 ```
 
 <!-- tocstop -->
@@ -457,21 +460,22 @@ vector_num
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: crea un vector con las palabras "Hola", "me", "llamo" (y tu nombre y apellidos), y pega luego sus elementos de forma que la frase esté correctamente escrita en castellano. Tras hacerlo, añade "y tengo 30 años". </summary>
+  <summary>📝<strong>Ejercicio 2</strong>: define otra variable con tus apellidos y junta las variables `nombre` y `apellidos` en una sola variable `nombre_completo`. </summary>
   
 <!-- toc -->
 - Solución:
 
 ```{r}
-# Definiendo el vector
-vector_char <- c("Hola", "me", "llamo", "Javier",
-                 "Álvarez", "Liébana")
+# Apellidos
+apellidos <- "Álvarez Liébana"
 
 # Pegamos
-paste(vector_char, collapse = " ")
+nombre_completo <- glue("{nombre} {apellidos}")
+nombre_completo
 
-# Añadimos frase
-paste0(paste(vector_char, collapse = " "), " y tengo 30 años.")
+# Otra forma
+nombre_completo <- paste(nombre, apellidos)
+nombre_completo
 ```
 
 <!-- tocstop -->
@@ -479,5 +483,131 @@ paste0(paste(vector_char, collapse = " "), " y tengo 30 años.")
 
 &nbsp;
 
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: construye una frase que diga «Hola, me llamo ... y tengo ... años. Nací el ... de ... de ...» (con el nombre completo). </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+dia_nacimiento <- day(fecha_nacimiento)
+mes_nacimiento <- month(fecha_nacimiento)
+a_nacimiento <- year(fecha_nacimiento)
+
+glue("Hola, me llamo {nombre_completo} y tengo {edad} años. Nací el {dia_nacimiento} del {mes_nacimiento} de {a_nacimiento}")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: calcula los días que han pasado desde la fecha de tu nacimiento </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+days(today() - fecha_nacimiento)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Se tienen que cumplir todas
+edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: obtén una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Se tienen que cumplir todas
+edad < 30 | fecha_nacimiento >= as.Date("1990-01-01") | hermanos
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Podemos sumar porque es fecha
+fecha_post <- fecha_nacimiento + 11
+fecha_post
+
+# Semana del año
+week(fecha_post)
+
+# Día de la semana (versión americana, empiezan el domingo)
+wday(fecha_post)
+
+# Día de la semana (versión española)
+wday(fecha_post, week_start = 1)
+
+# Día de la semana en texto
+weekdays(fecha_post)
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: define dos números cualesquiera en variable `a` y `b`. Calcula su suma y determina cual es mayor. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+a <- -5
+b <- 7
+
+# Suma
+c <- a + b
+c
+
+# Comparaciones
+a == b # ¿a = b?
+a < b # ¿a < b?
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
 
 

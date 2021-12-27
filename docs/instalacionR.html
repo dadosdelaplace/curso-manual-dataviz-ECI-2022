@@ -1,298 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capítulo 2 Instalación | Analizando datos, visualizando información, contando historias</title>
-<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla">
-<meta name="description" content="En breve daremos nuestros primeros pasos en R pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Capítulo 2 Instalación | Analizando datos, visualizando información, contando historias">
-<meta property="og:type" content="book">
-<meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="En breve daremos nuestros primeros pasos en R pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capítulo 2 Instalación | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="En breve daremos nuestros primeros pasos en R pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un...">
-<meta name="twitter:image" content="/img/logo_R.png">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
-<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
-<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.1 Instalación de R | Analizando datos, visualizando información, contando historias</title>
+  <meta name="description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.1 Instalación de R | Analizando datos, visualizando información, contando historias" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/img/logo_R.png" />
+  <meta property="og:description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="github-repo" content="dadosdelaplace/courses-ECI-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.1 Instalación de R | Analizando datos, visualizando información, contando historias" />
+  
+  <meta name="twitter:description" content="Código y material del curso de la Escuela de Invierno de la UCM «Analizando datos, visualizando información, contando historias»" />
+  <meta name="twitter:image" content="/img/logo_R.png" />
+
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="instalacion.html"/>
+<link rel="next" href="instalacionRStudio.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="">Analizando datos, visualizando información, contando historias</a>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Analizando datos, visualizando información, contando historias</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="propósito.html"><a href="propósito.html"><i class="fa fa-check"></i>Propósito</a></li>
+<li class="chapter" data-level="" data-path="contenidos.html"><a href="contenidos.html"><i class="fa fa-check"></i>Contenidos</a></li>
+<li class="chapter" data-level="" data-path="código-de-colores.html"><a href="código-de-colores.html"><i class="fa fa-check"></i>Código de colores</a></li>
+<li class="chapter" data-level="" data-path="licencia.html"><a href="licencia.html"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Toma de contacto</b></span></li>
+<li class="chapter" data-level="1" data-path="requisitos.html"><a href="requisitos.html"><i class="fa fa-check"></i><b>1</b> Requisitos</a></li>
+<li class="chapter" data-level="2" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>2</b> Instalación</a><ul>
+<li class="chapter" data-level="2.1" data-path="instalacionR.html"><a href="instalacionR.html"><i class="fa fa-check"></i><b>2.1</b> Instalación de R</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="instalacionR.html"><a href="instalacionR.html#primera-operación-sumar-dos-números"><i class="fa fa-check"></i><b>2.1.1</b> Primera operación: sumar dos números</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="instalacionRStudio.html"><a href="instalacionRStudio.html"><i class="fa fa-check"></i><b>2.2</b> Instalación de R Studio</a></li>
+<li class="chapter" data-level="2.3" data-path="glosario.html"><a href="glosario.html"><i class="fa fa-check"></i><b>2.3</b> Glosario</a></li>
+<li class="chapter" data-level="2.4" data-path="consejos.html"><a href="consejos.html"><i class="fa fa-check"></i><b>2.4</b> Consejos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="que-es-R.html"><a href="que-es-R.html"><i class="fa fa-check"></i><b>3</b> ¿Qué es R?</a><ul>
+<li class="chapter" data-level="3.1" data-path="historia-de-r.html"><a href="historia-de-r.html"><i class="fa fa-check"></i><b>3.1</b> Historia de R</a></li>
+<li class="chapter" data-level="3.2" data-path="instalacionpaquetes.html"><a href="instalacionpaquetes.html"><i class="fa fa-check"></i><b>3.2</b> Comunidad de usuarios: paquetes</a></li>
+<li class="chapter" data-level="3.3" data-path="por-qué-excel-no-es-tu-amigo.html"><a href="por-qué-excel-no-es-tu-amigo.html"><i class="fa fa-check"></i><b>3.3</b> ¿Por qué Excel no es tu amigo?</a></li>
+<li class="chapter" data-level="3.4" data-path="glosario-1.html"><a href="glosario-1.html"><i class="fa fa-check"></i><b>3.4</b> Glosario</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>4</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="4.1" data-path="primeros-pasos-en-r-calculadora.html"><a href="primeros-pasos-en-r-calculadora.html"><i class="fa fa-check"></i><b>4.1</b> Primeros pasos en R: calculadora</a></li>
+<li class="chapter" data-level="4.2" data-path="y-dónde-programamos.html"><a href="y-dónde-programamos.html"><i class="fa fa-check"></i><b>4.2</b> ¿Y dónde programamos?</a></li>
+<li class="chapter" data-level="4.3" data-path="tipos_errores.html"><a href="tipos_errores.html"><i class="fa fa-check"></i><b>4.3</b> Tipos de errores</a></li>
+<li class="chapter" data-level="4.4" data-path="glosario-2.html"><a href="glosario-2.html"><i class="fa fa-check"></i><b>4.4</b> Glosario</a></li>
+<li class="chapter" data-level="4.5" data-path="consejos-1.html"><a href="consejos-1.html"><i class="fa fa-check"></i><b>4.5</b> Consejos</a></li>
+<li class="chapter" data-level="4.6" data-path="ejercicios.html"><a href="ejercicios.html"><i class="fa fa-check"></i><b>4.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="part"><span><b>II Conceptos básicos</b></span></li>
+<li class="chapter" data-level="5" data-path="tipos-datos.html"><a href="tipos-datos.html"><i class="fa fa-check"></i><b>5</b> Tipos de datos</a><ul>
+<li class="chapter" data-level="5.1" data-path="numericas.html"><a href="numericas.html"><i class="fa fa-check"></i><b>5.1</b> Variables numéricas</a></li>
+<li class="chapter" data-level="5.2" data-path="caracter.html"><a href="caracter.html"><i class="fa fa-check"></i><b>5.2</b> Variables de tipo caracter (texto)</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="caracter.html"><a href="caracter.html#nuestra-primera-función-pastepaste0"><i class="fa fa-check"></i><b>5.2.1</b> Nuestra primera función: paste/paste0</a></li>
+<li class="chapter" data-level="5.2.2" data-path="caracter.html"><a href="caracter.html#nuestro-primer-paquete-glue"><i class="fa fa-check"></i><b>5.2.2</b> Nuestro primer paquete: glue</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logicas.html"><a href="logicas.html"><i class="fa fa-check"></i><b>5.3</b> Variables lógicas (TRUE/FALSE)</a></li>
+<li class="chapter" data-level="5.4" data-path="fechas.html"><a href="fechas.html"><i class="fa fa-check"></i><b>5.4</b> Variables de tipo fecha</a></li>
+<li class="chapter" data-level="5.5" data-path="consejos-2.html"><a href="consejos-2.html"><i class="fa fa-check"></i><b>5.5</b> Consejos</a></li>
+<li class="chapter" data-level="5.6" data-path="ejercicios-1.html"><a href="ejercicios-1.html"><i class="fa fa-check"></i><b>5.6</b> 📝 Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bibliografía.html"><a href="bibliografía.html"><i class="fa fa-check"></i>Bibliografía</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/" target="blank">Elaborado con bookdown</a></li>
+
+</ul>
+
+      </nav>
     </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
-
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Prefacio</a></li>
-<li class="book-part">Toma de contacto</li>
-<li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
-<li><a class="active" href="instalacionR.html"><span class="header-section-number">2</span> Instalación</a></li>
-<li><a class="" href="primeros-pasos.html"><span class="header-section-number">3</span> Primeros pasos</a></li>
-<li class="book-part">Conceptos básicos</li>
-<li><a class="" href="vectores.html"><span class="header-section-number">4</span> Tipos de datos I: vectores</a></li>
-<li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
-</ul>
-
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Analizando datos, visualizando información, contando historias</a>
+          </h1>
         </div>
-      </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="instalacionR" class="section level1">
-<h1>
-<span class="header-section-number">Capítulo 2</span> Instalación<a class="anchor" aria-label="anchor" href="#instalacionR"><i class="fas fa-link"></i></a>
-</h1>
-<p>En breve daremos nuestros primeros pasos en <code>R</code> pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un libro. <mark><strong>¿Qué necesitamos?</strong></mark></p>
-<ul>
-<li>
-<mark><strong>Gramática/ortografía</strong></mark>: en nuestro caso será <code>R</code>, el lenguaje de programación que usaremos.</li>
-<li>
-<mark><strong>Word</strong></mark>: al igual que podemos escribir en castellano de distintas maneras (en un Word, un post-it, un cuaderno, etc), cuando programamos podemos trabajar en distintos <strong>entornos de desarrollo (IDE)</strong>. En nuestro escribiremos y programaremos en <code>R Studio</code>.</li>
-</ul>
-<div id="instalación-de-r" class="section level2">
-<h2>
-<span class="header-section-number">2.1</span> Instalación de R<a class="anchor" aria-label="anchor" href="#instalaci%C3%B3n-de-r"><i class="fas fa-link"></i></a>
-</h2>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="instalacionR" class="section level2">
+<h2><span class="header-section-number">2.1</span> Instalación de R</h2>
 <p>Vamos a necesitar <mark><strong>solo 3 pasos (y conexión a internet)</strong></mark>.</p>
-<div id="paso-1" class="section level3">
-<h3>
-<span class="header-section-number">2.1.1</span> Paso 1<a class="anchor" aria-label="anchor" href="#paso-1"><i class="fas fa-link"></i></a>
-</h3>
-<p>Entra en la web oficial de <code>R</code> <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. En la pantalla de inicio <strong>selecciona la instalación acorde a tu sistema operativo</strong> (ver imagen <a href="instalacionR.html#fig:pantalla-cran">2.1</a>)</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:pantalla-cran"></span>
-<img src="img/pantalla1_cran.jpg" alt="Pantalla inicial de la plataforma CRAN de R." width="80%"><p class="caption">
+<ul>
+<li><strong>Paso 1</strong>: entra en la web oficial de <code>R</code> <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. En la pantalla de inicio <strong>selecciona la instalación acorde a tu sistema operativo</strong> (ver imagen <a href="instalacionR.html#fig:pantalla-cran">2.1</a>)</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pantalla-cran"></span>
+<img src="img/pantalla1_cran.jpg" alt="Pantalla inicial de la plataforma CRAN de R." width="80%" />
+<p class="caption">
 Imagen/gráfica 2.1: Pantalla inicial de la plataforma CRAN de R.
 </p>
 </div>
-</div>
-<div id="paso-2" class="section level3">
-<h3>
-<span class="header-section-number">2.1.2</span> Paso 2<a class="anchor" aria-label="anchor" href="#paso-2"><i class="fas fa-link"></i></a>
-</h3>
-<p>Para sistemas operativos <strong>Mac</strong> basta con que hacer click en el archivo <code>.pkg</code>, y abrirlo una vez descargado (ver imagen <a href="instalacionR.html#fig:pantalla-mac">2.2</a>)</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:pantalla-mac"></span>
-<img src="img/pantall_mac_cran.jpg" alt="Pantalla de instalación de R en Mac OS." width="90%"><p class="caption">
+<ul>
+<li><strong>Paso 2</strong>: para sistemas operativos <strong>Mac</strong> basta con que hacer click en el archivo <code>.pkg</code>, y abrirlo una vez descargado (ver imagen <a href="instalacionR.html#fig:pantalla-mac">2.2</a>)</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pantalla-mac"></span>
+<img src="img/pantall_mac_cran.jpg" alt="Pantalla de instalación de R en Mac OS." width="90%" />
+<p class="caption">
 Imagen/gráfica 2.2: Pantalla de instalación de R en Mac OS.
 </p>
 </div>
 <p>Para sistemas operativos <strong>Windows</strong>, debemos clickar en <code>install R for the first time</code> (ver imagen <a href="instalacionR.html#fig:pantalla-windows-1">2.3</a>) y en la siguiente pantalla hacer click en <code>Download R for Windows</code> (ver imagen <a href="instalacionR.html#fig:pantalla-windows-2">2.4</a>). Una vez descargado, abrirlo como cualquier archivo de instalación.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:pantalla-windows-1"></span>
-<img src="img/pantalla_windows_1.jpg" alt="Pantalla previa de instalación de R en Windows." width="80%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pantalla-windows-1"></span>
+<img src="img/pantalla_windows_1.jpg" alt="Pantalla previa de instalación de R en Windows." width="80%" />
+<p class="caption">
 Imagen/gráfica 2.3: Pantalla previa de instalación de R en Windows.
 </p>
 </div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:pantalla-windows-2"></span>
-<img src="img/pantalla_windows_2.jpg" alt="Pantalla final de instalación de R en Windows." width="90%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pantalla-windows-2"></span>
+<img src="img/pantalla_windows_2.jpg" alt="Pantalla final de instalación de R en Windows." width="90%" />
+<p class="caption">
 Imagen/gráfica 2.4: Pantalla final de instalación de R en Windows.
 </p>
 </div>
-</div>
-<div id="paso-3" class="section level3">
-<h3>
-<span class="header-section-number">2.1.3</span> Paso 3<a class="anchor" aria-label="anchor" href="#paso-3"><i class="fas fa-link"></i></a>
-</h3>
-<p>Tras su instalación tendrás en tu escritorio (Windows) o en tu Launchpad (Mac Os) un <mark><strong>ejecutable de <code>R</code> para abrir</strong></mark>. En Windows puede que tengas dos ejecutables <code>i386</code> y <code>x64</code> (como todo programa en Windows, está la versión de 32 y de 64 bits, haz click preferiblemente - si lo tienes - en el de <code>x64</code>). Te saldrá algo parecido a lo que observas en la imagen <a href="instalacionR.html#fig:cranR">2.5</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cranR"></span>
-<img src="img/cranR.jpg" alt="Primera pantalla al abrir el ejecutable de R." width="75%"><p class="caption">
+<ul>
+<li><strong>Paso 3</strong>: tras su instalación tendrás en tu escritorio (Windows) o en tu Launchpad (Mac Os) un <mark><strong>ejecutable de <code>R</code> para abrir</strong></mark>. En Windows puede que tengas dos ejecutables <code>i386</code> y <code>x64</code> (como todo programa en Windows, está la versión de 32 y de 64 bits, haz click preferiblemente - si lo tienes - en el de <code>x64</code>). Te saldrá algo parecido a lo que observas en la imagen <a href="instalacionR.html#fig:cranR">2.5</a>.</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cranR"></span>
+<img src="img/cranR.jpg" alt="Primera pantalla al abrir el ejecutable de R." width="75%" />
+<p class="caption">
 Imagen/gráfica 2.5: Primera pantalla al abrir el ejecutable de R.
 </p>
 </div>
-</div>
 <div id="primera-operación-sumar-dos-números" class="section level3">
-<h3>
-<span class="header-section-number">2.1.4</span> Primera operación: sumar dos números<a class="anchor" aria-label="anchor" href="#primera-operaci%C3%B3n-sumar-dos-n%C3%BAmeros"><i class="fas fa-link"></i></a>
-</h3>
-<p>Para comprobar que está correctamente instalado, abre <code>R</code> y <mark><strong>prueba a escribir</strong></mark> en la pantalla blanca inferior el siguiente código (<mark><strong>recuerda</strong></mark>: los códigos de este manual puedes <strong>copiarlos</strong> directamente de la cajita haciendo click en el botón de la esquina superior derecha)</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-<span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
+<h3><span class="header-section-number">2.1.1</span> Primera operación: sumar dos números</h3>
+<p>Para comprobar que está correctamente instalado, abre <code>R</code> y <mark><strong>prueba a escribir</strong></mark> en la pantalla blanca inferior el siguiente código (<mark><strong>recuerda</strong></mark>: los códigos de este manual puedes <strong>copiarlos</strong> directamente de la cajita <mark><strong>haciendo click en el botón</strong></mark> de la esquina superior derecha)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:primera-suma"></span>
-<img src="img/primera_suma.jpg" alt="Primera suma en la consola de R." width="90%"><p class="caption">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:primera-suma"></span>
+<img src="img/primera_suma.jpg" alt="Primera suma en la consola de R." width="90%" />
+<p class="caption">
 Imagen/gráfica 2.6: Primera suma en la consola de R.
 </p>
 </div>
 <p><strong>¡Enhorabuena!</strong></p>
 <ul>
 <li><p><strong>¿Dónde hemos escrito ese código?</strong> Esa pantalla blanca donde hemos escrito el código se llama <mark><strong>CONSOLA</strong></mark>, y será donde ejecutaremos las órdenes.</p></li>
-<li><p><strong>¿Qué hemos hecho?</strong> Hemos hecho más de lo que parece. Primero, hemos definido dos variables <code>a</code> y <code>b</code> <mark><strong>asignándole un valor numérico a cada una de ellas</strong></mark>. Imagina que el símbolo <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> es visto en nuestra cabeza como una flecha: a una variable que llamamos <code>a</code> le asignamos el valor <code>1</code>, a una variable que llamamos <code>b</code> le asignamos el valor <code>2</code>. Podemos verlo como <span class="math inline">\(a = 1,~b = 2\)</span>. Y tras definir dichas variables, las hemos usado en una <mark><strong>operación aritmética</strong></mark><code>a + b</code>. Ya sabemos usar <code>R</code> como <mark><strong>calculadora</strong></mark>.</p></li>
-<li><p><strong>¿Cómo nos devuelve <code>R</code> el resultado de la operación?</strong> Si te ha devuelto el resultado correcta, en la consola debe aparecer <code>[1] 3</code>. El valor <code>[1]</code> aparecerá siempre ya que simplemente nos <strong>numera las líneas</strong> de la consola usadas; lo que viene detrás es realmente el resultado, es decir, <span class="math inline">\(a + b = 3\)</span>.</p></li>
-<li><p><strong>¿Por qué hemos escrito <code>a + b</code> al final?</strong> Un mantra de <code>R</code>, que veremos a lo largo de todo el curso, es que intenta molestarte lo menos posible (eso es bueno cuando ya sabes usarlo, no tan bueno cuando empezamos a aprenderlo). Cuando asignamos los valores <code>a &lt;- 1</code> y <code>b &lt;- 2</code>, <code>R</code> no nos muestra nada: si guardamos un resultado en una variable, no nos muestra nada por consola. Para obtener el resultado en la consola necesitamos escribir el nombre de las variables (u operaciones entre ellas, como <code>a + b</code>).</p></li>
+<li><p><strong>¿Qué hemos hecho?</strong> Hemos hecho más de lo que parece. Primero, hemos definido dos variables <code>a</code> y <code>b</code> <mark><strong>asignándole un valor numérico a cada una de ellas</strong></mark>. Imagina que el símbolo <code>&lt;-</code> es visto en nuestra cabeza como una flecha: a una variable que llamamos <code>a</code> le asignamos el valor <code>1</code>, a una variable que llamamos <code>b</code> le asignamos el valor <code>2</code>. Podemos verlo como <span class="math inline">\(a = 1,~b = 2\)</span>. Y tras definir dichas variables, las hemos usado en una <mark><strong>operación aritmética</strong></mark> <code>a + b</code>. Ya sabemos usar <code>R</code> como <mark><strong>calculadora</strong></mark>.</p></li>
+<li><p><mark><strong>¿Cómo nos devuelve <code>R</code> el resultado de la operación?</strong></mark> Si te ha devuelto el resultado correcta, en la consola debe aparecer <code>[1] 3</code>. El valor <code>[1]</code> aparecerá siempre ya que simplemente nos <strong>numera las líneas</strong> de la consola usadas; lo que viene detrás es realmente el resultado, es decir, <span class="math inline">\(a + b = 3\)</span>.</p></li>
+<li><p><strong>¿Por qué hemos escrito <code>a + b</code> al final?</strong> Un mantra de <code>R</code>, que veremos a lo largo de todo el curso, es que <mark><strong><code>R</code> intenta molestarte lo menos posible</strong></mark> (eso es bueno cuando ya sabes usarlo, no tan bueno cuando empezamos a aprenderlo). Cuando asignamos los valores <code>a &lt;- 1</code> y <code>b &lt;- 2</code>, <code>R</code> no nos muestra nada: si guardamos un resultado en una variable, no nos muestra nada por consola. Para obtener el resultado en la consola necesitamos escribir el nombre de las variables (u operaciones entre ellas, como <code>a + b</code>).</p></li>
 </ul>
 <p> </p>
 <p><strong><span style="color: #ffc107;">WARNING: </span></strong></p>
-<p>Como habrás advertido, en <code>R</code> usaremos <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> para <strong>asignar valores</strong> en lugar de <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>, como una flecha. Usaremos <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> para <strong><span style="color: #ffc107;">indicarle el valor a los argumentos que usemos en funciones</span></strong> y <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> como <strong><span style="color: #ffc107;">operador de comparación</span></strong>: si escribimos <code>2 == 3</code>, le estamos preguntando si 2 es igual a 3.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">2</span> <span class="op">==</span> <span class="fl">3</span></code></pre></div>
+<p>Como habrás advertido, en <code>R</code> usaremos <code>&lt;-</code> para <strong>asignar valores</strong> en lugar de <code>=</code>, como una flecha. Usaremos <code>=</code> para <strong><span style="color: #ffc107;">indicarle el valor a los argumentos que usemos en funciones</span></strong> y <code>==</code> como <strong><span style="color: #ffc107;">operador de comparación</span></strong>: si escribimos <code>2 == 3</code>, le estamos preguntando si 2 es igual a 3.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p> </p>
 <p>Bonita esta interfaz no es, así que la cerraremos y no la abriremos más. Tenemos nuestro lenguaje instalado, vamos a <strong>instalar nuestro Word</strong> para poder programar de forma cómoda.</p>
 </div>
 </div>
-<div id="instalacionRStudio" class="section level2">
-<h2>
-<span class="header-section-number">2.2</span> Instalación de R Studio<a class="anchor" aria-label="anchor" href="#instalacionRStudio"><i class="fas fa-link"></i></a>
-</h2>
-<p>Para instalar <code>RStudio</code> deberemos ir a la web <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a> (el gratuito) y seleccionar el ejecutable que te aparezca acorde a tu sistema operativo (ver imagen <a href="instalacionR.html#fig:pantalla-rstudio">2.7</a>). Tras descargar el ejecutable, hay que abrirlo como otro cualquier otro ejecutable y dejar que termine la instalación.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:pantalla-rstudio"></span>
-<img src="img/pantalla_rstudio.jpg" alt="Descargar el ejecutable de RStudio para su posterior instalación." width="70%"><p class="caption">
-Imagen/gráfica 2.7: Descargar el ejecutable de RStudio para su posterior instalación.
-</p>
-</div>
-<p>Tras instalar tendremos en el escritorio o Launchpad un ejecutable de <code>RStudio</code> que abriremos. Se nos aparecerá una pantalla similar a esta:</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:inicio-rstudio-1"></span>
-<img src="img/inicio_rstudio_1.jpg" alt="Primer recibimiento de nuestro mejor amigo RStudio." width="85%"><p class="caption">
-Imagen/gráfica 2.8: Primer recibimiento de nuestro mejor amigo RStudio.
-</p>
-</div>
-<p>Listo, tienes <strong>instalado (casi) todo</strong> correctamente.</p>
-</div>
-<div id="glosario" class="section level2">
-<h2>
-<span class="header-section-number">2.3</span> Glosario<a class="anchor" aria-label="anchor" href="#glosario"><i class="fas fa-link"></i></a>
-</h2>
-<p><strong><span style="color: #4197D2;">GLOSARIO</span></strong></p>
-<ul>
-<li>
-<strong><span style="color: #4197D2;">Consola</span></strong>: es el nombre para llamar a esa ventana grande que te ocupa buena parte de tu pantalla. Prueba a escribir el mismo código que antes en ella (es el equivalente a la consola de R que hemos abierto al principio).</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-<span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:inicio-rstudio-2"></span>
-<img src="img/inicio_rstudio_2.jpg" alt="Lanzando a consola nuestras primeras órdenes en RStudio." width="60%"><p class="caption">
-Imagen/gráfica 2.9: Lanzando a consola nuestras primeras órdenes en RStudio.
-</p>
-</div>
-<p><strong><span style="color: #4197D2;">La consola será donde ejecutaremos órdenes y mostraremos resultados</span></strong></p>
-<ul>
-<li>
-<strong><span style="color: #4197D2;">Environment (entorno)</span></strong>: la pantalla pequeña (puedes ajustar los márgenes con el ratón a tu gusto) que tenemos en la parte superior derecha se denomina environment o entorno de variables, donde como puedes ver, tras ejecutar el pequeño código en la consola, nos informa de que tenemos dos variables numéricas y su valor asignado. Nos <strong>mostrará las variables que tenemos definidas, el tipo y su valor</strong>.</li>
-</ul>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:inicio-rstudio-3"></span>
-<img src="img/inicio_rstudio_3.jpg" alt="Environment de variables." width="65%"><p class="caption">
-Imagen/gráfica 2.10: Environment de variables.
-</p>
-</div>
-<ul>
-<li>
-<strong><span style="color: #4197D2;">Panel multiusos</span></strong>: la ventana que tenemos en la parte inferior derecha no servirá para buscar ayuda de comandos y órdenes, además de para visualizar gráficos. Lo veremos cuando sea necesario.</li>
-</ul>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:inicio-rstudio-4"></span>
-<img src="img/inicio_rstudio_4.jpg" alt="Panel multiusos." width="65%"><p class="caption">
-Imagen/gráfica 2.11: Panel multiusos.
-</p>
-</div>
-</div>
-<div id="consejos" class="section level2">
-<h2>
-<span class="header-section-number">2.4</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos"><i class="fas fa-link"></i></a>
-</h2>
-<p><strong><span style="color: #20935E;">CONSEJOS</span></strong></p>
-<p><strong><span style="color: #20935E;">¿Cómo saber cuando la orden lanzada en consola ha terminado?</span></strong></p>
-<p>A veces <code>R</code> y <code>RStudio</code> son tan silenciosos que no sabemos si ha acabado la orden que acabamos de lanzar en la consola o no. Siempre que veas el símbolo <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> como última línea en la consola significa que está listo para que le escribamos otra orden (es la forma cariñosa de decirte que ya ha acabado, ver imagen <a href="instalacionR.html#fig:tip-consola-lista">2.12</a>)</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:tip-consola-lista"></span>
-<img src="img/tip_consola_lista.jpg" alt="Ejemplo de que la orden lanzada ha acabado." width="70%"><p class="caption">
-Imagen/gráfica 2.12: Ejemplo de que la orden lanzada ha acabado.
-</p>
-</div>
-<p> </p>
-<p><strong><span style="color: #20935E;">¿Cómo prevenir la fatiga programando?</span></strong></p>
-<p>Estando delante de una pantalla de ordenador, con la vista muy fija mientras se programa, puede que acabes teniendo cierta fatiga visual en el trabajo. Te aconsejo que cambies en tu <code>RStudio</code> la tonalidad del fondo de tu programa, en tonos oscuros y no blancos (¿te has fijado que mis capturas tienen un azul cobalto oscuro de fondo mientras el tuyo es un <strong>blanco nuclear</strong>? Echa un vistazo a las imágenes <a href="instalacionR.html#fig:menu-1">2.13</a> y <a href="instalacionR.html#fig:menu-2">2.14</a>)</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:menu-1"></span>
-<img src="img/menu_1.jpg" alt="Menú de opciones de nuestro editor" width="50%" height="50%"><p class="caption">
-Imagen/gráfica 2.13: Menú de opciones de nuestro editor
-</p>
-</div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:menu-2"></span>
-<img src="img/menu_2.jpg" alt="Personalizar el color de fondo de nuestro editor, la letra y el tamaño de fuente" width="50%" height="50%"><p class="caption">
-Imagen/gráfica 2.14: Personalizar el color de fondo de nuestro editor, la letra y el tamaño de fuente
-</p>
-</div>
+            </section>
 
-</div>
-</div>
-  <div class="chapter-nav">
-<div class="prev"><a href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></div>
-<div class="next"><a href="primeros-pasos.html"><span class="header-section-number">3</span> Primeros pasos</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instalacionR"><span class="header-section-number">2</span> Instalación</a></li>
-<li>
-<a class="nav-link" href="#instalaci%C3%B3n-de-r"><span class="header-section-number">2.1</span> Instalación de R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#paso-1"><span class="header-section-number">2.1.1</span> Paso 1</a></li>
-<li><a class="nav-link" href="#paso-2"><span class="header-section-number">2.1.2</span> Paso 2</a></li>
-<li><a class="nav-link" href="#paso-3"><span class="header-section-number">2.1.3</span> Paso 3</a></li>
-<li><a class="nav-link" href="#primera-operaci%C3%B3n-sumar-dos-n%C3%BAmeros"><span class="header-section-number">2.1.4</span> Primera operación: sumar dos números</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#instalacionRStudio"><span class="header-section-number">2.2</span> Instalación de R Studio</a></li>
-<li><a class="nav-link" href="#glosario"><span class="header-section-number">2.3</span> Glosario</a></li>
-<li><a class="nav-link" href="#consejos"><span class="header-section-number">2.4</span> Consejos</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/02-instalacion.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/02-instalacion.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
-</div>
-    </nav>
-</div>
-
-</div>
-</div> <!-- .container -->
-
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla. It was last built on Última actualización: 26-12-2021.</p>
+          </div>
+        </div>
+      </div>
+<a href="instalacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="instalacionRStudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": "curso_ECI_R.pdf",
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -304,22 +342,7 @@ Imagen/gráfica 2.14: Personalizar el color de fondo de nuestro editor, la letra
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>
