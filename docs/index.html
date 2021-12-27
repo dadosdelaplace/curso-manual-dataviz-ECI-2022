@@ -56,14 +56,14 @@
 <li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
-
-        <div class="book-extra">
+<div class="book-extra">
           <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="prefacio" class="section level1 unnumbered">
 <h1>Prefacio<a class="anchor" aria-label="anchor" href="#prefacio"><i class="fas fa-link"></i></a>
+<a class="anchor" aria-label="anchor" href="#prefacio"><i class="fas fa-link"></i></a>
 </h1>
 <p>Este <mark><strong>material</strong></mark> ha sido diseñado como complemento y recursos de apoyo al curso de la <a href="https://www.ucm.es/eci//cursoecic02-pre">Escuela de Invierno de la UCM</a> titulado <mark><strong>«Analizando datos, visualizando información, contando historias»</strong></mark>, celebrado presencialmente del 31 de enero al 4 de febrero de 2022 (16:00 a 21:00 horas, de lunes a viernes).</p>
 <p><a href="https://github.com/dadosdelaplace/courses-ECI-2022" target="_blank"><img src="img/imagen_curso.jpeg" width="70%" style="display: block; margin: auto;"></a></p>
@@ -72,12 +72,14 @@
 <p> </p>
 <p>Para <strong>elaborar informes o libros</strong> con una estructura similar (de forma nativa en <code>R</code>) el paquete <a href="https://github.com/rstudio/bookdown">bookdown</a> puede ser instalado desde la plataforma CRAN o desde su versión en desarrollo actualizada en Github:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"bookdown"</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"bookdown"</span><span class="op">)</span>
 <span class="co"># o desde su versión en desarrollo actualizada</span>
 <span class="co"># devtools::install_github("rstudio/bookdown")</span></code></pre></div>
 <p><a href="https://github.com/rstudio/rmarkdown" target="_blank"><img src="img/hex-rmarkdown.png" width="20%" style="display: block; margin: auto;"></a></p>
 <div id="propósito" class="section level2 unnumbered">
 <h2>Propósito<a class="anchor" aria-label="anchor" href="#prop%C3%B3sito"><i class="fas fa-link"></i></a>
+<a class="anchor" aria-label="anchor" href="#prop%C3%B3sito"><i class="fas fa-link"></i></a>
 </h2>
 <p>El <mark><strong>objetivo</strong></mark> de este curso es introducir a la programación y análisis estadístico en <code>R</code> a toda aquella persona que nunca se haya iniciado en él, <strong>sin necesitar conocimientos previos</strong> de programación (aunque siempre ayuda, obviamente). No se pretende que adquieras un vasto y experto conocimiento de <code>R</code>, pero si lo suficiente como para lograr <strong>5 objetivos</strong>:</p>
 <ul>
@@ -91,6 +93,7 @@
 </div>
 <div id="contenidos" class="section level2 unnumbered">
 <h2>Contenidos<a class="anchor" aria-label="anchor" href="#contenidos"><i class="fas fa-link"></i></a>
+<a class="anchor" aria-label="anchor" href="#contenidos"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -114,6 +117,7 @@
 </div>
 <div id="código-de-colores" class="section level2 unnumbered">
 <h2>Código de colores<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-de-colores"><i class="fas fa-link"></i></a>
+<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-de-colores"><i class="fas fa-link"></i></a>
 </h2>
 <p>Puedes buscar los siguientes términos en el <strong>buscador del documento</strong></p>
 <p><strong><span style="color: #dc3545;">ERROR:</span></strong></p>
@@ -128,6 +132,7 @@
 </div>
 <div id="licencia" class="section level2 unnumbered">
 <h2>Licencia<a class="anchor" aria-label="anchor" href="#licencia"><i class="fas fa-link"></i></a>
+<a class="anchor" aria-label="anchor" href="#licencia"><i class="fas fa-link"></i></a>
 </h2>
 <p><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="img/license-GPLv3-blue.png" alt="Licencia: GPLv3"></a></p>
 <p>Este documento es publicado bajo <mark><strong>licencia pública general GNU</strong></mark>,
@@ -141,6 +146,10 @@ una licencia libre de copyleft que garantiza a los usuarios finales (personas, o
   <div class="chapter-nav">
 <div class="empty"></div>
 <div class="next"><a href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></div>
+</div>
+<div class="chapter-nav">
+<div class="empty"></div>
+<div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -150,11 +159,9 @@ una licencia libre de copyleft que garantiza a los usuarios finales (personas, o
 <li><a class="nav-link" href="#c%C3%B3digo-de-colores">Código de colores</a></li>
 <li><a class="nav-link" href="#licencia">Licencia</a></li>
 </ul>
-
-      <div class="book-extra">
+<div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/index.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
 </div>
     </nav>
