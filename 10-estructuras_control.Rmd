@@ -20,83 +20,123 @@ colorize <- function(x, color) {
 
 # Estructuras condicionales if-else {#if-else}
 
-Aunque la mayoría de veces son sustituibles por otras expresiones más legibles y eficientes, es importante que conozcamos como se usan las <mark>**expresiones de control más típicas**</mark>. Una expresión de control será un **conjunto de órdenes** que nos permiten decidir por donde queremos que avance nuestro programa: ¿qué hacemos si sucede A? ¿Y si sucede B?
+:::: {.blackbox data-latex=""}
 
-Si has programado en algún otro lenguaje, estarás echando en falta elementos como un `if (blabla) {...} else {...}` (que los usaremos a veces) o bucles `for` y `while`. Si es la primera que programas en algún lenguaje, dichas estructuras te las encontrarás programes en lo que programes:
+Scripts usados:
+
+* [**script07.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R): estructuras if-else.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R>
+
+::::
+
+Hasta ahora hemos trasteado con datos: hemos empezado desde una celda, para luego construir columnas, para luego juntarlas en algo parecido a una base de datos.
+
+Para poder manejarnos con soltura con dichos datos es importante que conozcamos como se usan las <mark>**expresiones de control más típicas**</mark>. Una expresión de control será un **conjunto de órdenes** que nos permiten decidir por donde queremos que avance nuestro programa: ¿qué hacemos si sucede A? ¿Y si sucede B?
+
+Si has programado en algún otro lenguaje, estarás familiarizado/a con elementos como un `if (blabla) {...} else {...}` (que los usaremos a veces) o bucles `for` y `while`. Si es la primera que programas en algún lenguaje, no te preocupes, las empezamos desde cero, empezando por las <mark>**estructuras condicionales**</mark>
 
 * `if (condición) { código A } else { código B }`: si `condición` (por ejemplo, `x == 1`) es cierta, se ejecuta `código A`; si es falsa, se ejecuta `código B`.
-* `for`: <mark>**bucle**</mark> que permite repetir el mismo código un número fijo de veces (normalmente en función de un índice).
-* `while`: **bucle** que permite repetir el mismo código un número a priori indeterminado de veces (solo pararía cuando la condición del `while` no se cumpliese).
 
-## if-else
+## if {}
  
- 
-Una de las estructuras de control más famosas de cualquier lenguaje de programación son las <mark>**estructuras condicionales `if-else`**</mark>: SI las condiciones impuestas se cumplen (`TRUE`), ejecuta las órdenes que tengamos dentro del `if`.
+Una de las estructuras de control más famosas de cualquier lenguaje de programación: SI las condiciones impuestas se cumplen (`TRUE`), ejecuta las órdenes que tengamos dentro del `if {}`. Definamos por ejemplo una variable sencilla, las edades de 8 personas.
 
 ```{r}
-# Todas las edades son mayores de 13 años
-edades <- c(14, 24, 56, 31, 20, 87, 73)
-if (all(edades >= 13)) { # Si todas las personas son mayores de edad
+edades <- c(14, 17, 24, 56, 31, 20, 87, 73)
+```
+
+Para comprobar cuales son menores de edades podemos aplicar lo aprendido en temas anteriores, realizando una **comparación lógica**: si es menor de edad, devuelve un `TRUE`; en caso contrario, devuelve un `FALSE`.
+
+```{r}
+edades < 18
+```
+
+Con las funciones `any()` y `all()` podemos saber si <mark>**todos o alguno de los elementos de un vector cumplen una condición**</mark>.
+
+```{r}
+all(edades >= 18) # todos mayores de edad
+any(edades < 18) # existe algun menor de edad
+```
+
+Con dichos elementos vamos a construir nuestra **primera estructura condicional**: queremos que si existe algún menor de edad, nos imprima un mensaje indicándolo.
+
+```{r}
+if (any(edades < 18)) { # TRUE si al menos una persona mayor de edad
   
-  print("todos mayores de edad")
+  print("existe alguna persona mayor de edad")
   
 }
 ```
 
-En caso de que no se cumplan las condiciones (`FALSE`), no sucederá nada. 
+En caso de que no se cumplan las condiciones dentro del `if()` (condiciones que devuelvan un `FALSE`), no sucederá nada.
 
 ```{r}
-# No todas las edades son mayores de 13 años ==> no hace nada
-edades <- c(11, 24, 56, 31, 20, 87, 73)
-if (all(edades >= 13)) { # Si todas las personas son mayores de edad
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
   
-  print("todos mayores de edad")
+  print("todas las personas son mayores de edad")
   
 }
 ```
 
+Fíjate que en este caso no hemos obtenido ningún mensaje porque la condición `all(edades >= 18)` no es cierta (no son todos mayores de 18 años).
 
-Si tras el `if` tenemos además un **`else`**, cuando la condición no se cumpla, se ejecutará el código que haya tras dicha partícula, permitiéndonos decidir que sucede cuando SÍ se cumple y cuando NO se cumple. En el **ejemplo** siguiente, las órdenes dentro del primer `if` se ejecutarán si todas las personas son mayores de edad. En caso de no cumplirse (como es el caso), se ejecutará lo que hay entre llaves tras el `else` (filtra solo los mayores de edad e imprime un mensaje por consola).
+## if - else {}
 
-
-```{r}
-edades <- c(14, 24, 56, 31, 20, 87, 73)
-
-if (all(edades >= 18)) { # Si todas las personas son mayores de edad
-  
-  print("todos mayores de edad")
-  
-} else { # si la condición no se cumple: filtramos solo los mayores
-
-  edades <- edades[edades >= 18]
-  print("algún menor de edad se ha eliminado")
-  
-}
-edades
-```
-
-Dicha estructura puede <mark>**anidarse**</mark>, de forma que vayamos concatenando estructuras `ifelse`, como en el ejemplo que tenemos debajo.
+La estructura `if (condicion) { }` puede ser combinada con un `else { }`, de forma que cuando la condición no se cumpla (como en el último ejemplo), se ejecutará el código que haya dentro del `else { }`, permitiéndonos decidir que sucede cuando SÍ se cumple y cuando NO se cumple
 
 ```{r}
-edades <- c(14, 14, 16, 11, 2, 17, 13)
-
-if (all(edades >= 18)) { # Si todas las personas son mayores de edad
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
   
-  print("todos mayores de edad")
+  print("todas las personas son mayores de edad")
   
-} else if (any(edades >= 18)) { # si alguna es mayor de edad
-
-  edades_18 <- edades[edades >= 18]  
-  print("algún menor de edad se ha eliminado")
+} else { # si hay alguno menor de edad 
   
-} else { # ninguna persona mayor de edad
-  
-  print("todas las personas son menores de edad")
-  
+  print("existe alguna persona menor de edad")
 }
 ```
 
-Esta <mark>**estructura condicional puede ser vectorizada**</mark>, de forma que podamos reunir en una **sola fila un número elevado de estructuras de comparación** la función `ifelse()`, cuyos argumentos de entrada serán la condición a evaluar, lo que sucede cuando se cumple y lo que no, que aplicará a cada elemento del vector de entrada. Por ejemplo, vamos a definir un vector de nombres con algunos ausentes (`NA`), y vamos a sustituir los ausentes por el texto `"nombre_desconocido"` (los que no sean ausentes se quedan como están).
+Podemos ya complicar un poco el código con lo que hemos aprendido de temas anteriores: en caso de que haya alguno menor de edad, queremos extraer la edad por pantalla (con `edades[edades < 18]` extraeremos las edades que cumplen la condición de ser menor de edad).
+
+```{r}
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
+  
+  print("todas las personas son mayores de edad")
+  
+} else { # si hay alguno menor de edad 
+  
+  print(glue("Existe alguna persona menor de edad. Sus edades son: {edades[edades < 18]}"))
+}
+```
+
+## if - else anidados
+
+Dicha estructura `if - else` puede <mark>**anidarse**</mark>, de forma que vayamos concatenando dichas estructuras, como en el ejemplo que tenemos debajo. Imagina que queremos realizar una acción si todos fuesen mayores de edad; en caso contrario, pero si todos los menores de edad tienen 16 años o más, realizar otra acción; en caso contrario, otra acción
+
+```{r}
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
+  
+  print("todas las personas son mayores de edad")
+  
+} else if (all(edades >= 16)) { # si todos los menores de edad tienen >=16
+  
+  print("Existe alguna persona menor de edad pero todos con 16 años o más")
+  
+} else {
+  
+  print("Existe alguna persona menor de 16 años")
+
+}
+```
+
+# ifelse () vectorizado
+
+Esta <mark>**estructura condicional puede ser vectorizada**</mark>, de forma que podamos reunir en una **sola fila un número elevado de estructuras de comparación** la función `ifelse()`, cuyos argumentos de entrada serán la condición a evaluar, lo que sucede cuando se cumple y lo que no, que aplicará a cada elemento del vector de entrada. Con el ejemplo de las edades, vamos a **dejar el dato ausente si son menores de edad**, y si son mayores de edad se queda como está.
+
+```{r}
+# NA si no cumple la condición, la edad si se cumple.
+ifelse(edades >= 18, edades, NA)
+```
+
+Todas estas estructuras no solo sirven para datos numéricos. Vamos a definir un vector de nombres con algunos ausentes (`NA`), y vamos a sustituir los ausentes por el texto `"nombre_desconocido"` (los que no sean ausentes se quedan como están).
 
 
 ```{r}
@@ -109,133 +149,7 @@ nombres <- ifelse(is.na(nombres), "nombre_desconocido", nombres)
 nombres
 ```
 
-Esta función `ifelse()` es muy util para codificar variables o averiguar cuales cumplen una condición, sin necesidad de hacer un bucle que recorra todos los valores. 
-
-## for/while
-
-Aunque el 99% de las veces (porcentaje inventado) los bucles pueden ser **sustituidos por códigos de forma vectorial mucho más eficientes**, a veces no nos quedará más remedio que usarlos por lo que nunca viene mal conocer su estructura.
-
-Un <mark>**bucle `for{}` es una estructura que nos permite ejecutar un conjunto de órdenes un número repetido (finito y conocido)**</mark> de veces: dado un conjunto de índices, el bucle irá <mark>**recorriendo cada elemento**</mark> de dicho conjunto, y para cada uno de ellos ejecutará lo que tenga dentro de las llaves.
-
-```{r}
-variable <- NULL # vector donde guardaremos los pasos del bucle
-for (i in 1:7) { 
-  
-  variable[i] <- i # R es silencioso: salvo que hagamos un print dentro del bucle no nos imprimirá nada por pantalla
-}
-variable
-```
-
-Lo que tenemos dentro de los paréntesis, en la línea del `for`, no es más que la secuencia de números que hemos aprendido a construir.
-
-```{r}
-1:7
-```
-
-No siempre tenemos que realizar una asignación o cambiar una variable dentro de un bucle, podemos ejecutar acciones directamente sin asignar o guardar nada.
-
-```{r}
-for (i in 1:7) { 
-  
-  print(i^3) # imprimimos cada índice al cubo
-}
-```
-
-Aunque normalmente el conjunto que recorre el bucle suelen ser índices numéricos, **podemos recorrer cualquier tipo de objeto**.
-
-```{r}
-dias_semana <- c("lunes", "martes", "miércoles", "jueves",
-                 "viernes", "sábado", "domingo")
-nombre_mayuscula <- NULL
-for (dias in dias_semana) { # dias recorre los días de la semana tomando sus valores
-  
-  print(toupper(dias)) # Imprimimos en mayúsculas.
-}
-```
-
-&nbsp;
-
-
-Otra manera de diseñar un bucle es con la <mark>**estructura `while{}`**</mark>, que ejecutará el **bucle un número de veces pero que a priori es desconocido** hasta que la condición impuesta deje de ser `TRUE` (en el `for` sabemos de antemano el número de iteraciones).
-
-```{r}
-max_ciclos <- 10
-ciclos <- 1
-
-# Mientras el número de ciclos sea inferior 10, imprime
-while(ciclos <= max_ciclos) {
-  
-  print(paste("Todavía no, vamos por el ciclo ", ciclos)) # Pegamos la frase al número de ciclo por el que vayamos con paste
-  ciclos <- ciclos + 1
-  
-}
-``` 
-
-**¿Y qué sucede cuando la condición nunca llega a ser `FALSE`?** Compruébalo tú mismo/a.
-
-```{r eval = FALSE}
-while (1 > 0) { # Nunca va a dejar de ser cierto
-  
-  print("Presiona ESC para salir del bucle")
-  
-}
-```
-
-### BREAK/NEXT
-
-En `R` tenemos dos comandos reservados para poder <mark>**abortar un bucle**</mark> o **avanzar forzosamente un bucle**: dichas palabras son `break` y `next`. La primera nos habilita para **parar un bucle** aunque no haya llegado al final de su conjunto de índices a recorrer (o se siga cumpliendo la condición del `while{}`).
-
-```{r}
-for(i in 1:10) {
-  if (i == 7) {
-    
-    break # si i es 7, el bucle frena aquí (nunca llegará a imprimir el 7 ni los sucesivos)
-    
-  }
-  print(i)
-}
-```
-
-Mientras que la segunda **obliga al bucle a avanzar a la siguiente interacción**, abortando la iteración actual en la que se encuentra. 
-
-```{r}
-for(i in 1:10) {
-  if (i == 7) {
-    
-    next # si i es 7, la iteración frenará aquí y pasará a la siguiente por lo que imprimirá todos menos el 7
-    
-  }
-  print(i)
-}
-```
-
-### REPEAT
-
-Aunque es una opción muy poco usada, existe una estructura de control llamada `repeat{}` que nos **ejecuta un bucle de forma infinita** hasta que le ordenemos parar con un `break`.
-
-```{r}
-conteo <- 0
-repeat { 
-  
-  conteo <- conteo + 1
-  if (conteo >= 100) { break }
-  
-}
-conteo
-``` 
-
-
-
-&nbsp;
-
-**`r colorize("WARNING: cuidado con los bucles infinitos", "#ffc107")`**
-
-
-Las estucturas `while{}` y `repeat{}` son de las menos usadas por su peligrosidad, ya que si no incluimos un `break` o la condición nunca llega a ser `TRUE`, el bucle seguirá ejecutándose de forma infinita y solo podrá ser detenido abortando la ejecución con la tecla `ESC`.
-
-&nbsp;
-
-
+Esta función `ifelse()` es muy util para codificar variables o averiguar cuales cumplen una condición.
 
 ## Consejos
 
@@ -261,25 +175,6 @@ Puedes colapsar las estructuras de control pulsando en la flecha que aparece a l
 
 &nbsp;
 
-**`r colorize("Evita bucles (si puedes)", "#20935E")`**
-
-Recuerda: por lo general, di no a los bucles en `R` (intenta evitarlos, en la mayoría de casos hay una alternativa mejor).
-
-&nbsp;
-
-**`r colorize("Evita bucles (parte II)", "#20935E")`**
-
-Evita al máximo los bucles en `R`: suele existir una forma más eficiente de programarlo. Veamos un ejemplo muy sencillo: dado un vector de índices `idx`, queremos calcular su cuadrado y guardarlo. Vamos a comparar como sería con un sencillo bucle y de forma vectorial, repitiéndolo 1000 veces para sacar tiempos medios, haciendo uso del paquete `{microbenchmark}`.
-
-```{r}
-idx <- 1:10000
-x <- y <- rep(0, length(idx))
-microbenchmark::microbenchmark(x <- idx^2, 
-                               for (i in idx) {  y[i] <- idx[i]^2},
-                               times = 1e3)
-``` 
-
-Una tarea tan sencilla, **programada en un bucle (segunda fila), tarda 40 veces más que hacerlo de forma vectorial (primera fila)** (elevando cada elemento al cuadrado, iterando internamente, sin necesidad de implementar un bucle).
 
 
 ## 📝 Ejercicios
@@ -287,7 +182,113 @@ Una tarea tan sencilla, **programada en un bucle (segunda fila), tarda 40 veces 
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: del paquete `{lubridate}`, la función `hour()` nos devuelve la hora de una fecha dada, y la función `now()` nos devuelve fecha y hora del momento actual. Con ambas funciones, y usando `if` imprime por pantalla  `"buenas noches"` (solo a partir de las 21). </summary>
+  <summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los mamíferos del conjunto `MASS::mammals` pesan menos de una tonelada (variable `body`).
+  
+```{r}
+peso <- MASS::mammals$body
+
+if (peso[1] == 1000) {
+  
+  print("Todos los mamíferos guardados pesan menos de una tonelada")
+  
+}
+  
+```
+</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+peso <- MASS::mammals$body
+
+if (all(peso < 1000)) {
+  
+  print("Todos los mamíferos guardados pesan menos de una tonelada")
+  
+}
+
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los mamíferos del conjunto `MASS::mammals` pesan menos de una tonelada (variable `body`).
+  
+```{r}
+peso <- MASS::mammals$body
+
+if (peso[1] == 1000) {
+  
+  print("Alguno de los mamíferos guardados pesan menos de una tonelada")
+  
+}
+  
+```
+</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+peso <- MASS::mammals$body
+
+if (any(peso < 1000)) {
+  
+  print("Alguno de los mamíferos guardados pesan menos de una tonelada")
+  
+}
+
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si el tercer mamífero del conjunto `MASS::mammals` tiene un cerebro que pesa más de 100 gr (variable `brain`).
+  
+```{r}
+peso <- MASS::mammals$body
+
+if (peso[1] == 1000) {
+  
+  print("El tercer mamífero tiene un cerebro que pesa más de 100 gr.")
+  
+}
+  
+```
+
+</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+cerebro <- MASS::mammals$brain
+
+if (cerebro[3] > 100) {
+  
+  print("El tercer mamífero tiene un cerebro que pesa más de 100 gr.")
+  
+}
+
+```
+
+No imprime nada porque no cumple la condición.
+
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: del paquete `{lubridate}`, la función `hour()` nos devuelve la hora de una fecha dada, y la función `now()` nos devuelve fecha y hora del momento actual. Con ambas funciones, y usando `if`, imprime por pantalla  `"buenas noches"` solo a partir de las 21 horas. </summary>
   
 <!-- toc -->
 - Solución:
@@ -296,7 +297,7 @@ Una tarea tan sencilla, **programada en un bucle (segunda fila), tarda 40 veces 
 # Cargamos librería
 library(lubridate)
 
-# Fecha actual
+# Fecha-hora actual
 fecha_actual <- now()
 
 # Estructura if
@@ -313,7 +314,7 @@ if (hour(fecha_actual) > 21) {
 
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: con las funciones del ejercicio anterior, y usando estructura `if-else`, imprime por pantalla `"buenos días"` (de 6 a 14), `"buenas tardes"` (de 14 a 21) o `"buenas noches"` (de las 21 a las 6). </summary>
+  <summary>📝<strong>Ejercicio 5</strong>: con las funciones del ejercicio anterior, y usando una estructura `if-else`, imprime por pantalla `"buenos días"` (de 6 a 14 horas), `"buenas tardes"` (de 14 a 21 horas) o `"buenas noches"` (de las 21 a las 6 horas). </summary>
   
 <!-- toc -->
 - Solución:
@@ -344,7 +345,7 @@ if (hour(fecha_actual) > 6 & hour(fecha_actual) < 14) {
 
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: realiza el ejercicio anterior pero sin estructura de llaves, de forma concisa con `ifelse()`. Mira la ayuda si la necesitases poniendo `? ifelse`. </summary>
+  <summary>📝<strong>Ejercicio 6</strong>: realiza el ejercicio anterior pero sin estructura de llaves, de forma concisa con `ifelse()`. Mira la ayuda si la necesitases poniendo `? ifelse`. </summary>
   
 <!-- toc -->
 - Solución:
@@ -366,87 +367,5 @@ cat(ifelse(hour(fecha_actual) > 6 & hour(fecha_actual) < 14,
 </details>
 
 &nbsp;
-
-<details>
-  <summary>📝<strong>Ejercicio 4</strong>: diseña un bucle `for` de 200 iteraciones que, empezando en un valor inicial de 100 (euros), te sume 3€ si el número actual es par y te reste 5€ si es impar.</summary>
-  
-<!-- toc -->
-- Solución:
-
-Antes veamos qué es un número par o impar: un número par será todo aquel número que al dividir entre 2, la división es exacta, es decir, que su resto es nulo. Por ejemplo, al dividir 5 entre 2, el resto es 1, pero al dividir 12 entre 2 el resto es 0. Para calcula ese resto usaremos la función `%%`.
-
-```{r}
-5 %% 2
-12 %% 2
-23 %% 2
-46 %% 2
-```
-
-```{r}
-# dinero inicial
-dinero <- 100
-
-# Bucle for
-for (i in 1:200) {
-  
-  dinero <- ifelse(dinero %% 2 == 0, dinero + 3, dinero  - 5)
-  
-}
-dinero
-```
-
-<!-- tocstop -->
-</details>
-
-&nbsp;
-
-<details>
-  <summary>📝<strong>Ejercicio 5</strong>: diseña el anterior bucle pero guardando el dinero de cada iteración.</summary>
-  
-<!-- toc -->
-- Solución:
-
-```{r}
-# vector de importes
-dinero <- rep(0, 201)
-dinero[1] <- 100 # dinero inicial
-
-# Bucle for
-for (i in 2:201) {
-  
-  # si dinero[i - 1] es par o  impar
-  dinero[i] <- ifelse(dinero[i - 1] %% 2 == 0, dinero[i - 1] + 3,
-                      dinero[i - 1]  - 5)
-  
-}
-dinero
-```
-
-<!-- tocstop -->
-</details>
-
-&nbsp;
-
-<details>
-  <summary>📝<strong>Ejercicio 6</strong>: diseña el bucle del ejercicio 4 parando cuando no nos quede dinero.</summary>
-  
-<!-- toc -->
-- Solución:
-
-```{r}
-dinero <- 100 # dinero inicial
-
-# Bucle while
-while (dinero > 0) {
-  
-  dinero <- ifelse(dinero %% 2 == 0, dinero + 3, dinero - 5)
-  
-}
-dinero
-```
-
-<!-- tocstop -->
-</details>
-
 
 

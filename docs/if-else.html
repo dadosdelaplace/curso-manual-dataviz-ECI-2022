@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 10 Estructuras condicionales if-else | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
-<meta name="description" content="Aunque la mayoría de veces son sustituibles por otras expresiones más legibles y eficientes, es importante que conozcamos como se usan las expresiones de control más típicas. Una expresión de...">
+<meta name="description" content="Scripts usados: script07.R: estructuras if-else. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R  Hasta ahora hemos trasteado con datos: hemos empezado desde...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 10 Estructuras condicionales if-else | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Aunque la mayoría de veces son sustituibles por otras expresiones más legibles y eficientes, es importante que conozcamos como se usan las expresiones de control más típicas. Una expresión de...">
+<meta property="og:description" content="Scripts usados: script07.R: estructuras if-else. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R  Hasta ahora hemos trasteado con datos: hemos empezado desde...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 10 Estructuras condicionales if-else | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Aunque la mayoría de veces son sustituibles por otras expresiones más legibles y eficientes, es importante que conozcamos como se usan las expresiones de control más típicas. Una expresión de...">
+<meta name="twitter:description" content="Scripts usados: script07.R: estructuras if-else. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R  Hasta ahora hemos trasteado con datos: hemos empezado desde...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -58,8 +58,9 @@
 <li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
 <li class="book-part">Estructuras de control</li>
 <li><a class="active" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
+<li><a class="" href="ifelse-vectorizado.html"><span class="header-section-number">11</span> ifelse () vectorizado</a></li>
 <li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">11</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">12</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -72,440 +73,116 @@
 <h1>
 <span class="header-section-number">Capítulo 10</span> Estructuras condicionales if-else<a class="anchor" aria-label="anchor" href="#if-else"><i class="fas fa-link"></i></a>
 </h1>
-<p>Aunque la mayoría de veces son sustituibles por otras expresiones más legibles y eficientes, es importante que conozcamos como se usan las <mark><strong>expresiones de control más típicas</strong></mark>. Una expresión de control será un <strong>conjunto de órdenes</strong> que nos permiten decidir por donde queremos que avance nuestro programa: ¿qué hacemos si sucede A? ¿Y si sucede B?</p>
-<p>Si has programado en algún otro lenguaje, estarás echando en falta elementos como un <code>if (blabla) {...} else {...}</code> (que los usaremos a veces) o bucles <code>for</code> y <code>while</code>. Si es la primera que programas en algún lenguaje, dichas estructuras te las encontrarás programes en lo que programes:</p>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R"><strong>script07.R</strong></a>: estructuras if-else. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R</a>
+</li>
+</ul>
+</div>
+<p>Hasta ahora hemos trasteado con datos: hemos empezado desde una celda, para luego construir columnas, para luego juntarlas en algo parecido a una base de datos.</p>
+<p>Para poder manejarnos con soltura con dichos datos es importante que conozcamos como se usan las <mark><strong>expresiones de control más típicas</strong></mark>. Una expresión de control será un <strong>conjunto de órdenes</strong> que nos permiten decidir por donde queremos que avance nuestro programa: ¿qué hacemos si sucede A? ¿Y si sucede B?</p>
+<p>Si has programado en algún otro lenguaje, estarás familiarizado/a con elementos como un <code>if (blabla) {...} else {...}</code> (que los usaremos a veces) o bucles <code>for</code> y <code>while</code>. Si es la primera que programas en algún lenguaje, no te preocupes, las empezamos desde cero, empezando por las <mark><strong>estructuras condicionales</strong></mark></p>
 <ul>
 <li>
 <code>if (condición) { código A } else { código B }</code>: si <code>condición</code> (por ejemplo, <code>x == 1</code>) es cierta, se ejecuta <code>código A</code>; si es falsa, se ejecuta <code>código B</code>.</li>
-<li>
-<code>for</code>: <mark><strong>bucle</strong></mark> que permite repetir el mismo código un número fijo de veces (normalmente en función de un índice).</li>
-<li>
-<code>while</code>: <strong>bucle</strong> que permite repetir el mismo código un número a priori indeterminado de veces (solo pararía cuando la condición del <code>while</code> no se cumpliese).</li>
 </ul>
-<div id="if-else-1" class="section level2">
+<div id="if" class="section level2">
 <h2>
-<span class="header-section-number">10.1</span> if-else<a class="anchor" aria-label="anchor" href="#if-else-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> if<a class="anchor" aria-label="anchor" href="#if"><i class="fas fa-link"></i></a>
 </h2>
-<p>Una de las estructuras de control más famosas de cualquier lenguaje de programación son las <mark><strong>estructuras condicionales <code>if-else</code></strong></mark>: SI las condiciones impuestas se cumplen (<code>TRUE</code>), ejecuta las órdenes que tengamos dentro del <code>if</code>.</p>
+<p>Una de las estructuras de control más famosas de cualquier lenguaje de programación: SI las condiciones impuestas se cumplen (<code>TRUE</code>), ejecuta las órdenes que tengamos dentro del <code>if {}</code>. Definamos por ejemplo una variable sencilla, las edades de 8 personas.</p>
 <div class="sourceCode" id="cb749"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Todas las edades son mayores de 13 años</span>
-<span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">24</span>, <span class="fl">56</span>, <span class="fl">31</span>, <span class="fl">20</span>, <span class="fl">87</span>, <span class="fl">73</span><span class="op">)</span>
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">13</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># Si todas las personas son mayores de edad</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todos mayores de edad"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] "todos mayores de edad"</code></pre>
-<p>En caso de que no se cumplan las condiciones (<code>FALSE</code>), no sucederá nada.</p>
-<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># No todas las edades son mayores de 13 años ==&gt; no hace nada</span>
-<span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">24</span>, <span class="fl">56</span>, <span class="fl">31</span>, <span class="fl">20</span>, <span class="fl">87</span>, <span class="fl">73</span><span class="op">)</span>
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">13</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># Si todas las personas son mayores de edad</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todos mayores de edad"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<p>Si tras el <code>if</code> tenemos además un <strong><code>else</code></strong>, cuando la condición no se cumpla, se ejecutará el código que haya tras dicha partícula, permitiéndonos decidir que sucede cuando SÍ se cumple y cuando NO se cumple. En el <strong>ejemplo</strong> siguiente, las órdenes dentro del primer <code>if</code> se ejecutarán si todas las personas son mayores de edad. En caso de no cumplirse (como es el caso), se ejecutará lo que hay entre llaves tras el <code>else</code> (filtra solo los mayores de edad e imprime un mensaje por consola).</p>
+<code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">17</span>, <span class="fl">24</span>, <span class="fl">56</span>, <span class="fl">31</span>, <span class="fl">20</span>, <span class="fl">87</span>, <span class="fl">73</span><span class="op">)</span></code></pre></div>
+<p>Para comprobar cuales son menores de edades podemos aplicar lo aprendido en temas anteriores, realizando una <strong>comparación lógica</strong>: si es menor de edad, devuelve un <code>TRUE</code>; en caso contrario, devuelve un <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">18</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>Con las funciones <code><a href="https://rdrr.io/r/base/any.html">any()</a></code> y <code><a href="https://rdrr.io/r/base/all.html">all()</a></code> podemos saber si <mark><strong>todos o alguno de los elementos de un vector cumplen una condición</strong></mark>.</p>
 <div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">24</span>, <span class="fl">56</span>, <span class="fl">31</span>, <span class="fl">20</span>, <span class="fl">87</span>, <span class="fl">73</span><span class="op">)</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># Si todas las personas son mayores de edad</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todos mayores de edad"</span><span class="op">)</span>
-  
-<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span> <span class="co"># si la condición no se cumple: filtramos solo los mayores</span>
-
-  <span class="va">edades</span> <span class="op">&lt;-</span> <span class="va">edades</span><span class="op">[</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">]</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"algún menor de edad se ha eliminado"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] "algún menor de edad se ha eliminado"</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="co"># todos mayores de edad</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">edades</span></code></pre></div>
-<pre><code>## [1] 24 56 31 20 87 73</code></pre>
-<p>Dicha estructura puede <mark><strong>anidarse</strong></mark>, de forma que vayamos concatenando estructuras <code>ifelse</code>, como en el ejemplo que tenemos debajo.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="co"># existe algun menor de edad</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Con dichos elementos vamos a construir nuestra <strong>primera estructura condicional</strong>: queremos que si existe algún menor de edad, nos imprima un mensaje indicándolo.</p>
 <div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">14</span>, <span class="fl">16</span>, <span class="fl">11</span>, <span class="fl">2</span>, <span class="fl">17</span>, <span class="fl">13</span><span class="op">)</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># Si todas las personas son mayores de edad</span>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si al menos una persona mayor de edad</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todos mayores de edad"</span><span class="op">)</span>
-  
-<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># si alguna es mayor de edad</span>
-
-  <span class="va">edades_18</span> <span class="op">&lt;-</span> <span class="va">edades</span><span class="op">[</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">]</span>  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"algún menor de edad se ha eliminado"</span><span class="op">)</span>
-  
-<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span> <span class="co"># ninguna persona mayor de edad</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son menores de edad"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"existe alguna persona mayor de edad"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
-<pre><code>## [1] "todas las personas son menores de edad"</code></pre>
-<p>Esta <mark><strong>estructura condicional puede ser vectorizada</strong></mark>, de forma que podamos reunir en una <strong>sola fila un número elevado de estructuras de comparación</strong> la función <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, cuyos argumentos de entrada serán la condición a evaluar, lo que sucede cuando se cumple y lo que no, que aplicará a cada elemento del vector de entrada. Por ejemplo, vamos a definir un vector de nombres con algunos ausentes (<code>NA</code>), y vamos a sustituir los ausentes por el texto <code>"nombre_desconocido"</code> (los que no sean ausentes se quedan como están).</p>
+<pre><code>## [1] "existe alguna persona mayor de edad"</code></pre>
+<p>En caso de que no se cumplan las condiciones dentro del <code>if()</code> (condiciones que devuelvan un <code>FALSE</code>), no sucederá nada.</p>
 <div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Juan"</span>, <span class="st">"María"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"Lucía"</span>, <span class="st">"Carmen"</span>, <span class="st">"Javier"</span>,
-             <span class="cn">NA</span>, <span class="st">"Carlos"</span>, <span class="cn">NA</span>, <span class="st">"Gregorio"</span>, <span class="st">"Paloma"</span><span class="op">)</span>
-
-<span class="co"># Si tiene ausente --&gt; "nombre_desconocido"</span>
-<span class="co"># Si no tiene ausente --&gt; nombres originales</span>
-<span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">nombres</span><span class="op">)</span>, <span class="st">"nombre_desconocido"</span>, <span class="va">nombres</span><span class="op">)</span>
-<span class="va">nombres</span></code></pre></div>
-<pre><code>##  [1] "Juan"               "María"              "nombre_desconocido"
-##  [4] "nombre_desconocido" "Lucía"              "Carmen"            
-##  [7] "Javier"             "nombre_desconocido" "Carlos"            
-## [10] "nombre_desconocido" "Gregorio"           "Paloma"</code></pre>
-<p>Esta función <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> es muy util para codificar variables o averiguar cuales cumplen una condición, sin necesidad de hacer un bucle que recorra todos los valores.</p>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>Fíjate que en este caso no hemos obtenido ningún mensaje porque la condición <code><a href="https://rdrr.io/r/base/all.html">all(edades &gt;= 18)</a></code> no es cierta (no son todos mayores de 18 años).</p>
 </div>
-<div id="forwhile" class="section level2">
+<div id="if---else" class="section level2">
 <h2>
-<span class="header-section-number">10.2</span> for/while<a class="anchor" aria-label="anchor" href="#forwhile"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2</span> if - else<a class="anchor" aria-label="anchor" href="#if---else"><i class="fas fa-link"></i></a>
 </h2>
-<p>Aunque el 99% de las veces (porcentaje inventado) los bucles pueden ser <strong>sustituidos por códigos de forma vectorial mucho más eficientes</strong>, a veces no nos quedará más remedio que usarlos por lo que nunca viene mal conocer su estructura.</p>
-<p>Un <mark><strong>bucle <code>for{}</code> es una estructura que nos permite ejecutar un conjunto de órdenes un número repetido (finito y conocido)</strong></mark> de veces: dado un conjunto de índices, el bucle irá <mark><strong>recorriendo cada elemento</strong></mark> de dicho conjunto, y para cada uno de ellos ejecutará lo que tenga dentro de las llaves.</p>
-<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">variable</span> <span class="op">&lt;-</span> <span class="cn">NULL</span> <span class="co"># vector donde guardaremos los pasos del bucle</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span> <span class="op">{</span> 
+<p>La estructura <code>if (condicion) { }</code> puede ser combinada con un <code>else { }</code>, de forma que cuando la condición no se cumpla (como en el último ejemplo), se ejecutará el código que haya dentro del <code>else { }</code>, permitiéndonos decidir que sucede cuando SÍ se cumple y cuando NO se cumple</p>
+<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
-  <span class="va">variable</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="co"># R es silencioso: salvo que hagamos un print dentro del bucle no nos imprimirá nada por pantalla</span>
-<span class="op">}</span>
-<span class="va">variable</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
-<p>Lo que tenemos dentro de los paréntesis, en la línea del <code>for</code>, no es más que la secuencia de números que hemos aprendido a construir.</p>
-<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">7</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
-<p>No siempre tenemos que realizar una asignación o cambiar una variable dentro de un bucle, podemos ejecutar acciones directamente sin asignar o guardar nada.</p>
-<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span> <span class="op">{</span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span> <span class="co"># imprimimos cada índice al cubo</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span> <span class="co"># si hay alguno menor de edad </span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"existe alguna persona menor de edad"</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] 8
-## [1] 27
-## [1] 64
-## [1] 125
-## [1] 216
-## [1] 343</code></pre>
-<p>Aunque normalmente el conjunto que recorre el bucle suelen ser índices numéricos, <strong>podemos recorrer cualquier tipo de objeto</strong>.</p>
-<div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dias_semana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"lunes"</span>, <span class="st">"martes"</span>, <span class="st">"miércoles"</span>, <span class="st">"jueves"</span>,
-                 <span class="st">"viernes"</span>, <span class="st">"sábado"</span>, <span class="st">"domingo"</span><span class="op">)</span>
-<span class="va">nombre_mayuscula</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">dias</span> <span class="kw">in</span> <span class="va">dias_semana</span><span class="op">)</span> <span class="op">{</span> <span class="co"># dias recorre los días de la semana tomando sus valores</span>
+<pre><code>## [1] "existe alguna persona menor de edad"</code></pre>
+<p>Podemos ya complicar un poco el código con lo que hemos aprendido de temas anteriores: en caso de que haya alguno menor de edad, queremos extraer la edad por pantalla (con <code>edades[edades &lt; 18]</code> extraeremos las edades que cumplen la condición de ser menor de edad).</p>
+<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">dias</span><span class="op">)</span><span class="op">)</span> <span class="co"># Imprimimos en mayúsculas.</span>
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] "LUNES"
-## [1] "MARTES"
-## [1] "MIÉRCOLES"
-## [1] "JUEVES"
-## [1] "VIERNES"
-## [1] "SÁBADO"
-## [1] "DOMINGO"</code></pre>
-<p> </p>
-<p>Otra manera de diseñar un bucle es con la <mark><strong>estructura <code>while{}</code></strong></mark>, que ejecutará el <strong>bucle un número de veces pero que a priori es desconocido</strong> hasta que la condición impuesta deje de ser <code>TRUE</code> (en el <code>for</code> sabemos de antemano el número de iteraciones).</p>
-<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">max_ciclos</span> <span class="op">&lt;-</span> <span class="fl">10</span>
-<span class="va">ciclos</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-
-<span class="co"># Mientras el número de ciclos sea inferior 10, imprime</span>
-<span class="kw">while</span><span class="op">(</span><span class="va">ciclos</span> <span class="op">&lt;=</span> <span class="va">max_ciclos</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Todavía no, vamos por el ciclo "</span>, <span class="va">ciclos</span><span class="op">)</span><span class="op">)</span> <span class="co"># Pegamos la frase al número de ciclo por el que vayamos con paste</span>
-  <span class="va">ciclos</span> <span class="op">&lt;-</span> <span class="va">ciclos</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span> <span class="co"># si hay alguno menor de edad </span>
   
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"Existe alguna persona menor de edad. Sus edades son: {edades[edades &lt; 18]}"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<pre><code>## [1] "Todavía no, vamos por el ciclo  1"
-## [1] "Todavía no, vamos por el ciclo  2"
-## [1] "Todavía no, vamos por el ciclo  3"
-## [1] "Todavía no, vamos por el ciclo  4"
-## [1] "Todavía no, vamos por el ciclo  5"
-## [1] "Todavía no, vamos por el ciclo  6"
-## [1] "Todavía no, vamos por el ciclo  7"
-## [1] "Todavía no, vamos por el ciclo  8"
-## [1] "Todavía no, vamos por el ciclo  9"
-## [1] "Todavía no, vamos por el ciclo  10"</code></pre>
-<p><strong>¿Y qué sucede cuando la condición nunca llega a ser <code>FALSE</code>?</strong> Compruébalo tú mismo/a.</p>
-<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">while</span> <span class="op">(</span><span class="fl">1</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span> <span class="co"># Nunca va a dejar de ser cierto</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Presiona ESC para salir del bucle"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<div id="breaknext" class="section level3">
-<h3>
-<span class="header-section-number">10.2.1</span> BREAK/NEXT<a class="anchor" aria-label="anchor" href="#breaknext"><i class="fas fa-link"></i></a>
-</h3>
-<p>En <code>R</code> tenemos dos comandos reservados para poder <mark><strong>abortar un bucle</strong></mark> o <strong>avanzar forzosamente un bucle</strong>: dichas palabras son <code>break</code> y <code>next</code>. La primera nos habilita para <strong>parar un bucle</strong> aunque no haya llegado al final de su conjunto de índices a recorrer (o se siga cumpliendo la condición del <code>while{}</code>).</p>
-<div class="sourceCode" id="cb771"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span> <span class="op">{</span>
-    
-    <span class="kw">break</span> <span class="co"># si i es 7, el bucle frena aquí (nunca llegará a imprimir el 7 ni los sucesivos)</span>
-    
-  <span class="op">}</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
-## [1] 6</code></pre>
-<p>Mientras que la segunda <strong>obliga al bucle a avanzar a la siguiente interacción</strong>, abortando la iteración actual en la que se encuentra.</p>
-<div class="sourceCode" id="cb773"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span> <span class="op">{</span>
-    
-    <span class="kw">next</span> <span class="co"># si i es 7, la iteración frenará aquí y pasará a la siguiente por lo que imprimirá todos menos el 7</span>
-    
-  <span class="op">}</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
-## [1] 6
-## [1] 8
-## [1] 9
-## [1] 10</code></pre>
+<pre><code>## Existe alguna persona menor de edad. Sus edades son: 14
+## Existe alguna persona menor de edad. Sus edades son: 17</code></pre>
 </div>
-<div id="repeat" class="section level3">
-<h3>
-<span class="header-section-number">10.2.2</span> REPEAT<a class="anchor" aria-label="anchor" href="#repeat"><i class="fas fa-link"></i></a>
-</h3>
-<p>Aunque es una opción muy poco usada, existe una estructura de control llamada <code>repeat{}</code> que nos <strong>ejecuta un bucle de forma infinita</strong> hasta que le ordenemos parar con un <code>break</code>.</p>
-<div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">conteo</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-<span class="kw">repeat</span> <span class="op">{</span> 
-  
-  <span class="va">conteo</span> <span class="op">&lt;-</span> <span class="va">conteo</span> <span class="op">+</span> <span class="fl">1</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="va">conteo</span> <span class="op">&gt;=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span> <span class="kw">break</span> <span class="op">}</span>
-  
-<span class="op">}</span>
-<span class="va">conteo</span></code></pre></div>
-<pre><code>## [1] 100</code></pre>
-<p> </p>
-<p><strong><span style="color: #ffc107;">WARNING: cuidado con los bucles infinitos</span></strong></p>
-<p>Las estucturas <code>while{}</code> y <code>repeat{}</code> son de las menos usadas por su peligrosidad, ya que si no incluimos un <code>break</code> o la condición nunca llega a ser <code>TRUE</code>, el bucle seguirá ejecutándose de forma infinita y solo podrá ser detenido abortando la ejecución con la tecla <code>ESC</code>.</p>
-<p> </p>
-</div>
-</div>
-<div id="consejos-6" class="section level2">
+<div id="if---else-anidados" class="section level2">
 <h2>
-<span class="header-section-number">10.3</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3</span> if - else anidados<a class="anchor" aria-label="anchor" href="#if---else-anidados"><i class="fas fa-link"></i></a>
 </h2>
-<p><strong><span style="color: #20935E;">CONSEJOS</span></strong></p>
-<p> </p>
-<p><strong><span style="color: #20935E;">Rainbow parentheses</span></strong></p>
-<p>Uno de los <strong>errores más habituales</strong>, y que seguirás cometiendo aunque lleves años programando, es <mark><strong>no cerrar un paréntesis que has abierto</strong></mark>, por lo que el programa no sabe si has acabado de llamar a una orden o no. Para ello en las nuevas versiones de <code>RStudio</code>, en el menú <code>Tools &lt; Global Options &lt; Code &lt; Display</code> podemos habilitar la opción <code>Rainbow Parentheses</code> que nos escribe cada par de <code>()</code> de un color distinto</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-243"></span>
-<img src="img/rainbow-parentheses.jpg" alt="Activando Rainbow Parentheses." width="70%"><p class="caption">
-Imagen/gráfica 10.1: Activando Rainbow Parentheses.
-</p>
-</div>
-<p> </p>
-<p><strong><span style="color: #20935E;">Minimiza estructuras de control en el código</span></strong></p>
-<p>Puedes colapsar las estructuras de control pulsando en la flecha que aparece a la izquierda de ellas en tu script.</p>
-<p> </p>
-<p><strong><span style="color: #20935E;">Evita bucles (si puedes)</span></strong></p>
-<p>Recuerda: por lo general, di no a los bucles en <code>R</code> (intenta evitarlos, en la mayoría de casos hay una alternativa mejor).</p>
-<p> </p>
-<p><strong><span style="color: #20935E;">Evita bucles (parte II)</span></strong></p>
-<p>Evita al máximo los bucles en <code>R</code>: suele existir una forma más eficiente de programarlo. Veamos un ejemplo muy sencillo: dado un vector de índices <code>idx</code>, queremos calcular su cuadrado y guardarlo. Vamos a comparar como sería con un sencillo bucle y de forma vectorial, repitiéndolo 1000 veces para sacar tiempos medios, haciendo uso del paquete <a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a>.</p>
-<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">idx</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">idx</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">idx</span><span class="op">^</span><span class="fl">2</span>, 
-                               <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">idx</span><span class="op">)</span> <span class="op">{</span>  <span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">idx</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">}</span>,
-                               times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span></code></pre></div>
-<pre><code>## Unit: microseconds
-##                                     expr      min        lq       mean
-##                               x &lt;- idx^2   18.650   49.4955   53.70644
-##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 1905.795 2027.2015 2182.80868
-##     median        uq       max neval cld
-##    54.4705   61.4855   194.949  1000  a 
-##  2077.2560 2144.2190 11447.402  1000   b</code></pre>
-<p>Una tarea tan sencilla, <strong>programada en un bucle (segunda fila), tarda 40 veces más que hacerlo de forma vectorial (primera fila)</strong> (elevando cada elemento al cuadrado, iterando internamente, sin necesidad de implementar un bucle).</p>
-</div>
-<div id="ejercicios-5" class="section level2">
-<h2>
-<span class="header-section-number">10.4</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-5"><i class="fas fa-link"></i></a>
-</h2>
-<p>(haz click en las flechas para ver soluciones)</p>
-<details><p><summary>📝<strong>Ejercicio 1</strong>: del paquete <a href="https://lubridate.tidyverse.org">lubridate</a>, la función <code><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour()</a></code> nos devuelve la hora de una fecha dada, y la función <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code> nos devuelve fecha y hora del momento actual. Con ambas funciones, y usando <code>if</code> imprime por pantalla <code>"buenas noches"</code> (solo a partir de las 21). </summary></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Cargamos librería</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
-
-<span class="co"># Fecha actual</span>
-<span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Estructura if</span>
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">21</span><span class="op">)</span> <span class="op">{</span>
+<p>Dicha estructura <code>if - else</code> puede <mark><strong>anidarse</strong></mark>, de forma que vayamos concatenando dichas estructuras, como en el ejemplo que tenemos debajo. Imagina que queremos realizar una acción si todos fuesen mayores de edad; en caso contrario, pero si todos los menores de edad tienen 16 años o más, realizar otra acción; en caso contrario, otra acción</p>
+<div class="sourceCode" id="cb763"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas noches"</span><span class="op">)</span> <span class="co"># print/cat dos formas de imprimir por pantalla</span>
-<span class="op">}</span></code></pre></div>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 2</strong>: con las funciones del ejercicio anterior, y usando estructura <code>if-else</code>, imprime por pantalla <code>"buenos días"</code> (de 6 a 14), <code>"buenas tardes"</code> (de 14 a 21) o <code>"buenas noches"</code> (de las 21 a las 6). </summary></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Fecha actual</span>
-<span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Estructura if-else</span>
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">6</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">14</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenos días"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># si todos los menores de edad tienen &gt;=16</span>
   
-<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">21</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas tardes"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Existe alguna persona menor de edad pero todos con 16 años o más"</span><span class="op">)</span>
   
 <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas noches"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Existe alguna persona menor de 16 años"</span><span class="op">)</span>
+
 <span class="op">}</span></code></pre></div>
-<pre><code>## Buenas tardes</code></pre>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 3</strong>: realiza el ejercicio anterior pero sin estructura de llaves, de forma concisa con <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. Mira la ayuda si la necesitases poniendo <code><a href="https://rdrr.io/r/base/ifelse.html">? ifelse</a></code>. </summary></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Fecha actual</span>
-<span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Estructura if-else</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">6</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">14</span>,
-           <span class="st">"Buenos días"</span>,
-           <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">&amp;</span>
-                    <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">21</span>,
-                  <span class="st">"Buenas tardes"</span>, <span class="st">"Buenas noches"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Buenas tardes</code></pre>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 4</strong>: diseña un bucle <code>for</code> de 200 iteraciones que, empezando en un valor inicial de 100 (euros), te sume 3€ si el número actual es par y te reste 5€ si es impar.</summary></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<p>Antes veamos qué es un número par o impar: un número par será todo aquel número que al dividir entre 2, la división es exacta, es decir, que su resto es nulo. Por ejemplo, al dividir 5 entre 2, el resto es 1, pero al dividir 12 entre 2 el resto es 0. Para calcula ese resto usaremos la función <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code>.</p>
-<div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">5</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb786"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">12</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb788"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">23</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb790"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">46</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb792"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># dinero inicial</span>
-<span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fl">100</span>
-
-<span class="co"># Bucle for</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">200</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dinero</span> <span class="op">%%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span>, <span class="va">dinero</span> <span class="op">+</span> <span class="fl">3</span>, <span class="va">dinero</span>  <span class="op">-</span> <span class="fl">5</span><span class="op">)</span>
-  
-<span class="op">}</span>
-<span class="va">dinero</span></code></pre></div>
-<pre><code>## [1] -100</code></pre>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 5</strong>: diseña el anterior bucle pero guardando el dinero de cada iteración.</summary></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<div class="sourceCode" id="cb794"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># vector de importes</span>
-<span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">201</span><span class="op">)</span>
-<span class="va">dinero</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="co"># dinero inicial</span>
-
-<span class="co"># Bucle for</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">201</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="co"># si dinero[i - 1] es par o  impar</span>
-  <span class="va">dinero</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dinero</span><span class="op">[</span><span class="va">i</span> <span class="op">-</span> <span class="fl">1</span><span class="op">]</span> <span class="op">%%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span>, <span class="va">dinero</span><span class="op">[</span><span class="va">i</span> <span class="op">-</span> <span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">3</span>,
-                      <span class="va">dinero</span><span class="op">[</span><span class="va">i</span> <span class="op">-</span> <span class="fl">1</span><span class="op">]</span>  <span class="op">-</span> <span class="fl">5</span><span class="op">)</span>
-  
-<span class="op">}</span>
-<span class="va">dinero</span></code></pre></div>
-<pre><code>##   [1]  100  103   98  101   96   99   94   97   92   95   90   93   88   91   86
-##  [16]   89   84   87   82   85   80   83   78   81   76   79   74   77   72   75
-##  [31]   70   73   68   71   66   69   64   67   62   65   60   63   58   61   56
-##  [46]   59   54   57   52   55   50   53   48   51   46   49   44   47   42   45
-##  [61]   40   43   38   41   36   39   34   37   32   35   30   33   28   31   26
-##  [76]   29   24   27   22   25   20   23   18   21   16   19   14   17   12   15
-##  [91]   10   13    8   11    6    9    4    7    2    5    0    3   -2    1   -4
-## [106]   -1   -6   -3   -8   -5  -10   -7  -12   -9  -14  -11  -16  -13  -18  -15
-## [121]  -20  -17  -22  -19  -24  -21  -26  -23  -28  -25  -30  -27  -32  -29  -34
-## [136]  -31  -36  -33  -38  -35  -40  -37  -42  -39  -44  -41  -46  -43  -48  -45
-## [151]  -50  -47  -52  -49  -54  -51  -56  -53  -58  -55  -60  -57  -62  -59  -64
-## [166]  -61  -66  -63  -68  -65  -70  -67  -72  -69  -74  -71  -76  -73  -78  -75
-## [181]  -80  -77  -82  -79  -84  -81  -86  -83  -88  -85  -90  -87  -92  -89  -94
-## [196]  -91  -96  -93  -98  -95 -100</code></pre>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 6</strong>: diseña el bucle del ejercicio 4 parando cuando no nos quede dinero.</summary></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<div class="sourceCode" id="cb796"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="co"># dinero inicial</span>
-
-<span class="co"># Bucle while</span>
-<span class="kw">while</span> <span class="op">(</span><span class="va">dinero</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">dinero</span> <span class="op">%%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span>, <span class="va">dinero</span> <span class="op">+</span> <span class="fl">3</span>, <span class="va">dinero</span> <span class="op">-</span> <span class="fl">5</span><span class="op">)</span>
-  
-<span class="op">}</span>
-<span class="va">dinero</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<!-- tocstop -->
-</details>
+<pre><code>## [1] "Existe alguna persona menor de 16 años"</code></pre>
 </div>
 </div>
-
-
-
   <div class="chapter-nav">
 <div class="prev"><a href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></div>
-<div class="next"><a href="ejercicios-recopilados.html"><span class="header-section-number">11</span> 📝 Ejercicios recopilados</a></div>
+<div class="next"><a href="ifelse-vectorizado.html"><span class="header-section-number">11</span> ifelse () vectorizado</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#if-else"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
-<li><a class="nav-link" href="#if-else-1"><span class="header-section-number">10.1</span> if-else</a></li>
-<li>
-<a class="nav-link" href="#forwhile"><span class="header-section-number">10.2</span> for/while</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#breaknext"><span class="header-section-number">10.2.1</span> BREAK/NEXT</a></li>
-<li><a class="nav-link" href="#repeat"><span class="header-section-number">10.2.2</span> REPEAT</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#consejos-6"><span class="header-section-number">10.3</span> Consejos</a></li>
-<li><a class="nav-link" href="#ejercicios-5"><span class="header-section-number">10.4</span> 📝 Ejercicios</a></li>
+<li><a class="nav-link" href="#if"><span class="header-section-number">10.1</span> if</a></li>
+<li><a class="nav-link" href="#if---else"><span class="header-section-number">10.2</span> if - else</a></li>
+<li><a class="nav-link" href="#if---else-anidados"><span class="header-section-number">10.3</span> if - else anidados</a></li>
 </ul>
 
       <div class="book-extra">

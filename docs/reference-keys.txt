@@ -28,7 +28,7 @@ fig:consola-multi-3
 fig:stringr2
 fig:unnamed-chunk-146
 fig:tabla-dolar
-fig:unnamed-chunk-243
+fig:unnamed-chunk-239
 fig:consola-multi-1a
 fig:consola-multi-2a
 fig:consola-multi-3a
@@ -91,10 +91,10 @@ consejos-5
 ejercicios-4
 repaso-1
 if-else
-if-else-1
-forwhile
-breaknext
-repeat
+if
+if---else
+if---else-anidados
+ifelse-vectorizado
 consejos-6
 ejercicios-5
 ejercicios-recopilados
