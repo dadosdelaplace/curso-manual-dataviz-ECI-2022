@@ -28,6 +28,9 @@ fig:consola-multi-3
 fig:stringr2
 fig:unnamed-chunk-146
 fig:tabla-dolar
+fig:consola-multi-1a
+fig:consola-multi-2a
+fig:consola-multi-3a
 requisitos
 instalacion
 instalacionR
@@ -85,3 +88,9 @@ tablas-data.frames
 selección-de-columnas-y-filas
 consejos-5
 ejercicios-4
+ejercicios-recopilados
+primeros-pasos-1
+tipos-de-datos
+vectores-1
+operaciones-con-vectores
+estructuras-de-datos-matrices-y-tablas-data.frame

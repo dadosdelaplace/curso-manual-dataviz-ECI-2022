@@ -107,6 +107,7 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 * \@ref(tipos-datos) [Tipos de datos](#tipos-datos)
 * \@ref(vectores) [Vectores](#vectores)
 * \@ref(operacionesvectores) [Operaciones con vectores](#operacionesvectores)
+* \@ref(datos) [Datos estructurados](#datos)
 
 ## Código de colores {-} 
 

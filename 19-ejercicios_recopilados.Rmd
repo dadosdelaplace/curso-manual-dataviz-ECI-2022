@@ -1,0 +1,987 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# (PART) Recursos {-}
+
+# 📝 Ejercicios recopilados
+
+Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso
+
+
+## Primeros pasos
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R): toma de contacto.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R>
+::::
+
+(haz click en las flechas para ver soluciones)
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: en tu consola (parte inferior de tu pantalla), asigna los valores `2` y `5` a dos variables `a` y `b`. Tras asignarles valores, multiplica los números en consola (**haz click** en la flecha para la solución propuesta). </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Para poner comentarios en el código se usa #
+
+# Definición de variables
+a <- 2
+b <- 5
+
+# Multiplicación
+a * b
+```
+
+```{r consola-multi-1a, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b."}
+knitr::include_graphics("./img/consola_multiplicacion.jpg")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero ahora guarda el resultado de la multiplicación en una variable `c`. Para ver el resultado guardado en `c` escribe dicha variable en consola (**haz click** en la flecha para la solución propuesta). </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Variables
+a <- 2
+b <- 5
+
+# Resultado
+c <- a * b
+
+# Muestro en consola
+c
+```
+
+```{r consola-multi-2a, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b guardando el resultado."}
+knitr::include_graphics("./img/consola_multiplicacion_2.jpg")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: asigna ahora los valores `1`, `-2`, `3` a tres variables `a`, `b` y `c`, y calcula la raíz cuadrada de cada uno. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Variables
+a <- 1
+b <- -2
+c <- 3
+
+# Resultado
+sqrt(a)
+sqrt(b)
+sqrt(c)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero `.R`, guardado en [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
+  
+<!-- toc -->
+- Solución:
+
+
+```{r consola-multi-3a, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b guardando el resultado pero escribiendo en el script."}
+knitr::include_graphics("./img/consola_multiplicacion_3.jpg")
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable `x` (**haz click** en la flecha para la solución propuesta).</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+x <- (3 + 4) * 10
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: asigna un valor positivo a `x` y calcula  su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (**haz click** en la flecha para la solución propuesta).</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Raíz cuadrada
+x <- 73
+sqrt(x)
+
+# Valor absoluto
+y <- -73
+abs(y)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+**`r colorize("CONSEJO:", "#20935E")`**
+
+Las órdenes `sqrt(x)` y `abs(y)` se llaman <mark>**funciones**</mark>, y la variable que tienen entre paréntesis se llama **argumento de la función**: una variable que toma de entrada la función y con la que opera internamente.
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: usando la variable `x` ya definida, calcula `x - 5` y guárdalo en una nueva variable `z` (**haz click** en la flecha para la solución propuesta).</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+z <- x - 5
+z
+```
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: usando las variables `x` y `z` ya definidas, calcula la raíz cuadrada del máximo entre ambas, y guárdalo en una nueva variable `t`. Hazlo en un script en lugar de en consola (**haz click** en la flecha para la solución propuesta).</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+t <- sqrt(max(x, z)) 
+t
+```
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+**`r colorize("WARNING:", "#ffc107")`**
+
+No hace falta gastar una línea por cada orden que quieras ejecutar. Tampoco necesitas guardar cada paso intermedio que realices. **`r colorize("Cuidado con la memoria", "#ffc107")`**: cada asignación que hagas es una variable guardada que consume recursos en tu ordenador.
+
+
+
+
+
+## Tipos de datos
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script02.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R): tipos de datos y funciones usadas con ellos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R>
+
+::::
+(haz click en las flechas para ver soluciones)
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: define una variable que guarde tu edad, otra con tu nombre, otra respondiendo a la pregunta «¿tengo hermanos?» y otra con la fecha de tu nacimiento. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+edad <- 32 # tipo numeric
+nombre <- "Javier" # tipo caracter
+hermanos <- TRUE # tipo hermanos
+fecha_nacimiento <- as.Date("1989-09-10") # tipo fecha
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: define otra variable con tus apellidos y junta las variables `nombre` y `apellidos` en una sola variable `nombre_completo`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Apellidos
+apellidos <- "Álvarez Liébana"
+
+# Pegamos
+nombre_completo <- glue("{nombre} {apellidos}")
+nombre_completo
+
+# Otra forma
+nombre_completo <- paste(nombre, apellidos)
+nombre_completo
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: construye una frase que diga «Hola, me llamo ... y tengo ... años. Nací el ... de ... de ...» (con el nombre completo). </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+dia_nacimiento <- day(fecha_nacimiento)
+mes_nacimiento <- month(fecha_nacimiento)
+a_nacimiento <- year(fecha_nacimiento)
+
+glue("Hola, me llamo {nombre_completo} y tengo {edad} años. Nací el {dia_nacimiento} del {mes_nacimiento} de {a_nacimiento}")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: calcula los días que han pasado desde la fecha de tu nacimiento </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+days(today() - fecha_nacimiento)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Se tienen que cumplir todas
+edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: obtén una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Se tienen que cumplir todas
+edad < 30 | fecha_nacimiento >= as.Date("1990-01-01") | hermanos
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Podemos sumar porque es fecha
+fecha_post <- fecha_nacimiento + 11
+fecha_post
+
+# Semana del año
+week(fecha_post)
+
+# Día de la semana (versión americana, empiezan el domingo)
+wday(fecha_post)
+
+# Día de la semana (versión española)
+wday(fecha_post, week_start = 1)
+
+# Día de la semana en texto
+weekdays(fecha_post)
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: define dos números cualesquiera en variable `a` y `b`. Calcula su suma y determina cual es mayor. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+a <- -5
+b <- 7
+
+# Suma
+c <- a + b
+c
+
+# Comparaciones
+a == b # ¿a = b?
+a < b # ¿a < b?
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+
+
+
+
+## Vectores
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script03.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R): vectores.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R>
+
+::::
+
+
+(haz click en las flechas para ver soluciones)
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada `vector_num`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de números
+vector_num <- c(1, 10, -1, 2)
+vector_num
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: obtén la longitud del vector anterior `vector_num`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Longitud del vector
+length(vector_num)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: crea un vector con las palabras "Hola", "me", "llamo" (y tu nombre y apellidos), y pega luego sus elementos de forma que la frase esté correctamente escrita en castellano. Tras hacerlo, añade "y tengo 30 años". </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Definiendo el vector
+vector_char <- c("Hola", "me", "llamo", "Javier",
+                 "Álvarez", "Liébana")
+
+# Pegamos
+frase <- paste(vector_char, collapse = " ")
+frase
+
+# Añadimos frase
+glue("{frase} y tengo 30 años.")
+
+# Otra forma
+paste0(frase, " y tengo 30 años.")
+
+# Otra forma
+paste(frase, "y tengo 30 años.")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: crea una secuencia de números, que empiece en `-1`, que acabe en `32`, y que vaya saltando de 3 en 3. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+secuencia <- seq(-1, 32, by = 3)
+secuencia
+length(secuencia) # longitud de la secuencia
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: crea una secuencia de números, que empiece en `-1`, que acabe en `32`, y que tenga longitud 12. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+secuencia <- seq(-1, 32, l = 12)
+secuencia
+length(secuencia) # longitud de la secuencia
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: crea una secuencia que empiece en 1 y recorra todos los naturales hasta el 10. Después crea otra secuencia de longitud 7 que todos los números sean `3`.  </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+1:10
+rep(3, 7) # secuencia repetida
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: crea una secuencia que repita 5 veces el patrón `1, 2, 3`. Después crea otra que repita dicho patrón pero de forma intercalada, con 5 veces `1`, después 5 veces `2` y después 5 veces `3`.</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+rep(c(1, 2, 3), 5) # repetimos patrón (1, 2, 3) 5 veces
+rep(c(1, 2, 3), each = 5) # repetimos patrón alternado
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: crea un vector con las edades de cuatro conocidos o familiares. Tras ello, determina cuáles de ellos tienen menos de 20 años, 30 años o más, menos de 40 años y más de 65 años.</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+edades <- c(27, 32, 60, 61) # en mi caso, por ejemplo
+edades < 20 # menos de 20 años
+edades >= 30 # 30 años o más
+edades < 40 # menos de 40 años
+edades > 65 # más de 65 años
+```
+
+<!-- tocstop -->
+</details>
+
+
+
+
+
+
+
+## Operaciones con vectores 
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script04.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R): operaciones con vectores.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R>
+
+::::
+
+(haz click en las flechas para ver soluciones)
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: define de nuevo el vector `vector_num` definido como un vector que contenga los números 1, 10, -1 y 2) y calcula su suma del vector. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de números
+vector_num <- c(1, 10, -1, 2)
+
+# Suma
+sum(vector_num)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: define otro vector `vector_num2` que contenga los números `5, -7, 8, -3`, y haz la suma de `vector_num` y `vector_num2`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de números
+vector_num2 <- c(5, -7, 8, -3)
+
+# Suma
+vector_num + vector_num2
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: calcula el número de elementos mayores que 0 del resultado de la suma de `vector_num` y `vector_num2`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de números
+vector_suma <- vector_num + vector_num2
+
+# Suma
+sum(vector_suma > 0)
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: calcula la versión ordenada del vector `vector_num`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Ordenamos el vector (con sort)
+sort(vector_num)
+
+# Ordenamos el vector  (con order)
+vector_num[order(vector_num)]
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: encuentra del vector `vector_num` original el lugar (el índice) que ocupa su mínimo y su máximo. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+vector_num <- c(1, 10, -1, 2)
+
+# Encontrando el lugar que ocupa el máximo y mínimo
+which.max(vector_num)
+which.min(vector_num)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: encuentra del vector `vector_num` los elementos mayores que 1 y menores que 7. Encuentra una forma de averiguar si todos los elementos son o no positivos. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector lógico: mayores que 1 y menores que 7
+vector_num > 1 & vector_num < 7
+
+# ¿Son todos positivos?
+all(vector_num > 0)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: define el vector `c(-1, 0, 4, 5, -2)`, calcula la raíz cuadrada del vector y determina que lugares son ausente de tipo `NaN`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector
+x <- c(-1, 0, 4, 5, -2)
+
+# ¿Cuáles son ausentes tras aplicar la raíz cuadrada?
+is.nan(sqrt(x))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: define el vector de los primeros números impares (hasta el 21) y extrae los elementos que ocupan los lugares 1, 4, 5, 8. Elimina del vector el segundo elemento</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de impares (de 1 a 21 saltando de dos en dos)
+x <- seq(1, 21, by = 2)
+
+# Seleccionamos elementos
+x[c(1, 4, 5, 8)]
+
+# Eliminamos elementos
+y <- x[-2]
+y
+```
+
+<!-- tocstop -->
+</details>
+
+
+
+
+## Estructuras de datos: matrices y tablas (data.frame)
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script05.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R): matrices y data.frames.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R>
+::::
+
+(haz click en las flechas para ver soluciones)
+
+<details>
+  <summary><strong>Ejercicio 1</strong>: define una matriz `x` de ceros de 3 filas y 7 columnas.</summary>
+
+- Solución:
+
+```{r}
+# Matriz
+x <- matrix(0, nrow = 3, ncol = 7)
+x
+
+(x + 1) / 5
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 2</strong>: a la matriz anterior, suma un 1 a cada número de la matriz y divide el resultado entre 5.</summary>
+
+- Solución:
+
+```{r}
+(x + 1) / 5
+```
+
+</details>
+
+&nbsp; 
+
+
+<details>
+  <summary><strong>Ejercicio 3</strong>: tras definir la matriz `x` calcula su transpuesta y obtén sus dimensiones</summary>
+
+- Solución:
+
+```{r}
+# Transpuesta
+t(x)
+
+# Dimensiones transpuesta: pasa de ser 3x7 a 7x3
+dim(t(x))
+ncol(t(x)) # número de columnas de la transpuesta
+nrow(t(x)) # número de filas de la transpuesta
+```
+
+</details>
+
+&nbsp;
+
+<details>
+  <summary><strong>Ejercicio 4</strong>: el siguiente código define una matriz de dimensiones `4 x 3` y calcula la suma por columnas. Modifica el código para que realice la suma por filas.
+  
+```{r}
+# Matriz
+matriz <- matrix(1:12, nrow = 4)
+
+# Suma por columnas
+apply(matriz, MARGIN = 2, FUN = "sum")
+```
+</summary>
+
+
+- Solución:
+
+```{r}
+# Matriz
+matriz <- matrix(1:12, nrow = 4)
+
+# Suma por filas
+apply(matriz, MARGIN = 1, FUN = "sum")
+```
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 5</strong>: con la matriz `matrix(1:12, nrow = 4)` anterior, calcula la media de todos los elementos, la media de cada fila y la media de cada columna.</summary>
+
+- Solución:
+
+```{r}
+# Matriz
+matriz <- matrix(1:12, nrow = 4)
+
+#  media de todos
+mean(matriz)
+
+# Media por filas (MARGIN = 1 ya que es una operación por filas)
+apply(matriz, MARGIN = 1, FUN = "mean")
+
+# Media por filas (MARGIN = 2 ya que es una operación por filas)
+apply(matriz, MARGIN = 2, FUN = "mean")
+```
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 6</strong>: el `data.frame` llamado `mammals` contiene el peso medio del cerebro (gramos) y el cuerpo (kilogramos) de 62 especies de mamíferos terrestres distintos (al que puedes acceder desde el paquete `{MASS}`). Obtén el nombre de las variables y visualiza las primeras filas (cabecera de la tabla). Visualiza por consola las columnas con `$`.
+  
+```{r eval = FALSE}
+# si no está ya instalado el paquete hay que hacer install.packages("MASS")
+? MASS::mammals # para ver info del conjunto de datos 
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Nombres de variables
+names(MASS::mammals)
+
+# Cabecera
+head(MASS::mammals)
+
+# Columnas
+MASS::mammals$body
+MASS::mammals$brain
+```
+
+</details>
+
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 7</strong>: modifica el código inferior para que nos filtre solo con los mamíferos con un peso corporal superior a 15 kg.
+  
+```{r}
+# Filtramos filas
+filtro_fila <- subset(MASS::mammals, subset = body < 35)
+filtro_fila
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Filtramos filas
+filtro_fila <- subset(MASS::mammals, subset = body > 15)
+filtro_fila
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 8</strong>: del conjunto `mammals` selecciona aquellos mamíferos terrestres cuyo peso corporal (`body`) sea superior a 20 kg.</summary>
+  
+- Solución:
+
+```{r}
+# Filtramos filas
+filtro_fila <- subset(MASS::mammals, subset = body > 20)
+filtro_fila
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 9</strong>: modifica el siguiente código para quedar solo con la variable `brain`.
+  
+```{r}
+filtro_col <- subset(MASS::mammals,  select = c("body"))
+filtro_col
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Filtramos columnas
+filtro_col <- subset(MASS::mammals,  select = c("brain"))
+filtro_col
+```
+
+</details>
+
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 10</strong>: del conjunto `mammals` selecciona a la vez aquellos animales cuyo peso corporal supera los 20kg, pero selecciona solo la columna `brain`.</summary>
+  
+- Solución:
+
+```{r}
+# Todo de una vez
+filtro <- subset(MASS::mammals, subset = body > 20, select = c("brain"))
+filtro
+```
+
+</details>
+
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 11</strong>: calcula el número de filas borradas del ejercicio anterior. Tras hacer todo ello, traduce a castellano el nombre de las columnas del `data.frame` filtrado.</summary>
+  
+- Solución:
+
+```{r}
+# Filas borradas
+nrow(MASS::mammals) - nrow(filtro)
+
+# Cambiamos nombres a castellano del conjunto filtrado
+names(filtro) <- c("peso_cerebro_gr")
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 12</strong>: el nombre de los mamíferos solo está disponible como nombre de fila. Consúltalos y guárdalos en una nueva variable que incorpores a los datos originales.</summary>
+  
+- Solución:
+
+```{r}
+# Nombre de los mamíferos
+nombres <- row.names(MASS::mammals)
+
+# Añadimos nombres como columna para poder ser usada
+data.frame(nombres, MASS::mammals)
+```
+
+</details>
+
+&nbsp; 
+
+
+

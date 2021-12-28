@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 9 📝 Ejercicios recopilados | Analizando datos, visualizando información, contando historias</title>
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
+<meta name="description" content="Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso  9.1 Primeros pasos  Scripts usados: script01.R: toma de contacto. Ver en...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 9 📝 Ejercicios recopilados | Analizando datos, visualizando información, contando historias">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/logo_R.png">
+<meta property="og:description" content="Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso  9.1 Primeros pasos  Scripts usados: script01.R: toma de contacto. Ver en...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 9 📝 Ejercicios recopilados | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:description" content="Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso  9.1 Primeros pasos  Scripts usados: script01.R: toma de contacto. Ver en...">
+<meta name="twitter:image" content="/img/logo_R.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analizando datos, visualizando información, contando historias</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Toma de contacto</li>
+<li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
+<li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
+<li><a class="" href="que-es-R.html"><span class="header-section-number">3</span> ¿Qué es R?</a></li>
+<li><a class="" href="primeros-pasos.html"><span class="header-section-number">4</span> Primeros pasos</a></li>
+<li class="book-part">Conceptos básicos</li>
+<li><a class="" href="tipos-datos.html"><span class="header-section-number">5</span> Tipos de datos</a></li>
+<li><a class="" href="vectores.html"><span class="header-section-number">6</span> Vectores</a></li>
+<li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
+<li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
+<li class="book-part">Recursos</li>
+<li><a class="active" href="ejercicios-recopilados.html"><span class="header-section-number">9</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ejercicios-recopilados" class="section level1">
+<h1>
+<span class="header-section-number">Capítulo 9</span> 📝 Ejercicios recopilados<a class="anchor" aria-label="anchor" href="#ejercicios-recopilados"><i class="fas fa-link"></i></a>
+</h1>
+<p>Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso</p>
+<div id="primeros-pasos-1" class="section level2">
+<h2>
+<span class="header-section-number">9.1</span> Primeros pasos<a class="anchor" aria-label="anchor" href="#primeros-pasos-1"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R"><strong>script01.R</strong></a>: toma de contacto. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R</a>
+</li>
+</ul>
+</div>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: en tu consola (parte inferior de tu pantalla), asigna los valores <code>2</code> y <code>5</code> a dos variables <code>a</code> y <code>b</code>. Tras asignarles valores, multiplica los números en consola (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Para poner comentarios en el código se usa #</span>
+
+<span class="co"># Definición de variables</span>
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+
+<span class="co"># Multiplicación</span>
+<span class="va">a</span> <span class="op">*</span> <span class="va">b</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:consola-multi-1a"></span>
+<img src="img/consola_multiplicacion.jpg" alt="Multiplicación de a y b." width="80%"><p class="caption">
+Imagen/gráfica 9.1: Multiplicación de a y b.
+</p>
+</div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero ahora guarda el resultado de la multiplicación en una variable <code>c</code>. Para ver el resultado guardado en <code>c</code> escribe dicha variable en consola (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Variables</span>
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+
+<span class="co"># Resultado</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span>
+
+<span class="co"># Muestro en consola</span>
+<span class="va">c</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:consola-multi-2a"></span>
+<img src="img/consola_multiplicacion_2.jpg" alt="Multiplicación de a y b guardando el resultado." width="80%"><p class="caption">
+Imagen/gráfica 9.2: Multiplicación de a y b guardando el resultado.
+</p>
+</div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: asigna ahora los valores <code>1</code>, <code>-2</code>, <code>3</code> a tres variables <code>a</code>, <code>b</code> y <code>c</code>, y calcula la raíz cuadrada de cada uno. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Variables</span>
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+
+<span class="co"># Resultado</span>
+<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] NaN</code></pre>
+<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1.732051</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero <code>.R</code>, guardado en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R"><strong>script01.R</strong></a>). Recuerda al acabar seleccionar las líneas a ejecutar y clickar <code>Run</code>, o bien guardar el script con <code>Source on save</code> activado (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:consola-multi-3a"></span>
+<img src="img/consola_multiplicacion_3.jpg" alt="Multiplicación de a y b guardando el resultado pero escribiendo en el script." width="80%"><p class="caption">
+Imagen/gráfica 9.3: Multiplicación de a y b guardando el resultado pero escribiendo en el script.
+</p>
+</div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable <code>x</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span></code></pre></div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: asigna un valor positivo a <code>x</code> y calcula su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Raíz cuadrada</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">73</span>
+<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 8.544004</code></pre>
+<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Valor absoluto</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">73</span>
+<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 73</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<p><strong><span style="color: #20935E;">CONSEJO:</span></strong></p>
+<p>Las órdenes <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt(x)</a></code> y <code><a href="https://rdrr.io/r/base/MathFun.html">abs(y)</a></code> se llaman <mark><strong>funciones</strong></mark>, y la variable que tienen entre paréntesis se llama <strong>argumento de la función</strong>: una variable que toma de entrada la función y con la que opera internamente.</p>
+<p> </p>
+<details><p><summary>📝<strong>Ejercicio 7</strong>: usando la variable <code>x</code> ya definida, calcula <code>x - 5</code> y guárdalo en una nueva variable <code>z</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">5</span>
+<span class="va">z</span></code></pre></div>
+<pre><code>## [1] 68</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 8</strong>: usando las variables <code>x</code> y <code>z</code> ya definidas, calcula la raíz cuadrada del máximo entre ambas, y guárdalo en una nueva variable <code>t</code>. Hazlo en un script en lugar de en consola (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span><span class="op">)</span><span class="op">)</span> 
+<span class="va">t</span></code></pre></div>
+<pre><code>## [1] 8.544004</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<p><strong><span style="color: #ffc107;">WARNING:</span></strong></p>
+<p>No hace falta gastar una línea por cada orden que quieras ejecutar. Tampoco necesitas guardar cada paso intermedio que realices. <strong><span style="color: #ffc107;">Cuidado con la memoria</span></strong>: cada asignación que hagas es una variable guardada que consume recursos en tu ordenador.</p>
+</div>
+<div id="tipos-de-datos" class="section level2">
+<h2>
+<span class="header-section-number">9.2</span> Tipos de datos<a class="anchor" aria-label="anchor" href="#tipos-de-datos"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R"><strong>script02.R</strong></a>: tipos de datos y funciones usadas con ellos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R</a>
+</li>
+</ul>
+</div>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: define una variable que guarde tu edad, otra con tu nombre, otra respondiendo a la pregunta «¿tengo hermanos?» y otra con la fecha de tu nacimiento. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">32</span> <span class="co"># tipo numeric</span>
+<span class="va">nombre</span> <span class="op">&lt;-</span> <span class="st">"Javier"</span> <span class="co"># tipo caracter</span>
+<span class="va">hermanos</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># tipo hermanos</span>
+<span class="va">fecha_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1989-09-10"</span><span class="op">)</span> <span class="co"># tipo fecha</span></code></pre></div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: define otra variable con tus apellidos y junta las variables <code>nombre</code> y <code>apellidos</code> en una sola variable <code>nombre_completo</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Apellidos</span>
+<span class="va">apellidos</span> <span class="op">&lt;-</span> <span class="st">"Álvarez Liébana"</span>
+
+<span class="co"># Pegamos</span>
+<span class="va">nombre_completo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"{nombre} {apellidos}"</span><span class="op">)</span>
+<span class="va">nombre_completo</span></code></pre></div>
+<pre><code>## Javier Álvarez Liébana</code></pre>
+<div class="sourceCode" id="cb715"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Otra forma</span>
+<span class="va">nombre_completo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellidos</span><span class="op">)</span>
+<span class="va">nombre_completo</span></code></pre></div>
+<pre><code>## [1] "Javier Álvarez Liébana"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: construye una frase que diga «Hola, me llamo … y tengo … años. Nací el … de … de …» (con el nombre completo). </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb717"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dia_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">day</a></span><span class="op">(</span><span class="va">fecha_nacimiento</span><span class="op">)</span>
+<span class="va">mes_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">fecha_nacimiento</span><span class="op">)</span>
+<span class="va">a_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/year.html">year</a></span><span class="op">(</span><span class="va">fecha_nacimiento</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"Hola, me llamo {nombre_completo} y tengo {edad} años. Nací el {dia_nacimiento} del {mes_nacimiento} de {a_nacimiento}"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Hola, me llamo Javier Álvarez Liébana y tengo 32 años. Nací el 10 del 9 de 1989</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: calcula los días que han pasado desde la fecha de tu nacimiento </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb719"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">days</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">fecha_nacimiento</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "11797d 0H 0M 0S"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb721"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Se tienen que cumplir todas</span>
+<span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">fecha_nacimiento</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1990-01-01"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">hermanos</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: obtén una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb723"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Se tienen que cumplir todas</span>
+<span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">30</span> <span class="op">|</span> <span class="va">fecha_nacimiento</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1990-01-01"</span><span class="op">)</span> <span class="op">|</span> <span class="va">hermanos</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos sumar porque es fecha</span>
+<span class="va">fecha_post</span> <span class="op">&lt;-</span> <span class="va">fecha_nacimiento</span> <span class="op">+</span> <span class="fl">11</span>
+<span class="va">fecha_post</span></code></pre></div>
+<pre><code>## [1] "1989-09-21"</code></pre>
+<div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Semana del año</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">fecha_post</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 38</code></pre>
+<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Día de la semana (versión americana, empiezan el domingo)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha_post</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Día de la semana (versión española)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha_post</span>, week_start <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb733"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Día de la semana en texto</span>
+<span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html">weekdays</a></span><span class="op">(</span><span class="va">fecha_post</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Thursday"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 8</strong>: define dos números cualesquiera en variable <code>a</code> y <code>b</code>. Calcula su suma y determina cual es mayor. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">5</span>
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">7</span>
+
+<span class="co"># Suma</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span>
+<span class="va">c</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Comparaciones</span>
+<span class="va">a</span> <span class="op">==</span> <span class="va">b</span> <span class="co"># ¿a = b?</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;</span> <span class="va">b</span> <span class="co"># ¿a &lt; b?</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+</div>
+<div id="vectores-1" class="section level2">
+<h2>
+<span class="header-section-number">9.3</span> Vectores<a class="anchor" aria-label="anchor" href="#vectores-1"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R"><strong>script03.R</strong></a>: vectores. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R</a>
+</li>
+</ul>
+</div>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada <code>vector_num</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector de números</span>
+<span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="va">vector_num</span></code></pre></div>
+<pre><code>## [1]  1 10 -1  2</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: obtén la longitud del vector anterior <code>vector_num</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb743"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Longitud del vector</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: crea un vector con las palabras “Hola”, “me”, “llamo” (y tu nombre y apellidos), y pega luego sus elementos de forma que la frase esté correctamente escrita en castellano. Tras hacerlo, añade “y tengo 30 años”. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb745"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definiendo el vector</span>
+<span class="va">vector_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hola"</span>, <span class="st">"me"</span>, <span class="st">"llamo"</span>, <span class="st">"Javier"</span>,
+                 <span class="st">"Álvarez"</span>, <span class="st">"Liébana"</span><span class="op">)</span>
+
+<span class="co"># Pegamos</span>
+<span class="va">frase</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">vector_char</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>
+<span class="va">frase</span></code></pre></div>
+<pre><code>## [1] "Hola me llamo Javier Álvarez Liébana"</code></pre>
+<div class="sourceCode" id="cb747"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Añadimos frase</span>
+<span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"{frase} y tengo 30 años."</span><span class="op">)</span></code></pre></div>
+<pre><code>## Hola me llamo Javier Álvarez Liébana y tengo 30 años.</code></pre>
+<div class="sourceCode" id="cb749"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Otra forma</span>
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">frase</span>, <span class="st">" y tengo 30 años."</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Hola me llamo Javier Álvarez Liébana y tengo 30 años."</code></pre>
+<div class="sourceCode" id="cb751"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Otra forma</span>
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">frase</span>, <span class="st">"y tengo 30 años."</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Hola me llamo Javier Álvarez Liébana y tengo 30 años."</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: crea una secuencia de números, que empiece en <code>-1</code>, que acabe en <code>32</code>, y que vaya saltando de 3 en 3. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb753"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">secuencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">32</span>, by <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="va">secuencia</span></code></pre></div>
+<pre><code>##  [1] -1  2  5  8 11 14 17 20 23 26 29 32</code></pre>
+<div class="sourceCode" id="cb755"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">secuencia</span><span class="op">)</span> <span class="co"># longitud de la secuencia</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: crea una secuencia de números, que empiece en <code>-1</code>, que acabe en <code>32</code>, y que tenga longitud 12. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb757"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">secuencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">32</span>, l <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>
+<span class="va">secuencia</span></code></pre></div>
+<pre><code>##  [1] -1  2  5  8 11 14 17 20 23 26 29 32</code></pre>
+<div class="sourceCode" id="cb759"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">secuencia</span><span class="op">)</span> <span class="co"># longitud de la secuencia</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: crea una secuencia que empiece en 1 y recorra todos los naturales hasta el 10. Después crea otra secuencia de longitud 7 que todos los números sean <code>3</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb761"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">10</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb763"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># secuencia repetida</span></code></pre></div>
+<pre><code>## [1] 3 3 3 3 3 3 3</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 7</strong>: crea una secuencia que repita 5 veces el patrón <code>1, 2, 3</code>. Después crea otra que repita dicho patrón pero de forma intercalada, con 5 veces <code>1</code>, después 5 veces <code>2</code> y después 5 veces <code>3</code>.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span> <span class="co"># repetimos patrón (1, 2, 3) 5 veces</span></code></pre></div>
+<pre><code>##  [1] 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3</code></pre>
+<div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># repetimos patrón alternado</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 8</strong>: crea un vector con las edades de cuatro conocidos o familiares. Tras ello, determina cuáles de ellos tienen menos de 20 años, 30 años o más, menos de 40 años y más de 65 años.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb769"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">27</span>, <span class="fl">32</span>, <span class="fl">60</span>, <span class="fl">61</span><span class="op">)</span> <span class="co"># en mi caso, por ejemplo</span>
+<span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">20</span> <span class="co"># menos de 20 años</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb771"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">30</span> <span class="co"># 30 años o más</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb773"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">40</span> <span class="co"># menos de 40 años</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">edades</span> <span class="op">&gt;</span> <span class="fl">65</span> <span class="co"># más de 65 años</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE</code></pre>
+<!-- tocstop -->
+</details>
+</div>
+<div id="operaciones-con-vectores" class="section level2">
+<h2>
+<span class="header-section-number">9.4</span> Operaciones con vectores<a class="anchor" aria-label="anchor" href="#operaciones-con-vectores"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R"><strong>script04.R</strong></a>: operaciones con vectores. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R</a>
+</li>
+</ul>
+</div>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: define de nuevo el vector <code>vector_num</code> definido como un vector que contenga los números 1, 10, -1 y 2) y calcula su suma del vector. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector de números</span>
+<span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># Suma</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: define otro vector <code>vector_num2</code> que contenga los números <code>5, -7, 8, -3</code>, y haz la suma de <code>vector_num</code> y <code>vector_num2</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector de números</span>
+<span class="va">vector_num2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">7</span>, <span class="fl">8</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+
+<span class="co"># Suma</span>
+<span class="va">vector_num</span> <span class="op">+</span> <span class="va">vector_num2</span></code></pre></div>
+<pre><code>## [1]  6  3  7 -1</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: calcula el número de elementos mayores que 0 del resultado de la suma de <code>vector_num</code> y <code>vector_num2</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb781"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector de números</span>
+<span class="va">vector_suma</span> <span class="op">&lt;-</span> <span class="va">vector_num</span> <span class="op">+</span> <span class="va">vector_num2</span>
+
+<span class="co"># Suma</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vector_suma</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: calcula la versión ordenada del vector <code>vector_num</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Ordenamos el vector (con sort)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] -1  1  2 10</code></pre>
+<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Ordenamos el vector  (con order)</span>
+<span class="va">vector_num</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] -1  1  2 10</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: encuentra del vector <code>vector_num</code> original el lugar (el índice) que ocupa su mínimo y su máximo. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># Encontrando el lugar que ocupa el máximo y mínimo</span>
+<span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: encuentra del vector <code>vector_num</code> los elementos mayores que 1 y menores que 7. Encuentra una forma de averiguar si todos los elementos son o no positivos. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector lógico: mayores que 1 y menores que 7</span>
+<span class="va">vector_num</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">vector_num</span> <span class="op">&lt;</span> <span class="fl">7</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb793"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># ¿Son todos positivos?</span>
+<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">vector_num</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 7</strong>: define el vector <code><a href="https://rdrr.io/r/base/c.html">c(-1, 0, 4, 5, -2)</a></code>, calcula la raíz cuadrada del vector y determina que lugares son ausente de tipo <code>NaN</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb795"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># ¿Cuáles son ausentes tras aplicar la raíz cuadrada?</span>
+<span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.nan</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 8</strong>: define el vector de los primeros números impares (hasta el 21) y extrae los elementos que ocupan los lugares 1, 4, 5, 8. Elimina del vector el segundo elemento</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb797"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Vector de impares (de 1 a 21 saltando de dos en dos)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">21</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># Seleccionamos elementos</span>
+<span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1]  1  7  9 15</code></pre>
+<div class="sourceCode" id="cb799"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Eliminamos elementos</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span>
+<span class="va">y</span></code></pre></div>
+<pre><code>##  [1]  1  5  7  9 11 13 15 17 19 21</code></pre>
+<!-- tocstop -->
+</details>
+</div>
+<div id="estructuras-de-datos-matrices-y-tablas-data.frame" class="section level2">
+<h2>
+<span class="header-section-number">9.5</span> Estructuras de datos: matrices y tablas (data.frame)<a class="anchor" aria-label="anchor" href="#estructuras-de-datos-matrices-y-tablas-data.frame"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R"><strong>script05.R</strong></a>: matrices y data.frames. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R</a>
+</li>
+</ul>
+</div>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary><strong>Ejercicio 1</strong>: define una matriz <code>x</code> de ceros de 3 filas y 7 columnas.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb801"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Matriz</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">7</span><span class="op">)</span>
+<span class="va">x</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
+## [1,]    0    0    0    0    0    0    0
+## [2,]    0    0    0    0    0    0    0
+## [3,]    0    0    0    0    0    0    0</code></pre>
+<div class="sourceCode" id="cb803"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">5</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
+## [1,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2
+## [2,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2
+## [3,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 2</strong>: a la matriz anterior, suma un 1 a cada número de la matriz y divide el resultado entre 5.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb805"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">5</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
+## [1,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2
+## [2,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2
+## [3,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 3</strong>: tras definir la matriz <code>x</code> calcula su transpuesta y obtén sus dimensiones</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb807"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Transpuesta</span>
+<span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0
+## [4,]    0    0    0
+## [5,]    0    0    0
+## [6,]    0    0    0
+## [7,]    0    0    0</code></pre>
+<div class="sourceCode" id="cb809"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Dimensiones transpuesta: pasa de ser 3x7 a 7x3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 7 3</code></pre>
+<div class="sourceCode" id="cb811"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># número de columnas de la transpuesta</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb813"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># número de filas de la transpuesta</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 4</strong>: el siguiente código define una matriz de dimensiones <code>4 x 3</code> y calcula la suma por columnas. Modifica el código para que realice la suma por filas.</summary></p>
+<div class="sourceCode" id="cb815"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Matriz</span>
+<span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+
+<span class="co"># Suma por columnas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="st">"sum"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 10 26 42</code></pre>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb817"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Matriz</span>
+<span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+
+<span class="co"># Suma por filas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="st">"sum"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 15 18 21 24</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 5</strong>: con la matriz <code><a href="https://rdrr.io/r/base/matrix.html">matrix(1:12, nrow = 4)</a></code> anterior, calcula la media de todos los elementos, la media de cada fila y la media de cada columna.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb819"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Matriz</span>
+<span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+
+<span class="co">#  media de todos</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">matriz</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 6.5</code></pre>
+<div class="sourceCode" id="cb821"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Media por filas (MARGIN = 1 ya que es una operación por filas)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 5 6 7 8</code></pre>
+<div class="sourceCode" id="cb823"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Media por filas (MARGIN = 2 ya que es una operación por filas)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1]  2.5  6.5 10.5</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 6</strong>: el <code>data.frame</code> llamado <code>mammals</code> contiene el peso medio del cerebro (gramos) y el cuerpo (kilogramos) de 62 especies de mamíferos terrestres distintos (al que puedes acceder desde el paquete <a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a>). Obtén el nombre de las variables y visualiza las primeras filas (cabecera de la tabla). Visualiza por consola las columnas con <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>.</summary></p>
+<div class="sourceCode" id="cb825"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># si no está ya instalado el paquete hay que hacer install.packages("MASS")</span>
+<span class="op">?</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span> <span class="co"># para ver info del conjunto de datos </span></code></pre></div>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb826"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Nombres de variables</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "body"  "brain"</code></pre>
+<div class="sourceCode" id="cb828"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Cabecera</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">)</span></code></pre></div>
+<pre><code>##                    body brain
+## Arctic fox        3.385  44.5
+## Owl monkey        0.480  15.5
+## Mountain beaver   1.350   8.1
+## Cow             465.000 423.0
+## Grey wolf        36.330 119.5
+## Goat             27.660 115.0</code></pre>
+<div class="sourceCode" id="cb830"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Columnas</span>
+<span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span></code></pre></div>
+<pre><code>##  [1]    3.385    0.480    1.350  465.000   36.330   27.660   14.830    1.040
+##  [9]    4.190    0.425    0.101    0.920    1.000    0.005    0.060    3.500
+## [17]    2.000    1.700 2547.000    0.023  187.100  521.000    0.785   10.000
+## [25]    3.300    0.200    1.410  529.000  207.000   85.000    0.750   62.000
+## [33] 6654.000    3.500    6.800   35.000    4.050    0.120    0.023    0.010
+## [41]    1.400  250.000    2.500   55.500  100.000   52.160   10.550    0.550
+## [49]   60.000    3.600    4.288    0.280    0.075    0.122    0.048  192.000
+## [57]    3.000  160.000    0.900    1.620    0.104    4.235</code></pre>
+<div class="sourceCode" id="cb832"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">brain</span></code></pre></div>
+<pre><code>##  [1]   44.50   15.50    8.10  423.00  119.50  115.00   98.20    5.50   58.00
+## [10]    6.40    4.00    5.70    6.60    0.14    1.00   10.80   12.30    6.30
+## [19] 4603.00    0.30  419.00  655.00    3.50  115.00   25.60    5.00   17.50
+## [28]  680.00  406.00  325.00   12.30 1320.00 5712.00    3.90  179.00   56.00
+## [37]   17.00    1.00    0.40    0.25   12.50  490.00   12.10  175.00  157.00
+## [46]  440.00  179.50    2.40   81.00   21.00   39.20    1.90    1.20    3.00
+## [55]    0.33  180.00   25.00  169.00    2.60   11.40    2.50   50.40</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 7</strong>: modifica el código inferior para que nos filtre solo con los mamíferos con un peso corporal superior a 15 kg.</summary></p>
+<div class="sourceCode" id="cb834"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filtramos filas</span>
+<span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span>, subset <span class="op">=</span> <span class="va">body</span> <span class="op">&lt;</span> <span class="fl">35</span><span class="op">)</span>
+<span class="va">filtro_fila</span></code></pre></div>
+<pre><code>##                             body  brain
+## Arctic fox                 3.385  44.50
+## Owl monkey                 0.480  15.50
+## Mountain beaver            1.350   8.10
+## Goat                      27.660 115.00
+## Roe deer                  14.830  98.20
+## Guinea pig                 1.040   5.50
+## Verbet                     4.190  58.00
+## Chinchilla                 0.425   6.40
+## Ground squirrel            0.101   4.00
+## Arctic ground squirrel     0.920   5.70
+## African giant pouched rat  1.000   6.60
+## Lesser short-tailed shrew  0.005   0.14
+## Star-nosed mole            0.060   1.00
+## Nine-banded armadillo      3.500  10.80
+## Tree hyrax                 2.000  12.30
+## N.A. opossum               1.700   6.30
+## Big brown bat              0.023   0.30
+## European hedgehog          0.785   3.50
+## Patas monkey              10.000 115.00
+## Cat                        3.300  25.60
+## Galago                     0.200   5.00
+## Genet                      1.410  17.50
+## Rock hyrax-a               0.750  12.30
+## Water opossum              3.500   3.90
+## Rhesus monkey              6.800 179.00
+## Yellow-bellied marmot      4.050  17.00
+## Golden hamster             0.120   1.00
+## Mouse                      0.023   0.40
+## Little brown bat           0.010   0.25
+## Slow loris                 1.400  12.50
+## Rabbit                     2.500  12.10
+## Baboon                    10.550 179.50
+## Desert hedgehog            0.550   2.40
+## Rock hyrax-b               3.600  21.00
+## Raccoon                    4.288  39.20
+## Rat                        0.280   1.90
+## E. American mole           0.075   1.20
+## Mole rat                   0.122   3.00
+## Musk shrew                 0.048   0.33
+## Echidna                    3.000  25.00
+## Tenrec                     0.900   2.60
+## Phalanger                  1.620  11.40
+## Tree shrew                 0.104   2.50
+## Red fox                    4.235  50.40</code></pre>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb836"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filtramos filas</span>
+<span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span>, subset <span class="op">=</span> <span class="va">body</span> <span class="op">&gt;</span> <span class="fl">15</span><span class="op">)</span>
+<span class="va">filtro_fila</span></code></pre></div>
+<pre><code>##                     body  brain
+## Cow               465.00  423.0
+## Grey wolf          36.33  119.5
+## Goat               27.66  115.0
+## Asian elephant   2547.00 4603.0
+## Donkey            187.10  419.0
+## Horse             521.00  655.0
+## Giraffe           529.00  680.0
+## Gorilla           207.00  406.0
+## Grey seal          85.00  325.0
+## Human              62.00 1320.0
+## African elephant 6654.00 5712.0
+## Kangaroo           35.00   56.0
+## Okapi             250.00  490.0
+## Sheep              55.50  175.0
+## Jaguar            100.00  157.0
+## Chimpanzee         52.16  440.0
+## Giant armadillo    60.00   81.0
+## Pig               192.00  180.0
+## Brazilian tapir   160.00  169.0</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 8</strong>: del conjunto <code>mammals</code> selecciona aquellos mamíferos terrestres cuyo peso corporal (<code>body</code>) sea superior a 20 kg.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb838"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filtramos filas</span>
+<span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span>, subset <span class="op">=</span> <span class="va">body</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span>
+<span class="va">filtro_fila</span></code></pre></div>
+<pre><code>##                     body  brain
+## Cow               465.00  423.0
+## Grey wolf          36.33  119.5
+## Goat               27.66  115.0
+## Asian elephant   2547.00 4603.0
+## Donkey            187.10  419.0
+## Horse             521.00  655.0
+## Giraffe           529.00  680.0
+## Gorilla           207.00  406.0
+## Grey seal          85.00  325.0
+## Human              62.00 1320.0
+## African elephant 6654.00 5712.0
+## Kangaroo           35.00   56.0
+## Okapi             250.00  490.0
+## Sheep              55.50  175.0
+## Jaguar            100.00  157.0
+## Chimpanzee         52.16  440.0
+## Giant armadillo    60.00   81.0
+## Pig               192.00  180.0
+## Brazilian tapir   160.00  169.0</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 9</strong>: modifica el siguiente código para quedar solo con la variable <code>brain</code>.</summary></p>
+<div class="sourceCode" id="cb840"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">filtro_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span>,  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"body"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">filtro_col</span></code></pre></div>
+<pre><code>##                               body
+## Arctic fox                   3.385
+## Owl monkey                   0.480
+## Mountain beaver              1.350
+## Cow                        465.000
+## Grey wolf                   36.330
+## Goat                        27.660
+## Roe deer                    14.830
+## Guinea pig                   1.040
+## Verbet                       4.190
+## Chinchilla                   0.425
+## Ground squirrel              0.101
+## Arctic ground squirrel       0.920
+## African giant pouched rat    1.000
+## Lesser short-tailed shrew    0.005
+## Star-nosed mole              0.060
+## Nine-banded armadillo        3.500
+## Tree hyrax                   2.000
+## N.A. opossum                 1.700
+## Asian elephant            2547.000
+## Big brown bat                0.023
+## Donkey                     187.100
+## Horse                      521.000
+## European hedgehog            0.785
+## Patas monkey                10.000
+## Cat                          3.300
+## Galago                       0.200
+## Genet                        1.410
+## Giraffe                    529.000
+## Gorilla                    207.000
+## Grey seal                   85.000
+## Rock hyrax-a                 0.750
+## Human                       62.000
+## African elephant          6654.000
+## Water opossum                3.500
+## Rhesus monkey                6.800
+## Kangaroo                    35.000
+## Yellow-bellied marmot        4.050
+## Golden hamster               0.120
+## Mouse                        0.023
+## Little brown bat             0.010
+## Slow loris                   1.400
+## Okapi                      250.000
+## Rabbit                       2.500
+## Sheep                       55.500
+## Jaguar                     100.000
+## Chimpanzee                  52.160
+## Baboon                      10.550
+## Desert hedgehog              0.550
+## Giant armadillo             60.000
+## Rock hyrax-b                 3.600
+## Raccoon                      4.288
+## Rat                          0.280
+## E. American mole             0.075
+## Mole rat                     0.122
+## Musk shrew                   0.048
+## Pig                        192.000
+## Echidna                      3.000
+## Brazilian tapir            160.000
+## Tenrec                       0.900
+## Phalanger                    1.620
+## Tree shrew                   0.104
+## Red fox                      4.235</code></pre>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb842"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filtramos columnas</span>
+<span class="va">filtro_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span>,  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"brain"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">filtro_col</span></code></pre></div>
+<pre><code>##                             brain
+## Arctic fox                  44.50
+## Owl monkey                  15.50
+## Mountain beaver              8.10
+## Cow                        423.00
+## Grey wolf                  119.50
+## Goat                       115.00
+## Roe deer                    98.20
+## Guinea pig                   5.50
+## Verbet                      58.00
+## Chinchilla                   6.40
+## Ground squirrel              4.00
+## Arctic ground squirrel       5.70
+## African giant pouched rat    6.60
+## Lesser short-tailed shrew    0.14
+## Star-nosed mole              1.00
+## Nine-banded armadillo       10.80
+## Tree hyrax                  12.30
+## N.A. opossum                 6.30
+## Asian elephant            4603.00
+## Big brown bat                0.30
+## Donkey                     419.00
+## Horse                      655.00
+## European hedgehog            3.50
+## Patas monkey               115.00
+## Cat                         25.60
+## Galago                       5.00
+## Genet                       17.50
+## Giraffe                    680.00
+## Gorilla                    406.00
+## Grey seal                  325.00
+## Rock hyrax-a                12.30
+## Human                     1320.00
+## African elephant          5712.00
+## Water opossum                3.90
+## Rhesus monkey              179.00
+## Kangaroo                    56.00
+## Yellow-bellied marmot       17.00
+## Golden hamster               1.00
+## Mouse                        0.40
+## Little brown bat             0.25
+## Slow loris                  12.50
+## Okapi                      490.00
+## Rabbit                      12.10
+## Sheep                      175.00
+## Jaguar                     157.00
+## Chimpanzee                 440.00
+## Baboon                     179.50
+## Desert hedgehog              2.40
+## Giant armadillo             81.00
+## Rock hyrax-b                21.00
+## Raccoon                     39.20
+## Rat                          1.90
+## E. American mole             1.20
+## Mole rat                     3.00
+## Musk shrew                   0.33
+## Pig                        180.00
+## Echidna                     25.00
+## Brazilian tapir            169.00
+## Tenrec                       2.60
+## Phalanger                   11.40
+## Tree shrew                   2.50
+## Red fox                     50.40</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 10</strong>: del conjunto <code>mammals</code> selecciona a la vez aquellos animales cuyo peso corporal supera los 20kg, pero selecciona solo la columna <code>brain</code>.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb844"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Todo de una vez</span>
+<span class="va">filtro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span>, subset <span class="op">=</span> <span class="va">body</span> <span class="op">&gt;</span> <span class="fl">20</span>, select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"brain"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">filtro</span></code></pre></div>
+<pre><code>##                   brain
+## Cow               423.0
+## Grey wolf         119.5
+## Goat              115.0
+## Asian elephant   4603.0
+## Donkey            419.0
+## Horse             655.0
+## Giraffe           680.0
+## Gorilla           406.0
+## Grey seal         325.0
+## Human            1320.0
+## African elephant 5712.0
+## Kangaroo           56.0
+## Okapi             490.0
+## Sheep             175.0
+## Jaguar            157.0
+## Chimpanzee        440.0
+## Giant armadillo    81.0
+## Pig               180.0
+## Brazilian tapir   169.0</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 11</strong>: calcula el número de filas borradas del ejercicio anterior. Tras hacer todo ello, traduce a castellano el nombre de las columnas del <code>data.frame</code> filtrado.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb846"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filas borradas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">filtro</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 43</code></pre>
+<div class="sourceCode" id="cb848"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Cambiamos nombres a castellano del conjunto filtrado</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">filtro</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"peso_cerebro_gr"</span><span class="op">)</span></code></pre></div>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 12</strong>: el nombre de los mamíferos solo está disponible como nombre de fila. Consúltalos y guárdalos en una nueva variable que incorpores a los datos originales.</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb849"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Nombre de los mamíferos</span>
+<span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">)</span>
+
+<span class="co"># Añadimos nombres como columna para poder ser usada</span>
+<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">nombres</span>, <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">)</span></code></pre></div>
+<pre><code>##                                             nombres     body   brain
+## Arctic fox                               Arctic fox    3.385   44.50
+## Owl monkey                               Owl monkey    0.480   15.50
+## Mountain beaver                     Mountain beaver    1.350    8.10
+## Cow                                             Cow  465.000  423.00
+## Grey wolf                                 Grey wolf   36.330  119.50
+## Goat                                           Goat   27.660  115.00
+## Roe deer                                   Roe deer   14.830   98.20
+## Guinea pig                               Guinea pig    1.040    5.50
+## Verbet                                       Verbet    4.190   58.00
+## Chinchilla                               Chinchilla    0.425    6.40
+## Ground squirrel                     Ground squirrel    0.101    4.00
+## Arctic ground squirrel       Arctic ground squirrel    0.920    5.70
+## African giant pouched rat African giant pouched rat    1.000    6.60
+## Lesser short-tailed shrew Lesser short-tailed shrew    0.005    0.14
+## Star-nosed mole                     Star-nosed mole    0.060    1.00
+## Nine-banded armadillo         Nine-banded armadillo    3.500   10.80
+## Tree hyrax                               Tree hyrax    2.000   12.30
+## N.A. opossum                           N.A. opossum    1.700    6.30
+## Asian elephant                       Asian elephant 2547.000 4603.00
+## Big brown bat                         Big brown bat    0.023    0.30
+## Donkey                                       Donkey  187.100  419.00
+## Horse                                         Horse  521.000  655.00
+## European hedgehog                 European hedgehog    0.785    3.50
+## Patas monkey                           Patas monkey   10.000  115.00
+## Cat                                             Cat    3.300   25.60
+## Galago                                       Galago    0.200    5.00
+## Genet                                         Genet    1.410   17.50
+## Giraffe                                     Giraffe  529.000  680.00
+## Gorilla                                     Gorilla  207.000  406.00
+## Grey seal                                 Grey seal   85.000  325.00
+## Rock hyrax-a                           Rock hyrax-a    0.750   12.30
+## Human                                         Human   62.000 1320.00
+## African elephant                   African elephant 6654.000 5712.00
+## Water opossum                         Water opossum    3.500    3.90
+## Rhesus monkey                         Rhesus monkey    6.800  179.00
+## Kangaroo                                   Kangaroo   35.000   56.00
+## Yellow-bellied marmot         Yellow-bellied marmot    4.050   17.00
+## Golden hamster                       Golden hamster    0.120    1.00
+## Mouse                                         Mouse    0.023    0.40
+## Little brown bat                   Little brown bat    0.010    0.25
+## Slow loris                               Slow loris    1.400   12.50
+## Okapi                                         Okapi  250.000  490.00
+## Rabbit                                       Rabbit    2.500   12.10
+## Sheep                                         Sheep   55.500  175.00
+## Jaguar                                       Jaguar  100.000  157.00
+## Chimpanzee                               Chimpanzee   52.160  440.00
+## Baboon                                       Baboon   10.550  179.50
+## Desert hedgehog                     Desert hedgehog    0.550    2.40
+## Giant armadillo                     Giant armadillo   60.000   81.00
+## Rock hyrax-b                           Rock hyrax-b    3.600   21.00
+## Raccoon                                     Raccoon    4.288   39.20
+## Rat                                             Rat    0.280    1.90
+## E. American mole                   E. American mole    0.075    1.20
+## Mole rat                                   Mole rat    0.122    3.00
+## Musk shrew                               Musk shrew    0.048    0.33
+## Pig                                             Pig  192.000  180.00
+## Echidna                                     Echidna    3.000   25.00
+## Brazilian tapir                     Brazilian tapir  160.000  169.00
+## Tenrec                                       Tenrec    0.900    2.60
+## Phalanger                                 Phalanger    1.620   11.40
+## Tree shrew                               Tree shrew    0.104    2.50
+## Red fox                                     Red fox    4.235   50.40</code></pre>
+</details><p> </p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></div>
+<div class="next"><a href="bibliograf%C3%ADa.html">Bibliografía</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ejercicios-recopilados"><span class="header-section-number">9</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="nav-link" href="#primeros-pasos-1"><span class="header-section-number">9.1</span> Primeros pasos</a></li>
+<li><a class="nav-link" href="#tipos-de-datos"><span class="header-section-number">9.2</span> Tipos de datos</a></li>
+<li><a class="nav-link" href="#vectores-1"><span class="header-section-number">9.3</span> Vectores</a></li>
+<li><a class="nav-link" href="#operaciones-con-vectores"><span class="header-section-number">9.4</span> Operaciones con vectores</a></li>
+<li><a class="nav-link" href="#estructuras-de-datos-matrices-y-tablas-data.frame"><span class="header-section-number">9.5</span> Estructuras de datos: matrices y tablas (data.frame)</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/19-ejercicios_recopilados.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/19-ejercicios_recopilados.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 28-12-2021.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
