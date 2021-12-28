@@ -111,6 +111,9 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 * \@ref(repaso-1) [Repaso: empezando a trastear con datos](#repaso-1)
 
 * \@ref(if-else) [Estructuras condicionales if-else](#if-else)
+* \@ref(bucles) [Bucles](#bucles)
+
+* \@ref(proyecto) [Primer proyecto de trabajo](#proyecto)
 
 
 ## Código de colores {-} 
