@@ -377,12 +377,12 @@
                                <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">idx</span><span class="op">)</span> <span class="op">{</span>  <span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">idx</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">}</span>,
                                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                                     expr      min       lq      mean   median
-##                               x &lt;- idx^2   18.043   48.713   52.7455   53.970
-##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 1807.782 1886.628 2074.7082 1940.608
-##         uq       max neval cld
-##    58.8275   217.769  1000  a 
-##  2041.9380 11121.214  1000   b</code></pre>
+##                                     expr      min       lq       mean   median
+##                               x &lt;- idx^2   18.274   48.790   52.94023   54.722
+##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 1814.615 1928.736 2134.82025 1994.565
+##        uq       max neval cld
+##    60.742   177.001  1000  a 
+##  2153.700 11620.321  1000   b</code></pre>
 <p>Una tarea tan sencilla, <strong>programada en un bucle (segunda fila), tarda 40 veces más que hacerlo de forma vectorial (primera fila)</strong> (elevando cada elemento al cuadrado, iterando internamente, sin necesidad de implementar un bucle).</p>
 </div>
 <div id="ejercicios-6" class="section level2">

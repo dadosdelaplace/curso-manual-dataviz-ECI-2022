@@ -22,7 +22,7 @@ colorize <- function(x, color) {
 
 Estamos listos/as para crear nuestro <mark>**primer proyecto de `R`**</mark> para trabajar ordenadicos/as.
 
-Cuando se empieza a programar para un trabajo concreto de `R` es recomendable crearnos lo que se conoce como un <mark>**proyecto de `R`**<mark>: en lugar de ir abriendo ventanas sueltas para programar (las pestañas de los scripts, los archivos con extensión `.R` que hemos comentado), podemos <mark>**agruparlos**</mark> en distintos proyectos, de forma que podamos acceder a ellos de forma ordenada (algo así como crear carpetas en nuestro disco duro, pero en `RStudio`).
+Cuando se empieza a programar para un trabajo concreto de `R` es recomendable crearnos lo que se conoce como un <mark>**proyecto de `R`**</mark>: en lugar de ir abriendo ventanas sueltas para programar (las pestañas de los scripts, los archivos con extensión `.R` que hemos comentado), podemos <mark>**agruparlos**</mark> en distintos proyectos, de forma que podamos acceder a ellos de forma ordenada (algo así como crear carpetas en nuestro disco duro, pero en `RStudio`).
 
 
 ## Crear proyecto
