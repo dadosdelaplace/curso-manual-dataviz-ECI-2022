@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 9 Repaso: empezando a trastear con datos | Analizando datos, visualizando información, contando historias</title>
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
+<meta name="description" content="Scripts usados: script06.R: repaso de la iniciación a los datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R  Vamos a hacer un alto en el camino y hacer...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 9 Repaso: empezando a trastear con datos | Analizando datos, visualizando información, contando historias">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/logo_R.png">
+<meta property="og:description" content="Scripts usados: script06.R: repaso de la iniciación a los datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R  Vamos a hacer un alto en el camino y hacer...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 9 Repaso: empezando a trastear con datos | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:description" content="Scripts usados: script06.R: repaso de la iniciación a los datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R  Vamos a hacer un alto en el camino y hacer...">
+<meta name="twitter:image" content="/img/logo_R.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analizando datos, visualizando información, contando historias</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Toma de contacto</li>
+<li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
+<li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
+<li><a class="" href="que-es-R.html"><span class="header-section-number">3</span> ¿Qué es R?</a></li>
+<li><a class="" href="primeros-pasos.html"><span class="header-section-number">4</span> Primeros pasos</a></li>
+<li class="book-part">Conceptos básicos</li>
+<li><a class="" href="tipos-datos.html"><span class="header-section-number">5</span> Tipos de datos</a></li>
+<li><a class="" href="vectores.html"><span class="header-section-number">6</span> Vectores</a></li>
+<li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
+<li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
+<li><a class="active" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
+<li class="book-part">Estructuras de control</li>
+<li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
+<li class="book-part">Recursos</li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">11</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="repaso-1" class="section level1">
+<h1>
+<span class="header-section-number">Capítulo 9</span> Repaso: empezando a trastear con datos<a class="anchor" aria-label="anchor" href="#repaso-1"><i class="fas fa-link"></i></a>
+</h1>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R"><strong>script06.R</strong></a>: repaso de la iniciación a los datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R</a>
+</li>
+</ul>
+</div>
+<p>Vamos a hacer un alto en el camino y hacer un repaso de lo que hemos aprendido con un conjunto nuevo, el conjunto de datos <code>swiss</code> del paquete <code>{datasets}</code>. Intenta <mark><strong>contestar a las preguntas planteadas antes de que sean resueltas</strong></mark>. Si te resulta aún un poco complicado, no pasa nada, la solución es seguir trasteando hasta que rompas algo (es broma).</p>
+<p> </p>
+<p><mark><strong>1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el que está?</strong></mark></p>
+<p> </p>
+<p>Nuestros datos se llaman <code>swiss</code> y son del paquete <code>{datasets}</code>, así que lo primero que debemos hacer es instalar el paquete (en caso de tenerlo, con <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("datasets")</a></code>), después <strong>llamar a ese paquete</strong> (tenemos el libro comprado y lo sacamos de la estantería) con <code><a href="https://rdrr.io/r/base/library.html">library(datasets)</a></code> y escribir el nombre del conjunto de datos para mostrarlo.</p>
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
+<span class="va">swiss</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+## Broye             83.8        70.2          16         7    92.85
+## Glane             92.4        67.8          14         8    97.16
+## Gruyere           82.4        53.3          12         7    97.67
+## Sarine            82.9        45.2          16        13    91.38
+## Veveyse           87.1        64.5          14         6    98.61
+## Aigle             64.1        62.0          21        12     8.52
+## Aubonne           66.9        67.5          14         7     2.27
+## Avenches          68.9        60.7          19        12     4.43
+## Cossonay          61.7        69.3          22         5     2.82
+## Echallens         68.3        72.6          18         2    24.20
+## Grandson          71.7        34.0          17         8     3.30
+## Lausanne          55.7        19.4          26        28    12.11
+## La Vallee         54.3        15.2          31        20     2.15
+## Lavaux            65.1        73.0          19         9     2.84
+## Morges            65.5        59.8          22        10     5.23
+## Moudon            65.0        55.1          14         3     4.52
+## Nyone             56.6        50.9          22        12    15.14
+## Orbe              57.4        54.1          20         6     4.20
+## Oron              72.5        71.2          12         1     2.40
+## Payerne           74.2        58.1          14         8     5.23
+## Paysd'enhaut      72.0        63.5           6         3     2.56
+## Rolle             60.5        60.8          16        10     7.72
+## Vevey             58.3        26.8          25        19    18.46
+## Yverdon           65.4        49.5          15         8     6.10
+## Conthey           75.5        85.9           3         2    99.71
+## Entremont         69.3        84.9           7         6    99.68
+## Herens            77.3        89.7           5         2   100.00
+## Martigwy          70.5        78.2          12         6    98.96
+## Monthey           79.4        64.9           7         3    98.22
+## St Maurice        65.0        75.9           9         9    99.06
+## Sierre            92.2        84.6           3         3    99.46
+## Sion              79.3        63.1          13        13    96.83
+## Boudry            70.4        38.4          26        12     5.62
+## La Chauxdfnd      65.7         7.7          29        11    13.79
+## Le Locle          72.7        16.7          22        13    11.22
+## Neuchatel         64.4        17.6          35        32    16.92
+## Val de Ruz        77.6        37.6          15         7     4.97
+## ValdeTravers      67.6        18.7          25         7     8.65
+## V. De Geneve      35.0         1.2          37        53    42.34
+## Rive Droite       44.7        46.6          16        29    50.43
+## Rive Gauche       42.8        27.7          22        29    58.33
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6
+## Broye                    23.6
+## Glane                    24.9
+## Gruyere                  21.0
+## Sarine                   24.4
+## Veveyse                  24.5
+## Aigle                    16.5
+## Aubonne                  19.1
+## Avenches                 22.7
+## Cossonay                 18.7
+## Echallens                21.2
+## Grandson                 20.0
+## Lausanne                 20.2
+## La Vallee                10.8
+## Lavaux                   20.0
+## Morges                   18.0
+## Moudon                   22.4
+## Nyone                    16.7
+## Orbe                     15.3
+## Oron                     21.0
+## Payerne                  23.8
+## Paysd'enhaut             18.0
+## Rolle                    16.3
+## Vevey                    20.9
+## Yverdon                  22.5
+## Conthey                  15.1
+## Entremont                19.8
+## Herens                   18.3
+## Martigwy                 19.4
+## Monthey                  20.2
+## St Maurice               17.8
+## Sierre                   16.3
+## Sion                     18.1
+## Boudry                   20.3
+## La Chauxdfnd             20.5
+## Le Locle                 18.9
+## Neuchatel                23.0
+## Val de Ruz               20.0
+## ValdeTravers             19.5
+## V. De Geneve             18.0
+## Rive Droite              18.2
+## Rive Gauche              19.3</code></pre>
+<p>Podríamos no pedirle el libro entero sino <strong>solo esa página</strong>, de ese conjunto de datos, usando <code><a href="https://rdrr.io/r/datasets/swiss.html">datasets::swiss</a></code> (sin hacer uso del <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> previo).</p>
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/swiss.html">swiss</a></span></code></pre></div>
+<p> </p>
+<p><mark><strong>2. Tenemos los datos guardados en <code>swiss</code>, ¿qué tipo de objeto es?</strong></mark></p>
+<p> </p>
+<p>Al mostrarlos ya lo habrás intuido pero nuestro conjunto <code>swiss</code> es de tipo <code>data.frame</code>. Para comprobarlo podemos usar la función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>.</p>
+<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "data.frame"</code></pre>
+<p>Si somos un poco observadores/as vemos que todas las variables parecen numéricas así que…podríamos tener una matriz de números. <mark><strong>¿Cómo convertimos los datos a una matriz?</strong></mark></p>
+<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+## Broye             83.8        70.2          16         7    92.85
+## Glane             92.4        67.8          14         8    97.16
+## Gruyere           82.4        53.3          12         7    97.67
+## Sarine            82.9        45.2          16        13    91.38
+## Veveyse           87.1        64.5          14         6    98.61
+## Aigle             64.1        62.0          21        12     8.52
+## Aubonne           66.9        67.5          14         7     2.27
+## Avenches          68.9        60.7          19        12     4.43
+## Cossonay          61.7        69.3          22         5     2.82
+## Echallens         68.3        72.6          18         2    24.20
+## Grandson          71.7        34.0          17         8     3.30
+## Lausanne          55.7        19.4          26        28    12.11
+## La Vallee         54.3        15.2          31        20     2.15
+## Lavaux            65.1        73.0          19         9     2.84
+## Morges            65.5        59.8          22        10     5.23
+## Moudon            65.0        55.1          14         3     4.52
+## Nyone             56.6        50.9          22        12    15.14
+## Orbe              57.4        54.1          20         6     4.20
+## Oron              72.5        71.2          12         1     2.40
+## Payerne           74.2        58.1          14         8     5.23
+## Paysd'enhaut      72.0        63.5           6         3     2.56
+## Rolle             60.5        60.8          16        10     7.72
+## Vevey             58.3        26.8          25        19    18.46
+## Yverdon           65.4        49.5          15         8     6.10
+## Conthey           75.5        85.9           3         2    99.71
+## Entremont         69.3        84.9           7         6    99.68
+## Herens            77.3        89.7           5         2   100.00
+## Martigwy          70.5        78.2          12         6    98.96
+## Monthey           79.4        64.9           7         3    98.22
+## St Maurice        65.0        75.9           9         9    99.06
+## Sierre            92.2        84.6           3         3    99.46
+## Sion              79.3        63.1          13        13    96.83
+## Boudry            70.4        38.4          26        12     5.62
+## La Chauxdfnd      65.7         7.7          29        11    13.79
+## Le Locle          72.7        16.7          22        13    11.22
+## Neuchatel         64.4        17.6          35        32    16.92
+## Val de Ruz        77.6        37.6          15         7     4.97
+## ValdeTravers      67.6        18.7          25         7     8.65
+## V. De Geneve      35.0         1.2          37        53    42.34
+## Rive Droite       44.7        46.6          16        29    50.43
+## Rive Gauche       42.8        27.7          22        29    58.33
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6
+## Broye                    23.6
+## Glane                    24.9
+## Gruyere                  21.0
+## Sarine                   24.4
+## Veveyse                  24.5
+## Aigle                    16.5
+## Aubonne                  19.1
+## Avenches                 22.7
+## Cossonay                 18.7
+## Echallens                21.2
+## Grandson                 20.0
+## Lausanne                 20.2
+## La Vallee                10.8
+## Lavaux                   20.0
+## Morges                   18.0
+## Moudon                   22.4
+## Nyone                    16.7
+## Orbe                     15.3
+## Oron                     21.0
+## Payerne                  23.8
+## Paysd'enhaut             18.0
+## Rolle                    16.3
+## Vevey                    20.9
+## Yverdon                  22.5
+## Conthey                  15.1
+## Entremont                19.8
+## Herens                   18.3
+## Martigwy                 19.4
+## Monthey                  20.2
+## St Maurice               17.8
+## Sierre                   16.3
+## Sion                     18.1
+## Boudry                   20.3
+## La Chauxdfnd             20.5
+## Le Locle                 18.9
+## Neuchatel                23.0
+## Val de Ruz               20.0
+## ValdeTravers             19.5
+## V. De Geneve             18.0
+## Rive Droite              18.2
+## Rive Gauche              19.3</code></pre>
+<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "matrix"</code></pre>
+<p> </p>
+<p><mark><strong>3. ¿Cómo podríamos tener una descripción detallada de los datos?</strong></mark></p>
+<p> </p>
+<p>La forma más inmediata es hacerlo es con la función <code><a href="https://rdrr.io/r/datasets/swiss.html">? swiss</a></code>, que nos permite ver la documentación en el panel de ayuda.</p>
+<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span> <span class="va">swiss</span></code></pre></div>
+<p>También podemos ver el nombre de las columnas con <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> y el nombre de las filas con <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code></p>
+<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Fertility"        "Agriculture"      "Examination"      "Education"       
+## [5] "Catholic"         "Infant.Mortality"</code></pre>
+<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] "Courtelary"   "Delemont"     "Franches-Mnt" "Moutier"      "Neuveville"  
+##  [6] "Porrentruy"   "Broye"        "Glane"        "Gruyere"      "Sarine"      
+## [11] "Veveyse"      "Aigle"        "Aubonne"      "Avenches"     "Cossonay"    
+## [16] "Echallens"    "Grandson"     "Lausanne"     "La Vallee"    "Lavaux"      
+## [21] "Morges"       "Moudon"       "Nyone"        "Orbe"         "Oron"        
+## [26] "Payerne"      "Paysd'enhaut" "Rolle"        "Vevey"        "Yverdon"     
+## [31] "Conthey"      "Entremont"    "Herens"       "Martigwy"     "Monthey"     
+## [36] "St Maurice"   "Sierre"       "Sion"         "Boudry"       "La Chauxdfnd"
+## [41] "Le Locle"     "Neuchatel"    "Val de Ruz"   "ValdeTravers" "V. De Geneve"
+## [46] "Rive Droite"  "Rive Gauche"</code></pre>
+<p>Los datos representan algunos <strong>indicadores de fertilidad y socioeconómicos</strong> (estandarizados, entre 0 y 100) de las 47 provincias francoparlantes de Suiza, con datos del año 1888. Como podemos <strong>leer en la ayuda</strong>, en la web <a href="https://opr.princeton.edu/archive/pefp/switz.aspx" class="uri">https://opr.princeton.edu/archive/pefp/switz.aspx</a> tenemos los datos de 182 distritos para dicho año.</p>
+<p> </p>
+<p><mark><strong>4. ¿Cómo podríamos «ver» los datos? ¿Cuántas provincias hay incluidas? ¿Cuántas variables han sido medidas en cada una de ellas?</strong></mark></p>
+<p> </p>
+<p>Podemos hacerlo de varias maneras, y una de ellas es pedirle una <strong>cabecera</strong> de la tabla (las primeras filas) con <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
+<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6</code></pre>
+<p>También podemos ver una versión «excelizada» de los datos con `View()</p>
+<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<p>Para <strong>ver las dimensiones de los datos</strong> podemos recurrir a <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> (nos dará un vector de longitud 2 con el número de filas y columnas) o a <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> y <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code></p>
+<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 47  6</code></pre>
+<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 47</code></pre>
+<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p> </p>
+<p><mark><strong>5. ¿Cómo podríamos definir una nueva variable de tipo texto con los nombres de filas que obtenemos de <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code>?</strong></mark></p>
+<p> </p>
+<p>La función <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code> nos devuelve los nombres de las filas, que vamos a guardar en una variable (por ejemplo, en <code>nombres</code>).</p>
+<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span>
+<span class="va">nombres</span></code></pre></div>
+<pre><code>##  [1] "Courtelary"   "Delemont"     "Franches-Mnt" "Moutier"      "Neuveville"  
+##  [6] "Porrentruy"   "Broye"        "Glane"        "Gruyere"      "Sarine"      
+## [11] "Veveyse"      "Aigle"        "Aubonne"      "Avenches"     "Cossonay"    
+## [16] "Echallens"    "Grandson"     "Lausanne"     "La Vallee"    "Lavaux"      
+## [21] "Morges"       "Moudon"       "Nyone"        "Orbe"         "Oron"        
+## [26] "Payerne"      "Paysd'enhaut" "Rolle"        "Vevey"        "Yverdon"     
+## [31] "Conthey"      "Entremont"    "Herens"       "Martigwy"     "Monthey"     
+## [36] "St Maurice"   "Sierre"       "Sion"         "Boudry"       "La Chauxdfnd"
+## [41] "Le Locle"     "Neuchatel"    "Val de Ruz"   "ValdeTravers" "V. De Geneve"
+## [46] "Rive Droite"  "Rive Gauche"</code></pre>
+<p>Esa variable la vamos a añadir como primera columna, haciendo uso de <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, concatenando dicha columna a las que ya tenemos.</p>
+<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_nueva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"provincias"</span> <span class="op">=</span> <span class="va">nombres</span>, <span class="va">swiss</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">)</span></code></pre></div>
+<pre><code>##                provincias Fertility Agriculture Examination Education Catholic
+## Courtelary     Courtelary      80.2        17.0          15        12     9.96
+## Delemont         Delemont      83.1        45.1           6         9    84.84
+## Franches-Mnt Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           Moutier      85.8        36.5          12         7    33.77
+## Neuveville     Neuveville      76.9        43.5          17        15     5.16
+## Porrentruy     Porrentruy      76.1        35.3           9         7    90.57
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6</code></pre>
+<p>Podemos incluso <strong>eliminar el nombre de las filas</strong> (ya las tenemos guardadas como variables).</p>
+<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span> <span class="co"># anulamos nombre de filas</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">)</span></code></pre></div>
+<pre><code>##     provincias Fertility Agriculture Examination Education Catholic
+## 1   Courtelary      80.2        17.0          15        12     9.96
+## 2     Delemont      83.1        45.1           6         9    84.84
+## 3 Franches-Mnt      92.5        39.7           5         5    93.40
+## 4      Moutier      85.8        36.5          12         7    33.77
+## 5   Neuveville      76.9        43.5          17        15     5.16
+## 6   Porrentruy      76.1        35.3           9         7    90.57
+##   Infant.Mortality
+## 1             22.2
+## 2             22.2
+## 3             20.2
+## 4             20.3
+## 5             20.6
+## 6             26.6</code></pre>
+<p> </p>
+<p><mark><strong>6. ¿Cómo podemos decidir cual de las provincias tiene un indicador estandarizado de la fertilidad superior a 80?</strong></mark></p>
+<p> </p>
+<p>La opción más inmediata es obtener la variable <code>Fertility</code> con <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> y ejecutar la <strong>condición lógica</strong>: si es mayor que 80 devolverá <code>TRUE</code>; en caso contrario, <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>Para saber las <strong>filas exactas que cumplen dicha condición</strong> (sus índices) podemos usar la función <code><a href="https://rdrr.io/r/base/which.html">which()</a></code>.</p>
+<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  7  8  9 10 11 37</code></pre>
+<p> </p>
+<p><mark><strong>7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas provincias, las que tienen fertilidad superior a 80?</strong></mark></p>
+<p> </p>
+<p>Podemos hacerlo principalmente de dos maneras. La primera es tratar a los datos como una matriz con el operador <code>[]</code>, dejando las columnas libres y pasándole como índices en las filas precisamente la condición lógica: seleccionará las <code>TRUE</code> y no seleccionará las <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb726"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">[</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>, <span class="op">]</span></code></pre></div>
+<pre><code>##      provincias Fertility Agriculture Examination Education Catholic
+## 1    Courtelary      80.2        17.0          15        12     9.96
+## 2      Delemont      83.1        45.1           6         9    84.84
+## 3  Franches-Mnt      92.5        39.7           5         5    93.40
+## 4       Moutier      85.8        36.5          12         7    33.77
+## 7         Broye      83.8        70.2          16         7    92.85
+## 8         Glane      92.4        67.8          14         8    97.16
+## 9       Gruyere      82.4        53.3          12         7    97.67
+## 10       Sarine      82.9        45.2          16        13    91.38
+## 11      Veveyse      87.1        64.5          14         6    98.61
+## 37       Sierre      92.2        84.6           3         3    99.46
+##    Infant.Mortality
+## 1              22.2
+## 2              22.2
+## 3              20.2
+## 4              20.3
+## 7              23.6
+## 8              24.9
+## 9              21.0
+## 10             24.4
+## 11             24.5
+## 37             16.3</code></pre>
+<p>La otra manera, más corta y concisa, es usando <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code>, que además nos permitiría seleccionar columnas si quisiéramos filtrarlas.</p>
+<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># sin filtrar columnas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, subset <span class="op">=</span> <span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span></code></pre></div>
+<pre><code>##      provincias Fertility Agriculture Examination Education Catholic
+## 1    Courtelary      80.2        17.0          15        12     9.96
+## 2      Delemont      83.1        45.1           6         9    84.84
+## 3  Franches-Mnt      92.5        39.7           5         5    93.40
+## 4       Moutier      85.8        36.5          12         7    33.77
+## 7         Broye      83.8        70.2          16         7    92.85
+## 8         Glane      92.4        67.8          14         8    97.16
+## 9       Gruyere      82.4        53.3          12         7    97.67
+## 10       Sarine      82.9        45.2          16        13    91.38
+## 11      Veveyse      87.1        64.5          14         6    98.61
+## 37       Sierre      92.2        84.6           3         3    99.46
+##    Infant.Mortality
+## 1              22.2
+## 2              22.2
+## 3              20.2
+## 4              20.3
+## 7              23.6
+## 8              24.9
+## 9              21.0
+## 10             24.4
+## 11             24.5
+## 37             16.3</code></pre>
+<div class="sourceCode" id="cb732"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># filtrando columnas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, subset <span class="op">=</span> <span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>,
+       select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provincias"</span>, <span class="st">"Fertility"</span>, <span class="st">"Education"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##      provincias Fertility Education
+## 1    Courtelary      80.2        12
+## 2      Delemont      83.1         9
+## 3  Franches-Mnt      92.5         5
+## 4       Moutier      85.8         7
+## 7         Broye      83.8         7
+## 8         Glane      92.4         8
+## 9       Gruyere      82.4         7
+## 10       Sarine      82.9        13
+## 11      Veveyse      87.1         6
+## 37       Sierre      92.2         3</code></pre>
+<p> </p>
+<p><mark><strong>8. ¿Cómo podemos añadir una nueva variable lógica que nos guarde <code>TRUE</code> si la fertilidad es superior a 80 y <code>FALSE</code> en caso contrario?</strong></mark></p>
+<p> </p>
+<p>Vamos a guardar el resultado de la condición lógica en una variable y vamos a incluirla en el <code>data.frame</code> igual que hemos incluido los nombres.</p>
+<div class="sourceCode" id="cb734"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">var_logica</span> <span class="op">&lt;-</span> <span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>
+<span class="va">tabla_nueva_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, <span class="st">"alta_fertilidad"</span> <span class="op">=</span> <span class="va">var_logica</span><span class="op">)</span></code></pre></div>
+<p>Podemos realizar el filtro anterior haciendo uso de esa nueva variable.</p>
+<div class="sourceCode" id="cb735"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># sin filtrar columnas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>##      provincias Fertility Agriculture Examination Education Catholic
+## 1    Courtelary      80.2        17.0          15        12     9.96
+## 2      Delemont      83.1        45.1           6         9    84.84
+## 3  Franches-Mnt      92.5        39.7           5         5    93.40
+## 4       Moutier      85.8        36.5          12         7    33.77
+## 7         Broye      83.8        70.2          16         7    92.85
+## 8         Glane      92.4        67.8          14         8    97.16
+## 9       Gruyere      82.4        53.3          12         7    97.67
+## 10       Sarine      82.9        45.2          16        13    91.38
+## 11      Veveyse      87.1        64.5          14         6    98.61
+## 37       Sierre      92.2        84.6           3         3    99.46
+##    Infant.Mortality alta_fertilidad
+## 1              22.2            TRUE
+## 2              22.2            TRUE
+## 3              20.2            TRUE
+## 4              20.3            TRUE
+## 7              23.6            TRUE
+## 8              24.9            TRUE
+## 9              21.0            TRUE
+## 10             24.4            TRUE
+## 11             24.5            TRUE
+## 37             16.3            TRUE</code></pre>
+<div class="sourceCode" id="cb737"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># igual (sin filtrar columnas)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span><span class="op">)</span></code></pre></div>
+<pre><code>##      provincias Fertility Agriculture Examination Education Catholic
+## 1    Courtelary      80.2        17.0          15        12     9.96
+## 2      Delemont      83.1        45.1           6         9    84.84
+## 3  Franches-Mnt      92.5        39.7           5         5    93.40
+## 4       Moutier      85.8        36.5          12         7    33.77
+## 7         Broye      83.8        70.2          16         7    92.85
+## 8         Glane      92.4        67.8          14         8    97.16
+## 9       Gruyere      82.4        53.3          12         7    97.67
+## 10       Sarine      82.9        45.2          16        13    91.38
+## 11      Veveyse      87.1        64.5          14         6    98.61
+## 37       Sierre      92.2        84.6           3         3    99.46
+##    Infant.Mortality alta_fertilidad
+## 1              22.2            TRUE
+## 2              22.2            TRUE
+## 3              20.2            TRUE
+## 4              20.3            TRUE
+## 7              23.6            TRUE
+## 8              24.9            TRUE
+## 9              21.0            TRUE
+## 10             24.4            TRUE
+## 11             24.5            TRUE
+## 37             16.3            TRUE</code></pre>
+<div class="sourceCode" id="cb739"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># filtrando columnas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span>,
+       select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provincias"</span>, <span class="st">"Fertility"</span>, <span class="st">"Education"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##      provincias Fertility Education
+## 1    Courtelary      80.2        12
+## 2      Delemont      83.1         9
+## 3  Franches-Mnt      92.5         5
+## 4       Moutier      85.8         7
+## 7         Broye      83.8         7
+## 8         Glane      92.4         8
+## 9       Gruyere      82.4         7
+## 10       Sarine      82.9        13
+## 11      Veveyse      87.1         6
+## 37       Sierre      92.2         3</code></pre>
+<p> </p>
+<p><mark><strong>9. ¿Cómo podemos definir una nueva variable de tipo fecha, que empiece el 1 de enero de 1888, acabe el 31 de diciembre de 1888, y las fechas estén equiespaciadas en el tiempo?</strong></mark></p>
+<p> </p>
+<p>Si recuerdas las fechas internamente son guardadas como números así que podemos definir una <strong>secuencia de fechas</strong>, desde una fecha inicial hasta una fecha final, con la misma longitud que filas tenemos en los datos.</p>
+<div class="sourceCode" id="cb741"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fechas</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1888-01-01"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1888-12-31"</span><span class="op">)</span>, l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span><span class="op">)</span><span class="op">)</span>
+<span class="va">fechas</span></code></pre></div>
+<pre><code>##  [1] "1888-01-01" "1888-01-08" "1888-01-16" "1888-01-24" "1888-02-01"
+##  [6] "1888-02-09" "1888-02-17" "1888-02-25" "1888-03-04" "1888-03-12"
+## [11] "1888-03-20" "1888-03-28" "1888-04-05" "1888-04-13" "1888-04-21"
+## [16] "1888-04-29" "1888-05-06" "1888-05-14" "1888-05-22" "1888-05-30"
+## [21] "1888-06-07" "1888-06-15" "1888-06-23" "1888-07-01" "1888-07-09"
+## [26] "1888-07-17" "1888-07-25" "1888-08-02" "1888-08-10" "1888-08-18"
+## [31] "1888-08-26" "1888-09-02" "1888-09-10" "1888-09-18" "1888-09-26"
+## [36] "1888-10-04" "1888-10-12" "1888-10-20" "1888-10-28" "1888-11-05"
+## [41] "1888-11-13" "1888-11-21" "1888-11-29" "1888-12-07" "1888-12-15"
+## [46] "1888-12-23" "1888-12-31"</code></pre>
+<p>Podemos comprobar que son fechas usando <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> pero también intentando sumar días a las fechas (sin que aparezca un error).</p>
+<div class="sourceCode" id="cb743"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fechas</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "Date"</code></pre>
+<div class="sourceCode" id="cb745"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fechas</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
+<pre><code>##  [1] "1888-01-02" "1888-01-09" "1888-01-17" "1888-01-25" "1888-02-02"
+##  [6] "1888-02-10" "1888-02-18" "1888-02-26" "1888-03-05" "1888-03-13"
+## [11] "1888-03-21" "1888-03-29" "1888-04-06" "1888-04-14" "1888-04-22"
+## [16] "1888-04-30" "1888-05-07" "1888-05-15" "1888-05-23" "1888-05-31"
+## [21] "1888-06-08" "1888-06-16" "1888-06-24" "1888-07-02" "1888-07-10"
+## [26] "1888-07-18" "1888-07-26" "1888-08-03" "1888-08-11" "1888-08-19"
+## [31] "1888-08-27" "1888-09-03" "1888-09-11" "1888-09-19" "1888-09-27"
+## [36] "1888-10-05" "1888-10-13" "1888-10-21" "1888-10-29" "1888-11-06"
+## [41] "1888-11-14" "1888-11-22" "1888-11-30" "1888-12-08" "1888-12-16"
+## [46] "1888-12-24" "1889-01-01"</code></pre>
+<p>Para añadir a la tabla dicha variable basta con hacer de nuevo <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> concatenando la tabla que teníamos con la nueva columna.</p>
+<div class="sourceCode" id="cb747"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, <span class="va">fechas</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_final</span><span class="op">)</span></code></pre></div>
+<pre><code>##     provincias Fertility Agriculture Examination Education Catholic
+## 1   Courtelary      80.2        17.0          15        12     9.96
+## 2     Delemont      83.1        45.1           6         9    84.84
+## 3 Franches-Mnt      92.5        39.7           5         5    93.40
+## 4      Moutier      85.8        36.5          12         7    33.77
+## 5   Neuveville      76.9        43.5          17        15     5.16
+## 6   Porrentruy      76.1        35.3           9         7    90.57
+##   Infant.Mortality alta_fertilidad     fechas
+## 1             22.2            TRUE 1888-01-01
+## 2             22.2            TRUE 1888-01-08
+## 3             20.2            TRUE 1888-01-16
+## 4             20.3            TRUE 1888-01-24
+## 5             20.6           FALSE 1888-02-01
+## 6             26.6           FALSE 1888-02-09</code></pre>
+
+</div>
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></div>
+<div class="next"><a href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#repaso-1"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/09-repaso-1.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/09-repaso-1.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 28-12-2021.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -108,6 +108,10 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 * \@ref(vectores) [Vectores](#vectores)
 * \@ref(operacionesvectores) [Operaciones con vectores](#operacionesvectores)
 * \@ref(datos) [Datos estructurados](#datos)
+* \@ref(repaso-1) [Repaso: empezando a trastear con datos](#repaso-1)
+
+* \@ref(if-else) [Estructuras condicionales if-else](#if-else)
+
 
 ## Código de colores {-} 
 

@@ -1,0 +1,246 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# Repaso: empezando a trastear con datos {#repaso-1}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script06.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R): repaso de la iniciación a los datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R>
+
+::::
+
+Vamos a hacer un alto en el camino y hacer un repaso de lo que hemos aprendido con un conjunto nuevo, el conjunto de datos `swiss` del paquete `{datasets}`. Intenta <mark>**contestar a las preguntas planteadas antes de que sean resueltas**</mark>. Si te resulta aún un poco complicado, no pasa nada, la solución es seguir trasteando hasta que rompas algo (es broma).
+
+&nbsp;
+
+<mark>**1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el que está?**</mark>
+
+&nbsp;
+  
+
+Nuestros datos se llaman `swiss` y son del paquete `{datasets}`, así que lo primero que debemos hacer es instalar el paquete (en caso de tenerlo, con `install.packages("datasets")`), después **llamar a ese paquete** (tenemos el libro comprado y lo sacamos de la estantería) con `library(datasets)` y escribir el nombre del conjunto de datos para mostrarlo.
+
+```{r}
+library(datasets)
+swiss
+```
+
+Podríamos no pedirle el libro entero sino **solo esa página**, de ese conjunto de datos, usando `datasets::swiss` (sin hacer uso del `library()` previo).
+
+
+```{r eval = FALSE}
+datasets::swiss
+```
+
+&nbsp;
+
+<mark>**2. Tenemos los datos guardados en `swiss`, ¿qué tipo de objeto es?**</mark>
+
+&nbsp;
+
+Al mostrarlos ya lo habrás intuido pero nuestro conjunto `swiss` es de tipo `data.frame`. Para comprobarlo podemos usar la función `class()`.
+
+```{r}
+class(swiss)
+```
+
+Si somos un poco observadores/as vemos que todas las variables parecen numéricas así que...podríamos tener una matriz de números. <mark>**¿Cómo convertimos los datos a una matriz?**</mark>
+
+```{r}
+as.matrix(swiss)
+class(as.matrix(swiss))
+```
+
+&nbsp;
+
+<mark>**3. ¿Cómo podríamos tener una descripción detallada de los datos?**</mark>
+
+&nbsp;
+
+La forma más inmediata es hacerlo es con la función `? swiss`, que nos permite ver la documentación en el panel de ayuda.
+
+```{r eval = FALSE}
+? swiss
+```
+
+También podemos ver el nombre de las columnas con `names()` y el nombre de las filas con `row.names()`
+
+```{r}
+names(swiss)
+row.names(swiss)
+```
+
+Los datos representan algunos **indicadores de fertilidad y socioeconómicos** (estandarizados, entre 0 y 100) de las 47 provincias francoparlantes de Suiza, con datos del año 1888. Como podemos **leer en la ayuda**, en la web <https://opr.princeton.edu/archive/pefp/switz.aspx> tenemos los datos de 182 distritos para dicho año.
+
+&nbsp;
+
+<mark>**4. ¿Cómo podríamos «ver» los datos? ¿Cuántas provincias hay incluidas? ¿Cuántas variables han sido medidas en cada una de ellas?**</mark>
+
+&nbsp;
+
+Podemos hacerlo de varias maneras, y una de ellas es pedirle una **cabecera** de la tabla (las primeras filas) con `head()`.
+
+```{r}
+head(swiss)
+```
+
+También podemos ver una versión «excelizada» de los datos con `View()
+
+```{r eval = FALSE}
+View(swiss)
+```
+
+Para **ver las dimensiones de los datos** podemos recurrir a `dim()` (nos dará un vector de longitud 2 con el número de filas y columnas) o a `nrow()` y `ncol()`
+
+```{r}
+dim(swiss)
+nrow(swiss)
+ncol(swiss)
+```
+  
+&nbsp;
+
+<mark>**5. ¿Cómo podríamos definir una nueva variable de tipo texto con los nombres de filas que obtenemos de `row.names()`?**</mark>
+
+&nbsp;
+
+La función `row.names()` nos devuelve los nombres de las filas, que vamos a guardar en una variable (por ejemplo, en `nombres`).
+
+```{r}
+nombres <- row.names(swiss)
+nombres
+```
+
+Esa variable la vamos a añadir como primera columna, haciendo uso de `data.frame()`, concatenando dicha columna a las que ya tenemos.
+
+```{r}
+tabla_nueva <- data.frame("provincias" = nombres, swiss)
+head(tabla_nueva)
+```
+
+Podemos incluso **eliminar el nombre de las filas** (ya las tenemos guardadas como variables).
+
+```{r}
+row.names(tabla_nueva) <- NULL # anulamos nombre de filas
+head(tabla_nueva)
+```
+
+
+
+&nbsp;
+
+<mark>**6. ¿Cómo podemos decidir cual de las provincias tiene un indicador estandarizado de la fertilidad superior a 80?**</mark>
+
+&nbsp;
+
+La opción más inmediata es obtener la variable `Fertility` con `$` y ejecutar la **condición lógica**: si es mayor que 80 devolverá `TRUE`; en caso contrario, `FALSE`.
+
+```{r}
+tabla_nueva$Fertility > 80
+```
+
+Para saber las **filas exactas que cumplen dicha condición** (sus índices) podemos usar la función `which()`.
+
+```{r}
+which(tabla_nueva$Fertility > 80)
+```
+
+&nbsp;
+
+<mark>**7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas provincias, las que tienen fertilidad superior a 80?**</mark>
+
+&nbsp;
+
+Podemos hacerlo principalmente de dos maneras. La primera es tratar a los datos como una matriz con el operador `[]`, dejando las columnas libres y pasándole como índices en las filas precisamente la condición lógica: seleccionará las `TRUE` y no seleccionará las `FALSE`.
+
+```{r}
+tabla_nueva$Fertility > 80
+tabla_nueva[tabla_nueva$Fertility > 80, ]
+```
+
+La otra manera, más corta y concisa, es usando `subset()`, que además nos permitiría seleccionar columnas si quisiéramos filtrarlas.
+
+```{r}
+# sin filtrar columnas
+subset(tabla_nueva, subset = Fertility > 80)
+
+# filtrando columnas
+subset(tabla_nueva, subset = Fertility > 80,
+       select = c("provincias", "Fertility", "Education"))
+```
+
+&nbsp;
+
+<mark>**8. ¿Cómo podemos añadir una nueva variable lógica que nos guarde `TRUE` si la fertilidad es superior a 80 y `FALSE` en caso contrario?**</mark>
+
+&nbsp;
+
+Vamos a guardar el resultado de la condición lógica en una variable y vamos a incluirla en el `data.frame` igual que hemos incluido los nombres.
+
+```{r}
+var_logica <- tabla_nueva$Fertility > 80
+tabla_nueva_2 <- data.frame(tabla_nueva, "alta_fertilidad" = var_logica)
+```
+
+Podemos realizar el filtro anterior haciendo uso de esa nueva variable.
+
+```{r}
+# sin filtrar columnas
+subset(tabla_nueva_2, subset = alta_fertilidad == TRUE)
+
+# igual (sin filtrar columnas)
+subset(tabla_nueva_2, subset = alta_fertilidad)
+
+# filtrando columnas
+subset(tabla_nueva_2, subset = alta_fertilidad,
+       select = c("provincias", "Fertility", "Education"))
+```
+
+&nbsp;
+
+<mark>**9. ¿Cómo podemos definir una nueva variable de tipo fecha, que empiece el 1 de enero de 1888, acabe el 31 de diciembre de 1888, y las fechas estén equiespaciadas en el tiempo?**</mark>
+
+&nbsp;
+
+Si recuerdas las fechas internamente son guardadas como números así que podemos definir una **secuencia de fechas**, desde una fecha inicial hasta una fecha final, con la misma longitud que filas tenemos en los datos.
+
+```{r}
+fechas <-
+  seq(as.Date("1888-01-01"), as.Date("1888-12-31"), l = nrow(tabla_nueva_2))
+fechas
+```
+
+Podemos comprobar que son fechas usando `class()` pero también intentando sumar días a las fechas (sin que aparezca un error).
+
+```{r}
+class(fechas)
+fechas + 1
+```
+
+Para añadir a la tabla dicha variable basta con hacer de nuevo `data.frame()` concatenando la tabla que teníamos con la nueva columna.
+
+```{r}
+tabla_final <- data.frame(tabla_nueva_2, fechas)
+head(tabla_final)
+```
+
+
+
+
