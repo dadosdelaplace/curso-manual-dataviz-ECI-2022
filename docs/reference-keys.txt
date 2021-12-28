@@ -26,6 +26,8 @@ fig:consola-multi
 fig:consola-multi-2
 fig:consola-multi-3
 fig:stringr2
+fig:unnamed-chunk-146
+fig:tabla-dolar
 requisitos
 instalacion
 instalacionR
@@ -75,3 +77,11 @@ null
 ordenar
 consejos-4
 ejercicios-3
+datos
+matrices
+acceder-a-elementos
+operaciones-por-filas-y-columnas-apply
+tablas-data.frames
+selección-de-columnas-y-filas
+consejos-5
+ejercicios-4

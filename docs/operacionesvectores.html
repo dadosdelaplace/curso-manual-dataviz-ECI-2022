@@ -54,6 +54,7 @@
 <li><a class="" href="tipos-datos.html"><span class="header-section-number">5</span> Tipos de datos</a></li>
 <li><a class="" href="vectores.html"><span class="header-section-number">6</span> Vectores</a></li>
 <li><a class="active" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
+<li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -394,9 +395,9 @@
                <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span>, <span class="co"># segunda forma</span>
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##         expr    min     lq      mean  median       uq      max neval cld
-##      sort(x) 45.400 64.205 100.89266 83.9370 108.7660  864.427  1000   b
-##  x[order(x)] 31.105 43.657  71.97247 58.4315  72.4135 1620.689  1000  a</code></pre>
+##         expr    min      lq     mean  median     uq    max neval cld
+##      sort(x) 42.326 51.4005 69.74761 58.2805 72.225 453.04  1000   b
+##  x[order(x)] 30.169 36.8195 48.43539 40.9810 47.900 468.84  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">
@@ -529,7 +530,7 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="vectores.html"><span class="header-section-number">6</span> Vectores</a></div>
-<div class="next"><a href="bibliograf%C3%ADa.html">Bibliografía</a></div>
+<div class="next"><a href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -565,7 +566,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 27-12-2021.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 28-12-2021.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
