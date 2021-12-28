@@ -58,9 +58,8 @@
 <li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
 <li class="book-part">Estructuras de control</li>
 <li><a class="active" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
-<li><a class="" href="ifelse-vectorizado.html"><span class="header-section-number">11</span> ifelse () vectorizado</a></li>
 <li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">12</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">11</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -172,10 +171,199 @@
 <span class="op">}</span></code></pre></div>
 <pre><code>## [1] "Existe alguna persona menor de 16 años"</code></pre>
 </div>
+<div id="ifelse-vectorizado" class="section level2">
+<h2>
+<span class="header-section-number">10.4</span> ifelse () vectorizado<a class="anchor" aria-label="anchor" href="#ifelse-vectorizado"><i class="fas fa-link"></i></a>
+</h2>
+<p>Esta <mark><strong>estructura condicional puede ser vectorizada</strong></mark>, de forma que podamos reunir en una <strong>sola fila un número elevado de estructuras de comparación</strong> la función <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, cuyos argumentos de entrada serán la condición a evaluar, lo que sucede cuando se cumple y lo que no, que aplicará a cada elemento del vector de entrada. Con el ejemplo de las edades, vamos a <strong>dejar el dato ausente si son menores de edad</strong>, y si son mayores de edad se queda como está.</p>
+<div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># NA si no cumple la condición, la edad si se cumple.</span>
+<span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span>, <span class="va">edades</span>, <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] NA NA 24 56 31 20 87 73</code></pre>
+<p>Todas estas estructuras no solo sirven para datos numéricos. Vamos a definir un vector de nombres con algunos ausentes (<code>NA</code>), y vamos a sustituir los ausentes por el texto <code>"nombre_desconocido"</code> (los que no sean ausentes se quedan como están).</p>
+<div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Juan"</span>, <span class="st">"María"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"Lucía"</span>, <span class="st">"Carmen"</span>, <span class="st">"Javier"</span>,
+             <span class="cn">NA</span>, <span class="st">"Carlos"</span>, <span class="cn">NA</span>, <span class="st">"Gregorio"</span>, <span class="st">"Paloma"</span><span class="op">)</span>
+
+<span class="co"># Si tiene ausente --&gt; "nombre_desconocido"</span>
+<span class="co"># Si no tiene ausente --&gt; nombres originales</span>
+<span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">nombres</span><span class="op">)</span>, <span class="st">"nombre_desconocido"</span>, <span class="va">nombres</span><span class="op">)</span>
+<span class="va">nombres</span></code></pre></div>
+<pre><code>##  [1] "Juan"               "María"              "nombre_desconocido"
+##  [4] "nombre_desconocido" "Lucía"              "Carmen"            
+##  [7] "Javier"             "nombre_desconocido" "Carlos"            
+## [10] "nombre_desconocido" "Gregorio"           "Paloma"</code></pre>
+<p>Esta función <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> es muy util para codificar variables o averiguar cuales cumplen una condición.</p>
 </div>
+<div id="consejos-6" class="section level2">
+<h2>
+<span class="header-section-number">10.5</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos-6"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong><span style="color: #20935E;">CONSEJOS</span></strong></p>
+<p> </p>
+<p><strong><span style="color: #20935E;">Rainbow parentheses</span></strong></p>
+<p>Uno de los <strong>errores más habituales</strong>, y que seguirás cometiendo aunque lleves años programando, es <mark><strong>no cerrar un paréntesis que has abierto</strong></mark>, por lo que el programa no sabe si has acabado de llamar a una orden o no. Para ello en las nuevas versiones de <code>RStudio</code>, en el menú <code>Tools &lt; Global Options &lt; Code &lt; Display</code> podemos habilitar la opción <code>Rainbow Parentheses</code> que nos escribe cada par de <code>()</code> de un color distinto</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-239"></span>
+<img src="img/rainbow-parentheses.jpg" alt="Activando Rainbow Parentheses." width="70%"><p class="caption">
+Imagen/gráfica 10.1: Activando Rainbow Parentheses.
+</p>
+</div>
+<p> </p>
+<p><strong><span style="color: #20935E;">Minimiza estructuras de control en el código</span></strong></p>
+<p>Puedes colapsar las estructuras de control pulsando en la flecha que aparece a la izquierda de ellas en tu script.</p>
+<p> </p>
+</div>
+<div id="ejercicios-5" class="section level2">
+<h2>
+<span class="header-section-number">10.6</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los mamíferos del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> pesan menos de una tonelada (variable <code>body</code>).</summary></p>
+<div class="sourceCode" id="cb769"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Todos los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">peso</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Todos los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los mamíferos del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> pesan menos de una tonelada (variable <code>body</code>).</summary></p>
+<div class="sourceCode" id="cb771"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb772"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">peso</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<pre><code>## [1] "Alguno de los mamíferos guardados pesan menos de una tonelada"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si el tercer mamífero del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> tiene un cerebro que pesa más de 100 gr (variable <code>brain</code>).</summary></p>
+<div class="sourceCode" id="cb774"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El tercer mamífero tiene un cerebro que pesa más de 100 gr."</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cerebro</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">brain</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="va">cerebro</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El tercer mamífero tiene un cerebro que pesa más de 100 gr."</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>No imprime nada porque no cumple la condición.</p>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: del paquete <a href="https://lubridate.tidyverse.org">lubridate</a>, la función <code><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour()</a></code> nos devuelve la hora de una fecha dada, y la función <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code> nos devuelve fecha y hora del momento actual. Con ambas funciones, y usando <code>if</code>, imprime por pantalla <code>"buenas noches"</code> solo a partir de las 21 horas. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb776"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Cargamos librería</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
+
+<span class="co"># Fecha-hora actual</span>
+<span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Estructura if</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">21</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas noches"</span><span class="op">)</span> <span class="co"># print/cat dos formas de imprimir por pantalla</span>
+<span class="op">}</span></code></pre></div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: con las funciones del ejercicio anterior, y usando una estructura <code>if-else</code>, imprime por pantalla <code>"buenos días"</code> (de 6 a 14 horas), <code>"buenas tardes"</code> (de 14 a 21 horas) o <code>"buenas noches"</code> (de las 21 a las 6 horas). </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Fecha actual</span>
+<span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Estructura if-else</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">6</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">14</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenos días"</span><span class="op">)</span>
+  
+<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">21</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas tardes"</span><span class="op">)</span>
+  
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas noches"</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<pre><code>## Buenas tardes</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: realiza el ejercicio anterior pero sin estructura de llaves, de forma concisa con <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. Mira la ayuda si la necesitases poniendo <code><a href="https://rdrr.io/r/base/ifelse.html">? ifelse</a></code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Fecha actual</span>
+<span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Estructura if-else</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">6</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">14</span>,
+           <span class="st">"Buenos días"</span>,
+           <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">&amp;</span>
+                    <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">21</span>,
+                  <span class="st">"Buenas tardes"</span>, <span class="st">"Buenas noches"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## Buenas tardes</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+
+</div>
+</div>
+
+
+
   <div class="chapter-nav">
 <div class="prev"><a href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></div>
-<div class="next"><a href="ifelse-vectorizado.html"><span class="header-section-number">11</span> ifelse () vectorizado</a></div>
+<div class="next"><a href="ejercicios-recopilados.html"><span class="header-section-number">11</span> 📝 Ejercicios recopilados</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -183,6 +371,9 @@
 <li><a class="nav-link" href="#if"><span class="header-section-number">10.1</span> if</a></li>
 <li><a class="nav-link" href="#if---else"><span class="header-section-number">10.2</span> if - else</a></li>
 <li><a class="nav-link" href="#if---else-anidados"><span class="header-section-number">10.3</span> if - else anidados</a></li>
+<li><a class="nav-link" href="#ifelse-vectorizado"><span class="header-section-number">10.4</span> ifelse () vectorizado</a></li>
+<li><a class="nav-link" href="#consejos-6"><span class="header-section-number">10.5</span> Consejos</a></li>
+<li><a class="nav-link" href="#ejercicios-5"><span class="header-section-number">10.6</span> 📝 Ejercicios</a></li>
 </ul>
 
       <div class="book-extra">

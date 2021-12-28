@@ -58,9 +58,8 @@
 <li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
 <li class="book-part">Estructuras de control</li>
 <li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
-<li><a class="" href="ifelse-vectorizado.html"><span class="header-section-number">11</span> ifelse () vectorizado</a></li>
 <li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">12</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">11</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -401,9 +400,9 @@
                <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span>, <span class="co"># segunda forma</span>
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##         expr    min      lq     mean  median     uq     max neval cld
-##      sort(x) 43.408 50.0435 57.96667 55.4175 60.450 189.934  1000   b
-##  x[order(x)] 30.541 36.6140 41.33571 38.8960 42.685 120.508  1000  a</code></pre>
+##         expr    min      lq     mean  median      uq     max neval cld
+##      sort(x) 42.441 49.3765 58.88509 54.6790 59.9685 190.309  1000   b
+##  x[order(x)] 29.711 35.8930 40.91717 38.2935 41.9250 129.619  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">

@@ -127,7 +127,7 @@ if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
 }
 ```
 
-# ifelse () vectorizado
+## ifelse () vectorizado
 
 Esta <mark>**estructura condicional puede ser vectorizada**</mark>, de forma que podamos reunir en una **sola fila un número elevado de estructuras de comparación** la función `ifelse()`, cuyos argumentos de entrada serán la condición a evaluar, lo que sucede cuando se cumple y lo que no, que aplicará a cada elemento del vector de entrada. Con el ejemplo de las edades, vamos a **dejar el dato ausente si son menores de edad**, y si son mayores de edad se queda como está.
 
