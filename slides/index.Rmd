@@ -1,37 +1,72 @@
 ---
-title: "Presentation Ninja"
-subtitle: "⚔<br/>with xaringan"
-author: "Yihui Xie"
-institute: "RStudio, PBC"
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+title: "Analizando datos, visualizando información, contando historias"
+subtitle: "Curso de la ECI 2022"
+author:
+  - "Javier Álvarez Liébana (UCM)"
+institute: "(.css y .js basados en el repo de dieghernan/rpubs)"
+date: "2021/12/21 (actualizado: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
+    self_contained: false
     lib_dir: libs
+    css: [default, style.css]
     nature:
+      # beforeInit: "rOpenSpain.js"
+      slideNumberFormat: "%current%"
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: false
+      ratio: 16:9
+      countIncrementalSlides: true
 ---
 
-```{r setup, include=FALSE}
+```{r settings, include = FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, out.width = "100%", cache = FALSE,
+                      comment = "#>", echo = TRUE, message = FALSE, warning = FALSE,
+                      hiline = TRUE, dpi = 300)
 ```
+class: inverse center middle
+
+# Presentación del curso
 
 ---
+
+class: inverse center middle
+
+# Bloque I: introducción a R desde cero.
+
+### [¿Qué es R? Primeros pasos](#primeros-pasos)
+
+### [Vectores y matrices](#matrices)
+
+### [Estructuras de datos](#datos)
+
+### [Estructuras de control. Listas y factores](#estructuras)
+
+### [Creación del primer proyecto](#proyecto)
+
+### [Creando funciones](#funciones)
+
+### [Tidy data](#tidy-data)
+
+### [Introducción al tidyverse](#tidy-verse)
+
+
+---
+name: primeros-pasos
 class: center, middle
 
-# xaringan
+# ¿Qué es R? Primeros pasos
+## **Instalación**
 
-### /ʃaː.'riŋ.ɡan/
+&nbsp;
+
+Programar es como escribir un libro: necesitamos una gramática y un Word.
+
 
 ---
-class: inverse, center, middle
 
-# Get Started
-
----
-
-# Hello World
+# ¿Qué es R?
 
 Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
 

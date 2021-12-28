@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Presentation Ninja</title>
+    <title>Analizando datos, visualizando información, contando historias</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Yihui Xie" />
+    <meta name="author" content="Javier Álvarez Liébana (UCM)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <script src="libs/jquery/jquery.min.js"></script>
     <link href="libs/leaflet/leaflet.css" rel="stylesheet" />
@@ -22,33 +21,60 @@
     <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
     <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
     <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Presentation Ninja
-## ⚔<br/>with xaringan
-### Yihui Xie
-### RStudio, PBC
-### 2016/12/12 (updated: 2021-12-27)
+# Analizando datos, visualizando información, contando historias
+## Curso de la ECI 2022
+### Javier Álvarez Liébana (UCM)
+### (.css y .js basados en el repo de dieghernan/rpubs)
+### 2021/12/21 (actualizado: 2021-12-28)
 
 ---
 
 
 
+class: inverse center middle
+
+# Presentación del curso
 
 ---
+
+class: inverse center middle
+
+# Bloque I: introducción a R desde cero.
+
+### [¿Qué es R? Primeros pasos](#primeros-pasos)
+
+### [Vectores y matrices](#matrices)
+
+### [Estructuras de datos](#datos)
+
+### [Estructuras de control. Listas y factores](#estructuras)
+
+### [Creación del primer proyecto](#proyecto)
+
+### [Creando funciones](#funciones)
+
+### [Tidy data](#tidy-data)
+
+### [Introducción al tidyverse](#tidy-verse)
+
+
+---
+name: primeros-pasos
 class: center, middle
 
-# xaringan
+# ¿Qué es R? Primeros pasos
+## **Instalación**
 
-### /ʃaː.'riŋ.ɡan/
+&amp;nbsp;
 
----
-class: inverse, center, middle
+Programar es como escribir un libro: necesitamos una gramática y un Word.
 
-# Get Started
 
 ---
 
@@ -242,7 +268,7 @@ plot(cars, pch = 19, col = 'darkgray', las = 1)
 abline(fit, lwd = 2)
 ```
 
-![](index_files/figure-html/cars-1.svg)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/cars-1.svg" width="100%" /&gt;
 
 ---
 
@@ -329,8 +355,8 @@ library(leaflet)
 leaflet() %&gt;% addTiles() %&gt;% setView(-93.65, 42.0285, zoom = 17)
 ```
 
-<div id="htmlwidget-d7e73ad59496eb274f72" style="width:100%;height:432px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d7e73ad59496eb274f72">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[42.0285,-93.65],17,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7f60dc2a2294a18248d1" style="width:100%;height:1800px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7f60dc2a2294a18248d1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[42.0285,-93.65],17,[]]},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -342,8 +368,8 @@ DT::datatable(
 )
 ```
 
-<div id="htmlwidget-8fe46cd8702a39c53b7c" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8fe46cd8702a39c53b7c">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0da850225b0765d21475" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0da850225b0765d21475">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -479,10 +505,6 @@ if (TRUE) {
 }
 ```
 
-```
-## Very important!
-```
-
 It is valid R code so you can run it. Note that `{{}}` can wrap an R expression of multiple lines.
 ]
 
@@ -527,13 +549,13 @@ head(iris)
 
 
 ```
-*##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-*## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
+*#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 1          5.1         3.5          1.4         0.2  setosa
+*#&gt; 2          4.9         3.0          1.4         0.2  setosa
+#&gt; 3          4.7         3.2          1.3         0.2  setosa
+#&gt; 4          4.6         3.1          1.5         0.2  setosa
+#&gt; 5          5.0         3.6          1.4         0.2  setosa
+#&gt; 6          5.4         3.9          1.7         0.4  setosa
 ```
 
 Question: what does `highlight.output = c(TRUE, FALSE)` mean? (Hint: think about R's recycling of vectors)
@@ -664,20 +686,20 @@ names(xaringan:::list_css())
 ```
 
 ```
-##  [1] "chocolate-fonts"  "chocolate"        "default-fonts"   
-##  [4] "default"          "duke-blue"        "fc-fonts"        
-##  [7] "fc"               "glasgow_template" "hygge-duke"      
-## [10] "hygge"            "ki-fonts"         "ki"              
-## [13] "kunoichi"         "lucy-fonts"       "lucy"            
-## [16] "metropolis-fonts" "metropolis"       "middlebury-fonts"
-## [19] "middlebury"       "nhsr-fonts"       "nhsr"            
-## [22] "ninjutsu"         "rladies-fonts"    "rladies"         
-## [25] "robot-fonts"      "robot"            "rutgers-fonts"   
-## [28] "rutgers"          "shinobi"          "tamu-fonts"      
-## [31] "tamu"             "uio-fonts"        "uio"             
-## [34] "uo-fonts"         "uo"               "uol-fonts"       
-## [37] "uol"              "useR-fonts"       "useR"            
-## [40] "uwm-fonts"        "uwm"
+#&gt;  [1] "chocolate-fonts"  "chocolate"        "default-fonts"   
+#&gt;  [4] "default"          "duke-blue"        "fc-fonts"        
+#&gt;  [7] "fc"               "glasgow_template" "hygge-duke"      
+#&gt; [10] "hygge"            "ki-fonts"         "ki"              
+#&gt; [13] "kunoichi"         "lucy-fonts"       "lucy"            
+#&gt; [16] "metropolis-fonts" "metropolis"       "middlebury-fonts"
+#&gt; [19] "middlebury"       "nhsr-fonts"       "nhsr"            
+#&gt; [22] "ninjutsu"         "rladies-fonts"    "rladies"         
+#&gt; [25] "robot-fonts"      "robot"            "rutgers-fonts"   
+#&gt; [28] "rutgers"          "shinobi"          "tamu-fonts"      
+#&gt; [31] "tamu"             "uio-fonts"        "uio"             
+#&gt; [34] "uo-fonts"         "uo"               "uol-fonts"       
+#&gt; [37] "uol"              "useR-fonts"       "useR"            
+#&gt; [40] "uwm-fonts"        "uwm"
 ```
 
 ---
@@ -767,9 +789,11 @@ The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](https://yih
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"ratio": "16:9",
+"countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
