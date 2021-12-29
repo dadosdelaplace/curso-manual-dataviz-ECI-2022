@@ -16,27 +16,20 @@ colorize <- function(x, color) {
 }
 ```
 
-# Importando/exportando {#importar-exportar}
+# Sacando datos de las piedras {#importar-exportar}
 
-Hemos aprendido a **crear nuestros propios datos** pero la mayoría de veces los cargaremos de distintos archivos, fuentes, etc. Vamos a ver algunas de las <mark>**formas más comunes de importar (cargar) datos**<mark>.
+Hemos aprendido a **crear nuestros propios datos** pero muchas veces los cargaremos de distintos archivos, fuentes, etc. Vamos a ver algunas <mark>**formas que tenemos para importar (cargar) datos**<mark>.
 
 ## Importación de datos
 
 
-Las **formas más comunes de importar (cargar) datos** son:
-
-- desde un archivo propio de `R` (extensión `.RData`).
-- desde un archivo separado por comas (un archivo `.csv`).
-- desde un excel (archivo `.xlsx`).
-- desde un enlace de internet.
-- desde un paquete.
-
-
-### Archivo .RData
+## Archivo .RData
 
 La forma más sencilla de guardar datos y variables en `R`, y que además ocupa menos espacio en nuestro disco duro, es guardarlo en archivos propios que tiene `R` como son los <mark>**archivos con extensiones `.rda` y `.RData`**</mark>.
 
-Es **recomendable** tener los datos en la <mark>**misma carpeta del proyecto**</mark> pero una carpeta separada, ya que podemos tener muchos archivos y así no mezclamos dichos ficheros con los códigos que escirbamos. En la carpeta `DATOS` del proyecto tenemos 4 archivos `.RData`: `coches.RData`, `panel_vacunas_ccaa.RData`, `panel_vacunas_fecha.RData` y `panel_variables.RData`. **¿Cómo cargar archivos `.RData`?**
+Es **recomendable** tener los datos en la <mark>**misma carpeta del proyecto**</mark> pero una carpeta separada, ya que podemos tener muchos archivos y así no mezclamos dichos ficheros con los códigos que escirbamos. En la carpeta `DATOS` del proyecto tenemos 1 archivo `.RData`: `titanic.RData`, un conjunto de datos obtenidos de la plataforma de aprendizaje y predicción <https://www.kaggle.com/c/titanic/overview>, con los datos de los pasajeros del Titanic (nombre, título, cabina, si sobrevivió o no, edad, etc)
+
+<mark>**¿Cómo cargar archivos `.RData`?**</mark>
 
 Muy sencillo: como son ficheros nativos de `R`, basta con usar la función de carga `load()`, y dentro la ruta de los archivos. 
 
