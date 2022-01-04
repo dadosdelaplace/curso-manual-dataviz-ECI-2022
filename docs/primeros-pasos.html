@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 4 Primeros pasos | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
-<meta name="description" content="Scripts usados: script01.R: ejercicio 4. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R    Vamos a empezar por lo sencillo: ¿cómo usar R como una...">
+<meta name="description" content="Scripts usados: script01.R: ejercicio 5. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R    Vamos a empezar por lo sencillo: ¿cómo usar R como una...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 4 Primeros pasos | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Scripts usados: script01.R: ejercicio 4. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R    Vamos a empezar por lo sencillo: ¿cómo usar R como una...">
+<meta property="og:description" content="Scripts usados: script01.R: ejercicio 5. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R    Vamos a empezar por lo sencillo: ¿cómo usar R como una...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 4 Primeros pasos | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Scripts usados: script01.R: ejercicio 4. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R    Vamos a empezar por lo sencillo: ¿cómo usar R como una...">
+<meta name="twitter:description" content="Scripts usados: script01.R: ejercicio 5. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R    Vamos a empezar por lo sencillo: ¿cómo usar R como una...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -59,10 +59,15 @@
 <li class="book-part">Estructuras de control</li>
 <li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
 <li><a class="" href="bucles.html"><span class="header-section-number">11</span> Bucles</a></li>
-<li class="book-part">Flujo de trabajo</li>
+<li class="book-part">Haciendo el trabajo más fácil</li>
 <li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
+<li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
+<li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
+<li class="book-part">Empezando a explorator datos</li>
+<li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
+<li><a class="" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
 <li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">13</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -79,7 +84,7 @@
 <p>Scripts usados:</p>
 <ul>
 <li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R"><strong>script01.R</strong></a>: ejercicio 4. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R</a>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R"><strong>script01.R</strong></a>: ejercicio 5. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R</a>
 </li>
 </ul>
 </div>
@@ -258,12 +263,35 @@ Imagen/gráfica 4.7: Multiplicación de a y b.
 </div>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero ahora guarda el resultado de la multiplicación en una variable <code>c</code>. Para ver el resultado guardado en <code>c</code> escribe dicha variable en consola (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para definir dos variables <code>c</code> y <code>d</code>, con valores <code>3</code> y <code>-1</code>, y calcular la división <code>c/d</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definición de variables</span>
+<span class="va">c</span> <span class="op">&lt;-</span> 
+<span class="va">d</span> <span class="op">&lt;-</span>
+
+<span class="co"># Operación (división)</span>
+<span class="va">c</span> <span class="op">?</span> <span class="va">d</span></code></pre></div>
+<p></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definición de variables</span>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">3</span>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>
+
+<span class="co"># División</span>
+<span class="va">a</span> <span class="op">/</span> <span class="va">b</span></code></pre></div>
+<pre><code>## [1] 0.4</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: repite el ejercicio 1 pero ahora guarda el resultado de la multiplicación final en una variable <code>c</code>. Para ver el resultado guardado en <code>c</code> escribe dicha variable en consola (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Variables</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">5</span>
@@ -282,12 +310,12 @@ Imagen/gráfica 4.8: Multiplicación de a y b guardando el resultado.
 </div>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 3</strong>: asigna ahora los valores <code>1</code>, <code>-2</code>, <code>3</code> a tres variables <code>a</code>, <code>b</code> y <code>c</code>, y calcula la raíz cuadrada de cada uno. </summary></p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: asigna ahora los valores <code>1</code>, <code>-2</code>, <code>3</code> a tres variables <code>a</code>, <code>b</code> y <code>c</code>, y calcula la raíz cuadrada de cada uno. </summary></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Variables</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span>
@@ -296,15 +324,15 @@ Imagen/gráfica 4.8: Multiplicación de a y b guardando el resultado.
 <span class="co"># Resultado</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.732051</code></pre>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero <code>.R</code>, guardado en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R"><strong>script01.R</strong></a>). Recuerda al acabar seleccionar las líneas a ejecutar y clickar <code>Run</code>, o bien guardar el script con <code>Source on save</code> activado (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: repite el ejercicio 3 pero ahora escribe el código en un script (fichero de <code>.R</code>, guardado en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R"><strong>script01.R</strong></a>). Recuerda al acabar seleccionar las líneas a ejecutar y clickar <code>Run</code>, o bien guardar el script con <code>Source on save</code> activado (<strong>haz click</strong> en la flecha para la solución propuesta). </summary></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
@@ -317,26 +345,26 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 </div>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 5</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable <code>x</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable <code>x</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span></code></pre></div>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 6</strong>: asigna un valor positivo a <code>x</code> y calcula su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<details><p><summary>📝<strong>Ejercicio 7</strong>: asigna un valor positivo a <code>x</code> y calcula su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Raíz cuadrada</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">73</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 8.544004</code></pre>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Valor absoluto</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">73</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
@@ -346,26 +374,26 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 <p><strong><span style="color: #20935E;">CONSEJO:</span></strong></p>
 <p>Las órdenes <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt(x)</a></code> y <code><a href="https://rdrr.io/r/base/MathFun.html">abs(y)</a></code> se llaman <mark><strong>funciones</strong></mark>, y la variable que tienen entre paréntesis se llama <strong>argumento de la función</strong>: una variable que toma de entrada la función y con la que opera internamente.</p>
 <p> </p>
-<details><p><summary>📝<strong>Ejercicio 7</strong>: usando la variable <code>x</code> ya definida, calcula <code>x - 5</code> y guárdalo en una nueva variable <code>z</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<details><p><summary>📝<strong>Ejercicio 8</strong>: usando la variable <code>x</code> ya definida, calcula la resta <code>x - 5</code> y guárdala en una nueva variable <code>z</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">5</span>
 <span class="va">z</span></code></pre></div>
 <pre><code>## [1] 68</code></pre>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 8</strong>: usando las variables <code>x</code> y <code>z</code> ya definidas, calcula la raíz cuadrada del máximo entre ambas, y guárdalo en una nueva variable <code>t</code>. Hazlo en un script en lugar de en consola (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
+<details><p><summary>📝<strong>Ejercicio 9</strong>: usando las variables <code>x</code> y <code>z</code> ya definidas, calcula el máximo de ambas, y guárdalo en una nueva variable <code>t</code>. (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span><span class="op">)</span><span class="op">)</span> 
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span><span class="op">)</span>
 <span class="va">t</span></code></pre></div>
-<pre><code>## [1] 8.544004</code></pre>
+<pre><code>## [1] 73</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <p><strong><span style="color: #ffc107;">WARNING:</span></strong></p>
@@ -406,7 +434,7 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 28-12-2021.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 04-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -32,6 +32,7 @@ Scripts usados:
 * [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R): toma de contacto.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R>
 ::::
 
+
 (haz click en las flechas para ver soluciones)
 
 <details>
@@ -51,7 +52,7 @@ b <- 5
 a * b
 ```
 
-```{r consola-multi-1a, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b."}
+```{r consola-multi-2a, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b."}
 knitr::include_graphics("./img/consola_multiplicacion.jpg")
 ```
 
@@ -61,7 +62,37 @@ knitr::include_graphics("./img/consola_multiplicacion.jpg")
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero ahora guarda el resultado de la multiplicación en una variable `c`. Para ver el resultado guardado en `c` escribe dicha variable en consola (**haz click** en la flecha para la solución propuesta). </summary>
+  <summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para definir dos variables `c` y `d`, con valores `3` y `-1`, y calcular la división `c/d` (**haz click** en la flecha para la solución propuesta).
+  
+```{r eval = FALSE}
+# Definición de variables
+c <- 
+d <-
+
+# Operación (división)
+c ? d
+```
+</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Definición de variables
+c <- 3
+d <- -1
+
+# División
+a / b
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: repite el ejercicio 1 pero ahora guarda el resultado de la multiplicación final en una variable `c`. Para ver el resultado guardado en `c` escribe dicha variable en consola (**haz click** en la flecha para la solución propuesta). </summary>
   
 <!-- toc -->
 - Solución:
@@ -78,7 +109,7 @@ c <- a * b
 c
 ```
 
-```{r consola-multi-2a, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b guardando el resultado."}
+```{r consola-multi-2b, echo = FALSE, out.width = "80%", fig.align = "center", fig.cap = "Multiplicación de a y b guardando el resultado."}
 knitr::include_graphics("./img/consola_multiplicacion_2.jpg")
 ```
 
@@ -88,7 +119,7 @@ knitr::include_graphics("./img/consola_multiplicacion_2.jpg")
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: asigna ahora los valores `1`, `-2`, `3` a tres variables `a`, `b` y `c`, y calcula la raíz cuadrada de cada uno. </summary>
+  <summary>📝<strong>Ejercicio 4</strong>: asigna ahora los valores `1`, `-2`, `3` a tres variables `a`, `b` y `c`, y calcula la raíz cuadrada de cada uno. </summary>
   
 <!-- toc -->
 - Solución:
@@ -112,7 +143,7 @@ sqrt(c)
 
 
 <details>
-  <summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero `.R`, guardado en [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
+  <summary>📝<strong>Ejercicio 5</strong>: repite el ejercicio 3 pero ahora escribe el código en un script (fichero de `.R`, guardado en [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
   
 <!-- toc -->
 - Solución:
@@ -129,7 +160,7 @@ knitr::include_graphics("./img/consola_multiplicacion_3.jpg")
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 5</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable `x` (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 6</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable `x` (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
@@ -145,7 +176,7 @@ x <- (3 + 4) * 10
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 6</strong>: asigna un valor positivo a `x` y calcula  su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 7</strong>: asigna un valor positivo a `x` y calcula  su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
@@ -173,7 +204,7 @@ Las órdenes `sqrt(x)` y `abs(y)` se llaman <mark>**funciones**</mark>, y la var
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 7</strong>: usando la variable `x` ya definida, calcula `x - 5` y guárdalo en una nueva variable `z` (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 8</strong>: usando la variable `x` ya definida, calcula la resta `x - 5` y guárdala en una nueva variable `z` (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
@@ -188,13 +219,13 @@ z
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 8</strong>: usando las variables `x` y `z` ya definidas, calcula la raíz cuadrada del máximo entre ambas, y guárdalo en una nueva variable `t`. Hazlo en un script en lugar de en consola (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 9</strong>: usando las variables `x` y `z` ya definidas, calcula el máximo de ambas, y guárdalo en una nueva variable `t`. (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
 
 ```{r}
-t <- sqrt(max(x, z)) 
+t <- max(x, z)
 t
 ```
 <!-- tocstop -->
@@ -219,6 +250,8 @@ Scripts usados:
 * [**script02.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R): tipos de datos y funciones usadas con ellos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R>
 
 ::::
+
+
 (haz click en las flechas para ver soluciones)
 
 <details>
@@ -299,7 +332,7 @@ days(today() - fecha_nacimiento)
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  <summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años (`edad < 30`); ii) con hermanos (`hermanos == TRUE`); iii) nacido en 1990 o posterior (`fecha_nacimiento >= as.Date("1990-01-01")`). </summary>
   
 <!-- toc -->
 - Solución:
@@ -309,6 +342,11 @@ days(today() - fecha_nacimiento)
 edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos
 ```
 
+```{r}
+# otra forma
+edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos == TRUE
+```
+
 <!-- tocstop -->
 </details>
 
@@ -316,7 +354,7 @@ edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 6</strong>: obtén una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  <summary>📝<strong>Ejercicio 6</strong>: modifica el código del ejercicio anterior para obtener una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. Al contrario que antes, no necesitamos que se cumplan todas, nos basta con que se cumple al menos una. </summary>
   
 <!-- toc -->
 - Solución:
@@ -334,7 +372,7 @@ edad < 30 | fecha_nacimiento >= as.Date("1990-01-01") | hermanos
 
 
 <details>
-  <summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana. </summary>
+  <summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana con las funciones `week`, `wday` y `weekdays`. </summary>
   
 <!-- toc -->
 - Solución:
@@ -1193,7 +1231,7 @@ cat(ifelse(hour(fecha_actual) > 6 & hour(fecha_actual) < 14,
 
 Scripts usados:
 
-* [**script08.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R): if-else.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R>
+* [**script08.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R>
 ::::
 
 (haz click en las flechas para ver soluciones)
@@ -1369,4 +1407,205 @@ dinero
 
 
 
+
+
+
+## Funciones
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script09.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R>
+::::
+
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary><strong>Ejercicio 1</strong>: modifica el código inferior para definir una función llamada `funcion_suma`, de forma que dados dos elementos, devuelve su suma.
+  
+```{r eval = FALSE}
+# Definimos función
+nombre <- function(x, y) {
+  
+  # Sumamos
+  suma <- # código a ejecutar
+  
+  # ¿Qué devolvemos?
+  return()
+}
+
+# Aplicamos la función
+suma(3, 7)
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Definimos función
+funcion_suma <- function(x, y) {
+  
+  # Sumamos
+  suma <- x + y
+  
+  # Devolvemos la salida
+  return(suma)
+}
+
+# Aplicamos la función
+funcion_suma(3, 7)
+```
+
+</details>
+
+&nsbp;
+
+<details>
+  <summary><strong>Ejercicio 2</strong>: modifica el código inferior para definir una función llamada `funcion_producto`, de forma que dados dos elementos, devuelve su producto.
+  
+```{r eval = FALSE}
+# Definimos función
+nombre <- function(x, y) {
+  
+  # Multiplicamos
+  producto <- # código de la multiplicación
+  
+  # ¿Qué devolvemos?
+  return()
+}
+
+# Aplicamos la función
+producto(3, -7)
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Definimos función
+funcion_producto <- function(x, y) {
+  
+  # Multiplicamos
+  producto <- x * y
+  
+  # Devolvemos la salida
+  return(producto)
+}
+
+# Aplicamos la función
+funcion_producto(3, -7)
+```
+
+</details>
+
+&nbsp;
+
+<details>
+  <summary><strong>Ejercicio 3</strong>: modifica el código inferior para definir una función llamada `funcion_producto`, de forma que dados dos elementos, devuelve su producto, pero que por defecto calcule el cuadrado (es decir, por defecto un solo argumento, y el resultado sea el número por sí mismo)
+  
+```{r eval = FALSE}
+# Definimos función
+nombre <- function(x, y) {
+  
+  # Multiplicamos
+  producto <- # código de la multiplicación
+  
+  # ¿Qué devolvemos?
+  return()
+}
+
+# Aplicamos la función solo con un argumento
+producto(3)
+
+# Aplicamos la función con dos argumentos
+producto(3, -7)
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Definimos función
+funcion_producto <- function(x, y = x) {
+  
+  # Multiplicamos
+  producto <- x * y
+  
+  # Devolvemos la salida
+  return(producto)
+}
+
+# Aplicamos la función
+funcion_producto(3) # por defecto x = 3, y = 3
+funcion_producto(3, -7)
+```
+
+</details>
+
+&nbsp;
+
+<details>
+  <summary><strong>Ejercicio 4</strong>: define una función llamada `igualdad_nombres` que, dados dos nombres `persona_1` e `persona_2`, nos diga si son iguales o no. Hazlo considerando importantes las mayúsculas, y sin que importen las mayúsculas. Recuerda que con `toupper()` podemos pasar todo un texto a mayúscula. </summary>
+  
+- Solución:
+
+```{r}
+# Distinguiendo mayúsculas
+igualdad_nombres <- function(persona_1, persona_2) {
+  
+  return(persona_1 == persona_2)
+}
+igualdad_nombres("Javi", "javi")
+igualdad_nombres("Javi", "Lucía")
+
+# Sin importar mayúsculas
+igualdad_nombres <- function(persona_1, persona_2) {
+  
+  return(toupper(persona_1) == toupper(persona_2))
+}
+igualdad_nombres("Javi", "javi")
+igualdad_nombres("Javi", "Lucía")
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 5</strong>: define una función llamada `pares` que, dados dos números `x` e `y`, nos diga si la suma de ambos es par o no.
+  
+Recuerda que con `%%` podemos obtener el resto de un número al dividir entre 2.
+
+```{r}
+2 %% 2 # par, resto 0
+3 %% 2 # impar, resto 1
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Definimos función
+pares <- function(x, y) {
+  
+  # Sumamos
+  suma <- x + y
+  
+  # Comprobamos si es par
+  par <- suma %% 2 == 0
+  
+  # Devolvemos la salida
+  return(par)
+}
+
+# Aplicamos la función
+pares(1, 3) # suma 4 (par)
+pares(2, 7) # suma 9 (impar)
+```
+
+</details>
+
+&nbsp; 
 

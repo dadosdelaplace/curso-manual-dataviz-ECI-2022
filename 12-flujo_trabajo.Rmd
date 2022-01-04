@@ -16,7 +16,7 @@ colorize <- function(x, color) {
 }
 ```
 
-# (PART) Flujo de trabajo {-}
+# (PART) Haciendo el trabajo más fácil {-}
 
 # Primer proyecto de trabajo {#proyecto}
 

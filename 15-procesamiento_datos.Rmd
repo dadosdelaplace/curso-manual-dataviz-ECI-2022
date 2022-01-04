@@ -16,9 +16,9 @@ colorize <- function(x, color) {
 }
 ```
 
-# (PART) EXPLORANDO: introducción al análisis exploratorio de datos{-}
+# (PART) Empezando a explorator datos{-}
 
-# Tidy data: ordenando datos {#tidydata}
+# Tidy data: datos ordenadicos {#tidydata}
 
 Empieza lo interesante :)
 

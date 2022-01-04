@@ -22,7 +22,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R): ejercicio 4. Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R>
+* [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R): ejercicio 5. Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R>
 
 ::::
 
@@ -224,7 +224,37 @@ knitr::include_graphics("./img/consola_multiplicacion.jpg")
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero ahora guarda el resultado de la multiplicación en una variable `c`. Para ver el resultado guardado en `c` escribe dicha variable en consola (**haz click** en la flecha para la solución propuesta). </summary>
+  <summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para definir dos variables `c` y `d`, con valores `3` y `-1`, y calcular la división `c/d` (**haz click** en la flecha para la solución propuesta).
+  
+```{r eval = FALSE}
+# Definición de variables
+c <- 
+d <-
+
+# Operación (división)
+c ? d
+```
+</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Definición de variables
+c <- 3
+d <- -1
+
+# División
+a / b
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: repite el ejercicio 1 pero ahora guarda el resultado de la multiplicación final en una variable `c`. Para ver el resultado guardado en `c` escribe dicha variable en consola (**haz click** en la flecha para la solución propuesta). </summary>
   
 <!-- toc -->
 - Solución:
@@ -251,7 +281,7 @@ knitr::include_graphics("./img/consola_multiplicacion_2.jpg")
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: asigna ahora los valores `1`, `-2`, `3` a tres variables `a`, `b` y `c`, y calcula la raíz cuadrada de cada uno. </summary>
+  <summary>📝<strong>Ejercicio 4</strong>: asigna ahora los valores `1`, `-2`, `3` a tres variables `a`, `b` y `c`, y calcula la raíz cuadrada de cada uno. </summary>
   
 <!-- toc -->
 - Solución:
@@ -275,7 +305,7 @@ sqrt(c)
 
 
 <details>
-  <summary>📝<strong>Ejercicio 4</strong>: repite el ejercicio 2 pero ahora escribe el código en un script (fichero `.R`, guardado en [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
+  <summary>📝<strong>Ejercicio 5</strong>: repite el ejercicio 3 pero ahora escribe el código en un script (fichero de `.R`, guardado en [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R)). Recuerda al acabar seleccionar las líneas a ejecutar y clickar `Run`, o bien guardar el script con `Source on save` activado (**haz click** en la flecha para la solución propuesta). </summary>
   
 <!-- toc -->
 - Solución:
@@ -292,7 +322,7 @@ knitr::include_graphics("./img/consola_multiplicacion_3.jpg")
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 5</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable `x` (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 6</strong>: calcula en consola la suma de 3 más 4, y todo ello multiplicado por 10, y asígnalo a una variable `x` (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
@@ -308,7 +338,7 @@ x <- (3 + 4) * 10
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 6</strong>: asigna un valor positivo a `x` y calcula  su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 7</strong>: asigna un valor positivo a `x` y calcula  su raíz cuadrada; asigna otro negativo y calcula su valor absoluto (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
@@ -336,7 +366,7 @@ Las órdenes `sqrt(x)` y `abs(y)` se llaman <mark>**funciones**</mark>, y la var
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 7</strong>: usando la variable `x` ya definida, calcula `x - 5` y guárdalo en una nueva variable `z` (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 8</strong>: usando la variable `x` ya definida, calcula la resta `x - 5` y guárdala en una nueva variable `z` (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
@@ -351,13 +381,13 @@ z
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 8</strong>: usando las variables `x` y `z` ya definidas, calcula la raíz cuadrada del máximo entre ambas, y guárdalo en una nueva variable `t`. Hazlo en un script en lugar de en consola (**haz click** en la flecha para la solución propuesta).</summary>
+  <summary>📝<strong>Ejercicio 9</strong>: usando las variables `x` y `z` ya definidas, calcula el máximo de ambas, y guárdalo en una nueva variable `t`. (**haz click** en la flecha para la solución propuesta).</summary>
   
 <!-- toc -->
 - Solución:
 
 ```{r}
-t <- sqrt(max(x, z)) 
+t <- max(x, z)
 t
 ```
 <!-- tocstop -->

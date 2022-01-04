@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 2 Instalación | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
-<meta name="description" content="En breve daremos nuestros primeros pasos en R pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un...">
+<meta name="description" content="En breve daremos nuestros primeros pasos pero antes necesitamos instalar algunas cosas. No serán tantas. Para entender lo que instalamos pensaremos que vamos a escribir un libro. ¿Qué necesitamos?...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 2 Instalación | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="En breve daremos nuestros primeros pasos en R pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un...">
+<meta property="og:description" content="En breve daremos nuestros primeros pasos pero antes necesitamos instalar algunas cosas. No serán tantas. Para entender lo que instalamos pensaremos que vamos a escribir un libro. ¿Qué necesitamos?...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 2 Instalación | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="En breve daremos nuestros primeros pasos en R pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un...">
+<meta name="twitter:description" content="En breve daremos nuestros primeros pasos pero antes necesitamos instalar algunas cosas. No serán tantas. Para entender lo que instalamos pensaremos que vamos a escribir un libro. ¿Qué necesitamos?...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -59,10 +59,15 @@
 <li class="book-part">Estructuras de control</li>
 <li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
 <li><a class="" href="bucles.html"><span class="header-section-number">11</span> Bucles</a></li>
-<li class="book-part">Flujo de trabajo</li>
+<li class="book-part">Haciendo el trabajo más fácil</li>
 <li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
+<li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
+<li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
+<li class="book-part">Empezando a explorator datos</li>
+<li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
+<li><a class="" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
 <li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">13</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -75,12 +80,12 @@
 <h1>
 <span class="header-section-number">Capítulo 2</span> Instalación<a class="anchor" aria-label="anchor" href="#instalacion"><i class="fas fa-link"></i></a>
 </h1>
-<p>En breve daremos nuestros primeros pasos en <code>R</code> pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un libro. <mark><strong>¿Qué necesitamos?</strong></mark></p>
+<p>En breve daremos nuestros primeros pasos pero antes necesitamos instalar algunas cosas. No serán tantas. Para entender lo que instalamos pensaremos que vamos a escribir un libro. <mark><strong>¿Qué necesitamos?</strong></mark></p>
 <ul>
 <li>
 <mark><strong>Gramática/ortografía</strong></mark>: en nuestro caso será <code>R</code>, el lenguaje de programación que usaremos.</li>
 <li>
-<mark><strong>Word</strong></mark>: al igual que podemos escribir en castellano de distintas maneras (en un Word, un post-it, un cuaderno, etc), cuando programamos podemos trabajar en distintos <strong>entornos de desarrollo (IDE)</strong>. En nuestro caso escribiremos y programaremos en <code>RStudio</code>, el programa que será nuestro <strong>Word</strong> para escribir en lenguaje <code>R</code>.</li>
+<mark><strong>Word</strong></mark>: al igual que podemos escribir en castellano de distintas maneras (en un Word, un post-it, un cuaderno, etc), cuando programamos podemos trabajar en distintos <strong>entornos de desarrollo (IDE)</strong>. En nuestro caso escribiremos y programaremos en <code>RStudio</code>, nuestro <strong>Word</strong> para escribir en lenguaje <code>R</code>.</li>
 </ul>
 <div id="instalacionR" class="section level2">
 <h2>
@@ -285,7 +290,7 @@ Imagen/gráfica 2.14: Personalizar el color de fondo de nuestro editor, la letra
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 28-12-2021.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 04-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

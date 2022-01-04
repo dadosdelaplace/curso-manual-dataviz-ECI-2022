@@ -20,10 +20,10 @@ colorize <- function(x, color) {
 
 # Instalación {#instalacion}
 
-En breve daremos nuestros primeros pasos en `R` pero antes necesitamos instalar algunas cosas. No vamos a necesitar tantas, y para entender lo que instalamos pensaremos que vamos a escribir un libro. <mark>**¿Qué necesitamos?**</mark>
+En breve daremos nuestros primeros pasos pero antes necesitamos instalar algunas cosas. No serán tantas. Para entender lo que instalamos pensaremos que vamos a escribir un libro. <mark>**¿Qué necesitamos?**</mark>
 
 * <mark>**Gramática/ortografía**</mark>: en nuestro caso será `R`, el lenguaje de programación que usaremos.
-* <mark>**Word**</mark>: al igual que podemos escribir en castellano de distintas maneras (en un Word, un post-it, un cuaderno, etc), cuando programamos podemos trabajar en distintos **entornos de desarrollo (IDE)**. En nuestro caso escribiremos y programaremos en `RStudio`, el programa que será nuestro **Word** para escribir en lenguaje `R`.
+* <mark>**Word**</mark>: al igual que podemos escribir en castellano de distintas maneras (en un Word, un post-it, un cuaderno, etc), cuando programamos podemos trabajar en distintos **entornos de desarrollo (IDE)**. En nuestro caso escribiremos y programaremos en `RStudio`, nuestro **Word** para escribir en lenguaje `R`.
 
 ## Instalación de R {#instalacionR}
 

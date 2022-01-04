@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 13 Funciones | Analizando datos, visualizando información, contando historias</title>
+<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
+<meta name="description" content="Scripts usados: script09.R: funciones. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R  En R no solo podemos usar las funciones predeterminadas que vienen ya...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 13 Funciones | Analizando datos, visualizando información, contando historias">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/logo_R.png">
+<meta property="og:description" content="Scripts usados: script09.R: funciones. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R  En R no solo podemos usar las funciones predeterminadas que vienen ya...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 13 Funciones | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:description" content="Scripts usados: script09.R: funciones. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R  En R no solo podemos usar las funciones predeterminadas que vienen ya...">
+<meta name="twitter:image" content="/img/logo_R.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analizando datos, visualizando información, contando historias</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Toma de contacto</li>
+<li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
+<li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
+<li><a class="" href="que-es-R.html"><span class="header-section-number">3</span> ¿Qué es R?</a></li>
+<li><a class="" href="primeros-pasos.html"><span class="header-section-number">4</span> Primeros pasos</a></li>
+<li class="book-part">Conceptos básicos</li>
+<li><a class="" href="tipos-datos.html"><span class="header-section-number">5</span> Tipos de datos</a></li>
+<li><a class="" href="vectores.html"><span class="header-section-number">6</span> Vectores</a></li>
+<li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
+<li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
+<li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
+<li class="book-part">Estructuras de control</li>
+<li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
+<li><a class="" href="bucles.html"><span class="header-section-number">11</span> Bucles</a></li>
+<li class="book-part">Haciendo el trabajo más fácil</li>
+<li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
+<li><a class="active" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
+<li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
+<li class="book-part">Empezando a explorator datos</li>
+<li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
+<li><a class="" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
+<li class="book-part">Recursos</li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="funciones" class="section level1">
+<h1>
+<span class="header-section-number">Capítulo 13</span> Funciones<a class="anchor" aria-label="anchor" href="#funciones"><i class="fas fa-link"></i></a>
+</h1>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R"><strong>script09.R</strong></a>: funciones. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R</a>
+</li>
+</ul>
+</div>
+<p>En <code>R</code> no solo podemos usar las funciones predeterminadas que vienen ya cargadas, como o las de los paquetes que instalamos, como <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> o <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, sino que además podemos <mark><strong>crear nuestras propias funciones</strong></mark>, para automatizar tareas que vayamos a repetir a lo largo de nuestro código.</p>
+<p><mark><strong>¿Cómo crear nuestra propia función?</strong></mark> Veamos su esquema básico. Para crear una función necesitamos</p>
+<ul>
+<li>Un nombre, por ejemplo <code>nombre_funcion</code> (sin espacios ni caracteres extraños)</li>
+<li>A dicho nombre le asignamos <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> la palabra reservada <code>function()</code>.</li>
+<li>Dentro de <code>function()</code> definimos los argumentos de entrada que usará la función.</li>
+<li>Dentro de <code>{}</code> incluiremos la órdenes.</li>
+<li>Finalizaremos la función con <code><a href="https://rdrr.io/r/base/function.html">return()</a></code>, indicando lo que queremos que devuelva la función.</li>
+</ul>
+<div class="sourceCode" id="cb842"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nombre_funcion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argumento_1</span>, <span class="va">argumento_2</span>, <span class="va">...</span> <span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Código que queramos ejecutar en la función</span>
+  <span class="va">código</span>
+  
+  <span class="co"># Salida</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">variable_salida</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>En el esquema anterior</p>
+<ul>
+<li>
+<strong>argumento_1, argumento_2, …</strong>: serán los argumentos de entrada, los argumentos que toma la función para ejecutar el código que tiene dentro</li>
+<li>
+<strong>código</strong>: líneas de código que queramos que ejecute la función. <strong>IMPORTANTE</strong>: todas las variables que definamos dentro de la función son variables locales, solo existirán dentro de la función salvo que especifiquemos lo contrario.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/function.html">return(variable_salida)</a></code>: dentro del comando <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> se introducirá la salida de la función, que puede ser un número, un <code>data.frame</code>, una gráfica, una matriz…</li>
+</ul>
+<div id="primera-función" class="section level2">
+<h2>
+<span class="header-section-number">13.1</span> Primera función<a class="anchor" aria-label="anchor" href="#primera-funci%C3%B3n"><i class="fas fa-link"></i></a>
+</h2>
+<p>Veamos un <strong>ejemplo muy simple de función</strong> para <mark><strong>calcular el área de un rectángulo</strong></mark>: los argumentos de entrada serán los lados (<code>lado_1</code> y <code>lado_2</code>), y el valor a devolver será el área <code>lado_1 * lado_2</code> (el producto de los lados).</p>
+<div class="sourceCode" id="cb843"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
+<span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Cuerpo de la función (lo que hace)</span>
+  <span class="va">area</span> <span class="op">&lt;-</span> <span class="va">lado_1</span> <span class="op">*</span> <span class="va">lado_2</span>
+  
+  <span class="co"># Resultado (lo que devuelve)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">area</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>También podemos hacer la definición directa sin almacenar variables por el camino</p>
+<div class="sourceCode" id="cb844"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
+<span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span><span class="op">)</span> <span class="op">{</span>
+
+  <span class="co"># Resultado que devolvemos</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">lado_1</span> <span class="op">*</span> <span class="va">lado_2</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p><mark><strong>¿Cómo aplicar la función?</strong></mark> Con el nombre y los valores de los argumentos: usamos <code>calcular_area()</code> y le pasamos los dos argumentos de entrada.</p>
+<div class="sourceCode" id="cb845"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Aplicación de la función con los parámetros por defecto</span>
+<span class="fu">calcular_area</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># área de un rectángulo 5 x 3 </span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>Imagina ahora que nos damos cuenta que el 90% de las veces el área que nos toca calcular fuese la de un cuadrado (es decir, solo necesitamos un argumento, un lado): <code>R</code> nos permite definir <mark><strong>argumentos por defecto en la función</strong></mark> (tomarán dicho valor salvo que le asignemos otro). ¿<strong>Por qué no asignar <code>lado_2 = lado_1</code> por defecto</strong>, para ahorrar líneas de código y tiempo?</p>
+<div class="sourceCode" id="cb847"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
+<span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span> <span class="op">=</span> <span class="va">lado_1</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Cuerpo de la función</span>
+  <span class="va">area</span> <span class="op">&lt;-</span> <span class="va">lado_1</span> <span class="op">*</span> <span class="va">lado_2</span>
+  
+  <span class="co"># Resultado que devolvemos</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">area</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>Ahora, si no indicamos nada, por defecto el segundo lado será igual al primero (un cuadrado).</p>
+<div class="sourceCode" id="cb848"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">calcular_area</span><span class="op">(</span>lado_1 <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># si no indicamos nada, lado_2 = lado_1</span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p>Compliquemos un poco la función y añadamos en la salida los valores de cada lado, etiquetados como <code>lado_1</code> y <code>lado_2</code>.</p>
+<div class="sourceCode" id="cb850"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
+<span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span> <span class="op">=</span> <span class="va">lado_1</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Cuerpo de la función</span>
+  <span class="va">area</span> <span class="op">&lt;-</span> <span class="va">lado_1</span> <span class="op">*</span> <span class="va">lado_2</span>
+  
+  <span class="co"># Resultado</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"area"</span> <span class="op">=</span> <span class="va">area</span>, <span class="st">"lado_1"</span> <span class="op">=</span> <span class="va">lado_1</span>, <span class="st">"lado_2"</span> <span class="op">=</span> <span class="va">lado_2</span><span class="op">)</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>Veamos que nos devuelve ahora</p>
+<div class="sourceCode" id="cb851"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">salida</span> <span class="op">&lt;-</span> <span class="fu">calcular_area</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="va">salida</span></code></pre></div>
+<pre><code>##   area lado_1 lado_2 
+##     15      5      3</code></pre>
+<div class="sourceCode" id="cb853"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">salida</span><span class="op">[</span><span class="st">"area"</span><span class="op">]</span></code></pre></div>
+<pre><code>## area 
+##   15</code></pre>
+<div class="sourceCode" id="cb855"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">salida</span><span class="op">[</span><span class="st">"lado_1"</span><span class="op">]</span></code></pre></div>
+<pre><code>## lado_1 
+##      5</code></pre>
+<div class="sourceCode" id="cb857"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">salida</span><span class="op">[</span><span class="st">"lado_2"</span><span class="op">]</span></code></pre></div>
+<pre><code>## lado_2 
+##      3</code></pre>
+<p>Antes nos daba igual el orden de los argumentos pero ahora no, ya que en la salida incluimos <code>lado_1</code> y <code>lado_2</code>. Es <strong>altamente recomendable</strong> hacer la llamada a la función indicando explícitamente los argumentos <code>argumento_1 = valor_1</code> para <strong>mejorar la legibilidad e interpretabilidad de nuestro código</strong> (recuerda: programa como escribirías en castellano).</p>
+<div class="sourceCode" id="cb859"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">calcular_area</span><span class="op">(</span>lado_1 <span class="op">=</span> <span class="fl">5</span>, lado_2 <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<pre><code>##   area lado_1 lado_2 
+##     15      5      3</code></pre>
+</div>
+<div id="variables-localesglobales" class="section level2">
+<h2>
+<span class="header-section-number">13.2</span> Variables locales/globales<a class="anchor" aria-label="anchor" href="#variables-localesglobales"><i class="fas fa-link"></i></a>
+</h2>
+<p>¿Qué sucede si nombramos a una variable dentro de una función que se nos ha olvidado asignar un valor dentro de la misma? Debemos ser cautos al usar funciones en <code>R</code>, ya que debido a la <mark><strong>«regla lexicográfica»</strong></mark>, si una variable no se define dentro de la función, <code>R</code> buscará dicha variable en el entorno de variables.</p>
+<p>Construyamos una función de ejemplo que no toma ningún argumento de entrada: solo imprime el valor de <code>x</code>. Como dentro de la función <code>x</code> no está definida, usará el valor definido fuera de la función.</p>
+<div class="sourceCode" id="cb861"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">funcion_ejemplo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+    
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># No devuelve nada per se, solo realiza la acción de imprimir en consola</span>
+<span class="op">}</span>
+<span class="fu">funcion_ejemplo</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Si una <strong>variable ya está definida fuera de la función (entorno global)</strong>, y además es usada dentro de la misma cambiando su valor, el valor de dicha variable solo cambia dentro de la función pero no en el entorno global.</p>
+<div class="sourceCode" id="cb863"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">funcion_ejemplo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+    
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># lo que vale dentro</span>
+<span class="op">}</span>
+<span class="fu">funcion_ejemplo</span><span class="op">(</span><span class="op">)</span> <span class="co"># lo que vale dentro</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># lo que vale fuera</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Si queremos que <strong>además de cambiar localmente lo haga globalmente</strong> deberemos usar la <strong>doble asignación</strong> (<code><a href="https://rdrr.io/r/base/assignOps.html">&lt;&lt;-</a></code>).</p>
+<div class="sourceCode" id="cb867"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">funcion_ejemplo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="co"># no cambia globalmente, solo localmente</span>
+  <span class="va">y</span> <span class="op">&lt;&lt;-</span> <span class="fl">0</span> <span class="co"># cambia globalmente</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu">funcion_ejemplo</span><span class="op">(</span><span class="op">)</span> <span class="co"># lo que vale dentro</span></code></pre></div>
+<pre><code>## [1] 3
+## [1] 0</code></pre>
+<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="co"># lo que vale fuera</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y</span> <span class="co"># lo que vale fuera</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+</div>
+<div id="ejercicios-7" class="section level2">
+<h2>
+<span class="header-section-number">13.3</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-7"><i class="fas fa-link"></i></a>
+</h2>
+<details><p><summary><strong>Ejercicio 1</strong>: modifica el código inferior para definir una función llamada <code>funcion_suma</code>, de forma que dados dos elementos, devuelve su suma.</summary></p>
+<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Sumamos</span>
+  <span class="va">suma</span> <span class="op">&lt;-</span> <span class="co"># código a ejecutar</span>
+  
+  <span class="co"># ¿Qué devolvemos?</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">suma</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span></code></pre></div>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">funcion_suma</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Sumamos</span>
+  <span class="va">suma</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
+  
+  <span class="co"># Devolvemos la salida</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">suma</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">funcion_suma</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+</details><p>&amp;nsbp;</p>
+<details><p><summary><strong>Ejercicio 2</strong>: modifica el código inferior para definir una función llamada <code>funcion_producto</code>, de forma que dados dos elementos, devuelve su producto.</summary></p>
+<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Multiplicamos</span>
+  <span class="va">producto</span> <span class="op">&lt;-</span> <span class="co"># código de la multiplicación</span>
+  
+  <span class="co"># ¿Qué devolvemos?</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">producto</span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">funcion_producto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Multiplicamos</span>
+  <span class="va">producto</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span>
+  
+  <span class="co"># Devolvemos la salida</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">producto</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] -21</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 3</strong>: modifica el código inferior para definir una función llamada <code>funcion_producto</code>, de forma que dados dos elementos, devuelve su producto, pero que por defecto calcule el cuadrado (es decir, por defecto un solo argumento, y el resultado sea el número por sí mismo)</summary></p>
+<div class="sourceCode" id="cb879"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Multiplicamos</span>
+  <span class="va">producto</span> <span class="op">&lt;-</span> <span class="co"># código de la multiplicación</span>
+  
+  <span class="co"># ¿Qué devolvemos?</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función solo con un argumento</span>
+<span class="fu">producto</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+
+<span class="co"># Aplicamos la función con dos argumentos</span>
+<span class="fu">producto</span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">funcion_producto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Multiplicamos</span>
+  <span class="va">producto</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span>
+  
+  <span class="co"># Devolvemos la salida</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">producto</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="co"># por defecto x = 3, y = 3</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] -21</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 4</strong>: define una función llamada <code>igualdad_nombres</code> que, dados dos nombres <code>persona_1</code> e <code>persona_2</code>, nos diga si son iguales o no. Hazlo considerando importantes las mayúsculas, y sin que importen las mayúsculas. Recuerda que con <code><a href="https://rdrr.io/r/base/chartr.html">toupper()</a></code> podemos pasar todo un texto a mayúscula. </summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Distinguiendo mayúsculas</span>
+<span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">persona_1</span> <span class="op">==</span> <span class="va">persona_2</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb886"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb888"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Sin importar mayúsculas</span>
+<span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">persona_1</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">persona_2</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb890"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 5</strong>: define una función llamada <code>pares</code> que, dados dos números <code>x</code> e <code>y</code>, nos diga si la suma de ambos es par o no.</summary></p>
+<p>Recuerda que con <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code> podemos obtener el resto de un número al dividir entre 2.</p>
+<div class="sourceCode" id="cb892"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">2</span> <span class="op">%%</span> <span class="fl">2</span> <span class="co"># par, resto 0</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb894"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">3</span> <span class="op">%%</span> <span class="fl">2</span> <span class="co"># impar, resto 1</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb896"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">pares</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Sumamos</span>
+  <span class="va">suma</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span>
+  
+  <span class="co"># Comprobamos si es par</span>
+  <span class="va">par</span> <span class="op">&lt;-</span> <span class="va">suma</span> <span class="op">%%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span>
+  
+  <span class="co"># Devolvemos la salida</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">par</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">pares</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># suma 4 (par)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb898"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pares</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># suma 9 (impar)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</details><p> </p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></div>
+<div class="next"><a href="listas.html"><span class="header-section-number">14</span> Listas</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#funciones"><span class="header-section-number">13</span> Funciones</a></li>
+<li><a class="nav-link" href="#primera-funci%C3%B3n"><span class="header-section-number">13.1</span> Primera función</a></li>
+<li><a class="nav-link" href="#variables-localesglobales"><span class="header-section-number">13.2</span> Variables locales/globales</a></li>
+<li><a class="nav-link" href="#ejercicios-7"><span class="header-section-number">13.3</span> 📝 Ejercicios</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/13-funciones.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/13-funciones.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 04-01-2022.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

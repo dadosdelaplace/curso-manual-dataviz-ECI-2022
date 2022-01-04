@@ -59,10 +59,15 @@
 <li class="book-part">Estructuras de control</li>
 <li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
 <li><a class="" href="bucles.html"><span class="header-section-number">11</span> Bucles</a></li>
-<li class="book-part">Flujo de trabajo</li>
+<li class="book-part">Haciendo el trabajo más fácil</li>
 <li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
+<li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
+<li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
+<li class="book-part">Empezando a explorator datos</li>
+<li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
+<li><a class="" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
 <li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">13</span> 📝 Ejercicios recopilados</a></li>
+<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -89,43 +94,43 @@
 </h2>
 <p>Hemos dicho que un número es un vector de longitud 1, así que toda <mark><strong>operación aritmética</strong></mark> (suma, resta, multiplicación, etc) que podamos hacer con un número la vamos a poder a hacer con un vector de números</p>
 <p>Si hacemos por ejemplo la operación <code>2 * z</code>, siendo <code>z</code> un vector, lo que sucederá es que <mark><strong>la operación se realizará en CADA ELEMENTO del vector</strong></mark>.</p>
-<div class="sourceCode" id="cb375"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Multiplicamos por 2 a CADA ELEMENTO del vector</span>
 <span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>
 <span class="fl">2</span> <span class="op">*</span> <span class="va">z</span></code></pre></div>
 <pre><code>## [1]  4  8 12</code></pre>
 <p>De la misma manera sucede si sumamos o restamos una constante.</p>
-<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sumamos 3 a CADA ELEMENTO DEL VECTOR</span>
 <span class="va">z</span> <span class="op">+</span> <span class="fl">3</span></code></pre></div>
 <pre><code>## [1] 5 7 9</code></pre>
-<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Restamos 5 a CADA ELEMENTO DEL VECTOR</span>
 <span class="va">z</span> <span class="op">-</span> <span class="fl">5</span></code></pre></div>
 <pre><code>## [1] -3 -1  1</code></pre>
 <p>De la misma manera se pueden definir sumas de vectores, como <code>z + x</code>, raíces cuadradas <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt(z)</a></code> o elevar <strong>cada elemento</strong> al cuadrado <code>z^2</code>.</p>
-<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>
 <span class="va">x</span> <span class="op">+</span> <span class="va">z</span> <span class="co"># suma de vectores </span></code></pre></div>
 <pre><code>## [1]  3  7 11</code></pre>
-<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="co"># Hacemos la raíz cuadrada de CADA ELEMENTO DEL VECTOR</span></code></pre></div>
 <pre><code>## [1] 1.414214 2.000000 2.449490</code></pre>
-<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">z</span><span class="op">^</span><span class="fl">2</span> <span class="co"># Elevamos al cuadrado CADA ELEMENTO DEL VECTOR</span></code></pre></div>
 <pre><code>## [1]  4 16 36</code></pre>
 <p> </p>
 <p>En <code>R</code>, salvo que especifiquemos lo contrario, <strong><span style="color: #20935E;">toda operación ARITMÉTICA que hagas a un vector será elemento a elemento</span></strong>. Esto último es bastante importante que no se te olvide ya que en otros lenguajes no siempre es así.</p>
 <p> </p>
 <p>Dado que la operación (por ejemplo, una suma) se realiza <strong>elemento a elemento</strong>, ¿qué sucederá si <mark><strong>sumamos dos vectores de distinta longitud</strong></mark>? Prueba a definir un vector con los 4 primeros impares, e intentar hacer la suma <code>z + y</code> (un vector de longitud 3 más un vector de longitud 4).</p>
-<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span>
 <span class="va">z</span> <span class="op">+</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1]  3  7 11  9</code></pre>
 <p><code>R</code> intenta molestarte lo menos posible, así que lo que hace es <mark><strong>reciclar elementos</strong></mark>: si tiene un vector de 4 elementos y le intentas sumar uno de 3 elementos, lo que hará será <strong>reciclar</strong> elementos del vector con menor longitud: hará <code>1+2</code>, <code>3+4</code>, <code>5+6</code> pero… <code>7+2</code> (vuelve al primero).</p>
 <p> </p>
 <p>Como hemos comentado anteriormente, los <mark><strong>valores lógicos</strong></mark><code>TRUE/FALSE</code> son guardados internamente como <code>0/1</code> por lo que podemos usar <strong>operaciones aritméticas con ellos</strong>. Por ejemplo, si queremos averiguar el número de elementos de un vector que cumplen una condición lógica (por ejemplo, <code>&lt; 2</code>), los que lo hagan tendrán asignado un <code>1</code> y los que no un <code>0</code>, por lo que basta con sumar dicho vector lógico para obtener el número de elementos que cumplen dicha condición.</p>
-<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># sumamos el vector de TRUE/FALSE --&gt; número de TRUE</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 </div>
@@ -152,26 +157,26 @@
 <p><span class="math display">\[Mo_x = \displaystyle \arg \max_{x_i} f_i  , \quad f_i = \frac{\#\left\lbrace x_j = x_i \right\rbrace}{n}\]</span></p>
 <p> </p>
 <p>He aquí un ejemplo de algunas funciones estadísticas útiles</p>
-<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># suma</span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># media</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># mediana</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># suma acumulada</span></code></pre></div>
 <pre><code>## [1]  1  4  9 16</code></pre>
 <p>Otra operación útil en estadística es calcular los <mark><strong>percentiles</strong></mark> con la función <code>quantiles()</code>.</p>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">13</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">23</span>, <span class="fl">24</span>, <span class="fl">29</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co"># Percentiles por defecto: cuartiles (0%-25%-50%-75%-100%)</span></code></pre></div>
 <pre><code>##    0%   25%   50%   75%  100% 
 ##  1.00  7.25 10.00 16.25 29.00</code></pre>
 <p>Recuerda que en <code>R</code> algunas <strong>funciones tienen argumentos por defecto</strong>, argumentos que no necesitan ser asignados un valor a priori. En el ejemplo de calcular los percentiles con <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code>, hay un argumento por defecto (con un valor ya asignado sino se especifica lo contrario) que es <code>probs = c(0, 0.25, 0.5, 0.75, 1)</code>. Pero dicho argumento por defecto puede ser cambiado, por ejemplo, para sacar los percentiles 15%-30%-70%-90%.</p>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">13</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">23</span>, <span class="fl">24</span>, <span class="fl">29</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">y</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span> <span class="co"># Percentiles p15, p30, p70 y p90</span></code></pre></div>
 <pre><code>##  15%  30%  70%  90% 
@@ -181,13 +186,13 @@
 <span class="header-section-number">7.2.1</span> Operaciones con ausentes<a class="anchor" aria-label="anchor" href="#operacionesausentes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para evitar que un dato ausente en nuestros datos nos impida hacer ciertas operaciones, en muchas funciones de <code>R</code> podemos añadir el argumento <code>na.rm = TRUE</code>: <strong>primero elimina los datos ausentes</strong>, y luego ejecuta la función.</p>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>
 
 <span class="co"># eliminando datos ausentes antes de aplicar la función</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3.75</code></pre>
 </div>
@@ -198,60 +203,60 @@
 </h2>
 <p>Ya sabemos definir variables que sean vectores (recuerda: colección de valores del <strong>mismo tipo</strong>). ¿Y si del <mark><strong>vector original queremos EXTRAER UN SUBCONJUNTO del mismo</strong></mark>, por ejemplo, los primeros 10 elementos?</p>
 <p><code>R</code> tiene varias formas de hacer esto pero la más sencilla es entendiendo que si yo quiero <mark><strong>acceder al elemento i-ésimo</strong></mark> de un vector, deberé usar el <strong>operador de selección <code>[i]</code></strong>. Veamos un ejemplo: definimos las edades de cinco personas y queremos saber la edad de la persona que ocupa el tercer lugar.</p>
-<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">32</span>, <span class="cn">NA</span>, <span class="fl">61</span><span class="op">)</span>
 <span class="va">edades</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="co"># accedemos a la edad de la tercera persona en la lista</span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span> <span class="co"># accedemos a la edad de la cuarta persona (que no la tenemos guardada)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Un número no es más que un vector de longitud uno, así que esta operación también la podemos aplicar <mark><strong>usando un vector de índices a seleccionar</strong></mark>, de forma que le podemos indicar simultaneamente que valores que queremos (por ejemplo, al tercer y cuarto elemento de nuestras edades).</p>
-<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span> <span class="co"># queremos acceder a la vez al tercer y cuarto elemento</span></code></pre></div>
 <pre><code>## [1] 32 NA</code></pre>
 <p>Esta lógica de acceder a elementos de vectores también sirve para nuestros <strong>vectores de caracteres</strong>.</p>
-<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hola"</span>, <span class="st">"qué"</span>, <span class="st">"tal"</span>, <span class="st">"todo"</span>, <span class="st">"ok"</span>, <span class="st">"?"</span><span class="op">)</span>
 <span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="co"># Solo queremos acceder a los elementos en la posición 1 y 2</span></code></pre></div>
 <pre><code>## [1] "hola" "qué"</code></pre>
 <p>Para acceder al último elemento de un vector podemos pasarle como índice la longitud de dicho vector (si el vector tiene longitud 6, el último elemento ocupará el lugar 6).</p>
-<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="co"># Solo accedemos a los elementos en la posición 1, 2 y además el que ocupa la última posición (recuerda: length(y) nos da la longitud total del vector)</span></code></pre></div>
 <pre><code>## [1] "hola" "qué"  "?"</code></pre>
 <p>Otras veces no querremos seleccionar un elemento en concreto sino <mark><strong>filtrar algunos elementos en concreto y no extraerlos, eliminarlos</strong></mark>, para lo cual deberemos repetir la misma operación pero con el signo <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code> delante: el operador <code>[-i]</code> no selecciona el elemento i-ésimo del vector sino que lo elimina en nuestro filtro.</p>
-<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span></code></pre></div>
 <pre><code>## [1] "hola" "qué"  "tal"  "todo" "ok"   "?"</code></pre>
-<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span> <span class="co"># Nos muestra todo y salvo el elemento que ocupa la segunda posición</span></code></pre></div>
 <pre><code>## [1] "hola" "tal"  "todo" "ok"   "?"</code></pre>
 <p> </p>
 <p>Sin embargo, <strong>lo habitual</strong> es que dicho <strong>filtro</strong> lo hagamos en base a una <mark><strong>condición lógica</strong></mark>. Supongamos que <code>x &lt;- c(7, 20, 18, 3, 19, 9, 13, 3, 45)</code> e <code>y &lt;- c(17, 21, 58, 33, 15, 59, 13, 1, 45)</code> son las edades de dos grupos de personas y que queremos quedarnos solo con los mayores edad. ¿Tenemos que andar averiguando en que posición se encuentran para luego seleccionarlos? No, vamos a <mark><strong>seleccionar los elementos que cumplen una condición dada</strong></mark>.</p>
-<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">20</span>, <span class="fl">18</span>, <span class="fl">3</span>, <span class="fl">19</span>, <span class="fl">9</span>, <span class="fl">13</span>, <span class="fl">3</span>, <span class="fl">45</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">21</span>, <span class="fl">58</span>, <span class="fl">33</span>, <span class="fl">15</span>, <span class="fl">59</span>, <span class="fl">13</span>, <span class="fl">1</span>, <span class="fl">45</span><span class="op">)</span>
 <span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">]</span> <span class="co"># mayores de 18 años del conjunto x</span></code></pre></div>
 <pre><code>## [1] 20 18 19 45</code></pre>
-<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span><span class="op">[</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">]</span> <span class="co"># mayores de 18 años del conjunto y</span></code></pre></div>
 <pre><code>## [1] 21 58 15 45</code></pre>
 <p>Lo que hemos hecho ha sido pasar como <strong>índices a seleccionar un vector lógico <code>TRUE/FALSE</code></strong>: solo filtrará los lugares donde se guarde un <code>TRUE</code>, aquellos que cumplen la condición lógica introducida.</p>
-<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span> <span class="co"># donde haya TRUE, lo seleccionará</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">]</span> <span class="co"># mayores de 18 años del conjunto x</span></code></pre></div>
 <pre><code>## [1] 20 18 19 45</code></pre>
 <p>Esto también nos puede servir para limpiar de datos ausentes, combinando la función <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code>, que nos localiza el lugar que ocupan los ausentes, con el operador <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>, que lo que hace es negar lo que venga detrás.</p>
-<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="cn">NA</span>, <span class="fl">20</span>, <span class="fl">3</span>, <span class="fl">19</span>, <span class="fl">21</span>, <span class="fl">25</span>, <span class="fl">80</span>, <span class="cn">NA</span><span class="op">)</span>
 <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span> <span class="co"># solo valores ausentes</span></code></pre></div>
 <pre><code>## [1] NA NA</code></pre>
-<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span> <span class="co"># sin valores ausentes: ! es el símbolo de la negación</span></code></pre></div>
 <pre><code>## [1]  7 20  3 19 21 25 80</code></pre>
 <p>También podemos probar a <mark><strong>combinar condiciones lógicas</strong></mark> para nuestra <strong>selección</strong>.</p>
-<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">25</span><span class="op">]</span> <span class="co"># los valores que cumplen ambas (&amp;): entre 18 y 25 años</span></code></pre></div>
 <pre><code>## [1] NA 20 19 21 25 NA</code></pre>
 <p>Como ves, si un valor es <code>NA</code>, la evaluación de una condición lógica sobre él (mayor o menor de 18 años) nos seguirá devolviendo <code>NA</code>.</p>
@@ -261,25 +266,25 @@
 <span class="header-section-number">7.3.1</span> Nombrando vectores<a class="anchor" aria-label="anchor" href="#nombrando-vectores"><i class="fas fa-link"></i></a>
 </h3>
 <p>Además <code>R</code> nos permite <mark><strong>dar significado léxico</strong></mark> a nuestros valores (significan algo, no solo números), pudiendo poner <strong>nombres a los elementos de un vector</strong>.</p>
-<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"edad"</span> <span class="op">=</span> <span class="fl">31</span>, <span class="st">"tlf"</span> <span class="op">=</span> <span class="fl">613910687</span>, <span class="st">"cp"</span> <span class="op">=</span> <span class="fl">33007</span><span class="op">)</span> <span class="co"># cada número tiene un significado distinto</span>
 <span class="va">x</span></code></pre></div>
 <pre><code>##      edad       tlf        cp 
 ##        31 613910687     33007</code></pre>
 <p>Esto es una ventaja ya que nos permite su selección usando dichos nombres: ya no elegimos el tercer número o el primero, sino el número que representa el teléfono y el código postal de una persona.</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"cp"</span><span class="op">)</span><span class="op">]</span> <span class="co"># seleccionamos los elementos que tienen ese nombre asignado</span></code></pre></div>
 <pre><code>##  edad    cp 
 ##    31 33007</code></pre>
 <p>Con la función <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> podemos, no solo consultar los nombres de una variable, sino cambiarlos a nuestro gusto.</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># Consultamos nombres</span></code></pre></div>
 <pre><code>## [1] "edad" "tlf"  "cp"</code></pre>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"años"</span>, <span class="st">"móvil"</span>, <span class="st">"dirección"</span><span class="op">)</span> <span class="co"># Cambiamos nombres</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># Consultamos nuevos nombres</span></code></pre></div>
 <pre><code>## [1] "años"      "móvil"     "dirección"</code></pre>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span></code></pre></div>
 <pre><code>##      años     móvil dirección 
 ##        31 613910687     33007</code></pre>
@@ -290,27 +295,27 @@
 <span class="header-section-number">7.3.2</span> which<a class="anchor" aria-label="anchor" href="#which"><i class="fas fa-link"></i></a>
 </h3>
 <p>Hemos visto como seleccionar elementos de un vector que cumplen una condición, para a veces no queremos el elemento en sí, sino el <mark><strong>lugar que ocupa</strong></mark>: <strong>¿qué valores de un vector cumplen una condición lógica, qué lugar ocupan?</strong> Para obtener dicho índice tenemos a nuestro disposición la función <code><a href="https://rdrr.io/r/base/which.html">which()</a></code>, que no nos devuelve el elemento en sí sino su lugar.</p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="cn">NA</span>, <span class="fl">20</span>, <span class="fl">3</span>, <span class="fl">19</span>, <span class="fl">21</span>, <span class="fl">25</span>, <span class="fl">80</span>, <span class="cn">NA</span><span class="op">)</span>
 <span class="va">x</span><span class="op">[</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">]</span> <span class="co"># Accedemos a los elementos que cumplen la condición</span></code></pre></div>
 <pre><code>## [1] NA 20 19 21 25 80 NA</code></pre>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="co"># Obtenemos los lugares que ocupan los elementos que cumplen la condición</span></code></pre></div>
 <pre><code>## [1] 3 5 6 7 8</code></pre>
 <p>Esta función es muy útil especialmente cuando queremos <strong>averiguar el valor que ocupa el máximo/mínimo</strong> de una colección de valores, con las funciones <code><a href="https://rdrr.io/r/base/which.min.html">which.max()</a></code> y <code><a href="https://rdrr.io/r/base/which.min.html">which.min()</a></code>.</p>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span></code></pre></div>
 <pre><code>## [1]  7 NA 20  3 19 21 25 80 NA</code></pre>
-<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># máximo de x (si no eliminamos NA, nos devolverá NA)</span></code></pre></div>
 <pre><code>## [1] 80</code></pre>
-<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># mínimo de x (si no eliminamos NA, nos devolverá NA)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># Lugar que ocupa el máximo</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># Lugar que ocupa el mínimo</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 </div>
@@ -319,11 +324,11 @@
 <span class="header-section-number">7.3.3</span> NULL<a class="anchor" aria-label="anchor" href="#null"><i class="fas fa-link"></i></a>
 </h3>
 <p>A veces además de <code>NA</code> y <code>NaN</code>, <code>R</code> nos muestra un dato llamado <code>NULL</code>. Cuando tenemos <code>NA</code> en alguna variable, el registro existe, pero no está relleno. Sin embargo, cuando tenemos un <code>NULL</code> significa que ese valor ni siquiera existe: no es un dato guardado pero cuyo valor desconocemos, es un dato que ni siquiera existe (por ejemplo, si guardamos datos de 7 personas, el dato de la octava persona no es <code>NA</code>, es que no hay octava persona directamente).</p>
-<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>
 <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="co"># NA: el registro existe pero sin dato</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># No hemos definido el nombre de las variables, así que devuelve NULL</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 </div>
@@ -333,19 +338,19 @@
 <span class="header-section-number">7.4</span> Ordenar<a class="anchor" aria-label="anchor" href="#ordenar"><i class="fas fa-link"></i></a>
 </h2>
 <p>Una acción habitual al trabajar con datos es <mark><strong>saber ordenarlos</strong></mark>: de menor a mayor edad, datos más recientes vs antiguos, etc. Para ello tenemos la función <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>, que podemos usar directamente para <strong>ordenar de menor a mayor</strong>. Vamos a ordenar, por ejemplo, una colección de edades de diferentes personas.</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">81</span>, <span class="fl">7</span>, <span class="fl">25</span>, <span class="fl">41</span>, <span class="fl">65</span>, <span class="fl">20</span>, <span class="fl">32</span>, <span class="fl">23</span>, <span class="fl">77</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">edades</span><span class="op">)</span> <span class="co"># orden de joven a mayor</span></code></pre></div>
 <pre><code>## [1]  7 20 23 25 32 41 65 77 81</code></pre>
 <p>Por defecto, <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> <strong>ordena de menor a mayor</strong>. Con el argumento opcional <code>decreasing = TRUE</code> podemos <strong>ordenar de mayor a menor</strong>.</p>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">edades</span>, decreasing <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># orden de mayor a joven</span></code></pre></div>
 <pre><code>## [1]  7 20 23 25 32 41 65 77 81</code></pre>
 <p>Otra forma de ordenar un vector es que <code>R</code> nos <strong>devuelva los índices de los elementos ordenados</strong>, y luego usar dichos índices para reorganizar los elementos, con la función <code><a href="https://rdrr.io/r/base/order.html">order()</a></code>.</p>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </code></pre></div>
 <pre><code>## [1] 1 3 6 7 2 4 5</code></pre>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span> <span class="co"># accedemos a los índices ordenados</span></code></pre></div>
 <pre><code>## [1]  1  3  5  6 NA NA NA</code></pre>
 </div>
@@ -360,23 +365,23 @@
 <p> </p>
 <p><strong><span style="color: #20935E;">all, any</span></strong></p>
 <p>Existen dos funciones muy útiles en <code>R</code> para saber si <strong>TODOS</strong> o <strong>ALGUNO</strong> de los elementos de un vector cumple una condición. Las funciones <code><a href="https://rdrr.io/r/base/all.html">all()</a></code> y <code><a href="https://rdrr.io/r/base/any.html">any()</a></code> nos devolverá un único valor lógico. Estas funciones son muy útiles al final de los códigos para comprobar que las condiciones que tienen que verificar los datos se cumplen, y asegurarnos que el proceso se ha ejecutado correctamente (por ejemplo, que todos los datos sean positivos o no haya datos ausentes).</p>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="cn">NA</span>, <span class="fl">7</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb478"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb480"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p> </p>
@@ -385,7 +390,7 @@
 <p> </p>
 <p><strong><span style="color: #20935E;">Diferencia de conjuntos</span></strong></p>
 <p>Una función muy útil para ver las <strong>diferencias entre dos conjuntos</strong> es <code><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff()</a></code>, una función que nos devuelve los elementos distintos entre dos conjuntos.</p>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 <span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">7</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">setdiff</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">z</span><span class="op">)</span> <span class="co"># Elementos en y que no están en z </span></code></pre></div>
@@ -393,19 +398,19 @@
 <p> </p>
 <p><strong><span style="color: #20935E;">Optimiza tu código</span></strong></p>
 <p>Aunque parezca un tema menor, si tu código tarda 1 milisegundo más de lo que podría tardar de otra forma, si esa orden se repite muchas veces, ese milisegundo extra puede ser 5, 10 o 20 minutos más que tu código tardará en ejecutarse. Hay un paquete muy útil en <code>R</code> para medir tiempos de distintas órdenes que hacen lo mismo (el paquete <a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a>), vamos a instalarlo.</p>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"microbenchmark"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/">microbenchmark</a></span><span class="op">)</span></code></pre></div>
 <p>Este paquete contiene una orden para comparar el tiempo de dos órdenes: necesita como primeros argumentos las dos órdenes cuyos tiempos vamos a comparar, y un argumento <code>times</code> en el que le indicamos el número de veces que ejecutará cada orden para realizar los tiempos medios. Vamos a comparar los comandos de ordenación <code><a href="https://rdrr.io/r/base/order.html">order()</a></code> y <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>.</p>
-<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1e3</span><span class="op">)</span> <span class="co"># 1000 elementos aleatorias de una normal N(0, 1)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html">microbenchmark</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="co"># primera forma</span>
                <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span>, <span class="co"># segunda forma</span>
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##         expr    min      lq     mean  median     uq     max neval cld
-##      sort(x) 42.571 50.6520 60.61851 56.2435 61.456 280.293  1000   b
-##  x[order(x)] 30.775 36.7765 41.87159 39.3110 42.863 161.803  1000  a</code></pre>
+##         expr    min      lq     mean  median      uq     max neval cld
+##      sort(x) 42.346 53.8115 64.52840 58.5335 64.9900 594.577  1000   b
+##  x[order(x)] 29.821 37.8935 44.46835 41.0325 45.1295 139.225  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">
@@ -418,7 +423,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
 
@@ -432,7 +437,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_num2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">7</span>, <span class="fl">8</span>, <span class="op">-</span><span class="fl">3</span><span class="op">)</span>
 
@@ -446,7 +451,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_suma</span> <span class="op">&lt;-</span> <span class="va">vector_num</span> <span class="op">+</span> <span class="va">vector_num2</span>
 
@@ -460,11 +465,11 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ordenamos el vector (con sort)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -1  1  2 10</code></pre>
-<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ordenamos el vector  (con order)</span>
 <span class="va">vector_num</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] -1  1  2 10</code></pre>
@@ -475,13 +480,13 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># Encontrando el lugar que ocupa el máximo y mínimo</span>
 <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb500"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <!-- tocstop -->
@@ -491,11 +496,11 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb502"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector lógico: mayores que 1 y menores que 7</span>
 <span class="va">vector_num</span> <span class="op">&gt;</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">vector_num</span> <span class="op">&lt;</span> <span class="fl">7</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ¿Son todos positivos?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">vector_num</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -506,7 +511,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span>
 
@@ -520,14 +525,14 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb508"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de impares (de 1 a 21 saltando de dos en dos)</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">21</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># Seleccionamos elementos</span>
 <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1]  1  7  9 15</code></pre>
-<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Eliminamos elementos</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span>
 <span class="va">y</span></code></pre></div>
@@ -574,7 +579,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 28-12-2021.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 04-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

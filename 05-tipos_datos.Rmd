@@ -30,15 +30,15 @@ Scripts usados:
 
 &nbsp;
 
-Tras las lecciones anteriores, los ejercicios planteados y lo que hayas jugueteado por tu cuenta, deberíamos saber usar ya `R` como una calculadora. Vamos a ir más allá: <mark>**¿existen datos más allá de los números?**</mark> En este capítulo vamos a empezar a familiarizarnos con los tipos de datos (individuales) que podemos necesitar. Piensa por ejemplo en los datos guardados de una persona:
+Tras los ejercicios planteados en la lección anterior y lo que hayas jugueteado por tu cuenta, deberíamos saber más o menos usar `R` como una calculadora, definiendo variables que nos guardan números, como `a <- 1`. Vamos a ir más allá: <mark>**¿existen variables más allá de los números?**</mark> En este capítulo vamos a empezar a familiarizarnos con los <mark>**tipos de datos**</mark> que podemos necesitar. Piensa por ejemplo en los datos guardados de una persona:
 
 * La edad será un <mark>**número (sin decimales)**</mark>
 * Su peso o estatura será otro <mark>**número (ahora con decimales)**</mark>.
 * Su nombre será una <mark>**cadena de texto**</mark>.
 * Su fecha de nacimiento será precisamente eso, una <mark>**fecha**</mark>.
-* A la pregunta «¿está usted soltero/a?» la respuesta será lo que llamamos una <mark>**variable binaria**</mark>: una variable que solo puede valer `TRUE` (si está soltero/a) y `FALSE` (en otro caso).
+* A la pregunta «¿está usted soltero/a?» la respuesta será lo que llamamos una <mark>**variable binaria o lógica**</mark>: una variable que solo puede valer `TRUE` (si está soltero/a) y `FALSE` (en otro caso).
 
-Existen **más tipos** (como números complejos) pero con estos nos valdrá para nuestra introducción.
+Existen **más tipos** (por ejemplo, números complejos) pero con estos nos valdrá de momento.
 
 
 ## Variables numéricas {#numericas}
@@ -56,7 +56,7 @@ b <- 2
 a + b
 ```
 
-En el código anterior, tanto `a` como `b` como la suma `a + b` son de <mark>**tipo numérico**</mark>, algo que podemos comprobar con la función `class()` (nos devuelve _numeric_).
+En el código anterior, tanto `a` como `b`, como la suma `a + b`, son de <mark>**tipo numérico**</mark>, algo que podemos comprobar con la función `class()` (nos devuelve _numeric_).
 
 ```{r}
 # Clase de las variables
@@ -74,7 +74,7 @@ typeof(b)
 typeof(a + b)
 ```
 
-Fíjate que ambas órdenes combinadas nos dicen que las variables son de tipo numérico pero concretamente de tipo _double_: dichas variables son entendidas internamente como números con decimales (aunque no los veamos), lo que en **matemáticas se llaman números reales** (por curiosidad: el término _double_ viene de lenguajes de programación antiguos como `C`, que significa «doble precisión», para indicarle que reserve 8 bytes - 64 bits - de memoria). Durante el curso no distinguiremos entre distintos tipos de números, para nosotros serán siempre de clase _numeric_ y de tipo _double_, pero podríamos definir números enteros o _integer_ (sin decimales, ahorrando huecos en memoria).
+Aunque no es especialmente relevante profundizar en ello de momento, fíjate que ambas órdenes combinadas nos dicen que las variables son de tipo numérico pero concretamente de tipo <mark>**double**</mark>: dichas variables son entendidas internamente como números con decimales (aunque no los veamos), lo que en **matemáticas se llaman números reales** (por curiosidad: el término _double_ viene de lenguajes de programación antiguos como `C`, que significa «doble precisión», para indicarle que reserve 8 bytes - 64 bits - de memoria). Durante el curso no distinguiremos entre distintos tipos de números, para nosotros serán siempre de clase _numeric_ y de tipo _double_, pero podríamos definir números enteros o _integer_ (sin decimales, ahorrando huecos en memoria).
 
 ```{r}
 # Dato numérico (entero)
@@ -83,7 +83,7 @@ class(a)
 typeof(a)
 ```
 
-Con los <mark>**datos numéricos**</mark> podemos realizar todas las **operaciones** que se nos ocurriría hacer en una **calculadora**, como sumar (`+`), restar (`-`), multiplicar (`*`), dividir (`/`), raíz cuadrada (`sqrt()`), valor absoluto (`abs()`), elevar al cuadrado  (`^2`), elevar al cubo (`^3`), etc.
+Con los <mark>**datos numéricos**</mark> podemos realizar todas las <mark>**operaciones**</mark> que se nos ocurriría hacer en una **calculadora**, como sumar (`+`), restar (`-`), multiplicar (`*`), dividir (`/`), raíz cuadrada (`sqrt()`), valor absoluto (`abs()`), elevar al cuadrado  (`^2`), elevar al cubo (`^3`), etc.
 
 
 ```{r}
@@ -101,9 +101,6 @@ a / b
 
 # Raíz cuadrada
 sqrt(a)
-
-# Valor absoluto
-abs(b)
 
 # Potencias
 a^2
@@ -134,10 +131,10 @@ typeof(nombre)
 
 Fíjate que ahora tenemos en `nombre` una variable de tipo _character_, es decir, una cadena de texto (conocido en otros lenguajes como _string_ o _char_): **letras y caracteres entre comillas**. 
 
-### Nuestra primera función: paste/paste0
+### Nuestra primera función: paste
 
 
-Las <mark>**cadenas de texto**</mark> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la función `paste()`. Dicha función nos permite **pegar dos cadenas de caracteres**, decidiendo que caracter queremos que vaya entre palabra con el argumento `sep =`.
+Las <mark>**cadenas de texto**</mark> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la <mark>**función `paste()`**</mark>. Dicha función nos permite **pegar dos cadenas de caracteres**, decidiendo que caracter queremos que vaya entre palabra con el argumento `sep =`.
 
 ```{r}
 nombre <- "Javier"
@@ -147,7 +144,7 @@ paste(nombre, apellido, sep = " ") # separados por un espacio
 paste(nombre, apellido, sep = ".") # separados por un punto .
 ```
 
-Si queremos pegar cadenas de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden, usando la función `paste0()` 
+Si queremos pegar cadenas de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden, usando la <mark>**función `paste0()`**</mark>
 
 ```{r}
 # Son equivalentes
@@ -155,7 +152,7 @@ paste(nombre, apellido, sep = "") # todo junto
 paste0(nombre, apellido) # todo junto sin nada separando
 ```
 
-Cuando hemos ejecutado `paste()` estamos ejecutando lo que se conoce como una <mark>**función**</mark>: una palabra reservada que representa un **conjunto de órdenes**, y que se ejecuta a partir de unos <mark>**argumentos de entrada**</mark>. En el caso de la función `paste()` puede tener varios argumentos: las cadenas de texto que queremos copiar, y un **argumento opcional** llamado `sep`, que podemos darle un valor con concreto o dejarlo sin especificar. Lo que hará `R` será tomar su <mark>**valor por defecto**</mark> igual a `sep = " "` (por defecto, la función `paste()` pega cadenas de texto con un espacio entre ellas). Prueba a ejecutar `? paste` en consola para ver las opciones en el **panel de ayuda**.
+Cuando hemos ejecutado `paste()` estamos ejecutando lo que se conoce como una <mark>**función**</mark>: una palabra reservada que representa un **conjunto de órdenes**, y que se ejecuta a partir de unos <mark>**argumentos de entrada**</mark>. En el caso de la función `paste()`, los argumentos serán las cadenas de texto que queremos copiar, y un **argumento opcional** llamado `sep`, que podemos darle un valor en concreto o dejarlo sin especificar. Lo que hará `R` será tomar su <mark>**valor por defecto**</mark> igual a `sep = " "` (por defecto, la función `paste()` pega cadenas de texto con un espacio entre ellas). Prueba a ejecutar `? paste` en consola para ver las opciones en el **panel de ayuda**.
 
 ```{r}
 # Son equivalentes
@@ -519,7 +516,7 @@ days(today() - fecha_nacimiento)
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  <summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años (`edad < 30`); ii) con hermanos (`hermanos == TRUE`); iii) nacido en 1990 o posterior (`fecha_nacimiento >= as.Date("1990-01-01")`). </summary>
   
 <!-- toc -->
 - Solución:
@@ -529,6 +526,11 @@ days(today() - fecha_nacimiento)
 edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos
 ```
 
+```{r}
+# otra forma
+edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos == TRUE
+```
+
 <!-- tocstop -->
 </details>
 
@@ -536,7 +538,7 @@ edad < 30 & fecha_nacimiento >= as.Date("1990-01-01") & hermanos
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 6</strong>: obtén una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. </summary>
+  <summary>📝<strong>Ejercicio 6</strong>: modifica el código del ejercicio anterior para obtener una variable lógica que nos diga si se cumplen (al menos) alguna de las condiciones i) menor de 30 años; ii) con hermanos; iii) nacido en 1990 o posterior. Al contrario que antes, no necesitamos que se cumplan todas, nos basta con que se cumple al menos una. </summary>
   
 <!-- toc -->
 - Solución:
@@ -554,7 +556,7 @@ edad < 30 | fecha_nacimiento >= as.Date("1990-01-01") | hermanos
 
 
 <details>
-  <summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana. </summary>
+  <summary>📝<strong>Ejercicio 7</strong>: calcula la fecha 11 días más tarde a tu fecha de nacimiento. Obtén la semana del año de dicha fecha y el día de la semana con las funciones `week`, `wday` y `weekdays`. </summary>
   
 <!-- toc -->
 - Solución:

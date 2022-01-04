@@ -87,7 +87,7 @@ knitr::include_graphics('img/hex-rmarkdown.png')
 
 ## Propósito {-}
 
-El <mark>**objetivo**</mark> de este curso es introducir a la programación y análisis estadístico en `R` a toda aquella persona que nunca se haya iniciado en él, **sin necesitar conocimientos previos** de programación (aunque siempre ayuda, obviamente). No se pretende que adquieras un vasto y experto conocimiento de `R`, pero si lo suficiente como para lograr **5 objetivos**:
+El <mark>**objetivo**</mark> de este curso es introducir a la programación y análisis estadístico en `R` a toda aquella persona que nunca se haya iniciado en él, **sin necesitar conocimientos previos** de programación (aunque siempre ayuda, obviamente). No se pretende que adquieras un vasto y experto conocimiento, pero si lo suficiente como para lograr **5 objetivos**:
 
 * **No tener miedo** a programar
 * Entender los **conceptos básicos de `R`**.
@@ -99,10 +99,16 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 
 ## Contenidos {-}
 
+**Toma de contacto**
+
 * \@ref(requisitos) [Requisitos](#requisitos) 
 * \@ref(instalacion) [Instalación de R y Rstudio](#instalacion) 
 * \@ref(que-es-R) [¿Qué es R?](#que-es-R) 
 * \@ref(primeros-pasos) [Primeros pasos](#primeros-pasos) 
+
+&nbsp;
+
+**Conceptos básicos**
 
 * \@ref(tipos-datos) [Tipos de datos](#tipos-datos)
 * \@ref(vectores) [Vectores](#vectores)
@@ -110,10 +116,20 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 * \@ref(datos) [Datos estructurados](#datos)
 * \@ref(repaso-1) [Repaso: empezando a trastear con datos](#repaso-1)
 
+&nbsp;
+
+**Estructuras de control**
+
 * \@ref(if-else) [Estructuras condicionales if-else](#if-else)
 * \@ref(bucles) [Bucles](#bucles)
 
+&nbsp;
+
+**Estructuras de control*
+
 * \@ref(proyecto) [Primer proyecto de trabajo](#proyecto)
+* \@ref(funciones) [Funciones](#funciones)
+* \@ref(listas) [Listas](#listas)
 
 
 ## Código de colores {-} 
@@ -145,6 +161,6 @@ En **`r colorize("color azul", "#4197D2")`** encontrarás un 📚 **`r colorize(
 [![Licencia: GPLv3](img/license-GPLv3-blue.png)](https://www.gnu.org/licenses/gpl-3.0)
 
 Este documento es publicado bajo <mark>**licencia pública general GNU**</mark>,
-una licencia libre de copyleft que garantiza a los usuarios finales (personas, organizaciones, compañías) la **libertad de usar, estudiar, compartir (copiar) y modificar el software, citando adecuadamente al autor del mismo**. 
+una licencia libre de copyleft que garantiza a los usuarios finales (personas, organizaciones, compañías) la **libertad de usar, estudiar, compartir (copiar) y modificar el software, citando adecuadamente a los autores del mismo**. 
 
 
