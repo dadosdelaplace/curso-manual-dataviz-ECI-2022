@@ -449,7 +449,30 @@ Scripts usados:
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada `vector_num`. </summary>
+  <summary>📝<strong>Ejercicio 1</strong>: modifica el código anterior para crear un vector de nombre `vector_num` que contenga los números 1, 5 y -7.
+```{r eval = FALSE}
+# Vector de números
+vector_num <- c(1)
+vector_num
+```
+</summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# Vector de números
+vector_num <- c(1, 5, -7)
+vector_num
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: define un vector que contenga los números 1, 10, -1 y 2, y guárdalo en una variable llamada `vector_num`. </summary>
   
 <!-- toc -->
 - Solución:
@@ -466,7 +489,7 @@ vector_num
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: obtén la longitud del vector anterior `vector_num`. </summary>
+  <summary>📝<strong>Ejercicio 3</strong>: obtén la longitud del vector anterior `vector_num`. </summary>
   
 <!-- toc -->
 - Solución:
@@ -483,7 +506,7 @@ length(vector_num)
 
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: crea un vector con las palabras "Hola", "me", "llamo" (y tu nombre y apellidos), y pega luego sus elementos de forma que la frase esté correctamente escrita en castellano. Tras hacerlo, añade "y tengo 30 años". </summary>
+  <summary>📝<strong>Ejercicio 4</strong>: crea un vector con las palabras "Hola", "me", "llamo" (y tu nombre y apellidos), y pega luego sus elementos de forma que la frase esté correctamente escrita en castellano. Tras hacerlo, añade "y tengo 30 años". </summary>
   
 <!-- toc -->
 - Solución:
@@ -514,7 +537,12 @@ paste(frase, "y tengo 30 años.")
 
 
 <details>
-  <summary>📝<strong>Ejercicio 4</strong>: crea una secuencia de números, que empiece en `-1`, que acabe en `32`, y que vaya saltando de 3 en 3. </summary>
+<summary>📝<strong>Ejercicio 5</strong>: el código inferior crea una secuencia de números, que empieza en `-1`, que acaba en `32`, y que va saltando de 2 en 2. Modíficalo para que haga el salto de 3 en 3 y guárdalo en una variable llamada `secuencia`.
+
+```{r eval = FALSE}
+seq(-1, 32, by = 2)
+```
+  </summary>
   
 <!-- toc -->
 - Solución:
@@ -532,7 +560,7 @@ length(secuencia) # longitud de la secuencia
 
 
 <details>
-  <summary>📝<strong>Ejercicio 5</strong>: crea una secuencia de números, que empiece en `-1`, que acabe en `32`, y que tenga longitud 12. </summary>
+  <summary>📝<strong>Ejercicio 6</strong>: crea una secuencia de números, que empiece en `-1`, que acabe en `32`, y que tenga longitud 12. </summary>
   
 <!-- toc -->
 - Solución:
@@ -550,7 +578,7 @@ length(secuencia) # longitud de la secuencia
 
 
 <details>
-  <summary>📝<strong>Ejercicio 6</strong>: crea una secuencia que empiece en 1 y recorra todos los naturales hasta el 10. Después crea otra secuencia de longitud 7 que todos los números sean `3`.  </summary>
+  <summary>📝<strong>Ejercicio 7</strong>: crea una secuencia que empiece en 1 y recorra todos los naturales hasta el 10. Después crea otra secuencia de longitud 7 que todos los números sean `3`.  </summary>
   
 <!-- toc -->
 - Solución:
@@ -567,7 +595,7 @@ rep(3, 7) # secuencia repetida
 
 
 <details>
-  <summary>📝<strong>Ejercicio 7</strong>: crea una secuencia que repita 5 veces el patrón `1, 2, 3`. Después crea otra que repita dicho patrón pero de forma intercalada, con 5 veces `1`, después 5 veces `2` y después 5 veces `3`.</summary>
+  <summary>📝<strong>Ejercicio 8</strong>: crea una secuencia que repita 5 veces el patrón `1, 2, 3`. Después crea otra que repita dicho patrón pero de forma intercalada, con 5 veces `1`, después 5 veces `2` y después 5 veces `3`.</summary>
   
 <!-- toc -->
 - Solución:
@@ -584,7 +612,7 @@ rep(c(1, 2, 3), each = 5) # repetimos patrón alternado
 
 
 <details>
-  <summary>📝<strong>Ejercicio 8</strong>: crea un vector con las edades de cuatro conocidos o familiares. Tras ello, determina cuáles de ellos tienen menos de 20 años, 30 años o más, menos de 40 años y más de 65 años.</summary>
+  <summary>📝<strong>Ejercicio 9</strong>: crea un vector con las edades de cuatro conocidos o familiares. Tras ello, determina cuáles de ellos tienen menos de 20 años, 30 años o más, menos de 40 años y más de 65 años.</summary>
   
 <!-- toc -->
 - Solución:
@@ -790,7 +818,13 @@ Scripts usados:
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary><strong>Ejercicio 1</strong>: define una matriz `x` de ceros de 3 filas y 7 columnas.</summary>
+  <summary><strong>Ejercicio 1</strong>: modifica el código para definir una matriz `x` de ceros de 3 filas y 7 columnas.
+```{r eval = FALSE}
+# Matriz
+x <- matrix(0, nrow = 2, ncol = 3)
+x
+```
+</summary>
 
 - Solución:
 
@@ -798,8 +832,6 @@ Scripts usados:
 # Matriz
 x <- matrix(0, nrow = 3, ncol = 7)
 x
-
-(x + 1) / 5
 ```
 
 </details>
@@ -866,7 +898,7 @@ apply(matriz, MARGIN = 1, FUN = "sum")
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 5</strong>: con la matriz `matrix(1:12, nrow = 4)` anterior, calcula la media de todos los elementos, la media de cada fila y la media de cada columna.</summary>
+  <summary><strong>Ejercicio 5</strong>: con la matriz anterior definida como `matrix(1:12, nrow = 4)`, calcula la media de todos los elementos, la media de cada fila y la media de cada columna.</summary>
 
 - Solución:
 
@@ -888,39 +920,44 @@ apply(matriz, MARGIN = 2, FUN = "mean")
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 6</strong>: el `data.frame` llamado `mammals` contiene el peso medio del cerebro (gramos) y el cuerpo (kilogramos) de 62 especies de mamíferos terrestres distintos (al que puedes acceder desde el paquete `{MASS}`). Obtén el nombre de las variables y visualiza las primeras filas (cabecera de la tabla). Visualiza por consola las columnas con `$`.
+  <summary><strong>Ejercicio 6</strong>: el `data.frame` llamado `airquality`, del paquete `{datasets}`, contiene variables de la calidad del aire de la ciudad de Nueva York desde mayo hasta septiembre de 1973. Obtén el nombre de las variables.
+</summary>
+  
+- Solución:
+
+```{r}
+library(datasets)
+names(airquality)
+```
+
+</details>
+
+ &nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 7</strong>: obtén las dimensiones del conjunto de datos. ¿Cuántas variables hay? ¿Cuántos días se han medido?
+  
+</summary>
+  
+- Solución:
+
+```{r}
+# Dimensiones
+dim(airquality)
+nrow(airquality)
+ncol(airquality)
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 8</strong>: modifica el código inferior para que nos filtre solo los datos del mes de julio.
   
 ```{r eval = FALSE}
-# si no está ya instalado el paquete hay que hacer install.packages("MASS")
-? MASS::mammals # para ver info del conjunto de datos 
-```
-</summary>
-  
-- Solución:
-
-```{r}
-# Nombres de variables
-names(MASS::mammals)
-
-# Cabecera
-head(MASS::mammals)
-
-# Columnas
-MASS::mammals$body
-MASS::mammals$brain
-```
-
-</details>
-
-
-&nbsp; 
-
-<details>
-  <summary><strong>Ejercicio 7</strong>: modifica el código inferior para que nos filtre solo con los mamíferos con un peso corporal superior a 15 kg.
-  
-```{r}
 # Filtramos filas
-filtro_fila <- subset(MASS::mammals, subset = body < 35)
+filtro_fila <- subset(., subset = Month < 6)
 filtro_fila
 ```
 </summary>
@@ -929,7 +966,7 @@ filtro_fila
 
 ```{r}
 # Filtramos filas
-filtro_fila <- subset(MASS::mammals, subset = body > 15)
+filtro_fila <- subset(airquality, subset = Month == 7)
 filtro_fila
 ```
 
@@ -938,13 +975,14 @@ filtro_fila
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 8</strong>: del conjunto `mammals` selecciona aquellos mamíferos terrestres cuyo peso corporal (`body`) sea superior a 20 kg.</summary>
+  <summary><strong>Ejercicio 9</strong>: del conjunto `airquality` selecciona aquellos datos que no sean ni de julio ni de agosto.</summary>
   
 - Solución:
 
 ```{r}
 # Filtramos filas
-filtro_fila <- subset(MASS::mammals, subset = body > 20)
+filtro_fila <-
+  subset(airquality, subset = !(Month %in% c(7, 8)))
 filtro_fila
 ```
 
@@ -953,19 +991,20 @@ filtro_fila
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 9</strong>: modifica el siguiente código para quedar solo con la variable `brain`.
+  <summary><strong>Ejercicio 10</strong>: modifica el siguiente código para quedarte solo con las variable `Ozone` y `Temp`.
   
-```{r}
-filtro_col <- subset(MASS::mammals,  select = c("body"))
+```{r eval = FALSE}
+filtro_col <- subset(.,  select = c("Ozone"))
 filtro_col
 ```
+
 </summary>
   
 - Solución:
 
 ```{r}
 # Filtramos columnas
-filtro_col <- subset(MASS::mammals,  select = c("brain"))
+filtro_col <- subset(airquality,  select = c("Ozone", "Temp"))
 filtro_col
 ```
 
@@ -975,13 +1014,14 @@ filtro_col
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 10</strong>: del conjunto `mammals` selecciona a la vez aquellos animales cuyo peso corporal supera los 20kg, pero selecciona solo la columna `brain`.</summary>
+  <summary><strong>Ejercicio 11</strong>: del conjunto `airquality` selecciona los datos de temperatura y viento de agosto.</summary>
   
 - Solución:
 
 ```{r}
 # Todo de una vez
-filtro <- subset(MASS::mammals, subset = body > 20, select = c("brain"))
+filtro <- subset(airquality, subset = Month == 8,
+                 select = c("Temp", "Wind"))
 filtro
 ```
 
@@ -991,16 +1031,16 @@ filtro
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 11</strong>: calcula el número de filas borradas del ejercicio anterior. Tras hacer todo ello, traduce a castellano el nombre de las columnas del `data.frame` filtrado.</summary>
+  <summary><strong>Ejercicio 12</strong>: calcula el número de filas borradas del ejercicio anterior. Tras hacer todo ello, traduce a castellano el nombre de las columnas del `data.frame` filtrado.</summary>
   
 - Solución:
 
 ```{r}
 # Filas borradas
-nrow(MASS::mammals) - nrow(filtro)
+nrow(airquality) - nrow(filtro)
 
 # Cambiamos nombres a castellano del conjunto filtrado
-names(filtro) <- c("peso_cerebro_gr")
+names(filtro) <- c("temperatura", "viento")
 ```
 
 </details>
@@ -1008,16 +1048,18 @@ names(filtro) <- c("peso_cerebro_gr")
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 12</strong>: el nombre de los mamíferos solo está disponible como nombre de fila. Consúltalos y guárdalos en una nueva variable que incorpores a los datos originales.</summary>
+  <summary><strong>Ejercicio 13</strong>: añade a los datos originales una columna con la fecha completa (recuerda que es del año 1973 todas las observaciones.</summary>
   
 - Solución:
 
 ```{r}
-# Nombre de los mamíferos
-nombres <- row.names(MASS::mammals)
+# Construimos las fechas (pegamos año-mes-día con "-")
+fechas <- 
+  as.Date(paste("1973", airquality$Month, airquality$Day,
+                sep = "-"))
 
-# Añadimos nombres como columna para poder ser usada
-data.frame(nombres, MASS::mammals)
+# Añadimos
+data.frame(airquality, fechas)
 ```
 
 </details>

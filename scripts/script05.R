@@ -176,8 +176,12 @@ ncol(USArrests)
 # Selección de filas 2 y 10, y variables Murder y Assault
 USArrests[c(2, 10), c("Murder", "Assault")]
 
+# Cambio de nombres
+names(USArrests) <- c("asesinato", "agresion",
+                      "pobl_urbana", "violacion")
+
 # Filtrado con subset
-subset(USArrests, subset =  UrbanPop > 70, select = c("Murder"))
-subset(USArrests, subset = UrbanPop < 70 & Assault > 250,
-       select = c("Murder", "Rape"))
+subset(USArrests, subset = pobl_urbana > 70, select = c("asesinato"))
+subset(USArrests, subset = pobl_urbana < 70 & agresion > 250,
+       select = c("asesinato", "violacion"))
 

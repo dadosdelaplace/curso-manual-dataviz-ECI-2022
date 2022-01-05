@@ -47,6 +47,7 @@
 <li><a class="" href="index.html">Prefacio</a></li>
 <li class="book-part">Recursos</li>
 <li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
+<li><a class="" href="recursos-de-aprendizaje.html">📚 Recursos de aprendizaje</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -93,7 +94,7 @@
 <p><mark><strong>1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el que está?</strong></mark></p>
 <p> </p>
 <p>Nuestros datos se llaman <code>swiss</code> y son del paquete <code>{datasets}</code>, así que lo primero que debemos hacer es instalar el paquete (en caso de tenerlo, con <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("datasets")</a></code>), después <strong>llamar a ese paquete</strong> (tenemos el libro comprado y lo sacamos de la estantería) con <code><a href="https://rdrr.io/r/base/library.html">library(datasets)</a></code> y escribir el nombre del conjunto de datos para mostrarlo.</p>
-<div class="sourceCode" id="cb923"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb917"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
 <span class="va">swiss</span></code></pre></div>
 <pre><code>##              Fertility Agriculture Examination Education Catholic
@@ -193,17 +194,17 @@
 ## Rive Droite              18.2
 ## Rive Gauche              19.3</code></pre>
 <p>Podríamos no pedirle el libro entero sino <strong>solo esa página</strong>, de ese conjunto de datos, usando <code><a href="https://rdrr.io/r/datasets/swiss.html">datasets::swiss</a></code> (sin hacer uso del <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> previo).</p>
-<div class="sourceCode" id="cb925"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb919"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/swiss.html">swiss</a></span></code></pre></div>
 <p> </p>
 <p><mark><strong>2. Tenemos los datos guardados en <code>swiss</code>, ¿qué tipo de objeto es?</strong></mark></p>
 <p> </p>
 <p>Al mostrarlos ya lo habrás intuido pero nuestro conjunto <code>swiss</code> es de tipo <code>data.frame</code>. Para comprobarlo podemos usar la función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>.</p>
-<div class="sourceCode" id="cb926"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "data.frame"</code></pre>
 <p>Si somos un poco observadores/as vemos que todas las variables parecen numéricas así que…podríamos tener una matriz de números. <mark><strong>¿Cómo convertimos los datos a una matriz?</strong></mark></p>
-<div class="sourceCode" id="cb928"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb922"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>##              Fertility Agriculture Examination Education Catholic
 ## Courtelary        80.2        17.0          15        12     9.96
@@ -301,21 +302,21 @@
 ## V. De Geneve             18.0
 ## Rive Droite              18.2
 ## Rive Gauche              19.3</code></pre>
-<div class="sourceCode" id="cb930"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "matrix"</code></pre>
 <p> </p>
 <p><mark><strong>3. ¿Cómo podríamos tener una descripción detallada de los datos?</strong></mark></p>
 <p> </p>
 <p>La forma más inmediata es hacerlo es con la función <code><a href="https://rdrr.io/r/datasets/swiss.html">? swiss</a></code>, que nos permite ver la documentación en el panel de ayuda.</p>
-<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb926"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span> <span class="va">swiss</span></code></pre></div>
 <p>También podemos ver el nombre de las columnas con <code><a href="https://rdrr.io/r/base/names.html">names()</a></code> y el nombre de las filas con <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code></p>
-<div class="sourceCode" id="cb933"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb927"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Fertility"        "Agriculture"      "Examination"      "Education"       
 ## [5] "Catholic"         "Infant.Mortality"</code></pre>
-<div class="sourceCode" id="cb935"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb929"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "Courtelary"   "Delemont"     "Franches-Mnt" "Moutier"      "Neuveville"  
 ##  [6] "Porrentruy"   "Broye"        "Glane"        "Gruyere"      "Sarine"      
@@ -332,7 +333,7 @@
 <p><mark><strong>4. ¿Cómo podríamos «ver» los datos? ¿Cuántas provincias hay incluidas? ¿Cuántas variables han sido medidas en cada una de ellas?</strong></mark></p>
 <p> </p>
 <p>Podemos hacerlo de varias maneras, y una de ellas es pedirle una <strong>cabecera</strong> de la tabla (las primeras filas) con <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
-<div class="sourceCode" id="cb937"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb931"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>##              Fertility Agriculture Examination Education Catholic
 ## Courtelary        80.2        17.0          15        12     9.96
@@ -349,23 +350,23 @@
 ## Neuveville               20.6
 ## Porrentruy               26.6</code></pre>
 <p>También podemos ver una versión «excelizada» de los datos con `View()</p>
-<div class="sourceCode" id="cb939"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb933"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <p>Para <strong>ver las dimensiones de los datos</strong> podemos recurrir a <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> (nos dará un vector de longitud 2 con el número de filas y columnas) o a <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> y <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code></p>
-<div class="sourceCode" id="cb940"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb934"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 47  6</code></pre>
-<div class="sourceCode" id="cb942"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb936"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 47</code></pre>
-<div class="sourceCode" id="cb944"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb938"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p> </p>
 <p><mark><strong>5. ¿Cómo podríamos definir una nueva variable de tipo texto con los nombres de filas que obtenemos de <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code>?</strong></mark></p>
 <p> </p>
 <p>La función <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code> nos devuelve los nombres de las filas, que vamos a guardar en una variable (por ejemplo, en <code>nombres</code>).</p>
-<div class="sourceCode" id="cb946"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb940"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">swiss</span><span class="op">)</span>
 <span class="va">nombres</span></code></pre></div>
 <pre><code>##  [1] "Courtelary"   "Delemont"     "Franches-Mnt" "Moutier"      "Neuveville"  
@@ -379,7 +380,7 @@
 ## [41] "Le Locle"     "Neuchatel"    "Val de Ruz"   "ValdeTravers" "V. De Geneve"
 ## [46] "Rive Droite"  "Rive Gauche"</code></pre>
 <p>Esa variable la vamos a añadir como primera columna, haciendo uso de <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, concatenando dicha columna a las que ya tenemos.</p>
-<div class="sourceCode" id="cb948"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb942"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_nueva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"provincias"</span> <span class="op">=</span> <span class="va">nombres</span>, <span class="va">swiss</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">)</span></code></pre></div>
 <pre><code>##                provincias Fertility Agriculture Examination Education Catholic
@@ -397,7 +398,7 @@
 ## Neuveville               20.6
 ## Porrentruy               26.6</code></pre>
 <p>Podemos incluso <strong>eliminar el nombre de las filas</strong> (ya las tenemos guardadas como variables).</p>
-<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb944"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span> <span class="co"># anulamos nombre de filas</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">)</span></code></pre></div>
 <pre><code>##     provincias Fertility Agriculture Examination Education Catholic
@@ -418,27 +419,27 @@
 <p><mark><strong>6. ¿Cómo podemos decidir cual de las provincias tiene un indicador estandarizado de la fertilidad superior a 80?</strong></mark></p>
 <p> </p>
 <p>La opción más inmediata es obtener la variable <code>Fertility</code> con <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> y ejecutar la <strong>condición lógica</strong>: si es mayor que 80 devolverá <code>TRUE</code>; en caso contrario, <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb946"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span></code></pre></div>
 <pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>Para saber las <strong>filas exactas que cumplen dicha condición</strong> (sus índices) podemos usar la función <code><a href="https://rdrr.io/r/base/which.html">which()</a></code>.</p>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb948"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  7  8  9 10 11 37</code></pre>
 <p> </p>
 <p><mark><strong>7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas provincias, las que tienen fertilidad superior a 80?</strong></mark></p>
 <p> </p>
 <p>Podemos hacerlo principalmente de dos maneras. La primera es tratar a los datos como una matriz con el operador <code>[]</code>, dejando las columnas libres y pasándole como índices en las filas precisamente la condición lógica: seleccionará las <code>TRUE</code> y no seleccionará las <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span></code></pre></div>
 <pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">[</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>, <span class="op">]</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
 ## 1    Courtelary      80.2        17.0          15        12     9.96
@@ -463,7 +464,7 @@
 ## 11             24.5
 ## 37             16.3</code></pre>
 <p>La otra manera, más corta y concisa, es usando <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code>, que además nos permitiría seleccionar columnas si quisiéramos filtrarlas.</p>
-<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># sin filtrar columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, subset <span class="op">=</span> <span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
@@ -488,7 +489,7 @@
 ## 10             24.4
 ## 11             24.5
 ## 37             16.3</code></pre>
-<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># filtrando columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, subset <span class="op">=</span> <span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>,
        select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provincias"</span>, <span class="st">"Fertility"</span>, <span class="st">"Education"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -507,11 +508,11 @@
 <p><mark><strong>8. ¿Cómo podemos añadir una nueva variable lógica que nos guarde <code>TRUE</code> si la fertilidad es superior a 80 y <code>FALSE</code> en caso contrario?</strong></mark></p>
 <p> </p>
 <p>Vamos a guardar el resultado de la condición lógica en una variable y vamos a incluirla en el <code>data.frame</code> igual que hemos incluido los nombres.</p>
-<div class="sourceCode" id="cb964"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_logica</span> <span class="op">&lt;-</span> <span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>
 <span class="va">tabla_nueva_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, <span class="st">"alta_fertilidad"</span> <span class="op">=</span> <span class="va">var_logica</span><span class="op">)</span></code></pre></div>
 <p>Podemos realizar el filtro anterior haciendo uso de esa nueva variable.</p>
-<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb959"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># sin filtrar columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
@@ -536,7 +537,7 @@
 ## 10             24.4            TRUE
 ## 11             24.5            TRUE
 ## 37             16.3            TRUE</code></pre>
-<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># igual (sin filtrar columnas)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span><span class="op">)</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
@@ -561,7 +562,7 @@
 ## 10             24.4            TRUE
 ## 11             24.5            TRUE
 ## 37             16.3            TRUE</code></pre>
-<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb963"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># filtrando columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span>,
        select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provincias"</span>, <span class="st">"Fertility"</span>, <span class="st">"Education"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -580,7 +581,7 @@
 <p><mark><strong>9. ¿Cómo podemos definir una nueva variable de tipo fecha, que empiece el 1 de enero de 1888, acabe el 31 de diciembre de 1888, y las fechas estén equiespaciadas en el tiempo?</strong></mark></p>
 <p> </p>
 <p>Si recuerdas las fechas internamente son guardadas como números así que podemos definir una <strong>secuencia de fechas</strong>, desde una fecha inicial hasta una fecha final, con la misma longitud que filas tenemos en los datos.</p>
-<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fechas</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1888-01-01"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1888-12-31"</span><span class="op">)</span>, l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fechas</span></code></pre></div>
@@ -595,10 +596,10 @@
 ## [41] "1888-11-13" "1888-11-21" "1888-11-29" "1888-12-07" "1888-12-15"
 ## [46] "1888-12-23" "1888-12-31"</code></pre>
 <p>Podemos comprobar que son fechas usando <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> pero también intentando sumar días a las fechas (sin que aparezca un error).</p>
-<div class="sourceCode" id="cb973"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fechas</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
-<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fechas</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>##  [1] "1888-01-02" "1888-01-09" "1888-01-17" "1888-01-25" "1888-02-02"
 ##  [6] "1888-02-10" "1888-02-18" "1888-02-26" "1888-03-05" "1888-03-13"
@@ -611,7 +612,7 @@
 ## [41] "1888-11-14" "1888-11-22" "1888-11-30" "1888-12-08" "1888-12-16"
 ## [46] "1888-12-24" "1889-01-01"</code></pre>
 <p>Para añadir a la tabla dicha variable basta con hacer de nuevo <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> concatenando la tabla que teníamos con la nueva columna.</p>
-<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, <span class="va">fechas</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_final</span><span class="op">)</span></code></pre></div>
 <pre><code>##     provincias Fertility Agriculture Examination Education Catholic

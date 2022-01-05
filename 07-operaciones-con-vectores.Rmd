@@ -379,7 +379,7 @@ Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto 
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: define de nuevo el vector `vector_num` definido como un vector que contenga los números 1, 10, -1 y 2) y calcula su suma del vector. </summary>
+  <summary>📝<strong>Ejercicio 1</strong>: define de nuevo el vector `vector_num` definido como un vector que contenga los números 1, 10, -1 y 2) y calcula su suma. </summary>
   
 <!-- toc -->
 - Solución:

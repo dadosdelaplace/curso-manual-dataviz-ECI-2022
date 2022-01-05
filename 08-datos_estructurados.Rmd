@@ -27,7 +27,7 @@ Scripts usados:
 ::::
 
 
-Ya sabemos un poco la gramática y ortografía de nuestro lenguaje, y algunas de las funcionalidades básicas de nuestro «Word». Vamos a aprender cómo escribir la mejor trama para la novela: hablemos de <mark>**datos**</mark>.
+Ya sabemos un poco la gramática y ortografía de nuestro lenguaje, y algunas de las funcionalidades básicas de nuestro «Word». Vamos a aprender cómo escribir la mejor trama para la novela: hablemos por fin de <mark>**datos**</mark>.
 
 ## Matrices
 
@@ -42,16 +42,16 @@ c("a", NA, "b", "c")
 c(TRUE, TRUE, FALSE, TRUE)
 ```
 
-Pero cuando analizamos datos solemos tener varias variables distintas de cada individuo, por ejemplo, la **estatura y el peso de una persona**. Necesitamos una manera de <mark>**unir distintas variables numéricas, todas de IGUAL longitud**</mark>. Y ese conjunto de variables  (del <mark>**mismo tipo**</mark> e <mark>**igual longitud**</mark>), dispuestas en columnas, es lo que conocemos como <mark>**matrices**</mark>: una **«tabla» de valores del mismo tipo**, con filas y columnas.
+Pero cuando analizamos datos solemos tener varias variables distintas de cada individuo, por ejemplo, la **estatura y el peso de una persona**. Necesitamos una <mark>**«tabla»**</mark>. Necesitamos una manera de <mark>**unir distintas variables numéricas**</mark>, todas de <mark>**IGUAL longitud**</mark>. Y ese conjunto de variables  (del <mark>**mismo tipo**</mark> e <mark>**igual longitud**</mark>), dispuestas en columnas, es lo que conocemos como <mark>**matrices**</mark>: una **«tabla» de valores del mismo tipo**, con filas y columnas.
 
-Vamos a empezar definiendo una matriz sencilla: imagina que tenemos las estaturas y pesos de 5 personas.
+Vamos a empezar definiendo una **matriz sencilla**: imagina que tenemos las estaturas y pesos de 5 personas.
 
 ```{r}
 estaturas <- c(150, 160, 170, 180, 190)
 pesos <- c(60, 70, 80, 90, 100)
 ```
 
-¿Cómo **juntar las dos variables** creando nuestro <mark>**primer conjunto de datos**</mark>? Vamos a crea una matriz, un conjunto de números organizado en **2 columnas (una por variable)** y **5 filas o registros (una por persona)**. Para ello usaremos la función `cbind()`, que nos <mark>**concatena vectores de igual longitud en columnas**</mark>.
+¿Cómo **juntar las dos variables** creando nuestro <mark>**primer conjunto de datos**</mark>? Vamos a crear una matriz, un conjunto de números organizado en **2 columnas (una por variable)** y **5 filas o registros (una por persona)**. Para ello usaremos la función `cbind()`, que nos <mark>**concatena vectores de igual longitud en columnas**</mark>.
 
 ```{r}
 datos_matriz <- cbind(estaturas, pesos) # Construimos la matriz por columnas
@@ -74,7 +74,7 @@ También podemos <mark>**construir la matriz por filas**</mark> con el comando `
 rbind(estaturas, pesos) # Construimos la matriz por filas
 ```
 
-Para practicar vamos a definir otro ejemplo, con las **edades, teléfonos y códigos postales** de una serie de individuos.
+Para practicar vamos a definir otro ejemplo, con las **edades, teléfonos y códigos postales** de una serie de individuos (fíjate que he metido adrede datos ausentes, ya que a veces no tendremos datos de algunas personas).
 
 ```{r}
 edades <- c(14, 24, 56, 31, 20, 87, 73) # vector numérico de longitud 7
@@ -97,20 +97,20 @@ rbind(datos_matriz, c(27, 620125780, 28051))
 cbind(datos_matriz, "estaturas" = c(160, 155, 170, 181, 174, NA, 165))
 ```
 
-Como ves, ahora nuestros <mark>**datos están tabulados**</mark>, tienen dos dimensiones. ¿Cómo saber las **dimensiones** que tiene una matriz? Prueba a ejecutar la función `dim()`.
+Como ves, ahora nuestros <mark>**datos están tabulados**</mark>, tienen dos dimensiones. ¿Cómo saber las <mark>**dimensiones**</mark> que tiene una matriz? Prueba a ejecutar la función `dim()`.
 
 ```{r}
 dim(datos_matriz)
 ```
 
-Fíjate que `dim()` devuelve un vector de 2 elementos (las dos dimensiones), por lo que para acceder al número de filas deberemos ejecutar `dim(x)[1]` (y `dim(x)[2]` para el número de columnas). 
+Fíjate que `dim()` devuelve un vector de 2 elementos (las dos dimensiones), por lo que para acceder al **número de filas** deberemos ejecutar `dim(x)[1]` (y `dim(x)[2]` para el **número de columnas**). 
 
 ```{r}
 dim(datos_matriz)[1]
 dim(datos_matriz)[2]
 ```
 
-También tenemos a nuestra disposición las funciones `nrow()` y `ncol()`, que nos devuelven directamente el **número de filas y columnas**.
+También tenemos a nuestra disposición las funciones `nrow()` y `ncol()`, que nos devuelven directamente el <mark>**número de filas y columnas**</mark>.
 
 ```{r}
 nrow(datos_matriz)
@@ -147,7 +147,7 @@ datos_matriz / 5
 datos_matriz + 3
 ```
 
-También podemos crear **matrices de otros tipos de datos**, siempre y cuando las columnas sean del **mismo tipo** y la **longitud sea la misma**, por ejemplo una matriz de caracteres o una matriz de valores lógicos
+También podemos crear **matrices de otros tipos de datos**, siempre y cuando las columnas sean del <mark>**mismo tipo e igual longitud**</mark>, por ejemplo una matriz de caracteres o una matriz de valores lógicos
 
 ```{r}
 # matriz de caracteres
@@ -168,9 +168,9 @@ Si recuerdas para los vectores, usábamos el operador `[i]` para acceder al elem
 
 ```{r}
 x <- c(1, 2, 10, 67, -1, 0)
-x[3]
-x[c(3, 5)]
-x[1:4]
+x[3] # accedemos al tercer elemento 
+x[c(3, 5)] # accedemos al tercer y quinto elemento
+x[1:4] # accedemos al primero, segundo, tercero, cuarto elemento
 ```
 
 En el caso de las matrices la lógica será la misma: para <mark>**acceder a la fila i-ésima de la matriz**</mark> se usa el operador `[i, ]` (dejando libre el índice de la columna), mientras que para **acceder a la columna j-ésima de la matriz** se usaría el operador `[, j]` (dejando libre el índice de la fila). Para **acceder conjuntamente al elemento `(i, j)`** se usa el operador `[i, j]`. 
@@ -217,7 +217,7 @@ datos_matriz
 apply(datos_matriz, MARGIN = 2, FUN = "mean")
 ```
 
-El resultado es un vector de longitud 2 (tantas medias como columnas teníamos). La **misma operación la podemos realizar por filas** con `MARGIN = 1` (aunque en este caso no tiene mucho sentido hacer la media de variables con magnitudes distintas)
+El resultado es un vector de longitud 2 (la media de las estaturas y la media del peso). La **misma operación la podemos realizar por filas** con `MARGIN = 1` (aunque en este caso no tiene mucho sentido hacer la media de variables con magnitudes distintas)
 
 ```{r}
 # Media por filas (MARGIN = 1)
@@ -228,9 +228,8 @@ Si la función a aplicar requiere de **argumentos extras**, por ejemplo indicarl
 
 ```{r}
 datos_matriz <- cbind(edades, tlf, cp) 
-datos_matriz
 
-# Media por columnas (MARGIN = 2)
+# Media por columnas (MARGIN = 2) ignorando los ausentes
 apply(datos_matriz, MARGIN = 2, FUN = "mean", na.rm = TRUE)
 ```
 
@@ -325,7 +324,7 @@ En cada variable tenemos 7 registros, uno por persona, pero ahora tenemos un pop
 * `casado` es una variable **lógica**.
 * `fecha_creacion` de tipo **fecha**.
 
-¿Qué sucedería si **intentamos mezclar todo en una matriz**? Vamos a unir las columnas con `cbind()`.
+¿Qué sucedería si <mark>**intentamos mezclar todo en una matriz**</mark>? Vamos a unir las columnas con `cbind()`.
 
 ```{r}
 # Juntamos todo en una matriz (juntamos por columnas)
@@ -334,7 +333,7 @@ datos_matriz <-
 datos_matriz
 ```
 
-Dado que en una matriz solo podemos almacenar datos del mismo tipo, los números los convierte a texto, las variables lógicas las convierte a texto (`TRUE` ahora es un valor lógico, `"TRUE"` es un texto, como `"Pepito"`, sin significado lógico de verdadero/falso) y las fechas las ha convertido a texto (aunque las veas igual, ya no son de tipo de fecha, son texto y no podemos operar con ellas).
+Dado que en una **matriz solo podemos almacenar datos del mismo tipo**, los <mark>**números los convierte a texto**</mark>, las variables lógicas las convierte a texto (`TRUE` ahora es un valor lógico, `"TRUE"` es un texto, como `"Pepito"`, sin significado lógico de verdadero/falso) y las fechas las ha convertido a texto (aunque las veas igual, ya no son de tipo de fecha, son texto y no podemos operar con ellas).
 
 ```{r error = TRUE}
 # Días entre la primera y el segundo elemento de fecha de creación
@@ -398,7 +397,9 @@ Un `data.frame` **no solo tiene las ventajas de una matriz** si no que también 
 knitr::include_graphics("./img/tabla_dolar.jpg")
 ```
 
-Además del conjunto de datos `tabla` que ya tenemos, vamos a instalar (sino lo hemos hecho nunca en este ordenador) un paquete muy útil en `R` llamado `{datasets}`.
+### Primer análisis de datos: arrestos en EE. UU.
+
+Además del conjunto de datos `tabla` que hemos construido artificialmente, vamos a instalar (sino lo hemos hecho nunca en este ordenador) un paquete muy útil en `R` llamado `{datasets}`.
 
 ```{r}
 # Paquetes necesarios
@@ -406,7 +407,7 @@ Además del conjunto de datos `tabla` que ya tenemos, vamos a instalar (sino lo 
 library(datasets)
 ```
 
-Amén de nuestro conjunto de datos `tabla` en nuestro panel de entorno, si escribimos `datasets::` y pulsamos tabulador, se nos abre un desplegable con distintos conjuntos de datos para ser usados: el paquete `datasets` nos proporciona `data.frames` de prueba para que podamos usarlos en nuestros códigos según vamos aprendiendo. 
+Ahora si escribimos `datasets::` y pulsamos tabulador, se nos abre un desplegable con <mark>**distintos conjuntos de datos reales**</mark> para ser usados: el paquete `datasets` nos proporciona `data.frames` de prueba para que podamos usarlos. 
 
 Vamos a jugar con el conjunto de datos `datasets::USArrests`, que contiene <mark>**estadísticas de arrestos en 1973 (por cada 100 000 habitantes)**</mark> por agresión, asesinato y violación, en cada uno de los 50 estados de Estaods Unidos.
 
@@ -451,23 +452,35 @@ USArrests[c(2, 10), c("Murder", "Assault")]
 
 &nbsp;
 
+<mark>**¿Cómo cambiar el nombre de las variables?**</mark> Con la función `names()`.
+
+```{r}
+names(USArrests) <- c("asesinato", "agresion",
+                      "pobl_urbana", "violacion")
+```
+
+&nbsp;
+
+<mark>**¿Cómo seleccionar y filtrar datos?**</mark>
+
 En el caso de los `data.frame` tenemos además a nuestro disposición una <mark>**herramienta muy potente: la función `subset()`**</mark>. Dicha función nos va a permitir <mark>**seleccionar filas y columnas a la vez**<mark>, tomando de entrada los siguientes argumentos
 
 * `x`: una tabla de entrada, un `data.frame` de entrada.
 * `subset`: la <mark>**condición lógica**</mark> que queramos usar para seleccionar registros (filas).
 * `select`: un vector que contenga el nombre de las <mark>**columnas que queremos seleccionar**</mark> (a lo mejor solo queremos filtrar por filas pero quizás también por columnas).
 
-Por ejemplo, vamos a **seleccionar solo los delitos de asesinato (`Murder`) de aquellos estados cuyo porcentaje de población urbana sea superior al 70%**.
+Por ejemplo, vamos a **seleccionar solo los delitos de asesinato de aquellos estados cuyo porcentaje de población urbana sea superior al 70%**.
 
 ```{r}
-subset(USArrests, subset =  UrbanPop > 70, select = c("Murder"))
+subset(USArrests, subset = pobl_urbana > 70,
+       select = c("asesinato"))
 ```
 
-Como sucedía en otros contextos, podemos combinar condiciones lógicas, seleccionando por ejemplo **aquellos estados cuyo porcentaje de población urbana sea inferior al 70%** y donde las **agresiones sean superiores a 250 por cada 100 000 habitantes**, pero luego seleccionando solo las columnas `Murder` y `Rape`.
+Como sucedía en otros contextos, podemos combinar condiciones lógicas, seleccionando por ejemplo **aquellos estados cuyo porcentaje de población urbana sea inferior al 70%** y donde las **agresiones sean superiores a 250 por cada 100 000 habitantes**, pero luego seleccionando solo dos variables.
 
 ```{r}
-subset(USArrests, subset = UrbanPop < 70 & Assault > 250,
-       select = c("Murder", "Rape"))
+subset(USArrests, subset = pobl_urbana < 70 & agresion > 250,
+       select = c("asesinato", "violacion"))
 ```
 
 ## Consejos
@@ -483,36 +496,25 @@ A veces puede que no queramos cargar todo un paquete sino solo una función del 
 
 &nbsp;
 
-**`r colorize("Nombre de variables", "#20935E")`**
-
-La función `names()` no solo sirve para consultar los nombres de las variables de un `data.frame` sino también para cambiarlos a nuestro gusto.
-
-```{r}
-# Consultamos nombres
-names(tabla)
-
-# Cambiamos nombres
-names(tabla) <- c("nombre_persona", "apellido_persona", "edad", "tlf",
-                  "cp", "casado", "f_creacion")
-tabla
-```
-
-
 ## 📝 Ejercicios
 
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary><strong>Ejercicio 1</strong>: define una matriz `x` de ceros de 3 filas y 7 columnas.</summary>
+  <summary><strong>Ejercicio 1</strong>: modifica el código para definir una matriz `x` de ceros de 3 filas y 7 columnas.
+```{r eval = FALSE}
+# Matriz
+x <- matrix(0, nrow = 2, ncol = 3)
+x
+```
+</summary>
 
 - Solución:
 
-```{r}
+```{r hola}
 # Matriz
 x <- matrix(0, nrow = 3, ncol = 7)
 x
-
-(x + 1) / 5
 ```
 
 </details>
@@ -579,7 +581,7 @@ apply(matriz, MARGIN = 1, FUN = "sum")
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 5</strong>: con la matriz `matrix(1:12, nrow = 4)` anterior, calcula la media de todos los elementos, la media de cada fila y la media de cada columna.</summary>
+  <summary><strong>Ejercicio 5</strong>: con la matriz anterior definida como `matrix(1:12, nrow = 4)`, calcula la media de todos los elementos, la media de cada fila y la media de cada columna.</summary>
 
 - Solución:
 
@@ -601,75 +603,81 @@ apply(matriz, MARGIN = 2, FUN = "mean")
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 6</strong>: el `data.frame` llamado `mammals` contiene el peso medio del cerebro (gramos) y el cuerpo (kilogramos) de 62 especies de mamíferos terrestres distintos (al que puedes acceder desde el paquete `{MASS}`). Obtén el nombre de las variables y visualiza las primeras filas (cabecera de la tabla). Visualiza por consola las columnas con `$`.
+  <summary><strong>Ejercicio 6</strong>: el `data.frame` llamado `airquality`, del paquete `{datasets}`, contiene variables de la calidad del aire de la ciudad de Nueva York desde mayo hasta septiembre de 1973. Obtén el nombre de las variables.
+</summary>
+  
+- Solución:
+
+```{r}
+library(datasets)
+names(airquality)
+```
+
+</details>
+
+ &nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 7</strong>: obtén las dimensiones del conjunto de datos. ¿Cuántas variables hay? ¿Cuántos días se han medido?
+  
+</summary>
+  
+- Solución:
+
+```{r}
+# Dimensiones
+dim(airquality)
+nrow(airquality)
+ncol(airquality)
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 8</strong>: modifica el código inferior para que nos filtre solo los datos del mes de julio.
+  
+```{r eval = fFALSE
+# Filtramos filas
+filtro_fila <- subset(., subset = Month < 6)
+filtro_fila
+```
+</summary>
+  
+- Solución:
+
+```{r}
+# Filtramos filas
+filtro_fila <- subset(airquality, subset = Month == 7)
+filtro_fila
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 9</strong>: del conjunto `airquality` selecciona aquellos datos que no sean ni de julio ni de agosto.</summary>
+  
+- Solución:
+
+```{r}
+# Filtramos filas
+filtro_fila <-
+  subset(airquality, subset = !(Month %in% c(7, 8)))
+filtro_fila
+```
+
+</details>
+
+&nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 10</strong>: modifica el siguiente código para quedarte solo con las variable `Ozone` y `Temp`.
   
 ```{r eval = FALSE}
-# si no está ya instalado el paquete hay que hacer install.packages("MASS")
-? MASS::mammals # para ver info del conjunto de datos 
-```
-</summary>
-  
-- Solución:
-
-```{r}
-# Nombres de variables
-names(MASS::mammals)
-
-# Cabecera
-head(MASS::mammals)
-
-# Columnas
-MASS::mammals$body
-MASS::mammals$brain
-```
-
-</details>
-
-
-&nbsp; 
-
-<details>
-  <summary><strong>Ejercicio 7</strong>: modifica el código inferior para que nos filtre solo con los mamíferos con un peso corporal superior a 15 kg.
-  
-```{r}
-# Filtramos filas
-filtro_fila <- subset(MASS::mammals, subset = body < 35)
-filtro_fila
-```
-</summary>
-  
-- Solución:
-
-```{r}
-# Filtramos filas
-filtro_fila <- subset(MASS::mammals, subset = body > 15)
-filtro_fila
-```
-
-</details>
-
-&nbsp; 
-
-<details>
-  <summary><strong>Ejercicio 8</strong>: del conjunto `mammals` selecciona aquellos mamíferos terrestres cuyo peso corporal (`body`) sea superior a 20 kg.</summary>
-  
-- Solución:
-
-```{r}
-# Filtramos filas
-filtro_fila <- subset(MASS::mammals, subset = body > 20)
-filtro_fila
-```
-
-</details>
-
-&nbsp; 
-
-<details>
-  <summary><strong>Ejercicio 9</strong>: modifica el siguiente código para quedar solo con la variable `brain`.
-  
-```{r}
-filtro_col <- subset(MASS::mammals,  select = c("body"))
+filtro_col <- subset(.,  select = c("Ozone"))
 filtro_col
 ```
 </summary>
@@ -678,7 +686,7 @@ filtro_col
 
 ```{r}
 # Filtramos columnas
-filtro_col <- subset(MASS::mammals,  select = c("brain"))
+filtro_col <- subset(airquality,  select = c("Ozone", "Temp"))
 filtro_col
 ```
 
@@ -688,13 +696,14 @@ filtro_col
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 10</strong>: del conjunto `mammals` selecciona a la vez aquellos animales cuyo peso corporal supera los 20kg, pero selecciona solo la columna `brain`.</summary>
+  <summary><strong>Ejercicio 11</strong>: del conjunto `airquality` selecciona los datos de temperatura y viento de agosto.</summary>
   
 - Solución:
 
 ```{r}
 # Todo de una vez
-filtro <- subset(MASS::mammals, subset = body > 20, select = c("brain"))
+filtro <- subset(airquality, subset = Month == 8,
+                 select = c("Temp", "Wind"))
 filtro
 ```
 
@@ -704,16 +713,16 @@ filtro
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 11</strong>: calcula el número de filas borradas del ejercicio anterior. Tras hacer todo ello, traduce a castellano el nombre de las columnas del `data.frame` filtrado.</summary>
+  <summary><strong>Ejercicio 12</strong>: calcula el número de filas borradas del ejercicio anterior. Tras hacer todo ello, traduce a castellano el nombre de las columnas del `data.frame` filtrado.</summary>
   
 - Solución:
 
 ```{r}
 # Filas borradas
-nrow(MASS::mammals) - nrow(filtro)
+nrow(airquality) - nrow(filtro)
 
 # Cambiamos nombres a castellano del conjunto filtrado
-names(filtro) <- c("peso_cerebro_gr")
+names(filtro) <- c("temperatura", "viento")
 ```
 
 </details>
@@ -721,16 +730,18 @@ names(filtro) <- c("peso_cerebro_gr")
 &nbsp; 
 
 <details>
-  <summary><strong>Ejercicio 12</strong>: el nombre de los mamíferos solo está disponible como nombre de fila. Consúltalos y guárdalos en una nueva variable que incorpores a los datos originales.</summary>
+  <summary><strong>Ejercicio 13</strong>: añade a los datos originales una columna con la fecha completa (recuerda que es del año 1973 todas las observaciones.</summary>
   
 - Solución:
 
 ```{r}
-# Nombre de los mamíferos
-nombres <- row.names(MASS::mammals)
+# Construimos las fechas (pegamos año-mes-día con "-")
+fechas <- 
+  as.Date(paste("1973", airquality$Month, airquality$Day,
+                sep = "-"))
 
-# Añadimos nombres como columna para poder ser usada
-data.frame(nombres, MASS::mammals)
+# Añadimos
+data.frame(airquality, fechas)
 ```
 
 </details>
