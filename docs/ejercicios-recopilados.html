@@ -59,10 +59,9 @@
 <li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
 <li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
 <li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
-<li class="book-part">Estructuras de control</li>
-<li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
-<li><a class="" href="bucles.html"><span class="header-section-number">11</span> Bucles</a></li>
 <li class="book-part">Haciendo el trabajo más fácil</li>
+<li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras de control: if-else</a></li>
+<li><a class="" href="bucles.html"><span class="header-section-number">11</span> Estructuras de control: bucles</a></li>
 <li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
 <li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
 <li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
@@ -1374,13 +1373,14 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 </ul>
 </div>
 <p>(haz click en las flechas para ver soluciones)</p>
-<details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los mamíferos del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> pesan menos de una tonelada (variable <code>body</code>).</summary></p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los datos del conjunto <code>airquality</code> son de meses que no sean enero.</summary></p>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span> <span class="co"># paquete con los adtos</span>
+<span class="va">mes</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="va">mes</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Todos los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Ningún dato es del mes de enero"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
 <p></p>
@@ -1389,47 +1389,24 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <li>Solución:</li>
 </ul>
 <div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span> <span class="co"># paquete con los datos</span>
+<span class="va">mes</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">peso</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">mes</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># todos con mes distinto de 1</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Todos los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Ningún dato es del mes de enero"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
+<pre><code>## [1] "Ningún dato es del mes de enero"</code></pre>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los mamíferos del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> pesan menos de una tonelada (variable <code>body</code>).</summary></p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<p></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los registros tiene una temperatura mayor a 90 (Farenheit).</summary></p>
 <div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">peso</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="va">temperatura</span>  <span class="op">==</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] "Alguno de los mamíferos guardados pesan menos de una tonelada"</code></pre>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si el tercer mamífero del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> tiene un cerebro que pesa más de 100 gr (variable <code>brain</code>).</summary></p>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El tercer mamífero tiene un cerebro que pesa más de 100 gr."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 90 Farenheit"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
 <p></p>
@@ -1437,15 +1414,40 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cerebro</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">brain</span>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="va">cerebro</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">temperatura</span> <span class="op">&gt;</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El tercer mamífero tiene un cerebro que pesa más de 100 gr."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 90 Farenheit"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
-<p>No imprime nada porque no cumple la condición.</p>
+<pre><code>## [1] "Alguno de los registros tiene temperatura superior a 90 Farenheit"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los días supera la temperatura de 100.</summary></p>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">temperatura</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 100 Farenheit"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">temperatura</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># nos basta con uno</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 100 Farenheit"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>No imprime nada porque ninguno cumple la condición.</p>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 4</strong>: del paquete <a href="https://lubridate.tidyverse.org">lubridate</a>, la función <code><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour()</a></code> nos devuelve la hora de una fecha dada, y la función <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code> nos devuelve fecha y hora del momento actual. Con ambas funciones, y usando <code>if</code>, imprime por pantalla <code>"buenas noches"</code> solo a partir de las 21 horas. </summary></p>
@@ -1453,7 +1455,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cargamos librería</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 
@@ -1472,7 +1474,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha actual</span>
 <span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -1497,7 +1499,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha actual</span>
 <span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -1524,7 +1526,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 </div>
 <p>(haz click en las flechas para ver soluciones)</p>
 <details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código interior para diseñar un bucle <code>for</code> de 5 iteraciones que recorra los 5 primeros impares y les sume uno.</summary></p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">{</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span>
@@ -1539,7 +1541,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Una forma</span>
 <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">9</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1550,7 +1552,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 ## [1] 6
 ## [1] 8
 ## [1] 10</code></pre>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra</span>
 <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1564,7 +1566,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código interior para diseñar un bucle <code>while</code> que parta con una variable <code>conteo &lt;- 1</code> y pare cuando llegue a 6.</summary></p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">conteo</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="kw">while</span> <span class="op">(</span><span class="va">conteo</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1575,7 +1577,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">conteo</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="kw">while</span> <span class="op">(</span><span class="va">conteo</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1595,7 +1597,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span> <span class="op">{</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">*</span> <span class="fl">1000</span><span class="op">)</span>
@@ -1612,16 +1614,16 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 4</strong>: diseña un bucle <code>for</code> de 200 iteraciones que, empezando en un valor inicial de 100 (euros), te sume 3€ si el número actual es par y te reste 5€ si es impar.</summary></p>
 <p>Un número par o impar: un número par será todo aquel número que al dividir entre 2, la división es exacta, es decir, que su resto es nulo. Por ejemplo, al dividir 5 entre 2, el resto es 1, pero al dividir 12 entre 2 el resto es 0. Para calcula ese resto usaremos la función <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code>.</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">5</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">12</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">23</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">46</span> <span class="op">%%</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p></p>
@@ -1629,7 +1631,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># dinero inicial</span>
 <span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 
@@ -1648,7 +1650,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># vector de importes</span>
 <span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">201</span><span class="op">)</span>
 <span class="va">dinero</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="co"># dinero inicial</span>
@@ -1683,7 +1685,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dinero</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="co"># dinero inicial</span>
 
 <span class="co"># Bucle while</span>
@@ -1710,7 +1712,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 </div>
 <p>(haz click en las flechas para ver soluciones)</p>
 <details><p><summary><strong>Ejercicio 1</strong>: modifica el código inferior para definir una función llamada <code>funcion_suma</code>, de forma que dados dos elementos, devuelve su suma.</summary></p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1727,7 +1729,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">funcion_suma</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1743,7 +1745,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <pre><code>## [1] 10</code></pre>
 </details><p>&amp;nsbp;</p>
 <details><p><summary><strong>Ejercicio 2</strong>: modifica el código inferior para definir una función llamada <code>funcion_producto</code>, de forma que dados dos elementos, devuelve su producto.</summary></p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1760,7 +1762,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">funcion_producto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1776,7 +1778,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <pre><code>## [1] -21</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 3</strong>: modifica el código inferior para definir una función llamada <code>funcion_producto</code>, de forma que dados dos elementos, devuelve su producto, pero que por defecto calcule el cuadrado (es decir, por defecto un solo argumento, y el resultado sea el número por sí mismo)</summary></p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1796,7 +1798,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">funcion_producto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1810,7 +1812,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <span class="co"># Aplicamos la función</span>
 <span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="co"># por defecto x = 3, y = 3</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -21</code></pre>
 </details><p> </p>
@@ -1818,7 +1820,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Distinguiendo mayúsculas</span>
 <span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1826,10 +1828,10 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <span class="op">}</span>
 <span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sin importar mayúsculas</span>
 <span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1837,23 +1839,23 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <span class="op">}</span>
 <span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 5</strong>: define una función llamada <code>pares</code> que, dados dos números <code>x</code> e <code>y</code>, nos diga si la suma de ambos es par o no.</summary></p>
 <p>Recuerda que con <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code> podemos obtener el resto de un número al dividir entre 2.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span> <span class="op">%%</span> <span class="fl">2</span> <span class="co"># par, resto 0</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">3</span> <span class="op">%%</span> <span class="fl">2</span> <span class="co"># impar, resto 1</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">pares</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -1870,7 +1872,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <span class="co"># Aplicamos la función</span>
 <span class="fu">pares</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># suma 4 (par)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">pares</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># suma 9 (impar)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </details><p> </p>

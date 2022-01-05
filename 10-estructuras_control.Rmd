@@ -239,7 +239,7 @@ if (temperatura  == 100) {
 ```{r}
 temperatura <- airquality$Temp
 
-if (any(peso > 90)) {
+if (any(temperatura > 90)) {
   
   print("Alguno de los registros tiene temperatura superior a 90 Farenheit")
   
@@ -258,7 +258,7 @@ if (any(peso > 90)) {
 ```{r eval = FALSE}
 temperatura <- airquality$Temp
 
-if (all(peso < 50)) {
+if (all(temperatura < 50)) {
   
   print("Alguno de los registros tiene temperatura superior a 100 Farenheit")
   
@@ -274,7 +274,7 @@ if (all(peso < 50)) {
 ```{r}
 temperatura <- airquality$Temp
 
-if (any(peso > 100)) { # nos basta con uno
+if (any(temperatura > 100)) { # nos basta con uno
   
   print("Alguno de los registros tiene temperatura superior a 100 Farenheit")
   

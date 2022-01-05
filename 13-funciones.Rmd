@@ -26,7 +26,7 @@ Scripts usados:
 * [**script09.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R): funciones.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R>
 ::::
 
-En `R` no solo podemos usar las funciones predeterminadas que vienen ya cargadas, como o las de los paquetes que instalamos, como `sum()`, `read.csv()` o `mean()`, sino que además podemos <mark>**crear nuestras propias funciones**</mark>, para automatizar tareas que vayamos a repetir a lo largo de nuestro código.
+En `R` no solo podemos usar las funciones predeterminadas que vienen ya cargadas, como o las de los paquetes que instalamos, como `sum()`  o `mean()`, sino que además podemos <mark>**crear nuestras propias funciones**</mark>, para automatizar tareas que vayamos a repetir a lo largo de nuestro código.
 
 <mark>**¿Cómo crear nuestra propia función?**</mark> Veamos su esquema básico. Para crear una función necesitamos
 

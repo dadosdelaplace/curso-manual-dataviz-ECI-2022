@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capítulo 10 Estructuras condicionales if-else | Analizando datos, visualizando información, contando historias</title>
+<title>Capítulo 10 Estructuras de control: if-else | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
 <meta name="description" content="Scripts usados: script07.R: estructuras if-else. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R  Hasta ahora hemos trasteado con datos: hemos empezado desde...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Capítulo 10 Estructuras condicionales if-else | Analizando datos, visualizando información, contando historias">
+<meta property="og:title" content="Capítulo 10 Estructuras de control: if-else | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
 <meta property="og:description" content="Scripts usados: script07.R: estructuras if-else. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R  Hasta ahora hemos trasteado con datos: hemos empezado desde...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capítulo 10 Estructuras condicionales if-else | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:title" content="Capítulo 10 Estructuras de control: if-else | Analizando datos, visualizando información, contando historias">
 <meta name="twitter:description" content="Scripts usados: script07.R: estructuras if-else. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R  Hasta ahora hemos trasteado con datos: hemos empezado desde...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -59,10 +59,9 @@
 <li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
 <li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
 <li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
-<li class="book-part">Estructuras de control</li>
-<li><a class="active" href="if-else.html"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
-<li><a class="" href="bucles.html"><span class="header-section-number">11</span> Bucles</a></li>
 <li class="book-part">Haciendo el trabajo más fácil</li>
+<li><a class="active" href="if-else.html"><span class="header-section-number">10</span> Estructuras de control: if-else</a></li>
+<li><a class="" href="bucles.html"><span class="header-section-number">11</span> Estructuras de control: bucles</a></li>
 <li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
 <li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
 <li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
@@ -79,7 +78,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="if-else" class="section level1">
 <h1>
-<span class="header-section-number">Capítulo 10</span> Estructuras condicionales if-else<a class="anchor" aria-label="anchor" href="#if-else"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capítulo 10</span> Estructuras de control: if-else<a class="anchor" aria-label="anchor" href="#if-else"><i class="fas fa-link"></i></a>
 </h1>
 <div class="blackbox">
 <p>Scripts usados:</p>
@@ -90,32 +89,32 @@
 </ul>
 </div>
 <p>Hasta ahora hemos trasteado con datos: hemos empezado desde una celda, para luego construir columnas, para luego juntarlas en algo parecido a una base de datos.</p>
-<p>Para poder manejarnos con soltura con dichos datos es importante que conozcamos como se usan las <mark><strong>expresiones de control más típicas</strong></mark>. Una expresión de control será un <strong>conjunto de órdenes</strong> que nos permiten decidir por donde queremos que avance nuestro programa: ¿qué hacemos si sucede A? ¿Y si sucede B?</p>
+<p>Para poder manejarnos con soltura con dichos datos es importante que conozcamos como se usan las <mark><strong>expresiones de control más típicas</strong></mark>. Una expresión de control será un <mark><strong>conjunto de órdenes</strong></mark> que nos permiten decidir por donde queremos que avance nuestro programa: ¿qué hacemos si sucede A? ¿Y si sucede B?</p>
 <p>Si has programado en algún otro lenguaje, estarás familiarizado/a con elementos como un <code>if (blabla) {...} else {...}</code> (que los usaremos a veces) o bucles <code>for</code> y <code>while</code>. Si es la primera que programas en algún lenguaje, no te preocupes, las empezamos desde cero, empezando por las <mark><strong>estructuras condicionales</strong></mark></p>
 <ul>
 <li>
-<code>if (condición) { código A } else { código B }</code>: si <code>condición</code> (por ejemplo, <code>x == 1</code>) es cierta, se ejecuta <code>código A</code>; si es falsa, se ejecuta <code>código B</code>.</li>
+<code>if (x == 1) { código A } else { código B }</code>: si <code>condición</code> (por ejemplo, <code>x == 1</code>) es cierta, se ejecuta <code>código A</code>; si es falsa, se ejecuta <code>código B</code>.</li>
 </ul>
 <div id="if" class="section level2">
 <h2>
 <span class="header-section-number">10.1</span> if<a class="anchor" aria-label="anchor" href="#if"><i class="fas fa-link"></i></a>
 </h2>
-<p>Una de las estructuras de control más famosas de cualquier lenguaje de programación: SI las condiciones impuestas se cumplen (<code>TRUE</code>), ejecuta las órdenes que tengamos dentro del <code>if {}</code>. Definamos por ejemplo una variable sencilla, las edades de 8 personas.</p>
-<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
+<p>Una de las estructuras de control más famosas de cualquier lenguaje de programación: <mark><strong>SI las condiciones impuestas se cumplen (<code>TRUE</code>)</strong></mark>, ejecuta las órdenes que tengamos dentro del <code>if {}</code>. Definamos por ejemplo una variable sencilla, las edades de 8 personas.</p>
+<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">17</span>, <span class="fl">24</span>, <span class="fl">56</span>, <span class="fl">31</span>, <span class="fl">20</span>, <span class="fl">87</span>, <span class="fl">73</span><span class="op">)</span></code></pre></div>
 <p>Para comprobar cuales son menores de edades podemos aplicar lo aprendido en temas anteriores, realizando una <strong>comparación lógica</strong>: si es menor de edad, devuelve un <code>TRUE</code>; en caso contrario, devuelve un <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">18</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<p>Con las funciones <code><a href="https://rdrr.io/r/base/any.html">any()</a></code> y <code><a href="https://rdrr.io/r/base/all.html">all()</a></code> podemos saber si <mark><strong>todos o alguno de los elementos de un vector cumplen una condición</strong></mark>.</p>
-<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
+<p>Con las funciones <code><a href="https://rdrr.io/r/base/any.html">any()</a></code> y <code><a href="https://rdrr.io/r/base/all.html">all()</a></code> podemos saber si <mark><strong>todos o alguno de los elementos</strong></mark> de un vector <mark><strong>cumplen una condición</strong></mark>.</p>
+<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="co"># todos mayores de edad</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span> <span class="co"># existe algun menor de edad</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Con dichos elementos vamos a construir nuestra <strong>primera estructura condicional</strong>: queremos que si existe algún menor de edad, nos imprima un mensaje indicándolo.</p>
-<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si al menos una persona mayor de edad</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"existe alguna persona mayor de edad"</span><span class="op">)</span>
@@ -123,7 +122,7 @@
 <span class="op">}</span></code></pre></div>
 <pre><code>## [1] "existe alguna persona mayor de edad"</code></pre>
 <p>En caso de que no se cumplan las condiciones dentro del <code>if()</code> (condiciones que devuelvan un <code>FALSE</code>), no sucederá nada.</p>
-<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb985"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
@@ -136,7 +135,7 @@
 <span class="header-section-number">10.2</span> if - else<a class="anchor" aria-label="anchor" href="#if---else"><i class="fas fa-link"></i></a>
 </h2>
 <p>La estructura <code>if (condicion) { }</code> puede ser combinada con un <code>else { }</code>, de forma que cuando la condición no se cumpla (como en el último ejemplo), se ejecutará el código que haya dentro del <code>else { }</code>, permitiéndonos decidir que sucede cuando SÍ se cumple y cuando NO se cumple</p>
-<div class="sourceCode" id="cb985"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
@@ -147,7 +146,7 @@
 <span class="op">}</span></code></pre></div>
 <pre><code>## [1] "existe alguna persona menor de edad"</code></pre>
 <p>Podemos ya complicar un poco el código con lo que hemos aprendido de temas anteriores: en caso de que haya alguno menor de edad, queremos extraer la edad por pantalla (con <code>edades[edades &lt; 18]</code> extraeremos las edades que cumplen la condición de ser menor de edad).</p>
-<div class="sourceCode" id="cb987"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
@@ -164,7 +163,7 @@
 <span class="header-section-number">10.3</span> if - else anidados<a class="anchor" aria-label="anchor" href="#if---else-anidados"><i class="fas fa-link"></i></a>
 </h2>
 <p>Dicha estructura <code>if - else</code> puede <mark><strong>anidarse</strong></mark>, de forma que vayamos concatenando dichas estructuras, como en el ejemplo que tenemos debajo. Imagina que queremos realizar una acción si todos fuesen mayores de edad; en caso contrario, pero si todos los menores de edad tienen 16 años o más, realizar otra acción; en caso contrario, otra acción</p>
-<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb990"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># TRUE si TODOS son mayores de edad</span>
   
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"todas las personas son mayores de edad"</span><span class="op">)</span>
@@ -185,12 +184,12 @@
 <span class="header-section-number">10.4</span> ifelse () vectorizado<a class="anchor" aria-label="anchor" href="#ifelse-vectorizado"><i class="fas fa-link"></i></a>
 </h2>
 <p>Esta <mark><strong>estructura condicional puede ser vectorizada</strong></mark>, de forma que podamos reunir en una <strong>sola fila un número elevado de estructuras de comparación</strong> la función <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, cuyos argumentos de entrada serán la condición a evaluar, lo que sucede cuando se cumple y lo que no, que aplicará a cada elemento del vector de entrada. Con el ejemplo de las edades, vamos a <strong>dejar el dato ausente si son menores de edad</strong>, y si son mayores de edad se queda como está.</p>
-<div class="sourceCode" id="cb991"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># NA si no cumple la condición, la edad si se cumple.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">18</span>, <span class="va">edades</span>, <span class="cn">NA</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NA NA 24 56 31 20 87 73</code></pre>
 <p>Todas estas estructuras no solo sirven para datos numéricos. Vamos a definir un vector de nombres con algunos ausentes (<code>NA</code>), y vamos a sustituir los ausentes por el texto <code>"nombre_desconocido"</code> (los que no sean ausentes se quedan como están).</p>
-<div class="sourceCode" id="cb993"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Juan"</span>, <span class="st">"María"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"Lucía"</span>, <span class="st">"Carmen"</span>, <span class="st">"Javier"</span>,
              <span class="cn">NA</span>, <span class="st">"Carlos"</span>, <span class="cn">NA</span>, <span class="st">"Gregorio"</span>, <span class="st">"Paloma"</span><span class="op">)</span>
 
@@ -228,62 +227,40 @@ Imagen/gráfica 10.1: Activando Rainbow Parentheses.
 <span class="header-section-number">10.6</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>(haz click en las flechas para ver soluciones)</p>
-<details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los mamíferos del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> pesan menos de una tonelada (variable <code>body</code>).</summary></p>
-<div class="sourceCode" id="cb995"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Todos los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<p></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los datos del conjunto <code>airquality</code> son de meses que no sean enero.</summary></p>
 <div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span> <span class="co"># paquete con los adtos</span>
+<span class="va">mes</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">peso</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="va">mes</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Todos los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Ningún dato es del mes de enero"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
-<!-- tocstop -->
-</details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los mamíferos del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> pesan menos de una tonelada (variable <code>body</code>).</summary></p>
+<p></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
 <div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span> <span class="co"># paquete con los datos</span>
+<span class="va">mes</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">mes</span> <span class="op">!=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># todos con mes distinto de 1</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Ningún dato es del mes de enero"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
-<p></p>
-<!-- toc -->
-<ul>
-<li>Solución:</li>
-</ul>
-<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
-
-<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">peso</span> <span class="op">&lt;</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los mamíferos guardados pesan menos de una tonelada"</span><span class="op">)</span>
-  
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] "Alguno de los mamíferos guardados pesan menos de una tonelada"</code></pre>
+<pre><code>## [1] "Ningún dato es del mes de enero"</code></pre>
 <!-- tocstop -->
 </details><p> </p>
-<details><p><summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si el tercer mamífero del conjunto <code><a href="https://rdrr.io/pkg/MASS/man/mammals.html">MASS::mammals</a></code> tiene un cerebro que pesa más de 100 gr (variable <code>brain</code>).</summary></p>
-<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">peso</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">body</span>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los registros tiene una temperatura mayor a 90 (Farenheit).</summary></p>
+<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="va">peso</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="va">temperatura</span>  <span class="op">==</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El tercer mamífero tiene un cerebro que pesa más de 100 gr."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 90 Farenheit"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
 <p></p>
@@ -291,15 +268,40 @@ Imagen/gráfica 10.1: Activando Rainbow Parentheses.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cerebro</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/mammals.html">mammals</a></span><span class="op">$</span><span class="va">brain</span>
+<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="va">cerebro</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span> <span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">temperatura</span> <span class="op">&gt;</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"El tercer mamífero tiene un cerebro que pesa más de 100 gr."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 90 Farenheit"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
-<p>No imprime nada porque no cumple la condición.</p>
+<pre><code>## [1] "Alguno de los registros tiene temperatura superior a 90 Farenheit"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los días supera la temperatura de 100.</summary></p>
+<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">temperatura</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 100 Farenheit"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">temperatura</span> <span class="op">&lt;-</span> <span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">temperatura</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="co"># nos basta con uno</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Alguno de los registros tiene temperatura superior a 100 Farenheit"</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<p>No imprime nada porque ninguno cumple la condición.</p>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 4</strong>: del paquete <a href="https://lubridate.tidyverse.org">lubridate</a>, la función <code><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour()</a></code> nos devuelve la hora de una fecha dada, y la función <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code> nos devuelve fecha y hora del momento actual. Con ambas funciones, y usando <code>if</code>, imprime por pantalla <code>"buenas noches"</code> solo a partir de las 21 horas. </summary></p>
@@ -307,7 +309,7 @@ Imagen/gráfica 10.1: Activando Rainbow Parentheses.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cargamos librería</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 
@@ -326,7 +328,7 @@ Imagen/gráfica 10.1: Activando Rainbow Parentheses.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha actual</span>
 <span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -351,7 +353,7 @@ Imagen/gráfica 10.1: Activando Rainbow Parentheses.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha actual</span>
 <span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -369,11 +371,11 @@ Imagen/gráfica 10.1: Activando Rainbow Parentheses.
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></div>
-<div class="next"><a href="bucles.html"><span class="header-section-number">11</span> Bucles</a></div>
+<div class="next"><a href="bucles.html"><span class="header-section-number">11</span> Estructuras de control: bucles</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#if-else"><span class="header-section-number">10</span> Estructuras condicionales if-else</a></li>
+<li><a class="nav-link" href="#if-else"><span class="header-section-number">10</span> Estructuras de control: if-else</a></li>
 <li><a class="nav-link" href="#if"><span class="header-section-number">10.1</span> if</a></li>
 <li><a class="nav-link" href="#if---else"><span class="header-section-number">10.2</span> if - else</a></li>
 <li><a class="nav-link" href="#if---else-anidados"><span class="header-section-number">10.3</span> if - else anidados</a></li>
