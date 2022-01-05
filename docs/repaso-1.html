@@ -93,7 +93,7 @@
 <p> </p>
 <p><mark><strong>1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el que está?</strong></mark></p>
 <p> </p>
-<p>Nuestros datos se llaman <code>swiss</code> y son del paquete <code>{datasets}</code>, así que lo primero que debemos hacer es instalar el paquete (en caso de tenerlo, con <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("datasets")</a></code>), después <strong>llamar a ese paquete</strong> (tenemos el libro comprado y lo sacamos de la estantería) con <code><a href="https://rdrr.io/r/base/library.html">library(datasets)</a></code> y escribir el nombre del conjunto de datos para mostrarlo.</p>
+<p>Nuestros datos se llaman <code>swiss</code> y son del paquete <code>{datasets}</code>, así que lo primero que debemos hacer es instalar el paquete (en caso de no haberlo hecho aún, con <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("datasets")</a></code>), después <strong>llamar a ese paquete</strong> (tenemos el libro comprado y lo sacamos de la estantería) con <code><a href="https://rdrr.io/r/base/library.html">library(datasets)</a></code> y escribir el nombre del conjunto de datos para mostrarlo.</p>
 <div class="sourceCode" id="cb917"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
 <span class="va">swiss</span></code></pre></div>
@@ -429,17 +429,21 @@
 <div class="sourceCode" id="cb948"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  7  8  9 10 11 37</code></pre>
+<p>Incluso podemos pasarles esos índices al <strong>vector de nombres</strong> que hemos añadido y obtener el nombre de las provincias que cumplen dicha condición.</p>
+<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">nombres</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<pre><code>## NULL</code></pre>
 <p> </p>
 <p><mark><strong>7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas provincias, las que tienen fertilidad superior a 80?</strong></mark></p>
 <p> </p>
 <p>Podemos hacerlo principalmente de dos maneras. La primera es tratar a los datos como una matriz con el operador <code>[]</code>, dejando las columnas libres y pasándole como índices en las filas precisamente la condición lógica: seleccionará las <code>TRUE</code> y no seleccionará las <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span></code></pre></div>
 <pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
 ## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_nueva</span><span class="op">[</span><span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>, <span class="op">]</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
 ## 1    Courtelary      80.2        17.0          15        12     9.96
@@ -464,7 +468,7 @@
 ## 11             24.5
 ## 37             16.3</code></pre>
 <p>La otra manera, más corta y concisa, es usando <code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code>, que además nos permitiría seleccionar columnas si quisiéramos filtrarlas.</p>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># sin filtrar columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, subset <span class="op">=</span> <span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span><span class="op">)</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
@@ -489,7 +493,7 @@
 ## 10             24.4
 ## 11             24.5
 ## 37             16.3</code></pre>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># filtrando columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, subset <span class="op">=</span> <span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>,
        select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provincias"</span>, <span class="st">"Fertility"</span>, <span class="st">"Education"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -508,11 +512,11 @@
 <p><mark><strong>8. ¿Cómo podemos añadir una nueva variable lógica que nos guarde <code>TRUE</code> si la fertilidad es superior a 80 y <code>FALSE</code> en caso contrario?</strong></mark></p>
 <p> </p>
 <p>Vamos a guardar el resultado de la condición lógica en una variable y vamos a incluirla en el <code>data.frame</code> igual que hemos incluido los nombres.</p>
-<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">var_logica</span> <span class="op">&lt;-</span> <span class="va">tabla_nueva</span><span class="op">$</span><span class="va">Fertility</span> <span class="op">&gt;</span> <span class="fl">80</span>
 <span class="va">tabla_nueva_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla_nueva</span>, <span class="st">"alta_fertilidad"</span> <span class="op">=</span> <span class="va">var_logica</span><span class="op">)</span></code></pre></div>
 <p>Podemos realizar el filtro anterior haciendo uso de esa nueva variable.</p>
-<div class="sourceCode" id="cb959"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># sin filtrar columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
@@ -537,7 +541,7 @@
 ## 10             24.4            TRUE
 ## 11             24.5            TRUE
 ## 37             16.3            TRUE</code></pre>
-<div class="sourceCode" id="cb961"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb963"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># igual (sin filtrar columnas)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span><span class="op">)</span></code></pre></div>
 <pre><code>##      provincias Fertility Agriculture Examination Education Catholic
@@ -562,7 +566,7 @@
 ## 10             24.4            TRUE
 ## 11             24.5            TRUE
 ## 37             16.3            TRUE</code></pre>
-<div class="sourceCode" id="cb963"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># filtrando columnas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, subset <span class="op">=</span> <span class="va">alta_fertilidad</span>,
        select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"provincias"</span>, <span class="st">"Fertility"</span>, <span class="st">"Education"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -581,7 +585,7 @@
 <p><mark><strong>9. ¿Cómo podemos definir una nueva variable de tipo fecha, que empiece el 1 de enero de 1888, acabe el 31 de diciembre de 1888, y las fechas estén equiespaciadas en el tiempo?</strong></mark></p>
 <p> </p>
 <p>Si recuerdas las fechas internamente son guardadas como números así que podemos definir una <strong>secuencia de fechas</strong>, desde una fecha inicial hasta una fecha final, con la misma longitud que filas tenemos en los datos.</p>
-<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fechas</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1888-01-01"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1888-12-31"</span><span class="op">)</span>, l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fechas</span></code></pre></div>
@@ -596,10 +600,10 @@
 ## [41] "1888-11-13" "1888-11-21" "1888-11-29" "1888-12-07" "1888-12-15"
 ## [46] "1888-12-23" "1888-12-31"</code></pre>
 <p>Podemos comprobar que son fechas usando <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> pero también intentando sumar días a las fechas (sin que aparezca un error).</p>
-<div class="sourceCode" id="cb967"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fechas</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
-<div class="sourceCode" id="cb969"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fechas</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>##  [1] "1888-01-02" "1888-01-09" "1888-01-17" "1888-01-25" "1888-02-02"
 ##  [6] "1888-02-10" "1888-02-18" "1888-02-26" "1888-03-05" "1888-03-13"
@@ -612,7 +616,7 @@
 ## [41] "1888-11-14" "1888-11-22" "1888-11-30" "1888-12-08" "1888-12-16"
 ## [46] "1888-12-24" "1889-01-01"</code></pre>
 <p>Para añadir a la tabla dicha variable basta con hacer de nuevo <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> concatenando la tabla que teníamos con la nueva columna.</p>
-<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb973"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla_nueva_2</span>, <span class="va">fechas</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tabla_final</span><span class="op">)</span></code></pre></div>
 <pre><code>##     provincias Fertility Agriculture Examination Education Catholic

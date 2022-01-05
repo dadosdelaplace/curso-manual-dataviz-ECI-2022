@@ -65,6 +65,9 @@ tabla_nueva$Fertility > 80
 # podemos usar la función `which()`.
 which(tabla_nueva$Fertility > 80)
 
+# Nombres de dichas provincias
+tabla_nueva$nombres[which(tabla_nueva$Fertility > 80)]
+
 # 7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas
 # provincias, las que tienen fertilidad superior a 80?*
   

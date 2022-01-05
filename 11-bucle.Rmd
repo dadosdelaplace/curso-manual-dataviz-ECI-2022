@@ -17,7 +17,7 @@ colorize <- function(x, color) {
 ```
 
 
-# Bucles {#bucles}
+# Estructuras de control: bucles {#bucles}
 
 :::: {.blackbox data-latex=""}
 
@@ -291,7 +291,7 @@ while (conteo < 6) {
 
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: construye un bucle que recorra las primeras 8 filas del conjunto de datos `MASS::mammals` y que imprima el peso del animal (en kg) multiplicado por 1000 (gramos).
+  <summary>📝<strong>Ejercicio 3</strong>: construye un bucle que recorra las primeras 8 filas del conjunto de datos `datasets::airquality` y que imprima un mensaje con la temperatura
 
 </summary>
   
@@ -301,7 +301,7 @@ while (conteo < 6) {
 ```{r}
 for (i in 1:8) {
   
-  print(MASS::mammals$body[i] * 1000)
+  print(glue("La temperatura es de {airquality$Temp[i]}ºF"))
 }
 ```
 

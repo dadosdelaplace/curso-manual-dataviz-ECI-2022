@@ -32,7 +32,7 @@ fig:vectores-environment
 fig:stringr2
 fig:unnamed-chunk-236
 fig:tabla-dolar
-fig:unnamed-chunk-328
+fig:unnamed-chunk-329
 fig:crear-proyecto1
 fig:crear-proyecto2
 fig:crear-proyecto3

@@ -1082,14 +1082,15 @@ Scripts usados:
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los mamíferos del conjunto `MASS::mammals` pesan menos de una tonelada (variable `body`).
+  <summary>📝<strong>Ejercicio 1</strong>: modifica el código inferior para imprimir un mensaje por pantalla si todos los datos del conjunto `airquality` son de meses que no sean enero.
   
-```{r}
-peso <- MASS::mammals$body
+```{r eval = FALSE}
+library(datasets) # paquete con los adtos
+mes <- airquality$Month
 
-if (peso[1] == 1000) {
+if (mes == 2) {
   
-  print("Todos los mamíferos guardados pesan menos de una tonelada")
+  print("Ningún dato es del mes de enero")
   
 }
   
@@ -1100,11 +1101,12 @@ if (peso[1] == 1000) {
 - Solución:
 
 ```{r}
-peso <- MASS::mammals$body
+library(datasets) # paquete con los datos
+mes <- airquality$Month
 
-if (all(peso < 1000)) {
+if (all(mes != 1)) { # todos con mes distinto de 1
   
-  print("Todos los mamíferos guardados pesan menos de una tonelada")
+  print("Ningún dato es del mes de enero")
   
 }
 
@@ -1116,14 +1118,14 @@ if (all(peso < 1000)) {
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los mamíferos del conjunto `MASS::mammals` pesan menos de una tonelada (variable `body`).
+  <summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los registros tiene una temperatura mayor a 90 (Farenheit).
   
-```{r}
-peso <- MASS::mammals$body
+```{r eval = FALSE}
+temperatura <- airquality$Temp
 
-if (peso[1] == 1000) {
+if (temperatura  == 100) {
   
-  print("Alguno de los mamíferos guardados pesan menos de una tonelada")
+  print("Alguno de los registros tiene temperatura superior a 90 Farenheit")
   
 }
   
@@ -1134,11 +1136,11 @@ if (peso[1] == 1000) {
 - Solución:
 
 ```{r}
-peso <- MASS::mammals$body
+temperatura <- airquality$Temp
 
-if (any(peso < 1000)) {
+if (any(peso > 90)) {
   
-  print("Alguno de los mamíferos guardados pesan menos de una tonelada")
+  print("Alguno de los registros tiene temperatura superior a 90 Farenheit")
   
 }
 
@@ -1150,14 +1152,14 @@ if (any(peso < 1000)) {
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si el tercer mamífero del conjunto `MASS::mammals` tiene un cerebro que pesa más de 100 gr (variable `brain`).
+  <summary>📝<strong>Ejercicio 3</strong>: modifica el código inferior para imprimir un mensaje por pantalla si alguno de los días supera la temperatura de 100.
   
-```{r}
-peso <- MASS::mammals$body
+```{r eval = FALSE}
+temperatura <- airquality$Temp
 
-if (peso[1] == 1000) {
+if (all(peso < 50)) {
   
-  print("El tercer mamífero tiene un cerebro que pesa más de 100 gr.")
+  print("Alguno de los registros tiene temperatura superior a 100 Farenheit")
   
 }
   
@@ -1169,17 +1171,17 @@ if (peso[1] == 1000) {
 - Solución:
 
 ```{r}
-cerebro <- MASS::mammals$brain
+temperatura <- airquality$Temp
 
-if (cerebro[3] > 100) {
+if (any(peso > 100)) { # nos basta con uno
   
-  print("El tercer mamífero tiene un cerebro que pesa más de 100 gr.")
+  print("Alguno de los registros tiene temperatura superior a 100 Farenheit")
   
 }
 
 ```
 
-No imprime nada porque no cumple la condición.
+No imprime nada porque ninguno cumple la condición.
 
 
 <!-- tocstop -->
@@ -1267,6 +1269,8 @@ cat(ifelse(hour(fecha_actual) > 6 & hour(fecha_actual) < 14,
 </details>
 
 &nbsp;
+
+
 
 
 

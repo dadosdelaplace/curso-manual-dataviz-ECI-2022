@@ -35,7 +35,7 @@ Vamos a hacer un alto en el camino y hacer un repaso de lo que hemos aprendido c
 &nbsp;
   
 
-Nuestros datos se llaman `swiss` y son del paquete `{datasets}`, así que lo primero que debemos hacer es instalar el paquete (en caso de tenerlo, con `install.packages("datasets")`), después **llamar a ese paquete** (tenemos el libro comprado y lo sacamos de la estantería) con `library(datasets)` y escribir el nombre del conjunto de datos para mostrarlo.
+Nuestros datos se llaman `swiss` y son del paquete `{datasets}`, así que lo primero que debemos hacer es instalar el paquete (en caso de no haberlo hecho aún, con `install.packages("datasets")`), después **llamar a ese paquete** (tenemos el libro comprado y lo sacamos de la estantería) con `library(datasets)` y escribir el nombre del conjunto de datos para mostrarlo.
 
 ```{r}
 library(datasets)
@@ -160,6 +160,12 @@ Para saber las **filas exactas que cumplen dicha condición** (sus índices) pod
 
 ```{r}
 which(tabla_nueva$Fertility > 80)
+```
+
+Incluso podemos pasarles esos índices al **vector de nombres** que hemos añadido y obtener el nombre de las provincias que cumplen dicha condición.
+
+```{r}
+tabla_nueva$nombres[which(tabla_nueva$Fertility > 80)]
 ```
 
 &nbsp;
