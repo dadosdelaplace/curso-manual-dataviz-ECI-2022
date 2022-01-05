@@ -18,12 +18,12 @@ colorize <- function(x, color) {
 
 # (PART) Recursos {-}
 
-# 📝 Ejercicios recopilados
+# 📝 Ejercicios recopilados {-}
 
-Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso
+Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso. Vuelve por aquí si quieres cuando acabas las lecciones para repasar aquellos ejercicios que más te hayan costado.
 
 
-## Primeros pasos
+## Primeros pasos {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -241,7 +241,7 @@ No hace falta gastar una línea por cada orden que quieras ejecutar. Tampoco nec
 
 
 
-## Tipos de datos
+## Tipos de datos {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -279,6 +279,8 @@ fecha_nacimiento <- as.Date("1989-09-10") # tipo fecha
 - Solución:
 
 ```{r}
+library(glue)
+
 # Apellidos
 apellidos <- "Álvarez Liébana"
 
@@ -304,6 +306,7 @@ nombre_completo
 - Solución:
 
 ```{r}
+library(lubridate)
 dia_nacimiento <- day(fecha_nacimiento)
 mes_nacimiento <- month(fecha_nacimiento)
 a_nacimiento <- year(fecha_nacimiento)
@@ -432,7 +435,7 @@ a < b # ¿a < b?
 
 
 
-## Vectores
+## Vectores {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -603,7 +606,7 @@ edades > 65 # más de 65 años
 
 
 
-## Operaciones con vectores 
+## Operaciones con vectores {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -775,7 +778,7 @@ y
 
 
 
-## Estructuras de datos: matrices y tablas (data.frame)
+## Estructuras de datos: matrices y tablas (data.frame) {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -1025,7 +1028,7 @@ data.frame(nombres, MASS::mammals)
 
 
 
-## Estructuras condicionales
+## Estructuras condicionales {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -1225,7 +1228,7 @@ cat(ifelse(hour(fecha_actual) > 6 & hour(fecha_actual) < 14,
 
 
 
-## Bucles
+## Bucles {-}
 
 :::: {.blackbox data-latex=""}
 
@@ -1410,7 +1413,7 @@ dinero
 
 
 
-## Funciones
+## Funciones {-}
 
 :::: {.blackbox data-latex=""}
 

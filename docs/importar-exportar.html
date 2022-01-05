@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 16 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
-<meta name="description" content=':::: {.blackbox data-latex=""}* 13 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos aprendido...'>
+<meta name="description" content=':::: {.blackbox data-latex=""}* 0.8 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos...'>
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 16 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content=':::: {.blackbox data-latex=""}* 13 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos aprendido...'>
+<meta property="og:description" content=':::: {.blackbox data-latex=""}* 0.8 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos...'>
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 16 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content=':::: {.blackbox data-latex=""}* 13 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos aprendido...'>
+<meta name="twitter:description" content=':::: {.blackbox data-latex=""}* 0.8 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos...'>
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -45,6 +45,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Recursos</li>
+<li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -66,8 +68,6 @@
 <li class="book-part">Empezando a explorator datos</li>
 <li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
 <li><a class="active" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
-<li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -80,7 +80,7 @@
 <h1>
 <span class="header-section-number">Capítulo 16</span> Sacando datos de las piedras<a class="anchor" aria-label="anchor" href="#importar-exportar"><i class="fas fa-link"></i></a>
 </h1>
-<p>:::: {.blackbox data-latex=""}* <a href="funciones.html#funciones">13</a> <a href="funciones.html#funciones">Funciones</a></p>
+<p>:::: {.blackbox data-latex=""}* <a href="ejercicios-recopilados.html#funciones">0.8</a> <a href="ejercicios-recopilados.html#funciones">Funciones</a></p>
 <p>Scripts usados:</p>
 <ul>
 <li>
@@ -101,11 +101,11 @@
 <p>Es <strong>recomendable</strong> tener los datos en la <mark><strong>misma carpeta del proyecto</strong></mark> pero una carpeta separada, ya que podemos tener muchos archivos y así no mezclamos dichos ficheros con los códigos que escirbamos. En la carpeta <code>DATOS</code> del proyecto tenemos 1 archivo <code>.RData</code>: <code>titanic.RData</code>, un conjunto de datos obtenidos de la plataforma de aprendizaje y predicción <a href="https://www.kaggle.com/c/titanic/overview" class="uri">https://www.kaggle.com/c/titanic/overview</a>, con los datos de los pasajeros del Titanic (nombre, título, cabina, si sobrevivió o no, edad, etc)</p>
 <p><mark><strong>¿Cómo cargar archivos <code>.RData</code>?</strong></mark></p>
 <p>Muy sencillo: como son ficheros nativos de <code>R</code>, basta con usar la función de carga <code><a href="https://rdrr.io/r/base/load.html">load()</a></code>, y dentro la ruta del archivo que queramos cargar</p>
-<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Al fijar directorio de trabajo, no necesitamos toda la ruta, solo "./" y la ruta dentro de la carpeta del proyecto</span>
 <span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"./DATOS/titanic.RData"</span><span class="op">)</span></code></pre></div>
 <p>En el panel de <strong>entorno de la parte superior derecha</strong> ahora tendremos un <code>data.frame</code> que antes no teníamos. Ya hemos visto que una función muy útil es <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>, con argumento el nombre de un <code>data.frame</code>, que nos permite visualizar las primeras columnas.</p>
-<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span></code></pre></div>
 <pre><code>##   PassengerId Survived Pclass
 ## 1           1        0      3
@@ -134,15 +134,15 @@
 </h3>
 <p>Otra opción habitual son los <mark><strong>archivos <code>.csv</code> (comma separated values)</strong></mark>: son archivos <strong>separados por comas</strong> (u otro caracter como puntos, puntos y comas, o tabuladores). En apariencia cuando los abrimos en el ordenador son como un Excel (ya que los abre el Excel), pero ocupan mucho menos que un Excel y su <strong>lectura es universal</strong> (independiente de tener instalado o no el Excel) ya que son archivos de texto <strong>sin formato</strong>.</p>
 <p>Para leer un archivo <code>.csv</code> basta con usar la función <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>e indicarle la ruta del archivo para su lectura (argumento <code>file</code>, aunque tiene otros argumentos extras por si queremos especifiar el caracter que separa las columnas, si incluímos o no una cabecera de la tabla, y otros argumentos que puedes consultar con <code><a href="https://rdrr.io/r/utils/read.table.html">? read.csv</a></code>).</p>
-<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"./DATOS/titanic.csv"</span><span class="op">)</span></code></pre></div>
 <p>Ya tenemos nuestro archivo <code>.csv</code> cargado y además en formato <code>data.frame</code>.</p>
 <p>Una de las ventajas de la carga de estos archivos en <code>R</code> es que podemos hacerlo sin <mark><strong>ni siquiera tener el archivo en nuestro ordenador</strong></mark>, a través de un enlace web. Vamos a ver un ejemplo con los datos del ISCIII sobre la pandemia. En su web <a href="https://cnecovid.isciii.es/covid19/#documentaci%C3%B3n-y-datos" class="uri">https://cnecovid.isciii.es/covid19/#documentaci%C3%B3n-y-datos</a> tienen varios archivos colgados, que podemos o bien descargarlos, o haciendo click derecho <mark><strong>«Copiar dirección de enlace»</strong></mark> obtenemos un enlace. Por ejemplo, para el archivo <code>casos_tecnica_ccaa.csv</code>, que nos almacena el número de casos por técnica diagnóstica y CCAA, tenemos el enlace <a href="https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv" class="uri">https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv</a>. Dicho enlace es el que se abre cuando pulsamos en Descargar, pero podemos introducirlo directamente en <code>R</code>, sustituyendo a nuestra ruta.</p>
-<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_ISCIII</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 13946     8</code></pre>
-<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
 <pre><code>##   ccaa_iso      fecha num_casos num_casos_prueba_pcr num_casos_prueba_test_ac
 ## 1       AN 2020-01-01         0                    0                        0
@@ -168,7 +168,7 @@ Imagen/gráfica 16.1: Discursos guardados en el repositorio de <a href="https://
 </p>
 </div>
 <p>Cada discurso está guardado en un <mark><strong>archivo <code>.txt</code></strong></mark>, un archivo que no tiene una estructura tabular (con filas y columnas, separadas por caracteres) como los archivos <code>.csv</code>. Para este tipo de archivos podemos usar <code>read.delim</code>.</p>
-<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">discurso_1937</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lirondos/discursos-de-navidad/master/data/speeches/1937.txt"</span><span class="op">)</span>
 <span class="va">discurso_1937</span></code></pre></div>
@@ -184,11 +184,11 @@ Imagen/gráfica 16.1: Discursos guardados en el repositorio de <a href="https://
 </h3>
 <p>Muchas veces no tendremos un <code>.csv</code> (por desgracia) y nos tocará <mark><strong>leer desde un excel</strong></mark>. Para ello deberemos instalar (la primera vez) y cargar el paquete <a href="https://readxl.tidyverse.org">readxl</a> que nos permitirá usar funciones para cargar archivos <code>.xls</code> (la función <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xls()</a></code>) y archivos <code>.xlsx</code> (la función <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xlsx()</a></code>). Además del argumento <code>path</code> con la ruta del archivo, podemos en el argumento <code>sheet</code> indicarle la hoja de Excel a leer (en caso de tener varias).</p>
 <p>Vamos a leer por ejemplo el archivo <code>Boston.xlsx</code>, que contienen información del valor inmobiliario de 506 distritos de Boston. Puedes ver la información de las variables con <code><a href="https://rdrr.io/pkg/MASS/man/Boston.html">? MASS::Boston</a></code>.</p>
-<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"readxl"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="va">boston</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xlsx</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"./DATOS/Boston.xlsx"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1297"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">boston</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 14
 ##      crim    zn indus  chas   nox    rm   age   dis   rad   tax ptratio black
@@ -207,7 +207,7 @@ Imagen/gráfica 16.1: Discursos guardados en el repositorio de <a href="https://
 </h3>
 <p>Por último, una opción muy común es <mark><strong>cargar datos desde paquetes que ya los tienen</strong></mark> (o los consiguen a través de una API). Un ejemplo de ello es el paquete <a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a>, del que ya hemos hablado, que contiene una gran cantidad de conjuntos de datos para usarlos en nuestro propio aprendizaje, como es el conjunto <code><a href="https://rdrr.io/pkg/MASS/man/Boston.html">MASS::Boston</a></code>.</p>
 <p>Veamos otro ejemplo con uno de los paquetes más útiles para conseguir datos, el <mark><strong>paquete del EUROSTAT</strong></mark><a href="https://ropengov.github.io/eurostat/">eurostat</a>. Con la función <code><a href="https://ropengov.github.io/eurostat/reference/search_eurostat.html">search_eurostat()</a></code> nos permite buscar datasets por palabras clave (nos muestra una tabla con los datasets y sus códigos) y con <code><a href="https://ropengov.github.io/eurostat/reference/get_eurostat.html">get_eurostat()</a></code> podemos acceder a ellos proporcionando el código del archivo.</p>
-<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span> <span class="co"># instalar la primera vez</span>
 
 <span class="co"># Buscamos datos por palabras clave</span>
@@ -226,7 +226,7 @@ Imagen/gráfica 16.1: Discursos guardados en el repositorio de <a href="https://
 ##  9 Pupils… educ… data… 14.12.2021       08.02.2021       2013         2019      
 ## 10 Studen… educ… data… 14.12.2021       08.02.2021       2013         2019      
 ## # … with 1,052 more rows, and 1 more variable: values &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Accedemos a un dato concreto por codigo</span>
 <span class="fu"><a href="https://ropengov.github.io/eurostat/reference/get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"hlth_ehis_de3"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1,536 × 6
@@ -276,14 +276,14 @@ Imagen/gráfica 16.1: Discursos guardados en el repositorio de <a href="https://
 </ul>
 <p>La exportación en fichero <code>.RData</code> es la opción <strong>más recomendable si tú o tu equipo solo trabajáis con <code>R</code></strong>, es la opción nativa de fichero, para que su importación sea tan sencilla como una función <code><a href="https://rdrr.io/r/base/load.html">load()</a></code>. Para exportar en <code>R.Data</code> basta con uses la función <code><a href="https://rdrr.io/r/base/save.html">save()</a></code>, indícandole lo que quieres guardar y la ruta donde quieres guardarlo.</p>
 <p>Es <strong>importante</strong> entender que la principal ventaja de exportar un fichero <code>.RData</code> es que no se está portando una tabla, o un fichero tabulado con un formato de filas y columnas: estás exportando <strong>cualquier cosa</strong>, cualquier variable de <code>R</code>, con la naturaleza de esa variable intacta, sin necesidad de pasarlo otro formato.</p>
-<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"javier"</span>, <span class="st">"carla"</span><span class="op">)</span>
 <span class="co"># Exportamos en .RData la variable nombres </span>
 <span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">nombres</span>, file <span class="op">=</span> <span class="st">"./EXPORTAR/nombres.RData"</span><span class="op">)</span></code></pre></div>
 <p>Para tenerlo organizado, la orden anterior está hecha habiendo creado en nuestra carpeta del proyecto una carpeta <code>EXPORTAR</code> para guardar lo que vayamos exportando. Ese fichero solo podrá ser abierto por <code>R</code>, pero cuando lo cargemos, tendremos la variable <code>nombres</code> tal cual la hemos guardado.</p>
 <p> </p>
 <p>No siempre trabajamos en <code>R</code> y a veces necesitamos una exportación de un <code>data.frame</code> o una tabla que podamos abrir en nuestra ordenador, ya sea para explicársela a alguien o para enviársela a otra persona. Para ello exportaremos en <code>.csv</code>, un fichero sin formato, y que es capaz de ser abierto por todo tipo de hojas de cálculo: basta que usemos la función <code><a href="https://rdrr.io/r/utils/write.table.html">write.csv()</a></code>.</p>
-<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Exportamos en .csv el data.frame del ISCIII</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">datos_ISCIII</span>, file <span class="op">=</span> <span class="st">"./EXPORTAR/datos_ISCIII.csv"</span><span class="op">)</span></code></pre></div>
 <p> </p>
@@ -304,7 +304,7 @@ Imagen/gráfica 16.2: Líneas de código.
 <p> </p>
 <p><strong><span style="color: #4197D2;">Paquete rvest</span></strong></p>
 <p>En dicho paquete tienes más <mark><strong>funciones para una lectura directamente como si navegaras por una página web</strong></mark>. Ver <a href="https://github.com/tidyverse/rvest" class="uri">https://github.com/tidyverse/rvest</a>.</p>
-<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1305"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ejemplo cargando datos de una tabla de wikipedia: </span>
 <span class="co"># encuestas elecciones alemanas 2021</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
@@ -344,12 +344,9 @@ Imagen/gráfica 16.3: Margen derecho.
 
 </div>
 </div>
-
-
-
   <div class="chapter-nav">
 <div class="prev"><a href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></div>
-<div class="next"><a href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></div>
+<div class="next"><a href="bibliograf%C3%ADa.html">Bibliografía</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -382,7 +379,7 @@ Imagen/gráfica 16.3: Margen derecho.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 04-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 05-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -45,6 +45,8 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Recursos</li>
+<li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -66,8 +68,6 @@
 <li class="book-part">Empezando a explorator datos</li>
 <li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
 <li><a class="" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
-<li class="book-part">Recursos</li>
-<li><a class="" href="ejercicios-recopilados.html"><span class="header-section-number">17</span> 📝 Ejercicios recopilados</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -110,7 +110,7 @@
 <p>Con todos estos ingredientes estamos preparados/as para ver el que probablemente sea el tipo de dato más importante en <code>R</code>: las <mark><strong>listas</strong></mark>.</p>
 <p>Las <mark><strong>listas</strong></mark> son <strong>colecciones</strong> de variables de <mark><strong>diferente tipo pero que pueden ser también de diferente longitud</strong></mark>, con estructuras totalmente <strong>heterógeneas</strong>, de ahí que sea el formato de salida de muchísimas <strong>funciones de <code>R</code></strong> que te devuelven a la vez un cadena de texto, un vector de números o una tabla, todo guardado en la misma variable (incluso <strong>una lista puede tener dentro a su vez otra lista</strong>).</p>
 <p>Vamos a <mark><strong>crear nuestra primera lista</strong></mark> con tres elementos: el nombre de nuestros padres/madres, nuestro lugar de nacimiento y edades de nuestros hermanos.</p>
-<div class="sourceCode" id="cb900"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">variable_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Paloma"</span>, <span class="st">"Gregorio"</span><span class="op">)</span>
 <span class="va">variable_2</span> <span class="op">&lt;-</span> <span class="st">"Madrid"</span>
 <span class="va">variable_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">26</span><span class="op">)</span>
@@ -127,7 +127,7 @@
 ## 
 ## $edades_hermanos
 ## [1] 25 30 26</code></pre>
-<div class="sourceCode" id="cb902"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lista</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Si observas el objeto que hemos definido como <code>lista</code>, su longitud del objeto es de 3: tenemos guardados <strong>tres elementos</strong></p>
@@ -137,13 +137,13 @@
 <li>un vector de números (de longitud 3)</li>
 </ul>
 <p>Tenemos guardados elementos de distinto tipo (algo que ya podíamos con los <code>data.frame</code> pero de longitudes dispares).</p>
-<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">lista</span><span class="op">)</span> <span class="co"># devolverá NULL al no tener dos dimensiones</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb906"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lista</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb908"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">lista</span><span class="op">)</span> <span class="co"># de tipo lista</span></code></pre></div>
 <pre><code>## [1] "list"</code></pre>
 <p>Para <mark><strong>acceder a un elemento de la lista</strong></mark> tenemos dos opciones:</p>
@@ -151,16 +151,16 @@
 <li><p><strong>Acceder por índice</strong>: con el operador <code>[[i]]</code> accedemos al elemento i-ésimo de la lista.</p></li>
 <li><p><strong>Acceder por nombre</strong>: con el operador <code>$nombre_elemento</code> accedemos al elemento por su nombre</p></li>
 </ul>
-<div class="sourceCode" id="cb910"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Accedemos por índice</span>
 <span class="va">lista</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Paloma"   "Gregorio"</code></pre>
-<div class="sourceCode" id="cb912"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Accedemos por nombre</span>
 <span class="va">lista</span><span class="op">$</span><span class="va">progenitores</span></code></pre></div>
 <pre><code>## [1] "Paloma"   "Gregorio"</code></pre>
 <p>Dada su heterogeneidad y flexibilidad, para acceder a un elemento particular, las listas tienen una forma peculiar de acceder (con el corchete doble, en contraposición con el corchete simple que nos permite <mark><strong>acceder a varios elementos a la vez</strong></mark>)</p>
-<div class="sourceCode" id="cb914"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Varios elementos</span>
 <span class="va">lista</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## $progenitores
@@ -180,7 +180,7 @@
 <li>
 <code>nombre_padres</code>: vector de texto.</li>
 </ul>
-<div class="sourceCode" id="cb916"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha de nacimiento</span>
 <span class="va">fecha_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1989-09-10"</span><span class="op">)</span>
 
@@ -214,43 +214,43 @@
 ## 
 ## $nombre_padres
 ## [1] "Juan"  "Julia"</code></pre>
-<div class="sourceCode" id="cb918"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">datos</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "nacimiento"    "notas_insti"   "teléfonos"     "nombre_padres"</code></pre>
-<div class="sourceCode" id="cb920"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">datos</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Hemos creado una <strong>lista algo más compleja de 4 elementos</strong>, a los cuales podemos acceder por índice o nombre.</p>
-<div class="sourceCode" id="cb922"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "1989-09-10"</code></pre>
-<div class="sourceCode" id="cb924"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos</span><span class="op">$</span><span class="va">nacimiento</span></code></pre></div>
 <pre><code>## [1] "1989-09-10"</code></pre>
-<div class="sourceCode" id="cb926"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##                 biología física matemáticas
 ## primer_parcial         5      4         8.0
 ## segundo_parcial        7      5         9.5</code></pre>
-<div class="sourceCode" id="cb928"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos</span><span class="op">$</span><span class="va">notas_insti</span></code></pre></div>
 <pre><code>##                 biología física matemáticas
 ## primer_parcial         5      4         8.0
 ## segundo_parcial        7      5         9.5</code></pre>
 <p>Como hemos comentado, también podemos <strong>aplicar la recursividad</strong> y hacer <strong>listas con otras listas dentro</strong>, de forma que para acceder a cada nivel deberemos usar el operador <code>[[]]</code>.</p>
-<div class="sourceCode" id="cb930"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lista_de_listas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"lista_1"</span> <span class="op">=</span> <span class="va">datos</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="st">"lista_2"</span> <span class="op">=</span> <span class="va">datos</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">lista_de_listas</span><span class="op">)</span> <span class="co"># Nombres de los elementos del primer nivel</span></code></pre></div>
 <pre><code>## [1] "lista_1" "lista_2"</code></pre>
-<div class="sourceCode" id="cb932"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">lista_de_listas</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="co"># Nombres de los elementos guardados en el primer elemento, que es a su vez una lista</span></code></pre></div>
 <pre><code>## [1] "teléfonos"     "nombre_padres"</code></pre>
-<div class="sourceCode" id="cb934"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lista_de_listas</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># Elemento 1 de la lista guardada como elemento 1 de la lista superior</span></code></pre></div>
 <pre><code>## [1] "914719567" "617920765" "716505013"</code></pre>
 <p><mark><strong>¡Nos permiten guardar «datos n-dimensionales»!</strong></mark>.</p>
 <p>Es un formato muy habitual para devolver argumentos en funciones. Imagina que la función <code>igualdad_nombres</code> que hemos definido en el Ejercicio 4</p>
-<div class="sourceCode" id="cb936"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sin importar mayúsculas</span>
 <span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -258,11 +258,11 @@
 <span class="op">}</span>
 <span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb938"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Vamos a reescribirla haciendo que devuelva no solo si es igual o distinto, sino que devuelva los dos nombres de entrada. Al ser un tipo de distinto de dato (una variable lógica, y un vector de longitud de caracteres), lo más práctico es <strong>devolverlo en forma de lista</strong>.</p>
-<div class="sourceCode" id="cb940"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sin importar mayúsculas</span>
 <span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -272,17 +272,17 @@
 <span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span>
 <span class="va">resultado</span><span class="op">$</span><span class="va">son_iguales</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb942"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resultado</span><span class="op">$</span><span class="va">nombres</span></code></pre></div>
 <pre><code>## [1] "Javi"  "Lucía"</code></pre>
 <p> </p>
 <p><strong><span style="color: #dc3545;">WARNING: operaciones aritméticas con listas</span></strong></p>
 <p>Una <strong>lista no se puede vectorizar de forma inmediata</strong>, por lo cualquier operación aritmética aplicada a una lista dará error (para ello está disponible la función <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>, cuyo uso corresponde a otros cursos más avanzados).</p>
-<div class="sourceCode" id="cb944"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span>
 <span class="va">datos</span> <span class="op">/</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## Error in datos/2: argumento no-numérico para operador binario</code></pre>
-<div class="sourceCode" id="cb946"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">datos</span>, FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span> <span class="va">x</span> <span class="op">/</span> <span class="fl">2</span><span class="op">}</span><span class="op">)</span></code></pre></div>
 <pre><code>## $a
 ## [1] 0.5 1.0 1.5 2.0 2.5
@@ -299,7 +299,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb948"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ejemplo: lista con texto, numérico, lógico y un data.frame</span>
 <span class="va">lista_ejemplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"nombre"</span> <span class="op">=</span> <span class="st">"Javier"</span>, <span class="st">"cp"</span> <span class="op">=</span> <span class="fl">28019</span>,
                       <span class="st">"soltero"</span> <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -320,11 +320,11 @@
 ## 1   7.5     10
 ## 2   8.0      5
 ## 3   9.0      6</code></pre>
-<div class="sourceCode" id="cb950"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Longitud</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lista_ejemplo</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Accedemos al elemento dos</span>
 <span class="va">lista_ejemplo</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 28019</code></pre>
@@ -334,7 +334,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Accedemos al 1 y al 4</span>
 <span class="va">lista_ejemplo</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## $nombre
@@ -346,17 +346,17 @@
 ## 2   8.0      5
 ## 3   9.0      6</code></pre>
 <p>Otra opción es acceder con los nombres</p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Accedemos al 1 y al 4</span>
 <span class="va">lista_ejemplo</span><span class="op">$</span><span class="va">nombre</span></code></pre></div>
 <pre><code>## [1] "Javier"</code></pre>
-<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lista_ejemplo</span><span class="op">$</span><span class="va">notas</span></code></pre></div>
 <pre><code>##   mates lengua
 ## 1   7.5     10
 ## 2   8.0      5
 ## 3   9.0      6</code></pre>
-<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lista_ejemplo</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nombre"</span>, <span class="st">"notas"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## $nombre
 ## [1] "Javier"
@@ -372,7 +372,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="co"># Creamos lista: con lubridate calculamos la diferencia de años desde la fecha de nuestro nacimiento hasta hoy (sea cuando sea hoy)</span>
 <span class="va">lista_personal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"nombre"</span> <span class="op">=</span> <span class="st">"Javier"</span>,
@@ -422,7 +422,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 04-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 05-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
