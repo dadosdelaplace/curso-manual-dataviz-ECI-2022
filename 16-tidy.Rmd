@@ -1,0 +1,265 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# Tidy vs messy data: daticos ordenados {#tidy}
+
+> Tidy datasets are all alike, but every messy dataset is messy in its own way (Hadley Wickham, Chief Scientist en RStudio)
+
+Hasta ahora solo le hemos dado importancia al «qué» pero no al **«cómo» manejamos los datos**. La <mark>**organización de nuestros datos**</mark> es fundamental para que su preparación y explotación sea **lo más eficiente posible**: la limpieza y preprocesamiento puede llevarnos hasta el **80% del tiempo** en nuestro análisis si no se hace forma correcta [@DasuJohnson03].
+
+El concepto <mark>**tidy data**</mark> fue introducido por **Hadley Wickham** [@Wickham14] como objetivo del entorno de paquetes que posteriormente se fueron desarrollando bajo el nombre de `{tidyverse}`. Los conjuntos _tidy_ o <mark>**datos ordenados**</mark> tienen tres objetivos
+
+* **Estandarización** en su estructura.
+* **Sencillez** en su manipulación.
+* Listos para ser **modelizados y visualizados**.
+
+Para ello, los <mark>**datos ordenados**</mark> o _tidy data_ deben cumplir:
+
+1. Cada <mark>**variable en una columna**</mark>.
+2. Cada <mark>**observación/registro/individuo en una fila diferente**</mark>.
+3. Cada <mark>**celda con un único valor**</mark>.
+4. Cada <mark>**conjunto o unidad observacional conforma una tabla**</mark>.
+5. Si contamos con **múltiples tablas**, debemos tener una **columna común** en cada una que nos permita **cruzarlas**.
+
+```{r tidy-data, echo = FALSE,  out.width = "80%", fig.align = "center", fig.cap = "Infografía con datos ordenados (tidy data) extraída de <https://r4ds.had.co.nz/tidy-data.html>"}
+knitr::include_graphics("./img/tidy_data.png")
+``` 
+
+Lo contrario lo llamaremos **datos desordenados** o _messy data_. Para trabajar con los datos vamos a cargar `{tidyverse}`, un entorno de paquetes para el manejo de datos (ver más detalles en [Transformando los datos: incursión al universo tidyverse](#tidyverse)).
+
+```{r eval = FALSE}
+install.packages("tidyverse") # SOLO la primera vez
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+## Messy data: valores en columnas en lugar de variables
+
+Vamos a visualizar la tabla `table4a` del paquete `{tidyr}` (que ya lo tenemos cargado del entorno `{tidyverse}`).
+
+```{r}
+table4a
+```
+
+Si te fijas, tenemos una columna `country`, representando una variable con el nombre de los países, **¡pero las otras columnas no representan cada una a una sola variable!** Ambas son la misma variable, solo que medida en años distintos (que debería ser a su vez otra variable): **cada fila está representando dos observaciones** (1999, 2000) en lugar de un solo registro. Lo que haremos será incluir una nueva columna llamada `year` que nos marque el año y otra `values` que nos diga el valor de la variable de interés en cada uno de esos años.
+
+Con la <mark>**función `pivot_longer`**</mark> del mencionada paquete le indicaremos lo siguiente:
+
+- `cols`: el nombre de las columnas que vamos a **pivotar** (con comillas porque son números, no texto como nombre).
+- `names_to`: el nombre de la columna a la que vamos a mandar los valores que figuran ahora en los nombres de las columnas.
+- `values_to`: el nombre de la columna a la que vamos a mandar los valores.
+
+```{r}
+library(tidyr)
+table4a %>% pivot_longer(cols = c("1999", "2000"),
+                         names_to = "year",
+                         values_to = "values")
+```
+
+Ahora tenemos un **registro por fila, una variable por columna y cada celda representa un único valor**. Este ejemplo de _messy data_ lo podemos encontrar muy a menudo cuando **construimos rangos de variables** pensando que es mejor tener una tabla más compacta (alargar la tabla a lo ancho en lugar de a lo largo). Es el caso de la tabla `relig_income`.
+
+```{r}
+relig_income
+```
+
+Salvo la primera, el resto de columnas tienen como **nombre los valores de una variable en sí misma** (ingresos). Para ordenar los datos vamos a razonar de la misma manera solo que ahora, en lugar de indicarle el nombre de todas las columnas que queremos usar de entrada, vamos a **indicarle de forma más corta la columna que NO queremos seleccionar**.
+
+```{r}
+# No necesitamos las comillas en el nombre de columnas salvo que tengan caracteres que no sean letras
+relig_income %>% pivot_longer(-religion, names_to = "ingresos",
+                              values_to = "frecuencia")
+```
+
+Lo que hacemos con `pivot_longer()` es **«ampliar» la tabla, haciéndola más larga (más filas) pero con menos columnas**.
+
+
+## Messy data: una observación guardada en varias filas
+
+Vamos a visualizar ahora la tabla `table2` del paquete `{tidyr}`.
+
+```{r}
+table2
+```
+
+Fíjate en las cuatro primeras filas: los registros con el mismo año deberían ser el mismo, es la misma información, debería estar en la misma fila, pero está dividada en dos. Por un lado una fila para la variable `cases` y otra para `population`. Lo que haremos será lo opuesto a antes: con `pivot_wider()` **«ampliaremos» la tabla a lo ancho, haciéndola menos (menos filas) pero con más columnas**.
+
+- `names_from`: el nombre de la columna de la que vamos a sacar las nuevas columnas que vamos a crear (`cases` y `population`).
+- `values_from`: el nombre de la columna de la que vamos a sacar los valores.
+
+```{r}
+table2 %>% pivot_wider(names_from = type, values_from = count)
+```
+
+Ahora tenemos **cada registro en una fila**, que nos indica país-año-casos-población.
+
+## Messy data: una celda con múltiples valores
+
+Por último vamos a visualizar la tabla `table3` del paquete `{tidyr}`.
+
+```{r}
+table3
+```
+
+En la variable `rate` hay guardados dos valores, separados por `/`, lo que hace que en **una celda no tiene un único valor sino dos**. La función `separate()` del paquete `{tidyr}` nos permitirá <mark>**separar los múltiples valores de la columna**</mark> `rate` simplemente indicándole el nombre de las nuevas columnas en el argumento `into = ...`, creando una nueva columna para cada uno de ellos.
+
+```{r}
+table3 %>% separate(rate, into = c("cases", "population"))
+```
+
+Por defecto lo que hace es **localizar como separador cualquier caracter que no sea alfa-numérico**. Si queremos un caracter concreto para dividir podemos indicárselo explícitamente
+
+```{r}
+table3 %>% separate(rate, into = c("cases", "population"), sep = "/")
+```
+
+Si **usas un separador que no está en los datos** te devolverá dichas columnas vacías ya que no ha podido dividirlas.
+
+```{r warning = TRUE}
+table3 %>% separate(rate, into = c("cases", "population"), sep = ".")
+```
+
+
+De la misma manera que podemos separar columnas <mark>**también podemos unirlas**</mark>. Para ello vamos a usar la tabla `table5` del ya mencionado paquete. Con la función `unite()` vamos a unir el siglo (en `century`) y el año (en `year`), y al inicio le indicaremos como se llamará la nueva variable (`año_completo`).
+
+```{r}
+table5 %>% unite(año_completo, century, year)
+```
+
+
+Como pasaba en `separate()`, tiene un argumento de separador por defecto, en este caso `sep = "_"`. **Si queremos cambiarlo podemos hacerlo indicándoselo explícitamente**.
+
+```{r}
+table5 %>%
+  unite(año_completo, century, year, sep = "")
+```
+
+
+## Consejos
+
+
+**`r colorize("CONSEJOS", "#20935E")`**
+
+&nbsp;
+
+
+**`r colorize("Convertir variables al procesar", "#20935E")`**
+
+Una opción muy útil que podemos usar al aplicar la separación de los múltiples valores es <mark>**convertir los datos al tipo adecuado**</mark>. Los datos unidos en `rate` eran caracteres ya que tenía el separador `/` (no podían ser numéricos). Al separarlos, por defecto, aunque ahora ya son solo números, los separa como si fueran textos. Con `convert = TRUE` podemos indicarle que identifique el tipo de dato y lo convierta (fíjate en la cabecera de las columnas ahora).
+
+```{r}
+table3 %>% 
+  separate(rate, into = c("cases", "population"), convert = TRUE)
+```
+
+
+Dicha función también puede ser usada para **dividir cifras, como por ejemplo el año**
+
+```{r warning = TRUE}
+table3 %>% separate(year,
+                    into = c("siglo", "año"),
+                    sep = 2)
+```
+  
+
+
+## 📝 Ejercicios
+
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: convierte en _tidy data_ el siguiente `data.frame`.</summary>
+
+```{r}
+tabla_tb <- tibble("trimestre" = c("T1", "T2", "T3"),
+                   "2020" = c(10, 12, 7.5),
+                   "2021" = c(8, 0, 9))
+```
+
+<!-- toc -->
+- Solución:
+
+El problema es que las dos columnas con nombres de año son en realidad valores que deberían pasar a ser variables, así que deberíamos disminuir aplicar `pivot_longer()`
+
+```{r}
+# Aplicamos pivot_longer
+tabla_tb %>% pivot_longer(cols = c("2020", "2021"),
+                          names_to = "año", values_to = "valores")
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: convierte en _tidy data_ el siguiente `data.frame`.</summary>
+
+```{r}
+tabla_tb <- tibble("año" = c(2019, 2019, 2020, 2020, 2021, 2021),
+                   "variable" = c("A", "B", "A", "B", "A", "B"),
+                   "valor" = c(10, 9383, 7.58, 10839, 9, 32949))
+```
+
+<!-- toc -->
+- Solución:
+
+El problema es que las filas que comparten año son el mismo registro (pero con dos características que tenemos divididas en dos filas), así que deberíamos disminuir aplicar `pivot_wider()`
+
+```{r}
+# Aplicamos pivot_wider
+tabla_tb %>% pivot_wider(names_from = "variable", values_from = "valor")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: convierte en _tidy data_ la tabla `table5` del paquete `{tidyr}`.</summary>
+
+<!-- toc -->
+- Solución:
+
+Primero uniremos el siglo y las dos últimas cifras del año para obtener el año completo (guardado en `año`)
+
+```{r}
+table5 %>%
+  unite(año, century, year, sep = "")
+```
+
+Tras ello deberemos separar el valor del ratio en denominador y numerador (ya que ahora hay dos valores en una celda), y convertiremos el tipo de dato en la salida para que sea número.
+
+```{r}
+table5 %>%
+  unite(año, century, year, sep = "") %>%
+  separate(rate, c("numerador", "denominador"), convert = TRUE)
+
+```
+
+<!-- tocstop -->
+</details>
+
+
+
+

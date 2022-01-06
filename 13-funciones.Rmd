@@ -142,9 +142,11 @@ Antes nos daba igual el orden de los argumentos pero ahora no, ya que en la sali
 calcular_area(lado_1 = 5, lado_2 = 3)
 ```
 
+Parece una tontería lo que hemos hecho pero hemos cruzado una frontera importante: hemos pasado de <mark>**consumir conocimiento**</mark> (código de otros paquetes, elaborado por otros/as), a <mark>**generar conocimiento**</mark>, creando nuestras propias funciones. En este caso no ganaremos el Nobel por nuestro aporte, pero en un futuro... Si la Unión Europea lo ganó, hay opciones :)
+
 ## Variables locales/globales
 
-¿Qué sucede si nombramos a una variable dentro de una función que se nos ha olvidado asignar un valor dentro de la misma? Debemos ser cautos al usar funciones en `R`, ya que debido a la <mark>**«regla lexicográfica»**</mark>, si una variable no se define dentro de la función, `R` buscará dicha variable en el entorno de variables. 
+Un <mark>**aspecto importante sobre el que reflexionar**</mark> con las funciones: ¿qué sucede si nombramos a una variable dentro de una función que se nos ha olvidado asignar un valor dentro de la misma? Debemos ser cautos al usar funciones en `R`, ya que debido a la <mark>**«regla lexicográfica»**</mark>, si una variable no se define dentro de la función, `R` buscará dicha variable en el entorno de variables. 
 
 Construyamos una función de ejemplo que no toma ningún argumento de entrada: solo imprime el valor de `x`. Como dentro de la función `x` no está definida, usará el valor definido fuera de la función.
 
@@ -377,4 +379,36 @@ pares(2, 7) # suma 9 (impar)
 </details>
 
 &nbsp; 
+
+<details>
+  <summary><strong>Ejercicio 6</strong>: define una función llamada `pasar_a_celsius` que, dada una temperatura $x$ en Fahrenheit, la convierta a grados Celsius ($ºC = (ºF - 32) * \frac{5}{9}$). Aplica la función a la columna `Temp` del conjunto `airquality`, e incorpórala al fichero en una nueva columna `Temp_Celsius`.
+</summary>
+  
+- Solución:
+
+```{r}
+# Definimos función
+pasar_a_celsius <- function(x) {
+  
+  # Temperatura en Celsius
+  x_celsius <- (x - 32) * (5 / 9)
+  
+  # Devolvemos la salida
+  return(x_celsius)
+}
+
+# Aplicamos la función
+pasar_a_celsius(0)
+pasar_a_celsius(80)
+
+# Aplicamos
+data.frame(airquality,
+           "Temp_Celsius" = pasar_a_celsius(airquality$Temp))
+```
+
+</details>
+
+&nbsp; 
+
+
 

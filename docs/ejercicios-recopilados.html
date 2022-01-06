@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>📝 Ejercicios recopilados | Analizando datos, visualizando información, contando historias</title>
-<meta name="author" content="Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé">
+<meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
 <meta name="description" content="Aquí haremos una recopilación de los ejercicios planteados a lo largo del curso. Vuelve por aquí si quieres cuando acabas las lecciones para repasar aquellos ejercicios que más te hayan costado....">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="📝 Ejercicios recopilados | Analizando datos, visualizando información, contando historias">
@@ -22,7 +22,11 @@
 <link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
 <link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
 <script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -65,9 +69,15 @@
 <li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
 <li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
 <li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
-<li class="book-part">Empezando a explorator datos</li>
-<li><a class="" href="tidydata.html"><span class="header-section-number">15</span> Tidy data: datos ordenadicos</a></li>
-<li><a class="" href="importar-exportar.html"><span class="header-section-number">16</span> Sacando datos de las piedras</a></li>
+<li class="book-part">Empezando a explorar datos</li>
+<li><a class="" href="tibble.html"><span class="header-section-number">15</span> Mejorando los data.frame: datos tibble</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">16</span> Tidy vs messy data: daticos ordenados</a></li>
+<li><a class="" href="importar-exportar.html"><span class="header-section-number">17</span> Sacando datos de las piedras</a></li>
+<li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
+<li class="book-part">Incursión a tidyverse</li>
+<li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">21</span> Visualizando datos: incursión a ggplot2</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -319,7 +329,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 </ul>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">days</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">fecha_nacimiento</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "11805d 0H 0M 0S"</code></pre>
+<pre><code>## [1] "11806d 0H 0M 0S"</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años (<code>edad &lt; 30</code>); ii) con hermanos (<code>hermanos == TRUE</code>); iii) nacido en 1990 o posterior (<code>fecha_nacimiento &gt;= as.Date("1990-01-01")</code>). </summary></p>
@@ -1491,7 +1501,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
   
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas noches"</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<pre><code>## Buenas noches</code></pre>
+<pre><code>## Buenas tardes</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 6</strong>: realiza el ejercicio anterior pero sin estructura de llaves, de forma concisa con <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. Mira la ayuda si la necesitases poniendo <code><a href="https://rdrr.io/r/base/ifelse.html">? ifelse</a></code>. </summary></p>
@@ -1509,7 +1519,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
            <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">&amp;</span>
                     <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">21</span>,
                   <span class="st">"Buenas tardes"</span>, <span class="st">"Buenas noches"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Buenas noches</code></pre>
+<pre><code>## Buenas tardes</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 </div>
@@ -1876,6 +1886,722 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <code class="sourceCode R"><span class="fu">pares</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># suma 9 (impar)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </details><p> </p>
+<p> </p>
+<details><p><summary><strong>Ejercicio 6</strong>: define una función llamada <code>pasar_a_celsius</code> que, dada una temperatura <span class="math inline">\(x\)</span> en Fahrenheit, la convierta a grados Celsius (<span class="math inline">\(ºC = (ºF - 32) * \frac{5}{9}\)</span>). Aplica la función a la columna <code>Temp</code> del conjunto <code>airquality</code>, e incorpórala al fichero en una nueva columna <code>Temp_Celsius</code>.
+</summary></p>
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos función</span>
+<span class="va">pasar_a_celsius</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="co"># Temperatura en Celsius</span>
+  <span class="va">x_celsius</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x</span> <span class="op">-</span> <span class="fl">32</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">5</span> <span class="op">/</span> <span class="fl">9</span><span class="op">)</span>
+  
+  <span class="co"># Devolvemos la salida</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x_celsius</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># Aplicamos la función</span>
+<span class="fu">pasar_a_celsius</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] -17.77778</code></pre>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pasar_a_celsius</span><span class="op">(</span><span class="fl">80</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 26.66667</code></pre>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Aplicamos</span>
+<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">airquality</span>,
+           <span class="st">"Temp_Celsius"</span> <span class="op">=</span> <span class="fu">pasar_a_celsius</span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##     Ozone Solar.R Wind Temp Month Day Temp_Celsius
+## 1      41     190  7.4   67     5   1     19.44444
+## 2      36     118  8.0   72     5   2     22.22222
+## 3      12     149 12.6   74     5   3     23.33333
+## 4      18     313 11.5   62     5   4     16.66667
+## 5      NA      NA 14.3   56     5   5     13.33333
+## 6      28      NA 14.9   66     5   6     18.88889
+## 7      23     299  8.6   65     5   7     18.33333
+## 8      19      99 13.8   59     5   8     15.00000
+## 9       8      19 20.1   61     5   9     16.11111
+## 10     NA     194  8.6   69     5  10     20.55556
+## 11      7      NA  6.9   74     5  11     23.33333
+## 12     16     256  9.7   69     5  12     20.55556
+## 13     11     290  9.2   66     5  13     18.88889
+## 14     14     274 10.9   68     5  14     20.00000
+## 15     18      65 13.2   58     5  15     14.44444
+## 16     14     334 11.5   64     5  16     17.77778
+## 17     34     307 12.0   66     5  17     18.88889
+## 18      6      78 18.4   57     5  18     13.88889
+## 19     30     322 11.5   68     5  19     20.00000
+## 20     11      44  9.7   62     5  20     16.66667
+## 21      1       8  9.7   59     5  21     15.00000
+## 22     11     320 16.6   73     5  22     22.77778
+## 23      4      25  9.7   61     5  23     16.11111
+## 24     32      92 12.0   61     5  24     16.11111
+## 25     NA      66 16.6   57     5  25     13.88889
+## 26     NA     266 14.9   58     5  26     14.44444
+## 27     NA      NA  8.0   57     5  27     13.88889
+## 28     23      13 12.0   67     5  28     19.44444
+## 29     45     252 14.9   81     5  29     27.22222
+## 30    115     223  5.7   79     5  30     26.11111
+## 31     37     279  7.4   76     5  31     24.44444
+## 32     NA     286  8.6   78     6   1     25.55556
+## 33     NA     287  9.7   74     6   2     23.33333
+## 34     NA     242 16.1   67     6   3     19.44444
+## 35     NA     186  9.2   84     6   4     28.88889
+## 36     NA     220  8.6   85     6   5     29.44444
+## 37     NA     264 14.3   79     6   6     26.11111
+## 38     29     127  9.7   82     6   7     27.77778
+## 39     NA     273  6.9   87     6   8     30.55556
+## 40     71     291 13.8   90     6   9     32.22222
+## 41     39     323 11.5   87     6  10     30.55556
+## 42     NA     259 10.9   93     6  11     33.88889
+## 43     NA     250  9.2   92     6  12     33.33333
+## 44     23     148  8.0   82     6  13     27.77778
+## 45     NA     332 13.8   80     6  14     26.66667
+## 46     NA     322 11.5   79     6  15     26.11111
+## 47     21     191 14.9   77     6  16     25.00000
+## 48     37     284 20.7   72     6  17     22.22222
+## 49     20      37  9.2   65     6  18     18.33333
+## 50     12     120 11.5   73     6  19     22.77778
+## 51     13     137 10.3   76     6  20     24.44444
+## 52     NA     150  6.3   77     6  21     25.00000
+## 53     NA      59  1.7   76     6  22     24.44444
+## 54     NA      91  4.6   76     6  23     24.44444
+## 55     NA     250  6.3   76     6  24     24.44444
+## 56     NA     135  8.0   75     6  25     23.88889
+## 57     NA     127  8.0   78     6  26     25.55556
+## 58     NA      47 10.3   73     6  27     22.77778
+## 59     NA      98 11.5   80     6  28     26.66667
+## 60     NA      31 14.9   77     6  29     25.00000
+## 61     NA     138  8.0   83     6  30     28.33333
+## 62    135     269  4.1   84     7   1     28.88889
+## 63     49     248  9.2   85     7   2     29.44444
+## 64     32     236  9.2   81     7   3     27.22222
+## 65     NA     101 10.9   84     7   4     28.88889
+## 66     64     175  4.6   83     7   5     28.33333
+## 67     40     314 10.9   83     7   6     28.33333
+## 68     77     276  5.1   88     7   7     31.11111
+## 69     97     267  6.3   92     7   8     33.33333
+## 70     97     272  5.7   92     7   9     33.33333
+## 71     85     175  7.4   89     7  10     31.66667
+## 72     NA     139  8.6   82     7  11     27.77778
+## 73     10     264 14.3   73     7  12     22.77778
+## 74     27     175 14.9   81     7  13     27.22222
+## 75     NA     291 14.9   91     7  14     32.77778
+## 76      7      48 14.3   80     7  15     26.66667
+## 77     48     260  6.9   81     7  16     27.22222
+## 78     35     274 10.3   82     7  17     27.77778
+## 79     61     285  6.3   84     7  18     28.88889
+## 80     79     187  5.1   87     7  19     30.55556
+## 81     63     220 11.5   85     7  20     29.44444
+## 82     16       7  6.9   74     7  21     23.33333
+## 83     NA     258  9.7   81     7  22     27.22222
+## 84     NA     295 11.5   82     7  23     27.77778
+## 85     80     294  8.6   86     7  24     30.00000
+## 86    108     223  8.0   85     7  25     29.44444
+## 87     20      81  8.6   82     7  26     27.77778
+## 88     52      82 12.0   86     7  27     30.00000
+## 89     82     213  7.4   88     7  28     31.11111
+## 90     50     275  7.4   86     7  29     30.00000
+## 91     64     253  7.4   83     7  30     28.33333
+## 92     59     254  9.2   81     7  31     27.22222
+## 93     39      83  6.9   81     8   1     27.22222
+## 94      9      24 13.8   81     8   2     27.22222
+## 95     16      77  7.4   82     8   3     27.77778
+## 96     78      NA  6.9   86     8   4     30.00000
+## 97     35      NA  7.4   85     8   5     29.44444
+## 98     66      NA  4.6   87     8   6     30.55556
+## 99    122     255  4.0   89     8   7     31.66667
+## 100    89     229 10.3   90     8   8     32.22222
+## 101   110     207  8.0   90     8   9     32.22222
+## 102    NA     222  8.6   92     8  10     33.33333
+## 103    NA     137 11.5   86     8  11     30.00000
+## 104    44     192 11.5   86     8  12     30.00000
+## 105    28     273 11.5   82     8  13     27.77778
+## 106    65     157  9.7   80     8  14     26.66667
+## 107    NA      64 11.5   79     8  15     26.11111
+## 108    22      71 10.3   77     8  16     25.00000
+## 109    59      51  6.3   79     8  17     26.11111
+## 110    23     115  7.4   76     8  18     24.44444
+## 111    31     244 10.9   78     8  19     25.55556
+## 112    44     190 10.3   78     8  20     25.55556
+## 113    21     259 15.5   77     8  21     25.00000
+## 114     9      36 14.3   72     8  22     22.22222
+## 115    NA     255 12.6   75     8  23     23.88889
+## 116    45     212  9.7   79     8  24     26.11111
+## 117   168     238  3.4   81     8  25     27.22222
+## 118    73     215  8.0   86     8  26     30.00000
+## 119    NA     153  5.7   88     8  27     31.11111
+## 120    76     203  9.7   97     8  28     36.11111
+## 121   118     225  2.3   94     8  29     34.44444
+## 122    84     237  6.3   96     8  30     35.55556
+## 123    85     188  6.3   94     8  31     34.44444
+## 124    96     167  6.9   91     9   1     32.77778
+## 125    78     197  5.1   92     9   2     33.33333
+## 126    73     183  2.8   93     9   3     33.88889
+## 127    91     189  4.6   93     9   4     33.88889
+## 128    47      95  7.4   87     9   5     30.55556
+## 129    32      92 15.5   84     9   6     28.88889
+## 130    20     252 10.9   80     9   7     26.66667
+## 131    23     220 10.3   78     9   8     25.55556
+## 132    21     230 10.9   75     9   9     23.88889
+## 133    24     259  9.7   73     9  10     22.77778
+## 134    44     236 14.9   81     9  11     27.22222
+## 135    21     259 15.5   76     9  12     24.44444
+## 136    28     238  6.3   77     9  13     25.00000
+## 137     9      24 10.9   71     9  14     21.66667
+## 138    13     112 11.5   71     9  15     21.66667
+## 139    46     237  6.9   78     9  16     25.55556
+## 140    18     224 13.8   67     9  17     19.44444
+## 141    13      27 10.3   76     9  18     24.44444
+## 142    24     238 10.3   68     9  19     20.00000
+## 143    16     201  8.0   82     9  20     27.77778
+## 144    13     238 12.6   64     9  21     17.77778
+## 145    23      14  9.2   71     9  22     21.66667
+## 146    36     139 10.3   81     9  23     27.22222
+## 147     7      49 10.3   69     9  24     20.55556
+## 148    14      20 16.6   63     9  25     17.22222
+## 149    30     193  6.9   70     9  26     21.11111
+## 150    NA     145 13.2   77     9  27     25.00000
+## 151    14     191 14.3   75     9  28     23.88889
+## 152    18     131  8.0   76     9  29     24.44444
+## 153    20     223 11.5   68     9  30     20.00000</code></pre>
+</details><p> </p>
+</div>
+<div id="listas" class="section level2 unnumbered">
+<h2>Listas<a class="anchor" aria-label="anchor" href="#listas"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R"><strong>script10.R</strong></a>: listas. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R</a>
+</li>
+</ul>
+</div>
+<details><p><summary><strong>Ejercicio 1</strong>: define una lista de 4 elementos de tipos distintos y accede al segundo de ellos (yo incluiré uno que sea un <code>data.frame</code> para que veas que en una lista cabe de todo).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Ejemplo: lista con texto, numérico, lógico y un data.frame</span>
+<span class="va">lista_ejemplo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"nombre"</span> <span class="op">=</span> <span class="st">"Javier"</span>, <span class="st">"cp"</span> <span class="op">=</span> <span class="fl">28019</span>,
+                      <span class="st">"soltero"</span> <span class="op">=</span> <span class="cn">TRUE</span>,
+                      <span class="st">"notas"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"mates"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7.5</span>, <span class="fl">8</span>, <span class="fl">9</span><span class="op">)</span>,
+                                           <span class="st">"lengua"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">lista_ejemplo</span></code></pre></div>
+<pre><code>## $nombre
+## [1] "Javier"
+## 
+## $cp
+## [1] 28019
+## 
+## $soltero
+## [1] TRUE
+## 
+## $notas
+##   mates lengua
+## 1   7.5     10
+## 2   8.0      5
+## 3   9.0      6</code></pre>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Longitud</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lista_ejemplo</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Accedemos al elemento dos</span>
+<span class="va">lista_ejemplo</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] 28019</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 2</strong>: accede a los elementos que ocupan los lugares 1 y 4 de la lista definida anteriormente.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Accedemos al 1 y al 4</span>
+<span class="va">lista_ejemplo</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<pre><code>## $nombre
+## [1] "Javier"
+## 
+## $notas
+##   mates lengua
+## 1   7.5     10
+## 2   8.0      5
+## 3   9.0      6</code></pre>
+<p>Otra opción es acceder con los nombres</p>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Accedemos al 1 y al 4</span>
+<span class="va">lista_ejemplo</span><span class="op">$</span><span class="va">nombre</span></code></pre></div>
+<pre><code>## [1] "Javier"</code></pre>
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lista_ejemplo</span><span class="op">$</span><span class="va">notas</span></code></pre></div>
+<pre><code>##   mates lengua
+## 1   7.5     10
+## 2   8.0      5
+## 3   9.0      6</code></pre>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lista_ejemplo</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nombre"</span>, <span class="st">"notas"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<pre><code>## $nombre
+## [1] "Javier"
+## 
+## $notas
+##   mates lengua
+## 1   7.5     10
+## 2   8.0      5
+## 3   9.0      6</code></pre>
+</details><p> </p>
+<details><p><summary><strong>Ejercicio 3</strong>: define una lista de 4 elementos que contenga, en una sola variable, tu nombre, apellido, edad y si estás soltero/a.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
+<span class="co"># Creamos lista: con lubridate calculamos la diferencia de años desde la fecha de nuestro nacimiento hasta hoy (sea cuando sea hoy)</span>
+<span class="va">lista_personal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"nombre"</span> <span class="op">=</span> <span class="st">"Javier"</span>,
+                       <span class="st">"apellidos"</span> <span class="op">=</span> <span class="st">"Álvarez Liébana"</span>,
+                       <span class="st">"edad"</span> <span class="op">=</span> <span class="fl">32</span>,
+                       <span class="st">"soltero"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">lista_personal</span></code></pre></div>
+<pre><code>## $nombre
+## [1] "Javier"
+## 
+## $apellidos
+## [1] "Álvarez Liébana"
+## 
+## $edad
+## [1] 32
+## 
+## $soltero
+## [1] TRUE</code></pre>
+</details>
+</div>
+<div id="tibble" class="section level2 unnumbered">
+<h2>Tibble<a class="anchor" aria-label="anchor" href="#tibble"><i class="fas fa-link"></i></a>
+</h2>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R"><strong>script11.R</strong></a>: datos tibble. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R</a>
+</li>
+</ul>
+</div>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: ¿es el conjunto de datos <code>airquality</code> (del paquete <code>{datasets}</code>) de tipo <code>tibble</code>? </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<p>Recuerda que podemos cargar elementos de un paquete (en este caso <code>{datasets}</code>) cargando <code><a href="https://rdrr.io/r/base/library.html">library(datasets)</a></code> y luego el elemento, o bien <code><a href="https://rdrr.io/r/datasets/airquality.html">datasets::airquality</a></code> (prefijo::nombre).</p>
+<p>La respuesta: NO. Tienes muchas formas de comprobarlo si imprimes el conjunto por defecto.</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
+<span class="va">airquality</span></code></pre></div>
+<pre><code>##     Ozone Solar.R Wind Temp Month Day
+## 1      41     190  7.4   67     5   1
+## 2      36     118  8.0   72     5   2
+## 3      12     149 12.6   74     5   3
+## 4      18     313 11.5   62     5   4
+## 5      NA      NA 14.3   56     5   5
+## 6      28      NA 14.9   66     5   6
+## 7      23     299  8.6   65     5   7
+## 8      19      99 13.8   59     5   8
+## 9       8      19 20.1   61     5   9
+## 10     NA     194  8.6   69     5  10
+## 11      7      NA  6.9   74     5  11
+## 12     16     256  9.7   69     5  12
+## 13     11     290  9.2   66     5  13
+## 14     14     274 10.9   68     5  14
+## 15     18      65 13.2   58     5  15
+## 16     14     334 11.5   64     5  16
+## 17     34     307 12.0   66     5  17
+## 18      6      78 18.4   57     5  18
+## 19     30     322 11.5   68     5  19
+## 20     11      44  9.7   62     5  20
+## 21      1       8  9.7   59     5  21
+## 22     11     320 16.6   73     5  22
+## 23      4      25  9.7   61     5  23
+## 24     32      92 12.0   61     5  24
+## 25     NA      66 16.6   57     5  25
+## 26     NA     266 14.9   58     5  26
+## 27     NA      NA  8.0   57     5  27
+## 28     23      13 12.0   67     5  28
+## 29     45     252 14.9   81     5  29
+## 30    115     223  5.7   79     5  30
+## 31     37     279  7.4   76     5  31
+## 32     NA     286  8.6   78     6   1
+## 33     NA     287  9.7   74     6   2
+## 34     NA     242 16.1   67     6   3
+## 35     NA     186  9.2   84     6   4
+## 36     NA     220  8.6   85     6   5
+## 37     NA     264 14.3   79     6   6
+## 38     29     127  9.7   82     6   7
+## 39     NA     273  6.9   87     6   8
+## 40     71     291 13.8   90     6   9
+## 41     39     323 11.5   87     6  10
+## 42     NA     259 10.9   93     6  11
+## 43     NA     250  9.2   92     6  12
+## 44     23     148  8.0   82     6  13
+## 45     NA     332 13.8   80     6  14
+## 46     NA     322 11.5   79     6  15
+## 47     21     191 14.9   77     6  16
+## 48     37     284 20.7   72     6  17
+## 49     20      37  9.2   65     6  18
+## 50     12     120 11.5   73     6  19
+## 51     13     137 10.3   76     6  20
+## 52     NA     150  6.3   77     6  21
+## 53     NA      59  1.7   76     6  22
+## 54     NA      91  4.6   76     6  23
+## 55     NA     250  6.3   76     6  24
+## 56     NA     135  8.0   75     6  25
+## 57     NA     127  8.0   78     6  26
+## 58     NA      47 10.3   73     6  27
+## 59     NA      98 11.5   80     6  28
+## 60     NA      31 14.9   77     6  29
+## 61     NA     138  8.0   83     6  30
+## 62    135     269  4.1   84     7   1
+## 63     49     248  9.2   85     7   2
+## 64     32     236  9.2   81     7   3
+## 65     NA     101 10.9   84     7   4
+## 66     64     175  4.6   83     7   5
+## 67     40     314 10.9   83     7   6
+## 68     77     276  5.1   88     7   7
+## 69     97     267  6.3   92     7   8
+## 70     97     272  5.7   92     7   9
+## 71     85     175  7.4   89     7  10
+## 72     NA     139  8.6   82     7  11
+## 73     10     264 14.3   73     7  12
+## 74     27     175 14.9   81     7  13
+## 75     NA     291 14.9   91     7  14
+## 76      7      48 14.3   80     7  15
+## 77     48     260  6.9   81     7  16
+## 78     35     274 10.3   82     7  17
+## 79     61     285  6.3   84     7  18
+## 80     79     187  5.1   87     7  19
+## 81     63     220 11.5   85     7  20
+## 82     16       7  6.9   74     7  21
+## 83     NA     258  9.7   81     7  22
+## 84     NA     295 11.5   82     7  23
+## 85     80     294  8.6   86     7  24
+## 86    108     223  8.0   85     7  25
+## 87     20      81  8.6   82     7  26
+## 88     52      82 12.0   86     7  27
+## 89     82     213  7.4   88     7  28
+## 90     50     275  7.4   86     7  29
+## 91     64     253  7.4   83     7  30
+## 92     59     254  9.2   81     7  31
+## 93     39      83  6.9   81     8   1
+## 94      9      24 13.8   81     8   2
+## 95     16      77  7.4   82     8   3
+## 96     78      NA  6.9   86     8   4
+## 97     35      NA  7.4   85     8   5
+## 98     66      NA  4.6   87     8   6
+## 99    122     255  4.0   89     8   7
+## 100    89     229 10.3   90     8   8
+## 101   110     207  8.0   90     8   9
+## 102    NA     222  8.6   92     8  10
+## 103    NA     137 11.5   86     8  11
+## 104    44     192 11.5   86     8  12
+## 105    28     273 11.5   82     8  13
+## 106    65     157  9.7   80     8  14
+## 107    NA      64 11.5   79     8  15
+## 108    22      71 10.3   77     8  16
+## 109    59      51  6.3   79     8  17
+## 110    23     115  7.4   76     8  18
+## 111    31     244 10.9   78     8  19
+## 112    44     190 10.3   78     8  20
+## 113    21     259 15.5   77     8  21
+## 114     9      36 14.3   72     8  22
+## 115    NA     255 12.6   75     8  23
+## 116    45     212  9.7   79     8  24
+## 117   168     238  3.4   81     8  25
+## 118    73     215  8.0   86     8  26
+## 119    NA     153  5.7   88     8  27
+## 120    76     203  9.7   97     8  28
+## 121   118     225  2.3   94     8  29
+## 122    84     237  6.3   96     8  30
+## 123    85     188  6.3   94     8  31
+## 124    96     167  6.9   91     9   1
+## 125    78     197  5.1   92     9   2
+## 126    73     183  2.8   93     9   3
+## 127    91     189  4.6   93     9   4
+## 128    47      95  7.4   87     9   5
+## 129    32      92 15.5   84     9   6
+## 130    20     252 10.9   80     9   7
+## 131    23     220 10.3   78     9   8
+## 132    21     230 10.9   75     9   9
+## 133    24     259  9.7   73     9  10
+## 134    44     236 14.9   81     9  11
+## 135    21     259 15.5   76     9  12
+## 136    28     238  6.3   77     9  13
+## 137     9      24 10.9   71     9  14
+## 138    13     112 11.5   71     9  15
+## 139    46     237  6.9   78     9  16
+## 140    18     224 13.8   67     9  17
+## 141    13      27 10.3   76     9  18
+## 142    24     238 10.3   68     9  19
+## 143    16     201  8.0   82     9  20
+## 144    13     238 12.6   64     9  21
+## 145    23      14  9.2   71     9  22
+## 146    36     139 10.3   81     9  23
+## 147     7      49 10.3   69     9  24
+## 148    14      20 16.6   63     9  25
+## 149    30     193  6.9   70     9  26
+## 150    NA     145 13.2   77     9  27
+## 151    14     191 14.3   75     9  28
+## 152    18     131  8.0   76     9  29
+## 153    20     223 11.5   68     9  30</code></pre>
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "data.frame"</code></pre>
+<ul>
+<li>Imprime por defecto todas las filas (tiene 153 filas, debería imprimir solo 10 si fuese un tibble, para no saturar consola).</li>
+<li>No especifica al imprimir que es de tipo <code>tibble</code>.</li>
+<li>No especifica al imprimir el tipo de dato de las columnas.</li>
+<li>Imprime el nombre de las filas (el nombre de los modelos) como si fuera una variable (¡que no existe!).</li>
+</ul>
+<!-- tocstop --></details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: convierte el conjunto <code>airquality</code> de <code>data.frame</code> a <code>tibble</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<p>Así debería de salir si fuera <code>tibble</code>.</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="va">airquality_tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span>
+<span class="va">airquality_tb</span></code></pre></div>
+<pre><code>## # A tibble: 153 × 6
+##    Ozone Solar.R  Wind  Temp Month   Day
+##    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1    41     190   7.4    67     5     1
+##  2    36     118   8      72     5     2
+##  3    12     149  12.6    74     5     3
+##  4    18     313  11.5    62     5     4
+##  5    NA      NA  14.3    56     5     5
+##  6    28      NA  14.9    66     5     6
+##  7    23     299   8.6    65     5     7
+##  8    19      99  13.8    59     5     8
+##  9     8      19  20.1    61     5     9
+## 10    NA     194   8.6    69     5    10
+## # … with 143 more rows</code></pre>
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">airquality_tb</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: define un <code>tibble</code> con tres variables numéricas <code>a, b, c</code>, tal que la tercera sea el producto de las dos primeras <code>c = a * b</code><mark>. Inténtalo hacer con un <code>data.frame</code></mark></summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<p>Un ejemplo:</p>
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">17</span>, <span class="st">"c"</span> <span class="op">=</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 3
+##       a     b     c
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1     1    11    11
+## 2     2    12    24
+## 3     3    13    39
+## 4     4    14    56
+## 5     5    15    75
+## 6     6    16    96
+## 7     7    17   119</code></pre>
+<p>Si lo intentamos con un <code>data.frame</code>, intentará buscar una variable real que tengamos guardada que se llame <code>a</code> y <code>b</code>, sin encontrarlas.</p>
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">17</span>, <span class="st">"c"</span> <span class="op">=</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span></code></pre></div>
+<pre><code>##   a  b   c
+## 1 1 11 -35
+## 2 2 12 -35
+## 3 3 13 -35
+## 4 4 14 -35
+## 5 5 15 -35
+## 6 6 16 -35
+## 7 7 17 -35</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: define un <code>tibble</code> con tres variables de nombres <code>variable</code>, <code>2</code>, <code>tercera :)</code>, e intenta acceder a ellas.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<p>Las variables solo con caracteres del alfabeto se podrán acceder sin necesidad de comillas.</p>
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Definimos el tibble</span>
+<span class="va">datos_tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"variable"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"tercera falsa :)"</span> <span class="op">=</span> <span class="fl">0</span>,
+                   <span class="st">"2"</span> <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">17</span><span class="op">)</span>
+
+<span class="co"># Accedemos a sus columnas</span>
+<span class="va">datos_tb</span><span class="op">$</span><span class="va">variable</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">$</span><span class="va">`tercera falsa :)`</span></code></pre></div>
+<pre><code>## [1] 0 0 0 0 0 0 0</code></pre>
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">$</span><span class="va">`2`</span></code></pre></div>
+<pre><code>## [1] 11 12 13 14 15 16 17</code></pre>
+<p>También se puede acceder por el orden que ocupan:</p>
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 1
+##   variable
+##      &lt;int&gt;
+## 1        1
+## 2        2
+## 3        3
+## 4        4
+## 5        5
+## 6        6
+## 7        7</code></pre>
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 1
+##   `tercera falsa :)`
+##                &lt;dbl&gt;
+## 1                  0
+## 2                  0
+## 3                  0
+## 4                  0
+## 5                  0
+## 6                  0
+## 7                  0</code></pre>
+<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 1
+##     `2`
+##   &lt;int&gt;
+## 1    11
+## 2    12
+## 3    13
+## 4    14
+## 5    15
+## 6    16
+## 7    17</code></pre>
+<p>Y también por el nombre entre corchetes (doble corchete extrae la variable fuera del tibble, corchete simple en formato tibble):</p>
+<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="st">"variable"</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 1
+##   variable
+##      &lt;int&gt;
+## 1        1
+## 2        2
+## 3        3
+## 4        4
+## 5        5
+## 6        6
+## 7        7</code></pre>
+<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[[</span><span class="st">"variable"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="st">"tercera falsa :)"</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 1
+##   `tercera falsa :)`
+##                &lt;dbl&gt;
+## 1                  0
+## 2                  0
+## 3                  0
+## 4                  0
+## 5                  0
+## 6                  0
+## 7                  0</code></pre>
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="st">"2"</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 1
+##     `2`
+##   &lt;int&gt;
+## 1    11
+## 2    12
+## 3    13
+## 4    14
+## 5    15
+## 6    16
+## 7    17</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: obten de los paquetes <a href="https://dplyr.tidyverse.org">dplyr</a> y <a href="https://github.com/jennybc/gapminder">gapminder</a> los conjuntos de datos tibble <code>starwars</code> y <code>gapminder</code>. Comprueba el número de variables, de registros e imprime los datos</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># starwars</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="va">starwars</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  7 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  8 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  9 Biggs …    183    84 black       light      brown           24   male  mascu…
+## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span> <span class="co"># resumen de columnas</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 14
+## $ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
+## $ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "light", "light", "…
+## $ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "male", "female",…
+## $ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masculine", "femini…
+## $ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
+## $ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
+## $ films      &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of the Sith", "Return…
+## $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
+## $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span> <span class="co"># dimensiones</span></code></pre></div>
+<pre><code>## [1] 87 14</code></pre>
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># gapminder</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="va">gapminder</span></code></pre></div>
+<pre><code>## # A tibble: 1,704 × 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,694 more rows</code></pre>
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span> <span class="co"># resumen de columnas</span></code></pre></div>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span> <span class="co"># dimensiones</span></code></pre></div>
+<pre><code>## [1] 1704    6</code></pre>
+<!-- tocstop -->
+</details><p> </p>
 
 </div>
 </div>
@@ -1894,6 +2620,8 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <li><a class="nav-link" href="#estructuras-condicionales">Estructuras condicionales</a></li>
 <li><a class="nav-link" href="#bucles">Bucles</a></li>
 <li><a class="nav-link" href="#funciones">Funciones</a></li>
+<li><a class="nav-link" href="#listas">Listas</a></li>
+<li><a class="nav-link" href="#tibble">Tibble</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1911,7 +2639,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé. It was last built on Última actualización: 05-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 06-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

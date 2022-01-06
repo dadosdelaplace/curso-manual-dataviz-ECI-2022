@@ -20,3 +20,29 @@ colorize <- function(x, color) {
 
 Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundizando.
 
+## ggplot2 {-}
+
+* <mark>[**Aprendiendo a personalizar un gráfico en ggplot2**](https://elartedeldato.com/)</mark>. De Paula Casado, experta en dataviz. <https://elartedeldato.com/>
+
+* <mark>[**ggtheme: paletas de colores y temas**](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)</mark>. De Edward Tufte. <https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/>
+
+
+## Colores y temas en dataviz (generales) {-}
+
+* <mark>[**Uso de colores**](https://datawrapper.notion.site/Color-Book-Updates-54905c2bd0bb4c6bae15d99e31a9d5c4)</mark>. De Lisa Charlotte Muth, experta en dataviz en Datawrapper. <https://datawrapper.notion.site/Color-Book-Updates-54905c2bd0bb4c6bae15d99e31a9d5c4>
+
+* <mark>[**Paletas de colores inspiradas en el Metropolitan Museum**](https://github.com/BlakeRMills/MetBrewer/tree/main)</mark>. De 
+Blake Robert Mills. <https://github.com/BlakeRMills/MetBrewer/tree/main>
+
+* <mark>[**Paletas de colores inspiradas en la fotografía de Harry Potter**](https://github.com/aljrico/harrypotter)</mark>. De 
+Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
+
+* <mark>[**colorblindcheck: herramientas para detectar paletas de colores aptas daltónicos/as**](https://github.com/Nowosad/colorblindcheck)</mark>. De Jakub Nowosad. <https://github.com/Nowosad/colorblindcheck>
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 --- 
 title: "Analizando datos, visualizando información, contando historias"
-author: "Javier Álvarez Liébana, Gabriel Valverde Castilla, Borja Andrino, Victòria Oliveres, Dominic Royé"
+author: "Javier Álvarez Liébana y Gabriel Valverde Castilla"
 date: 'Última actualización: `r format(as.Date(Sys.Date()), "%d-%m-%Y")`'
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -118,18 +118,20 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 
 &nbsp;
 
-**Estructuras de control**
+**Haciendo el trabajo más fácil**
 
 * \@ref(if-else) [Estructuras condicionales if-else](#if-else)
 * \@ref(bucles) [Bucles](#bucles)
-
-&nbsp;
-
-**Estructuras de control*
-
 * \@ref(proyecto) [Primer proyecto de trabajo](#proyecto)
 * \@ref(funciones) [Funciones](#funciones)
 * \@ref(listas) [Listas](#listas)
+
+**Empezando a explorar datos**
+
+* \@ref(tibble) [Mejorando los data.frame: datos tibble](#tibble)
+* \@ref(tidy) [Tidy vs messy data: daticos ordenados](#tidy)
+* \@ref(importar-exportar) [Sacando datos de las piedras](#importar-exportar)
+* \@ref(rmarkdown) [Contando los datos: rmarkdown](#rmarkdown)
 
 
 ## Código de colores {-} 

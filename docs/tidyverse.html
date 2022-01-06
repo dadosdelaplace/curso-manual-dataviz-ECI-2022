@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 19 Depuración y transformación | Analizando datos, visualizando información, contando historias</title>
+<meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
+<meta name="description" content="Intentaremos que de aquí en adelante nuestros datos sean Tidy data Conocemos ya un formato amable de almacenar los datos como son los data.frame de tipo tibble Sin embargo muchas veces los datos...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Capítulo 19 Depuración y transformación | Analizando datos, visualizando información, contando historias">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/img/logo_R.png">
+<meta property="og:description" content="Intentaremos que de aquí en adelante nuestros datos sean Tidy data Conocemos ya un formato amable de almacenar los datos como son los data.frame de tipo tibble Sin embargo muchas veces los datos...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 19 Depuración y transformación | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:description" content="Intentaremos que de aquí en adelante nuestros datos sean Tidy data Conocemos ya un formato amable de almacenar los datos como son los data.frame de tipo tibble Sin embargo muchas veces los datos...">
+<meta name="twitter:image" content="/img/logo_R.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.0/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.0/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.0/transition.js"></script><script src="libs/bs3compat-0.3.0/tabs.js"></script><script src="libs/bs3compat-0.3.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Analizando datos, visualizando información, contando historias</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Prefacio</a></li>
+<li class="book-part">Recursos</li>
+<li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
+<li><a class="" href="recursos-de-aprendizaje.html">📚 Recursos de aprendizaje</a></li>
+<li class="book-part">Toma de contacto</li>
+<li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
+<li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
+<li><a class="" href="que-es-R.html"><span class="header-section-number">3</span> ¿Qué es R?</a></li>
+<li><a class="" href="primeros-pasos.html"><span class="header-section-number">4</span> Primeros pasos</a></li>
+<li class="book-part">Conceptos básicos</li>
+<li><a class="" href="tipos-datos.html"><span class="header-section-number">5</span> Tipos de datos</a></li>
+<li><a class="" href="vectores.html"><span class="header-section-number">6</span> Vectores</a></li>
+<li><a class="" href="operacionesvectores.html"><span class="header-section-number">7</span> Operaciones con vectores</a></li>
+<li><a class="" href="datos.html"><span class="header-section-number">8</span> Datos estructurados</a></li>
+<li><a class="" href="repaso-1.html"><span class="header-section-number">9</span> Repaso: empezando a trastear con datos</a></li>
+<li class="book-part">Haciendo el trabajo más fácil</li>
+<li><a class="" href="if-else.html"><span class="header-section-number">10</span> Estructuras de control: if-else</a></li>
+<li><a class="" href="bucles.html"><span class="header-section-number">11</span> Estructuras de control: bucles</a></li>
+<li><a class="" href="proyecto.html"><span class="header-section-number">12</span> Primer proyecto de trabajo</a></li>
+<li><a class="" href="funciones.html"><span class="header-section-number">13</span> Funciones</a></li>
+<li><a class="" href="listas.html"><span class="header-section-number">14</span> Listas</a></li>
+<li class="book-part">Empezando a explorar datos</li>
+<li><a class="" href="tibble.html"><span class="header-section-number">15</span> Mejorando los data.frame: datos tibble</a></li>
+<li><a class="" href="tidy.html"><span class="header-section-number">16</span> Tidy vs messy data: daticos ordenados</a></li>
+<li><a class="" href="importar-exportar.html"><span class="header-section-number">17</span> Sacando datos de las piedras</a></li>
+<li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
+<li class="book-part">Incursión a tidyverse</li>
+<li><a class="active" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">21</span> Visualizando datos: incursión a ggplot2</a></li>
+<li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/dadosdelaplace/courses-ECI-2022">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidyverse" class="section level1">
+<h1>
+<span class="header-section-number">Capítulo 19</span> Depuración y transformación<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
+</h1>
+<ul>
+<li>Intentaremos que de aquí en adelante nuestros datos sean <a href="#tidy_data">Tidy data</a>
+</li>
+<li>Conocemos ya un <mark><strong>formato amable</strong></mark> de almacenar los datos como son los <code>data.frame</code> de tipo <code>tibble</code>
+</li>
+</ul>
+<p>Sin embargo muchas veces los datos no los tenemos en el formato deseado, o directamente queremos realizar algunas <mark><strong>transformaciones</strong></mark> en los mismos, crear nuevas variables u obtener resúmenes numéricos. En esta sección <strong>empezaremos a explorar, procesar, depurar y transformar los datos</strong>, haciendo uso principalmente del entorno de paquetes <a href="https://tidyverse.tidyverse.org">tidyverse</a>.</p>
+<div class="sourceCode" id="cb1391"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<p>El <mark><strong>entorno <a href="https://tidyverse.tidyverse.org">tidyverse</a></strong></mark> es una de las <strong>herramientas más importantes en el manejo de datos en <code>R</code></strong>, una <strong>colección de paquetes</strong> pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una <strong>misma filosofía y gramática</strong>. Puedes ver su documentación en <a href="https://www.tidyverse.org/" class="uri">https://www.tidyverse.org/</a>. Esta sección pretende ser una <strong>introducción a dicho entorno</strong>, y lo haremos principalmente con el conjunto de datos <code>starwars</code>, del paquete <a href="https://dplyr.tidyverse.org">dplyr</a> (ya cargado en <a href="https://tidyverse.tidyverse.org">tidyverse</a>).</p>
+<div class="sourceCode" id="cb1392"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  7 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  8 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  9 Biggs …    183    84 black       light      brown           24   male  mascu…
+## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p><a href="https://swapi.dev" target="_blank"><img src="img/starwars.jpg" width="50%" style="display: block; margin: auto;"></a></p>
+<p>Dicho <strong>conjunto de datos</strong>, extraída de la <a href="https://swapi.dev">Star Wars API</a>, recopila diferentes datos y características de los personajes de la <mark><strong>saga Star Wars</strong></mark>. Como habrás advertido al escribir el conjunto en consola, <code>starwars</code> es una tabla en un formato ya conocido, un <code>tibble</code>, en el que se nos especifica al inicio de la tabla de qué tipo son cada columna:</p>
+<ul>
+<li>
+<code>int</code>: números enteros.</li>
+<li>
+<code>dbl</code>: números reales (o racionales).</li>
+<li>
+<code>chr</code>: cadenas de texto.</li>
+<li>
+<code>lgl</code>: valores lógicos (<code>TRUE</code> o <code>FALSE</code>).</li>
+<li>
+<code>fct</code>: factores, variables cualitativas (categorías).</li>
+<li>
+<code>date</code>: fechas.</li>
+</ul>
+<p>Las <strong>funciones</strong> que veremos a lo largo de esta sección <mark><strong>siempre van a compartir una misma metodología</strong></mark>: primero escribimos el nombre una tabla (<code>tibble</code>), después <strong>lo que queremos hacer</strong> a dicho conjunto de datos (con las variables SIN comillas) <mark><strong>encandenando órdenes con <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> (lo que se conoce como <em>pipes</em>)</strong></mark>, y <strong>obtendremos una nueva tabla</strong> en el mismo formato de entrada.</p>
+<div class="sourceCode" id="cb1394"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Tipo de datos</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+<div class="sourceCode" id="cb1396"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Dimensión de los datos</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 87 14</code></pre>
+<p>Con <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse(starwars)</a></code> podemos obtener una visión global de las variables que tenemos.</p>
+<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Resumen por columnas</span>
+<span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 14
+## $ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
+## $ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "light", "light", "…
+## $ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "male", "female",…
+## $ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masculine", "femini…
+## $ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
+## $ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
+## $ films      &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of the Sith", "Return…
+## $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
+## $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
+<p>Los datos podemos verlos escribiendo el nombre de la tabla en la consola (recuerda que si es un <code>tibble</code>, para evitar saturar la consola, te saca un extracto, no todas las columnas y filas) o bien con la <strong>función <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, indicándole número de filas (<code>n = 15</code> por ejemplo) y número de columnas (<code>width = Inf</code> si queremos mostrar todas)</strong>.</p>
+<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Imprimir personalizado</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">starwars</span>, n <span class="op">=</span> <span class="fl">5</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##   name           height  mass hair_color skin_color  eye_color birth_year sex   
+##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
+## 1 Luke Skywalker    172    77 blond      fair        blue            19   male  
+## 2 C-3PO             167    75 &lt;NA&gt;       gold        yellow         112   none  
+## 3 R2-D2              96    32 &lt;NA&gt;       white, blue red             33   none  
+## 4 Darth Vader       202   136 none       white       yellow          41.9 male  
+## 5 Leia Organa       150    49 brown      light       brown           19   female
+##   gender    homeworld species films     vehicles  starships
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+## 1 masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+## 2 masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 3 masculine Naboo     Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## 4 masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 5 feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+## # … with 82 more rows</code></pre>
+<p>Fíjate que las <strong>3 últimas variables son de tipo lista</strong> (echa un vistazo a <a href="ejercicios-recopilados.html#listas">Listas</a>). Por ejemplo, en <code>starwars$films</code> se <strong>guardan para cada personaje la colección de películas de la saga</strong> en las que aparece (algunos tendrán 1 solo nombre, otros 7).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:dplyr"></span>
+<img src="img/dplyr.png" alt="Cheet sheet de las opciones del paquete dplyr para la manipulación de datos extraída de &lt;https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf&gt;" width="80%"><p class="caption">
+Imagen/gráfica 19.1: Cheet sheet de las opciones del paquete dplyr para la manipulación de datos extraída de <a href="https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf</a>
+</p>
+</div>
+<div id="filtrar-filas-filter" class="section level2">
+<h2>
+<span class="header-section-number">19.1</span> Filtrar filas (filter)<a class="anchor" aria-label="anchor" href="#filtrar-filas-filter"><i class="fas fa-link"></i></a>
+</h2>
+<p>Empecemos por <mark><strong>cómo seleccionar filas</strong></mark>. Principalmente tenemos tres opciones: seleccionarlas en base a algún <strong>filtro o condición</strong> (solo los mayores de tal edad, por ejemplo), <strong>extraer filas por su índice</strong> de fila o <strong>extraer filas aleatoriamente</strong>.</p>
+<p>La función <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> nos permite <mark><strong>seleccionar filas en base a que se cumpla una o varias condiciones</strong></mark> respecto a las variables. Para usarla basta con que introduzcamos como argumento el conjunto de condiciones que debe cumplir (recuerda: nombre de columnas sin comillas). Supongamos que queremos por ejemplo <strong>seleccionar solo los personajes con ojos marrones</strong>: nos bastará con usar <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> con la condición <code>eye_color == "brown"</code>.</p>
+<div class="sourceCode" id="cb1402"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">eye_color</span> <span class="op">==</span> <span class="st">"brown"</span><span class="op">)</span> <span class="co"># con ojos marrones</span></code></pre></div>
+<pre><code>## # A tibble: 21 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Leia Or…    150  49   brown      light      brown           19   fema… femin…
+##  2 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  3 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  4 Yoda         66  17   white      green      brown          896   male  mascu…
+##  5 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  6 Lando C…    177  79   black      dark       brown           31   male  mascu…
+##  7 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
+##  8 Wicket …     88  20   brown      brown      brown            8   male  mascu…
+##  9 Quarsh …    183  NA   black      dark       brown           62   &lt;NA&gt;  &lt;NA&gt;  
+## 10 Shmi Sk…    163  NA   black      fair       brown           72   fema… femin…
+## # … with 11 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>En tan solo una línea hemos hecho más de lo que parece: <code>R</code> ha «recorrido» (algo similar a un bucle) cada una de las filas y ha ido comprobando que fila cumple la condición y cual no. Con la misma lógica podemos <strong>seleccionar los personajes que NO TIENEN ojos marrones</strong>, cambiando <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> por <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code></p>
+<div class="sourceCode" id="cb1404"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">eye_color</span> <span class="op">!=</span> <span class="st">"brown"</span><span class="op">)</span> <span class="co"># NO tengan ojos marrones</span></code></pre></div>
+<pre><code>## # A tibble: 66 × 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  6 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  7 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  8 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+##  9 Anakin…    188    84 blond       fair       blue            41.9 male  mascu…
+## 10 Wilhuf…    180    NA auburn, gr… fair       blue            64   male  mascu…
+## # … with 56 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>También se pueden <strong>seleccionar los personajes que tienen los ojos de una serie de colores permitidos</strong>.</p>
+<div class="sourceCode" id="cb1406"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># con ojos marrones, azules o rojos</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">eye_color</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 45 × 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  3 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  4 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  5 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  6 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  7 Biggs …    183    84 black       light      brown           24   male  mascu…
+##  8 Anakin…    188    84 blond       fair       blue            41.9 male  mascu…
+##  9 Wilhuf…    180    NA auburn, gr… fair       blue            64   male  mascu…
+## 10 Chewba…    228   112 brown       unknown    blue           200   male  mascu…
+## # … with 35 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Si es una <strong>variable numérica</strong> también podemos <mark><strong>seleccionar por rango</strong></mark> con <code><a href="https://rdrr.io/pkg/dplyr/man/between.html">between()</a></code>, por ejemplo, los personajes cuya altura está entre 120 y 160 cm.</p>
+<div class="sourceCode" id="cb1408"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Con between filtramos por rango</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/between.html">between</a></span><span class="op">(</span><span class="va">height</span>, <span class="fl">120</span>, <span class="fl">160</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##   name     height  mass hair_color skin_color eye_color birth_year sex   gender 
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  
+## 1 Leia Or…    150    49 brown      light      brown             19 fema… femini…
+## 2 Mon Mot…    150    NA auburn     fair       blue              48 fema… femini…
+## 3 Nien Nu…    160    68 none       grey       black             NA male  mascul…
+## 4 Watto       137    NA black      blue, grey yellow            NA male  mascul…
+## 5 Gasgano     122    NA none       white, bl… black             NA male  mascul…
+## 6 Cordé       157    NA brown      light      brown             NA fema… femini…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Las <strong>condiciones se pueden concatenar y complejizar</strong> todo lo que queramos, pudiendo en pocas líneas realizar un <strong>filtro complejo</strong>, por ejemplo personajes con ohos marrones y que sean humanos.</p>
+<div class="sourceCode" id="cb1410"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># humanos con ojos marrones</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">eye_color</span> <span class="op">==</span> <span class="st">"brown"</span>, <span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 17 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Leia Or…    150  49   brown      light      brown           19   fema… femin…
+##  2 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  3 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  4 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  5 Lando C…    177  79   black      dark       brown           31   male  mascu…
+##  6 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
+##  7 Shmi Sk…    163  NA   black      fair       brown           72   fema… femin…
+##  8 Mace Wi…    188  84   none       dark       brown           72   male  mascu…
+##  9 Gregar …    185  85   black      dark       brown           NA   male  mascu…
+## 10 Cordé       157  NA   brown      light      brown           NA   fema… femin…
+## 11 Dormé       165  NA   brown      light      brown           NA   fema… femin…
+## 12 Dooku       193  80   white      fair       brown          102   male  mascu…
+## 13 Bail Pr…    191  NA   black      tan        brown           67   male  mascu…
+## 14 Jango F…    183  79   black      tan        brown           66   male  mascu…
+## 15 Raymus …    188  79   brown      light      brown           NA   male  mascu…
+## 16 Poe Dam…     NA  NA   brown      light      brown           NA   male  mascu…
+## 17 Padmé A…    165  45   brown      light      brown           46   fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>También podemos filtrar personajes con ojos marrones, azules o rojos, que no sean humanos, y con menos de 50 años.</p>
+<div class="sourceCode" id="cb1412"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># humanos con ojos marrones, azules o rojos, que no sean humanos, y menos de 50a</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">eye_color</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span><span class="op">)</span>,
+         <span class="va">species</span> <span class="op">!=</span> <span class="st">"Human"</span>, <span class="va">birth_year</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 14
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 R2-D2         96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+## 2 IG-88        200   140 none       metal      red               15 none  mascu…
+## 3 Wicket S…     88    20 brown      brown      brown              8 male  mascu…
+## 4 Barriss …    166    50 black      yellow     blue              40 fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Muchas veces querremos <mark><strong>extraer filas simplemente por el lugar que ocupan</strong></mark>, sin hacer que dependa de ninguna condición. Vamos a extraer las filas quinta, sexta, séptima, octava, novena y décima con <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice()</a></code>.</p>
+<div class="sourceCode" id="cb1414"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># slice: extramos filas por índice de fila.</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="co"># filas de la 5 a la 10</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Leia Or…    150    49 brown       light      brown             19 fema… femin…
+## 2 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
+## 3 Beru Wh…    165    75 brown       light      blue              47 fema… femin…
+## 4 R5-D4        97    32 &lt;NA&gt;        white, red red               NA none  mascu…
+## 5 Biggs D…    183    84 black       light      brown             24 male  mascu…
+## 6 Obi-Wan…    182    77 auburn, wh… fair       blue-gray         57 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Podemos <strong>combinar los índices</strong> para extraer por ejemplo solo los pares o filas concretas separadas por los espacios que queramos.</p>
+<div class="sourceCode" id="cb1416"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># filas pares</span></code></pre></div>
+<pre><code>## # A tibble: 43 × 14
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  2 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  3 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  4 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  5 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+##  6 Wilhuf…    180    NA auburn, gr… fair       blue            64   male  mascu…
+##  7 Han So…    180    80 brown       fair       brown           29   male  mascu…
+##  8 Jabba …    175  1358 &lt;NA&gt;        green-tan… orange         600   herm… mascu…
+##  9 Jek To…    180   110 brown       fair       blue            NA   male  mascu…
+## 10 Palpat…    170    75 grey        pale       yellow          82   male  mascu…
+## # … with 33 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb1418"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">33</span><span class="op">)</span><span class="op">)</span> <span class="co"># filas 3, 4, 10, 20 y 33</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 R2-D2        96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+## 2 Darth V…    202   136 none        white      yellow          41.9 male  mascu…
+## 3 Obi-Wan…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## 4 Palpati…    170    75 grey        pale       yellow          82   male  mascu…
+## 5 Finis V…    170    NA blond       fair       blue            91   male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>También hay opciones por defecto para directamente <mark><strong>extraer las primeras o últimas filas</strong></mark> con <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_head()</a></code> y <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_tail()</a></code>.</p>
+<div class="sourceCode" id="cb1420"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos extraer directamente las primeras o últimas filas</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> <span class="co"># 7 primeras filas </span></code></pre></div>
+<pre><code>## # A tibble: 7 × 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Luke Sk…    172    77 blond       fair       blue            19   male  mascu…
+## 2 C-3PO       167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+## 3 R2-D2        96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+## 4 Darth V…    202   136 none        white      yellow          41.9 male  mascu…
+## 5 Leia Or…    150    49 brown       light      brown           19   fema… femin…
+## 6 Owen La…    178   120 brown, grey light      blue            52   male  mascu…
+## 7 Beru Wh…    165    75 brown       light      blue            47   fema… femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb1422"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_tail</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># 3 últimas filas </span></code></pre></div>
+<pre><code>## # A tibble: 3 × 14
+##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+## 1 BB8          NA    NA none       none       black             NA none   mascu…
+## 2 Captain…     NA    NA unknown    unknown    unknown           NA &lt;NA&gt;   &lt;NA&gt;  
+## 3 Padmé A…    165    45 brown      light      brown             46 female femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Una opción también habitual es querer <mark><strong>extraer un número de filas pero AL AZAR</strong></mark>, pudiendo hacerlo sin reemplazamiento (una vez extraída, no se puede volver a extraer) o con reemplazamiento (con <code>replace = TRUE</code>).</p>
+<div class="sourceCode" id="cb1424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># También podemos hacer una extracción al azar de filas</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># 5 al azar</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 14
+##   name    height  mass hair_color skin_color   eye_color birth_year sex   gender
+##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 San Hi…    191    NA none       grey         gold              NA male  mascu…
+## 2 Adi Ga…    184    50 none       dark         blue              NA fema… femin…
+## 3 Ki-Adi…    198    82 white      pale         yellow            92 male  mascu…
+## 4 Tarfful    234   136 brown      brown        blue              NA male  mascu…
+## 5 Ben Qu…    163    65 none       grey, green… orange            NA male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb1426"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># 100 con reemplazamiento</span></code></pre></div>
+<pre><code>## # A tibble: 100 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Mon Mot…    150    NA auburn     fair       blue            48   fema… femin…
+##  2 Rugor N…    206    NA none       green      orange          NA   male  mascu…
+##  3 Roos Ta…    224    82 none       grey       orange          NA   male  mascu…
+##  4 Cliegg …    183    NA brown      fair       blue            82   male  mascu…
+##  5 Wat Tam…    193    48 none       green, gr… unknown         NA   male  mascu…
+##  6 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+##  7 Anakin …    188    84 blond      fair       blue            41.9 male  mascu…
+##  8 Tarfful     234   136 brown      brown      blue            NA   male  mascu…
+##  9 Dud Bolt     94    45 none       blue, grey yellow          NA   male  mascu…
+## 10 Arvel C…     NA    NA brown      fair       brown           NA   male  mascu…
+## # … with 90 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Por último, tenemos <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min()</a></code> y <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> que nos permite <mark><strong>extraer filas en función del mínimo y máximo de una variable</strong></mark>. Por defecto, si hay empate, mostrará todas las filas (aunque supere el número <code>n</code> indicado), salvo que <code>with_ties = FALSE</code>, que decidirá en caso de empate cual mostrarte</p>
+<div class="sourceCode" id="cb1428"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos extraer filas en función del mín/máx de una variable</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min</a></span><span class="op">(</span><span class="va">height</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># los 5 más bajitos</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Yoda          66    17 white      green      brown            896 male  mascu…
+## 2 Ratts Ty…     79    15 none       grey, blue unknown           NA male  mascu…
+## 3 Wicket S…     88    20 brown      brown      brown              8 male  mascu…
+## 4 Dud Bolt      94    45 none       blue, grey yellow            NA male  mascu…
+## 5 R2-D2         96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+## 6 R4-P17        96    NA none       silver, r… red, blue         NA none  femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb1430"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># los 5 más bajitos (sin empates, exactamente 5)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min</a></span><span class="op">(</span><span class="va">height</span>, n <span class="op">=</span> <span class="fl">5</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
+<pre><code>## # A tibble: 5 × 14
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Yoda          66    17 white      green      brown            896 male  mascu…
+## 2 Ratts Ty…     79    15 none       grey, blue unknown           NA male  mascu…
+## 3 Wicket S…     88    20 brown      brown      brown              8 male  mascu…
+## 4 Dud Bolt      94    45 none       blue, grey yellow            NA male  mascu…
+## 5 R2-D2         96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb1432"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span><span class="va">mass</span>, n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> <span class="co"># los 7 más pesados</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 14
+##   name    height  mass hair_color  skin_color  eye_color birth_year sex   gender
+##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Jabba …    175  1358 &lt;NA&gt;        green-tan,… orange         600   herm… mascu…
+## 2 Grievo…    216   159 none        brown, whi… green, y…       NA   male  mascu…
+## 3 IG-88      200   140 none        metal       red             15   none  mascu…
+## 4 Darth …    202   136 none        white       yellow          41.9 male  mascu…
+## 5 Tarfful    234   136 brown       brown       blue            NA   male  mascu…
+## 6 Owen L…    178   120 brown, grey light       blue            52   male  mascu…
+## 7 Bossk      190   113 none        green       red             53   male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div id="reordenar-filas-arrange" class="section level2">
+<h2>
+<span class="header-section-number">19.2</span> Reordenar filas (arrange)<a class="anchor" aria-label="anchor" href="#reordenar-filas-arrange"><i class="fas fa-link"></i></a>
+</h2>
+<p>Muchas veces necesitamos las <mark><strong>filas ordenadas en función del valor de alguna de las variables</strong></mark>. Para ello tenemos la función <code><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange()</a></code> sin más que pasarle como argumento el nombre de la variable que usaremos para la ordenación. Vamos a ordenar nuestra tabla de personajes por altura, de bajitos a altos.</p>
+<div class="sourceCode" id="cb1434"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Con arrange ordenamos en base al orden de la variable que introduzcamos</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span> <span class="co"># de bajitos a altos, yoda al poder</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Yoda         66    17 white      green      brown            896 male  mascu…
+##  2 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+##  3 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+##  4 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+##  5 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+##  6 R4-P17       96    NA none       silver, r… red, blue         NA none  femin…
+##  7 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+##  8 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+##  9 Gasgano     122    NA none       white, bl… black             NA male  mascu…
+## 10 Watto       137    NA black      blue, grey yellow            NA male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Por defecto la <strong>ordenación es de menor a mayor</strong> pero <strong>podemos invertirlo</strong> usando <code><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc()</a></code>.</p>
+<div class="sourceCode" id="cb1436"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Por defecto lo hace ascendente pero podemos cambiarlo</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Yarael…    264    NA none       white       yellow          NA   male  mascu…
+##  2 Tarfful    234   136 brown      brown       blue            NA   male  mascu…
+##  3 Lama Su    229    88 none       grey        black           NA   male  mascu…
+##  4 Chewba…    228   112 brown      unknown     blue           200   male  mascu…
+##  5 Roos T…    224    82 none       grey        orange          NA   male  mascu…
+##  6 Grievo…    216   159 none       brown, whi… green, y…       NA   male  mascu…
+##  7 Taun We    213    NA none       grey        black           NA   fema… femin…
+##  8 Rugor …    206    NA none       green       orange          NA   male  mascu…
+##  9 Tion M…    206    80 none       grey        black           NA   male  mascu…
+## 10 Darth …    202   136 none       white       yellow          41.9 male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>La ordenación puede realizarse <strong>en base al valor de dos o más variables</strong>: ordenará las filas en base a la primera, en caso de empate usará la segunda, en caso de empate la tercera, y así sucesivamente. Vamos a ordenar los personajes por altura y, luego, por peso.</p>
+<div class="sourceCode" id="cb1438"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos combinar varios criterios: ordenados de bajitos a altos,</span>
+<span class="co"># y en caso de empate, de pesados a ligeros. Un dato NA va siempre al final</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="va">height</span>, <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Yoda         66    17 white      green      brown            896 male  mascu…
+##  2 Ratts T…     79    15 none       grey, blue unknown           NA male  mascu…
+##  3 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+##  4 Dud Bolt     94    45 none       blue, grey yellow            NA male  mascu…
+##  5 R2-D2        96    32 &lt;NA&gt;       white, bl… red               33 none  mascu…
+##  6 R4-P17       96    NA none       silver, r… red, blue         NA none  femin…
+##  7 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+##  8 Sebulba     112    40 none       grey, red  orange            NA male  mascu…
+##  9 Gasgano     122    NA none       white, bl… black             NA male  mascu…
+## 10 Watto       137    NA black      blue, grey yellow            NA male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p> </p>
+<p><strong><span style="color: #ffc107;">WARNING: valores ausentes</span></strong></p>
+<p>Si te fijas los <strong><span style="color: #ffc107;">valores ausentes van siempre al final</span></strong> de la ordenación. Luego veremos como eliminarlos si quisiéramos.</p>
+<p> </p>
+<p>Como estarás imaginando <strong>podemos combinar varias acciones en pocas líneas</strong>, filtrando datos a la vez que ordenamos el filtro resultante. Como ejemplo vamos a seleccionar los personajes humanos, hombres, de ojos marrones, y en orden altura descendente y peso ascendente.</p>
+<div class="sourceCode" id="cb1440"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos combinar varias acciones en pocas líneas</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">eye_color</span> <span class="op">==</span> <span class="st">"brown"</span>,
+         <span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span>, <span class="va">sex</span> <span class="op">==</span> <span class="st">"male"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="va">height</span>, <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 12 × 14
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Lando C…    177  79   black      dark       brown           31   male  mascu…
+##  2 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  3 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  4 Jango F…    183  79   black      tan        brown           66   male  mascu…
+##  5 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+##  6 Gregar …    185  85   black      dark       brown           NA   male  mascu…
+##  7 Mace Wi…    188  84   none       dark       brown           72   male  mascu…
+##  8 Raymus …    188  79   brown      light      brown           NA   male  mascu…
+##  9 Bail Pr…    191  NA   black      tan        brown           67   male  mascu…
+## 10 Dooku       193  80   white      fair       brown          102   male  mascu…
+## 11 Arvel C…     NA  NA   brown      fair       brown           NA   male  mascu…
+## 12 Poe Dam…     NA  NA   brown      light      brown           NA   male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div id="seleccionar-columnas-select" class="section level2">
+<h2>
+<span class="header-section-number">19.3</span> Seleccionar columnas (select)<a class="anchor" aria-label="anchor" href="#seleccionar-columnas-select"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ya hemos visto algunas opciones para manejar filas. Pasemos a <mark><strong>seleccionar columnas</strong></mark> o <mark><strong>construir columnas/variables nuevas</strong></mark> en base a las ya existentes.</p>
+<p>La opción más sencilla es usar la función <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> pasándole como argumentos los nombres de columnas (¡SIN COMILLAS!) queremos seleccionar, por ejemplo, color de pelo, piel y ojos.</p>
+<div class="sourceCode" id="cb1442"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># select: columnas a seleccionar sin comillas</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># seleccionamos solo 3 columnas: pelo, piel y ojos</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">hair_color</span>, <span class="va">skin_color</span>, <span class="va">eye_color</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 blond         fair        blue     
+##  2 &lt;NA&gt;          gold        yellow   
+##  3 &lt;NA&gt;          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 &lt;NA&gt;          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # … with 77 more rows</code></pre>
+<p>Si las columnas a seleccionar sabemos que son consecutivas, podemos indicarle que las seleccionemos desde una <strong>columna inicial hasta una columna inicial</strong> pasando por todas.</p>
+<div class="sourceCode" id="cb1444"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos seleccionar columnas en orden: desde nombre hasta año nacim.</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">name</span><span class="op">:</span><span class="va">birth_year</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 7
+##    name               height  mass hair_color    skin_color eye_color birth_year
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+##  1 Luke Skywalker        172    77 blond         fair       blue            19  
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold       yellow         112  
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, bl… red             33  
+##  4 Darth Vader           202   136 none          white      yellow          41.9
+##  5 Leia Organa           150    49 brown         light      brown           19  
+##  6 Owen Lars             178   120 brown, grey   light      blue            52  
+##  7 Beru Whitesun lars    165    75 brown         light      blue            47  
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red red             NA  
+##  9 Biggs Darklighter     183    84 black         light      brown           24  
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair       blue-gray       57  
+## # … with 77 more rows</code></pre>
+<p>Una de las mejores opciones en este entorno es que las columnas las podemos seleccionar a través de expresiones regulares, por ejemplo, <mark><strong>seleccionando solo aquellas columnas que compartan un sufijo común en el nombre</strong></mark>, con <code><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">ends_with()</a></code> dentro de órdenes como <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code></p>
+<div class="sourceCode" id="cb1446"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Podemos seleccionar columnas por sufijo y prefijo</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"color"</span><span class="op">)</span><span class="op">)</span> <span class="co"># acaban en "color"</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 blond         fair        blue     
+##  2 &lt;NA&gt;          gold        yellow   
+##  3 &lt;NA&gt;          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 &lt;NA&gt;          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # … with 77 more rows</code></pre>
+<p>De una manera similar podemos <mark><strong>seleccionar columnas cuyo nombre empiecen o contengan</strong></mark> alguna cadena de texto concreta</p>
+<div class="sourceCode" id="cb1448"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"h"</span><span class="op">)</span><span class="op">)</span> <span class="co"># empiezan por h</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    height hair_color    homeworld
+##     &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;    
+##  1    172 blond         Tatooine 
+##  2    167 &lt;NA&gt;          Tatooine 
+##  3     96 &lt;NA&gt;          Naboo    
+##  4    202 none          Tatooine 
+##  5    150 brown         Alderaan 
+##  6    178 brown, grey   Tatooine 
+##  7    165 brown         Tatooine 
+##  8     97 &lt;NA&gt;          Tatooine 
+##  9    183 black         Tatooine 
+## 10    182 auburn, white Stewjon  
+## # … with 77 more rows</code></pre>
+<div class="sourceCode" id="cb1450"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"h"</span><span class="op">)</span><span class="op">)</span> <span class="co"># contienen la h</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 6
+##    height hair_color    birth_year homeworld vehicles  starships
+##     &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;     &lt;list&gt;    &lt;list&gt;   
+##  1    172 blond               19   Tatooine  &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2    167 &lt;NA&gt;               112   Tatooine  &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3     96 &lt;NA&gt;                33   Naboo     &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4    202 none                41.9 Tatooine  &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5    150 brown               19   Alderaan  &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6    178 brown, grey         52   Tatooine  &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7    165 brown               47   Tatooine  &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8     97 &lt;NA&gt;                NA   Tatooine  &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9    183 black               24   Tatooine  &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10    182 auburn, white       57   Stewjon   &lt;chr [1]&gt; &lt;chr [5]&gt;
+## # … with 77 more rows</code></pre>
+<p>Todo lo que hemos usado para seleccionar lo podemos usar para <strong>eliminar columnas</strong></p>
+<div class="sourceCode" id="cb1452"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># seleccionamos todas menos 3 columnas: pelo, piel y ojos</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">hair_color</span>, <span class="va">skin_color</span>, <span class="va">eye_color</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 11
+##    name    height  mass birth_year sex   gender homeworld species films vehicles
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;lis&gt; &lt;list&gt;  
+##  1 Luke S…    172    77       19   male  mascu… Tatooine  Human   &lt;chr… &lt;chr [2…
+##  2 C-3PO      167    75      112   none  mascu… Tatooine  Droid   &lt;chr… &lt;chr [0…
+##  3 R2-D2       96    32       33   none  mascu… Naboo     Droid   &lt;chr… &lt;chr [0…
+##  4 Darth …    202   136       41.9 male  mascu… Tatooine  Human   &lt;chr… &lt;chr [0…
+##  5 Leia O…    150    49       19   fema… femin… Alderaan  Human   &lt;chr… &lt;chr [1…
+##  6 Owen L…    178   120       52   male  mascu… Tatooine  Human   &lt;chr… &lt;chr [0…
+##  7 Beru W…    165    75       47   fema… femin… Tatooine  Human   &lt;chr… &lt;chr [0…
+##  8 R5-D4       97    32       NA   none  mascu… Tatooine  Droid   &lt;chr… &lt;chr [0…
+##  9 Biggs …    183    84       24   male  mascu… Tatooine  Human   &lt;chr… &lt;chr [0…
+## 10 Obi-Wa…    182    77       57   male  mascu… Stewjon   Human   &lt;chr… &lt;chr [1…
+## # … with 77 more rows, and 1 more variable: starships &lt;list&gt;</code></pre>
+<p>Incluso nos permite <mark><strong>seleccionar aquellas columnas que son del mismo tipo</strong></mark> (imagina que necesitamos solo las columnas numéricas para calcular ciertas estadísticas) con <code>where()</code>.</p>
+<div class="sourceCode" id="cb1454"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Seleccionamos solo la columnas numéricas</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    height  mass birth_year
+##     &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1    172    77       19  
+##  2    167    75      112  
+##  3     96    32       33  
+##  4    202   136       41.9
+##  5    150    49       19  
+##  6    178   120       52  
+##  7    165    75       47  
+##  8     97    32       NA  
+##  9    183    84       24  
+## 10    182    77       57  
+## # … with 77 more rows</code></pre>
+<p>Por último, podemos no tanto seleccionar sino <mark><strong>extraer columnas</strong></mark>: las saca fuera de la tabla y las convierte en un vector fuera del <code>tibble</code>, con la función <code><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull()</a></code>.</p>
+<div class="sourceCode" id="cb1456"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] "Luke Skywalker"        "C-3PO"                 "R2-D2"                
+##  [4] "Darth Vader"           "Leia Organa"           "Owen Lars"            
+##  [7] "Beru Whitesun lars"    "R5-D4"                 "Biggs Darklighter"    
+## [10] "Obi-Wan Kenobi"        "Anakin Skywalker"      "Wilhuff Tarkin"       
+## [13] "Chewbacca"             "Han Solo"              "Greedo"               
+## [16] "Jabba Desilijic Tiure" "Wedge Antilles"        "Jek Tono Porkins"     
+## [19] "Yoda"                  "Palpatine"             "Boba Fett"            
+## [22] "IG-88"                 "Bossk"                 "Lando Calrissian"     
+## [25] "Lobot"                 "Ackbar"                "Mon Mothma"           
+## [28] "Arvel Crynyd"          "Wicket Systri Warrick" "Nien Nunb"            
+## [31] "Qui-Gon Jinn"          "Nute Gunray"           "Finis Valorum"        
+## [34] "Jar Jar Binks"         "Roos Tarpals"          "Rugor Nass"           
+## [37] "Ric Olié"              "Watto"                 "Sebulba"              
+## [40] "Quarsh Panaka"         "Shmi Skywalker"        "Darth Maul"           
+## [43] "Bib Fortuna"           "Ayla Secura"           "Dud Bolt"             
+## [46] "Gasgano"               "Ben Quadinaros"        "Mace Windu"           
+## [49] "Ki-Adi-Mundi"          "Kit Fisto"             "Eeth Koth"            
+## [52] "Adi Gallia"            "Saesee Tiin"           "Yarael Poof"          
+## [55] "Plo Koon"              "Mas Amedda"            "Gregar Typho"         
+## [58] "Cordé"                 "Cliegg Lars"           "Poggle the Lesser"    
+## [61] "Luminara Unduli"       "Barriss Offee"         "Dormé"                
+## [64] "Dooku"                 "Bail Prestor Organa"   "Jango Fett"           
+## [67] "Zam Wesell"            "Dexter Jettster"       "Lama Su"              
+## [70] "Taun We"               "Jocasta Nu"            "Ratts Tyerell"        
+## [73] "R4-P17"                "Wat Tambor"            "San Hill"             
+## [76] "Shaak Ti"              "Grievous"              "Tarfful"              
+## [79] "Raymus Antilles"       "Sly Moore"             "Tion Medon"           
+## [82] "Finn"                  "Rey"                   "Poe Dameron"          
+## [85] "BB8"                   "Captain Phasma"        "Padmé Amidala"</code></pre>
+</div>
+<div id="crear-nuevas-variables-mutate" class="section level2">
+<h2>
+<span class="header-section-number">19.4</span> Crear nuevas variables (mutate)<a class="anchor" aria-label="anchor" href="#crear-nuevas-variables-mutate"><i class="fas fa-link"></i></a>
+</h2>
+<p>A veces no queremos modificar variables ya existentes sino <mark><strong>crear nuevas variables/columnas</strong></mark> en base a variables ya existentes. Para ello tenemos la opción de <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> que nos permite crear una nueva variable en función de las existentes.</p>
+<div class="sourceCode" id="cb1458"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Mutate: nos añade nuevas columnas usando funciones</span>
+<span class="co"># aplicadas a nuestras variables</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">100</span><span class="op">)</span> <span class="co"># altura en metros</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 15
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  7 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  8 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  9 Biggs …    183    84 black       light      brown           24   male  mascu…
+## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## # … with 77 more rows, and 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;, height_m &lt;dbl&gt;</code></pre>
+<p>Recuerda que para <strong>ver todas las columnas</strong> debes indicarle que quieres imprimir todas.</p>
+<div class="sourceCode" id="cb1460"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">100</span><span class="op">)</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 15
+##    name               height  mass hair_color    skin_color  eye_color
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 Luke Skywalker        172    77 blond         fair        blue     
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold        yellow   
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, blue red      
+##  4 Darth Vader           202   136 none          white       yellow   
+##  5 Leia Organa           150    49 brown         light       brown    
+##  6 Owen Lars             178   120 brown, grey   light       blue     
+##  7 Beru Whitesun lars    165    75 brown         light       blue     
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red  red      
+##  9 Biggs Darklighter     183    84 black         light       brown    
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair        blue-gray
+##    birth_year sex    gender    homeworld species films     vehicles  starships
+##         &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1       19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2      112   none   masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3       33   none   masculine Naboo     Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4       41.9 male   masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5       19   female feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6       52   male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7       47   female feminine  Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8       NA   none   masculine Tatooine  Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9       24   male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10       57   male   masculine Stewjon   Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+##    height_m
+##       &lt;dbl&gt;
+##  1     1.72
+##  2     1.67
+##  3     0.96
+##  4     2.02
+##  5     1.5 
+##  6     1.78
+##  7     1.65
+##  8     0.97
+##  9     1.83
+## 10     1.82
+## # … with 77 more rows</code></pre>
+<p>Otra opción es <strong>quedarnos solo con las columnas nuevas creadas</strong> con <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">transmute()</a></code></p>
+<div class="sourceCode" id="cb1462"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">transmute</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">100</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 1
+##    height_m
+##       &lt;dbl&gt;
+##  1     1.72
+##  2     1.67
+##  3     0.96
+##  4     2.02
+##  5     1.5 
+##  6     1.78
+##  7     1.65
+##  8     0.97
+##  9     1.83
+## 10     1.82
+## # … with 77 more rows</code></pre>
+<p>Si queremos añadir <strong>varias variables</strong> en función de las ya existentes podemos hacerlo ya que permite incorporar los datos de forma secuencial sin duplicar órdenes de <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> para cada una.</p>
+<div class="sourceCode" id="cb1464"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="co"># Calculamos altura en metros y el IMC</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">100</span>,
+         BMI <span class="op">=</span> <span class="va">mass</span> <span class="op">/</span> <span class="op">(</span><span class="va">height_m</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 16
+##    name               height  mass hair_color    skin_color  eye_color
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 Luke Skywalker        172    77 blond         fair        blue     
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold        yellow   
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, blue red      
+##  4 Darth Vader           202   136 none          white       yellow   
+##  5 Leia Organa           150    49 brown         light       brown    
+##  6 Owen Lars             178   120 brown, grey   light       blue     
+##  7 Beru Whitesun lars    165    75 brown         light       blue     
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red  red      
+##  9 Biggs Darklighter     183    84 black         light       brown    
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair        blue-gray
+##    birth_year sex    gender    homeworld species films     vehicles  starships
+##         &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1       19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2      112   none   masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3       33   none   masculine Naboo     Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4       41.9 male   masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5       19   female feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6       52   male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7       47   female feminine  Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8       NA   none   masculine Tatooine  Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9       24   male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10       57   male   masculine Stewjon   Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+##    height_m   BMI
+##       &lt;dbl&gt; &lt;dbl&gt;
+##  1     1.72  26.0
+##  2     1.67  26.9
+##  3     0.96  34.7
+##  4     2.02  33.3
+##  5     1.5   21.8
+##  6     1.78  37.9
+##  7     1.65  27.5
+##  8     0.97  34.0
+##  9     1.83  25.1
+## 10     1.82  23.2
+## # … with 77 more rows</code></pre>
+<p>Como ves <strong>por defecto añade las columnas al final</strong> pero podemos <strong>reordenar las columnas</strong> como ya hemos visto</p>
+<div class="sourceCode" id="cb1466"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">100</span>,
+         BMI <span class="op">=</span> <span class="va">mass</span> <span class="op">/</span> <span class="op">(</span><span class="va">height_m</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/relocate.html">relocate</a></span><span class="op">(</span><span class="va">height_m</span>, <span class="va">BMI</span>, .after <span class="op">=</span> <span class="va">name</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 16
+##    name   height_m   BMI height  mass hair_color skin_color eye_color birth_year
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+##  1 Luke …     1.72  26.0    172    77 blond      fair       blue            19  
+##  2 C-3PO      1.67  26.9    167    75 &lt;NA&gt;       gold       yellow         112  
+##  3 R2-D2      0.96  34.7     96    32 &lt;NA&gt;       white, bl… red             33  
+##  4 Darth…     2.02  33.3    202   136 none       white      yellow          41.9
+##  5 Leia …     1.5   21.8    150    49 brown      light      brown           19  
+##  6 Owen …     1.78  37.9    178   120 brown, gr… light      blue            52  
+##  7 Beru …     1.65  27.5    165    75 brown      light      blue            47  
+##  8 R5-D4      0.97  34.0     97    32 &lt;NA&gt;       white, red red             NA  
+##  9 Biggs…     1.83  25.1    183    84 black      light      brown           24  
+## 10 Obi-W…     1.82  23.2    182    77 auburn, w… fair       blue-gray       57  
+## # … with 77 more rows, and 7 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;,
+## #   homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;</code></pre>
+<p>También podemos pasarle una <strong>función propia que queramos definir</strong>, no solo funciones de <code>R</code>. Vamos a definir la función que nos calcula el IMC, a la que llamaremos <code>BMI_fun</code>, que necesita solo de dos argumentos: la altura en metros y el peso.</p>
+<div class="sourceCode" id="cb1468"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">BMI_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">m</span>, <span class="va">h</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">m</span> <span class="op">/</span> <span class="va">h</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">BMI_fun</span><span class="op">(</span><span class="fl">90</span>, <span class="fl">1.6</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 35.15625</code></pre>
+<p>La función definida como <code>BMI_fun()</code> podemos ahora aplicarla dentro de <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>.</p>
+<div class="sourceCode" id="cb1470"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>height_m <span class="op">=</span> <span class="va">height</span> <span class="op">/</span> <span class="fl">100</span>,
+         BMI <span class="op">=</span> <span class="fu">BMI_fun</span><span class="op">(</span><span class="va">mass</span>, <span class="va">height_m</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># Las movemos al inicio (por defecto las mete al final)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/relocate.html">relocate</a></span><span class="op">(</span><span class="va">height_m</span>, <span class="va">BMI</span>, .after <span class="op">=</span> <span class="va">name</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 16
+##    name   height_m   BMI height  mass hair_color skin_color eye_color birth_year
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+##  1 Luke …     1.72  26.0    172    77 blond      fair       blue            19  
+##  2 C-3PO      1.67  26.9    167    75 &lt;NA&gt;       gold       yellow         112  
+##  3 R2-D2      0.96  34.7     96    32 &lt;NA&gt;       white, bl… red             33  
+##  4 Darth…     2.02  33.3    202   136 none       white      yellow          41.9
+##  5 Leia …     1.5   21.8    150    49 brown      light      brown           19  
+##  6 Owen …     1.78  37.9    178   120 brown, gr… light      blue            52  
+##  7 Beru …     1.65  27.5    165    75 brown      light      blue            47  
+##  8 R5-D4      0.97  34.0     97    32 &lt;NA&gt;       white, red red             NA  
+##  9 Biggs…     1.83  25.1    183    84 black      light      brown           24  
+## 10 Obi-W…     1.82  23.2    182    77 auburn, w… fair       blue-gray       57  
+## # … with 77 more rows, and 7 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;,
+## #   homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;</code></pre>
+<p>También se pueden aplicar funciones más complejas como la función <code>map()</code> del paquete <a href="http://purrr.tidyverse.org">purrr</a> para manejo de listas: dado que las listas no se pueden vectorizar, esta función nos permite <strong>aplicar operaciones a listas, elemento a elemento de cada una de ellas</strong>. Veamos un ejemplo: imagina que queremos calcular el número de películas en las que sale cada personaje de la saga.</p>
+<div class="sourceCode" id="cb1472"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Películas de los 5 primeros personajes</span>
+<span class="va">starwars</span><span class="op">$</span><span class="va">films</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] "The Empire Strikes Back" "Revenge of the Sith"    
+## [3] "Return of the Jedi"      "A New Hope"             
+## [5] "The Force Awakens"      
+## 
+## [[2]]
+## [1] "The Empire Strikes Back" "Attack of the Clones"   
+## [3] "The Phantom Menace"      "Revenge of the Sith"    
+## [5] "Return of the Jedi"      "A New Hope"             
+## 
+## [[3]]
+## [1] "The Empire Strikes Back" "Attack of the Clones"   
+## [3] "The Phantom Menace"      "Revenge of the Sith"    
+## [5] "Return of the Jedi"      "A New Hope"             
+## [7] "The Force Awakens"      
+## 
+## [[4]]
+## [1] "The Empire Strikes Back" "Revenge of the Sith"    
+## [3] "Return of the Jedi"      "A New Hope"             
+## 
+## [[5]]
+## [1] "The Empire Strikes Back" "Revenge of the Sith"    
+## [3] "Return of the Jedi"      "A New Hope"             
+## [5] "The Force Awakens"</code></pre>
+<p>Las películas de cada personaje están en <strong>modo lista</strong>: no podíamos guardarlo en un <code>data.frame</code> ya que cada personaje ha podido participar en un número distinto (en una tabla, todas las columnas tienen la misma longitud). Para saber la cantidad de películas en las que ha participado el primer personaje basta con usar el comando <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> (nos dará el número de elementos de la lista).</p>
+<div class="sourceCode" id="cb1474"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">$</span><span class="va">films</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p><strong>¿Cómo aplicar dicha a función a cada personaje?</strong> Con <code>map()</code> y la función a aplicar en cada elemento de la lista.</p>
+<div class="sourceCode" id="cb1476"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Mapeamos la lista con length</span>
+<span class="op">(</span><span class="va">starwars</span><span class="op">$</span><span class="va">films</span> <span class="op">%&gt;%</span> <span class="fu">map</span><span class="op">(</span><span class="va">length</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 5
+## 
+## [[2]]
+## [1] 6
+## 
+## [[3]]
+## [1] 7
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 3
+## 
+## [[7]]
+## [1] 3
+## 
+## [[8]]
+## [1] 1
+## 
+## [[9]]
+## [1] 1
+## 
+## [[10]]
+## [1] 6</code></pre>
+<p>Si te fijas con los 10 primeros, lo que nos devuelve por defecto a su vez una lista, cuando a nosotros <strong>nos gustaría que nos devolviera un vector que poder incluir como columna</strong>. Para ello existen diversas funciones como <code>map_chr()</code>, <code>map_dbl()</code> para devolverlo en un formato concreto (caracter o numérico).</p>
+<div class="sourceCode" id="cb1478"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Mapeamos la lista con length pero devolvemos un vector de números enteros</span>
+<span class="va">starwars</span><span class="op">$</span><span class="va">films</span> <span class="op">%&gt;%</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">length</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] 5 6 7 4 5 3 3 1 1 6 3 2 5 4 1 3 3 1 5 5 3 1 1 2 1 2 1 1 1 1 1 3 1 2 1 1 1 2
+## [39] 1 1 2 1 1 3 1 1 1 3 3 3 2 2 2 1 3 2 1 1 1 2 2 1 1 2 2 1 1 1 1 1 1 1 2 1 1 2
+## [77] 1 1 2 2 1 1 1 1 1 1 3</code></pre>
+<p>Ya solo nos falta incorporar dicha operación a una nueva columna con <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code></p>
+<div class="sourceCode" id="cb1480"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span><span class="st">"n_peliculas"</span> <span class="op">=</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">homeworld</span>, <span class="va">n_peliculas</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    name               homeworld n_peliculas
+##    &lt;chr&gt;              &lt;chr&gt;           &lt;int&gt;
+##  1 Luke Skywalker     Tatooine            5
+##  2 C-3PO              Tatooine            6
+##  3 R2-D2              Naboo               7
+##  4 Darth Vader        Tatooine            4
+##  5 Leia Organa        Alderaan            5
+##  6 Owen Lars          Tatooine            3
+##  7 Beru Whitesun lars Tatooine            3
+##  8 R5-D4              Tatooine            1
+##  9 Biggs Darklighter  Tatooine            1
+## 10 Obi-Wan Kenobi     Stewjon             6
+## # … with 77 more rows</code></pre>
+</div>
+<div id="visualizar-el-flujo" class="section level2">
+<h2>
+<span class="header-section-number">19.5</span> Visualizar el flujo<a class="anchor" aria-label="anchor" href="#visualizar-el-flujo"><i class="fas fa-link"></i></a>
+</h2>
+<p>Antes de pasar a los ejercicios, existe una reciente herramienta que nos va a permitir entender mejor y <mark><strong>visualizar el flujo de trabajo</strong></mark> de las funciones que hemos visto en este entorno <a href="https://tidyverse.tidyverse.org">tidyverse</a>: <a href="https://tidydatatutor.com/" class="uri">https://tidydatatutor.com/</a>. Basta con poner el código que queremos ejecutar, y nos muestra las operaciones en los datos visualmente.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-504"></span>
+<img src="img/tidytutor.jpg" alt="Tidytutor." width="50%"><p class="caption">
+Imagen/gráfica 19.2: Tidytutor.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-505"></span>
+<img src="img/tidytutor1.jpg" alt="Tidytutor." width="50%"><p class="caption">
+Imagen/gráfica 19.3: Tidytutor.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-506"></span>
+<img src="img/tidytutor2.jpg" alt="Tidytutor." width="50%"><p class="caption">
+Imagen/gráfica 19.4: Tidytutor.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-507"></span>
+<img src="img/tidytutor3.jpg" alt="Tidytutor." width="50%"><p class="caption">
+Imagen/gráfica 19.5: Tidytutor.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-508"></span>
+<img src="img/tidytutor4.jpg" alt="Tidytutor." width="50%"><p class="caption">
+Imagen/gráfica 19.6: Tidytutor.
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-509"></span>
+<img src="img/tidytutor5.jpg" alt="Tidytutor." width="50%"><p class="caption">
+Imagen/gráfica 19.7: Tidytutor.
+</p>
+</div>
+</div>
+<div id="ejercicios-11" class="section level2">
+<h2>
+<span class="header-section-number">19.6</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-11"><i class="fas fa-link"></i></a>
+</h2>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: del fichero <code>starwars</code> encuentra todos los personajes que el peso esté entre 60 y 90.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1482"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># todas columnas</span>
+<span class="va">filtro</span> <span class="op">&lt;-</span>
+  <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/between.html">between</a></span><span class="op">(</span><span class="va">mass</span>, <span class="fl">60</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">filtro</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 14
+##    name               height  mass hair_color    skin_color eye_color birth_year
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+##  1 Luke Skywalker        172    77 blond         fair       blue            19  
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold       yellow         112  
+##  3 Beru Whitesun lars    165    75 brown         light      blue            47  
+##  4 Biggs Darklighter     183    84 black         light      brown           24  
+##  5 Obi-Wan Kenobi        182    77 auburn, white fair       blue-gray       57  
+##  6 Anakin Skywalker      188    84 blond         fair       blue            41.9
+##  7 Han Solo              180    80 brown         fair       brown           29  
+##  8 Greedo                173    74 &lt;NA&gt;          green      black           44  
+##  9 Wedge Antilles        170    77 brown         fair       hazel           21  
+## 10 Palpatine             170    75 grey          pale       yellow          82  
+##    sex    gender    homeworld species films     vehicles  starships
+##    &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1 male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2 none   masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3 female feminine  Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4 male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5 male   masculine Stewjon   Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+##  6 male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [2]&gt; &lt;chr [3]&gt;
+##  7 male   masculine Corellia  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [2]&gt;
+##  8 male   masculine Rodia     Rodian  &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9 male   masculine Corellia  Human   &lt;chr [3]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
+## 10 male   masculine Naboo     Human   &lt;chr [5]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+## # … with 22 more rows</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: añadido al filtro anterior, encuentra todos los personajes de ojos que no sean azules, y que tengan menos de 100 años.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1484"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># todas columnas</span>
+<span class="va">filtro</span> <span class="op">&lt;-</span>
+  <span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/between.html">between</a></span><span class="op">(</span><span class="va">mass</span>, <span class="fl">60</span>, <span class="fl">90</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">eye_color</span> <span class="op">!=</span> <span class="st">"blue"</span> <span class="op">&amp;</span>
+           <span class="va">birth_year</span> <span class="op">&lt;</span> <span class="fl">100</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">filtro</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 15 × 14
+##    name              height  mass hair_color    skin_color   eye_color
+##    &lt;chr&gt;              &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;    
+##  1 Biggs Darklighter    183  84   black         light        brown    
+##  2 Obi-Wan Kenobi       182  77   auburn, white fair         blue-gray
+##  3 Han Solo             180  80   brown         fair         brown    
+##  4 Greedo               173  74   &lt;NA&gt;          green        black    
+##  5 Wedge Antilles       170  77   brown         fair         hazel    
+##  6 Palpatine            170  75   grey          pale         yellow   
+##  7 Boba Fett            183  78.2 black         fair         brown    
+##  8 Lando Calrissian     177  79   black         dark         brown    
+##  9 Ackbar               180  83   none          brown mottle orange   
+## 10 Jar Jar Binks        196  66   none          orange       orange   
+## 11 Darth Maul           175  80   none          red          yellow   
+## 12 Mace Windu           188  84   none          dark         brown    
+## 13 Ki-Adi-Mundi         198  82   white         pale         yellow   
+## 14 Plo Koon             188  80   none          orange       black    
+## 15 Jango Fett           183  79   black         tan          brown    
+##    birth_year sex   gender    homeworld    species      films     vehicles 
+##         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;        &lt;list&gt;    &lt;list&gt;   
+##  1       24   male  masculine Tatooine     Human        &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  2       57   male  masculine Stewjon      Human        &lt;chr [6]&gt; &lt;chr [1]&gt;
+##  3       29   male  masculine Corellia     Human        &lt;chr [4]&gt; &lt;chr [0]&gt;
+##  4       44   male  masculine Rodia        Rodian       &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  5       21   male  masculine Corellia     Human        &lt;chr [3]&gt; &lt;chr [1]&gt;
+##  6       82   male  masculine Naboo        Human        &lt;chr [5]&gt; &lt;chr [0]&gt;
+##  7       31.5 male  masculine Kamino       Human        &lt;chr [3]&gt; &lt;chr [0]&gt;
+##  8       31   male  masculine Socorro      Human        &lt;chr [2]&gt; &lt;chr [0]&gt;
+##  9       41   male  masculine Mon Cala     Mon Calamari &lt;chr [2]&gt; &lt;chr [0]&gt;
+## 10       52   male  masculine Naboo        Gungan       &lt;chr [2]&gt; &lt;chr [0]&gt;
+## 11       54   male  masculine Dathomir     Zabrak       &lt;chr [1]&gt; &lt;chr [1]&gt;
+## 12       72   male  masculine Haruun Kal   Human        &lt;chr [3]&gt; &lt;chr [0]&gt;
+## 13       92   male  masculine Cerea        Cerean       &lt;chr [3]&gt; &lt;chr [0]&gt;
+## 14       22   male  masculine Dorin        Kel Dor      &lt;chr [3]&gt; &lt;chr [0]&gt;
+## 15       66   male  masculine Concord Dawn Human        &lt;chr [1]&gt; &lt;chr [0]&gt;
+##    starships
+##    &lt;list&gt;   
+##  1 &lt;chr [1]&gt;
+##  2 &lt;chr [5]&gt;
+##  3 &lt;chr [2]&gt;
+##  4 &lt;chr [0]&gt;
+##  5 &lt;chr [1]&gt;
+##  6 &lt;chr [0]&gt;
+##  7 &lt;chr [1]&gt;
+##  8 &lt;chr [1]&gt;
+##  9 &lt;chr [0]&gt;
+## 10 &lt;chr [0]&gt;
+## 11 &lt;chr [1]&gt;
+## 12 &lt;chr [0]&gt;
+## 13 &lt;chr [0]&gt;
+## 14 &lt;chr [1]&gt;
+## 15 &lt;chr [0]&gt;</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: añadido al filtro anterior, selecciona solo las columnas <code>name, mass, eye_color, birth_year</code></summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1486"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Solo name, mass, eye_color, birth_year</span>
+<span class="va">filtro</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">mass</span>, <span class="va">eye_color</span>, <span class="va">birth_year</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 15 × 4
+##    name               mass eye_color birth_year
+##    &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+##  1 Biggs Darklighter  84   brown           24  
+##  2 Obi-Wan Kenobi     77   blue-gray       57  
+##  3 Han Solo           80   brown           29  
+##  4 Greedo             74   black           44  
+##  5 Wedge Antilles     77   hazel           21  
+##  6 Palpatine          75   yellow          82  
+##  7 Boba Fett          78.2 brown           31.5
+##  8 Lando Calrissian   79   brown           31  
+##  9 Ackbar             83   orange          41  
+## 10 Jar Jar Binks      66   orange          52  
+## 11 Darth Maul         80   yellow          54  
+## 12 Mace Windu         84   brown           72  
+## 13 Ki-Adi-Mundi       82   yellow          92  
+## 14 Plo Koon           80   black           22  
+## 15 Jango Fett         79   brown           66</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: selecciona solo las columnas que contengan variables numéricas, coloca los años de nacimiento como primera columna y cambia los nombres a castellano.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1488"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    height  mass birth_year
+##     &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt;
+##  1    172    77       19  
+##  2    167    75      112  
+##  3     96    32       33  
+##  4    202   136       41.9
+##  5    150    49       19  
+##  6    178   120       52  
+##  7    165    75       47  
+##  8     97    32       NA  
+##  9    183    84       24  
+## 10    182    77       57  
+## # … with 77 more rows</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: añadido a la selección anterior, coloca los años de nacimiento como primera columna y cambia los nombres a castellano.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1490"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/relocate.html">relocate</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">mass</span>, .after <span class="op">=</span> <span class="va">birth_year</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span><span class="op">(</span>edad <span class="op">=</span> <span class="va">birth_year</span>, altura <span class="op">=</span> <span class="va">height</span>, peso <span class="op">=</span> <span class="va">mass</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##     edad altura  peso
+##    &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt;
+##  1  19      172    77
+##  2 112      167    75
+##  3  33       96    32
+##  4  41.9    202   136
+##  5  19      150    49
+##  6  52      178   120
+##  7  47      165    75
+##  8  NA       97    32
+##  9  24      183    84
+## 10  57      182    77
+## # … with 77 more rows</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 6</strong>: calcula una nueva columna que indique el número de naves que ha pilotado cada persona (escribe <code><a href="https://rdrr.io/pkg/dplyr/man/starwars.html">? starwars</a></code> en consola para ver documentación del fichero).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1492"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars_numero_naves</span> <span class="op">&lt;-</span> 
+  <span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_naves <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">starships</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Imprimimos todas las columnas</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">starwars_numero_naves</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 15
+##    name               height  mass hair_color    skin_color  eye_color
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 Luke Skywalker        172    77 blond         fair        blue     
+##  2 C-3PO                 167    75 &lt;NA&gt;          gold        yellow   
+##  3 R2-D2                  96    32 &lt;NA&gt;          white, blue red      
+##  4 Darth Vader           202   136 none          white       yellow   
+##  5 Leia Organa           150    49 brown         light       brown    
+##  6 Owen Lars             178   120 brown, grey   light       blue     
+##  7 Beru Whitesun lars    165    75 brown         light       blue     
+##  8 R5-D4                  97    32 &lt;NA&gt;          white, red  red      
+##  9 Biggs Darklighter     183    84 black         light       brown    
+## 10 Obi-Wan Kenobi        182    77 auburn, white fair        blue-gray
+##    birth_year sex    gender    homeworld species films     vehicles  starships
+##         &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   
+##  1       19   male   masculine Tatooine  Human   &lt;chr [5]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt;
+##  2      112   none   masculine Tatooine  Droid   &lt;chr [6]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  3       33   none   masculine Naboo     Droid   &lt;chr [7]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  4       41.9 male   masculine Tatooine  Human   &lt;chr [4]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+##  5       19   female feminine  Alderaan  Human   &lt;chr [5]&gt; &lt;chr [1]&gt; &lt;chr [0]&gt;
+##  6       52   male   masculine Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  7       47   female feminine  Tatooine  Human   &lt;chr [3]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  8       NA   none   masculine Tatooine  Droid   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [0]&gt;
+##  9       24   male   masculine Tatooine  Human   &lt;chr [1]&gt; &lt;chr [0]&gt; &lt;chr [1]&gt;
+## 10       57   male   masculine Stewjon   Human   &lt;chr [6]&gt; &lt;chr [1]&gt; &lt;chr [5]&gt;
+##    n_naves
+##    &lt;chr&gt;  
+##  1 2      
+##  2 0      
+##  3 0      
+##  4 1      
+##  5 0      
+##  6 0      
+##  7 0      
+##  8 0      
+##  9 1      
+## 10 5      
+## # … with 77 more rows</code></pre>
+<div class="sourceCode" id="cb1494"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Solo la columna añadida</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">transmute</a></span><span class="op">(</span>n_naves <span class="op">=</span> <span class="fu">map_chr</span><span class="op">(</span><span class="va">starships</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 1
+##    n_naves
+##    &lt;chr&gt;  
+##  1 2      
+##  2 0      
+##  3 0      
+##  4 1      
+##  5 0      
+##  6 0      
+##  7 0      
+##  8 0      
+##  9 1      
+## 10 5      
+## # … with 77 more rows</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 7</strong>: con la columna anterior añadido, crea una nueva variable <code>TRUE/FALSE</code> que nos diga si ha conducido o no alguna nave, y filtra después solo aquellos personajes que han conducido alguna nave.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1496"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Nueva columna lógica</span>
+<span class="va">starwars_numero_naves</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>conducir_nave <span class="op">=</span> <span class="va">n_naves</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">conducir_nave</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 20 × 16
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172  77   blond       fair       blue            19   male  mascu…
+##  2 Darth …    202 136   none        white      yellow          41.9 male  mascu…
+##  3 Biggs …    183  84   black       light      brown           24   male  mascu…
+##  4 Obi-Wa…    182  77   auburn, wh… fair       blue-gray       57   male  mascu…
+##  5 Anakin…    188  84   blond       fair       blue            41.9 male  mascu…
+##  6 Chewba…    228 112   brown       unknown    blue           200   male  mascu…
+##  7 Han So…    180  80   brown       fair       brown           29   male  mascu…
+##  8 Wedge …    170  77   brown       fair       hazel           21   male  mascu…
+##  9 Jek To…    180 110   brown       fair       blue            NA   male  mascu…
+## 10 Boba F…    183  78.2 black       fair       brown           31.5 male  mascu…
+## 11 Lando …    177  79   black       dark       brown           31   male  mascu…
+## 12 Arvel …     NA  NA   brown       fair       brown           NA   male  mascu…
+## 13 Nien N…    160  68   none        grey       black           NA   male  mascu…
+## 14 Ric Ol…    183  NA   brown       fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
+## 15 Darth …    175  80   none        red        yellow          54   male  mascu…
+## 16 Plo Ko…    188  80   none        orange     black           22   male  mascu…
+## 17 Gregar…    185  85   black       dark       brown           NA   male  mascu…
+## 18 Grievo…    216 159   none        brown, wh… green, y…       NA   male  mascu…
+## 19 Poe Da…     NA  NA   brown       light      brown           NA   male  mascu…
+## 20 Padmé …    165  45   brown       light      brown           46   fema… femin…
+## # … with 7 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;, n_naves &lt;chr&gt;, conducir_nave &lt;lgl&gt;</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 8</strong>: calcula el número de películas en las que han salido y ordena a los personajes de mayor a menor número de películas en las que ha aparecido</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1498"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># Calculamos primero el número de películas</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_films <span class="op">=</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/desc.html">desc</a></span><span class="op">(</span><span class="va">n_films</span><span class="op">)</span><span class="op">)</span> <span class="co"># Ordenamos de mayor a menor</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 15
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+##  4 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Chewba…    228   112 brown       unknown    blue           200   male  mascu…
+##  7 Yoda        66    17 white       green      brown          896   male  mascu…
+##  8 Palpat…    170    75 grey        pale       yellow          82   male  mascu…
+##  9 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+## 10 Han So…    180    80 brown       fair       brown           29   male  mascu…
+## # … with 77 more rows, and 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;, n_films &lt;int&gt;</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 9</strong>: selecciona 9 personajes al azar.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1500"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Una extracción aleatoria</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Eeth Ko…    171    NA black       brown      brown             NA male  mascu…
+## 2 Bib For…    180    NA none        pale       pink              NA male  mascu…
+## 3 Poggle …    183    80 none        green      yellow            NA male  mascu…
+## 4 Bail Pr…    191    NA black       tan        brown             67 male  mascu…
+## 5 Chewbac…    228   112 brown       unknown    blue             200 male  mascu…
+## 6 Cordé       157    NA brown       light      brown             NA fema… femin…
+## 7 Shmi Sk…    163    NA black       fair       brown             72 fema… femin…
+## 8 BB8          NA    NA none        none       black             NA none  mascu…
+## 9 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<div class="sourceCode" id="cb1502"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># otra (que sale distinta, claro)</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Mace Wi…    188    84 none        dark       brown           72   male  mascu…
+## 2 Roos Ta…    224    82 none        grey       orange          NA   male  mascu…
+## 3 BB8          NA    NA none        none       black           NA   none  mascu…
+## 4 Cliegg …    183    NA brown       fair       blue            82   male  mascu…
+## 5 Nute Gu…    191    90 none        mottled g… red             NA   male  mascu…
+## 6 Ratts T…     79    15 none        grey, blue unknown         NA   male  mascu…
+## 7 Darth V…    202   136 none        white      yellow          41.9 male  mascu…
+## 8 Ki-Adi-…    198    82 white       pale       yellow          92   male  mascu…
+## 9 Owen La…    178   120 brown, grey light      blue            52   male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 10</strong>: de la tabla del ejercicio anterior, selecciona los 5 personajes que en más películas han salido y los 5 que menos.</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1504"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Una extracción aleatoria</span>
+<span class="va">selec_aleatoria</span> <span class="op">&lt;-</span> <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>
+
+<span class="co"># personajes que en más películas han salido (metiendo empates)</span>
+<span class="va">selec_aleatoria</span>  <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_films <span class="op">=</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span><span class="va">n_films</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 15
+##   name     height  mass hair_color skin_color  eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Poggle …    183    80 none       green       yellow            NA male  mascu…
+## 2 Raymus …    188    79 brown      light       brown             NA male  mascu…
+## 3 Jar Jar…    196    66 none       orange      orange            52 male  mascu…
+## 4 IG-88       200   140 none       metal       red               15 none  mascu…
+## 5 Gasgano     122    NA none       white, blue black             NA male  mascu…
+## 6 Quarsh …    183    NA black      dark        brown             62 &lt;NA&gt;  &lt;NA&gt;  
+## 7 Captain…     NA    NA unknown    unknown     unknown           NA &lt;NA&gt;  &lt;NA&gt;  
+## 8 Finn         NA    NA black      dark        dark              NA male  mascu…
+## 9 Arvel C…     NA    NA brown      fair        brown             NA male  mascu…
+## # … with 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;, n_films &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb1506"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># personajes que en más películas han salido (sin empates)</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_films <span class="op">=</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max</a></span><span class="op">(</span><span class="va">n_films</span>, n <span class="op">=</span> <span class="fl">5</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 15
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 R2-D2        96    32 &lt;NA&gt;        white, bl… red               33 none  mascu…
+## 2 C-3PO       167    75 &lt;NA&gt;        gold       yellow           112 none  mascu…
+## 3 Obi-Wan…    182    77 auburn, wh… fair       blue-gray         57 male  mascu…
+## 4 Luke Sk…    172    77 blond       fair       blue              19 male  mascu…
+## 5 Leia Or…    150    49 brown       light      brown             19 fema… femin…
+## # … with 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;, n_films &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb1508"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># personajes que en menos películas han salido (metiendo empates)</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_films <span class="op">=</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min</a></span><span class="op">(</span><span class="va">n_films</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 15
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+##  2 Biggs D…    183    84 black      light      brown             24 male  mascu…
+##  3 Greedo      173    74 &lt;NA&gt;       green      black             44 male  mascu…
+##  4 Jek Ton…    180   110 brown      fair       blue              NA male  mascu…
+##  5 IG-88       200   140 none       metal      red               15 none  mascu…
+##  6 Bossk       190   113 none       green      red               53 male  mascu…
+##  7 Lobot       175    79 none       light      blue              37 male  mascu…
+##  8 Mon Mot…    150    NA auburn     fair       blue              48 fema… femin…
+##  9 Arvel C…     NA    NA brown      fair       brown             NA male  mascu…
+## 10 Wicket …     88    20 brown      brown      brown              8 male  mascu…
+## # … with 36 more rows, and 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;, n_films &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb1510"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># personajes que en menos películas han salido (sin empates)</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_films <span class="op">=</span> <span class="fu">map_int</span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min</a></span><span class="op">(</span><span class="va">n_films</span>, n <span class="op">=</span> <span class="fl">5</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 15
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 R5-D4         97    32 &lt;NA&gt;       white, red red               NA none  mascu…
+## 2 Biggs Da…    183    84 black      light      brown             24 male  mascu…
+## 3 Greedo       173    74 &lt;NA&gt;       green      black             44 male  mascu…
+## 4 Jek Tono…    180   110 brown      fair       blue              NA male  mascu…
+## 5 IG-88        200   140 none       metal      red               15 none  mascu…
+## # … with 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;, n_films &lt;int&gt;</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 11</strong>: selecciona las columnas que se refieren a variables de color (ojos, piel, pelo).</summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb1512"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Contiene "color" independientemente de que sea sufijo o prefijo</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"color"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 blond         fair        blue     
+##  2 &lt;NA&gt;          gold        yellow   
+##  3 &lt;NA&gt;          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 &lt;NA&gt;          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # … with 77 more rows</code></pre>
+<div class="sourceCode" id="cb1514"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Contiene "color" como sufijo</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"color"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 3
+##    hair_color    skin_color  eye_color
+##    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    
+##  1 blond         fair        blue     
+##  2 &lt;NA&gt;          gold        yellow   
+##  3 &lt;NA&gt;          white, blue red      
+##  4 none          white       yellow   
+##  5 brown         light       brown    
+##  6 brown, grey   light       blue     
+##  7 brown         light       blue     
+##  8 &lt;NA&gt;          white, red  red      
+##  9 black         light       brown    
+## 10 auburn, white fair        blue-gray
+## # … with 77 more rows</code></pre>
+<!-- tocstop -->
+</details>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></div>
+<div class="next"><a href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidyverse"><span class="header-section-number">19</span> Depuración y transformación</a></li>
+<li><a class="nav-link" href="#filtrar-filas-filter"><span class="header-section-number">19.1</span> Filtrar filas (filter)</a></li>
+<li><a class="nav-link" href="#reordenar-filas-arrange"><span class="header-section-number">19.2</span> Reordenar filas (arrange)</a></li>
+<li><a class="nav-link" href="#seleccionar-columnas-select"><span class="header-section-number">19.3</span> Seleccionar columnas (select)</a></li>
+<li><a class="nav-link" href="#crear-nuevas-variables-mutate"><span class="header-section-number">19.4</span> Crear nuevas variables (mutate)</a></li>
+<li><a class="nav-link" href="#visualizar-el-flujo"><span class="header-section-number">19.5</span> Visualizar el flujo</a></li>
+<li><a class="nav-link" href="#ejercicios-11"><span class="header-section-number">19.6</span> 📝 Ejercicios</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/master/19-tidyverse.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/dadosdelaplace/courses-ECI-2022/edit/master/19-tidyverse.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 06-01-2022.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

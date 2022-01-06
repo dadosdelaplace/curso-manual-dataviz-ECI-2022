@@ -39,7 +39,6 @@ Además hemos visto una **serie de herramientas** para tratar esos datos:
 * <mark>**estructuras condicionales**</mark> `if-else`
 * <mark>**bucles**</mark> para repetir trozos de código.
 * <mark>**organizar el código en proyectos**</mark> para facilitar nuestro trabajo
-* <mark>**importar/exportar**</mark> datos
 * <mark>**funciones**</mark>
 
 Con todos estos ingredientes estamos preparados/as para ver el que probablemente sea el tipo de dato más importante en `R`: las <mark>**listas**</mark>.
@@ -72,6 +71,14 @@ Tenemos guardados elementos de distinto tipo (algo que ya podíamos con los `dat
 dim(lista) # devolverá NULL al no tener dos dimensiones
 length(lista)
 class(lista) # de tipo lista
+```
+
+Si los juntásemos con un `data.frame`, al tener distinta longitud, obtendríamos un error: `arguments imply differing number of rows`.
+
+```{r, error = TRUE}
+data.frame("progenitores" = variable_1,
+           "lugar_nacimiento" = variable_2,
+           "edades_hermanos" = variable_3)
 ```
 
 Para <mark>**acceder a un elemento de la lista**</mark> tenemos dos opciones:
@@ -182,7 +189,7 @@ resultado$nombres
 
 **`r colorize("WARNING: operaciones aritméticas con listas", "#dc3545")`**
 
-Una **lista no se puede vectorizar de forma inmediata**, por lo cualquier operación aritmética aplicada a una lista dará error (para ello está disponible la función `lapply()`, cuyo uso corresponde a otros cursos más avanzados).
+Una **lista no se puede vectorizar de forma inmediata**, por lo cualquier operación aritmética aplicada a una lista dará error (para ello está disponible la función `lapply()`, o con las funciones del paquete `{purrr}`).
 
 ```{r error = TRUE}
 datos <- list("a" = 1:5, "b" = 10:20)
