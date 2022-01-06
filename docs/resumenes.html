@@ -211,8 +211,8 @@
 ## 5     5     5    84 0.0575 0.966
 ## 6     6     2    86 0.0230 0.989
 ## 7     7     1    87 0.0115 1</code></pre>
-<div id="htmlwidget-aa2b8b6b8ce9bd77ded1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-aa2b8b6b8ce9bd77ded1">{"x":{"filter":"none","caption":"<caption>Tabla de frecuencias del número de películas en las que aparecen los personajes de la saga.<\/caption>","data":[[1,2,3,4,5,6,7],[46,18,13,2,5,2,1],[46,64,77,79,84,86,87],[0.528735632183908,0.206896551724138,0.149425287356322,0.0229885057471264,0.0574712643678161,0.0229885057471264,0.0114942528735632],[0.528735632183908,0.735632183908046,0.885057471264368,0.908045977011494,0.96551724137931,0.988505747126437,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>x_i<\/th>\n      <th>n_i<\/th>\n      <th>N_i<\/th>\n      <th>f_i<\/th>\n      <th>F_i<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"fixedColumns":{"leftColumns":1},"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.95em');\n}","language":{"url":"//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"},"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"className":"dt-right","targets":[0,1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.headerCallback","options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><p><strong>¿Cómo construir una tabla similar para variables continuas?</strong> La metodología sería la misma solo que antes debemos <strong>agrupar los datos</strong> (por ejemplo, de la variable <code>height</code>) en <strong>subintervalos</strong>.</p>
+<div id="htmlwidget-f527a20f81a7ab388fc2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f527a20f81a7ab388fc2">{"x":{"filter":"none","caption":"<caption>Tabla de frecuencias del número de películas en las que aparecen los personajes de la saga.<\/caption>","data":[[1,2,3,4,5,6,7],[46,18,13,2,5,2,1],[46,64,77,79,84,86,87],[0.528735632183908,0.206896551724138,0.149425287356322,0.0229885057471264,0.0574712643678161,0.0229885057471264,0.0114942528735632],[0.528735632183908,0.735632183908046,0.885057471264368,0.908045977011494,0.96551724137931,0.988505747126437,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>x_i<\/th>\n      <th>n_i<\/th>\n      <th>N_i<\/th>\n      <th>f_i<\/th>\n      <th>F_i<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"fixedColumns":{"leftColumns":1},"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.95em');\n}","language":{"url":"//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"},"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"className":"dt-right","targets":[0,1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.headerCallback","options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><p><strong>¿Cómo construir una tabla similar para variables continuas?</strong> La metodología sería la misma solo que antes debemos <strong>agrupar los datos</strong> (por ejemplo, de la variable <code>height</code>) en <strong>subintervalos</strong>.</p>
 <div class="sourceCode" id="cb1531"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Construimos de cero</span>
 <span class="va">tabla_freq_continua</span> <span class="op">&lt;-</span>
@@ -722,16 +722,16 @@
 <pre><code>## # A tibble: 50 × 3
 ##    mates lengua dibujo
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-##  1    10      7      3
-##  2     9      7      4
-##  3     7      8      3
-##  4     1      9      7
-##  5     4      5      6
-##  6     4      6      1
-##  7     9      2      3
-##  8     3      8     10
-##  9     8     10      7
-## 10     1      2      1
+##  1     5      7      4
+##  2     7      1      3
+##  3     2      3      9
+##  4     1      4      0
+##  5     7      4      6
+##  6     8      7      6
+##  7     2      3      3
+##  8     5      7      8
+##  9     0      3      2
+## 10     8      5      8
 ## # … with 40 more rows</code></pre>
 <p>Una vez que tenemos 3 notas aleatorias por cada uno de los 50 alumnos, <strong>¿qué sucede si yo quiero calcular la nota media del curso?</strong></p>
 <div class="sourceCode" id="cb1571"><pre class="downlit sourceCode r">
@@ -739,16 +739,16 @@
 <pre><code>## # A tibble: 50 × 4
 ##    mates lengua dibujo media_curso
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt;       &lt;dbl&gt;
-##  1    10      7      3        4.84
-##  2     9      7      4        4.84
-##  3     7      8      3        4.84
-##  4     1      9      7        4.84
-##  5     4      5      6        4.84
-##  6     4      6      1        4.84
-##  7     9      2      3        4.84
-##  8     3      8     10        4.84
-##  9     8     10      7        4.84
-## 10     1      2      1        4.84
+##  1     5      7      4        4.91
+##  2     7      1      3        4.91
+##  3     2      3      9        4.91
+##  4     1      4      0        4.91
+##  5     7      4      6        4.91
+##  6     8      7      6        4.91
+##  7     2      3      3        4.91
+##  8     5      7      8        4.91
+##  9     0      3      2        4.91
+## 10     8      5      8        4.91
 ## # … with 40 more rows</code></pre>
 <p>Como ves si aplicamos la media de las tres variables, en cada fila el valor de <code>media_curso</code> es idéntico ya que nos ha hecho la <strong>media global</strong>: ha tomado las 50 filas, las 3 columnas, y ha hecho la media de 150 datos. Cuando en realidad a nosotros nos gustaría <strong>sacar una media por registro</strong>, que para cada alumno tengamos la media de las asignaturas.</p>
 <div class="sourceCode" id="cb1573"><pre class="downlit sourceCode r">
@@ -759,16 +759,16 @@
 ## # Rowwise: 
 ##    mates lengua dibujo media_curso
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt;       &lt;dbl&gt;
-##  1    10      7      3        6.67
-##  2     9      7      4        6.67
-##  3     7      8      3        6   
-##  4     1      9      7        5.67
-##  5     4      5      6        5   
-##  6     4      6      1        3.67
-##  7     9      2      3        4.67
-##  8     3      8     10        7   
-##  9     8     10      7        8.33
-## 10     1      2      1        1.33
+##  1     5      7      4        5.33
+##  2     7      1      3        3.67
+##  3     2      3      9        4.67
+##  4     1      4      0        1.67
+##  5     7      4      6        5.67
+##  6     8      7      6        7   
+##  7     2      3      3        2.67
+##  8     5      7      8        6.67
+##  9     0      3      2        1.67
+## 10     8      5      8        7   
 ## # … with 40 more rows</code></pre>
 <p>Solos nos falta poner la guinda a lo aprendido a esta introducción: vamos a ver como podemos <mark><strong>relacionar dos conjuntos de datos distintos entre sí</strong></mark>.</p>
 </div>

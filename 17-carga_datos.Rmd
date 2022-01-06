@@ -18,12 +18,11 @@ colorize <- function(x, color) {
 
 # Sacando datos de las piedras {#importar-exportar}
 
-:::: {.blackbox data-latex=""}* \@ref(funciones) [Funciones](#funciones)
-
+:::: {.blackbox data-latex=""}
 
 Scripts usados:
 
-* [**script09.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R): importar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R>
+* [**script13.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R): importar/exportar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R>
 ::::
 
 Hemos aprendido a **crear nuestros propios datos** pero muchas veces los cargaremos de distintos archivos, fuentes, etc. Vamos a ver algunas <mark>**formas que tenemos para importar (cargar) datos**<mark>.

@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 17 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content=':::: {.blackbox data-latex=""}* 13 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos aprendido...'>
+<meta name="description" content="Scripts usados: script13.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R  Hemos aprendido a crear nuestros propios datos pero...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 17 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content=':::: {.blackbox data-latex=""}* 13 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos aprendido...'>
+<meta property="og:description" content="Scripts usados: script13.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R  Hemos aprendido a crear nuestros propios datos pero...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 17 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content=':::: {.blackbox data-latex=""}* 13 Funciones Scripts usados: script09.R: importar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R :::: Hemos aprendido...'>
+<meta name="twitter:description" content="Scripts usados: script13.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R  Hemos aprendido a crear nuestros propios datos pero...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -90,13 +90,14 @@
 <h1>
 <span class="header-section-number">Capítulo 17</span> Sacando datos de las piedras<a class="anchor" aria-label="anchor" href="#importar-exportar"><i class="fas fa-link"></i></a>
 </h1>
-<p>:::: {.blackbox data-latex=""}* <a href="ejercicios-recopilados.html#funciones">13</a> <a href="ejercicios-recopilados.html#funciones">Funciones</a></p>
+<div class="blackbox">
 <p>Scripts usados:</p>
 <ul>
 <li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R"><strong>script09.R</strong></a>: importar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R</a>
-::::</li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R"><strong>script13.R</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R</a>
+</li>
 </ul>
+</div>
 <p>Hemos aprendido a <strong>crear nuestros propios datos</strong> pero muchas veces los cargaremos de distintos archivos, fuentes, etc. Vamos a ver algunas <mark><strong>formas que tenemos para importar (cargar) datos</strong><mark>.</mark></mark></p>
 <div id="importación-de-datos" class="section level2">
 <h2>

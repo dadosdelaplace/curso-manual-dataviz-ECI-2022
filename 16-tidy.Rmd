@@ -18,6 +18,13 @@ colorize <- function(x, color) {
 
 # Tidy vs messy data: daticos ordenados {#tidy}
 
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script12.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script12.R): tidy data.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script12.R>
+::::
+
 > Tidy datasets are all alike, but every messy dataset is messy in its own way (Hadley Wickham, Chief Scientist en RStudio)
 
 Hasta ahora solo le hemos dado importancia al «qué» pero no al **«cómo» manejamos los datos**. La <mark>**organización de nuestros datos**</mark> es fundamental para que su preparación y explotación sea **lo más eficiente posible**: la limpieza y preprocesamiento puede llevarnos hasta el **80% del tiempo** en nuestro análisis si no se hace forma correcta [@DasuJohnson03].
