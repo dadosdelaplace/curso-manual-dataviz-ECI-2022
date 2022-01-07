@@ -25,135 +25,207 @@ Scripts usados:
 * [**script13.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R): importar/exportar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R>
 ::::
 
-Hemos aprendido a **crear nuestros propios datos** pero muchas veces los cargaremos de distintos archivos, fuentes, etc. Vamos a ver algunas <mark>**formas que tenemos para importar (cargar) datos**<mark>.
+Hemos aprendido a **crear nuestros propios datos** pero muchas veces los cargaremos de distintos archivos y fuentes. Vamos a ver algunas <mark>**formas que tenemos para importar (cargar) datos**<mark> con casos prácticos.
 
-## Importación de datos
+Es **recomendable** tener los datos en la <mark>**misma carpeta del proyecto**</mark> pero una carpeta separada, ya que podemos tener muchos archivos y así no mezclamos dichos ficheros con los códigos que escirbamos. En la carpeta [DATOS](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/DATOS) tienes los distintos conjuntos que utilizaremos. Debes <mark>**descargarte el .zip del repositorio**, y una vez descargada, <mark>**mover la carpeta DATOS**</mark> a la carpeta de tu proyecto.
 
-
-## Archivo .RData
-
-La forma más sencilla de guardar datos y variables en `R`, y que además ocupa menos espacio en nuestro disco duro, es guardarlo en archivos propios que tiene `R` como son los <mark>**archivos con extensiones `.rda` y `.RData`**</mark>.
-
-Es **recomendable** tener los datos en la <mark>**misma carpeta del proyecto**</mark> pero una carpeta separada, ya que podemos tener muchos archivos y así no mezclamos dichos ficheros con los códigos que escirbamos. En la carpeta `DATOS` del proyecto tenemos 1 archivo `.RData`: `titanic.RData`, un conjunto de datos obtenidos de la plataforma de aprendizaje y predicción <https://www.kaggle.com/c/titanic/overview>, con los datos de los pasajeros del Titanic (nombre, título, cabina, si sobrevivió o no, edad, etc)
-
-<mark>**¿Cómo cargar archivos `.RData`?**</mark>
-
-Muy sencillo: como son ficheros nativos de `R`, basta con usar la función de carga `load()`, y dentro la ruta del archivo que queramos cargar
-
-```{r}
-# Al fijar directorio de trabajo, no necesitamos toda la ruta, solo "./" y la ruta dentro de la carpeta del proyecto
-load("./DATOS/titanic.RData")
+```{r zip-repo, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://github.com/dadosdelaplace/courses-ECI-2022', out.width = '70%'}
+knitr::include_graphics("img/zip_repo.jpg")
 ```
 
 
-En el panel de **entorno de la parte superior derecha** ahora tendremos un `data.frame` que antes no teníamos. Ya hemos visto que una función muy útil es `head()`, con argumento el nombre de un `data.frame`, que nos permite visualizar las primeras columnas.
+## Pasajeros del RMS Titanic (archivo .RData)
+
+> Fuente original de los datos: https://www.kaggle.com/c/titanic/overview
+
+El 15 de abril de 1912 se producía el <mark>**hundimiento naval más famoso de la historia: el hundimiento del barco RMS Titanic**</mark>. Tras chocar con un iceberg, y con un déficit de botes salvavidas a bordo, murieron 1502 de los 2224 pasajeros (tripulación incluida) que iban a bordo del navío. 
+
+<mark>**¿Qué edad, sexo o cabina ocupabana los pasajeros que sobrevivieron y los que no sobrevivieron?**</mark> Dicho conjunto de datos nos va a servir para ilustrar la forma **más sencilla** de guardar datos y variables en `R`, y que además ocupa menos espacio en nuestro disco duro: los archivos propios que tiene `R` con <mark>**extensiones `.rda` o `.RData`**</mark>. De nuestra carpeta `DATOS` cargaremos el archivo `titanic.RData`, un archivo con extensión `.RData`, conteniendo los datos de los pasajeros del Titanic (nombre, título, cabina, si sobrevivió o no, edad, etc)
+
+<mark>**¿Cómo cargar archivos `.RData`?**</mark>
+
+Muy sencillo: como son ficheros nativos de `R`, basta con usar la <mark>**función de carga `load()`**</mark>, y dentro de los paréntesis la ruta del archivo que queramos cargar.
+
+```{r}
+load("./DATOS/titanic.RData")
+```
+
+Fíjate que, al **fijar nuestro directorio de trabajo**, no necesitamos toda la ruta, solo `./` (que nos arranca la ruta en la carpeta de nuestro proyecto) más la ruta dentro de la carpeta del proyecto. Ahora en el panel de **entorno de la parte superior derecha** tendremos un `data.frame` que antes no teníamos. Ya hemos visto que una función muy útil es `head()`, con argumento el nombre de un `data.frame`, que nos permite visualizar las primeras filas.
 
 ```{r}
 head(titanic)
 ```
 
+Dicho fichero hemos visto que podemos **convertirlo a un formato más óptimo** con `as_tibble()`
 
-### Archivo .csv o .txt
+```{r}
+titanic <- as_tibble(titanic)
+titanic
+```
 
-Otra opción habitual son los <mark>**archivos `.csv` (comma separated values)**</mark>: son archivos **separados por comas** (u otro caracter como puntos, puntos y comas, o tabuladores). En apariencia cuando los abrimos en el ordenador son como un Excel (ya que los abre el Excel), pero ocupan mucho menos que un Excel y su **lectura es universal** (independiente de tener instalado o no el Excel) ya que son archivos de texto **sin formato**.
+Y con `glimpse()` podemos echar un vistazo a las variables del fichero (una fila por pasajero).
 
-Para leer un archivo `.csv` basta con usar la función `read.csv()`e indicarle la ruta del archivo para su lectura (argumento `file`, aunque tiene otros argumentos extras por si queremos especifiar el caracter que separa las columnas, si incluímos o no una cabecera de la tabla, y otros argumentos que puedes consultar con `? read.csv`).
+```{r}
+glimpse(titanic)
+```
 
+
+## Datos covid del Instituto de Salud Carlos III (archivo .csv)
+
+Otra opción habitual son los <mark>**archivos `.csv` (comma separated values)**</mark>: son archivos cuyos <mark>**valores están separados por comas**</mark> (u otro caracter, como **puntos**, puntos y comas, o tabuladores). En apariencia cuando los abrimos en el ordenador son como un Excel (ya que los abre el Excel), pero ocupan mucho menos que un Excel y su **lectura es universal** (independiente de tener instalado o no el Excel) ya que son archivos de texto **sin formato**.
+
+Para leer un archivo `.csv` tenemos <mark>**dos opciones**</mark>. La primera es usar la función `read.csv()` que ya viene de base con `R`, y asignarle al argumento `file` la ruta del archivo (tiene otros argumentos extras por si queremos especifiar el caracter que separa las columnas, si incluímos o no una cabecera de la tabla, y otros argumentos que puedes consultar con `? read.csv`). Para mostrar un ejemplo vamos a realizar la carga del mismo fichero del Titanic pero ahora a través del archivo `titanic.csv` que tenemos en nuestra carpeta `DATOS`.
 
 ```{r}
 titanic <- read.csv(file = "./DATOS/titanic.csv")
+titanic
 ```
 
-Ya tenemos nuestro archivo `.csv` cargado y además en formato `data.frame`.
+Una diferencia con los `.RData` es que estos no necesitan que le asignemos el valor a una variable (dentro de un `.RData` tenemos ya guardada la variable). Fíjate que es el **mismo archivo que antes**, y que nos lo ha guardado en formato `data.frame`.
 
-Una de las ventajas de la carga de estos archivos en `R` es que podemos hacerlo sin <mark>**ni siquiera tener el archivo en nuestro ordenador**</mark>, a través de un enlace web. Vamos a ver un ejemplo con los datos del ISCIII sobre la pandemia. En su web <https://cnecovid.isciii.es/covid19/#documentaci%C3%B3n-y-datos> tienen varios archivos colgados, que podemos o bien descargarlos, o haciendo click derecho <mark>**«Copiar dirección de enlace»**</mark> obtenemos un enlace. Por ejemplo, para el archivo `casos_tecnica_ccaa.csv`, que nos almacena el número de casos por técnica diagnóstica y CCAA, tenemos el enlace <https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv>. Dicho enlace es el que se abre cuando pulsamos en Descargar, pero podemos introducirlo directamente en `R`, sustituyendo a nuestra ruta.
+<mark>**¿Cómo podríamos cargar un `.csv` pero ya guardado en `tibble`?**</mark> Para ello usaremos la función `read_csv()` del paquete `{readr}`.
 
 ```{r}
-datos_ISCIII <- read.csv(file = "https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv")
-dim(datos_ISCIII)
-head(datos_ISCIII)
+titanic <- read_csv(file = "./DATOS/titanic.csv")
+titanic
 ```
 
-El archivo tiene **8 columnas**: un código identificador de las CCAA, la fecha, y 6 variables relativas a casos detectados (en función de la técnica con la que se ha detectado). Y además tiene un **número de filas** igual a las 19 CCAA (17 + Ceuta + Melilla) por el número de días en los que hay registros.
+&nbsp;
 
-<mark>**¿Cuál es la ventaja de cargarlo así?**</mark> Ese enlace es fijo, y tendrá siempre el último archivo, actualizado, sin preocuparnos de tener que bajarnos cada día el archivo: simplemente ejecutamos dicha carga, y tenemos asegurado que nos bajaremos el archivo más actualizado posible.
+Una de las ventajas de la carga de archivos en `R` es que muchos formatos podemos cargarlos sin <mark>**ni siquiera tener el archivo en nuestro ordenador**</mark>, a través de un enlace web. Vamos a ver un ejemplo con los datos del ISCIII sobre la pandemia. En su web <https://cnecovid.isciii.es/covid19/#documentaci%C3%B3n-y-datos> tienen varios archivos colgados, que podemos o bien descargarlos, o haciendo click derecho <mark>**«Copiar dirección de enlace»**</mark> obtenemos un enlace. Por ejemplo, para el archivo `casos_tecnica_ccaa.csv`, que nos almacena el número de casos por técnica diagnóstica y CCAA, tenemos el enlace <https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv>. Dicho enlace es el que se abre cuando pulsamos en Descargar, pero podemos introducirlo directamente en `R`, sustituyendo a nuestra ruta en `read_csv()`, y teniéndolo ya almacenado en formato `tibble`.
+
+```{r}
+datos_ISCIII <- read_csv(file = "https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv")
+datos_ISCIII
+dim(datos_ISCIII)
+glimpse(datos_ISCIII)
+```
+
+Como puedes ver con `glimpse(datos_ISCIII)`, el archivo tiene **8 columnas**: un código identificador de las CCAA, la fecha, y 6 variables relativas a casos detectados (en función de la técnica con la que se ha detectado). Y además tiene un **número de filas** igual a las 19 CCAA (17 + Ceuta + Melilla) por el número de días en los que hay registros.
+
+<mark>**¿Cuál es la ventaja de cargarlo así?**</mark> Ese enlace es fijo, y tendrá siempre el último archivo que hayan actualizado, sin preocuparnos de tener que bajarnos cada día el archivo: simplemente ejecutamos dicha carga, y tenemos asegurado que nos bajaremos el archivo lo más actualizado posible, de manera automática.
+
+## Discursos de los jefes de Estado (archivo .txt)
+
+Una de las <mark>**herramientas más útiles**</mark> a la hora de aprender de la comunidad es la <mark>**plataforma Github**</mark>, un repositorio donde podemos subir códigos en abierto, proponer cambios para subsanar errores de trabajos ajenos, que otros subsanen los nuestros, y una base de datos bastante extensa de paquetes y conjuntos de datos. El <mark>**código de este mismo manual**</mark> lo puedes consultar en <https://github.com/dadosdelaplace/courses-ECI-2022>
+
+De dicha plataforma vamos a leer los siguientes datos, en concreto del **repositorio de Github de la experta en lingüística** computacional [Elena Álvarez Mellado](https://lirondos.github.io/). En su [repositorio](https://github.com/lirondos) tiene guardados los [discursos navideños](https://github.com/lirondos/discursos-de-navidad/tree/master/data/speeches) de los jefes de Estado (los democráticos y los no democráticos, desde Franco hasta Felipe VI), desde 1937 hasta 2021.
 
 
-Vamos a ver otro ejemplo con el repositorio de Github de la experta en lingüística computacional [Elena Álvarez Mellado](https://lirondos.github.io/). En su [repositorio](https://github.com/lirondos) tiene guardados los [discursos navideños](https://github.com/lirondos/discursos-de-navidad/tree/master/data/speeches) de los jefes de Estado (los democráticos y los no democráticos, desde Franco hasta Felipe VI), desde 1937 hasta 2021.
-
-
-
-```{r discursos, echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Discursos guardados en el repositorio de <https://github.com/lirondos/discursos-de-navidad>."}
+```{r discursos, echo = FALSE, out.width = "55%", fig.align = "center", fig.cap = "Discursos guardados en el repositorio de <https://github.com/lirondos/discursos-de-navidad>."}
 knitr::include_graphics("./img/foto_discursos.jpg")
 ```
 
-Cada discurso está guardado en un <mark>**archivo `.txt`**</mark>, un archivo que no tiene una estructura tabular (con filas y columnas, separadas por caracteres) como los archivos `.csv`. Para este tipo de archivos podemos usar `read.delim`.
+El discurso de cada año está guardado en un <mark>**archivo `.txt`**</mark>, un archivo que no tiene una estructura tabular (con filas y columnas, separadas por caracteres) como los archivos `.csv`. Para este tipo de archivos podemos usar `read_delim`, índicalo que lea cada párrafo como un «todo», con `delim = "\t"` (le decimos que el delimitador entre elementos sea el salto de línea).
 
 ```{r warning = FALSE}
 discurso_1937 <-
-  read.delim(file = "https://raw.githubusercontent.com/lirondos/discursos-de-navidad/master/data/speeches/1937.txt")
+  read_delim(file = "https://raw.githubusercontent.com/lirondos/discursos-de-navidad/master/data/speeches/1937.txt", delim = "\t")
 discurso_1937
 ```
 
-Ya veremos como analizar textos y palabras, o de como hacer un bucle para bajarnos todos.
+De cada frase guardada (cada fila) podemos extraer cada palabra con la función `str_split()`, del paquete `{stringr}`, y con `pattern = " "` le indicamos que separe por los espacios entre las palabras.
+
+```{r}
+# Primera frase separando palabras
+str_split(discurso_1937[1, ], pattern = " ")
+```
 
 
-### Archivo .xlsx
+Ya veremos como analizar textos más en detalle.
+
+
+## Pisos en Boston (archivo Excel .xlsx)
 
 Muchas veces no tendremos un `.csv` (por desgracia) y nos tocará <mark>**leer desde un excel**</mark>. Para ello deberemos instalar (la primera vez) y cargar el paquete `{readxl}` que nos permitirá usar funciones para cargar archivos `.xls` (la función `read_xls()`) y archivos `.xlsx` (la función `read_xlsx()`). Además del argumento `path` con la ruta del archivo, podemos en el argumento `sheet` indicarle la hoja de Excel a leer (en caso de tener varias).
 
-Vamos a leer por ejemplo el archivo `Boston.xlsx`, que contienen información del valor inmobiliario de 506 distritos de Boston. Puedes ver la información de las variables con `? MASS::Boston`.
+Vamos a cargar el archivo `Boston.xlsx` que tenemos en la carpeta de `DATOS`, que contienen información del valor inmobiliario de 506 distritos de Boston, y lo guardamos en un `tibble`.
 
 ```{r Boston-xlsx, eval = FALSE}
 install.packages("readxl")
 library(readxl)
 boston <- read_xlsx(path = "./DATOS/Boston.xlsx")
+boston
 ```
 
 ```{r Boston-xlsx-2, include = FALSE}
 library(readxl)
 boston <- read_xlsx(path = "./DATOS/Boston.xlsx")
-```
-
-```{r head-boston}
-head(boston)
+boston
 ```
 
 
+El dataset `Boston` está basado en el estudio que realizaron [Harrison and Rubinfeld, 1978](https://doi.org/10.1016/0095-0696(78)90006-2) en el que se pretende determinar la **disposición de los compradores para pagar más por una vivienda en un entorno con mayor calidad del aire**. El conjunto de datos contiene datos del **área metropolitana de Boston**, con datos de 560 vecindarios, midiendo 14 variables en cada uno.
 
-### Desde paquete
 
-Por último, una opción muy común es <mark>**cargar datos desde paquetes que ya los tienen**</mark> (o los consiguen a través de una API). Un ejemplo de ello es el paquete `{MASS}`, del que ya hemos hablado, que contiene una gran cantidad de conjuntos de datos para usarlos en nuestro propio aprendizaje, como es el conjunto `MASS::Boston`.
+Las variables están totalmente descritas en [Harrison and Rubinfeld, 1978](https://doi.org/10.1016/0095-0696(78)90006-2) pero podemos resumirlas de la siguiente forma:
 
-Veamos otro ejemplo con uno de los paquetes más útiles para conseguir datos, el <mark>**paquete del EUROSTAT**</mark> `{eurostat}`. Con la función `search_eurostat()` nos permite buscar datasets por palabras clave (nos muestra una tabla con los datasets y sus códigos) y con `get_eurostat()` podemos acceder a ellos proporcionando el código del archivo.
+* `medv`: **variable objetivo**, representa la mediana del precio inmobiliario (en miles de dolares).
+* **Variables arquitectónicas**: `rm` (número medio de habitaciones) y `age` (porcentaje de propiedades construidas antes de 1940).
+* **Variables de vecindario**: `crim` (tasa de criminalidad), `zn` (porcentaje del territorio destinado a áreas residenciales), `indus` (porcentaje del territorio destinado al tejido industrial), `chas` ( ¿hay río limitando la extensión en el territorio?), `tax` (coste de los servicios públicos), `ptratio` (ratio alumno-profesor), `black` (índice de población negra - sí, es un archivo vergonzoso, pero no viene mal ver los sesgo raciales de muchos de los datos que consumimos - calcualda como $1000 ( B - 0.63)^2$, donde $B$ es el procentaje de población negra) y `lstat` (porcentaje de la población con bajos ingresos).
+* **Variables de accesibilidad**: `dis` (distancia a oficinas de empleo) y `rad` (categoría indicando la accesibilidad a la red de autopistas, a mayor índice, mayor accesibilidad).
+* **Variables de calidad del aire**: `nox` (concentración anual de óxido de nitrógeno, en partes por 10 millones).
+
+
+```{r}
+# Resumen del tibble
+glimpse(boston)
+```
+
+## Estadísticas del Eurostat (desde paquete)
+
+Una opción muy común es <mark>**cargar datos desde paquetes que ya los tienen incorporadas**</mark> (o los consiguen a través de una API). Uno de los ejemplos más útiles seguramente sea el <mark>**paquete del EUROSTAT**</mark> `{eurostat}`, un paquete para obtener **datos abiertos de la Oficina Europea de Estadística**. Puedes ver toda la documentación en <https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html>
+
+Dicho paquete contiene la función `search_eurostat()`, que nos <mark>**permite buscar conjuntos de datos por palabras clave**</mark> (nos muestra una tabla con los datasets y sus códigos).
 
 
 ```{r eurostat}
 library(eurostat) # instalar la primera vez
 
 # Buscamos datos por palabras clave
-search_eurostat("education")
+datos_disponibles <- search_eurostat("passengers")
+datos_disponibles
+```
 
-# Accedemos a un dato concreto por codigo
-get_eurostat("hlth_ehis_de3")
+```{r eval = FALSE}
+# Mostramos la lista de los datos
+View(datos_disponibles)
 ``` 
 
-### Otras fuentes
+Con la función `get_eurostat()` podemos **acceder** a ellos proporcionando el código del archivo. 
 
-En el futuro veremos algunas formas muy interesantes de obtener datos directamente desde `R`. He aquí algunas opciones:
+## Microdatos del INE (desde paquete + API)
 
-* Datos de **Twitter** (conectándonos a su API).
-* Datos de **Spotify** (conectándonos a su API).
-* Datos de **programas electorales** directamente desde los PDF que publican los partidos políticos.
-* Datos de **encuestas electorales** directamente desde wikipedia.
-* Datos del [**INE**](https://ropenspain.es/paquetes/).
-* Datos del [**BOE**](https://ropenspain.es/paquetes/).
-* Datos del [**catastro**](https://ropenspain.es/paquetes/).
-* Datos del [**AEMET**](https://ropenspain.es/paquetes/).
+## Datos del catastro (desde paquete + API)
+
+## Datos del AEMET (desde paquete + API)
+
+## Canciones de Spotify (desde paquete + API)
+
+## Tweets de Twitter (desde paquete + API)
+
+## Datos electorales (desde paquete + API)
+
 * Datos electorales del [**Ministerio del Interior**](https://ropenspain.es/paquetes/).
-* Datos de [**partidas de ajedrez**](https://github.com/JaseZiv/chessR)
 
-Pero vayamos poco a poco :)
+## Partidas de ajedrez (desde Github) 
+
+En `R` se pueden cargar los datos más varipintos que te imaginas. A veces los códigos o paquetes no siempre están aprobados como paquete pero podemos <mark>**instalarlos directamente desde Github**</mark>, haciendo uso del paquete `{devtools}`, y la función `install_github`, indicando entre paréntesis el nombre del repositorio. En este caso vamos a usar un repositorio (<https://github.com/JaseZiv/chessR>) que nos permitirá analizar <mark>**partidas de ajedrez**</mark> de <https://chess.com>.
+
+```{r}
+# Instalamos paquete desde Github
+library(devtools)
+install_github("JaseZiv/chessR")
+```
+
+Una vez instalado vamos a <mark>**acceder al historial de mis partidas de ajedres**</mark> usando mi usuario en dicha plataforma `usernames = "dadosdelaplace"`.
+
+```{r}
+# Accedemos a datos de chess.com
+library(chessR)
+datos <- get_game_data(usernames = "dadosdelaplace")
+head(datos)
+```
 
 ## Exportación de datos
 
@@ -202,29 +274,6 @@ knitr::include_graphics("./img/show_line_numbers.jpg")
 
 &nbsp;
 
-**`r colorize("Paquete rvest", "#4197D2")`**
-
-En dicho paquete tienes más <mark>**funciones para una lectura directamente como si navegaras por una página web**</mark>. Ver <https://github.com/tidyverse/rvest>.
-
-```{r}
-# Ejemplo cargando datos de una tabla de wikipedia: 
-# encuestas elecciones alemanas 2021
-library(rvest)
-library(tidyverse)
-wiki <- paste0("https://es.wikipedia.org/wiki/",
-              "Elecciones_federales_de_Alemania_de_2021")
-html<- read_html(wiki)
-datos <- html_nodes(html,".wikitable")
-
-# Tabla (tibble) (e ignoramos filas con algún valores ausentes)
-resultados_encuestas <-
-  html_table(datos[[5]], header = TRUE) %>% drop_na()
-
-# Resumen de columnas: casa encuestadora, fecha, muestra, partidos
-glimpse(resultados_encuestas)
-```
-
-&nbsp;
 
 **`r colorize("Margen derecho en la ventana de scripts", "#20935E")`**
 
