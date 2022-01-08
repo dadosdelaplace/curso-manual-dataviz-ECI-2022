@@ -36,7 +36,7 @@ knitr::include_graphics("img/zip_repo.jpg")
 
 ## Pasajeros del RMS Titanic (archivo .RData)
 
-> Fuente original de los datos: https://www.kaggle.com/c/titanic/overview
+> Fuente original de los datos: <https://www.kaggle.com/c/titanic/overview>
 
 El 15 de abril de 1912 se producía el <mark>**hundimiento naval más famoso de la historia: el hundimiento del barco RMS Titanic**</mark>. Tras chocar con un iceberg, y con un déficit de botes salvavidas a bordo, murieron 1502 de los 2224 pasajeros (tripulación incluida) que iban a bordo del navío. 
 
@@ -59,6 +59,7 @@ head(titanic)
 Dicho fichero hemos visto que podemos **convertirlo a un formato más óptimo** con `as_tibble()`
 
 ```{r}
+library(tibble)
 titanic <- as_tibble(titanic)
 titanic
 ```
@@ -70,7 +71,9 @@ glimpse(titanic)
 ```
 
 
-## Datos covid del Instituto de Salud Carlos III (archivo .csv)
+## Datos covid del ISCIII (archivo .csv)
+
+>  Fuente original de los datos: <https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv>
 
 Otra opción habitual son los <mark>**archivos `.csv` (comma separated values)**</mark>: son archivos cuyos <mark>**valores están separados por comas**</mark> (u otro caracter, como **puntos**, puntos y comas, o tabuladores). En apariencia cuando los abrimos en el ordenador son como un Excel (ya que los abre el Excel), pero ocupan mucho menos que un Excel y su **lectura es universal** (independiente de tener instalado o no el Excel) ya que son archivos de texto **sin formato**.
 
@@ -78,7 +81,7 @@ Para leer un archivo `.csv` tenemos <mark>**dos opciones**</mark>. La primera es
 
 ```{r}
 titanic <- read.csv(file = "./DATOS/titanic.csv")
-titanic
+head(titanic)
 ```
 
 Una diferencia con los `.RData` es que estos no necesitan que le asignemos el valor a una variable (dentro de un `.RData` tenemos ya guardada la variable). Fíjate que es el **mismo archivo que antes**, y que nos lo ha guardado en formato `data.frame`.
@@ -86,6 +89,7 @@ Una diferencia con los `.RData` es que estos no necesitan que le asignemos el va
 <mark>**¿Cómo podríamos cargar un `.csv` pero ya guardado en `tibble`?**</mark> Para ello usaremos la función `read_csv()` del paquete `{readr}`.
 
 ```{r}
+library(readr)
 titanic <- read_csv(file = "./DATOS/titanic.csv")
 titanic
 ```
@@ -107,6 +111,8 @@ Como puedes ver con `glimpse(datos_ISCIII)`, el archivo tiene **8 columnas**: un
 
 ## Discursos de los jefes de Estado (archivo .txt)
 
+> Fuente original de los datos: <https://github.com/lirondos/discursos-de-navidad/tree/master/data/speeches>
+
 Una de las <mark>**herramientas más útiles**</mark> a la hora de aprender de la comunidad es la <mark>**plataforma Github**</mark>, un repositorio donde podemos subir códigos en abierto, proponer cambios para subsanar errores de trabajos ajenos, que otros subsanen los nuestros, y una base de datos bastante extensa de paquetes y conjuntos de datos. El <mark>**código de este mismo manual**</mark> lo puedes consultar en <https://github.com/dadosdelaplace/courses-ECI-2022>
 
 De dicha plataforma vamos a leer los siguientes datos, en concreto del **repositorio de Github de la experta en lingüística** computacional [Elena Álvarez Mellado](https://lirondos.github.io/). En su [repositorio](https://github.com/lirondos) tiene guardados los [discursos navideños](https://github.com/lirondos/discursos-de-navidad/tree/master/data/speeches) de los jefes de Estado (los democráticos y los no democráticos, desde Franco hasta Felipe VI), desde 1937 hasta 2021.
@@ -127,6 +133,7 @@ discurso_1937
 De cada frase guardada (cada fila) podemos extraer cada palabra con la función `str_split()`, del paquete `{stringr}`, y con `pattern = " "` le indicamos que separe por los espacios entre las palabras.
 
 ```{r}
+library(stringr)
 # Primera frase separando palabras
 str_split(discurso_1937[1, ], pattern = " ")
 ```
@@ -136,6 +143,8 @@ Ya veremos como analizar textos más en detalle.
 
 
 ## Pisos en Boston (archivo Excel .xlsx)
+
+> Fuente original de los datos: <https://doi.org/10.1016/0095-0696(78)90006-2>
 
 Muchas veces no tendremos un `.csv` (por desgracia) y nos tocará <mark>**leer desde un excel**</mark>. Para ello deberemos instalar (la primera vez) y cargar el paquete `{readxl}` que nos permitirá usar funciones para cargar archivos `.xls` (la función `read_xls()`) y archivos `.xlsx` (la función `read_xlsx()`). Además del argumento `path` con la ruta del archivo, podemos en el argumento `sheet` indicarle la hoja de Excel a leer (en caso de tener varias).
 
@@ -174,6 +183,8 @@ glimpse(boston)
 
 ## Estadísticas del Eurostat (desde paquete)
 
+> Fuente original de los datos: Eurostat
+
 Una opción muy común es <mark>**cargar datos desde paquetes que ya los tienen incorporadas**</mark> (o los consiguen a través de una API). Uno de los ejemplos más útiles seguramente sea el <mark>**paquete del EUROSTAT**</mark> `{eurostat}`, un paquete para obtener **datos abiertos de la Oficina Europea de Estadística**. Puedes ver toda la documentación en <https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html>
 
 Dicho paquete contiene la función `search_eurostat()`, que nos <mark>**permite buscar conjuntos de datos por palabras clave**</mark> (nos muestra una tabla con los datasets y sus códigos).
@@ -194,21 +205,95 @@ View(datos_disponibles)
 
 Con la función `get_eurostat()` podemos **acceder** a ellos proporcionando el código del archivo. 
 
-## Microdatos del INE (desde paquete + API)
-
-## Datos del catastro (desde paquete + API)
 
 ## Datos del AEMET (desde paquete + API)
 
+> Fuente original de los datos: <https://opendata.aemet.es>
+
+Una de las opciones más comunes es acceder a datos de las administraciones públicas desde `R` pero <mark>**pasando por las API de datos abiertos**</mark> de las que algunas disponen. Una [API](https://www.xataka.com/basics/api-que-sirve#:~:text=Qu%C3%A9%20es%20una%20API,interfaz%20de%20programaci%C3%B3n%20de%20aplicaciones.&text=O%20cuando%20esa%20aplicaci%C3%B3n%20te%20manda%20notificaciones%20al%20m%C3%B3vil%20o%20al%20ordenador.) no es más que una especie de _walkie-talkie_ para **comunicarnos con aplicaciones de terceros**.
+
+Un ejemplo práctico: la <mark>**API del AEMET**</mark> para acceder a los datos de parte de sus estaciones meteorológicas. A través de su <mark>**portal de datos abiertos**</mark> (ver <https://opendata.aemet.es/centrodedescargas/inicio>) vamos a extraer desde `R` los <mark>**datos meteorológicos de 291 estaciones**</mark> repartidas a lo largo de toda España.
+
+Para ello lo primero es acceder a la web <https://opendata.aemet.es/centrodedescargas/obtencionAPIKey> y solicitar una clave (una _api key_ para poder usarla como «contraseña» en nuestra petición).
+
+```{r eval = FALSE}
+# Acceder a la web https://opendata.aemet.es/centrodedescargas/obtencionAPIKey desde R
+browseURL("https://opendata.aemet.es/centrodedescargas/obtencionAPIKey")
+```
+
+Tras solicitarla y realizar los pasos que se indican en el mail que nos enviarán, **obtendremos una clave** similar a esta.
+
+```{r}
+# Clave para conectar con la API del AEMET
+api_key <- "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXZhbHYwOUB1Y20uZXMiLCJqdGkiOiIwNGUwYmQzNi1jZTMxLTQ5OTQtOTdkMy1hMzc4MDc1MzlhMjgiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTY0MTU0OTg4MywidXNlcklkIjoiMDRlMGJkMzYtY2UzMS00OTk0LTk3ZDMtYTM3ODA3NTM5YTI4Iiwicm9sZSI6IiJ9.RCAITYkYO_uPOzTA830tuq6LZNgmiUGuQ2vB6hrZioI"
+
+# Definimos la api_key para toda la sesión
+Sys.setenv(AEMET_API_KEY = api_key) 
+```
+
+El paquete que usaremos para conectarnos con el AEMET se llama `{climaemet}`, y lo podremos <mark>**instalar directamente desde Github**</mark>, haciendo uso del paquete `{devtools}`, y la función `install_github`, indicando entre paréntesis el nombre del repositorio.
+
+```{r}
+# Instalamos paquete climaemet
+library(devtools)
+install_github("ropenspain/climaemet")
+```
+
+Una vez instalado el paquete podemos acceder a las estaciones con `aemet_stations()`, pasándole como argumento nuestra `api_key` (la tabla la vamos a convertir a `tibble`).
+
+```{r message = TRUE}
+# Estaciones del AEMET
+library(climaemet)
+tabla_estaciones <- as_tibble(aemet_stations())
+tabla_estaciones
+```
+
+En la variable `indicativo` tenemos el código de cada estación. Vamos a <mark>**acceder a los últimos registros**</mark> de la estación `BARCELONA AEROPUERTO` con el identificador `0076`, haciendo uso de la función `aemet_last_obs()`.
+
+```{r}
+datos_bcn_aeropuerto <-
+  as_tibble(aemet_last_obs("0076"))
+datos_bcn_aeropuerto
+```
+
+También podemos **indicarle un rango de fechas** de la que extraer información.
+
+```{r}
+datos <-
+  as_tibble(aemet_daily_clim("0076",
+                             start = "2018-01-01",
+                             end = "2021-12-31"))
+datos
+```
+
+Datos desde el AEMET a nuestro `R`, listos para analizar.
+
 ## Canciones de Spotify (desde paquete + API)
-
 ## Tweets de Twitter (desde paquete + API)
-
 ## Datos electorales (desde paquete + API)
 
-* Datos electorales del [**Ministerio del Interior**](https://ropenspain.es/paquetes/).
+> Fuente original de los datos: <http://www.infoelectoral.mir.es/infoelectoral>
+
+Aunque aún funcionan con algunas limitaciones, también existen ya paquetes para poder <mark>**descargarnos directamente los datos de cualquier proceso electoral**</mark> celebrado en España. Una de esas herramientas es el paquete `{infoelectoral}`, que podemos instalar desde el repositorio `ropenspain/infoelectoral`.
+
+```{r}
+library(devtools)
+install_github("ropenspain/infoelectoral")
+library(infoelectoral)
+```
+
+Dicho paquete nos permite con `municipios()` <mark>**descargarnos directamente los resultados electorales**</mark> a nivel municipal por tipo de elección (`tipo_eleccion`), año (`anno`) y mes (`mes`). Veamos un ejemplo con las elecciones generales de noviembre de 2019.
+
+```{r eval = FALSE}
+datos_2019 <- municipios(tipo_eleccion = "congreso",
+                       anno = 2019, mes = 11)
+```
+
+Tiene otras funciones para descargar los datos a nivel de mesa electoral. Puedes <mark>**consultar más paquetes relacionados con API de la administración**</mark> y sus plataformas de microdatos (INE, BOE, etc) en <https://ropenspain.es/paquetes/>
 
 ## Partidas de ajedrez (desde Github) 
+
+> Fuente original de los datos: <https://chess.com>
 
 En `R` se pueden cargar los datos más varipintos que te imaginas. A veces los códigos o paquetes no siempre están aprobados como paquete pero podemos <mark>**instalarlos directamente desde Github**</mark>, haciendo uso del paquete `{devtools}`, y la función `install_github`, indicando entre paréntesis el nombre del repositorio. En este caso vamos a usar un repositorio (<https://github.com/JaseZiv/chessR>) que nos permitirá analizar <mark>**partidas de ajedrez**</mark> de <https://chess.com>.
 
@@ -232,7 +317,7 @@ head(datos)
 Aunque se puede exportar en cualquier formato que puedas importar, vamos a ver las <mark>**dos formas más útiles y eficientes de exportar datos en `R`**</mark>: 
 
 - fichero `.RData`.
-- fichero `.csv` (obviaremos la exportación a Excel porque un `.csv` ya es posible abrirlo con dicho engendro del demonio).
+- fichero `.csv` (obviaremos la exportación a Excel).
 
 
 La exportación en fichero `.RData` es la opción **más recomendable si tú o tu equipo solo trabajáis con `R`**, es la opción nativa de fichero, para que su importación sea tan sencilla como una función `load()`. Para exportar en `R.Data` basta con uses la función `save()`, indícandole lo que quieres guardar y la ruta donde quieres guardarlo.
@@ -266,6 +351,7 @@ Dado que los errores del código nos vendrán referenciados en la consola por el
 ```{r show-line-numbers, echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Líneas de código."}
 knitr::include_graphics("./img/show_line_numbers.jpg")
 ```
+
 
 ## Consejos
 

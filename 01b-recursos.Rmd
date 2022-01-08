@@ -34,6 +34,8 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 * <mark>[**Paletas de colores inspiradas en el Metropolitan Museum**](https://github.com/BlakeRMills/MetBrewer/tree/main)</mark>. De 
 Blake Robert Mills. <https://github.com/BlakeRMills/MetBrewer/tree/main>
 
+* <mark>[**Paletas de colores de álbumes de Taylor Swift**](https://github.com/asteves/tayloRswift)</mark>. De _asteves_ <https://github.com/asteves/tayloRswift>
+
 * <mark>[**Paletas de colores inspiradas en la fotografía de Harry Potter**](https://github.com/aljrico/harrypotter)</mark>. De 
 Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
 
@@ -46,3 +48,19 @@ Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
 
 
 
+
+
+## Datos
+
+
+* <mark>[**Datos de pulseras fitbit**](https://mrkaye97.github.io/fitbitr/index.html)</mark>. De Matt Kaye <https://mrkaye97.github.io/fitbitr/index.html>
+
+* <mark>[**Canciones de Taylor Swift**](https://taylor.wjakethompson.com/)</mark>. De W. Jake Thompson <https://taylor.wjakethompson.com/>
+
+
+
+## Paquete curiosos
+
+* <mark>[**wordle**](https://coolbutuseless.github.io/2022/01/04/wordle-v0.1.5-a-package-for-playing-and-helping-solve-wordle-puzzles/)</mark>. De _coolbutuseless_ <https://coolbutuseless.github.io/2022/01/04/wordle-v0.1.5-a-package-for-playing-and-helping-solve-wordle-puzzles/>
+
+* 

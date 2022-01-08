@@ -392,12 +392,12 @@
                                <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">idx</span><span class="op">)</span> <span class="op">{</span>  <span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">idx</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">}</span>,
                                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                                     expr      min       lq       mean    median
-##                               x &lt;- idx^2   18.708   49.253   54.01415   55.2935
-##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 1873.043 1968.211 2138.91547 2023.1435
-##        uq      max neval cld
-##    61.395  187.470  1000  a 
-##  2133.224 7848.837  1000   b</code></pre>
+##                                     expr      min        lq       mean
+##                               x &lt;- idx^2   18.187   48.5975   55.11758
+##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 1919.032 2051.3150 2318.02238
+##     median       uq       max neval cld
+##    55.4135   63.403   217.617  1000  a 
+##  2144.2075 2317.061 10671.880  1000   b</code></pre>
 <p>Una tarea tan sencilla, <strong>programada en un bucle (segunda fila), tarda 40 veces más que hacerlo de forma vectorial (primera fila)</strong> (elevando cada elemento al cuadrado, iterando internamente, sin necesidad de implementar un bucle).</p>
 </div>
 <div id="ejercicios-6" class="section level2">
@@ -610,7 +610,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 07-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 08-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
