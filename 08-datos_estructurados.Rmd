@@ -638,7 +638,7 @@ ncol(airquality)
 <details>
   <summary><strong>Ejercicio 8</strong>: modifica el código inferior para que nos filtre solo los datos del mes de julio.
   
-```{r eval = fFALSE
+```{r eval = FALSE}
 # Filtramos filas
 filtro_fila <- subset(., subset = Month < 6)
 filtro_fila

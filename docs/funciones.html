@@ -107,7 +107,7 @@
 <li>Dentro de <code>{}</code> incluiremos la órdenes.</li>
 <li>Finalizaremos la función con <code><a href="https://rdrr.io/r/base/function.html">return()</a></code>, indicando lo que queremos que devuelva la función.</li>
 </ul>
-<div class="sourceCode" id="cb1132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombre_funcion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">argumento_1</span>, <span class="va">argumento_2</span>, <span class="va">...</span> <span class="op">)</span> <span class="op">{</span>
   
   <span class="co"># Código que queramos ejecutar en la función</span>
@@ -130,7 +130,7 @@
 <span class="header-section-number">13.1</span> Primera función<a class="anchor" aria-label="anchor" href="#primera-funci%C3%B3n"><i class="fas fa-link"></i></a>
 </h2>
 <p>Veamos un <strong>ejemplo muy simple de función</strong> para <mark><strong>calcular el área de un rectángulo</strong></mark>: los argumentos de entrada serán los lados (<code>lado_1</code> y <code>lado_2</code>), y el valor a devolver será el área <code>lado_1 * lado_2</code> (el producto de los lados).</p>
-<div class="sourceCode" id="cb1133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
 <span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -142,7 +142,7 @@
   
 <span class="op">}</span></code></pre></div>
 <p>También podemos hacer la definición directa sin almacenar variables por el camino</p>
-<div class="sourceCode" id="cb1134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
 <span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span><span class="op">)</span> <span class="op">{</span>
 
@@ -151,12 +151,12 @@
   
 <span class="op">}</span></code></pre></div>
 <p><mark><strong>¿Cómo aplicar la función?</strong></mark> Con el nombre y los valores de los argumentos: usamos <code>calcular_area()</code> y le pasamos los dos argumentos de entrada.</p>
-<div class="sourceCode" id="cb1135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Aplicación de la función con los parámetros por defecto</span>
 <span class="fu">calcular_area</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># área de un rectángulo 5 x 3 </span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p>Imagina ahora que nos damos cuenta que el 90% de las veces el área que nos toca calcular fuese la de un cuadrado (es decir, solo necesitamos un argumento, un lado): <code>R</code> nos permite definir <mark><strong>argumentos por defecto en la función</strong></mark> (tomarán dicho valor salvo que le asignemos otro). ¿<strong>Por qué no asignar <code>lado_2 = lado_1</code> por defecto</strong>, para ahorrar líneas de código y tiempo?</p>
-<div class="sourceCode" id="cb1137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
 <span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span> <span class="op">=</span> <span class="va">lado_1</span><span class="op">)</span> <span class="op">{</span>
   
@@ -168,11 +168,11 @@
   
 <span class="op">}</span></code></pre></div>
 <p>Ahora, si no indicamos nada, por defecto el segundo lado será igual al primero (un cuadrado).</p>
-<div class="sourceCode" id="cb1138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">calcular_area</span><span class="op">(</span>lado_1 <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># si no indicamos nada, lado_2 = lado_1</span></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <p>Compliquemos un poco la función y añadamos en la salida los valores de cada lado, etiquetados como <code>lado_1</code> y <code>lado_2</code>.</p>
-<div class="sourceCode" id="cb1140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definición del nombre de función y argumentos de entrada</span>
 <span class="va">calcular_area</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lado_1</span>, <span class="va">lado_2</span> <span class="op">=</span> <span class="va">lado_1</span><span class="op">)</span> <span class="op">{</span>
   
@@ -184,25 +184,25 @@
   
 <span class="op">}</span></code></pre></div>
 <p>Veamos que nos devuelve ahora</p>
-<div class="sourceCode" id="cb1141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salida</span> <span class="op">&lt;-</span> <span class="fu">calcular_area</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="va">salida</span></code></pre></div>
 <pre><code>##   area lado_1 lado_2 
 ##     15      5      3</code></pre>
-<div class="sourceCode" id="cb1143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salida</span><span class="op">[</span><span class="st">"area"</span><span class="op">]</span></code></pre></div>
 <pre><code>## area 
 ##   15</code></pre>
-<div class="sourceCode" id="cb1145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salida</span><span class="op">[</span><span class="st">"lado_1"</span><span class="op">]</span></code></pre></div>
 <pre><code>## lado_1 
 ##      5</code></pre>
-<div class="sourceCode" id="cb1147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">salida</span><span class="op">[</span><span class="st">"lado_2"</span><span class="op">]</span></code></pre></div>
 <pre><code>## lado_2 
 ##      3</code></pre>
 <p>Antes nos daba igual el orden de los argumentos pero ahora no, ya que en la salida incluimos <code>lado_1</code> y <code>lado_2</code>. Es <strong>altamente recomendable</strong> hacer la llamada a la función indicando explícitamente los argumentos <code>argumento_1 = valor_1</code> para <strong>mejorar la legibilidad e interpretabilidad de nuestro código</strong> (recuerda: programa como escribirías en castellano).</p>
-<div class="sourceCode" id="cb1149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">calcular_area</span><span class="op">(</span>lado_1 <span class="op">=</span> <span class="fl">5</span>, lado_2 <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>##   area lado_1 lado_2 
 ##     15      5      3</code></pre>
@@ -214,7 +214,7 @@
 </h2>
 <p>Un <mark><strong>aspecto importante sobre el que reflexionar</strong></mark> con las funciones: ¿qué sucede si nombramos a una variable dentro de una función que se nos ha olvidado asignar un valor dentro de la misma? Debemos ser cautos al usar funciones en <code>R</code>, ya que debido a la <mark><strong>«regla lexicográfica»</strong></mark>, si una variable no se define dentro de la función, <code>R</code> buscará dicha variable en el entorno de variables.</p>
 <p>Construyamos una función de ejemplo que no toma ningún argumento de entrada: solo imprime el valor de <code>x</code>. Como dentro de la función <code>x</code> no está definida, usará el valor definido fuera de la función.</p>
-<div class="sourceCode" id="cb1151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">funcion_ejemplo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
     
@@ -223,7 +223,7 @@
 <span class="fu">funcion_ejemplo</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>Si una <strong>variable ya está definida fuera de la función (entorno global)</strong>, y además es usada dentro de la misma cambiando su valor, el valor de dicha variable solo cambia dentro de la función pero no en el entorno global.</p>
-<div class="sourceCode" id="cb1153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">funcion_ejemplo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
     
@@ -232,11 +232,11 @@
 <span class="op">}</span>
 <span class="fu">funcion_ejemplo</span><span class="op">(</span><span class="op">)</span> <span class="co"># lo que vale dentro</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb1155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># lo que vale fuera</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>Si queremos que <strong>además de cambiar localmente lo haga globalmente</strong> deberemos usar la <strong>doble asignación</strong> (<code><a href="https://rdrr.io/r/base/assignOps.html">&lt;&lt;-</a></code>).</p>
-<div class="sourceCode" id="cb1157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">funcion_ejemplo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
@@ -250,10 +250,10 @@
 <span class="fu">funcion_ejemplo</span><span class="op">(</span><span class="op">)</span> <span class="co"># lo que vale dentro</span></code></pre></div>
 <pre><code>## [1] 3
 ## [1] 0</code></pre>
-<div class="sourceCode" id="cb1159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="co"># lo que vale fuera</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb1161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="co"># lo que vale fuera</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
@@ -262,7 +262,7 @@
 <span class="header-section-number">13.3</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-7"><i class="fas fa-link"></i></a>
 </h2>
 <details><p><summary><strong>Ejercicio 1</strong>: modifica el código inferior para definir una función llamada <code>funcion_suma</code>, de forma que dados dos elementos, devuelve su suma.</summary></p>
-<div class="sourceCode" id="cb1163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -279,7 +279,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">funcion_suma</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -295,7 +295,7 @@
 <pre><code>## [1] 10</code></pre>
 </details><p>&amp;nsbp;</p>
 <details><p><summary><strong>Ejercicio 2</strong>: modifica el código inferior para definir una función llamada <code>funcion_producto</code>, de forma que dados dos elementos, devuelve su producto.</summary></p>
-<div class="sourceCode" id="cb1166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -312,7 +312,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">funcion_producto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -328,7 +328,7 @@
 <pre><code>## [1] -21</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 3</strong>: modifica el código inferior para definir una función llamada <code>funcion_producto</code>, de forma que dados dos elementos, devuelve su producto, pero que por defecto calcule el cuadrado (es decir, por defecto un solo argumento, y el resultado sea el número por sí mismo)</summary></p>
-<div class="sourceCode" id="cb1169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -348,7 +348,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">funcion_producto</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span> <span class="op">=</span> <span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   
@@ -362,7 +362,7 @@
 <span class="co"># Aplicamos la función</span>
 <span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> <span class="co"># por defecto x = 3, y = 3</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb1172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">funcion_producto</span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -21</code></pre>
 </details><p> </p>
@@ -370,7 +370,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Distinguiendo mayúsculas</span>
 <span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -378,10 +378,10 @@
 <span class="op">}</span>
 <span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb1178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sin importar mayúsculas</span>
 <span class="va">igualdad_nombres</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">persona_1</span>, <span class="va">persona_2</span><span class="op">)</span> <span class="op">{</span>
   
@@ -389,23 +389,23 @@
 <span class="op">}</span>
 <span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"javi"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">igualdad_nombres</span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Lucía"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 5</strong>: define una función llamada <code>pares</code> que, dados dos números <code>x</code> e <code>y</code>, nos diga si la suma de ambos es par o no.</summary></p>
 <p>Recuerda que con <code><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></code> podemos obtener el resto de un número al dividir entre 2.</p>
-<div class="sourceCode" id="cb1182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span> <span class="op">%%</span> <span class="fl">2</span> <span class="co"># par, resto 0</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb1184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">3</span> <span class="op">%%</span> <span class="fl">2</span> <span class="co"># impar, resto 1</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p></p>
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">pares</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
   
@@ -422,7 +422,7 @@
 <span class="co"># Aplicamos la función</span>
 <span class="fu">pares</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># suma 4 (par)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb1188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">pares</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># suma 9 (impar)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </details><p> </p>
@@ -431,7 +431,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos función</span>
 <span class="va">pasar_a_celsius</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   
@@ -445,10 +445,10 @@
 <span class="co"># Aplicamos la función</span>
 <span class="fu">pasar_a_celsius</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -17.77778</code></pre>
-<div class="sourceCode" id="cb1192"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">pasar_a_celsius</span><span class="op">(</span><span class="fl">80</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 26.66667</code></pre>
-<div class="sourceCode" id="cb1194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Aplicamos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">airquality</span>,
            <span class="st">"Temp_Celsius"</span> <span class="op">=</span> <span class="fu">pasar_a_celsius</span><span class="op">(</span><span class="va">airquality</span><span class="op">$</span><span class="va">Temp</span><span class="op">)</span><span class="op">)</span></code></pre></div>

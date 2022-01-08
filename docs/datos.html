@@ -818,12 +818,15 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <pre><code>## [1] 6</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 8</strong>: modifica el código inferior para que nos filtre solo los datos del mes de julio.</summary></p>
-<p><code>{r eval = fFALSE # Filtramos filas filtro_fila &lt;- subset(., subset = Month &lt; 6) filtro_fila</code>
-</p>
+<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Filtramos filas</span>
+<span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">.</span>, subset <span class="op">=</span> <span class="va">Month</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span>
+<span class="va">filtro_fila</span></code></pre></div>
+<p></p>
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb971"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos filas</span>
 <span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="va">Month</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span>
 <span class="va">filtro_fila</span></code></pre></div>
@@ -864,7 +867,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb973"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos filas</span>
 <span class="va">filtro_fila</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="op">!</span><span class="op">(</span><span class="va">Month</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -963,14 +966,14 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 ## 153    20     223 11.5   68     9  30</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 10</strong>: modifica el siguiente código para quedarte solo con las variable <code>Ozone</code> y <code>Temp</code>.</summary></p>
-<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filtro_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">.</span>,  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ozone"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">filtro_col</span></code></pre></div>
 <p></p>
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb975"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos columnas</span>
 <span class="va">filtro_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>,  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ozone"</span>, <span class="st">"Temp"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">filtro_col</span></code></pre></div>
@@ -1133,7 +1136,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb977"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Todo de una vez</span>
 <span class="va">filtro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="va">Month</span> <span class="op">==</span> <span class="fl">8</span>,
                  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Temp"</span>, <span class="st">"Wind"</span><span class="op">)</span><span class="op">)</span>
@@ -1175,11 +1178,11 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb979"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filas borradas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">filtro</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 122</code></pre>
-<div class="sourceCode" id="cb981"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cambiamos nombres a castellano del conjunto filtrado</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">filtro</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"temperatura"</span>, <span class="st">"viento"</span><span class="op">)</span></code></pre></div>
 </details><p> </p>
@@ -1187,7 +1190,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Construimos las fechas (pegamos año-mes-día con "-")</span>
 <span class="va">fechas</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"1973"</span>, <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>, <span class="va">airquality</span><span class="op">$</span><span class="va">Day</span>,

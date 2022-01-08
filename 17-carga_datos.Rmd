@@ -205,7 +205,6 @@ View(datos_disponibles)
 
 Con la función `get_eurostat()` podemos **acceder** a ellos proporcionando el código del archivo. 
 
-
 ## Datos del AEMET (desde paquete + API)
 
 > Fuente original de los datos: <https://opendata.aemet.es>
@@ -269,7 +268,25 @@ datos
 Datos desde el AEMET a nuestro `R`, listos para analizar.
 
 ## Canciones de Spotify (desde paquete + API)
+
 ## Tweets de Twitter (desde paquete + API)
+
+## Datos de Our World in Data (paquete)
+
+Uno de los protagonistas de los últimos años debido a la pandemia ha sido la web <mark>[**Our World in Data**](https://ourworldindata.org/)</mark>, y en concreto los datos que han recopilado de covid y vacunación de todos los países del mundo. Y sí, podemos acceder a ellos directamente desde `R` a través del paquete `{owidR}`.
+
+```{r eval = FALSE}
+install.packages("owidR")
+```
+
+```{r}
+library(owidR)
+```
+
+Con la función `owid_search()` podemos introducir una palabra clave, para <mark>**obtener el listado de datasets**</mark> y su palabra clave.
+
+
+
 ## Datos electorales (desde paquete + API)
 
 > Fuente original de los datos: <http://www.infoelectoral.mir.es/infoelectoral>
