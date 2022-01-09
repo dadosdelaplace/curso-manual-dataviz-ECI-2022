@@ -16,7 +16,7 @@ colorize <- function(x, color) {
 }
 ```
 
-# (PART) Incursión a tidyverse{-}
+# (PART) Incursión a tidyverse {-}
 
 # Depuración y transformación {#tidyverse}
 

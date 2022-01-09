@@ -133,6 +133,9 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 
 * <mark>[**ggtheme: paletas de colores y temas**](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/)</mark>. De Edward Tufte. <https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/>
 
+* <mark>[**geomtextpath: curvando el texto ajustándose a una gráfica**](https://allancameron.github.io/geomtextpath/)</mark>. De Allan Cameron y Teun van den Brand. <https://allancameron.github.io/geomtextpath/>
+
+
 * <mark>[**Visualización de datos geográficos**](https://dominicroye.github.io/en/)</mark>. De Dominic Royé. <https://dominicroye.github.io/en/>
 
 * <mark>[**El arte del dato: aprender a construir un ggplot**](https://elartedeldato.com/)</mark>. De Paula Casado. <https://elartedeldato.com/>

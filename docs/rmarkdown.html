@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 18 Contando los datos: rmarkdown | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="a">
+<meta name="description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd  Si se tuvieran que destacar una...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 18 Contando los datos: rmarkdown | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="a">
+<meta property="og:description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd  Si se tuvieran que destacar una...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 18 Contando los datos: rmarkdown | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="a">
+<meta name="twitter:description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd  Si se tuvieran que destacar una...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -90,8 +90,329 @@
 <h1>
 <span class="header-section-number">Capítulo 18</span> Contando los datos: rmarkdown<a class="anchor" aria-label="anchor" href="#rmarkdown"><i class="fas fa-link"></i></a>
 </h1>
-<p>a</p>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd"><strong>primer_rmarkdown.Rmd</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd</a>
+</li>
+</ul>
+</div>
+<p>Si se tuvieran que destacar una lista <strong>fortalezas</strong> de <code>R</code> frente a <code>Python</code>, creo que dos estarían en los primeros puestos. La primera sería las opciones de visualización y procesamiento de datos (y su sencillez). Y la segunda, para mí, es sin duda sus <mark><strong>opciones para generar informes</strong></mark>, incluso <mark><strong>libros, webs, apuntes y hasta diapositivas</strong></mark> (tienes algunos de los paquetes en la lista de recursos). Y la base de todos ellos es el paquete <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>.</p>
+<div class="sourceCode" id="cb1418"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rmarkdown"</span><span class="op">)</span></code></pre></div>
+<p><mark><strong>¿Cuál es la ventaja de generarlos desde <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>?</strong></mark></p>
+<p>La más obvia es que, al hacerlo desde <code>RStudio</code>, puedes generar un informe o una presentación de unos datos sin salirte del entorno de programación en el que estás trabajando: <mark><strong>analizar los datos, resumirlos y comunicarlos desde el mismo entorno de trabajo</strong></mark>. La segunda ventaja es que nos va a permitir <mark><strong>integrar fácilmente código <code>R</code></strong></mark>, de forma que no solo podremos integrar las salidas de nuestro trabajo sino también el código con el que lo hemos generado.</p>
+<div id="qué-es-r-markdown" class="section level2">
+<h2>
+<span class="header-section-number">18.1</span> ¿Qué es R Markdown?<a class="anchor" aria-label="anchor" href="#qu%C3%A9-es-r-markdown"><i class="fas fa-link"></i></a>
+</h2>
+<p>De forma resumida, <code>R Markdown</code> es una herramienta que nos permite crear de forma sencilla documentos (este manual que estás leyendo está generado integramente con dicha herramienta) combinando:</p>
+<ul>
+<li>
+<mark><strong>Markdown</strong></mark>: creado en 2004 por John Gruber, y de uso libro, es un «lenguaje» que nos permite <mark><strong>crear contenido de una manera sencilla de escribir</strong></mark>, y que en todo momento mantenga un diseño legible, permitiendo la inclusión sencilla de <mark><strong>párrafos, negritas, cursivas</strong></mark>, etc, con algunas de las ventajas de un HTML pero sin necesidad de saber programar en él. Si acostumbras a escribir en wordpress, blogs u otras plataformas, seguramente hayas escrito de esta forma (sin saberlo quizás).</li>
+<li>
+<mark><strong>Latex</strong></mark>: herramienta (lenguaje en realidad) para escribir <mark><strong>notación matemática</strong></mark> como <span class="math inline">\(x^2\)</span> o <span class="math inline">\(\sqrt{x}\)</span>. Si escribes notación similar en editores de texto, seguramente sin saberlo estés usando ya latex. Esto nos permitirá profundizar aún más en el contenido que mostremos.</li>
+<li>
+<mark><strong>Código y salidas de R</strong></mark>: podremos no solo mostrar el paso final sino el código que has ido realizando, con cajitas de código como has podido ir comprobando a lo largo de este manual.</li>
+<li><mark><strong>Imágenes</strong></mark></li>
+<li>
+<mark><strong>Estilos</strong></mark> (css, js, etc)</li>
+</ul>
+<p>Y lo mejor: todo esto se podrá hacer solo con código <code>R</code> y algún extra a tener en cuenta, produciendo <mark><strong>material reproducible</strong></mark> por el resto de la comunidad. Vamos a <mark><strong>crear nuestro primer informe</strong></mark>.</p>
+</div>
+<div id="creando-nuestro-primer-informe" class="section level2">
+<h2>
+<span class="header-section-number">18.2</span> Creando nuestro primer informe<a class="anchor" aria-label="anchor" href="#creando-nuestro-primer-informe"><i class="fas fa-link"></i></a>
+</h2>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-483"></span>
+<img src="img/file_rmarkdown.jpg" alt="Creando el primer fichero .rmd" width="50%"><p class="caption">
+Imagen/gráfica 18.1: Creando el primer fichero .rmd
+</p>
+</div>
+<p>En la imagen anterior tienes el menú para crear el primero fichero con extensión <code>.rmd</code> (la extensión de los archivos <code>R Markdown</code>). Tras hacer click en el botón <code>File &lt;&lt; New File &lt;&lt; R Markdown</code>, nos aparecerá el <strong>siguiente menú</strong>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-484"></span>
+<img src="img/new_rmd.jpg" alt="Creando el primer fichero .rmd" width="50%"><p class="caption">
+Imagen/gráfica 18.2: Creando el primer fichero .rmd
+</p>
+</div>
+<p>Como ves nos varias opciones de <mark><strong>formatos de salida</strong></mark>:</p>
+<ul>
+<li><mark><strong>.pdf</strong></mark></li>
+<li>
+<mark><strong>.html</strong></mark> (documento dinámico, permite la interacción con el usuario, como una «página web»)</li>
+<li>
+<mark><strong>.doc</strong></mark> (nada recomendable)</li>
+</ul>
+<p>De momento <mark><strong>dejaremos marcado el formato HTML</strong></mark> que viene por defecto, y escribiremos el título de nuestro documento. Tras ello tendremos <mark><strong>nuestro archivo .Rmd</strong></mark> (fíjate arriba que ya no es un script <code>.R</code> como los que hemos abierto hasta ahora)</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-485"></span>
+<img src="img/new_rmd.jpg" alt="Creando el primer fichero .rmd" width="50%"><p class="caption">
+Imagen/gráfica 18.3: Creando el primer fichero .rmd
+</p>
+</div>
+<p>Un fichero <code>.Rmd</code> se <mark><strong>divide básicamente en tres partes</strong></mark></p>
+<ol style="list-style-type: decimal">
+<li>La cabecera (eso que tienes al inicio entre <code>---</code>)</li>
+<li>Texto (que podremos mejorar con <strong>negritas</strong> (escrito como <code>**negritas**</code>, con doble astérisco al inicio y final), <strong>cursivas</strong> (<code>_cursivas_</code>, con barra baja al inicio y final) o destacar nombres de funciones o variables de <code>R</code> (con <code>R</code>). Recuerda que puedes añadir ecuaciones como <span class="math inline">\(x^2\)</span> (he escrito <code>$x^2$</code>, la ecuación entre dólares).</li>
+<li>Código <code>R</code>.</li>
+</ol>
+<div id="cabecera-yaml" class="section level3">
+<h3>
+<span class="header-section-number">18.2.1</span> Cabecera YAML<a class="anchor" aria-label="anchor" href="#cabecera-yaml"><i class="fas fa-link"></i></a>
+</h3>
+<p>La <mark><strong>cabecera</strong></mark> están en formato <code>YAML</code>, y contiene los metadatos del documento: título, autor, fecha, estilos (si los tuviésemos), etc. Para probar, vamos a cambiar la cabecera que nos ha generado por defecto de la siguiente forma:</p>
+<ul>
+<li>
+<code>Title</code>: “Probando Probando”</li>
+<li>
+<code>author</code>: “Señor X”</li>
+<li>
+<code>date</code>: “11/7/2014”</li>
+<li>
+<code>output</code>: <code>html_document</code> (le indicamos el <mark><strong>formato de salida</strong></mark>, en este caso un documento <code>HTML</code>)</li>
+</ul>
+<div class="sourceCode" id="cb1419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1419-1" data-line-number="1"><span class="op">---</span></a>
+<a class="sourceLine" id="cb1419-2" data-line-number="2">title<span class="op">:</span><span class="st"> "Probando Probando"</span></a>
+<a class="sourceLine" id="cb1419-3" data-line-number="3">author<span class="op">:</span><span class="st"> "Señor X"</span></a>
+<a class="sourceLine" id="cb1419-4" data-line-number="4">date<span class="op">:</span><span class="st"> "11/7/2014"</span></a>
+<a class="sourceLine" id="cb1419-5" data-line-number="5">output<span class="op">:</span><span class="st"> </span>html_document</a>
+<a class="sourceLine" id="cb1419-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
+<p>Tras tunear nuestra cabecera <strong>borraremos todo lo que viene después</strong> para empezar desde cero.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-487"></span>
+<img src="img/rmd_vacio.jpg" alt="Fichero .Rmd vacío, solo con la cabecera" width="50%"><p class="caption">
+Imagen/gráfica 18.4: Fichero .Rmd vacío, solo con la cabecera
+</p>
+</div>
+</div>
+<div id="texto" class="section level3">
+<h3>
+<span class="header-section-number">18.2.2</span> Texto<a class="anchor" aria-label="anchor" href="#texto"><i class="fas fa-link"></i></a>
+</h3>
+<p>Solo hay una <mark><strong>cosa importante a tener en cuenta</strong></mark> en este entorno <code>R Markdown</code>: salvo que indiquemos lo contrario, todo lo que vamos a <mark><strong>escribir en el documento es texto</strong></mark>. No código <code>R</code>. Texto plano que podremos mejorar un poco con algun detalle, pero texto.</p>
+<p>Vamos a empezar nuestro documento escribiendo por ejemplo la siguiente frase</p>
+<blockquote>
+<p>Este material ha sido diseñado como complemento y recursos de apoyo al curso de la Escuela de Invierno de la UCM titulado «Analizando datos, visualizando información, contando historias», celebrado presencialmente del 31 de enero al 4 de febrero de 2022 (16:00 a 21:00 horas, de lunes a viernes).</p>
+</blockquote>
+<p>Una vez que hemos escrito el textos vamos a <mark><strong>guardar el archivo <code>.Rmd</code></strong></mark> haciendo click en el botón Guardar (yo he llamado al archivo <code>primer_rmarkdown.Rmd</code>). Tras guardar el documento, <mark><strong>tejeremos</strong></mark> nuestro documento haciendo click en el <mark><strong>botón Knit</strong></mark>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-488"></span>
+<img src="img/primer_html_rmd.jpg" alt="Primer informe html" width="50%"><p class="caption">
+Imagen/gráfica 18.5: Primer informe html
+</p>
+</div>
+<p>Al «tejer» el archivo se nos habrá generado (seguramente en una ventana al margen) un <strong>archivo <code>.html</code></strong>, que podemos incluso <strong>abrir en nuestro navegador</strong> si hacemos click en <code>Open in Browser</code>. <mark><strong>Hemos creado nuestro primer informe</strong></mark>, obviamente vacío de momento. Vamos a mejorar un poco el texto haciendo lo siguiente:</p>
+<ul>
+<li><p>Vamos a añadir <mark><strong>negrita</strong></mark> a la frase <code>curso de la Escuela de Invierno de la UCM</code> (poniendo <code>**</code> al inicio y al final).</p></li>
+<li><p>Vamos añadir <mark><strong>cursiva</strong></mark> a la palabra <code>material</code> (poniendo <code>_</code> al inicio y al final).</p></li>
+<li><p>Vamos añadir un <mark><strong>enlace</strong></mark>, <a href="https://www.ucm.es/eci//cursoecic02-pre" class="uri">https://www.ucm.es/eci//cursoecic02-pre</a>, asociándolo al título <code>«Analizando datos, visualizando información, contando historias»</code>. Para ello el título lo ponemos entre corchetes y justo detrás el enlace entre paréntesis <code>[«Analizando datos, visualizando información, contando historias»](https://www.ucm.es/eci//cursoecic02-pre)</code></p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-489"></span>
+<img src="img/rmd_2.jpg" alt="Tuneando nuestro primer informe html" width="50%"><p class="caption">
+Imagen/gráfica 18.6: Tuneando nuestro primer informe html
+</p>
+</div>
+<p>Tras hacerlo volvemos a clickar en <code>Knit</code> para tejer el informe y obtendremos la siguiente salida.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-490"></span>
+<img src="img/html_rmd_2.jpg" alt="Salida del informe html" width="50%"><p class="caption">
+Imagen/gráfica 18.7: Salida del informe html
+</p>
+</div>
+<p>Tenemos palabras en cursiva, en negrita, y ahora el título del curso es un vínculo a una web a la que podemos hacer click.</p>
+</div>
+<div id="chunks-código-r" class="section level3">
+<h3>
+<span class="header-section-number">18.2.3</span> Chunks: código R<a class="anchor" aria-label="anchor" href="#chunks-c%C3%B3digo-r"><i class="fas fa-link"></i></a>
+</h3>
+<p>Para <mark><strong>añadir código <code>R</code></strong></mark> debemos crear nuestras <mark><strong>cajas de código llamadas <em>chunks</em></strong></mark>: altos en el camino en nuestro texto <em>markdown</em> donde podremos incluir código. Para incluir uno deberá de ir encabezado de la siguiente forma.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-491"></span>
+<img src="img/chunk_1.jpg" alt="Encabezado/final del chunk" width="50%"><p class="caption">
+Imagen/gráfica 18.8: Encabezado/final del chunk
+</p>
+</div>
+<p>Dentro de dicha cajita (que tiene ahora otro color en el documento) escribiremos <mark><strong>código <code>R</code></strong></mark>, como lo veníamos haciendo hasta ahora. Vamos por ejemplo a definir dos variables y su suma de la siguiente manera, escribiendo dicho código en nuestro <code>.Rmd</code> (dentro de ese <em>chunk</em>)</p>
+<div class="sourceCode" id="cb1420"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Código R</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">x</span> <span class="op">+</span> <span class="va">y</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-493"></span>
+<img src="img/rmd_3.jpg" alt="Primer chunk" width="50%"><p class="caption">
+Imagen/gráfica 18.9: Primer chunk
+</p>
+</div>
+<p>Como ves dentro de esos <em>chunks</em> puedes <strong>comentar código</strong> como siempre con <code>#</code> (ahora veremos que hace <code>#</code> fuera de esas cajas de código). Tras hacerlo tejemos de nuevo y obtenemos ahora un documento que tiene una caja de código y su salida, en este caso <code>x + y</code>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-494"></span>
+<img src="img/html_rmd_3.jpg" alt="Salida del html con el primer chunk" width="50%"><p class="caption">
+Imagen/gráfica 18.10: Salida del html con el primer chunk
+</p>
+</div>
+<p>Somos capaces de escribir en un mismo documento texto con cierto formato, código <code>R</code> y la salida del resultado, permitiéndonos generar informes (ya veremos como incluir gráficas). De hecho, lo más práctico para <mark><strong>tomar apuntes de <code>R</code></strong></mark> es ir anotando lo aprendido en un archivo <code>.Rmd</code>, permitiéndonos incluir explicaciones a nuestros códigos y salidas.</p>
+<p>Los <em>chunk</em> de código pueden tener un <mark><strong>nombre o etiqueta</strong></mark>, de forma que podamos referenciarlos de nuevo para no repetir código. Si la etiqueta es por ejemplo <code>chunk-1</code> (no se pueden poner espacios, preferiblemente solo letras y guiones), se añadirá como se muestra en la imagen inferior.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-495"></span>
+<img src="img/chunk_repe_tag.jpg" alt="Etiquetando un chunk y reciclándolo" width="50%"><p class="caption">
+Imagen/gráfica 18.11: Etiquetando un chunk y reciclándolo
+</p>
+</div>
+<p>Así queda nuestra salida: con un <em>chunk</em> que hemos escrito y otro que no hemos tenido que escribir ya que hemos usado la etiqueta del que ya teníamos escrito.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-496"></span>
+<img src="img/html_tag_chunk.jpg" alt="Salida tras etiquetar un chunk y reciclándolo" width="50%"><p class="caption">
+Imagen/gráfica 18.12: Salida tras etiquetar un chunk y reciclándolo
+</p>
+</div>
+</div>
+<div id="organizando-el-documento" class="section level3">
+<h3>
+<span class="header-section-number">18.2.4</span> Organizando el documento<a class="anchor" aria-label="anchor" href="#organizando-el-documento"><i class="fas fa-link"></i></a>
+</h3>
+<p>Con todo incluido en el documento podemos <mark><strong>dividirlo en secciones y subsecciones</strong></mark>. Para ello usaremos la sintaxis de <em>markdown</em>, poniendo almohadillas: una <code>#</code> para secciones, <code>##</code> para subsecciones, <code>###</code> para subsubsecciones, etc. Por ejemplo, vamos a</p>
+<ul>
+<li>Hacer una sección principal que sea <code># Primer informe</code>
+</li>
+<li>Tras ello añadiremos la parte de texto.</li>
+<li>Creamos una subsección que se titule <code>## Chunks de código</code> donde incluiremos los dos <em>chunks</em> que tenemos hasta ahora.</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-497"></span>
+<img src="img/secciones_rmd.jpg" alt="Secciones en el archivo .rmd" width="50%"><p class="caption">
+Imagen/gráfica 18.13: Secciones en el archivo .rmd
+</p>
+</div>
+<p>De esta forma podemos <mark><strong>organizar nuestro documento en secciones y subsecciones</strong></mark>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-498"></span>
+<img src="img/secciones_rmd.jpg" alt="Secciones en la salida" width="50%"><p class="caption">
+Imagen/gráfica 18.14: Secciones en la salida
+</p>
+</div>
+<p>Además podemos incluir tras el título (y entre llaves <code>{}</code>) etiquetas (con la almohadilla <code>{#etiqueta}</code>) para luego referenciar dichas secciones en el documento. Vamos a etiqueta <code># Primer informe {#seccion-1}</code> y <code>## Chunks de código {#chunks}</code>. Añadiremos una nueva sección donde haremos las referencias a dichas secciones como <code>[Sección](#seccion-1)</code> y <code>[Subsección](#chunks)</code>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-499"></span>
+<img src="img/ref_rmd.jpg" alt="Referencias a secciones y subsecciones" width="50%"><p class="caption">
+Imagen/gráfica 18.15: Referencias a secciones y subsecciones
+</p>
+</div>
+<p>También podemos organizar nuestro código creando listas, usando <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> como ítems.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-500"></span>
+<img src="img/items_rmd.jpg" alt="Creando ítems en el rmd" width="50%"><p class="caption">
+Imagen/gráfica 18.16: Creando ítems en el rmd
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-501"></span>
+<img src="img/items_html.jpg" alt="Salida tras crear ítems" width="50%"><p class="caption">
+Imagen/gráfica 18.17: Salida tras crear ítems
+</p>
+</div>
+</div>
+<div id="personalizando-los-chunks" class="section level3">
+<h3>
+<span class="header-section-number">18.2.5</span> Personalizando los chunks<a class="anchor" aria-label="anchor" href="#personalizando-los-chunks"><i class="fas fa-link"></i></a>
+</h3>
+<p>No sé si te has fijado que <mark><strong>en cada chunk aparece una botón de <em>play</em></strong></mark>: pulsándolo podemos tener la ejecución y salida de cada chunk en nuestro <code>.Rmd</code>, sin tener que esperar a «tejer» (con <code>Knit</code>) todo el documento para <strong>ver lo que vamos ejecutando</strong>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-502"></span>
+<img src="img/play_chunk.jpg" alt="Ejecutar chunk a chunk" width="50%"><p class="caption">
+Imagen/gráfica 18.18: Ejecutar chunk a chunk
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-503"></span>
+<img src="img/chunk_ejecutado.jpg" alt="Chunk ejecutado" width="50%"><p class="caption">
+Imagen/gráfica 18.19: Chunk ejecutado
+</p>
+</div>
+<p>Además podemos <mark><strong>incluir código <code>R</code></strong></mark> dentro de la línea de texto. Por ejemplo, podemos definir una variable para luego mostarla como 3 (en lugar de mostrar el texto <code>x</code> ejecuta el código <code>R</code> mostrando la variable).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-504"></span>
+<img src="img/codigo_inline_rmd.jpg" alt="Código inline" width="50%"><p class="caption">
+Imagen/gráfica 18.20: Código inline
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-505"></span>
+<img src="img/codigo_inline_html.jpg" alt="Salida del código inline" width="50%"><p class="caption">
+Imagen/gráfica 18.21: Salida del código inline
+</p>
+</div>
+<p> </p>
+<p>Los <em>chunk</em> podemos <mark><strong>personalizarlo con algunas opciones</strong></mark>, pasándolos como argumentos dentro de las llaves <code>{r etiqueta, ...}</code>.</p>
+<ul>
+<li><p><code>include = FALSE</code>: se <mark><strong>ejecuta el código pero no se muestra ni código ni resultados</strong></mark> en la salida final (pero lo que se ejecuta puede ser usado en otros <em>chunks</em> futuros).</p></li>
+<li><p><code>echo = FALSE</code>: se <mark><strong>ejecuta el código y se muestra el resultado pero no el código</strong></mark> en la salida final.</p></li>
+<li><p><code>eval = FALSE</code>: se <mark><strong>muestra pero no se ejecuta el código</strong></mark> en la salida final.</p></li>
+<li><p><code>message = FALSE</code>: se <mark><strong>ejecuta el código pero no se muestran los mensajes</strong></mark> de salida que tendríamos en consola (en caso de existir).</p></li>
+<li><p><code>warning = FALSE</code>: se <mark><strong>ejecuta el código pero no se muestran los warning</strong></mark> que tendríamos en consola (en caso de existir).</p></li>
+<li><p><code>error = TRUE</code>: se <mark><strong>ejecuta el código pero permite ejecutar el código con errores mostrando los mensajes de error</strong></mark> que tendríamos en consola (en caso de existir).</p></li>
+</ul>
+<p>Puedes ver las diferentes salidas en el archivo <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd">primer_rmarkdown.Rmd</a> en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd</a>.</p>
+<p> </p>
+<p>Estas opciones podemos aplicarlas <em>chunk</em> a <em>chunk</em> o fijar los <mark><strong>parámetros de forma global</strong></mark> con <code>knitr::opts_chunk$set()</code> (dentro de un <em>chunk</em>), pasándole como argumentos dichas opciones (por ejemplo, <code>knitr::opts_chunk$set(echo = FALSE)</code>).</p>
+</div>
+<div id="variables-y-ecuaciones" class="section level3">
+<h3>
+<span class="header-section-number">18.2.6</span> Variables y ecuaciones<a class="anchor" aria-label="anchor" href="#variables-y-ecuaciones"><i class="fas fa-link"></i></a>
+</h3>
+<p>Por último en este primer documento vamos a añadir una subsección <code>## Variables y ecuaciones</code> donde añadiremos un <em>chunk</em> asignando la suma <code>x + y</code> a una variable <code>z</code>, escribiendo antes en texto el nombre de la variable (<code>z</code>) y la fórmula (<code>$z = x + y$</code>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-506"></span>
+<img src="img/variables_rmd.jpg" alt="Variables y ecuaciones" width="50%"><p class="caption">
+Imagen/gráfica 18.22: Variables y ecuaciones
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-507"></span>
+<img src="img/variables_html.jpg" alt="Salida" width="50%"><p class="caption">
+Imagen/gráfica 18.23: Salida
+</p>
+</div>
+</div>
+</div>
+<div id="segundo-rmarkdown" class="section level2">
+<h2>
+<span class="header-section-number">18.3</span> Segundo rmarkdown<a class="anchor" aria-label="anchor" href="#segundo-rmarkdown"><i class="fas fa-link"></i></a>
+</h2>
+<div id="personalizando-la-cabecera" class="section level3">
+<h3>
+<span class="header-section-number">18.3.1</span> Personalizando la cabecera<a class="anchor" aria-label="anchor" href="#personalizando-la-cabecera"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb1422"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># date: "`r Sys.Date()`"</span>
+<span class="co"># "`r format(Sys.time(), '%d %B %Y')`"</span></code></pre></div>
+</div>
+<div id="mostrando-imágenes" class="section level3">
+<h3>
+<span class="header-section-number">18.3.2</span> Mostrando imágenes<a class="anchor" aria-label="anchor" href="#mostrando-im%C3%A1genes"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="salida-en-pdf" class="section level3">
+<h3>
+<span class="header-section-number">18.3.3</span> Salida en PDF<a class="anchor" aria-label="anchor" href="#salida-en-pdf"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+</div>
+<div id="práctica-evaluable" class="section level2">
+<h2>
+<span class="header-section-number">18.4</span> 🏅 Práctica evaluable<a class="anchor" aria-label="anchor" href="#pr%C3%A1ctica-evaluable"><i class="fas fa-link"></i></a>
+</h2>
+<blockquote>
+<p>Práctica evaluable: iniciación a la generación de informes con rmarkdown</p>
+</blockquote>
+<p>…</p>
 
+</div>
 </div>
 
 
@@ -101,7 +422,28 @@
 <div class="next"><a href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#rmarkdown"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rmarkdown"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
+<li><a class="nav-link" href="#qu%C3%A9-es-r-markdown"><span class="header-section-number">18.1</span> ¿Qué es R Markdown?</a></li>
+<li>
+<a class="nav-link" href="#creando-nuestro-primer-informe"><span class="header-section-number">18.2</span> Creando nuestro primer informe</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cabecera-yaml"><span class="header-section-number">18.2.1</span> Cabecera YAML</a></li>
+<li><a class="nav-link" href="#texto"><span class="header-section-number">18.2.2</span> Texto</a></li>
+<li><a class="nav-link" href="#chunks-c%C3%B3digo-r"><span class="header-section-number">18.2.3</span> Chunks: código R</a></li>
+<li><a class="nav-link" href="#organizando-el-documento"><span class="header-section-number">18.2.4</span> Organizando el documento</a></li>
+<li><a class="nav-link" href="#personalizando-los-chunks"><span class="header-section-number">18.2.5</span> Personalizando los chunks</a></li>
+<li><a class="nav-link" href="#variables-y-ecuaciones"><span class="header-section-number">18.2.6</span> Variables y ecuaciones</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#segundo-rmarkdown"><span class="header-section-number">18.3</span> Segundo rmarkdown</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#personalizando-la-cabecera"><span class="header-section-number">18.3.1</span> Personalizando la cabecera</a></li>
+<li><a class="nav-link" href="#mostrando-im%C3%A1genes"><span class="header-section-number">18.3.2</span> Mostrando imágenes</a></li>
+<li><a class="nav-link" href="#salida-en-pdf"><span class="header-section-number">18.3.3</span> Salida en PDF</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#pr%C3%A1ctica-evaluable"><span class="header-section-number">18.4</span> 🏅 Práctica evaluable</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -118,7 +460,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 08-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 09-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
