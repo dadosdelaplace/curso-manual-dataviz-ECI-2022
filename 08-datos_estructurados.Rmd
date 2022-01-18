@@ -564,6 +564,7 @@ matriz <- matrix(1:12, nrow = 4)
 # Suma por columnas
 apply(matriz, MARGIN = 2, FUN = "sum")
 ```
+
 </summary>
 
 

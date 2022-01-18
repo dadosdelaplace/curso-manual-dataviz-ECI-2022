@@ -142,9 +142,7 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 
 * <mark>[**Tutoriales de visualización de datos**](https://www.cedricscherer.com/)</mark>. De Cedric Scherer. <https://www.cedricscherer.com/>
 
-
-
-## Colores y temas en dataviz (generales) {-}
+*## Colores y temas en dataviz (generales) {-}
 
 * <mark>[**Uso de colores**](https://datawrapper.notion.site/Color-Book-Updates-54905c2bd0bb4c6bae15d99e31a9d5c4)</mark>. De Lisa Charlotte Muth, experta en dataviz en Datawrapper. <https://datawrapper.notion.site/Color-Book-Updates-54905c2bd0bb4c6bae15d99e31a9d5c4>
 
@@ -224,13 +222,23 @@ Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
 
 
 
-## Paquete curiosos {-}
+## Paquetes/recursos curiosos {-}
 
 * <mark>[**wordle**](https://coolbutuseless.github.io/2022/01/04/wordle-v0.1.5-a-package-for-playing-and-helping-solve-wordle-puzzles/)</mark>. De _coolbutuseless_ <https://coolbutuseless.github.io/2022/01/04/wordle-v0.1.5-a-package-for-playing-and-helping-solve-wordle-puzzles/>
 
 * <mark>[**Canciones de Taylor Swift**](https://taylor.wjakethompson.com/)</mark>. De W. Jake Thompson <https://taylor.wjakethompson.com/>
 
 * <mark>[**Datos de partidas de ajedrez**](https://github.com/JaseZiv/chessR)</mark>. De Jason Zivkovic <https://github.com/JaseZiv/chessR>
+
+* <mark>[**Visualizar el ciclo día/noche en el mundo**](https://dominicroye.github.io/en/2021/visualize-the-day-night-cycle-on-a-world-map/)</mark>. De Dominic Royé <https://dominicroye.github.io/en/2021/visualize-the-day-night-cycle-on-a-world-map/>
+
+* <mark>[**Visualización de la cuenca hídrica de Francia**](https://www.etiennebacher.com/posts/2021-12-27-mapping-french-rivers-network/)</mark>. De Etienne Bacher <https://www.etiennebacher.com/posts/2021-12-27-mapping-french-rivers-network/>
+
+* <mark>[**ggpattern: rellenos con patrones geométricos en ggplot2**](https://github.com/coolbutuseless/ggpattern)</mark>. De coolbutuseless y Trevor L. Davis. <https://github.com/coolbutuseless/ggpattern>
+
+
+
+
 
 
 

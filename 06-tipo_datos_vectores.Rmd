@@ -300,7 +300,8 @@ knitr::include_graphics("./img/stringr.png")
 (haz click en las flechas para ver soluciones)
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: modifica el código anterior para crear un vector de nombre `vector_num` que contenga los números 1, 5 y -7.
+  <summary>📝<strong>Ejercicio 1</strong>: modifica el código  para crear un vector de nombre `vector_num` que contenga los números 1, 5 y -7.
+  
 ```{r eval = FALSE}
 # Vector de números
 vector_num <- c(1)
