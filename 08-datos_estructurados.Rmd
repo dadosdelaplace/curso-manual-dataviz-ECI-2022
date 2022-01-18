@@ -502,11 +502,13 @@ A veces puede que no queramos cargar todo un paquete sino solo una función del 
 
 <details>
   <summary><strong>Ejercicio 1</strong>: modifica el código para definir una matriz `x` de ceros de 3 filas y 7 columnas.
+  
 ```{r eval = FALSE}
 # Matriz
 x <- matrix(0, nrow = 2, ncol = 3)
 x
 ```
+
 </summary>
 
 - Solución:

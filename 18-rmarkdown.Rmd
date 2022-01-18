@@ -52,7 +52,7 @@ Y lo mejor: todo esto se podrá hacer solo con código `R` y algún extra a tene
 
 ## Creando nuestro primer informe
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Creando el primer fichero .rmd', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Creando el primer fichero .rmd', out.width = '40%'}
 knitr::include_graphics("img/file_rmarkdown.jpg")
 ```
 
@@ -100,7 +100,7 @@ output: html_document
 
 Tras tunear nuestra cabecera **borraremos todo lo que viene después** para empezar desde cero.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Fichero .Rmd vacío, solo con la cabecera', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Fichero .Rmd vacío, solo con la cabecera', out.width = '65%'}
 knitr::include_graphics("img/rmd_vacio.jpg")
 ```
 
@@ -114,11 +114,11 @@ Vamos a empezar nuestro documento escribiendo por ejemplo la siguiente frase
 
 Una vez que hemos escrito el textos vamos a <mark>**guardar el archivo `.Rmd`**</mark> haciendo click en el botón Guardar (yo he llamado al archivo `primer_rmarkdown.Rmd`). Tras guardar el documento, <mark>**tejeremos**</mark> nuestro documento haciendo click en el <mark>**botón Knit**</mark>.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Primer informe html', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Primer informe html', out.width = '70%'}
 knitr::include_graphics("img/primer_html_rmd.jpg")
 ```
 
-Al «tejer» el archivo se nos habrá generado (seguramente en una ventana al margen) un **archivo `.html`**, que podemos incluso **abrir en nuestro navegador** si hacemos click en `Open in Browser`. <mark>**Hemos creado nuestro primer informe**</mark>, obviamente vacío de momento. Vamos a mejorar un poco el texto haciendo lo siguiente:
+Al «tejer» el archivo se nos habrá **generado** (seguramente en una ventana al margen) un  <mark>**archivo `.html`**</mark>, que podemos incluso **abrir en nuestro navegador** si hacemos click en `Open in Browser`. <mark>**Hemos creado nuestro primer informe**</mark>, obviamente vacío de momento. Vamos a mejorar un poco el texto haciendo lo siguiente:
 
 * Vamos a añadir <mark>**negrita**</mark> a la frase `curso de la Escuela de Invierno de la UCM` (poniendo `**` al inicio y al final).
 
@@ -126,13 +126,13 @@ Al «tejer» el archivo se nos habrá generado (seguramente en una ventana al ma
 
 * Vamos añadir un <mark>**enlace**</mark>, <https://www.ucm.es/eci//cursoecic02-pre>, asociándolo al título `«Analizando datos, visualizando información, contando historias»`. Para ello el título lo ponemos entre corchetes y justo detrás el enlace entre paréntesis `[«Analizando datos, visualizando información, contando historias»](https://www.ucm.es/eci//cursoecic02-pre)`
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Tuneando nuestro primer informe html', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Tuneando nuestro primer informe html', out.width = '70%'}
 knitr::include_graphics("img/rmd_2.jpg")
 ```
 
 Tras hacerlo volvemos a clickar en `Knit` para tejer el informe y obtendremos la siguiente salida.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida del informe html', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida del informe html', out.width = '70%'}
 knitr::include_graphics("img/html_rmd_2.jpg")
 ```
 
@@ -142,7 +142,7 @@ Tenemos palabras en cursiva, en negrita, y ahora el título del curso es un vín
 
 Para <mark>**añadir código `R`**</mark> debemos crear nuestras <mark>**cajas de código llamadas _chunks_**</mark>: altos en el camino en nuestro texto _markdown_ donde podremos incluir código. Para incluir uno deberá de ir encabezado de la siguiente forma.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Encabezado/final del chunk', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Encabezado/final del chunk', out.width = '70%'}
 knitr::include_graphics("img/chunk_1.jpg")
 ```
 
@@ -155,13 +155,13 @@ y <- 2
 x + y
 ``` 
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Primer chunk', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Primer chunk', out.width = '70%'}
 knitr::include_graphics("img/rmd_3.jpg")
 ```
 
 Como ves dentro de esos _chunks_ puedes **comentar código** como siempre con `#` (ahora veremos que hace `#` fuera de esas cajas de código). Tras hacerlo tejemos de nuevo y obtenemos ahora un documento que tiene una caja de código y su salida, en este caso `x + y`.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida del html con el primer chunk', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida del html con el primer chunk', out.width = '70%'}
 knitr::include_graphics("img/html_rmd_3.jpg")
 ```
 
@@ -169,13 +169,13 @@ Somos capaces de escribir en un mismo documento texto con cierto formato, códig
 
 Los _chunk_ de código pueden tener un <mark>**nombre o etiqueta**</mark>, de forma que podamos referenciarlos de nuevo para no repetir código. Si la etiqueta es por ejemplo `chunk-1` (no se pueden poner espacios, preferiblemente solo letras y guiones), se añadirá como se muestra en la imagen inferior.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Etiquetando un chunk y reciclándolo', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Etiquetando un chunk y reciclándolo', out.width = '70%'}
 knitr::include_graphics("img/chunk_repe_tag.jpg")
 ```
 
 Así queda nuestra salida: con un _chunk_ que hemos escrito y otro que no hemos tenido que escribir ya que hemos usado la etiqueta del que ya teníamos escrito.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida tras etiquetar un chunk y reciclándolo', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida tras etiquetar un chunk y reciclándolo', out.width = '70%'}
 knitr::include_graphics("img/html_tag_chunk.jpg")
 ```
 
@@ -183,34 +183,34 @@ knitr::include_graphics("img/html_tag_chunk.jpg")
 
 Con todo incluido en el documento podemos <mark>**dividirlo en secciones y subsecciones**</mark>. Para ello usaremos la sintaxis de _markdown_, poniendo almohadillas: una `#` para secciones, `##` para subsecciones, `###` para subsubsecciones, etc. Por ejemplo, vamos a
 
-* Hacer una sección principal que sea `# Primer informe`
+* Hacer una **sección principal** que sea `# Primer informe`
 * Tras ello añadiremos la parte de texto.
 * Creamos una subsección que se titule `## Chunks de código` donde incluiremos los dos _chunks_ que tenemos hasta ahora.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Secciones en el archivo .rmd', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Secciones en el archivo .rmd', out.width = '70%'}
 knitr::include_graphics("img/secciones_rmd.jpg")
 ```
 
 De esta forma podemos <mark>**organizar nuestro documento en secciones y subsecciones**</mark>.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Secciones en la salida', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Secciones en la salida', out.width = '70%'}
 knitr::include_graphics("img/secciones_rmd.jpg")
 ```
 
 Además podemos incluir tras el título (y entre llaves `{}`) etiquetas (con la almohadilla `{#etiqueta}`) para luego referenciar dichas secciones en el documento. Vamos a etiqueta `# Primer informe {#seccion-1}` y  `## Chunks de código {#chunks}`. Añadiremos una nueva sección donde haremos las referencias a dichas secciones como `[Sección](#seccion-1)` y `[Subsección](#chunks)`.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Referencias a secciones y subsecciones', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Referencias a secciones y subsecciones', out.width = '70%'}
 knitr::include_graphics("img/ref_rmd.jpg")
 ```
 
 También podemos organizar nuestro código creando listas, usando `*` como ítems.
 
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Creando ítems en el rmd', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Creando ítems en el rmd', out.width = '70%'}
 knitr::include_graphics("img/items_rmd.jpg")
 ```
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida tras crear ítems', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida tras crear ítems', out.width = '70%'}
 knitr::include_graphics("img/items_html.jpg")
 ```
 
@@ -218,22 +218,22 @@ knitr::include_graphics("img/items_html.jpg")
 
 No sé si te has fijado que <mark>**en cada chunk aparece una botón de _play_**</mark>: pulsándolo podemos tener la ejecución y salida de cada chunk en nuestro `.Rmd`, sin tener que esperar a «tejer» (con `Knit`) todo el documento para **ver lo que vamos ejecutando**.
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Ejecutar chunk a chunk', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Ejecutar chunk a chunk', out.width = '70%'}
 knitr::include_graphics("img/play_chunk.jpg")
 ```
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Chunk ejecutado', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Chunk ejecutado', out.width = '70%'}
 knitr::include_graphics("img/chunk_ejecutado.jpg")
 ```
 
 Además podemos <mark>**incluir código `R`**</mark> dentro de la línea de texto. Por ejemplo, podemos definir una variable `r x <- 3` para luego mostarla como `r x` (en lugar de mostrar el texto `x` ejecuta el código `R` mostrando la variable).
 
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Código inline', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Código inline', out.width = '70%'}
 knitr::include_graphics("img/codigo_inline_rmd.jpg")
 ```
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida del código inline', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida del código inline', out.width = '70%'}
 knitr::include_graphics("img/codigo_inline_html.jpg")
 ```
 
@@ -265,33 +265,120 @@ Estas opciones podemos aplicarlas _chunk_ a _chunk_ o fijar los <mark>**parámet
 
 Por último en este primer documento vamos a añadir una subsección `## Variables y ecuaciones` donde añadiremos un _chunk_ asignando la suma `x + y` a una variable `z`, escribiendo antes en texto el nombre de la variable (`z`) y la fórmula (`$z = x + y$`).
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Variables y ecuaciones', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Variables y ecuaciones', out.width = '70%'}
 knitr::include_graphics("img/variables_rmd.jpg")
 ```
 
-```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida', out.width = '50%'}
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Salida', out.width = '70%'}
 knitr::include_graphics("img/variables_html.jpg")
 ```
 
 
 ## Segundo rmarkdown
 
+Visto como hacer un rmarkdown sencillo, vamos a aprender algunas formas de personalizarlo.
 
 ### Personalizando la cabecera
 
+Una primera personalización en la cabecera puede ser <mark>**automatizar la fecha**</mark>, indicándole que sea la fecha del momento en el que se genere el informe con `Sys.Date()`
+
 ```{r}
-# date: "`r Sys.Date()`"
-# "`r format(Sys.time(), '%d %B %Y')`"
+Sys.Date()
+format(Sys.time(), '%d de %B de %Y')
+```
+
+El código `R` podemos introducirlo en la cabecera entre las comillas.
+
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Personalizando cabecera', out.width = '70%'}
+knitr::include_graphics("img/cabecera_yaml_2.jpg")
+```
+
+También podemos indicarle en la cabecera que <mark>**añadamos un índice**</mark> (toc, por sus siglas en inglés) al documento con `toc: true`.
+
+
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Índice', out.width = '70%'}
+knitr::include_graphics("img/toc_cabecera.jpg")
+```
+
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Índice', out.width = '70%'}
+knitr::include_graphics("img/index_html.jpg")
+```
+
+Además con `toc_depth:` podemos indicarle la profundidad de ese índice (hasta donde queremos que indexe, si subsecciones, subsubsecciones, etc), y `number_sections: true` nos hará que las secciones se numeren.
+
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Numeración de secciones', out.width = '70%'}
+knitr::include_graphics("img/numerar_indice.jpg")
+```
+
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Numeración de secciones', out.width = '70%'}
+knitr::include_graphics("img/numerar_indice_html.jpg")
+```
+    
+
+### Estilos
+
+Al inicio del documento podemos incluir estilos .css (o incluir un archivo externo). Puedes ver la opciones en el archivo [segundo_rmarkdown.Rmd](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd) en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd>.
+
+```{r eval = FALSE}
+<style>
+#TOC {
+  color: #708090;
+  font-family: Calibri;
+  font-size: 16px; 
+  border-color: #708090;
+}
+#header {
+  color: #F08080;
+  background-color: #F5F5F5;
+  opacity: 0.6;
+  font-family: Calibri;
+  font-size: 20px;
+}
+body {
+  color: #708090;
+  font-family: Calibri;
+  background-color: #F5F5F5;
+}
+pre {
+  color: #708090;
+  background-color: #F8F8FF;
+}
+h1.title {
+  color: #F08080;
+  background-color: #F5F5F5;
+  opacity: 0.6;
+  font-family: Calibri;
+  font-size: 20px;
+}
+h4.author {
+  color: #708090;
+  font-family: Calibri;
+  background-color: #F5F5F5;
+}
+h4.date {
+  color: #708090;  
+  font-family: Calibri;
+  background-color: #F5F5F5;
+}
+</style>
 ```
 
 
 ### Mostrando imágenes
 
-### Salida en PDF
+Por último, con `knitr::include_graphics()` podremos <mark>**incluir imágenes**</mark>, bien que tengamos en nuestro local, o bien a través de la ruta web de la imagen. Con `out.width` podremos modular el tamaño que queremos que ocupe la imagen, con `fig.align = 'center'` la centramos y con `fig.cap = 'Ejemplo de imagen'` ponemos un pie de foto
 
-## 🏅 Práctica evaluable
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Incluir imagen', out.width = '70%'}
+knitr::include_graphics("img/knitr_imagen.jpg")
+```
+    
 
-> Práctica evaluable: iniciación a la generación de informes con rmarkdown
+```{r echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = 'Incluir imagen', out.width = '60%'}
+knitr::include_graphics("img/imagen_rmd_html.jpg")
+```
+    
 
-...
+
+
+
 

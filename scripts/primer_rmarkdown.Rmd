@@ -5,11 +5,7 @@ date: "11/7/2014"
 output: html_document
 ---
 
-# Primer informe {#seccion-1}
-
 Este _material_ ha sido diseñado como complemento y recursos de apoyo al **curso de la Escuela de Invierno de la UCM** titulado [«Analizando datos, visualizando información, contando historias»](https://www.ucm.es/eci//cursoecic02-pre), celebrado presencialmente del 31 de enero al 4 de febrero de 2022 (16:00 a 21:00 horas, de lunes a viernes).
-
-## Chunks de código {#chunks}
 
 ```{r chunk-1}
 # Código R
@@ -24,71 +20,4 @@ El código anterior con etiqueta `chunk-1` en el _chunk_ podemos reciclarlo para
 <<chunk-1>>
 ``` 
 
-La operación anterior da como resultado `r x + y` (la suma de `r x` y `r y`). 
-
-## Referencias a secciones y subsecciones
-
-Ahora podremos referirnos a la [Sección](#seccion-1) y [Subsección](#chunks) creadas.
-
-## Enumeración (ítems)
-
-* hola
-* qué
-* tal
-
-
-
-## Personalizando chunks
-
-```{r echo = FALSE}
-<<chunk-1>>
-# con echo = FALSE solo muestra resultado, no código
-``` 
-
-```{r eval = FALSE}
-# con eval = FALSE pone el código pero no lo evalúa
-a <- 1 
-a
-```
-
-```{r error = TRUE}
-# con error = TRUE permite ejecutar un código con error mostrando
-# el mensaje (a no existe porque el chunk anterior no ejecutó)
-a
-```
-
-```{r warning = FALSE}
-# con warning = FALSE
-sqrt(-1)
-```
-
-```{r warning = TRUE}
-# con warning = TRUE
-sqrt(-1)
-```
-
-```{r include = FALSE}
-# con include = FALSE se ejecuta pero no se muestra
-b <- 2
-```
-
-```{r}
-# antes hemos ejecutado un chunck con include = FALSE (se ejecuta
-# pero no se muestra) donde hemos definido una variable b
-b
-```
-
-
-## Variables y ecuaciones
-
-
-
-La variable `z` es definida como $z = x + y$, donde `x` es igual a `r x` e `y` es igual a `r y`.
-
-```{r}
-z <- x + y
-z
-``` 
-
- 
 

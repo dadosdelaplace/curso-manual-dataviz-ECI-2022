@@ -408,10 +408,10 @@
 <div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">fecha</span></code></pre></div>
-<pre><code>## [1] "2022-01-09"</code></pre>
+<pre><code>## [1] "2022-01-18"</code></pre>
 <div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">-</span> <span class="fl">7</span> <span class="co"># una semana antes</span></code></pre></div>
-<pre><code>## [1] "2022-01-02"</code></pre>
+<pre><code>## [1] "2022-01-11"</code></pre>
 <div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># de clase fecha</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
@@ -467,10 +467,10 @@
 <p>Además el paquete nos proporciona <strong>herramientas para extraer la fecha y hora actuales</strong> con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">today()</a></code> y <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code></p>
 <div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-09"</code></pre>
+<pre><code>## [1] "2022-01-18"</code></pre>
 <div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-09 01:35:58 CET"</code></pre>
+<pre><code>## [1] "2022-01-18 20:04:08 CET"</code></pre>
 <p>También tenemos disponibles en dicho paquete funciones para extraer facilmente algunas variables temporales como el <strong>día de la semana, el mes o el cuatrimestre</strong>, con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/year.html">year()</a></code>, <code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months()</a></code>, <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">day()</a></code> o <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday()</a></code> (día de la semana).</p>
 <div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
@@ -481,22 +481,22 @@
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">day</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 9</code></pre>
+<pre><code>## [1] 18</code></pre>
 <div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha</span>, week_start <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Día de la semana (empezando por el lunes)</span></code></pre></div>
-<pre><code>## [1] 7</code></pre>
+<pre><code>## [1] 2</code></pre>
 <div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 20</code></pre>
 <div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/minute.html">minute</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 35</code></pre>
+<pre><code>## [1] 4</code></pre>
 <div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/second.html">second</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 58.89895</code></pre>
+<pre><code>## [1] 8.798577</code></pre>
 <div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># Número de semana (del año)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 3</code></pre>
 <p>Al igual que podemos realizar operaciones aritméticas sencillas con las fechas, también podemos <strong>realizar comparaciones</strong>, por ejemplo, si el día actual es menor o mayor que otra fecha dada.</p>
 <div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
@@ -590,7 +590,7 @@
 </ul>
 <div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">days</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">fecha_nacimiento</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "11809d 0H 0M 0S"</code></pre>
+<pre><code>## [1] "11818d 0H 0M 0S"</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años (<code>edad &lt; 30</code>); ii) con hermanos (<code>hermanos == TRUE</code>); iii) nacido en 1990 o posterior (<code>fecha_nacimiento &gt;= as.Date("1990-01-01")</code>). </summary></p>
@@ -707,7 +707,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 09-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 18-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

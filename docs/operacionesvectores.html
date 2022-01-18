@@ -419,8 +419,8 @@
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
 ##         expr    min      lq     mean  median      uq     max neval cld
-##      sort(x) 45.436 48.9065 55.61061 53.8635 57.4905 129.001  1000   b
-##  x[order(x)] 33.325 35.8480 40.30734 38.1360 41.2400 119.301  1000  a</code></pre>
+##      sort(x) 45.222 49.4075 56.51858 53.3445 58.7435 148.384  1000   b
+##  x[order(x)] 32.795 35.8105 40.99334 37.8325 41.4375 132.241  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">
@@ -589,7 +589,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 09-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 18-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

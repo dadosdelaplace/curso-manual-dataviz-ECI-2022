@@ -233,7 +233,7 @@
 <div class="sourceCode" id="cb1382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_ISCIII</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv"</span><span class="op">)</span>
 <span class="va">datos_ISCIII</span></code></pre></div>
-<pre><code>## # A tibble: 14,022 × 8
+<pre><code>## # A tibble: 14,212 × 8
 ##    ccaa_iso fecha      num_casos num_casos_prueba_pcr num_casos_prueba_test_ac
 ##    &lt;chr&gt;    &lt;date&gt;         &lt;dbl&gt;                &lt;dbl&gt;                    &lt;dbl&gt;
 ##  1 AN       2020-01-01         0                    0                        0
@@ -246,14 +246,14 @@
 ##  8 CN       2020-01-01         0                    0                        0
 ##  9 CT       2020-01-01         0                    0                        0
 ## 10 EX       2020-01-01         0                    0                        0
-## # … with 14,012 more rows, and 3 more variables: num_casos_prueba_ag &lt;dbl&gt;,
+## # … with 14,202 more rows, and 3 more variables: num_casos_prueba_ag &lt;dbl&gt;,
 ## #   num_casos_prueba_elisa &lt;dbl&gt;, num_casos_prueba_desconocida &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb1384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 14022     8</code></pre>
+<pre><code>## [1] 14212     8</code></pre>
 <div class="sourceCode" id="cb1386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 14,022
+<pre><code>## Rows: 14,212
 ## Columns: 8
 ## $ ccaa_iso                     &lt;chr&gt; "AN", "AR", "AS", "CB", "CE", "CL", "CM",…
 ## $ fecha                        &lt;date&gt; 2020-01-01, 2020-01-01, 2020-01-01, 2020…
@@ -458,20 +458,20 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 <code class="sourceCode R"><span class="va">datos_bcn_aeropuerto</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://ropenspain.github.io/climaemet/reference/aemet_last_obs.html">aemet_last_obs</a></span><span class="op">(</span><span class="st">"0076"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">datos_bcn_aeropuerto</span></code></pre></div>
-<pre><code>## # A tibble: 24 × 23
+<pre><code>## # A tibble: 23 × 23
 ##    idema   lon fint                 prec   alt  vmax    vv    dv   lat  dmax
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 0076   2.07 2022-01-08 01:00:00     0     4   6.2   3.4   360  41.3   360
-##  2 0076   2.07 2022-01-08 02:00:00     0     4   3.6   1      30  41.3    40
-##  3 0076   2.07 2022-01-08 03:00:00     0     4   6.7   3.7    10  41.3   340
-##  4 0076   2.07 2022-01-08 04:00:00     0     4   7.2   2.8   360  41.3   360
-##  5 0076   2.07 2022-01-08 05:00:00     0     4   8.8   6.3   350  41.3    10
-##  6 0076   2.07 2022-01-08 06:00:00     0     4   7.7   3.1    20  41.3   340
-##  7 0076   2.07 2022-01-08 07:00:00     0     4   8.8   5.3    20  41.3    30
-##  8 0076   2.07 2022-01-08 08:00:00     0     4   9.3   6.3    20  41.3    20
-##  9 0076   2.07 2022-01-08 09:00:00     0     4   8.2   6.2    20  41.3    10
-## 10 0076   2.07 2022-01-08 10:00:00     0     4   9.3   4.4    10  41.3    10
-## # … with 14 more rows, and 13 more variables: ubi &lt;chr&gt;, pres &lt;dbl&gt;, hr &lt;dbl&gt;,
+##  1 0076   2.07 2022-01-17 20:00:00     0     4   5.7   4.2   360  41.3   360
+##  2 0076   2.07 2022-01-17 21:00:00     0     4   6.2   3.2    10  41.3   360
+##  3 0076   2.07 2022-01-17 22:00:00     0     4   6.2   4.5   360  41.3    10
+##  4 0076   2.07 2022-01-17 23:00:00     0     4   5.7   4.5   360  41.3   360
+##  5 0076   2.07 2022-01-18 00:00:00     0     4   8.8   5.5   360  41.3   350
+##  6 0076   2.07 2022-01-18 01:00:00     0     4   7.2   5.5    10  41.3    20
+##  7 0076   2.07 2022-01-18 02:00:00     0     4   8.2   4.3   350  41.3   360
+##  8 0076   2.07 2022-01-18 03:00:00     0     4   7.7   5.1   360  41.3    20
+##  9 0076   2.07 2022-01-18 04:00:00     0     4   8.2   5.7   360  41.3   310
+## 10 0076   2.07 2022-01-18 05:00:00     0     4   7.2   4.2    10  41.3   350
+## # … with 13 more rows, and 13 more variables: ubi &lt;chr&gt;, pres &lt;dbl&gt;, hr &lt;dbl&gt;,
 ## #   stdvv &lt;dbl&gt;, ts &lt;dbl&gt;, pres_nmar &lt;dbl&gt;, tamin &lt;dbl&gt;, ta &lt;dbl&gt;, tamax &lt;dbl&gt;,
 ## #   tpr &lt;dbl&gt;, vis &lt;dbl&gt;, stddv &lt;dbl&gt;, inso &lt;dbl&gt;</code></pre>
 <p>También podemos <strong>indicarle un rango de fechas</strong> de la que extraer información.</p>
@@ -722,7 +722,7 @@ Imagen/gráfica 17.3: Margen derecho.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 09-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 18-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
