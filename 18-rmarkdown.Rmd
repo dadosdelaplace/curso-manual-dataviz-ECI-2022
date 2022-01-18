@@ -24,6 +24,8 @@ Scripts usados:
 
 * [**primer_rmarkdown.Rmd**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd): importar/exportar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd>
 
+* [**segundo_rmarkdown.Rmd**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd): importar/exportar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd>
+
 ::::
 
 Si se tuvieran que destacar una lista **fortalezas** de `R` frente a `Python`, creo que dos estarían en los primeros puestos. La primera sería las opciones de visualización y procesamiento de datos (y su sencillez). Y la segunda, para mí, es sin duda sus <mark>**opciones para generar informes**</mark>, incluso <mark>**libros, webs, apuntes y hasta diapositivas**</mark> (tienes algunos de los paquetes en la lista de recursos). Y la base de todos ellos es el paquete `{rmarkdown}`.

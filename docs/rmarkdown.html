@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 18 Contando los datos: rmarkdown | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd  Si se tuvieran que destacar una...">
+<meta name="description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd segundo_rmarkdown.Rmd:...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 18 Contando los datos: rmarkdown | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd  Si se tuvieran que destacar una...">
+<meta property="og:description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd segundo_rmarkdown.Rmd:...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 18 Contando los datos: rmarkdown | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd  Si se tuvieran que destacar una...">
+<meta name="twitter:description" content="Scripts usados: primer_rmarkdown.Rmd: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd segundo_rmarkdown.Rmd:...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -93,9 +93,8 @@
 <div class="blackbox">
 <p>Scripts usados:</p>
 <ul>
-<li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd"><strong>primer_rmarkdown.Rmd</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd</a>
-</li>
+<li><p><a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd"><strong>primer_rmarkdown.Rmd</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/primer_rmarkdown.Rmd</a></p></li>
+<li><p><a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd"><strong>segundo_rmarkdown.Rmd</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd</a></p></li>
 </ul>
 </div>
 <p>Si se tuvieran que destacar una lista <strong>fortalezas</strong> de <code>R</code> frente a <code>Python</code>, creo que dos estarían en los primeros puestos. La primera sería las opciones de visualización y procesamiento de datos (y su sencillez). Y la segunda, para mí, es sin duda sus <mark><strong>opciones para generar informes</strong></mark>, incluso <mark><strong>libros, webs, apuntes y hasta diapositivas</strong></mark> (tienes algunos de los paquetes en la lista de recursos). Y la base de todos ellos es el paquete <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>.</p>
