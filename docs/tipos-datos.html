@@ -120,44 +120,44 @@
 <li>[ ] Variables de tipo fecha</li>
 </ul>
 <p>Probablemente el dato <strong>más sencillo y obvio</strong> de entender sean los datos numéricos, datos que ya hemos usado en nuestros primeros pasos como calculadora.</p>
-<div class="sourceCode" id="cb348"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>En el código anterior, tanto <code>a</code> como <code>b</code>, como la suma <code>a + b</code>, son de <mark><strong>tipo numérico</strong></mark>, algo que podemos comprobar con la función <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> (nos devuelve <em>numeric</em>).</p>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Clase de las variables</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
 <p>También podemos comprobar su naturaleza con <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code>, que nos devuelve la naturaleza del dato tal cual es guardada en <code>R</code>.</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb391"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Topología interna</span>
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
-<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
-<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
 <p>Aunque no es especialmente relevante profundizar en ello de momento, fíjate que ambas órdenes combinadas nos dicen que las variables son de tipo numérico pero concretamente de tipo <mark><strong>double</strong></mark>: dichas variables son entendidas internamente como números con decimales (aunque no los veamos), lo que en <strong>matemáticas se llaman números reales</strong> (por curiosidad: el término <em>double</em> viene de lenguajes de programación antiguos como <code>C</code>, que significa «doble precisión», para indicarle que reserve 8 bytes - 64 bits - de memoria). Durante el curso no distinguiremos entre distintos tipos de números, para nosotros serán siempre de clase <em>numeric</em> y de tipo <em>double</em>, pero podríamos definir números enteros o <em>integer</em> (sin decimales, ahorrando huecos en memoria).</p>
-<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Dato numérico (entero)</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1L</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "integer"</code></pre>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "integer"</code></pre>
 <p>Con los <mark><strong>datos numéricos</strong></mark> podemos realizar todas las <mark><strong>operaciones</strong></mark> que se nos ocurriría hacer en una <strong>calculadora</strong>, como sumar (<code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>), restar (<code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code>), multiplicar (<code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code>), dividir (<code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>), raíz cuadrada (<code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>), valor absoluto (<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>), elevar al cuadrado (<code>^2</code>), elevar al cubo (<code>^3</code>), etc.</p>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos dos variables numéricas</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span>
@@ -165,25 +165,25 @@
 <span class="co"># Suma y resta</span>
 <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
 <pre><code>## [1] -1</code></pre>
-<div class="sourceCode" id="cb368"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">-</span> <span class="va">b</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb370"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Multiplicación y división</span>
 <span class="va">a</span> <span class="op">*</span> <span class="va">b</span></code></pre></div>
 <pre><code>## [1] -2</code></pre>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">/</span> <span class="va">b</span></code></pre></div>
 <pre><code>## [1] -0.5</code></pre>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Raíz cuadrada</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Potencias</span>
 <span class="va">a</span><span class="op">^</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">b</span><span class="op">^</span><span class="fl">3</span></code></pre></div>
 <pre><code>## [1] -8</code></pre>
 </div>
@@ -198,19 +198,19 @@
 <li>[ ] Variables de tipo fecha</li>
 </ul>
 <p>Pero no solo de números viven los datos: imagina que además de la edad de una persona queremos guardar su nombre.</p>
-<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">32</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="st">"Javier"</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">edad</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "numeric"</code></pre>
-<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">edad</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
-<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb419"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">nombre</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
-<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">nombre</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 <p>Fíjate que ahora tenemos en <code>nombre</code> una variable de tipo <em>character</em>, es decir, una cadena de texto (conocido en otros lenguajes como <em>string</em> o <em>char</em>): <strong>letras y caracteres entre comillas</strong>.</p>
@@ -219,31 +219,31 @@
 <span class="header-section-number">5.2.1</span> Nuestra primera función: paste<a class="anchor" aria-label="anchor" href="#nuestra-primera-funci%C3%B3n-paste"><i class="fas fa-link"></i></a>
 </h3>
 <p>Las <mark><strong>cadenas de texto</strong></mark> son un tipo especial de dato, con los que obviamente no podremos hacer operaciones aritméticas, pero si podemos hacer operaciones propias de cadenas de texto como puede ser la <mark><strong>función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code></strong></mark>. Dicha función nos permite <strong>pegar dos cadenas de caracteres</strong>, decidiendo que caracter queremos que vaya entre palabra con el argumento <code>sep =</code>.</p>
-<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombre</span> <span class="op">&lt;-</span> <span class="st">"Javier"</span>
 <span class="va">apellido</span> <span class="op">&lt;-</span> <span class="st">"Álvarez"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># todo junto</span></code></pre></div>
 <pre><code>## [1] "JavierÁlvarez"</code></pre>
-<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="co"># separados por un espacio</span></code></pre></div>
 <pre><code>## [1] "Javier Álvarez"</code></pre>
-<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb427"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">"."</span><span class="op">)</span> <span class="co"># separados por un punto .</span></code></pre></div>
 <pre><code>## [1] "Javier.Álvarez"</code></pre>
 <p>Si queremos pegar cadenas de texto sin ningún tipo de caracter, existe una forma más abreviada y limpia de ejecutar la orden, usando la <mark><strong>función <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code></strong></mark></p>
-<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Son equivalentes</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># todo junto</span></code></pre></div>
 <pre><code>## [1] "JavierÁlvarez"</code></pre>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span><span class="op">)</span> <span class="co"># todo junto sin nada separando</span></code></pre></div>
 <pre><code>## [1] "JavierÁlvarez"</code></pre>
 <p>Cuando hemos ejecutado <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> estamos ejecutando lo que se conoce como una <mark><strong>función</strong></mark>: una palabra reservada que representa un <strong>conjunto de órdenes</strong>, y que se ejecuta a partir de unos <mark><strong>argumentos de entrada</strong></mark>. En el caso de la función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>, los argumentos serán las cadenas de texto que queremos copiar, y un <strong>argumento opcional</strong> llamado <code>sep</code>, que podemos darle un valor en concreto o dejarlo sin especificar. Lo que hará <code>R</code> será tomar su <mark><strong>valor por defecto</strong></mark> igual a <code>sep = " "</code> (por defecto, la función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> pega cadenas de texto con un espacio entre ellas). Prueba a ejecutar <code><a href="https://rdrr.io/r/base/paste.html">? paste</a></code> en consola para ver las opciones en el <strong>panel de ayuda</strong>.</p>
-<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Son equivalentes</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Javier Álvarez"</code></pre>
-<div class="sourceCode" id="cb400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellido</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Javier Álvarez"</code></pre>
 </div>
@@ -252,28 +252,28 @@
 <span class="header-section-number">5.2.2</span> Nuestro primer paquete: glue<a class="anchor" aria-label="anchor" href="#nuestro-primer-paquete-glue"><i class="fas fa-link"></i></a>
 </h3>
 <p>Otra <strong>forma más intuitiva de trabajar con textos y variables numéricas</strong> es usar el paquete <a href="https://github.com/tidyverse/glue">glue</a>, que nos permite pegar cadenas de texto a variables numéricas de <strong>forma simbólica</strong>.</p>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"glue"</span><span class="op">)</span> <span class="co"># solo la primera vez</span></code></pre></div>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span></code></pre></div>
 <p>Recuerda que <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> es solo necesario la primera que «compramos el libro»: nos bajamos una serie de archivos a nuestro ordenador. Una vez que hemos comprado el libro, cada vez que queramos usarlo bastará con indicarle que nos traiga ese libro concreto con <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <p>El paquete <a href="https://github.com/tidyverse/glue">glue</a> nos permite pegar de una forma mucho más legible cadenas de texto</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ejemplo 1</span>
 <span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">32</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {edad} años"</span><span class="op">)</span></code></pre></div>
 <pre><code>## La edad es de 32 años</code></pre>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"La edad es de"</span>, <span class="va">edad</span>, <span class="st">"años"</span><span class="op">)</span> <span class="co"># equivalente</span></code></pre></div>
 <pre><code>## [1] "La edad es de 32 años"</code></pre>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ejemplo 2</span>
 <span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">32</span>
 <span class="va">unidades</span> <span class="op">&lt;-</span> <span class="st">"años"</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {edad} {unidades}"</span><span class="op">)</span></code></pre></div>
 <pre><code>## La edad es de 32 años</code></pre>
 <p>También podemos hacer uso de dicha función sin tener los valores numéricos previamente guardados en variables.</p>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra forma sin definir variables a priori</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {32} años"</span><span class="op">)</span></code></pre></div>
 <pre><code>## La edad es de 32 años</code></pre>
@@ -298,19 +298,19 @@
 <code>FALSE</code> (guardado internamente como un <code>0</code>).</li>
 </ul>
 <p>Este tipo de variables, también conocidas como <mark><strong>variables binarias (solo dos valores) o booleanas</strong></mark>, son la base de la programación ya que cada bit de nuestro ordenador puede guardar un <code>1</code> o un <code>0</code>.</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">soltero</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># ¿Es soltero? --&gt; SÍ</span>
 <span class="va">carnet_conducir</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span> <span class="co"># ¿Tiene carnet de conducir? --&gt; NO</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">soltero</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "logical"</code></pre>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">soltero</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "logical"</code></pre>
-<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">carnet_conducir</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "logical"</code></pre>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">carnet_conducir</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "logical"</code></pre>
 <p>Ahora nuestas variables son guardadas como <em>logical</em>, y pueden tomar los valores <code>TRUE/FALSE</code>, aunque internamente son guardados como <code>1/0</code>. Es importante entender que <mark><strong>no son variables de texto</strong></mark>:</p>
@@ -320,42 +320,42 @@
 <li>
 <code>TRUE</code> es una variable lógica</li>
 </ul>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Texto</span>
 <span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">"TRUE"</span>
 <span class="va">texto</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## Error in texto + 1: argumento no-numérico para operador binario</code></pre>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Lógica</span>
 <span class="va">logica</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span>
 <span class="va">logica</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Estos valores suelen ser resultado de evaluar <mark><strong>condiciones lógicas</strong></mark>. Por ejemplo, imaginemos que queremos comprobar si una persona está soltero o no, y si tiene carnet de conducir o no. Basta con que ejecutemos la orden <code>soltero == TRUE</code>, que nos devolverá <code>TRUE</code> si está soltero, y <code>FALSE</code> en caso contrario. De igual manera podremos hacer <code>carnet_conducir == TRUE</code>. <mark><strong>IMPORTANTE</strong></mark>: cuando queremos <strong>comparar si un elemento es igual a otro</strong>, usaremos el operador de comparación <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>, pudiendo usar también su opuesto <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code> («distinto de»).</p>
-<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">soltero</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">soltero</span> <span class="op">!=</span> <span class="cn">TRUE</span> <span class="co"># igual que soltero == FALSE</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">carnet_conducir</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">carnet_conducir</span> <span class="op">!=</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Por el mismo razonamiento podemos <mark><strong>comparar si una variable numérica o de tipo caracter</strong></mark> es igual o distinto a un valor dado, incluso para las numéricas podemos <strong>comparar si son menores o mayores</strong> que un número.</p>
 <p>¿Tiene la persona menos de 32 años? ¿Tiene justo 32 años? ¿Tiene 32 años o más?</p>
-<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">32</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">==</span> <span class="fl">32</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;=</span> <span class="fl">32</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>¿La persona se llama Carlos?</p>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombre</span> <span class="op">==</span> <span class="st">"Carlos"</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Fíjate que para comparaciones tenemos «igual a» <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> frente distinto <code><a href="https://rdrr.io/r/base/Comparison.html">!=</a></code>, pero también comparaciones de orden como <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;=</a></code>, <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> o <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;=</a></code>. Las <mark><strong>condiciones lógicas pueden ser combinadas</strong></mark>, principalmente de dos maneras:</p>
@@ -364,21 +364,21 @@
 <li><p><strong>Unión</strong>: basta con que una de las condiciones concatenadas se cumpla (conjunción <code>o</code>, operador <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>) para devolver un <code>TRUE</code>.</p></li>
 </ul>
 <p>Por ejemplo, podríamos preguntarnos si la persona tiene más de 32 años y está soltero (AMBAS deben cumplirse).</p>
-<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">&amp;</span> <span class="va">soltero</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Equivalente (al ser soltero un valor ya de por si lógico)</span>
 <span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">&amp;</span> <span class="va">soltero</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Vemos que el resultado es <code>FALSE</code> ya que solo se cumple una de las condiciones: devolvería <code>TRUE</code> si preguntamos si tiene más de 30 años y está soltero, o si solo pedimos una de las dos condiciones (¿está soltero y/o tiene más de 32 años?).</p>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">|</span> <span class="va">soltero</span> <span class="co"># nos sirve con que alguna se cumpla</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">32</span> <span class="op">&amp;</span> <span class="va">soltero</span> <span class="co"># deben cumplirse ambas</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&gt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">soltero</span> <span class="co"># deben cumplirse ambas</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
@@ -393,116 +393,116 @@
 <li>[X] Variables de tipo fecha</li>
 </ul>
 <p>Por último, vamos a ver un tipo de datos muy especial: los <mark><strong>datos de tipo fecha</strong></mark>. Una fecha podría ser a priori una simple cadena de texto <code>"2021-04-21"</code> pero podemos usar la función <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> para que <code>R</code> entienda que esa cadena de texto representa un instante temporal. Fíjate la diferencia entre una fecha en texto y una fecha con <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>.</p>
-<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cadena de texto</span>
 <span class="va">fecha_char</span> <span class="op">&lt;-</span> <span class="st">"2021-04-21"</span>
 <span class="va">fecha_char</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## Error in fecha_char + 1: argumento no-numérico para operador binario</code></pre>
-<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha, mostrada como un texto pero guardada internamente como un número</span>
 <span class="va">fecha_date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="va">fecha_char</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">)</span>
 <span class="va">fecha_date</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## [1] "2021-04-22"</code></pre>
 <p>En el momento en que convertimos la cadena de texto a fecha, aunque se visualice como un texto, internamente es un número, por lo que podemos restar fechas (días entre ambas), <strong>podemos sumar números a fechas (fecha días después)</strong>, etc. Como ya hemos dicho, <strong>las fechas y momentos temporales no serán meras cadenas de caracter sino que tienen clases especiales asociadas</strong>. Las fechas serán guardadas internamente como el <strong>número de días transcurridos desde el 1 de enero de 1970</strong>, y las horas como <strong>número de segundos desde el 1 de enero de 1970</strong> (para la clase <code>POSIXct</code>) o una lista de segundos, minutos y horas (para la clase <code>POSIXlt</code>).</p>
 <p>¿Cómo <mark><strong>obtener automáticamente la fecha de hoy</strong></mark>? La función <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date()</a></code> nos devuelve directamente la fecha y hora en el momento de la ejecución de la orden.</p>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">fecha</span></code></pre></div>
 <pre><code>## [1] "2022-01-22"</code></pre>
-<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">-</span> <span class="fl">7</span> <span class="co"># una semana antes</span></code></pre></div>
 <pre><code>## [1] "2022-01-15"</code></pre>
-<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># de clase fecha</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
 <p>Para <mark><strong>convertir una cadena de texto a fecha</strong></mark>, basta usar la función <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code>, pasándole como argumento la fecha en formato <code>"yyyy-mm-dd"</code> por defecto.</p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2021-03-10"</span><span class="op">)</span> <span class="co"># formato por defecto</span></code></pre></div>
 <pre><code>## [1] "2021-03-10"</code></pre>
 <p>Si <strong>introducimos otro tipo de formato</strong>, debemos especificárselo en un segundo argumento, para <code>R</code> sepa el formato de fecha que le estamos pasando</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"10-03-2020"</span>, <span class="st">"%d-%m-%Y"</span><span class="op">)</span> <span class="co"># con día-mes-año (4 cifras)</span></code></pre></div>
 <pre><code>## [1] "2020-03-10"</code></pre>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"10-03-20"</span>, <span class="st">"%d-%m-%y"</span><span class="op">)</span>  <span class="co"># con día-mes-año (2 cifras)</span></code></pre></div>
 <pre><code>## [1] "2020-03-10"</code></pre>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"03-10-2020"</span>, <span class="st">"%m-%d-%Y"</span><span class="op">)</span> <span class="co"># con mes-día-año (4 cifras)</span></code></pre></div>
 <pre><code>## [1] "2020-03-10"</code></pre>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"Octubre 21, 1995 21:24"</span>, <span class="st">"%B %d, %Y %H:%M"</span><span class="op">)</span> <span class="co"># fecha escrita</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p> </p>
 <p><strong><span style="color: #dc3545;">ERROR: sin pasar a fecha no se puede operar</span></strong></p>
 <p>Si tenemos una fecha como caracter, nunca podremos hacer operaciones (por ejemplo, restarle una unidad temporal, en este caso un día).</p>
-<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"2021-03-10"</span> <span class="op">-</span> <span class="fl">1</span> <span class="co"># error</span></code></pre></div>
 <pre><code>## Error in "2021-03-10" - 1: argumento no-numérico para operador binario</code></pre>
 <p>Fíjate la diferencia cuando lo convertimos en fecha</p>
-<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2021-03-10"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span> <span class="co"># día previo</span>
 <span class="va">fecha</span></code></pre></div>
 <pre><code>## [1] "2021-03-09"</code></pre>
 <p> </p>
 <p>Dentro del entorno del paquete <a href="https://lubridate.tidyverse.org">lubridate</a> tenemos bastantes funciones útiles para trabajar con fechas como las siguientes</p>
 <p><a href="https://lubridate.tidyverse.org/" target="_blank"><img src="img/lubridate.png" width="100%" style="display: block; margin: auto;"></a></p>
-<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"lubridate"</span><span class="op">)</span> <span class="co"># solo la primera vez</span></code></pre></div>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb510"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ymd_hms</a></span><span class="op">(</span><span class="st">"2017-11-28T14:02:00"</span><span class="op">)</span> <span class="co"># convertir a fecha una cadena año-mes-día + hora</span></code></pre></div>
 <pre><code>## [1] "2017-11-28 14:02:00 UTC"</code></pre>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb512"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">ydm_hms</a></span><span class="op">(</span><span class="st">"2017-22-12 10:00:00"</span><span class="op">)</span> <span class="co"># convertir a fecha una cadena año-día-mes + hora</span></code></pre></div>
 <pre><code>## [1] "2017-12-22 10:00:00 UTC"</code></pre>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb514"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd_hms.html">dmy_hms</a></span><span class="op">(</span><span class="st">"1 Jan 2017 23:59:59"</span><span class="op">)</span> <span class="co"># convertir a fecha una cadena textual de fecha + hora</span></code></pre></div>
 <pre><code>## [1] "2017-01-01 23:59:59 UTC"</code></pre>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb516"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="st">"July 4th, 2000"</span><span class="op">)</span> <span class="co"># convertir a fecha una cadena textual de fecha</span></code></pre></div>
 <pre><code>## [1] "2000-07-04"</code></pre>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20170131</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2017-01-31"</code></pre>
 <p>Además el paquete nos proporciona <strong>herramientas para extraer la fecha y hora actuales</strong> con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">today()</a></code> y <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code></p>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2022-01-22"</code></pre>
-<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-22 17:57:15 CET"</code></pre>
+<pre><code>## [1] "2022-01-22 18:16:46 CET"</code></pre>
 <p>También tenemos disponibles en dicho paquete funciones para extraer facilmente algunas variables temporales como el <strong>día de la semana, el mes o el cuatrimestre</strong>, con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/year.html">year()</a></code>, <code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months()</a></code>, <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">day()</a></code> o <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday()</a></code> (día de la semana).</p>
-<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/year.html">year</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2022</code></pre>
-<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">day</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 22</code></pre>
-<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha</span>, week_start <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Día de la semana (empezando por el lunes)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 17</code></pre>
-<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<pre><code>## [1] 18</code></pre>
+<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/minute.html">minute</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 57</code></pre>
-<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/second.html">second</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 15.93724</code></pre>
-<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<pre><code>## [1] 46.16227</code></pre>
+<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># Número de semana (del año)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Al igual que podemos realizar operaciones aritméticas sencillas con las fechas, también podemos <strong>realizar comparaciones</strong>, por ejemplo, si el día actual es menor o mayor que otra fecha dada.</p>
-<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">fecha_actual</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">20170131</span><span class="op">)</span> <span class="co"># Actual vs 2017-01-31</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha_actual</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">ymd</a></span><span class="op">(</span><span class="fl">21000131</span><span class="op">)</span> <span class="co"># Actual vs 2100-01-31</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p> </p>
@@ -518,16 +518,16 @@
 <p> </p>
 <p><strong><span style="color: #20935E;">Convertir tipos de datos</span></strong></p>
 <p>A veces la lectura de variables numéricas de nuestros archivos puede hacer que un número, por ejemplo <code>1</code>, sea leído como la cadena de texto <code>"1"</code>, con la que no podemos operar como un número. Las funciones <code><a href="https://rdrr.io/r/base/numeric.html">as.numeric()</a></code>, <code><a href="https://rdrr.io/r/base/character.html">as.character()</a></code> y <code><a href="https://rdrr.io/r/base/logical.html">as.logical()</a></code> nos permiten convertir una variable en tipo numérico, caracter o lógico, respectivamente.</p>
-<div class="sourceCode" id="cb509"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb544"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"1"</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## Error in "1" + 1: argumento no-numérico para operador binario</code></pre>
-<div class="sourceCode" id="cb511"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">"1"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb513"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1"</code></pre>
-<div class="sourceCode" id="cb515"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb550"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE</code></pre>
 <p> </p>
@@ -542,7 +542,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb517"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">32</span> <span class="co"># tipo numeric</span>
 <span class="va">nombre</span> <span class="op">&lt;-</span> <span class="st">"Javier"</span> <span class="co"># tipo caracter</span>
 <span class="va">hermanos</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span> <span class="co"># tipo hermanos</span>
@@ -554,7 +554,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb518"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Apellidos</span>
 <span class="va">apellidos</span> <span class="op">&lt;-</span> <span class="st">"Álvarez Liébana"</span>
 
@@ -562,7 +562,7 @@
 <span class="va">nombre_completo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"{nombre} {apellidos}"</span><span class="op">)</span>
 <span class="va">nombre_completo</span></code></pre></div>
 <pre><code>## Javier Álvarez Liébana</code></pre>
-<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra forma</span>
 <span class="va">nombre_completo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nombre</span>, <span class="va">apellidos</span><span class="op">)</span>
 <span class="va">nombre_completo</span></code></pre></div>
@@ -574,7 +574,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb557"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dia_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">day</a></span><span class="op">(</span><span class="va">fecha_nacimiento</span><span class="op">)</span>
 <span class="va">mes_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/month.html">month</a></span><span class="op">(</span><span class="va">fecha_nacimiento</span><span class="op">)</span>
 <span class="va">a_nacimiento</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/year.html">year</a></span><span class="op">(</span><span class="va">fecha_nacimiento</span><span class="op">)</span>
@@ -588,7 +588,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">days</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">fecha_nacimiento</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "11822d 0H 0M 0S"</code></pre>
 <!-- tocstop -->
@@ -598,11 +598,11 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb526"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Se tienen que cumplir todas</span>
 <span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">fecha_nacimiento</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1990-01-01"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">hermanos</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb528"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># otra forma</span>
 <span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">30</span> <span class="op">&amp;</span> <span class="va">fecha_nacimiento</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1990-01-01"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">hermanos</span> <span class="op">==</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -613,7 +613,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb565"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Se tienen que cumplir todas</span>
 <span class="va">edad</span> <span class="op">&lt;</span> <span class="fl">30</span> <span class="op">|</span> <span class="va">fecha_nacimiento</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1990-01-01"</span><span class="op">)</span> <span class="op">|</span> <span class="va">hermanos</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
@@ -624,24 +624,24 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb532"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb567"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Podemos sumar porque es fecha</span>
 <span class="va">fecha_post</span> <span class="op">&lt;-</span> <span class="va">fecha_nacimiento</span> <span class="op">+</span> <span class="fl">11</span>
 <span class="va">fecha_post</span></code></pre></div>
 <pre><code>## [1] "1989-09-21"</code></pre>
-<div class="sourceCode" id="cb534"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb569"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Semana del año</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">fecha_post</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 38</code></pre>
-<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb571"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Día de la semana (versión americana, empiezan el domingo)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha_post</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Día de la semana (versión española)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha_post</span>, week_start <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb540"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb575"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Día de la semana en texto</span>
 <span class="fu"><a href="https://rdrr.io/r/base/weekday.POSIXt.html">weekdays</a></span><span class="op">(</span><span class="va">fecha_post</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Thursday"</code></pre>
@@ -652,7 +652,7 @@
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb542"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb577"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">5</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">7</span>
 
@@ -660,11 +660,11 @@
 <span class="va">c</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="va">b</span>
 <span class="va">c</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb544"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Comparaciones</span>
 <span class="va">a</span> <span class="op">==</span> <span class="va">b</span> <span class="co"># ¿a = b?</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;</span> <span class="va">b</span> <span class="co"># ¿a &lt; b?</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <!-- tocstop -->

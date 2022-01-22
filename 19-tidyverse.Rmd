@@ -42,10 +42,12 @@ library(tidyverse)
 knitr::include_graphics("img/flujo_tidyverse.png")
 ```
 
-El <mark>**entorno `{tidyverse}`**</mark> es una de las **herramientas más importantes en el manejo de datos en `R`**, una **colección de paquetes** pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una **misma filosofía y gramática**. Esta sección pretende ser una **introducción a dicho entorno**, y lo haremos principalmente con el conjunto de datos `starwars`, del paquete `{dplyr}` (ya cargado en `{tidyverse}`).
-
+El <mark>**entorno `{tidyverse}`**</mark> es una de las **herramientas más importantes en el manejo de datos en `R`**, una **colección de paquetes** pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una **misma filosofía y gramática**. 
 
 ## Conjunto de starwars
+
+Esta sección pretende ser una **introducción a dicho entorno**, y lo haremos principalmente con el conjunto de datos `starwars`, del paquete `{dplyr}` (ya cargado en `{tidyverse}`).
+
 
 ```{r starwars-logo, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://swapi.dev', out.width = '70%'}
 knitr::include_graphics("img/starwars.jpg")
@@ -84,7 +86,7 @@ Con `glimpse(starwars)` podemos obtener una <mark>**visión global de las variab
 glimpse(starwars)
 ```
 
-Los datos también podemos verlos escribiendo el nombre de la tabla en la consola (recuerda que si es un `tibble`, para evitar saturar la consola, te saca un extracto, no todas las columnas y filas) o bien con la **función `print()`**, indicándole **número de filas** (`n = 15` por ejemplo) y **número de columnas** (`width = Inf` si queremos mostrar todas).
+Los <mark>**datos también podemos verlos**</mark> escribiendo el nombre de la tabla en la consola (recuerda que si es un `tibble`, para evitar saturar la consola, te saca un extracto, no todas las columnas y filas) o bien con la **función `print()`**, indicándole **número de filas** (`n = 15` por ejemplo) y **número de columnas** (`width = Inf` si queremos mostrar todas).
 
 ```{r}
 # Imprimir personalizado
@@ -93,7 +95,7 @@ print(starwars, n = 5, width = Inf)
 
 Fíjate que las **3 últimas variables son de tipo lista** (echa un vistazo a [Listas](#listas)). Por ejemplo, en `starwars$films` se **guardan para cada personaje la colección de películas de la saga** en las que aparece (algunos tendrán 1 solo nombre, otros 7).
 
-```{r dplyr, echo = FALSE,  out.width = "80%", fig.align = "center", fig.cap = "Cheet sheet de las opciones del paquete dplyr para la manipulación de datos extraída de <https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf>"}
+```{r dplyr, echo = FALSE,  out.width = "90%", fig.align = "center", fig.cap = "Cheet sheet de las opciones del paquete dplyr para la manipulación de datos extraída de <https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf>"}
 knitr::include_graphics("./img/dplyr.png")
 ``` 
 

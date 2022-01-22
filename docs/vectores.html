@@ -106,7 +106,7 @@
 <span class="header-section-number">6.1</span> Vectores numéricos<a class="anchor" aria-label="anchor" href="#vectores-num%C3%A9ricos"><i class="fas fa-link"></i></a>
 </h2>
 <p>La forma más sencilla de <strong>crear un vector</strong> en <code>R</code> es con el comando <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> (de <strong>concatenar elementos</strong>), y basta con introducir sus elementos entre paréntesis, y separados por comas. Voy a crear el <strong>vector con las 4 edades de los miembros de mi familia</strong>.</p>
-<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">27</span>, <span class="fl">60</span>, <span class="fl">61</span><span class="op">)</span>
 <span class="va">edades</span></code></pre></div>
 <pre><code>## [1] 32 27 60 61</code></pre>
@@ -118,11 +118,11 @@ Imagen/gráfica 6.1: Vector en el enviroment
 </p>
 </div>
 <p>La <mark><strong>longitud de un vector</strong></mark> se puede calcular con el comando <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> (nos devolverá el número de elementos de la variable que le pasemos como argumento).</p>
-<div class="sourceCode" id="cb550"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">edades</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Además podemos <mark><strong>concatenar a su vez vectores</strong></mark> (uno tras otro): vamos a concatenar el vector <code>edades</code> consigo mismo, y añadiéndole al final un 8.</p>
-<div class="sourceCode" id="cb552"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb587"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">edades</span>, <span class="va">edades</span>, <span class="fl">8</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 32 27 60 61 32 27 60 61  8</code></pre>
 <p>Esta última concatenación lo que nos ha dado son, primero, los cuatro elementos que ya teníamos en <code>edades</code>, después de nuevo los cuatro elementos, y por último un 8.</p>
@@ -133,44 +133,44 @@ Imagen/gráfica 6.1: Vector en el enviroment
 </h2>
 <p>Muchas veces nos gustaría <mark><strong>crear vectores de una forma mucho más rápida</strong></mark>. Supongamos que queremos un vector de identificadores de números, desde el 1 hasta el 21. Si construyéramos el vector como antes, tendríamos que ejecutar el comando <code><a href="https://rdrr.io/r/base/c.html">c(1, 2, 3, 4, 5, ...)</a></code> hasta llegar al número 21. ¿Un poco largo, no?</p>
 <p>Hay un atajo: el comando <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> nos permite crear una <mark><strong>secuencia desde un elemento inicial hasta un elemento final</strong></mark>, avanzando de uno en uno.</p>
-<div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">21</span><span class="op">)</span> <span class="co"># secuencia desde 1 hasta 21 de uno en uno</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21</code></pre>
 <p>Es importante que no perdamos el foco: <mark><strong>programar es similar a escribir en un idioma</strong></mark>, por lo que si hay algo que se puede decir de una forma más limpia y que se entienda mejor, ¿por qué no usarlo? Siempre que queramos definir secuencias entre dos números naturales (por ejemplo, entre <code>1</code> y un valor <code>n</code>), cuya distancia entre elementos consecutivos sea uno, el comando <code>1:n</code> nos devuelve lo mismo que la orden <code><a href="https://rdrr.io/r/base/seq.html">seq(1, n)</a></code>. Además, si el elemento inicial es mayor que el final, <code>R</code> entenderá solo que la secuencia la queremos <strong>decreciente</strong>.</p>
-<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">21</span>
 <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="co"># secuencia desde 1 hasta n (21) de uno en uno</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21</code></pre>
-<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">n</span><span class="op">:</span><span class="fl">1</span> <span class="co"># secuencia decreciente</span></code></pre></div>
 <pre><code>##  [1] 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1</code></pre>
 <p> </p>
 <p>También podemos definir <strong>otro tipo de distancia entre dos elementos consecutivos</strong> (distancia conocida como <mark><strong>paso de discretización</strong></mark>), por ejemplo de 0.5 en 0.5, o de 1.7 en 1.7</p>
-<div class="sourceCode" id="cb560"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb595"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="co"># secuencia desde 1 a 10 de 0.5 en 0.5</span></code></pre></div>
 <pre><code>##  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
 ## [16]  8.5  9.0  9.5 10.0</code></pre>
-<div class="sourceCode" id="cb562"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb597"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">21</span>, by <span class="op">=</span> <span class="fl">1.7</span><span class="op">)</span> <span class="co"># secuencia desde 1 a 21 de 1.7 en 1.7</span></code></pre></div>
 <pre><code>##  [1]  1.0  2.7  4.4  6.1  7.8  9.5 11.2 12.9 14.6 16.3 18.0 19.7</code></pre>
 <p>Otras veces nos interesará definir una secuencia entre un valor inicial y un valor final, pero nos dará igual la distancia entre cada elemento: solo nos importa que tenga un <mark><strong>número concreto de elementos</strong></mark> (y que sea <code>R</code> el que decida la distancia entre elementos consecutivos para conseguirlo).</p>
-<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb599"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">50</span>, l <span class="op">=</span> <span class="fl">11</span><span class="op">)</span> <span class="co"># secuencia desde 1 a 50 de longitud 11</span></code></pre></div>
 <pre><code>##  [1]  1.0  5.9 10.8 15.7 20.6 25.5 30.4 35.3 40.2 45.1 50.0</code></pre>
-<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb601"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">50</span>, l <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="co"># secuencia desde 1 a 50 de longitud 8</span></code></pre></div>
 <pre><code>## [1]  1  8 15 22 29 36 43 50</code></pre>
 <p> </p>
 <p>Otro atajo que podemos usar para definir secuencias de números con un patrón es definir <mark><strong>vectores de elementos repetidos</strong></mark>, por ejemplo un vector lleno de ceros. La función <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> nos permite repetir un elemento un número fijado de veces.</p>
-<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb603"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># vector de 7 ceros</span></code></pre></div>
 <pre><code>## [1] 0 0 0 0 0 0 0</code></pre>
 <p>No solo podemos repetir un número sino que podemos <strong>repetir vectores enteros</strong>.</p>
-<div class="sourceCode" id="cb570"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span> <span class="co"># repetimos el vector c(0, 1, 2) 4 veces</span></code></pre></div>
 <pre><code>##  [1] 0 1 2 0 1 2 0 1 2 0 1 2</code></pre>
 <p>Esa repetición además podemos definirla también de forma <strong>intercalada</strong>: en lugar de repetir <code><a href="https://rdrr.io/r/base/c.html">c(0, 1, 2)</a></code> cuatro veces seguidas, queremos cuatro 0, después cuatro 1, y después cuatro 2.</p>
-<div class="sourceCode" id="cb572"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="co"># cuatro 0, luego cuatro 1, luego cuatro 2</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 1 1 1 1 2 2 2 2</code></pre>
 </div>
@@ -180,33 +180,33 @@ Imagen/gráfica 6.1: Vector en el enviroment
 </h2>
 <p>Un error común es asociar el concepto de vectores solo a números: un <mark><strong>vector es una colección o concatenación de elementos del mismo tipo</strong></mark> pero no tienen porque ser necesariamente números. Vamos a crear una frase de ejemplo, un vector de 4 elementos de tipo texto (en <code>R</code> se llaman <code>char</code>): <code>"Mi"</code>, <code>"nombre"</code>, <code>"es"</code> <code>"Javier"</code>.</p>
 <p>Como antes, las variables de tipo <code>char</code> o <code>character</code> van entre comillas dobles, ya que es un <mark><strong>cadena de texto</strong></mark>.</p>
-<div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb609"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mi_nombre</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mi"</span>, <span class="st">"nombre"</span>, <span class="st">"es"</span>, <span class="st">"Javier"</span><span class="op">)</span>
 <span class="va">mi_nombre</span></code></pre></div>
 <pre><code>## [1] "Mi"     "nombre" "es"     "Javier"</code></pre>
 <p>Ya tenemos nuestro primer vector de texto de longitud 4. Cuando usamos la función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> con variables diferentes, usábamos <code>sep = ...</code> para decidir el caracter con el que pegamos dichas cadenas texto. Cuando la función <code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code> la aplicamos a un vector de caracteres, decidiremos que <strong>caracter queremos que vaya entre palabra con el argumento <code>collapse =</code></strong>.</p>
-<div class="sourceCode" id="cb576"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">mi_nombre</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="co"># todo junto</span></code></pre></div>
 <pre><code>## [1] "MinombreesJavier"</code></pre>
-<div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb613"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">mi_nombre</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="co"># separados por un espacio</span></code></pre></div>
 <pre><code>## [1] "Mi nombre es Javier"</code></pre>
-<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb615"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">mi_nombre</span>, collapse <span class="op">=</span> <span class="st">"."</span><span class="op">)</span> <span class="co"># separados por un punto .</span></code></pre></div>
 <pre><code>## [1] "Mi.nombre.es.Javier"</code></pre>
-<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb617"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">mi_nombre</span><span class="op">)</span> <span class="co"># todo junto sin nada separando</span></code></pre></div>
 <pre><code>## [1] "Mi"     "nombre" "es"     "Javier"</code></pre>
 <p>Ahora que sabemos lo que es un vector de números, por ejemplo el vector <code>1:7</code> (el conjunto de naturales desde el 1 hasta el 7), podemos definir cadenas de texto que compartan por ejemplo un prefijo (<code>persona_1</code>, <code>persona_2</code>, …)</p>
-<div class="sourceCode" id="cb584"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb619"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"persona"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span> <span class="co"># a la palabra «persona» le pegamos los números del 1 al 7</span></code></pre></div>
 <pre><code>## [1] "persona1" "persona2" "persona3" "persona4" "persona5" "persona6" "persona7"</code></pre>
-<div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"persona"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span> <span class="co"># separado por una barra baja</span></code></pre></div>
 <pre><code>## [1] "persona_1" "persona_2" "persona_3" "persona_4" "persona_5" "persona_6"
 ## [7] "persona_7"</code></pre>
 <p>De igual manera podemos hacer uso del ya conocido paquete <a href="https://github.com/tidyverse/glue">glue</a>, combinando cadenas de texto y vectores numéricos, obteniendo vectores de frases.</p>
-<div class="sourceCode" id="cb588"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span>
 <span class="va">edad</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">:</span><span class="fl">13</span> <span class="co"># edades</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {edad} años"</span><span class="op">)</span></code></pre></div>
@@ -214,7 +214,7 @@ Imagen/gráfica 6.1: Vector en el enviroment
 ## La edad es de 11 años
 ## La edad es de 12 años
 ## La edad es de 13 años</code></pre>
-<div class="sourceCode" id="cb590"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra forma sin definir variables a priori</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"La edad es de {10:13} años"</span><span class="op">)</span></code></pre></div>
 <pre><code>## La edad es de 10 años
@@ -223,18 +223,18 @@ Imagen/gráfica 6.1: Vector en el enviroment
 ## La edad es de 13 años</code></pre>
 <p>¿Y si queremos <mark><strong>pasar todo a mayúscula</strong></mark> o <mark><strong>todo a minúscula</strong></mark>? ¿Y si queremos <mark><strong>sustituir un caracter</strong></mark> (por ejemplo, <code>.</code>) por otro en todos los elementos?</p>
 <p><code>R</code> también nos proporciona algunas funciones muy sencillas (del paquete <code>{base}</code>) de usar para dichas tareas. Aquí un ejemplo de algunas de ellas.</p>
-<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">texto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hola."</span>, <span class="st">"qué"</span>, <span class="st">"ase?"</span>, <span class="st">"todo"</span>, <span class="st">"bien."</span>, <span class="st">"y yo"</span>,
            <span class="st">"que"</span>, <span class="st">"ME"</span>, <span class="st">"ALEGRO"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span> <span class="co"># todo a mayúscula</span></code></pre></div>
 <pre><code>## [1] "HOLA."  "QUÉ"    "ASE?"   "TODO"   "BIEN."  "Y YO"   "QUE"    "ME"    
 ## [9] "ALEGRO"</code></pre>
-<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">texto</span><span class="op">)</span> <span class="co"># todo a minúscula</span></code></pre></div>
 <pre><code>## [1] "hola."  "qué"    "ase?"   "todo"   "bien."  "y yo"   "que"    "me"    
 ## [9] "alegro"</code></pre>
 <p>El paquete <code>{base}</code> también nos permite <mark><strong>buscar y reemplazar patrones</strong></mark> concretos en cadenas de texto (por ejemplo, sustituir toda letra «o» por el caracter «*»), con la función <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code>.</p>
-<div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"o"</span>, <span class="st">"*"</span>, <span class="va">texto</span><span class="op">)</span> <span class="co"># toda "o" en el texto será sustituida por *</span></code></pre></div>
 <pre><code>## [1] "H*la."  "qué"    "ase?"   "t*d*"   "bien."  "y y*"   "que"    "ME"    
 ## [9] "ALEGRO"</code></pre>
@@ -245,35 +245,35 @@ Imagen/gráfica 6.1: Vector en el enviroment
 <span class="header-section-number">6.4</span> Vectores lógicos (TRUE/FALSE)<a class="anchor" aria-label="anchor" href="#vectores-l%C3%B3gicos-truefalse"><i class="fas fa-link"></i></a>
 </h2>
 <p>Antes hemos comentado que las variables lógicas suelen aparecer como resultado de comparaciones de elementos. Por ejemplo, imaginemos ahora que definimos un vector de números <code>x &lt;- c(1.5, -1, 2, 4, 3, -4)</code>. ¿Qué numeros de <code>x</code> son menores que 2? Basta con que ejecutemos la orden <code>x &lt; 2</code>, que nos devolverá <code>TRUE/FALSE</code> en cada hueco, en función de si cumple (<code>TRUE</code>) o no (<code>FALSE</code>) la condición pedida.</p>
-<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb633"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span><span class="op">)</span>
 <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE</code></pre>
 <p>El primer, segundo y sexto elemento del vector son los únicos elementos (estrictamente) menores que <code>2</code>, de ahí que en el primer, segundo y sexto elemento aparezca un <code>TRUE</code> y en el resto un <code>FALSE</code>. Es <strong>importante</strong> recordar que al <strong>evaluar una condición lógica sobre un vector</strong> de longitud <code>n</code>, la <strong>salida sigue siendo un vector</strong> de longitud <code>n</code> pero con valores lógicos.</p>
 <p>Dicha condición lógica puede hacerse con otros operadores como <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;=</a></code>, <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> o <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;=</a></code>.</p>
-<div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb635"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb637"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE  TRUE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb639"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">==</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">!=</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
 <p> </p>
 <p>Al igual que antes, las <strong>condiciones pueden ser combinadas</strong>. Por ejemplo, vamos a calcular qué elementos del vector <code><a href="https://rdrr.io/r/base/c.html">c(1.5, -1, 2, 4, 3, -4)</a></code> sean menores que 3 y además mayores que 0.</p>
-<div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">4</span><span class="op">)</span>
 <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">3</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="co"># Solo los que cumplen ambas condiciones</span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
 <p>De la misma manera podemos comprobar los elementos menores que 2 o mayores que 3 (basta con se que cumple alguna de las condiciones)</p>
-<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb647"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2</span> <span class="op">|</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="co"># Los cumplen al menos una de ellas</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
 </div>
@@ -287,28 +287,28 @@ Imagen/gráfica 6.1: Vector en el enviroment
 <span class="header-section-number">6.5.1</span> NA: not available<a class="anchor" aria-label="anchor" href="#na-not-available"><i class="fas fa-link"></i></a>
 </h3>
 <p>Vamos a crear un <strong>vector de números con datos ausentes</strong> con la orden <code>x &lt;- c(1, NA, 3, NA, NA, 5, 6)</code>: el vector tendrá longitud 7 pero en el segundo, cuarto y quinto elemento tendremos datos faltantes, un lugar que no tenemos relleno (pero que no eliminamos).</p>
-<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb649"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span> <span class="co"># Vector numérico con datos faltante</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># longitud del vector</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb651"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span></code></pre></div>
 <pre><code>## [1]  1 NA  3 NA NA  5  6</code></pre>
 <p>¿Puedes aventurar <mark><strong>qué sucede cuando multiplicamos ese vector por una constante</strong></mark> (por 2, por ejemplo)?</p>
-<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb653"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span> <span class="op">*</span> <span class="va">x</span> <span class="co"># operación aritmética con un vector con NA</span></code></pre></div>
 <pre><code>## [1]  2 NA  6 NA NA 10 12</code></pre>
 <p>Un dato que no tenemos, multiplicado por 2, sigue siendo un dato ausente. Es muy importante para evitar resultados erróneos que entendamos que un <mark><strong>dato ausente no computa en una operación aritmética</strong></mark>, es un <strong>hueco vacío</strong>. Si hacemos la suma del vector, estamos sumando números más datos ausentes, por lo que el resultado final será también un dato ausente. Si tenemos algún dato ausente en nuestro vector, la suma final está a su vez ausente, ¡no podemos saber cuánto vale!</p>
-<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb655"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span> <span class="op">+</span> <span class="fl">3</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p> </p>
 <p>Una manera de <mark><strong>localizar que elementos están ausentes</strong></mark> en nuestrps vectores es con la función <code><a href="https://rdrr.io/r/base/NA.html">is.na()</a></code>, una función que nos devuelve un vector de valores lógico: <code>TRUE</code> si el elemento está ausente y <code>FALSE</code> si no lo está.</p>
-<div class="sourceCode" id="cb622"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb657"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># TRUE si está ausente (NA), FALSE si no lo está.</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
 <p>Dichos <strong>datos ausentes se pueden eliminar</strong> con la función <code><a href="https://rdrr.io/r/stats/na.fail.html">na.omit()</a></code> (aunque a veces lo que nos interesa es que no sea ausente, introduciendo el punto medio entre su valor anterior y su valor posterior, por ejemplo).</p>
-<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb659"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1 3 5 6
 ## attr(,"na.action")
@@ -321,21 +321,21 @@ Imagen/gráfica 6.1: Vector en el enviroment
 <span class="header-section-number">6.5.2</span> NaN: not a number<a class="anchor" aria-label="anchor" href="#nan-not-a-number"><i class="fas fa-link"></i></a>
 </h3>
 <p>Hay un <strong>tipo de dato</strong>, como <mark><strong>resultado de operaciones no permitidas o cuyo resultado es indeterminado</strong></mark>, que en <code>R</code> lo veremos como <code>NaN</code>: <em>not a number</em>, un resultado fruto de una indeterminación, como por ejemplo la operación <code>0/0</code> (cuyo límite no está definido). Importante saber que también existe una forma de denotar al infinito como <code>Inf</code>, siendo el resultado de algunas operaciones como <code>1/0</code>.</p>
-<div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb661"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">/</span><span class="fl">0</span></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
-<div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb663"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">0</span><span class="op">/</span><span class="fl">0</span></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
 <p>De la misma manera que podemos localizar valores <code>NA</code>, tenemos a nuestra disposición las funciones <code>is.infinte()</code> y <code><a href="https://rdrr.io/r/base/is.finite.html">is.nan()</a></code> para detectar que elementos de nuestro vector son <code>Inf</code> o <code>NaN</code>, respectivamente.</p>
-<div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb665"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NA</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="cn">Inf</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="cn">Inf</span>, <span class="cn">NaN</span>, <span class="cn">NA</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb667"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.nan</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb634"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html">is.infinite</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE</code></pre>
 </div>
@@ -362,7 +362,7 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 </h2>
 <p>(haz click en las flechas para ver soluciones)</p>
 <details><p><summary>📝<strong>Ejercicio 1</strong>: modifica el código para crear un vector de nombre <code>vector_num</code> que contenga los números 1, 5 y -7.</summary></p>
-<div class="sourceCode" id="cb636"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">vector_num</span></code></pre></div>
@@ -371,7 +371,7 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb637"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb672"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="op">-</span><span class="fl">7</span><span class="op">)</span>
 <span class="va">vector_num</span></code></pre></div>
@@ -383,7 +383,7 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb639"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb674"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Vector de números</span>
 <span class="va">vector_num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="va">vector_num</span></code></pre></div>
@@ -395,7 +395,7 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Longitud del vector</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vector_num</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
@@ -406,7 +406,7 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definiendo el vector</span>
 <span class="va">vector_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hola"</span>, <span class="st">"me"</span>, <span class="st">"llamo"</span>, <span class="st">"Javier"</span>,
                  <span class="st">"Álvarez"</span>, <span class="st">"Liébana"</span><span class="op">)</span>
@@ -415,33 +415,33 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <span class="va">frase</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">vector_char</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>
 <span class="va">frase</span></code></pre></div>
 <pre><code>## [1] "Hola me llamo Javier Álvarez Liébana"</code></pre>
-<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Añadimos frase</span>
 <span class="fu"><a href="https://rdrr.io/pkg/glue/man/glue.html">glue</a></span><span class="op">(</span><span class="st">"{frase} y tengo 30 años."</span><span class="op">)</span></code></pre></div>
 <pre><code>## Hola me llamo Javier Álvarez Liébana y tengo 30 años.</code></pre>
-<div class="sourceCode" id="cb647"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra forma</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">frase</span>, <span class="st">" y tengo 30 años."</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Hola me llamo Javier Álvarez Liébana y tengo 30 años."</code></pre>
-<div class="sourceCode" id="cb649"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Otra forma</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">frase</span>, <span class="st">"y tengo 30 años."</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Hola me llamo Javier Álvarez Liébana y tengo 30 años."</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 5</strong>: el código inferior crea una secuencia de números, que empieza en <code>-1</code>, que acaba en <code>32</code>, y que va saltando de 2 en 2. Modíficalo para que haga el salto de 3 en 3 y guárdalo en una variable llamada <code>secuencia</code></summary></p>
-<div class="sourceCode" id="cb651"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">32</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p></p>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb652"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb687"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">secuencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">32</span>, by <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="va">secuencia</span></code></pre></div>
 <pre><code>##  [1] -1  2  5  8 11 14 17 20 23 26 29 32</code></pre>
-<div class="sourceCode" id="cb654"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">secuencia</span><span class="op">)</span> <span class="co"># longitud de la secuencia</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <!-- tocstop -->
@@ -451,11 +451,11 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb656"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">secuencia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">32</span>, l <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>
 <span class="va">secuencia</span></code></pre></div>
 <pre><code>##  [1] -1  2  5  8 11 14 17 20 23 26 29 32</code></pre>
-<div class="sourceCode" id="cb658"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">secuencia</span><span class="op">)</span> <span class="co"># longitud de la secuencia</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <!-- tocstop -->
@@ -465,10 +465,10 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">:</span><span class="fl">10</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># secuencia repetida</span></code></pre></div>
 <pre><code>## [1] 3 3 3 3 3 3 3</code></pre>
 <!-- tocstop -->
@@ -478,10 +478,10 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span> <span class="co"># repetimos patrón (1, 2, 3) 5 veces</span></code></pre></div>
 <pre><code>##  [1] 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3</code></pre>
-<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># repetimos patrón alternado</span></code></pre></div>
 <pre><code>##  [1] 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3</code></pre>
 <!-- tocstop -->
@@ -491,17 +491,17 @@ Imagen/gráfica 6.2: Paquete stringr para manejar cadenas de texto más compleja
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">27</span>, <span class="fl">32</span>, <span class="fl">60</span>, <span class="fl">61</span><span class="op">)</span> <span class="co"># en mi caso, por ejemplo</span>
 <span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">20</span> <span class="co"># menos de 20 años</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&gt;=</span> <span class="fl">30</span> <span class="co"># 30 años o más</span></code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb672"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;</span> <span class="fl">40</span> <span class="co"># menos de 40 años</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb674"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&gt;</span> <span class="fl">65</span> <span class="co"># más de 65 años</span></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE</code></pre>
 <!-- tocstop -->

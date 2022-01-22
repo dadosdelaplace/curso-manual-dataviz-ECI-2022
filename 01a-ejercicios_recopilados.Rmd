@@ -29,7 +29,7 @@ Aquí haremos una recopilación de los ejercicios planteados a lo largo del curs
 
 Scripts usados:
 
-* [**script01.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R): toma de contacto.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script01.R>
+* [**script04.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R): toma de contacto.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R>
 ::::
 
 
@@ -247,7 +247,7 @@ No hace falta gastar una línea por cada orden que quieras ejecutar. Tampoco nec
 
 Scripts usados:
 
-* [**script02.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R): tipos de datos y funciones usadas con ellos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R>
+* [**script05.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R): tipos de datos y funciones usadas con ellos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R>
 
 ::::
 
@@ -441,7 +441,7 @@ a < b # ¿a < b?
 
 Scripts usados:
 
-* [**script03.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R): vectores.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script03.R>
+* [**script06.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R): vectores.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script06.R>
 
 ::::
 
@@ -640,7 +640,7 @@ edades > 65 # más de 65 años
 
 Scripts usados:
 
-* [**script04.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R): operaciones con vectores.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R>
+* [**script07.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R): operaciones con vectores.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R>
 
 ::::
 
@@ -812,7 +812,7 @@ y
 
 Scripts usados:
 
-* [**script05.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R): matrices y data.frames.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R>
+* [**script08.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R): matrices y data.frames.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R>
 ::::
 
 (haz click en las flechas para ver soluciones)
@@ -1070,13 +1070,120 @@ data.frame(airquality, fechas)
 
 
 
+
+## Repaso: empezando a trastear datos {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script09.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R): repaso.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R>
+::::
+
+<mark>**1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el que está?**</mark>
+
+&nbsp;
+  
+
+Nuestros datos se llaman `swiss` y son del paquete `{datasets}`, así que lo primero que debemos hacer es instalar el paquete (en caso de no haberlo hecho aún, con `install.packages("datasets")`), después **llamar a ese paquete** (tenemos el libro comprado y lo sacamos de la estantería) con `library(datasets)` y escribir el nombre del conjunto de datos para mostrarlo.
+
+```{r}
+library(datasets)
+swiss
+```
+
+Podríamos no pedirle el libro entero sino **solo esa página**, de ese conjunto de datos, usando `datasets::swiss` (sin hacer uso del `library()` previo).
+
+
+```{r eval = FALSE}
+datasets::swiss
+```
+
+&nbsp;
+
+<mark>**2. Tenemos los datos guardados en `swiss`, ¿qué tipo de objeto es?**</mark>
+
+&nbsp;
+
+Al mostrarlos ya lo habrás intuido pero nuestro conjunto `swiss` es de tipo `data.frame`. Para comprobarlo podemos usar la función `class()`.
+
+```{r}
+class(swiss)
+```
+
+Si somos un poco observadores/as vemos que todas las variables parecen numéricas así que...podríamos tener una matriz de números. <mark>**¿Cómo convertimos los datos a una matriz?**</mark>
+
+```{r}
+as.matrix(swiss)
+class(as.matrix(swiss))
+```
+
+&nbsp;
+
+<mark>**3. ¿Cómo podríamos tener una descripción detallada de los datos?**</mark>
+
+&nbsp;
+
+La forma más inmediata es hacerlo es con la función `? swiss`, que nos permite ver la documentación en el panel de ayuda.
+
+```{r eval = FALSE}
+? swiss
+```
+
+También podemos ver el nombre de las columnas con `names()` y el nombre de las filas con `row.names()`
+
+```{r}
+names(swiss)
+row.names(swiss)
+```
+
+Los datos representan algunos **indicadores de fertilidad y socioeconómicos** (estandarizados, entre 0 y 100) de las 47 provincias francoparlantes de Suiza, con datos del año 1888. Como podemos **leer en la ayuda**, en la web <https://opr.princeton.edu/archive/pefp/switz.aspx> tenemos los datos de 182 distritos para dicho año.
+
+&nbsp;
+
+<mark>**4. ¿Cómo podríamos «ver» los datos? ¿Cuántas provincias hay incluidas? ¿Cuántas variables han sido medidas en cada una de ellas?**</mark>
+
+&nbsp;
+
+Podemos hacerlo de varias maneras, y una de ellas es pedirle una **cabecera** de la tabla (las primeras filas) con `head()`.
+
+```{r}
+head(swiss)
+```
+
+También podemos ver una versión «excelizada» de los datos con `View()
+
+```{r eval = FALSE}
+View(swiss)
+```
+
+Para **ver las dimensiones de los datos** podemos recurrir a `dim()` (nos dará un vector de longitud 2 con el número de filas y columnas) o a `nrow()` y `ncol()`
+
+```{r}
+dim(swiss)
+nrow(swiss)
+ncol(swiss)
+```
+  
+&nbsp;
+
+<mark>**5. ¿Cómo podríamos definir una nueva variable de tipo texto con los nombres de filas que obtenemos de `row.names()`?**</mark>
+
+&nbsp;
+
+La función `row.names()` nos devuelve los nombres de las filas, que vamos a guardar en una variable (por ejemplo, en `nombres`).
+
+```{r}
+nombres <- row.names(swiss)
+nombres
+```
 ## Estructuras condicionales {-}
 
 :::: {.blackbox data-latex=""}
 
 Scripts usados:
 
-* [**script07.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R): if-else.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R>
+* [**script10.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R): if-else.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R>
 ::::
 
 
@@ -1281,7 +1388,7 @@ cat(ifelse(hour(fecha_actual) > 6 & hour(fecha_actual) < 14,
 
 Scripts usados:
 
-* [**script08.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R>
+* [**script11.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R>
 ::::
 
 (haz click en las flechas para ver soluciones)
@@ -1466,7 +1573,7 @@ dinero
 
 Scripts usados:
 
-* [**script09.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script09.R>
+* [**script13.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R): funciones.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R>
 ::::
 
 (haz click en las flechas para ver soluciones)
@@ -1703,7 +1810,7 @@ data.frame(airquality,
 
 Scripts usados:
 
-* [**script10.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R): listas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R>
+* [**script14.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script14.R): listas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script14.R>
 ::::
 
 
@@ -1789,7 +1896,7 @@ lista_personal
 
 Scripts usados:
 
-* [**script11.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R): datos tibble.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R>
+* [**script15.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script15.R): datos tibble.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script15.R>
 ::::
 
 (haz click en las flechas para ver soluciones)
@@ -1930,5 +2037,97 @@ dim(gapminder) # dimensiones
 </details>
 
 &nbsp;
+
+
+
+
+## Tidy data {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script16.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script16.R): tidy data.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script16.R>
+::::
+
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: convierte en _tidy data_ el siguiente `data.frame`.</summary>
+
+```{r}
+library(tibble)
+library(tidyr)
+tabla_tb <- tibble("trimestre" = c("T1", "T2", "T3"),
+                   "2020" = c(10, 12, 7.5),
+                   "2021" = c(8, 0, 9))
+```
+
+<!-- toc -->
+- Solución:
+
+El problema es que las dos columnas con nombres de año son en realidad valores que deberían pasar a ser variables, así que deberíamos disminuir aplicar `pivot_longer()`
+
+```{r}
+# Aplicamos pivot_longer
+tabla_tb %>% pivot_longer(cols = c("2020", "2021"),
+                          names_to = "año", values_to = "valores")
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: convierte en _tidy data_ el siguiente `data.frame`.</summary>
+
+```{r}
+tabla_tb <- tibble("año" = c(2019, 2019, 2020, 2020, 2021, 2021),
+                   "variable" = c("A", "B", "A", "B", "A", "B"),
+                   "valor" = c(10, 9383, 7.58, 10839, 9, 32949))
+```
+
+<!-- toc -->
+- Solución:
+
+El problema es que las filas que comparten año son el mismo registro (pero con dos características que tenemos divididas en dos filas), así que deberíamos disminuir aplicar `pivot_wider()`
+
+```{r}
+# Aplicamos pivot_wider
+tabla_tb %>% pivot_wider(names_from = "variable", values_from = "valor")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: convierte en _tidy data_ la tabla `table5` del paquete `{tidyr}`.</summary>
+
+<!-- toc -->
+- Solución:
+
+Primero uniremos el siglo y las dos últimas cifras del año para obtener el año completo (guardado en `año`)
+
+```{r}
+table5 %>%
+  unite(año, century, year, sep = "")
+```
+
+Tras ello deberemos separar el valor del ratio en denominador y numerador (ya que ahora hay dos valores en una celda), y convertiremos el tipo de dato en la salida para que sea número.
+
+```{r}
+table5 %>%
+  unite(año, century, year, sep = "") %>%
+  separate(rate, c("numerador", "denominador"), convert = TRUE)
+
+```
+
+<!-- tocstop -->
+</details>
 
 
