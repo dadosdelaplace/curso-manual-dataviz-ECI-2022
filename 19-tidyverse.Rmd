@@ -44,7 +44,7 @@ knitr::include_graphics("img/flujo_tidyverse.png")
 
 El <mark>**entorno `{tidyverse}`**</mark> es una de las **herramientas más importantes en el manejo de datos en `R`**, una **colección de paquetes** pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una **misma filosofía y gramática**. 
 
-## Conjunto de starwars
+## Conjunto starwars
 
 Esta sección pretende ser una **introducción a dicho entorno**, y lo haremos principalmente con el conjunto de datos `starwars`, del paquete `{dplyr}` (ya cargado en `{tidyverse}`).
 
@@ -93,7 +93,16 @@ Los <mark>**datos también podemos verlos**</mark> escribiendo el nombre de la t
 print(starwars, n = 5, width = Inf)
 ```
 
-Fíjate que las **3 últimas variables son de tipo lista** (echa un vistazo a [Listas](#listas)). Por ejemplo, en `starwars$films` se **guardan para cada personaje la colección de películas de la saga** en las que aparece (algunos tendrán 1 solo nombre, otros 7).
+Fíjate que las **3 últimas variables** son de <mark>**tipo lista**</mark> (echa un vistazo a [Listas](#listas)). Por ejemplo, en `starwars$films` se **guardan para cada personaje la colección de películas de la saga** en las que aparece (algunos tendrán 1 solo nombre, otros 7). Por ejemplo, para extraer las películas en las que aparecen los tres primeros personajes, basta con ejecutar `starwars$films[1:3]` (del conjunto `starwars` --> accedemos a la variable `films` con `$`)
+
+```{r}
+# Las películas de los tres primeros personajes
+starwars$films[1:3]
+```
+
+
+
+
 
 ```{r dplyr, echo = FALSE,  out.width = "90%", fig.align = "center", fig.cap = "Cheet sheet de las opciones del paquete dplyr para la manipulación de datos extraída de <https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf>"}
 knitr::include_graphics("./img/dplyr.png")
@@ -102,28 +111,47 @@ knitr::include_graphics("./img/dplyr.png")
 
 ## Operaciones con filas
 
-Empecemos por aprender a <mark>**seleccionar filas**</mark>. Principalmente tenemos tres opciones:
+Las <mark>**operaciones con filas**</mark> que podemos hacer son principalmente:
+
+* **Seleccionar** filas
+* **Reordenar** filas
+* **Eliminar** filas
+* Tratar filas **duplicadas**
+* **Añadir** registros nuevos
+
+### Seleccionar filas (filter y slice)
+
+
+Empecemos por aprender a <mark>**seleccionar filas**</mark>. Principalmente tenemos **tres opciones**:
 
 1. Seleccionarlas en base a algún <mark>**filtro o condición**</mark> (solo los mayores de tal edad, por ejemplo).
 2. Extraer filas por su <mark>**índice de fila**</mark> (la fila que ocupa tal personaje).
 3. Extraer filas <mark>**aleatoriamente (uniforme)**</mark> (por ejemplo, para un sorteo).
 
+&nbsp;
 
-### Seleccionar filas (filter y slice)
-
-La función `filter()` nos permite <mark>**seleccionar filas en base a que se cumpla una o varias condiciones**</mark> respecto a las variables. Para usarla basta con que introduzcamos como argumento el conjunto de condiciones que debe cumplir (recuerda: nombre de columnas sin comillas). Supongamos que queremos por ejemplo **seleccionar solo los personajes con ojos marrones**: nos bastará con usar `filter()` con la condición `eye_color == "brown"`.
+En el primer caso, la función `filter()` nos permite <mark>**seleccionar filas**</mark> en base al cumplimiento de una o varias <mark>**condiciones lógicas**</mark> respecto a las variables. Para usarla basta con que introduzcamos como argumento el conjunto de condiciones que debe cumplir (recuerda: el nombre de columnas sin comillas). Supongamos que queremos por ejemplo <mark>**seleccionar los personajes con ojos marrones**</mark>: nos bastará con usar `filter()` con la condición `eye_color == "brown"`.
 
 ```{r}
 starwars %>% filter(eye_color == "brown") # con ojos marrones
 ```
 
-En tan solo una línea hemos hecho más de lo que parece: `R` ha «recorrido» (algo similar a un bucle) cada una de las filas y ha ido comprobando que fila cumple la condición y cual no. Con la misma lógica podemos **seleccionar los personajes que NO TIENEN ojos marrones**, cambiando `==` por `!=`
+Esta forma de trabajar los datos sería algo más difícil de leer fuera del entorno `{tidyverse}` (a pesar de que la operación es sencilla).
+
+```{r}
+# A la «antigua» usanza
+starwars[starwars$eye_color == "brown", ]
+```
+
+Con `%>%` y `filter()`, en tan solo una línea, hemos hecho más de lo que parece: `R` ha «recorrido» (algo similar a un bucle) cada una de las filas y ha ido comprobando que filas cumplen la condición y cuales no.
+
+Con la misma lógica podemos <mark>**seleccionar los que NO TIENEN ojos marrones**</mark>, cambiando `==` por `!=`
 
 ```{r}
 starwars %>% filter(eye_color != "brown") # NO tengan ojos marrones
 ```
 
-También se pueden **seleccionar los personajes que tienen los ojos de una serie de colores permitidos**.
+También se pueden <mark>**seleccionar**</mark> los personajes que tienen los <mark>**ojos de una serie de colores permitidos**: con `%in%` le indicaremos que seleccione solo aquellas filas cuyo valor de la variable `eye_color` esté dentro de unos valores candidatos.
 
 ```{r}
 starwars %>% # con ojos marrones, azules o rojos
@@ -137,14 +165,14 @@ Si es una **variable numérica** también podemos <mark>**seleccionar por rango*
 starwars %>% filter(between(height, 120, 160))
 ```
 
-Las **condiciones se pueden concatenar y complejizar** todo lo que queramos, pudiendo en pocas líneas realizar un **filtro complejo**, por ejemplo personajes con ohos marrones y que sean humanos.
+Las **condiciones se pueden concatenar y complejizar** todo lo que queramos, pudiendo en pocas líneas realizar un <mark>**filtro complejo**</mark>, por ejemplo, seleccionando los personajes con ojos marrones Y ADEMÁS que sean humanos.
 
 ```{r}
-starwars %>% # humanos con ojos marrones
-  filter(eye_color == "brown", species == "Human")
+# humanos con ojos marrones
+starwars %>% filter(eye_color == "brown", species == "Human")
 ```
 
-También podemos filtrar personajes con ojos marrones, azules o rojos, que no sean humanos, y con menos de 50 años.
+Otro ejemplo: vamos a **filtrar personajes** con ojos marrones, azules o rojos, que no sean humanos, y con menos de 50 años.
 
 ```{r}
 # humanos con ojos marrones, azules o rojos, que no sean humanos, y menos de 50a
@@ -153,37 +181,51 @@ starwars %>%
          species != "Human", birth_year < 50)
 ```
 
-Muchas veces querremos <mark>**extraer filas simplemente por el lugar que ocupan**</mark>, sin hacer que dependa de ninguna condición. Vamos a extraer las filas quinta, sexta, séptima, octava, novena y décima con `slice()`.
+&nbsp;
+
+Si estamos en el segundo caso mencionado al inicio, querremos <mark>**extraer filas simplemente por el lugar que ocupan**</mark>, sin hacer que dependa de ninguna condición, por ejemplo, la **primera fila**. Para ello haremos uso de la función `slice()`.
+
+```{r}
+# slice: extramos filas por índice de fila.
+starwars %>% slice(1) # primera fila
+```
+
+Podemos extraer **varias a la vez**, por ejemplo, **filtrando las filas** quinta, sexta, séptima, octava, novena y décima.
 
 ```{r}
 # slice: extramos filas por índice de fila.
 starwars %>% slice(5:10) # filas de la 5 a la 10
 ```
 
-Podemos **combinar los índices** para extraer por ejemplo solo los pares o filas concretas separadas por los espacios que queramos.
+Como sucedía cuando trabajábamos con vectores, también podemos **combinar los índices** para extraer, por ejemplo solo las filas pares, o filas concretas separadas por los espacios que queramos.
 
 ```{r}
-starwars %>% slice(seq(2, nrow(starwars), by = 2)) # filas pares
+starwars %>% slice(seq(2, 10, by = 2)) # filas pares hasta la décima
 starwars %>% slice(c(3, 4, 10, 20, 33)) # filas 3, 4, 10, 20 y 33
 ```
 
-También hay opciones por defecto para directamente <mark>**extraer las primeras o últimas filas**</mark> con `slice_head()` y `slice_tail()`.
+Disponemos además de **opciones por defecto** para directamente <mark>**extraer las primeras o últimas filas**</mark> con `slice_head()` y `slice_tail()`.
 
 ```{r}
 # Podemos extraer directamente las primeras o últimas filas
-starwars %>% slice_head(n = 7) # 7 primeras filas 
-starwars %>% slice_tail(n = 3) # 3 últimas filas 
+starwars %>% slice_head(n = 5) # 5 primeras filas 
+starwars %>% slice_tail(n = 2) # 2 últimas filas 
 ```
 
-Una opción también habitual es querer <mark>**extraer un número de filas pero AL AZAR**</mark>, pudiendo hacerlo sin reemplazamiento (una vez extraída, no se puede volver a extraer) o con reemplazamiento (con `replace = TRUE`).
+&nbsp;
+
+La tercera opción habitual es querer <mark>**extraer un número de filas pero AL AZAR**</mark>, pudiendo hacerlo sin reemplazamiento (una vez extraída, no se puede volver a extraer) o con reemplazamiento (con `replace = TRUE`).
 
 ```{r}
 # También podemos hacer una extracción al azar de filas
 starwars %>% slice_sample(n = 5) # 5 al azar
-starwars %>% slice_sample(n = 100, replace = TRUE) # 100 con reemplazamiento
+
+# 100 con reemplazamiento
+# (si fuera sin reemplazamiento, daría error)
+starwars %>% slice_sample(n = 100, replace = TRUE) 
 ```
 
-Por último, tenemos `slice_min()` y `slice_max()` que nos permite <mark>**extraer filas en función del mínimo y máximo de una variable**</mark>. Por defecto, si hay empate, mostrará todas las filas (aunque supere el número `n` indicado), salvo que `with_ties = FALSE`, que decidirá en caso de empate cual mostrarte
+Por último, tenemos `slice_min()` y `slice_max()` que nos permite <mark>**extraer filas en función del mínimo y máximo de una variable**</mark>. Por defecto, si hay empate, mostrará todas las filas (aunque supere el número `n` indicado), salvo que `with_ties = FALSE`, que decidirá en caso de empate cual mostrarte. Por ejemplo, vamos a filtrar con `slice_min(height, n = 5)` los 5 personasjes más bajitos, y con `starwars %>% slice_max(mass, n = 7)` los 7 personajes más pesados.
 
 ```{r}
 # Podemos extraer filas en función del mín/máx de una variable
@@ -196,21 +238,21 @@ starwars %>% slice_max(mass, n = 7) # los 7 más pesados
 
 ### Reordenar filas (arrange)
 
-Muchas veces necesitamos las <mark>**filas ordenadas en función del valor de alguna de las variables**</mark>. Para ello tenemos la función `arrange()` sin más que pasarle como argumento el nombre de la variable que usaremos para la ordenación. Vamos a ordenar nuestra tabla de personajes por altura, de bajitos a altos.
+Otra operación habitual en las filas es <mark>**ordenarlas en función del valor de alguna de las variables**</mark>. Para ello tenemos la función `arrange()`, que usaremos pasándole como argumento el **nombre de la variable** que usaremos para la ordenación. Por ejemplo, vamos a <mark>**ordenar nuestra tabla de personajes por altura**</mark>, de bajitos a altos.
 
 ```{r}
 # Con arrange ordenamos en base al orden de la variable que introduzcamos
 starwars %>% arrange(height) # de bajitos a altos, yoda al poder
 ```
 
-Por defecto la **ordenación es de menor a mayor** pero **podemos invertirlo** usando `desc()`.
+Por defecto la <mark>**ordenación es de menor a mayor**</mark> pero **podemos invertirlo** usando `desc()`.
 
 ```{r}
 # Por defecto lo hace ascendente pero podemos cambiarlo
 starwars %>% arrange(desc(height))
 ```
 
-La ordenación puede realizarse **en base al valor de dos o más variables**: ordenará las filas en base a la primera, en caso de empate usará la segunda, en caso de empate la tercera, y así sucesivamente. Vamos a ordenar los personajes por altura y, luego, por peso.
+La ordenación también puede realizarse **en base al valor de dos o más variables**: ordenará las filas en base a la primera, en caso de empate usará la segunda, en caso de empate la tercera, y así sucesivamente. Vamos a ordenar los **personajes por altura y, luego, por peso**.
 
 ```{r}
 # Podemos combinar varios criterios: ordenados de bajitos a altos,
@@ -226,7 +268,7 @@ Si te fijas los **`r colorize("valores ausentes van siempre al final", "#ffc107"
 
 &nbsp;
 
-Como estarás imaginando **podemos combinar varias acciones en pocas líneas**, filtrando datos a la vez que ordenamos el filtro resultante. Como ejemplo vamos a seleccionar los personajes humanos, hombres, de ojos marrones, y en orden altura descendente y peso ascendente.
+Como estarás imaginando **podemos combinar varias acciones en pocas líneas**, <mark>**filtrando a la vez que ordenamos**</mark> el filtro resultante. Como ejemplo vamos a seleccionar solo los personajes que sean humanos, hombres y de ojos marrones, para después ordernarlos en altura descendente y peso ascendente.
 
 ```{r}
 # Podemos combinar varias acciones en pocas líneas
@@ -238,14 +280,14 @@ starwars %>%
 
 ### Eliminar filas y duplicados (slice y distinct)
 
-La misma lógica que hemos usado para seleccionar filas podemos usarla para <mark>**eliminar filas**</mark>, simplemente negando la condición de filtrado. Por ejemplo, vamos a **eliminar las 5 primeras filas**.
+La misma lógica que hemos usado para seleccionar filas podemos usarla para <mark>**eliminar filas**</mark> con `slice()`, simplemente negando la condición de filtrado. Por ejemplo, vamos a **eliminar las 5 primeras filas**.
 
 ```{r}
 # Eliminamos por índices
 starwars %>% slice(-(1:5)) # eliminamos las 5 primeras filas
 ```
 
-Otra opción a la hora de eliminar filas es <mark>**eliminar filas duplicadas**</mark> (o filas con valores duplicados en alguna columna). Para ello deberemos aplicar la función `distinct()`, pasándole como argumentos el nombre de las variables que usaremos para quitar duplicados, por ejemplo, aquellos personajes con igual par de color de pelo y ojos.
+Otra opción a la hora de eliminar filas es <mark>**eliminar las filas duplicadas**</mark> (o filas con valores duplicados en alguna columna). Para ello deberemos aplicar la función `distinct()`, pasándole como argumentos el nombre de las variables que usaremos para quitar duplicados, por ejemplo, aquellos personajes con igual par de color de pelo y ojos.
 
 ```{r}
 # Eliminamos duplicados
@@ -253,7 +295,7 @@ starwars %>% # Eliminamos registros con igual par (color_pelo, color_ojos)
   distinct(hair_color, eye_color)
 ```
 
-Si te fijas además nos ha extraído solo las dos columnas en base a las cuales hemos eliminado duplicados. Si queremos que nos mantenga toda la tabla deberemos explicitarlo con `.keep_all = TRUE`.
+Si te fijas además nos ha extraído solo las dos columnas en base a las cuales hemos eliminado duplicados. Si queremos que **nos mantenga toda la tabla** deberemos explicitarlo con `.keep_all = TRUE`.
 
 ```{r}
 # Eliminamos duplicados
@@ -274,29 +316,49 @@ duplicado_starwars %>% distinct()
 dim(duplicado_starwars %>% distinct())
 ```
 
+
+### Añadir filas (bind_rows)
+
+No suele ser habitual ya que normalmente los datos los tendremos cargados, y nuestro objetivo será depurar (que implicará tener las mismas o menos filas). Pero si quisiéramos <mark>**añadir un nuevo registro manualmente**</mark>, podremos hacerlo con `bind_rows()`, **asegurándonos** que las variables en el nuevo registro son las mismas que en el original. Vamos a añadir al fichero original los 3 primeros registros (al final).
+
+```{r}
+starwars_nuevo <- bind_rows(starwars, starwars[1:3, ])
+dim(starwars)
+dim(starwars_nuevo)
+starwars_nuevo
+```
+
+
 ## Operaciones con columnas
 
-Ya hemos visto algunas opciones para manejar filas. Pasemos a  <mark>**seleccionar columnas**</mark> o <mark>**construir columnas/variables nuevas**</mark> en base a las ya existentes.
+Ya hemos visto algunas opciones para manejar filas. Pasemos a  <mark>**manipular columnas**</mark>.
 
 
 ### Seleccionar columnas (select)
 
-La opción más sencilla es usar la función `select()` pasándole como argumentos los nombres de columnas (¡SIN COMILLAS!) queremos seleccionar, por ejemplo, color de pelo, piel y ojos.
+La opción más sencilla para <mark>**seleccionar variables/columnas**</mark> es usar la función `select()`, pasándole como argumentos los **nombres de columnas** (¡SIN COMILLAS!) qque ueremos seleccionar, por ejemplo, color de pelo.
 
 ```{r}
 # select: columnas a seleccionar sin comillas
-starwars %>% # seleccionamos solo 3 columnas: pelo, piel y ojos
-  select(hair_color, skin_color, eye_color)
+# seleccionamos solo 1 columna: color de pelo
+starwars %>%  select(hair_color)
 ```
 
-Si las columnas a seleccionar sabemos que son consecutivas, podemos indicarle que las seleccionemos desde una **columna inicial hasta una columna inicial** pasando por todas.
+Podemos <mark>**seleccionar varias a la vez**</mark> concatenando sus nombres, por ejemplo, sellecionando las variables de color de pelo, piel y ojos.
 
 ```{r}
-# Podemos seleccionar columnas en orden: desde nombre hasta año nacim.
+# seleccionamos solo 3 columnas: pelo, piel y ojos
+starwars %>% select(hair_color, skin_color, eye_color)
+```
+
+Si las columnas a seleccionar son <mark>**consecutivas**</mark>, podemos indicarle que las seleccionemos desde una **columna inicial hasta una columna inicial** pasando por todas con `:`.
+
+```{r}
+# desde nombre hasta año nacim.
 starwars %>% select(name:birth_year)
 ```
 
-Una de las mejores opciones en este entorno es que las columnas las podemos seleccionar a través de expresiones regulares, por ejemplo, <mark>**seleccionando solo aquellas columnas que compartan un sufijo común en el nombre**</mark>, con `ends_with()` dentro de órdenes como `select()`
+Las columnas también las podemos seleccionar a través de expresiones regulares, por ejemplo, <mark>**seleccionando solo aquellas columnas que compartan un sufijo común en el nombre**</mark>, con `ends_with()` dentro de órdenes como `select()`
 
 ```{r}
 # Podemos seleccionar columnas por sufijo y prefijo
@@ -315,9 +377,12 @@ Todo lo que hemos usado para seleccionar lo podemos usar para **eliminar columna
 ```{r}
 starwars %>% # seleccionamos todas menos 3 columnas: pelo, piel y ojos
   select(-c(hair_color, skin_color, eye_color))
-
-
 ```
+
+
+select_at
+contains
+vars
 
 Incluso nos permite <mark>**seleccionar aquellas columnas que son del mismo tipo**</mark> (imagina que necesitamos solo las columnas numéricas para calcular ciertas estadísticas) con `where()`.
 
@@ -332,12 +397,15 @@ starwars %>% select(where(is.numeric))
 También podemos no tanto seleccionar sino <mark>**extraer columnas**</mark>: las saca fuera de la tabla y las convierte en un vector fuera del `tibble`, con la función `pull()`.
 
 ```{r}
+starwars %>% select(name)
 starwars %>% pull(name)
 ```
 
+Esta opción es útil cuando los valores de una variable lo vamos a sacar del flujo de datos, para ser usada en otros procesos (como predicción).
+
 ### Renombrar (rename) y reordenar (relocate) columnas
 
-A veces también podemos querer **modificar la «metainformación» de la tabla**, no modificando los datos sino <mark>**renombrando el orden de las columnas**</mark>. Para ello debremos usar la función `rename()` poniendo primero el nombre nuevo y luego el antiguo
+A veces también podemos querer **modificar la «metainformación» de la tabla**, no modificando los datos sino <mark>**renombrando el orden de las columnas**</mark>. Para ello debremos usar la función `rename()` poniendo primero el nombre nuevo y luego el antiguo. Como ejemplo, vamos a traducir el nombre de las columnas `name, height, mass` a castellano.
 
 ```{r}
 # rename: renombrar columnas, primero el nuevo y luego el antiguo
@@ -558,9 +626,9 @@ print(starwars %>%
 ```
 
 
-## Visualizar el flujo de datos en tidyverse
+## Visualizar el flujo de datos
 
-Antes de pasar a los ejercicios, existe una reciente herramienta que nos va a permitir entender mejor y <mark>**visualizar el flujo de trabajo**</mark> de las funciones que hemos visto en este entorno `{tidyverse}`: <https://tidydatatutor.com/>. Basta con poner el código que queremos ejecutar, y nos muestra las operaciones en los datos visualmente.
+Antes de pasar a los ejercicios, existe una reciente herramienta que nos va a permitir entender mejor y <mark>**visualizar el flujo de trabajo**</mark> de las funciones que hemos visto en este entorno `{tidyverse}`: <https://tidydatatutor.com/>. Basta con poner el código que queremos ejecutar, y nos <mark>**muestra visualmente las operaciones**</mark> en los datos.
 
 ```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor.jpg")
@@ -598,6 +666,8 @@ knitr::include_graphics("./img/tidytutor5.jpg")
 
 <details>
   <summary>📝<strong>Ejercicio 1</strong>: del fichero `starwars` encuentra todos los personajes que el peso esté entre 60 y 90.
+  
+  Podemos aprovechar para poner en práctica nuestros conocimientos, y crear una **función** que nos diga las películas en las que aparece cada personaje (con su nombre).
   
 <!-- toc -->
 - Solución:
