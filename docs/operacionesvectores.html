@@ -419,8 +419,8 @@
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
 ##         expr    min      lq     mean  median      uq     max neval cld
-##      sort(x) 41.894 44.3735 56.44423 47.2310 57.2900 211.748  1000   b
-##  x[order(x)] 28.957 31.1550 39.31001 32.9535 39.5585 175.895  1000  a</code></pre>
+##      sort(x) 49.617 52.1760 62.17669 54.9550 65.1575 203.550  1000   b
+##  x[order(x)] 34.442 36.6465 43.22051 38.4195 44.9550 112.738  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">

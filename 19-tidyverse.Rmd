@@ -566,7 +566,21 @@ starwars %>%
   mutate(talla = factor(height < 180, labels = c("bajos", "altos")))
 ```
 
-case_when
+Otra opción para no encadenar `if-else` anidados es `case_when`, en el que le podemos indicar que valores asignamos en función de condiciones. Vamos a crearuna variable nueva `altura`
+
+* Si `height > 180` --> serán `"altos"`
+* Si no se cumple lo anterior y `height > 120` --> serán `"bajos"`
+* Si no se cumple lo anterior y `height > 0` --> serán `"enanos"`
+* Si no se cumple lo anterior --> serán `"ausentes"`
+
+```{r}
+starwars %>%
+  transmute(altura =
+              case_when(height > 180 ~ "altos",
+                        height > 120 ~ "bajos",
+                        height > 0 ~ "enanos",
+                        TRUE ~ "ausentes"))
+```
 
 ## Datos ausentes y outliers (drop_na y mutate)
 
