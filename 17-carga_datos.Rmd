@@ -22,7 +22,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script13.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R): importar/exportar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R>
+* [**script17.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R): importar/exportar datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R>
 ::::
 
 Hemos aprendido a **crear nuestros propios datos** pero muchas veces los cargaremos de distintos archivos y fuentes. Vamos a ver algunas <mark>**formas que tenemos para importar (cargar) datos**<mark> con casos prácticos.
@@ -329,6 +329,31 @@ datos <- get_game_data(usernames = "dadosdelaplace")
 head(datos)
 ```
 
+## Encuestas electorales (desde la wikipedia)
+
+Otra forma muy cómoda de cargar datos es desde **web sencillas** como la wikipedia. Para ver un ejemplo vamos a cargar las <mark>**encuestas electorales**</mark> que había disponibles para las últimas elecciones alemanas, desde el enlace <https://es.wikipedia.org/wiki/Elecciones_federales_de_Alemania_de_2021>
+
+```{r}
+wiki <- paste0("https://es.wikipedia.org/wiki/",
+              "Elecciones_federales_de_Alemania_de_2021")
+```
+
+Con `read_html`, del paquete `{rvest}`, accederemos al código HTML de la página web indicada, y con `html_nodes` podremos indicarle que queremos seleccionar solo las tablas.
+
+```{r}
+library(rvest)
+html <- read_html(wiki)
+tablas <- html_nodes(html, ".wikitable")
+```
+
+Con `html_table` podremos indicarle cual de las tablas queremos leer (están guardados en la lista `tablas`).
+
+```{r}
+tabla_encuestas_bruto <- html_table(tablas[[5]], header = FALSE)
+tabla_encuestas_bruto
+names(tabla_encuestas_bruto)
+```
+
 ## Exportación de datos
 
 Aunque se puede exportar en cualquier formato que puedas importar, vamos a ver las <mark>**dos formas más útiles y eficientes de exportar datos en `R`**</mark>: 
@@ -353,12 +378,19 @@ Para tenerlo organizado, la orden anterior está hecha habiendo creado en nuestr
 
 No siempre trabajamos en `R` y a veces necesitamos una exportación de  un `data.frame` o una tabla que podamos abrir en nuestra ordenador, ya sea para explicársela a alguien o para enviársela a otra persona. Para ello exportaremos en `.csv`, un fichero sin formato, y que es capaz de ser abierto por todo tipo de hojas de cálculo: basta que usemos la función `write.csv()`.
 
-```{r eval = FALSE}
+```{r}
 # Exportamos en .csv el data.frame del ISCIII
-write.csv(datos_ISCIII, file = "./EXPORTAR/datos_ISCIII.csv")
+write_csv(datos_ISCIII, file = "./EXPORTAR/datos_ISCIII.csv")
 ```
 
 &nbsp;
+
+De la misma manera vamos a <mark>**exportar el fichero de encuestas**</mark> de Alemania que hemos leído desde la wikipedia.
+
+```{r}
+write_csv(tabla_encuestas_bruto,
+          "./EXPORTAR/encuestas_alemania_bruto.csv")
+```
 
 
 **`r colorize("WARNING: líneas de código en los errores", "#ffc107")`**

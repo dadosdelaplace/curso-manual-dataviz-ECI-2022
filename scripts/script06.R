@@ -1,115 +1,109 @@
-# ----- Repaso: empezando a trastear con datos -----
 
-# 1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el
-# que está?
-library(datasets)
-swiss
+# ----- vectores numéricos -----
 
-# otra forma
-datasets::swiss
-```
+# Concatenamos números
+edades <- c(32, 27, 60, 61)
+edades
 
-# 2. Tenemos los datos guardados en `swiss`, ¿qué tipo de objeto es?
-  
-class(swiss)
+# longitud de un vector
+length(edades)
 
-# Convertimos a matriz
-as.matrix(swiss)
-class(as.matrix(swiss))
+# Concatenamos vectores
+c(edades, edades, 8)
 
-# 3. ¿Cómo podríamos tener una descripción detallada de los datos?
-  
-# ? swiss en consola
+# secuencias
+seq(1, 21) # secuencia desde 1 hasta 21 de uno en uno
 
-# Nombres
-names(swiss)
-row.names(swiss)
+n <- 21
+1:n # secuencia desde 1 hasta n (21) de uno en uno
+n:1 # secuencia decreciente
 
-# 4. ¿Cómo podríamos «ver» los datos?
-# ¿Cuántas provincias hay incluidas?
-# ¿Cuántas variables han sido medidas en cada una de ellas?*
-  
-# Cabecera de la tabla
-head(swiss)
+seq(1, 10, by = 0.5) # secuencia desde 1 a 10 de 0.5 en 0.5
+seq(1, 21, by = 1.7) # secuencia desde 1 a 21 de 1.7 en 1.7
 
-# Ver la tabla
-View(swiss)
+seq(1, 50, l = 11) # secuencia desde 1 a 50 de longitud 11
+seq(1, 50, l = 8) # secuencia desde 1 a 50 de longitud 8
 
-# Dimensiones
-dim(swiss)
-nrow(swiss)
-ncol(swiss)
+# Vectores repetidos
+rep(0, 7) # vector de 7 ceros
+rep(c(0, 1, 2), 4) # repetimos el vector c(0, 1, 2) 4 veces
+rep(c(0, 1, 2), each = 4) # cuatro 0, luego cuatro 1, luego cuatro 2
 
-# 5. ¿Cómo podríamos definir una nueva variable de tipo texto
-# con los nombres de filas que obtenemos de `row.names()`?
-  
-# Nombres
-nombres <- row.names(swiss)
-nombres
+# ----- vectores de caracteres -----
 
-# Tabla nueva con nombres
-tabla_nueva <- data.frame("provincias" = nombres, swiss)
-head(tabla_nueva)
+# vector de caracteres
+mi_nombre <- c("Mi", "nombre", "es", "Javier")
+mi_nombre
 
-# Eliminamos nombre de las filas
-row.names(tabla_nueva) <- NULL # anulamos nombre de filas
-head(tabla_nueva)
+# paste / paste0
+paste(mi_nombre, collapse = "") # todo junto
+paste(mi_nombre, collapse = " ") # separados por un espacio
+paste(mi_nombre, collapse = ".") # separados por un punto .
+paste0(mi_nombre) # todo junto sin nada separando
 
-# 6. ¿Cómo podemos decidir cual de las provincias tiene un
-# indicador estandarizado de la fertilidad superior a 80?
-  
-# Accedemos a Fertility
-tabla_nueva$Fertility > 80
 
-# Filas exactas que cumplen dicha condición** (sus índices)
-# podemos usar la función `which()`.
-which(tabla_nueva$Fertility > 80)
+# pegamos caracteres a secuencisa de números
+paste0("variable", 1:7) # a la palabra «variable» le pegamos los números del 1 al 7
+paste("variable", 1:7, sep = "_") # separado por una barra baja
 
-# Nombres de dichas provincias
-tabla_nueva$nombres[which(tabla_nueva$Fertility > 80)]
+# paquete glue
+library(glue)
+edad <- 10:15 # edades
+glue("La edad es de {edad} años")
+# Otra forma sin definir variables a priori
+glue("La edad es de {10:15} años")
 
-# 7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas
-# provincias, las que tienen fertilidad superior a 80?*
-  
-tabla_nueva$Fertility > 80
-tabla_nueva[tabla_nueva$Fertility > 80, ]
+# todo a mayúscula/minúscula
+texto <- c("Hola.", "qué", "ase?", "todo", "bien.", "y yo",
+           "que", "ME", "ALEGRO")
+toupper(texto) # todo a mayúscula
+tolower(texto) # todo a minúscula
 
-# usando subset
-# sin filtrar columnas
-subset(tabla_nueva, subset = Fertility > 80)
+# toda "o" en el texto será sustituida por *
+gsub("o", "*", texto) 
 
-# filtrando columnas
-subset(tabla_nueva, subset = Fertility > 80,
-       select = c("provincias", "Fertility", "Education"))
 
-# 8. ¿Cómo podemos añadir una nueva variable lógica que nos
-# guarde `TRUE` si la fertilidad es superior a 80 y `FALSE`
-# en caso contrario?
-  
-var_logica <- tabla_nueva$Fertility > 80
-tabla_nueva_2 <- data.frame(tabla_nueva, "alta_fertilidad" = var_logica)
+# ----- vectores lógicos -----
 
-# sin filtrar columnas
-subset(tabla_nueva_2, subset = alta_fertilidad == TRUE)
+# Vectores lógicos
+x <- c(1.5, -1, 2, 4, 3, -4)
+x < 2
+x <= 2
+x > 2
+x >= 2
+x == 2
+x != 2
 
-# igual (sin filtrar columnas)
-subset(tabla_nueva_2, subset = alta_fertilidad)
+# Combinación de condiciones
+x <- c(1.5, -1, 2, 4, 3, -4)
+x < 3 & x > 0 # Solo los que cumplen ambas condiciones
+x < 2 | x > 3 # Los cumplen al menos una de ellas
 
-# filtrando columnas
-subset(tabla_nueva_2, subset = alta_fertilidad,
-       select = c("provincias", "Fertility", "Education"))
 
-# 9. ¿Cómo podemos definir una nueva variable de tipo fecha,
-# que empiece el 1 de enero de 1888, acabe el 31 de diciembre de 1888,
-# y las fechas estén equiespaciadas en el tiempo?
-  
-# secuencia de fechas
-fechas <-
-  seq(as.Date("1888-01-01"), as.Date("1888-12-31"), l = nrow(tabla_nueva_2))
-fechas
-class(fechas)
-fechas + 1
+# ----- datos ausentes -----
 
-# Tabla final
-tabla_final <- data.frame(tabla_nueva_2, fechas)
-head(tabla_final)
+# Vector con ausentes
+x <- c(1, NA, 3, NA, NA, 5, 6) # Vector numérico con datos faltante
+length(x) # longitud del vector
+x
+
+# Operaciones con ausentes --> ausente
+2 * x
+1 + NA + 3
+
+# Detectar NA
+is.na(x) # TRUE si está ausente (NA), FALSE si no lo está.
+
+# Eliminar NA
+na.omit(x)
+
+# NaN: not a number
+1/0
+0/0
+
+# Localizar NA, NaN, Infinite
+x <- c(1, NA, 3, 4, Inf, 6, 7, Inf, NaN, NA)
+is.na(x)
+is.nan(x)
+is.infinite(x)
+

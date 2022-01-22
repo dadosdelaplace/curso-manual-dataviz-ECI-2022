@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 17 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="Scripts usados: script13.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R  Hemos aprendido a crear nuestros propios datos pero...">
+<meta name="description" content="Scripts usados: script17.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R  Hemos aprendido a crear nuestros propios datos pero...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 17 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Scripts usados: script13.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R  Hemos aprendido a crear nuestros propios datos pero...">
+<meta property="og:description" content="Scripts usados: script17.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R  Hemos aprendido a crear nuestros propios datos pero...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 17 Sacando datos de las piedras | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Scripts usados: script13.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R  Hemos aprendido a crear nuestros propios datos pero...">
+<meta name="twitter:description" content="Scripts usados: script17.R: importar/exportar datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R  Hemos aprendido a crear nuestros propios datos pero...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +94,7 @@
 <p>Scripts usados:</p>
 <ul>
 <li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R"><strong>script13.R</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script13.R</a>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R"><strong>script17.R</strong></a>: importar/exportar datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script17.R</a>
 </li>
 </ul>
 </div>
@@ -112,10 +112,10 @@
 <p><mark><strong>¿Qué edad, sexo o cabina ocupabana los pasajeros que sobrevivieron y los que no sobrevivieron?</strong></mark> Dicho conjunto de datos nos va a servir para ilustrar la forma <strong>más sencilla</strong> de guardar datos y variables en <code>R</code>, y que además ocupa menos espacio en nuestro disco duro: los archivos propios que tiene <code>R</code> con <mark><strong>extensiones <code>.rda</code> o <code>.RData</code></strong></mark>. De nuestra carpeta <code>DATOS</code> cargaremos el archivo <code>titanic.RData</code>, un archivo con extensión <code>.RData</code>, conteniendo los datos de los pasajeros del Titanic (nombre, título, cabina, si sobrevivió o no, edad, etc)</p>
 <p><mark><strong>¿Cómo cargar archivos <code>.RData</code>?</strong></mark></p>
 <p>Muy sencillo: como son ficheros nativos de <code>R</code>, basta con usar la <mark><strong>función de carga <code><a href="https://rdrr.io/r/base/load.html">load()</a></code></strong></mark>, y dentro de los paréntesis la ruta del archivo que queramos cargar.</p>
-<div class="sourceCode" id="cb1371"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1373"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"./DATOS/titanic.RData"</span><span class="op">)</span></code></pre></div>
 <p>Fíjate que, al <strong>fijar nuestro directorio de trabajo</strong>, no necesitamos toda la ruta, solo <code>./</code> (que nos arranca la ruta en la carpeta de nuestro proyecto) más la ruta dentro de la carpeta del proyecto. Ahora en el panel de <strong>entorno de la parte superior derecha</strong> tendremos un <code>data.frame</code> que antes no teníamos. Ya hemos visto que una función muy útil es <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>, con argumento el nombre de un <code>data.frame</code>, que nos permite visualizar las primeras filas.</p>
-<div class="sourceCode" id="cb1372"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1374"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span></code></pre></div>
 <pre><code>##   PassengerId Survived Pclass
 ## 1           1        0      3
@@ -139,7 +139,7 @@
 ## 5           373450  8.0500              S
 ## 6           330877  8.4583              Q</code></pre>
 <p>Dicho fichero hemos visto que podemos <strong>convertirlo a un formato más óptimo</strong> con <code><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble()</a></code></p>
-<div class="sourceCode" id="cb1374"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
 <span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span>
 <span class="va">titanic</span></code></pre></div>
@@ -158,7 +158,7 @@
 ## 10          10        1      2 Nasse… fema…    14     1     0 237736 30.1  ""   
 ## # … with 881 more rows, and 1 more variable: Embarked &lt;fct&gt;</code></pre>
 <p>Y con <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse()</a></code> podemos echar un vistazo a las variables del fichero (una fila por pasajero).</p>
-<div class="sourceCode" id="cb1376"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1378"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 891
 ## Columns: 12
@@ -184,7 +184,7 @@
 </blockquote>
 <p>Otra opción habitual son los <mark><strong>archivos <code>.csv</code> (comma separated values)</strong></mark>: son archivos cuyos <mark><strong>valores están separados por comas</strong></mark> (u otro caracter, como <strong>puntos</strong>, puntos y comas, o tabuladores). En apariencia cuando los abrimos en el ordenador son como un Excel (ya que los abre el Excel), pero ocupan mucho menos que un Excel y su <strong>lectura es universal</strong> (independiente de tener instalado o no el Excel) ya que son archivos de texto <strong>sin formato</strong>.</p>
 <p>Para leer un archivo <code>.csv</code> tenemos <mark><strong>dos opciones</strong></mark>. La primera es usar la función <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> que ya viene de base con <code>R</code>, y asignarle al argumento <code>file</code> la ruta del archivo (tiene otros argumentos extras por si queremos especifiar el caracter que separa las columnas, si incluímos o no una cabecera de la tabla, y otros argumentos que puedes consultar con <code><a href="https://rdrr.io/r/utils/read.table.html">? read.csv</a></code>). Para mostrar un ejemplo vamos a realizar la carga del mismo fichero del Titanic pero ahora a través del archivo <code>titanic.csv</code> que tenemos en nuestra carpeta <code>DATOS</code>.</p>
-<div class="sourceCode" id="cb1378"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"./DATOS/titanic.csv"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">titanic</span><span class="op">)</span></code></pre></div>
 <pre><code>##   PassengerId Survived Pclass
@@ -210,7 +210,7 @@
 ## 6           330877  8.4583              Q</code></pre>
 <p>Una diferencia con los <code>.RData</code> es que estos no necesitan que le asignemos el valor a una variable (dentro de un <code>.RData</code> tenemos ya guardada la variable). Fíjate que es el <strong>mismo archivo que antes</strong>, y que nos lo ha guardado en formato <code>data.frame</code>.</p>
 <p><mark><strong>¿Cómo podríamos cargar un <code>.csv</code> pero ya guardado en <code>tibble</code>?</strong></mark> Para ello usaremos la función <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code> del paquete <a href="https://readr.tidyverse.org">readr</a>.</p>
-<div class="sourceCode" id="cb1380"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
 <span class="va">titanic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"./DATOS/titanic.csv"</span><span class="op">)</span>
 <span class="va">titanic</span></code></pre></div>
@@ -230,10 +230,10 @@
 ## # … with 881 more rows, and 1 more variable: Embarked &lt;chr&gt;</code></pre>
 <p> </p>
 <p>Una de las ventajas de la carga de archivos en <code>R</code> es que muchos formatos podemos cargarlos sin <mark><strong>ni siquiera tener el archivo en nuestro ordenador</strong></mark>, a través de un enlace web. Vamos a ver un ejemplo con los datos del ISCIII sobre la pandemia. En su web <a href="https://cnecovid.isciii.es/covid19/#documentaci%C3%B3n-y-datos" class="uri">https://cnecovid.isciii.es/covid19/#documentaci%C3%B3n-y-datos</a> tienen varios archivos colgados, que podemos o bien descargarlos, o haciendo click derecho <mark><strong>«Copiar dirección de enlace»</strong></mark> obtenemos un enlace. Por ejemplo, para el archivo <code>casos_tecnica_ccaa.csv</code>, que nos almacena el número de casos por técnica diagnóstica y CCAA, tenemos el enlace <a href="https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv" class="uri">https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv</a>. Dicho enlace es el que se abre cuando pulsamos en Descargar, pero podemos introducirlo directamente en <code>R</code>, sustituyendo a nuestra ruta en <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv()</a></code>, y teniéndolo ya almacenado en formato <code>tibble</code>.</p>
-<div class="sourceCode" id="cb1382"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_ISCIII</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"https://cnecovid.isciii.es/covid19/resources/casos_tecnica_ccaa.csv"</span><span class="op">)</span>
 <span class="va">datos_ISCIII</span></code></pre></div>
-<pre><code>## # A tibble: 14,212 × 8
+<pre><code>## # A tibble: 14,269 × 8
 ##    ccaa_iso fecha      num_casos num_casos_prueba_pcr num_casos_prueba_test_ac
 ##    &lt;chr&gt;    &lt;date&gt;         &lt;dbl&gt;                &lt;dbl&gt;                    &lt;dbl&gt;
 ##  1 AN       2020-01-01         0                    0                        0
@@ -246,14 +246,14 @@
 ##  8 CN       2020-01-01         0                    0                        0
 ##  9 CT       2020-01-01         0                    0                        0
 ## 10 EX       2020-01-01         0                    0                        0
-## # … with 14,202 more rows, and 3 more variables: num_casos_prueba_ag &lt;dbl&gt;,
+## # … with 14,259 more rows, and 3 more variables: num_casos_prueba_ag &lt;dbl&gt;,
 ## #   num_casos_prueba_elisa &lt;dbl&gt;, num_casos_prueba_desconocida &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb1384"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 14212     8</code></pre>
 <div class="sourceCode" id="cb1386"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 14269     8</code></pre>
+<div class="sourceCode" id="cb1388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">datos_ISCIII</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 14,212
+<pre><code>## Rows: 14,269
 ## Columns: 8
 ## $ ccaa_iso                     &lt;chr&gt; "AN", "AR", "AS", "CB", "CE", "CL", "CM",…
 ## $ fecha                        &lt;date&gt; 2020-01-01, 2020-01-01, 2020-01-01, 2020…
@@ -282,7 +282,7 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 </p>
 </div>
 <p>El discurso de cada año está guardado en un <mark><strong>archivo <code>.txt</code></strong></mark>, un archivo que no tiene una estructura tabular (con filas y columnas, separadas por caracteres) como los archivos <code>.csv</code>. Para este tipo de archivos podemos usar <code>read_delim</code>, índicalo que lea cada párrafo como un «todo», con <code>delim = "\t"</code> (le decimos que el delimitador entre elementos sea el salto de línea).</p>
-<div class="sourceCode" id="cb1388"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">discurso_1937</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_delim</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/lirondos/discursos-de-navidad/master/data/speeches/1937.txt"</span>, delim <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span>
 <span class="va">discurso_1937</span></code></pre></div>
@@ -293,7 +293,7 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 ## 2 ¡Combatientes de España!, por la victoria de nuestra Causa, que es la Causa d…
 ## 3 ¡Arriba España!</code></pre>
 <p>De cada frase guardada (cada fila) podemos extraer cada palabra con la función <code><a href="https://rdrr.io/pkg/stringr/man/str_split.html">str_split()</a></code>, del paquete <a href="http://stringr.tidyverse.org">stringr</a>, y con <code>pattern = " "</code> le indicamos que separe por los espacios entre las palabras.</p>
-<div class="sourceCode" id="cb1390"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 <span class="co"># Primera frase separando palabras</span>
 <span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_split.html">str_split</a></span><span class="op">(</span><span class="va">discurso_1937</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>, pattern <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></code></pre></div>
@@ -335,7 +335,7 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 </blockquote>
 <p>Muchas veces no tendremos un <code>.csv</code> (por desgracia) y nos tocará <mark><strong>leer desde un excel</strong></mark>. Para ello deberemos instalar (la primera vez) y cargar el paquete <a href="https://readxl.tidyverse.org">readxl</a> que nos permitirá usar funciones para cargar archivos <code>.xls</code> (la función <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xls()</a></code>) y archivos <code>.xlsx</code> (la función <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xlsx()</a></code>). Además del argumento <code>path</code> con la ruta del archivo, podemos en el argumento <code>sheet</code> indicarle la hoja de Excel a leer (en caso de tener varias).</p>
 <p>Vamos a cargar el archivo <code>Boston.xlsx</code> que tenemos en la carpeta de <code>DATOS</code>, que contienen información del valor inmobiliario de 506 distritos de Boston, y lo guardamos en un <code>tibble</code>.</p>
-<div class="sourceCode" id="cb1392"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"readxl"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="va">boston</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_xlsx</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"./DATOS/Boston.xlsx"</span><span class="op">)</span>
@@ -354,7 +354,7 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 <li>
 <strong>Variables de calidad del aire</strong>: <code>nox</code> (concentración anual de óxido de nitrógeno, en partes por 10 millones).</li>
 </ul>
-<div class="sourceCode" id="cb1393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Resumen del tibble</span>
 <span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">boston</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 506
@@ -383,7 +383,7 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 </blockquote>
 <p>Una opción muy común es <mark><strong>cargar datos desde paquetes que ya los tienen incorporadas</strong></mark> (o los consiguen a través de una API). Uno de los ejemplos más útiles seguramente sea el <mark><strong>paquete del EUROSTAT</strong></mark><a href="https://ropengov.github.io/eurostat/">eurostat</a>, un paquete para obtener <strong>datos abiertos de la Oficina Europea de Estadística</strong>. Puedes ver toda la documentación en <a href="https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html" class="uri">https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html</a></p>
 <p>Dicho paquete contiene la función <code><a href="https://ropengov.github.io/eurostat/reference/search_eurostat.html">search_eurostat()</a></code>, que nos <mark><strong>permite buscar conjuntos de datos por palabras clave</strong></mark> (nos muestra una tabla con los datasets y sus códigos).</p>
-<div class="sourceCode" id="cb1395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span> <span class="co"># instalar la primera vez</span>
 
 <span class="co"># Buscamos datos por palabras clave</span>
@@ -403,7 +403,7 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 ##  9 Air tr… tran… data… 06.09.2021       06.09.2021       1993         2020      
 ## 10 Railwa… tran… data… 21.09.2021       21.09.2021       2005         2020      
 ## # … with 12 more rows, and 1 more variable: values &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb1397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Mostramos la lista de los datos</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">datos_disponibles</span><span class="op">)</span></code></pre></div>
 <p>Con la función <code><a href="https://ropengov.github.io/eurostat/reference/get_eurostat.html">get_eurostat()</a></code> podemos <strong>acceder</strong> a ellos proporcionando el código del archivo.</p>
@@ -418,23 +418,23 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 <p>Una de las opciones más comunes es acceder a datos de las administraciones públicas desde <code>R</code> pero <mark><strong>pasando por las API de datos abiertos</strong></mark> de las que algunas disponen. Una <a href="https://www.xataka.com/basics/api-que-sirve#:~:text=Qu%C3%A9%20es%20una%20API,interfaz%20de%20programaci%C3%B3n%20de%20aplicaciones.&amp;text=O%20cuando%20esa%20aplicaci%C3%B3n%20te%20manda%20notificaciones%20al%20m%C3%B3vil%20o%20al%20ordenador.">API</a> no es más que una especie de <em>walkie-talkie</em> para <strong>comunicarnos con aplicaciones de terceros</strong>.</p>
 <p>Un ejemplo práctico: la <mark><strong>API del AEMET</strong></mark> para acceder a los datos de parte de sus estaciones meteorológicas. A través de su <mark><strong>portal de datos abiertos</strong></mark> (ver <a href="https://opendata.aemet.es/centrodedescargas/inicio" class="uri">https://opendata.aemet.es/centrodedescargas/inicio</a>) vamos a extraer desde <code>R</code> los <mark><strong>datos meteorológicos de 291 estaciones</strong></mark> repartidas a lo largo de toda España.</p>
 <p>Para ello lo primero es acceder a la web <a href="https://opendata.aemet.es/centrodedescargas/obtencionAPIKey" class="uri">https://opendata.aemet.es/centrodedescargas/obtencionAPIKey</a> y solicitar una clave (una <em>api key</em> para poder usarla como «contraseña» en nuestra petición).</p>
-<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Acceder a la web https://opendata.aemet.es/centrodedescargas/obtencionAPIKey desde R</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/browseURL.html">browseURL</a></span><span class="op">(</span><span class="st">"https://opendata.aemet.es/centrodedescargas/obtencionAPIKey"</span><span class="op">)</span></code></pre></div>
 <p>Tras solicitarla y realizar los pasos que se indican en el mail que nos enviarán, <strong>obtendremos una clave</strong> similar a esta.</p>
-<div class="sourceCode" id="cb1399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Clave para conectar con la API del AEMET</span>
 <span class="va">api_key</span> <span class="op">&lt;-</span> <span class="st">"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXZhbHYwOUB1Y20uZXMiLCJqdGkiOiIwNGUwYmQzNi1jZTMxLTQ5OTQtOTdkMy1hMzc4MDc1MzlhMjgiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTY0MTU0OTg4MywidXNlcklkIjoiMDRlMGJkMzYtY2UzMS00OTk0LTk3ZDMtYTM3ODA3NTM5YTI4Iiwicm9sZSI6IiJ9.RCAITYkYO_uPOzTA830tuq6LZNgmiUGuQ2vB6hrZioI"</span>
 
 <span class="co"># Definimos la api_key para toda la sesión</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>AEMET_API_KEY <span class="op">=</span> <span class="va">api_key</span><span class="op">)</span> </code></pre></div>
 <p>El paquete que usaremos para conectarnos con el AEMET se llama <a href="https://ropenspain.github.io/climaemet/">climaemet</a>, y lo podremos <mark><strong>instalar directamente desde Github</strong></mark>, haciendo uso del paquete <a href="https://devtools.r-lib.org/">devtools</a>, y la función <code>install_github</code>, indicando entre paréntesis el nombre del repositorio.</p>
-<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Instalamos paquete climaemet</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"ropenspain/climaemet"</span><span class="op">)</span></code></pre></div>
 <p>Una vez instalado el paquete podemos acceder a las estaciones con <code><a href="https://ropenspain.github.io/climaemet/reference/aemet_stations.html">aemet_stations()</a></code>, pasándole como argumento nuestra <code>api_key</code> (la tabla la vamos a convertir a <code>tibble</code>).</p>
-<div class="sourceCode" id="cb1401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Estaciones del AEMET</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/climaemet/">climaemet</a></span><span class="op">)</span>
 <span class="va">tabla_estaciones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://ropenspain.github.io/climaemet/reference/aemet_stations.html">aemet_stations</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
@@ -454,28 +454,28 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 ## 10 0372C      "08120"  PORQUERES              GIRONA        157     2.76    42.1
 ## # … with 281 more rows</code></pre>
 <p>En la variable <code>indicativo</code> tenemos el código de cada estación. Vamos a <mark><strong>acceder a los últimos registros</strong></mark> de la estación <code>BARCELONA AEROPUERTO</code> con el identificador <code>0076</code>, haciendo uso de la función <code><a href="https://ropenspain.github.io/climaemet/reference/aemet_last_obs.html">aemet_last_obs()</a></code>.</p>
-<div class="sourceCode" id="cb1403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_bcn_aeropuerto</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://ropenspain.github.io/climaemet/reference/aemet_last_obs.html">aemet_last_obs</a></span><span class="op">(</span><span class="st">"0076"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">datos_bcn_aeropuerto</span></code></pre></div>
-<pre><code>## # A tibble: 23 × 23
+<pre><code>## # A tibble: 24 × 23
 ##    idema   lon fint                 prec   alt  vmax    vv    dv   lat  dmax
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 0076   2.07 2022-01-17 20:00:00     0     4   5.7   4.2   360  41.3   360
-##  2 0076   2.07 2022-01-17 21:00:00     0     4   6.2   3.2    10  41.3   360
-##  3 0076   2.07 2022-01-17 22:00:00     0     4   6.2   4.5   360  41.3    10
-##  4 0076   2.07 2022-01-17 23:00:00     0     4   5.7   4.5   360  41.3   360
-##  5 0076   2.07 2022-01-18 00:00:00     0     4   8.8   5.5   360  41.3   350
-##  6 0076   2.07 2022-01-18 01:00:00     0     4   7.2   5.5    10  41.3    20
-##  7 0076   2.07 2022-01-18 02:00:00     0     4   8.2   4.3   350  41.3   360
-##  8 0076   2.07 2022-01-18 03:00:00     0     4   7.7   5.1   360  41.3    20
-##  9 0076   2.07 2022-01-18 04:00:00     0     4   8.2   5.7   360  41.3   310
-## 10 0076   2.07 2022-01-18 05:00:00     0     4   7.2   4.2    10  41.3   350
-## # … with 13 more rows, and 13 more variables: ubi &lt;chr&gt;, pres &lt;dbl&gt;, hr &lt;dbl&gt;,
+##  1 0076   2.07 2022-01-21 17:00:00     0     4   4.6   3.3    10  41.3    10
+##  2 0076   2.07 2022-01-21 18:00:00     0     4   5.1   3.6   350  41.3   360
+##  3 0076   2.07 2022-01-21 19:00:00     0     4   5.7   4     350  41.3   360
+##  4 0076   2.07 2022-01-21 20:00:00     0     4   5.1   2.7   360  41.3   360
+##  5 0076   2.07 2022-01-21 21:00:00     0     4   6.2   4.3   360  41.3   350
+##  6 0076   2.07 2022-01-21 22:00:00     0     4   6.2   4.5   360  41.3   360
+##  7 0076   2.07 2022-01-21 23:00:00     0     4   7.2   5.4   360  41.3   350
+##  8 0076   2.07 2022-01-22 00:00:00     0     4   7.7   6.3   360  41.3   360
+##  9 0076   2.07 2022-01-22 01:00:00     0     4   8.2   6.1    10  41.3   360
+## 10 0076   2.07 2022-01-22 02:00:00     0     4   8.2   6.1   360  41.3    10
+## # … with 14 more rows, and 13 more variables: ubi &lt;chr&gt;, pres &lt;dbl&gt;, hr &lt;dbl&gt;,
 ## #   stdvv &lt;dbl&gt;, ts &lt;dbl&gt;, pres_nmar &lt;dbl&gt;, tamin &lt;dbl&gt;, ta &lt;dbl&gt;, tamax &lt;dbl&gt;,
 ## #   tpr &lt;dbl&gt;, vis &lt;dbl&gt;, stddv &lt;dbl&gt;, inso &lt;dbl&gt;</code></pre>
 <p>También podemos <strong>indicarle un rango de fechas</strong> de la que extraer información.</p>
-<div class="sourceCode" id="cb1405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://ropenspain.github.io/climaemet/reference/aemet_daily.html">aemet_daily_clim</a></span><span class="op">(</span><span class="st">"0076"</span>,
                              start <span class="op">=</span> <span class="st">"2018-01-01"</span>,
@@ -514,9 +514,9 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 <span class="header-section-number">17.9</span> Datos de Our World in Data (paquete)<a class="anchor" aria-label="anchor" href="#datos-de-our-world-in-data-paquete"><i class="fas fa-link"></i></a>
 </h2>
 <p>Uno de los protagonistas de los últimos años debido a la pandemia ha sido la web <mark><a href="https://ourworldindata.org/"><strong>Our World in Data</strong></a></mark>, y en concreto los datos que han recopilado de covid y vacunación de todos los países del mundo. Y sí, podemos acceder a ellos directamente desde <code>R</code> a través del paquete <code>{owidR}</code>.</p>
-<div class="sourceCode" id="cb1407"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"owidR"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb1408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">owidR</span><span class="op">)</span></code></pre></div>
 <p>Con la función <code><a href="https://rdrr.io/pkg/owidR/man/owid_search.html">owid_search()</a></code> podemos introducir una palabra clave, para <mark><strong>obtener el listado de datasets</strong></mark> y su palabra clave.</p>
 </div>
@@ -528,12 +528,12 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 <p>Fuente original de los datos: <a href="http://www.infoelectoral.mir.es/infoelectoral" class="uri">http://www.infoelectoral.mir.es/infoelectoral</a></p>
 </blockquote>
 <p>Aunque aún funcionan con algunas limitaciones, también existen ya paquetes para poder <mark><strong>descargarnos directamente los datos de cualquier proceso electoral</strong></mark> celebrado en España. Una de esas herramientas es el paquete <a href="https://github.com/rOpenSpain/infoelectoral">infoelectoral</a>, que podemos instalar desde el repositorio <code>ropenspain/infoelectoral</code>.</p>
-<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"ropenspain/infoelectoral"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rOpenSpain/infoelectoral">infoelectoral</a></span><span class="op">)</span></code></pre></div>
 <p>Dicho paquete nos permite con <code><a href="https://rdrr.io/pkg/infoelectoral/man/municipios.html">municipios()</a></code> <mark><strong>descargarnos directamente los resultados electorales</strong></mark> a nivel municipal por tipo de elección (<code>tipo_eleccion</code>), año (<code>anno</code>) y mes (<code>mes</code>). Veamos un ejemplo con las elecciones generales de noviembre de 2019.</p>
-<div class="sourceCode" id="cb1410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/infoelectoral/man/municipios.html">municipios</a></span><span class="op">(</span>tipo_eleccion <span class="op">=</span> <span class="st">"congreso"</span>,
                        anno <span class="op">=</span> <span class="fl">2019</span>, mes <span class="op">=</span> <span class="fl">11</span><span class="op">)</span></code></pre></div>
 <p>Tiene otras funciones para descargar los datos a nivel de mesa electoral. Puedes <mark><strong>consultar más paquetes relacionados con API de la administración</strong></mark> y sus plataformas de microdatos (INE, BOE, etc) en <a href="https://ropenspain.es/paquetes/" class="uri">https://ropenspain.es/paquetes/</a></p>
@@ -546,19 +546,16 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 <p>Fuente original de los datos: <a href="https://chess.com" class="uri">https://chess.com</a></p>
 </blockquote>
 <p>En <code>R</code> se pueden cargar los datos más varipintos que te imaginas. A veces los códigos o paquetes no siempre están aprobados como paquete pero podemos <mark><strong>instalarlos directamente desde Github</strong></mark>, haciendo uso del paquete <a href="https://devtools.r-lib.org/">devtools</a>, y la función <code>install_github</code>, indicando entre paréntesis el nombre del repositorio. En este caso vamos a usar un repositorio (<a href="https://github.com/JaseZiv/chessR" class="uri">https://github.com/JaseZiv/chessR</a>) que nos permitirá analizar <mark><strong>partidas de ajedrez</strong></mark> de <a href="https://chess.com" class="uri">https://chess.com</a>.</p>
-<div class="sourceCode" id="cb1411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Instalamos paquete desde Github</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"JaseZiv/chessR"</span><span class="op">)</span></code></pre></div>
 <p>Una vez instalado vamos a <mark><strong>acceder al historial de mis partidas de ajedres</strong></mark> usando mi usuario en dicha plataforma <code>usernames = "dadosdelaplace"</code>.</p>
-<div class="sourceCode" id="cb1412"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Accedemos a datos de chess.com</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jaseziv.github.io/chessR/">chessR</a></span><span class="op">)</span>
-<span class="va">datos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://jaseziv.github.io/chessR//reference/get_game_data.html">get_game_data</a></span><span class="op">(</span>usernames <span class="op">=</span> <span class="st">"dadosdelaplace"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Extracting  dadosdelaplace  Data, please wait
-## Data extracted</code></pre>
 <div class="sourceCode" id="cb1414"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">datos</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Accedemos a datos de chess.com</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/JaseZiv/chessR">chessR</a></span><span class="op">)</span>
+<span class="va">datos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/chessR/man/get_game_data.html">get_game_data</a></span><span class="op">(</span>usernames <span class="op">=</span> <span class="st">"dadosdelaplace"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">datos</span><span class="op">)</span></code></pre></div>
 <pre><code>##   rules time_class      Event      Site       Date Round             White
 ## 1 chess      blitz Live Chess Chess.com 2020-11-18     -    DadosDeLaplace
 ## 2 chess      blitz Live Chess Chess.com 2020-11-18     - Gotham_darkKnight
@@ -637,9 +634,44 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 ## 5                          Pawn-Opening-Chigorin-Variation
 ## 6 Pawn-Opening-Kings-Knight-Elephant-Paulsen-Countergambit</code></pre>
 </div>
+<div id="encuestas-electorales-desde-la-wikipedia" class="section level2">
+<h2>
+<span class="header-section-number">17.12</span> Encuestas electorales (desde la wikipedia)<a class="anchor" aria-label="anchor" href="#encuestas-electorales-desde-la-wikipedia"><i class="fas fa-link"></i></a>
+</h2>
+<p>Otra forma muy cómoda de cargar datos es desde <strong>web sencillas</strong> como la wikipedia. Para ver un ejemplo vamos a cargar las <mark><strong>encuestas electorales</strong></mark> que había disponibles para las últimas elecciones alemanas, desde el enlace <a href="https://es.wikipedia.org/wiki/Elecciones_federales_de_Alemania_de_2021" class="uri">https://es.wikipedia.org/wiki/Elecciones_federales_de_Alemania_de_2021</a></p>
+<div class="sourceCode" id="cb1416"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">wiki</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"https://es.wikipedia.org/wiki/"</span>,
+              <span class="st">"Elecciones_federales_de_Alemania_de_2021"</span><span class="op">)</span></code></pre></div>
+<p>Con <code>read_html</code>, del paquete <a href="https://rvest.tidyverse.org/">rvest</a>, accederemos al código HTML de la página web indicada, y con <code>html_nodes</code> podremos indicarle que queremos seleccionar solo las tablas.</p>
+<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+<span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/xml2/man/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">wiki</span><span class="op">)</span>
+<span class="va">tablas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rvest/man/rename.html">html_nodes</a></span><span class="op">(</span><span class="va">html</span>, <span class="st">".wikitable"</span><span class="op">)</span></code></pre></div>
+<p>Con <code>html_table</code> podremos indicarle cual de las tablas queremos leer (están guardados en la lista <code>tablas</code>).</p>
+<div class="sourceCode" id="cb1418"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tabla_encuestas_bruto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rvest/man/html_table.html">html_table</a></span><span class="op">(</span><span class="va">tablas</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span>, header <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">tabla_encuestas_bruto</span></code></pre></div>
+<pre><code>## # A tibble: 124 × 10
+##    X1              X2        X3     X4     X5      X6    X7    X8    X9    X10  
+##    &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 Encuesta        Fecha     Muest… "SPD"  "CDU/C… "Grü… "FDP" "AfD" "Lin… Otros
+##  2 Encuesta        Fecha     Muest… ""     ""      ""    ""    ""    ""    Otros
+##  3 Wahlkreisprogn… 22–24 Se… 1,400  "25.5" "22.5"  "14"  "12"  "11"  "7"   8    
+##  4 Ipsos[85]       22–23 Se… 2,000  "26"   "22"    "16"  "12"  "11"  "7"   6    
+##  5 Forschungsgrup… 22–23 Se… 1,273  "25"   "23"    "16.… "11"  "10"  "6"   8.5  
+##  6 Forsa[87]       20–23 Se… 2,002  "25"   "22"    "17"  "12"  "10"  "6"   8    
+##  7 Allensbach[88]  16–23 Se… 1,554  "26"   "25"    "16"  "10.… "10"  "5"   7.5  
+##  8 Civey[89]       16–23 Se… 10,012 "25"   "23"    "16"  "12"  "10"  "6"   8    
+##  9 YouGov[90]      16–22 Se… 2,364  "25"   "21"    "14"  "11"  "12"  "7"   9    
+## 10 Wahlkreisprogn… 20–21 Se… 1,801  "25"   "21.5"  "15"  "12.… "11"  "6.5" 8.5  
+## # … with 114 more rows</code></pre>
+<div class="sourceCode" id="cb1420"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">tabla_encuestas_bruto</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] "X1"  "X2"  "X3"  "X4"  "X5"  "X6"  "X7"  "X8"  "X9"  "X10"</code></pre>
+</div>
 <div id="exportación-de-datos" class="section level2">
 <h2>
-<span class="header-section-number">17.12</span> Exportación de datos<a class="anchor" aria-label="anchor" href="#exportaci%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.13</span> Exportación de datos<a class="anchor" aria-label="anchor" href="#exportaci%C3%B3n-de-datos"><i class="fas fa-link"></i></a>
 </h2>
 <p>Aunque se puede exportar en cualquier formato que puedas importar, vamos a ver las <mark><strong>dos formas más útiles y eficientes de exportar datos en <code>R</code></strong></mark>:</p>
 <ul>
@@ -648,17 +680,21 @@ Imagen/gráfica 17.1: Discursos guardados en el repositorio de <a href="https://
 </ul>
 <p>La exportación en fichero <code>.RData</code> es la opción <strong>más recomendable si tú o tu equipo solo trabajáis con <code>R</code></strong>, es la opción nativa de fichero, para que su importación sea tan sencilla como una función <code><a href="https://rdrr.io/r/base/load.html">load()</a></code>. Para exportar en <code>R.Data</code> basta con uses la función <code><a href="https://rdrr.io/r/base/save.html">save()</a></code>, indícandole lo que quieres guardar y la ruta donde quieres guardarlo.</p>
 <p>Es <strong>importante</strong> entender que la principal ventaja de exportar un fichero <code>.RData</code> es que no se está portando una tabla, o un fichero tabulado con un formato de filas y columnas: estás exportando <strong>cualquier cosa</strong>, cualquier variable de <code>R</code>, con la naturaleza de esa variable intacta, sin necesidad de pasarlo otro formato.</p>
-<div class="sourceCode" id="cb1416"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"javier"</span>, <span class="st">"carla"</span><span class="op">)</span>
 <span class="co"># Exportamos en .RData la variable nombres </span>
 <span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">nombres</span>, file <span class="op">=</span> <span class="st">"./EXPORTAR/nombres.RData"</span><span class="op">)</span></code></pre></div>
 <p>Para tenerlo organizado, la orden anterior está hecha habiendo creado en nuestra carpeta del proyecto una carpeta <code>EXPORTAR</code> para guardar lo que vayamos exportando. Ese fichero solo podrá ser abierto por <code>R</code>, pero cuando lo cargemos, tendremos la variable <code>nombres</code> tal cual la hemos guardado.</p>
 <p> </p>
 <p>No siempre trabajamos en <code>R</code> y a veces necesitamos una exportación de un <code>data.frame</code> o una tabla que podamos abrir en nuestra ordenador, ya sea para explicársela a alguien o para enviársela a otra persona. Para ello exportaremos en <code>.csv</code>, un fichero sin formato, y que es capaz de ser abierto por todo tipo de hojas de cálculo: basta que usemos la función <code><a href="https://rdrr.io/r/utils/write.table.html">write.csv()</a></code>.</p>
-<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Exportamos en .csv el data.frame del ISCIII</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">datos_ISCIII</span>, file <span class="op">=</span> <span class="st">"./EXPORTAR/datos_ISCIII.csv"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/readr/man/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">datos_ISCIII</span>, file <span class="op">=</span> <span class="st">"./EXPORTAR/datos_ISCIII.csv"</span><span class="op">)</span></code></pre></div>
 <p> </p>
+<p>De la misma manera vamos a <mark><strong>exportar el fichero de encuestas</strong></mark> de Alemania que hemos leído desde la wikipedia.</p>
+<div class="sourceCode" id="cb1424"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/readr/man/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">tabla_encuestas_bruto</span>,
+          <span class="st">"./EXPORTAR/encuestas_alemania_bruto.csv"</span><span class="op">)</span></code></pre></div>
 <p><strong><span style="color: #ffc107;">WARNING: líneas de código en los errores</span></strong></p>
 <p>Dado que los errores del código nos vendrán referenciados en la consola por el número de línea donde fueron detectados, puede sernos muy útil mostrar dichos números en la barra lateral izquierda, yendo a <code>Tools &lt;&lt; Global Options &lt;&lt; Code &lt;&lt; Display &lt;&lt; Show line numbers</code></p>
 <div class="figure" style="text-align: center">
@@ -670,7 +706,7 @@ Imagen/gráfica 17.2: Líneas de código.
 </div>
 <div id="consejos-11" class="section level2">
 <h2>
-<span class="header-section-number">17.13</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos-11"><i class="fas fa-link"></i></a>
+<span class="header-section-number">17.14</span> Consejos<a class="anchor" aria-label="anchor" href="#consejos-11"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong><span style="color: #20935E;">CONSEJOS</span></strong></p>
 <p> </p>
@@ -703,8 +739,9 @@ Imagen/gráfica 17.3: Margen derecho.
 <li><a class="nav-link" href="#datos-de-our-world-in-data-paquete"><span class="header-section-number">17.9</span> Datos de Our World in Data (paquete)</a></li>
 <li><a class="nav-link" href="#datos-electorales-desde-paquete-api"><span class="header-section-number">17.10</span> Datos electorales (desde paquete + API)</a></li>
 <li><a class="nav-link" href="#partidas-de-ajedrez-desde-github"><span class="header-section-number">17.11</span> Partidas de ajedrez (desde Github)</a></li>
-<li><a class="nav-link" href="#exportaci%C3%B3n-de-datos"><span class="header-section-number">17.12</span> Exportación de datos</a></li>
-<li><a class="nav-link" href="#consejos-11"><span class="header-section-number">17.13</span> Consejos</a></li>
+<li><a class="nav-link" href="#encuestas-electorales-desde-la-wikipedia"><span class="header-section-number">17.12</span> Encuestas electorales (desde la wikipedia)</a></li>
+<li><a class="nav-link" href="#exportaci%C3%B3n-de-datos"><span class="header-section-number">17.13</span> Exportación de datos</a></li>
+<li><a class="nav-link" href="#consejos-11"><span class="header-section-number">17.14</span> Consejos</a></li>
 </ul>
 
       <div class="book-extra">
@@ -722,7 +759,7 @@ Imagen/gráfica 17.3: Margen derecho.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 18-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 22-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

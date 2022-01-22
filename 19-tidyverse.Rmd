@@ -20,26 +20,42 @@ colorize <- function(x, color) {
 
 # Depuración y transformación {#tidyverse}
 
-* Intentaremos que de aquí en adelante nuestros datos sean [Tidy data](#tidy_data)
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script19.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script19.R): introducción a tidyverse.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script19.R>
+
+::::
+
+
+* De aquí en adelante intentaremos que nuestros datos sean [Tidy data](#tidy_data)
 * Conocemos ya un <mark>**formato amable**</mark> de almacenar los datos como son los `data.frame` de tipo `tibble`
 
-Sin embargo muchas veces los datos no los tenemos en el formato deseado, o directamente queremos realizar algunas <mark>**transformaciones**</mark> en los mismos, crear nuevas variables u obtener resúmenes numéricos. En esta sección **empezaremos a explorar, procesar, depurar y transformar los datos**, haciendo uso principalmente del entorno de paquetes `{tidyverse}`.
+Como hemos comentado antes, muchas veces los datos no los tenemos en el formato deseado, o directamente queremos realizar algunas <mark>**transformaciones**</mark> en los mismos, crear nuevas variables u obtener resúmenes numéricos. En esta sección **empezaremos a explorar, procesar, depurar y transformar los datos**, haciendo uso principalmente del entorno de paquetes `{tidyverse}`.
 
 ```{r}
 library(tidyverse)
 ```
 
-El <mark>**entorno `{tidyverse}`**</mark> es una de las **herramientas más importantes en el manejo de datos en `R`**, una **colección de paquetes** pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una **misma filosofía y gramática**. Puedes ver su documentación en <https://www.tidyverse.org/>. Esta sección pretende ser una **introducción a dicho entorno**, y lo haremos principalmente con el conjunto de datos `starwars`, del paquete `{dplyr}` (ya cargado en `{tidyverse}`).
+```{r tidyverse, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://sporella.github.io/datos_espaciales_presentacion/#30', fig.cap = "Imagen extraída de <https://sporella.github.io/datos_espaciales_presentacion/#30>", out.width = '70%'}
+knitr::include_graphics("img/flujo_tidyverse.png")
+```
+
+El <mark>**entorno `{tidyverse}`**</mark> es una de las **herramientas más importantes en el manejo de datos en `R`**, una **colección de paquetes** pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una **misma filosofía y gramática**. Esta sección pretende ser una **introducción a dicho entorno**, y lo haremos principalmente con el conjunto de datos `starwars`, del paquete `{dplyr}` (ya cargado en `{tidyverse}`).
+
+
+## Conjunto de starwars
+
+```{r starwars-logo, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://swapi.dev', out.width = '70%'}
+knitr::include_graphics("img/starwars.jpg")
+```
 
 ```{r}
 starwars
 ```
 
-```{r starwars-logo, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://swapi.dev', out.width = '50%'}
-knitr::include_graphics("img/starwars.jpg")
-```
-
-Dicho **conjunto de datos**, extraída de la [Star Wars API](https://swapi.dev), recopila diferentes datos y características de los personajes de la <mark>**saga Star Wars**</mark>. Como habrás advertido al escribir el conjunto en consola, `starwars` es una tabla en un formato ya conocido, un `tibble`, en el que se nos especifica al inicio de la tabla de qué tipo son cada columna:
+Dicho **conjunto de datos**, extraído de la [Star Wars API](https://swapi.dev), recopila diferentes datos y características de los personajes de la <mark>**saga Star Wars**</mark>. Como habrás advertido al escribir el conjunto en consola, `starwars` es una tabla en un formato ya conocido, un `tibble`, en el que se nos especifica al inicio de la tabla de qué tipo son cada columna:
 
 * `int`: números enteros.
 * `dbl`: números reales (o racionales).
@@ -47,8 +63,9 @@ Dicho **conjunto de datos**, extraída de la [Star Wars API](https://swapi.dev),
 * `lgl`: valores lógicos (`TRUE` o `FALSE`).
 * `fct`: factores, variables cualitativas (categorías).
 * `date`: fechas.
+* `list`: listas.
 
-Las **funciones** que veremos a lo largo de esta sección <mark>**siempre van a compartir una misma metodología**</mark>: primero escribimos el nombre una tabla (`tibble`), después **lo que queremos hacer** a dicho conjunto de datos (con las variables SIN comillas) <mark>**encandenando órdenes con `%>%` (lo que se conoce como _pipes_)**</mark>, y **obtendremos una nueva tabla** en el mismo formato de entrada.
+Nuestro conjunto de datos tiene <mark>**87 registros y 14 variables**</mark>.
 
 ```{r}
 # Tipo de datos
@@ -58,14 +75,16 @@ class(starwars)
 dim(starwars)
 ```
 
-Con `glimpse(starwars)` podemos obtener una visión global de las variables que tenemos.
+Las **funciones** que veremos a lo largo de esta sección <mark>**siempre van a compartir una misma metodología**</mark>: primero escribimos el nombre un conjunto de datos `tibble` y después **lo que queremos hacer** a dicho conjunto de datos (con las variables SIN comillas) <mark>**encandenando órdenes con `%>%`**</mark>, de forma que **obtendremos una nueva tabla** en el mismo formato de entrada.
+
+Con `glimpse(starwars)` podemos obtener una <mark>**visión global de las variables**</mark> que tenemos en nuestros datos.
 
 ```{r}
 # Resumen por columnas
 glimpse(starwars)
 ```
 
-Los datos podemos verlos escribiendo el nombre de la tabla en la consola (recuerda que si es un `tibble`, para evitar saturar la consola, te saca un extracto, no todas las columnas y filas) o bien con la **función `print()`, indicándole número de filas (`n = 15` por ejemplo) y número de columnas (`width = Inf` si queremos mostrar todas)**.
+Los datos también podemos verlos escribiendo el nombre de la tabla en la consola (recuerda que si es un `tibble`, para evitar saturar la consola, te saca un extracto, no todas las columnas y filas) o bien con la **función `print()`**, indicándole **número de filas** (`n = 15` por ejemplo) y **número de columnas** (`width = Inf` si queremos mostrar todas).
 
 ```{r}
 # Imprimir personalizado
@@ -79,10 +98,16 @@ knitr::include_graphics("./img/dplyr.png")
 ``` 
 
 
+## Operaciones con filas
 
-## Filtrar filas (filter)
+Empecemos por aprender a <mark>**seleccionar filas**</mark>. Principalmente tenemos tres opciones:
 
-Empecemos por <mark>**cómo seleccionar filas**</mark>. Principalmente tenemos tres opciones: seleccionarlas en base a algún **filtro o condición** (solo los mayores de tal edad, por ejemplo), **extraer filas por su índice** de fila o **extraer filas aleatoriamente**.
+1. Seleccionarlas en base a algún <mark>**filtro o condición**</mark> (solo los mayores de tal edad, por ejemplo).
+2. Extraer filas por su <mark>**índice de fila**</mark> (la fila que ocupa tal personaje).
+3. Extraer filas <mark>**aleatoriamente (uniforme)**</mark> (por ejemplo, para un sorteo).
+
+
+### Seleccionar filas (filter y slice)
 
 La función `filter()` nos permite <mark>**seleccionar filas en base a que se cumpla una o varias condiciones**</mark> respecto a las variables. Para usarla basta con que introduzcamos como argumento el conjunto de condiciones que debe cumplir (recuerda: nombre de columnas sin comillas). Supongamos que queremos por ejemplo **seleccionar solo los personajes con ojos marrones**: nos bastará con usar `filter()` con la condición `eye_color == "brown"`.
 
@@ -167,7 +192,7 @@ starwars %>% slice_max(mass, n = 7) # los 7 más pesados
 ```
 
 
-## Reordenar filas (arrange)
+### Reordenar filas (arrange)
 
 Muchas veces necesitamos las <mark>**filas ordenadas en función del valor de alguna de las variables**</mark>. Para ello tenemos la función `arrange()` sin más que pasarle como argumento el nombre de la variable que usaremos para la ordenación. Vamos a ordenar nuestra tabla de personajes por altura, de bajitos a altos.
 
@@ -209,9 +234,50 @@ starwars %>%
   arrange(height, desc(mass))
 ```
 
-## Seleccionar columnas (select)
+### Eliminar filas y duplicados (slice y distinct)
+
+La misma lógica que hemos usado para seleccionar filas podemos usarla para <mark>**eliminar filas**</mark>, simplemente negando la condición de filtrado. Por ejemplo, vamos a **eliminar las 5 primeras filas**.
+
+```{r}
+# Eliminamos por índices
+starwars %>% slice(-(1:5)) # eliminamos las 5 primeras filas
+```
+
+Otra opción a la hora de eliminar filas es <mark>**eliminar filas duplicadas**</mark> (o filas con valores duplicados en alguna columna). Para ello deberemos aplicar la función `distinct()`, pasándole como argumentos el nombre de las variables que usaremos para quitar duplicados, por ejemplo, aquellos personajes con igual par de color de pelo y ojos.
+
+```{r}
+# Eliminamos duplicados
+starwars %>% # Eliminamos registros con igual par (color_pelo, color_ojos)
+  distinct(hair_color, eye_color)
+```
+
+Si te fijas además nos ha extraído solo las dos columnas en base a las cuales hemos eliminado duplicados. Si queremos que nos mantenga toda la tabla deberemos explicitarlo con `.keep_all = TRUE`.
+
+```{r}
+# Eliminamos duplicados
+starwars %>% # Eliminamos registros con igual par (color_pelo, color_ojos)
+  distinct(hair_color, eye_color,
+           .keep_all = TRUE) # .keep_all = TRUE mantiene todas columnas
+```
+
+Si no incluimos **ningún nombre** de columna **nos eliminará solo los registros que tengan TODOS los campos duplicados**.
+
+```{r}
+# Duplicamos el conjunto para probarlo
+duplicado_starwars <- rbind(starwars, starwars)
+dim(duplicado_starwars)
+
+# Eliminamos duplicados (filas exactamente iguales)
+duplicado_starwars %>% distinct()
+dim(duplicado_starwars %>% distinct())
+```
+
+## Operaciones con columnas
 
 Ya hemos visto algunas opciones para manejar filas. Pasemos a  <mark>**seleccionar columnas**</mark> o <mark>**construir columnas/variables nuevas**</mark> en base a las ya existentes.
+
+
+### Seleccionar columnas (select)
 
 La opción más sencilla es usar la función `select()` pasándole como argumentos los nombres de columnas (¡SIN COMILLAS!) queremos seleccionar, por ejemplo, color de pelo, piel y ojos.
 
@@ -258,11 +324,40 @@ Incluso nos permite <mark>**seleccionar aquellas columnas que son del mismo tipo
 starwars %>% select(where(is.numeric))
 ```
 
-Por último, podemos no tanto seleccionar sino <mark>**extraer columnas**</mark>: las saca fuera de la tabla y las convierte en un vector fuera del `tibble`, con la función `pull()`.
+
+### Extraer columnas (pull) 
+
+También podemos no tanto seleccionar sino <mark>**extraer columnas**</mark>: las saca fuera de la tabla y las convierte en un vector fuera del `tibble`, con la función `pull()`.
 
 ```{r}
 starwars %>% pull(name)
 ```
+
+### Renombrar (rename) y reordenar (relocate) columnas
+
+A veces también podemos querer **modificar la «metainformación» de la tabla**, no modificando los datos sino <mark>**renombrando el orden de las columnas**</mark>. Para ello debremos usar la función `rename()` poniendo primero el nombre nuevo y luego el antiguo
+
+```{r}
+# rename: renombrar columnas, primero el nuevo y luego el antiguo
+starwars %>% rename(nombre = name, altura = height, peso = mass)
+```
+
+De la misma manera podemos <mark>**reordenar las columnas**</mark>, indicando el nombre de columnas que queremos mover, y con `.after` y/o `.before` para indicar antes o después de que columnas queremos moverlas.
+
+```{r}
+starwars %>% # altura y masa detrás de color de piel
+  relocate(height, mass, .after = skin_color) 
+starwars %>% # color de piel, pelo y ojos antes de peso
+  relocate(hair_color, skin_color, eye_color,
+           .before = mass) 
+```
+
+Otra opción es hacerlo con `select()`, indicándole el orden de las columnas manualmente, pudiendo hacer uso de `everything()` para **incluir el resto de columnas no mencionadas anteriormente**.
+
+```{r}
+starwars %>% select(name, homeworld, everything())
+```
+
 
 ## Crear nuevas variables (mutate)
 
@@ -358,39 +453,143 @@ starwars %>%
 ```
 
 
-## Visualizar el flujo
+
+### Recategorizar columnas (cut y case_when)
+
+Una operación también muy habitual es querer <mark>**recategorizar nuestras variables**</mark>: tenemos categorías ya existentes o variables numéricas que queremos convertir a categoría (factores en `R`). Supongamos por ejemplo que queremos **crear una categoría para cada registro** en función de su altura: menos de 120, entre 120 y 180, y más de 180. Para ello podemos hacer uso de la función `cut()`, a la que en el argumento `breaks` le debemos indicar los **«cortes» o saltos de la variable**.
+
+```{r}
+print(starwars %>% mutate("estat_categoria" = cut(height, breaks = c(-Inf, 120, 180, Inf))), width = Inf)
+```
+
+Recuerda que si quieres **mostrar solo las nuevas columnas** creadas puedes usar `transmute()`
+
+```{r}
+starwars %>% transmute("estat_categoria" = cut(height, breaks = c(-Inf, 120, 180, Inf)))
+```
+
+Si queremos que la categoría tenga un nombre explícito (y no el intervalo en sí), podemos indicárselo en `labels = ` el vector de nombres de las categorías.
+
+```{r}
+starwars %>%
+  transmute("estat_categoria" = cut(height, breaks = c(-Inf, 120, 180, Inf),
+                                    labels = c("bajos", "medios", "altos")))
+```
+
+Otra opción es hacerlo con la función `factor` que nos transforma una variable en categoría.
+
+```{r}
+# Vamos a categorizar en bajitos a los que miden menos de 180 cm
+starwars %>%
+  mutate(talla = factor(height < 180, labels = c("bajos", "altos")))
+```
+
+## Datos ausentes y outliers (drop_na y mutate)
+
+Como ya vimos en [Tipos de datos I: vectores](#vectores), los datos ausentes en `R` pueden venir representados por valores `NA` o por valores `NaN` (en realidad este no sería ausente siendo estrictos, es simplemente un resultado no numérico dentro de los reales). **¿Qué hacer con dichos valores?**
+
+Una primera opción puede ser <mark>**eliminar los registros que contengan campos ausentes**</mark> en alguna de sus variables, haciendo uso de la función `drop_na()`.
+
+```{r}
+starwars %>% drop_na()
+```
+
+Como ves solo 6 de los 87 registros tienen todos los campos completos. Como quizás **no todos los campos sean igual de importantes** en nuestros, podemos indicarle que nos elimine aquellos registros que tengan datos ausentes **algunos campos en concreto** (o una coelcción de ellos)
+
+```{r}
+starwars %>% drop_na(mass, height, sex, gender, birth_year)
+```
+
+Otra opción es **imputar su valor** en el caso de variables cuantitativas por, por ejemplo, la **media de la variable sin datos ausentes**, y  **recategorizar las cuantitaivas creando un categoría** per se de ausentes.
+
+```{r}
+starwars %>%
+  # Variables cuanti
+  mutate(across(where(is.numeric),
+                ~replace(.x, is.na(.x), mean(.x, na.rm = TRUE)))) %>%
+  # Variables cuali: pasamos NA y "none" a "unknown"
+  mutate(across(where(is.character),
+                ~replace(.x, is.na(.x) | .x == "none", "unknown")))
+  
+```
+
+&nbsp;
+
+Muchas veces tendremos variables con **valores muy alejados de la centralidad**, centralidad normalmente entendida como media o mediana, valores muy extremos (conocidos como <mark>**valores atípicos o outliers**</mark>).
+
+* **Respecto a la mediana/percentiles (iqr)**: una definición de outlier muy habitual es definirlo como un **valor muy alejado del primer/tercer cuartil**. La definición que se suele usar es que el dato sea interior/superior al primer/tercer cuartil una amplitud de X veces el **rango intercuartílico** (conocido como **IQR, calculado como el tercer cuartil menos el primer cuartil**) por debajo/encima.
+
+* **Respecto a la media (gesd)**: el criterio utilizado suele ser el conocido como GESD (Generlized Extreme Studentized Deviate Test), un contraste de hipótesis cuya hipótesis nula es que no hay atípicos en los datos. Puedes ver la formulación matemática en <https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h3.htm>
+
+Para su localización automática usaremos el paquete `{anomalize}`, y la función homónima de dicho paquete, indicándole la columna individual en la que queremos detectar outliers y el método a usar. Con el método `method = "gesd"` realizaremos el contraste dato a dato de forma secuencial (si hay outlier lo quita individualmente y vuelve a ejecutarlo). Con `method = "iqr"`, ese factor `X` que nos distanciamos del primer y tercer cuartil es calculado como `0.15/alpha`, de forma que con `alpha = 0.05` (por ejemplo), dicho factor sería `X = 3`. Es **MUY IMPORTANTE** quitar antes los valores ausentes (para que pueda ejecutarse correctamente).
+
+```{r}
+library(anomalize)
+# Importante: quitar antes missings
+starwars %>% drop_na(mass) %>% anomalize(mass, method = "gesd")
+``` 
+
+En las columnas `mass_l1` y `mass_l2` se nos han guardado los límites para considerar o no outlier, y en `anomaly` tendremos si el valor es un outlier o no. Podemos renombrar dicha columna y recategorizarlo con `TRUE/FALSE`
+
+```{r}
+print(starwars %>%
+        drop_na(mass) %>%
+        anomalize(mass, method = "gesd") %>%
+        rename(outlier = anomaly) %>%
+        # Eliminamos la variables auxiliares creadas
+        select(-c(mass_l1, mass_l2)) %>%
+        mutate(outlier = (outlier == "Yes")), width = Inf)
+```
+
+Dicha variable auxiliar la podremos usar para **decidir si incluir o no el registro** en futuros pasos, pero también **podemos usarla para imputarle un valor** (por ejemplo, la media).
+
+```{r}
+print(starwars %>%
+        drop_na(mass) %>%
+        anomalize(mass, method = "gesd") %>%
+        rename(outlier = anomaly) %>%
+        # Eliminamos la variables auxiliares creadas
+        select(-c(mass_l1, mass_l2)) %>%
+        mutate(outlier = (outlier == "Yes"),
+               mass = ifelse(outlier, mean(mass), mass)),
+      width = Inf)
+```
+
+
+## Visualizar el flujo de datos en tidyverse
 
 Antes de pasar a los ejercicios, existe una reciente herramienta que nos va a permitir entender mejor y <mark>**visualizar el flujo de trabajo**</mark> de las funciones que hemos visto en este entorno `{tidyverse}`: <https://tidydatatutor.com/>. Basta con poner el código que queremos ejecutar, y nos muestra las operaciones en los datos visualmente.
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Tidytutor."}
+```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor.jpg")
 
 ```
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Tidytutor."}
+```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor1.jpg")
 
 ```
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Tidytutor."}
+```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor2.jpg")
 
 ```
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Tidytutor."}
+```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor3.jpg")
 
 ```
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Tidytutor."}
+```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor4.jpg")
 
 ```
 
-```{r echo = FALSE, out.width = "50%", fig.align = "center", fig.cap = "Tidytutor."}
+```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Tidytutor."}
 knitr::include_graphics("./img/tidytutor5.jpg")
-
 ```
+
+
 ## 📝 Ejercicios
 
 (haz click en las flechas para ver soluciones)

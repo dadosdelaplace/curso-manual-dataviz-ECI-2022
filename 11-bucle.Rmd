@@ -23,7 +23,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script08.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script08.R>
+* [**script11.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R): bucles.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R>
 
 ::::
 

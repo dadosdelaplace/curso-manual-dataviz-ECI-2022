@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 7 Operaciones con vectores | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="Scripts usados: script04.R: operaciones con vectores. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R   7.1 Operaciones aritméticas con vectores numéricos...">
+<meta name="description" content="Scripts usados: script07.R: operaciones con vectores. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R   7.1 Operaciones aritméticas con vectores numéricos...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 7 Operaciones con vectores | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Scripts usados: script04.R: operaciones con vectores. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R   7.1 Operaciones aritméticas con vectores numéricos...">
+<meta property="og:description" content="Scripts usados: script07.R: operaciones con vectores. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R   7.1 Operaciones aritméticas con vectores numéricos...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 7 Operaciones con vectores | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Scripts usados: script04.R: operaciones con vectores. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R   7.1 Operaciones aritméticas con vectores numéricos...">
+<meta name="twitter:description" content="Scripts usados: script07.R: operaciones con vectores. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R   7.1 Operaciones aritméticas con vectores numéricos...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +94,7 @@
 <p>Scripts usados:</p>
 <ul>
 <li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R"><strong>script04.R</strong></a>: operaciones con vectores. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script04.R</a>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R"><strong>script07.R</strong></a>: operaciones con vectores. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R</a>
 </li>
 </ul>
 </div>
@@ -418,9 +418,9 @@
                <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span>, <span class="co"># segunda forma</span>
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##         expr    min     lq     mean median      uq     max neval cld
-##      sort(x) 43.529 51.024 58.64045 55.087 59.8190 151.300  1000   b
-##  x[order(x)] 31.203 36.736 41.03961 38.571 41.8645 121.066  1000  a</code></pre>
+##         expr    min      lq     mean  median      uq      max neval cld
+##      sort(x) 46.442 55.8360 71.66842 62.1435 78.9465  424.631  1000   b
+##  x[order(x)] 33.701 39.2665 51.41467 43.8605 53.6710 1515.957  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">
@@ -589,7 +589,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 18-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 22-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

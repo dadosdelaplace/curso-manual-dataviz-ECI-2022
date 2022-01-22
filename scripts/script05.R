@@ -1,187 +1,143 @@
-# ----- Matrices -----
 
-# Ejemplos de variables unidimensionales (vectores)
-c(1, 4, NA, -2, 0)
-c("a", NA, "b", "c")
-c(TRUE, TRUE, FALSE, TRUE)
+# ----- Datos numéricos -----
 
-# Primera matriz: crear matric por columnas
-estaturas <- c(150, 160, 170, 180, 190)
-pesos <- c(60, 70, 80, 90, 100)
-datos_matriz <- cbind(estaturas, pesos) # Construimos la matriz por columnas
-datos_matriz # nuestra primera matriz
+# Dato numérico (double)
+a <- 1
+class(a)
+typeof(a)
 
-# Visualizar la matriz
-View(datos_matriz)
+# Dato numérico (entero)
+a <- 1L
+class(a)
+typeof(a)
 
-# Crear matriz por filas
-rbind(estaturas, pesos) # Construimos la matriz por filas
+# Definimos dos variables numéricas
+a <- 1
+b <- -2
 
-# Matriz de 3 columnas
-edades <- c(14, 24, 56, 31, 20, 87, 73) # vector numérico de longitud 7
-tlf <- c(NA, 683839390, 621539732, 618211286, NA, 914727164, NA)
-cp <- c(33007, 28019, 37005, 18003, 33091, 25073, 17140)
-datos_matriz <- cbind(edades, tlf, cp) 
-datos_matriz
+# Suma y resta
+a + b
+a - b
 
-# Añadimos una fila
-rbind(datos_matriz, c(27, 620125780, 28051))
+# Multiplicación y división
+a * b
+a / b
 
-# Añadimos una columna
-cbind(datos_matriz, "estaturas" = c(160, 155, 170, 181, 174, NA, 165))
+# Raíz cuadrada
+sqrt(a)
 
+# Valor absoluto
+abs(b)
 
-# Calculamos dimensiones
-dim(datos_matriz)
-dim(datos_matriz)[1]
-dim(datos_matriz)[2]
-nrow(datos_matriz)
-ncol(datos_matriz)
+# Potencias
+a^2
+b^3
 
-# Matriz de ceros
-matrix(0, nrow = 5, ncol = 3) # 5 filas, 3 columnas, todo 0's
+# ----- Datos de tipo texto -----
 
-# Matriz a partir de un vector
-z <- matrix(1:15, ncol = 5) # Matriz con el vector 1:5 con 5 columnas (ergo 3 filas)
-z
+# Definimos una variable de tipo character
+nombre <- "Javier"
+class(nombre)
+typeof(nombre)
 
-# # Matriz transpuesta
-datos_matriz
-t(datos_matriz) 
+# Pegar cadenas de texto
+nombre <- "Javier"
+apellido <- "Álvarez"
+paste(nombre, apellido, sep = "") # todo junto
+paste(nombre, apellido, sep = " ") # separados por un espacio
+paste(nombre, apellido, sep = ".") # separados por un punto .
 
-# Operaciones con matrices: se hacen elemento a elemento
-datos_matriz / 5
-datos_matriz + 3
+# Son equivalentes
+paste(nombre, apellido, sep = "") # todo junto
+paste0(nombre, apellido) # todo junto sin nada separando
 
-# Matriz de caracteres
-nombres <- c("Javier", "Carlos", "María", "Paloma")
-apellidos <- c("Álvarez", "García", "Pérez", "Liébana")
-cbind(nombres, apellidos)
+# Paquete glue
+install.packages("glue") # solo la primera vez
+library(glue)
+edad <- 32
+glue("La edad es de {edad} años")
+paste("La edad es de", edad, "años") # equivalente
 
-# Matriz de valores lógicos
-var1 <- c(TRUE, TRUE, FALSE, FALSE, TRUE)
-var2 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-cbind(var1, var2)
-cbind(var1, var2) + 1
+# Ejemplo 2
+edad <- 32
+unidades <- "años"
+glue("La edad es de {edad} {unidades}")
 
-# Acceder a elementos con [i]
-datos_matriz
-datos_matriz[1, 3] # elemento (1, 3)
-datos_matriz[1, ] # fila 1
-datos_matriz[, 3] # columna 3
+# ----- Datos lógicos -----
 
-# Acceder por nombre
-datos_matriz[, c("edades", "tlf")]
+# Variables lógicas
+soltero <- TRUE
+class(soltero)
+typeof(soltero)
 
-# Asignar nombres a filas
-row.names(datos_matriz) <- c("Javi", "Laura", "Patricia", "Carlos",
-                             "Juan", "Luis", "Carla")
-datos_matriz["Javi", "edades"]
+carnet_conducir <- FALSE
+class(carnet_conducir)
+typeof(carnet_conducir)
 
+# Comparativas
+soltero == TRUE
+soltero != TRUE # igual que soltero == FALSE
+carnet_conducir == TRUE
+carnet_conducir != TRUE
+nombre == "Carlos"
+edad < 32
+edad == 32
+edad >= 32
 
-# ----- Operaciones por filas y columnas (apply) -----
+# Varias condiciones a la vez
+edad > 32 | soltero # nos sirve con que alguna se cumpla
+edad > 32 & soltero # deben cumplirse ambas
+edad > 30 & soltero # deben cumplirse ambas
 
-# Matriz a usar
-datos_matriz <- cbind(estaturas, pesos)
-datos_matriz
+# ----- Datos de tipo fecha -----
 
-# Media por columnas (MARGIN = 2)
-apply(datos_matriz, MARGIN = 2, FUN = "mean")
+# Cadena de texto
+fecha_char <- "2021-04-21"
+fecha_char + 1
 
-# Media por filas (MARGIN = 1)
-apply(datos_matriz, MARGIN = 1, FUN = "mean")
+# Fecha, mostrada como un texto pero guardada internamente como un número
+fecha_date <- as.Date(fecha_char, format = "%Y-%m-%d")
+fecha_date + 1
 
-# Argumentos extras
-datos_matriz <- cbind(edades, tlf, cp) 
-datos_matriz
-# Media por columnas (MARGIN = 2)
-apply(datos_matriz, MARGIN = 2, FUN = "mean", na.rm = TRUE)
+# Operaciones con fechas
+fecha <- Sys.Date()
+fecha
+fecha - 7 # una semana antes
+class(fecha) # de clase fecha
 
-# ----- Tablas: data.frames -----
+# Convertir a fecha
+as.Date("2021-03-10")
+as.Date("10-03-2020", "%d-%m-%Y") # con día-mes-año (4 cifras)
+as.Date("10-03-20", "%d-%m-%y")  # con día-mes-año (2 cifras)
+as.Date("03-10-2020", "%m-%d-%Y") # con mes-día-año (4 cifras)
+as.Date("Octubre 21, 1995 21:24", "%B %d, %Y %H:%M") # fecha escrita
 
-Recapitulando:
-  
-# Sumamos un año a todas las personas
-datos_matriz[, "edades"] + 1
+# Funciones del paquete lubridate
+install.packages("lubridate")
+library(lubridate)
+ymd_hms("2017-11-28T14:02:00") # convertir a fecha una cadena año-mes-día + hora
+ydm_hms("2017-22-12 10:00:00") # convertir a fecha una cadena año-día-mes + hora
+dmy_hms("1 Jan 2017 23:59:59") # convertir a fecha una cadena textual de fecha + hora
+mdy("July 4th, 2000") # convertir a fecha una cadena textual de fecha
+ymd(20170131)
 
-# Añadimos texto a una matriz numérico y repetimos suma
-nombres <- c("Sonia", "Carla", "Pepito", "Carlos", "Lara", "Sandra", "Javi")
-datos_matriz_nueva <- cbind(nombres, datos_matriz)
-datos_matriz_nueva[, "edades"] + 1 # error
+# Funciones del hoy y ahora
+today()
+now()
 
-# Construimos el primer data.frame
-nombres <- c("Sonia", "Carla", "Pepito", "Carlos", "Lara", "Sandra", "Javi")
-apellidos <- c(NA, "González", "Fernández", "Martínez", "Liébana", "García", "Ortiz")
-cp <- c(28019, 28001, 34005, 18410, 33007, 34500, 28017)
-edades <- c(45, 67, NA, 31, 27, 19, 50)
-tlf <- c(618910564, 914718475, 934567891, 620176565, NA, NA, 688921344)
-casado <- c(TRUE, FALSE, FALSE, NA, TRUE, FALSE, FALSE)
-fecha_creacion <-
-  as.Date(c("2021-03-04", "2020-10-12", "1990-04-05",
-            "2019-09-10", "2017-03-21", "2020-07-07",
-            "2000-01-28"))
-# En cada variable tenemos 7 registros, uno por persona,
-# pero ahora tenemos un popurrí de variables, 
+# Otras funciones
+fecha <- now()
+year(fecha)
+month(fecha)
+day(fecha)
+wday(fecha, week_start = 1) # Día de la semana (empezando por el lunes)
+hour(fecha)
+minute(fecha)
+second(fecha)
+week(fecha) # Número de semana (del año)
 
-# Juntamos todo en una matriz (juntamos por columnas)
-datos_matriz <-
-  cbind(nombres, apellidos, edades, tlf, cp, casado, fecha_creacion)
-datos_matriz # MAL: todo a texto
-
-
-# Creamos nuestro primer data.frame
-tabla <- data.frame(nombres, apellidos, edades, tlf, cp,
-                    casado, fecha_creacion)
-tabla
-class(tabla)
-
-# Nombres a las variables
-tabla <- data.frame("nombre" = nombres, "apellido" = apellidos, 
-                    "edad" = edades, "teléfono" = tlf, 
-                    "cp" = cp, "casado" = casado,
-                    "fecha_registro" = fecha_creacion)
-tabla
-View(tabla)
-
-# Añadimos una nueva columna con nº de hermanos/as
-hermanos <- c(0, 0, 1, 5, 2, 3, 0)
-tabla <- data.frame(tabla, "n_hermanos" = hermanos)
-tabla
-
-# Selección de columnas y filas
-tabla[, 3] # Accedemos a la tercera columna
-tabla[5, ] # Accedemos a la quinta fila
-tabla[5, 3] # Accedemos a la tercera variable del quinto registro
-
-# Sacamos datos de datasets
-install.packages("datasets")
-library(datasets)
-datasets::USArrests
-View(USArrests)
-
-# Cabecera
-head(USArrests)
-
-# Nombre variables
-names(USArrests)
-
-# Nombre filas
-row.names(USArrests)
-
-# Dimensiones
-dim(USArrests)
-nrow(USArrests)
-ncol(USArrests)
-
-# Selección de filas 2 y 10, y variables Murder y Assault
-USArrests[c(2, 10), c("Murder", "Assault")]
-
-# Cambio de nombres
-names(USArrests) <- c("asesinato", "agresion",
-                      "pobl_urbana", "violacion")
-
-# Filtrado con subset
-subset(USArrests, subset = pobl_urbana > 70, select = c("asesinato"))
-subset(USArrests, subset = pobl_urbana < 70 & agresion > 250,
-       select = c("asesinato", "violacion"))
+# Comprando fechas
+fecha_actual <- now()
+fecha_actual > ymd(20170131) # Actual vs 2017-01-31
+fecha_actual > ymd(21000131) # Actual vs 2100-01-31
 

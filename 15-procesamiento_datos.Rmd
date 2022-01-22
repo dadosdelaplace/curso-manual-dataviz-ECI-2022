@@ -24,7 +24,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script11.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R): datos tibble.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script11.R>
+* [**script15.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script15.R): datos tibble.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script15.R>
 ::::
 
 Empieza lo interesante :)

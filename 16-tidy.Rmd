@@ -22,14 +22,18 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script12.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script12.R): tidy data.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script12.R>
+* [**script16.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script16.R): tidy data.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script16.R>
 ::::
 
 > Tidy datasets are all alike, but every messy dataset is messy in its own way (Hadley Wickham, Chief Scientist en RStudio)
 
 Hasta ahora solo le hemos dado importancia al «qué» pero no al **«cómo» manejamos los datos**. La <mark>**organización de nuestros datos**</mark> es fundamental para que su preparación y explotación sea **lo más eficiente posible**: la limpieza y preprocesamiento puede llevarnos hasta el **80% del tiempo** en nuestro análisis si no se hace forma correcta [@DasuJohnson03].
 
-El concepto <mark>**tidy data**</mark> fue introducido por **Hadley Wickham** [@Wickham14] como objetivo del entorno de paquetes que posteriormente se fueron desarrollando bajo el nombre de `{tidyverse}`. Los conjuntos _tidy_ o <mark>**datos ordenados**</mark> tienen tres objetivos
+```{r flujo-tidy-data2, echo = FALSE,  out.width = "60%", fig.align = "center", fig.cap = "Flujo deseable de datos según Hadley Wickham, extraída de <https://r4ds.had.co.nz/wrangle-intro.html>"}
+knitr::include_graphics("./img/flujo_tidy_data.jpg")
+``` 
+
+El concepto <mark>**tidy data**</mark> fue introducido por **Hadley Wickham** [@Wickham14] como el <mark>**primer paso**</mark> del entorno de paquetes que posteriormente se fueron desarrollando bajo el nombre de `{tidyverse}`. Los conjuntos _tidy_ o <mark>**datos ordenados**</mark> tienen tres objetivos
 
 * **Estandarización** en su estructura.
 * **Sencillez** en su manipulación.
@@ -47,7 +51,11 @@ Para ello, los <mark>**datos ordenados**</mark> o _tidy data_ deben cumplir:
 knitr::include_graphics("./img/tidy_data.png")
 ``` 
 
-Lo contrario lo llamaremos **datos desordenados** o _messy data_. Para trabajar con los datos vamos a cargar `{tidyverse}`, un entorno de paquetes para el manejo de datos (ver más detalles en [Transformando los datos: incursión al universo tidyverse](#tidyverse)).
+Lo contrario lo llamaremos <mark>**datos desordenados**</mark> o _messy data_. 
+
+## Entorno tidyverse
+
+Conocemos ya un <mark>**formato amable**</mark> de almacenar los datos como son los `data.frame` de tipo `tibble`. Sin embargo muchas veces los datos no los tenemos en el formato deseado, o directamente queremos realizar algunas <mark>**transformaciones**</mark> en los mismos, ordenarlos, crear nuevas variables u obtener resúmenes numéricos. Para trabajar con los datos vamos a cargar `{tidyverse}`, un entorno de paquetes para el manejo de datos (ver más detalles en [Transformando los datos: incursión al universo tidyverse](#tidyverse)).
 
 ```{r eval = FALSE}
 install.packages("tidyverse") # SOLO la primera vez
@@ -57,6 +65,48 @@ install.packages("tidyverse") # SOLO la primera vez
 library(tidyverse)
 ```
 
+
+```{r flujo-tidyverse-1, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://sporella.github.io/datos_espaciales_presentacion/#30', fig.cap = "Imagen extraída de <https://sporella.github.io/datos_espaciales_presentacion/#30>", out.width = '70%'}
+knitr::include_graphics("img/flujo_tidyverse.png")
+```
+
+El <mark>**entorno `{tidyverse}`**</mark> es una de las **herramientas más importantes en el manejo de datos en `R`**, una **colección de paquetes** pensada para el manejo, la exploración, el análisis y la visualización de datos, compartiendo una **misma filosofía y gramática**.
+
+
+```{r flujo-tidyverse-2, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.link = 'https://www.storybench.org/getting-started-with-tidyverse-in-r/', fig.cap = "Imagen extraída de <https://www.storybench.org/getting-started-with-tidyverse-in-r/>", out.width = '90%'}
+knitr::include_graphics("img/flujo_tidyverse_1.png")
+```
+
+* `{tidyr}`: para adecuar los datos a _tidy data_
+
+* `{tibble}`: mejorando los `data.frame` para un manejo más 
+
+* Paquete `{readr}` para una carga rápida y eficaz de datos rectangulares (formatos `.csv`, `.tsv`, etc). Paquete `{readxl}` para importar archivos `.xls` y `.xlsx`. Paquete `{haven}` para importar archivos desde SPSS, Stata y SAS. Paquete `{httr}` para importar desde web. Paquete `{rvest}` para _web scraping_.
+
+* `{dplyr}`: una gramática de manipulación de datos para facilitar su procesamiento.
+
+* `{ggplot2}`: una gramática para la visualización de datos.
+
+* Paquete `{stringr}` para un manejo sencillo de cadenas de texto. Paquete `{forcast}` para un manejo de variables cualitativas (en `R` conocidas como factores). Paquete `{purrr}` para el manejo de listas y una programación funcional con las mismas. Paquete `{lubridate}` para el manejo de fechas.
+
+Puedes ver su **documentación completa** en en <https://www.tidyverse.org/>.
+
+&nbsp;
+
+En este entorno, tendremos un <mark>**operador clave**</mark>: el operador <mark>**pipeline (%>%)**</mark>. Dicho operador lo debemos interpretar como una **flecha** que une nodos, y nos servirá para <mark>**concatenar operaciones**</mark> sobre un conjunto de datos de forma <mark>**legible**</mark>. Por ejemplo, si tuviésemos tres funciones `first()`, `second()` y `third()`, la opción más inmediata sería anidar las tres funciones.
+
+```{r eval = FALSE}
+third(second(first(x)))
+```
+
+El anidamiento es **compacto** pero dificulta la lectura posterior del código: con el **pipeline %>%** podremos escribir (y leer) la <mark>**concetanción de acciones de izquierda a derecha**</mark>:
+
+```{r eval = FALSE}
+first(x) %>% second(x) %>% third(x)
+```
+
+
+Dicho operador viene **heredado** del paquete `{magrittr}`, lo que hace que muchos paquetes de `{tidyverse}` dependan de él. Para evitar esta dependencia (cuantos menos paquetes tengamos que cargar, mejor), desde la <mark>**versión 4.1.0 de R**</mark>, disponemos de un operador pipeline **nativo** de `R`, el <mark>**operador |>**</mark> (disponible además fuera del entorno `{tidyverse}`. En este manual seguiremos usando el operador `%>%`, pero es muy probable que en cada vez más códigos que busques por la red observes `|>` en detrimento de `%>%` (aunque el primero es más rápido, más eficiente y sin necesidad de cargar otros paquetes).
 
 ## Messy data: valores en columnas en lugar de variables
 

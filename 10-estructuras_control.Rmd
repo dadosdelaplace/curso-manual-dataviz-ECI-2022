@@ -25,7 +25,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script07.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R): estructuras if-else.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script07.R>
+* [**script10.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R): estructuras if-else.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R>
 
 ::::
 

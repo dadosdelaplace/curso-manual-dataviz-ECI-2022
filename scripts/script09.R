@@ -1,90 +1,115 @@
-# ----- funciones -----
+# ----- Repaso: empezando a trastear con datos -----
 
-# Primera función: calcular área del rectángulo
-calcular_area <- function(lado_1, lado_2) {
-  
-  # Cuerpo de la función (lo que hace)
-  area <- lado_1 * lado_2
-  
-  # Resultado (lo que devuelve)
-  return(area)
-  
-}
+# 1. ¿Cómo cargarías los datos sabiendo su nombre y el paquete en el
+# que está?
+library(datasets)
+swiss
 
-# Otra forma de definirlo, sin guardar cosas por el camino
-calcular_area <- function(lado_1, lado_2) {
-  
-  # Resultado que devolvemos
-  return(lado_1 * lado_2)
-  
-}
+# otra forma
+datasets::swiss
+```
 
+# 2. Tenemos los datos guardados en `swiss`, ¿qué tipo de objeto es?
+  
+class(swiss)
 
-# Aplicación de la función con los parámetros por defecto
-calcular_area(5, 3) # área de un rectángulo 5 x 3 
+# Convertimos a matriz
+as.matrix(swiss)
+class(as.matrix(swiss))
 
+# 3. ¿Cómo podríamos tener una descripción detallada de los datos?
+  
+# ? swiss en consola
 
-# Seguna función: área del rectángulo pero por defecto lado_2 = lado_1
-calcular_area <- function(lado_1, lado_2 = lado_1) {
-  
-  # Cuerpo de la función
-  area <- lado_1 * lado_2
-  
-  # Resultado que devolvemos
-  return(area)
-  
-}
-calcular_area(lado_1 = 5) # si no indicamos nada, lado_2 = lado_1
+# Nombres
+names(swiss)
+row.names(swiss)
 
-# Tercera función: devolvemos más argumentos
-calcular_area <- function(lado_1, lado_2 = lado_1) {
+# 4. ¿Cómo podríamos «ver» los datos?
+# ¿Cuántas provincias hay incluidas?
+# ¿Cuántas variables han sido medidas en cada una de ellas?*
   
-  # Cuerpo de la función
-  area <- lado_1 * lado_2
-  
-  # Resultado
-  return(c("area" = area, "lado_1" = lado_1, "lado_2" = lado_2))
-  
-}
-salida <- calcular_area(5, 3)
-salida
-salida["area"]
-salida["lado_1"]
-salida["lado_2"]
-calcular_area(lado_1 = 5, lado_2 = 3)
+# Cabecera de la tabla
+head(swiss)
 
-# Variables locales/globales
-x <- 1
-funcion_ejemplo <- function() {
-  
-  print(x) # No devuelve nada per se, solo realiza la acción de imprimir en consola
-}
-funcion_ejemplo()
+# Ver la tabla
+View(swiss)
 
-# Si una variable ya está definida fuera de la función
-# (entorno global), y además es usada dentro de la misma cambiando
-# su valor, el valor de dicha variable solo cambia dentro de la
-# función pero no en el entorno global.
-x <- 1
-funcion_ejemplo <- function() {
-  
-  x <- 2
-  print(x) # lo que vale dentro
-}
-funcion_ejemplo() # lo que vale dentro
-print(x) # lo que vale fuera
+# Dimensiones
+dim(swiss)
+nrow(swiss)
+ncol(swiss)
 
-# Si queremos que el cambio lo haga globalmente deberemos usar la
-# doble asignación  (`<<-`).
-x <- 1
-y <- 2
-funcion_ejemplo <- function() {
+# 5. ¿Cómo podríamos definir una nueva variable de tipo texto
+# con los nombres de filas que obtenemos de `row.names()`?
   
-  x <- 3 # no cambia globalmente, solo localmente
-  y <<- 0 # cambia globalmente
-  print(x)
-  print(y)
-}
-funcion_ejemplo() # lo que vale dentro
-x # lo que vale fuera
-y # lo que vale fuera
+# Nombres
+nombres <- row.names(swiss)
+nombres
+
+# Tabla nueva con nombres
+tabla_nueva <- data.frame("provincias" = nombres, swiss)
+head(tabla_nueva)
+
+# Eliminamos nombre de las filas
+row.names(tabla_nueva) <- NULL # anulamos nombre de filas
+head(tabla_nueva)
+
+# 6. ¿Cómo podemos decidir cual de las provincias tiene un
+# indicador estandarizado de la fertilidad superior a 80?
+  
+# Accedemos a Fertility
+tabla_nueva$Fertility > 80
+
+# Filas exactas que cumplen dicha condición** (sus índices)
+# podemos usar la función `which()`.
+which(tabla_nueva$Fertility > 80)
+
+# Nombres de dichas provincias
+tabla_nueva$nombres[which(tabla_nueva$Fertility > 80)]
+
+# 7. ¿Cómo podemos filtrar la tabla y seleccionar solo dichas
+# provincias, las que tienen fertilidad superior a 80?*
+  
+tabla_nueva$Fertility > 80
+tabla_nueva[tabla_nueva$Fertility > 80, ]
+
+# usando subset
+# sin filtrar columnas
+subset(tabla_nueva, subset = Fertility > 80)
+
+# filtrando columnas
+subset(tabla_nueva, subset = Fertility > 80,
+       select = c("provincias", "Fertility", "Education"))
+
+# 8. ¿Cómo podemos añadir una nueva variable lógica que nos
+# guarde `TRUE` si la fertilidad es superior a 80 y `FALSE`
+# en caso contrario?
+  
+var_logica <- tabla_nueva$Fertility > 80
+tabla_nueva_2 <- data.frame(tabla_nueva, "alta_fertilidad" = var_logica)
+
+# sin filtrar columnas
+subset(tabla_nueva_2, subset = alta_fertilidad == TRUE)
+
+# igual (sin filtrar columnas)
+subset(tabla_nueva_2, subset = alta_fertilidad)
+
+# filtrando columnas
+subset(tabla_nueva_2, subset = alta_fertilidad,
+       select = c("provincias", "Fertility", "Education"))
+
+# 9. ¿Cómo podemos definir una nueva variable de tipo fecha,
+# que empiece el 1 de enero de 1888, acabe el 31 de diciembre de 1888,
+# y las fechas estén equiespaciadas en el tiempo?
+  
+# secuencia de fechas
+fechas <-
+  seq(as.Date("1888-01-01"), as.Date("1888-12-31"), l = nrow(tabla_nueva_2))
+fechas
+class(fechas)
+fechas + 1
+
+# Tabla final
+tabla_final <- data.frame(tabla_nueva_2, fechas)
+head(tabla_final)

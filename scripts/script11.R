@@ -1,42 +1,102 @@
-# ----- tibble -----
+# ----- bucles -----
 
-# Nuestro primer tibble
-library(tibble)
-tabla_tb <- tibble("x" = 1:50,
-                   "y" = rep(c("a", "b", "c", "d", "e"), 10),
-                   "z" = 11:60,
-                   "logica" = rep(c(TRUE, TRUE, FALSE, TRUE, FALSE), 10))
-tabla_tb
+# primer for
+# Recorremos cada uno de los 5 elementos e
+# imprimimos un mensaje que depende de i
+library(glue)
+nombres <- c("Javi", "Laura", "Carlos", "Lucía", "Mar")
+edades <- c(32, 51, 18, 43, 29)
+for (i in 1:5) { 
+  
+  print(glue("{nombres[i]} tiene {edades[i]} años")) 
+  
+}
 
-# Así sería en data.frame
-tabla_df <-
-  data.frame("x" = 1:50,
-             "y" = rep(c("a", "b", "c", "d", "e"), 10),
-             "z" = 11:60,
-             "logica" = rep(c(TRUE, TRUE, FALSE, TRUE, FALSE), 10))
-tabla_df
+# Conjunto de índices
+1:5
+1:length(nombres)
 
-# Puedes imprimir las filas y columnas que quieras con `print()`,
-# pero por defecto te aseguras de no saturar la consola.
-print(tabla_tb, n = 13, width = Inf)
+# Podemos hacer que el bucle empiece en `1` y
+# termine en el último lugar (sea el que sea).
+for (i in 1:length(nombres)) { 
+  
+  print(glue("{nombres[i]} tiene {edades[i]} años")) 
+  
+}
 
-# La función `tibble()` construye las variables secuencialmente,
-# pudiendo hacer uso en la propia definición de variables recién
-# definidas en dicha definición.
-tibble("x" = 1:5,
-       "y" = c("a", "b", "c", "d", "e"),
-       "z" = 11:15,
-       "logica" = c(TRUE, TRUE, FALSE, TRUE, FALSE),
-       "x*z" = x * z)
+# bucle con índices que no sean números
+dias_semana <- c("lunes", "martes", "miércoles", "jueves",
+                 "viernes", "sábado", "domingo")
+nombre_mayuscula <- NULL
+for (dias in dias_semana) { # dias recorre los días de la semana tomando sus valores
+  
+  print(toupper(dias)) # Imprimimos en mayúsculas el día
+}
 
-# Si accedes a una columna que no existe avisa con un warning.
-tabla_tb$variable_inexistente
+# Cambiar variables
+for (i in 1:nrow(swiss)) {
+  
+  # si cumple la condición dicha fila, ponemos ausente.
+  if (swiss$Fertility[i] > 80) { 
+    
+    swiss$Fertility <- NA
+    
+  }
+}
+swiss
 
-# No solo no te cambiará el tipo de datos sino que 
-# no te cambiará el nombre de las variables
-# (los `data.frame` transforma los caracteres que no sean letras).
-tibble(":)" = "emoticono", " " = "en blanco", "2000" = "número")
+# Operaciones por filas
+suma <- rep(0, nrow(swiss))
+for (i in 1:nrow(swiss)) {
+  
+  suma[i] <- sum(swiss[i, ])
+}
+suma
 
-# Resumen de variables
-glimpse(tabla_tb)
+# while
+max_ciclos <- 10
+ciclos <- 1
+# Mientras el número de ciclos sea inferior 10, imprime
+while(ciclos <= max_ciclos) {
+  
+  print(paste("Todavía no, vamos por el ciclo ", ciclos)) # Pegamos la frase al número de ciclo por el que vayamos con paste
+  ciclos <- ciclos + 1
+  
+}
 
+# while que nunca se cumple
+while (1 > 0) { # Nunca va a dejar de ser cierto
+  
+  print("Presiona ESC para salir del bucle")
+  
+}
+
+# break
+for(i in 1:10) {
+  if (i == 7) {
+    
+    break # si i es 7, el bucle frena aquí (nunca llegará a imprimir el 7 ni los sucesivos)
+    
+  }
+  print(i)
+}
+
+# next
+for(i in 1:10) {
+  if (i == 7) {
+    
+    next # si i es 7, la iteración frenará aquí y pasará a la siguiente por lo que imprimirá todos menos el 7
+    
+  }
+  print(i)
+}
+
+# repeat
+conteo <- 0
+repeat { 
+  
+  conteo <- conteo + 1
+  if (conteo >= 100) { break }
+  
+}
+conteo

@@ -1,76 +1,73 @@
-# ----- listas -----
+# ----- if-else -----
 
-# primera lista
-# * un vector de caracteres (de longitud 2)
-# * un caracter (vector de longitud 1)
-# * un vector de números (de longitud 3)
+#  Comprobar cuales son menores de edad
+edades <- c(14, 17, 24, 56, 31, 20, 87, 73)
+edades < 18
 
-variable_1 <- c("Paloma", "Gregorio")
-variable_2 <- "Madrid"
-variable_3 <- c(25, 30, 26)
-lista <- list("progenitores" = variable_1,
-              "lugar_nacimiento" = variable_2,
-              "edades_hermanos" = variable_3)
-lista
-length(lista)
-class(lista) # de tipo lista
+# funciones `any()` y `all()` podemos saber si todos o alguno
+# de los elementos de un vector cumplen una condición
+all(edades >= 18) # todos mayores de edad
+any(edades < 18) # existe algun menor de edad
 
-# Accedemos por índice
-lista[[1]]
-
-# Accedemos por nombre
-lista$progenitores
-
-# Varios elementos
-lista[1:2]
-
-# otra lista
-# * `nacimiento`: una fecha.
-# * `notas_insti`: un `data.frame`.
-# * `teléfonos`: vector de números.
-# * `nombre_padres`: vector de texto.
-fecha_nacimiento <- as.Date("1989-09-10")
-notas <- data.frame("biología" = c(5, 7), "física" = c(4, 5),
-                    "matemáticas" = c(8, 9.5))
-row.names(notas) <- # Nombre a las filas
-  c("primer_parcial", "segundo_parcial")
-tlf <- c("914719567", "617920765", "716505013")
-padres <- c("Juan", "Julia")
-# Guardamos TODO en una lista (con nombres de cada elemento)
-datos <- list("nacimiento" = fecha_nacimiento,
-              "notas_insti" = notas, "teléfonos" = tlf,
-              "nombre_padres" = padres)
-datos
-names(datos)
-length(datos)
-
-# Acceder a elementos
-datos[[1]]
-datos$nacimiento
-
-datos[[2]]
-datos$notas_insti
-
-# Lista de listas
-lista_de_listas <- list("lista_1" = datos[3:4], "lista_2" = datos[1:2])
-names(lista_de_listas) # Nombres de los elementos del primer nivel
-names(lista_de_listas[[1]]) # Nombres de los elementos guardados en el primer elemento, que es a su vez una lista
-lista_de_listas[[1]][[1]] # Elemento 1 de la lista guardada como elemento 1 de la lista superior
-
-# Como valor que devuelve una función
-igualdad_nombres <- function(persona_1, persona_2) {
+# primer if
+if (any(edades < 18)) { # TRUE si al menos una persona mayor de edad
   
-  return(list("son_iguales" = toupper(persona_1) == toupper(persona_2),
-              "nombres" = c(persona_1, persona_2)))
+  print("existe alguna persona mayor de edad")
+  
 }
-resultado <- igualdad_nombres("Javi", "Lucía")
-resultado$son_iguales
-resultado$nombres
 
-# Una lista no se puede vectorizar de forma inmediata, por lo
-# cualquier operación aritmética aplicada a una lista dará
-# error (para ello está disponible la función `lapply()`,
-# cuyo uso corresponde a otros cursos más avanzados).
-datos <- list("a" = 1:5, "b" = 10:20)
-datos / 2
-lapply(datos, FUN = function(x) { x / 2})
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
+  
+  print("todas las personas son mayores de edad")
+  
+}
+
+# if - else {}
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
+  
+  print("todas las personas son mayores de edad")
+  
+} else { # si hay alguno menor de edad 
+  
+  print("existe alguna persona menor de edad")
+}
+
+# algo más complejo
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
+  
+  print("todas las personas son mayores de edad")
+  
+} else { # si hay alguno menor de edad 
+  
+  print(glue("Existe alguna persona menor de edad. Sus edades son: {edades[edades < 18]}"))
+}
+
+# if - else anidados
+if (all(edades >= 18)) { # TRUE si TODOS son mayores de edad
+  
+  print("todas las personas son mayores de edad")
+  
+} else if (all(edades >= 16)) { # si todos los menores de edad tienen >=16
+  
+  print("Existe alguna persona menor de edad pero todos con 16 años o más")
+  
+} else {
+  
+  print("Existe alguna persona menor de 16 años")
+  
+}
+
+# ifelse () vectorizado
+
+
+# NA si no cumple la condición, la edad si se cumple.
+ifelse(edades >= 18, edades, NA)
+
+# también con caracteres (con cualquier tipo de dato)
+nombres <- c("Juan", "María", NA, NA, "Lucía", "Carmen", "Javier",
+             NA, "Carlos", NA, "Gregorio", "Paloma")
+
+# Si tiene ausente --> "nombre_desconocido"
+# Si no tiene ausente --> nombres originales
+nombres <- ifelse(is.na(nombres), "nombre_desconocido", nombres)
+nombres

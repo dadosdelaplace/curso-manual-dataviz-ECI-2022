@@ -22,7 +22,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script10.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R): listas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script10.R>
+* [**script14.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script14.R): listas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script14.R>
 ::::
 
 Hasta ahora hemos hecho un <mark>**resumen de los elementos básicos**</mark> de `R`:

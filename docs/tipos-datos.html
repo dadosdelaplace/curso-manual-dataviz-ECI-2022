@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 5 Tipos de datos | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="Scripts usados: script02.R: tipos de datos y funciones usadas con ellos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R    Tras los ejercicios planteados en...">
+<meta name="description" content="Scripts usados: script05.R: tipos de datos y funciones usadas con ellos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R    Tras los ejercicios planteados en...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 5 Tipos de datos | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Scripts usados: script02.R: tipos de datos y funciones usadas con ellos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R    Tras los ejercicios planteados en...">
+<meta property="og:description" content="Scripts usados: script05.R: tipos de datos y funciones usadas con ellos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R    Tras los ejercicios planteados en...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 5 Tipos de datos | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Scripts usados: script02.R: tipos de datos y funciones usadas con ellos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R    Tras los ejercicios planteados en...">
+<meta name="twitter:description" content="Scripts usados: script05.R: tipos de datos y funciones usadas con ellos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R    Tras los ejercicios planteados en...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +94,7 @@
 <p>Scripts usados:</p>
 <ul>
 <li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R"><strong>script02.R</strong></a>: tipos de datos y funciones usadas con ellos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script02.R</a>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R"><strong>script05.R</strong></a>: tipos de datos y funciones usadas con ellos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script05.R</a>
 </li>
 </ul>
 </div>
@@ -408,10 +408,10 @@
 <div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">fecha</span></code></pre></div>
-<pre><code>## [1] "2022-01-18"</code></pre>
+<pre><code>## [1] "2022-01-22"</code></pre>
 <div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">-</span> <span class="fl">7</span> <span class="co"># una semana antes</span></code></pre></div>
-<pre><code>## [1] "2022-01-11"</code></pre>
+<pre><code>## [1] "2022-01-15"</code></pre>
 <div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># de clase fecha</span></code></pre></div>
 <pre><code>## [1] "Date"</code></pre>
@@ -467,10 +467,10 @@
 <p>Además el paquete nos proporciona <strong>herramientas para extraer la fecha y hora actuales</strong> con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">today()</a></code> y <code><a href="https://rdrr.io/pkg/lubridate/man/now.html">now()</a></code></p>
 <div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-18"</code></pre>
+<pre><code>## [1] "2022-01-22"</code></pre>
 <div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-18 20:12:06 CET"</code></pre>
+<pre><code>## [1] "2022-01-22 17:57:15 CET"</code></pre>
 <p>También tenemos disponibles en dicho paquete funciones para extraer facilmente algunas variables temporales como el <strong>día de la semana, el mes o el cuatrimestre</strong>, con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/year.html">year()</a></code>, <code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months()</a></code>, <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">day()</a></code> o <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday()</a></code> (día de la semana).</p>
 <div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
@@ -481,22 +481,22 @@
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">day</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 18</code></pre>
+<pre><code>## [1] 22</code></pre>
 <div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday</a></span><span class="op">(</span><span class="va">fecha</span>, week_start <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Día de la semana (empezando por el lunes)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 20</code></pre>
+<pre><code>## [1] 17</code></pre>
 <div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/minute.html">minute</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 12</code></pre>
+<pre><code>## [1] 57</code></pre>
 <div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/second.html">second</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 6.304246</code></pre>
+<pre><code>## [1] 15.93724</code></pre>
 <div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># Número de semana (del año)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 4</code></pre>
 <p>Al igual que podemos realizar operaciones aritméticas sencillas con las fechas, también podemos <strong>realizar comparaciones</strong>, por ejemplo, si el día actual es menor o mayor que otra fecha dada.</p>
 <div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha_actual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
@@ -590,7 +590,7 @@
 </ul>
 <div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/period.html">days</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">today</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">fecha_nacimiento</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "11818d 0H 0M 0S"</code></pre>
+<pre><code>## [1] "11822d 0H 0M 0S"</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 5</strong>: obtén una variable lógica que nos diga si se cumplen (todas) las condiciones i) menor de 30 años (<code>edad &lt; 30</code>); ii) con hermanos (<code>hermanos == TRUE</code>); iii) nacido en 1990 o posterior (<code>fecha_nacimiento &gt;= as.Date("1990-01-01")</code>). </summary></p>
@@ -707,7 +707,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 18-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 22-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
