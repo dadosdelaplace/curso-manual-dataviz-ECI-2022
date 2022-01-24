@@ -51,7 +51,6 @@ Para ello, los <mark>**datos ordenados**</mark> o _tidy data_ deben cumplir:
 knitr::include_graphics("./img/tidy_data.png")
 ``` 
 
-Lo contrario lo llamaremos <mark>**datos desordenados**</mark> o _messy data_. 
 
 ## Entorno tidyverse
 
@@ -79,7 +78,7 @@ knitr::include_graphics("img/flujo_tidyverse_1.png")
 
 * `{tidyr}`: para adecuar los datos a _tidy data_
 
-* `{tibble}`: mejorando los `data.frame` para un manejo más 
+* `{tibble}`: mejorando los `data.frame` para un manejo más eficiente 
 
 * Paquete `{readr}` para una carga rápida y eficaz de datos rectangulares (formatos `.csv`, `.tsv`, etc). Paquete `{readxl}` para importar archivos `.xls` y `.xlsx`. Paquete `{haven}` para importar archivos desde SPSS, Stata y SAS. Paquete `{httr}` para importar desde web. Paquete `{rvest}` para _web scraping_.
 
