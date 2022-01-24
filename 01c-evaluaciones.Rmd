@@ -1,0 +1,41 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# 🏅 Prácticas evaluables {-}
+
+Recopilación de las <mark>**prácticas evaluables**</mark> del curso
+
+## 📝 Práctica I {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**Evaluacion_1.Rmd**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/EVALUACI%C3%93N/PR%C3%81CTICA%20I/Evaluacion_1.Rmd): plantilla práctica 1.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/EVALUACI%C3%93N/PR%C3%81CTICA%20I/Evaluacion_1.Rmd>
+
+::::
+
+En este primer entregable del curso [**Analizando datos, visualizando información y contando historias**](https://github.com/dadosdelaplace/courses-ECI-2022/) de la `ECI 2022` vamos a aplicar lo aprendido hasta ahora realizando un <mark>**primer análisis descriptivo**</mark> de la tabla `starwars`. Modifica el código necesario para responder a las preguntas y cuestiones requeridas.
+
+## 📝 Práctica II {-}
+
+## 📝 Práctica III {-}
+
+## 📝 Práctica IV {-}
+
+## 📝 Práctica V {-}

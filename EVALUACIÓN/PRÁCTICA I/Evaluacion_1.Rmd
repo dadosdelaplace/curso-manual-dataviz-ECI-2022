@@ -9,13 +9,6 @@ output:
     toc_depth: 2
 ---
 
-:::: {.blackbox data-latex=""}
-
-Scripts usados:
-
-* [**Evaluacion_1.Rmd**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/EVALUACI%C3%93N/PR%C3%81CTICA%20I/Evaluacion_1.Rmd): plantilla práctica 1.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/EVALUACI%C3%93N/PR%C3%81CTICA%20I/Evaluacion_1.Rmd>
-
-::::
 
 > En este primer entregable del curso [**Analizando datos, visualizando información y contando historias**](https://github.com/dadosdelaplace/courses-ECI-2022/) de la `ECI 2022` vamos a aplicar lo aprendido hasta ahora realizando un primer análisis descriptivo de la tabla `starwars`. Modifica el código necesario para responder a las preguntas y cuestiones requeridas.
 

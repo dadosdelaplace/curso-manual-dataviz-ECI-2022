@@ -52,6 +52,7 @@
 <li class="book-part">Recursos</li>
 <li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
 <li><a class="" href="recursos-de-aprendizaje.html">📚 Recursos de aprendizaje</a></li>
+<li><a class="" href="pr%C3%A1cticas-evaluables.html">🏅 Prácticas evaluables</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -419,9 +420,9 @@
                <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span>, <span class="co"># segunda forma</span>
                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span> <span class="co"># se repetirá 1000 veces</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##         expr    min     lq     mean  median     uq     max neval cld
-##      sort(x) 45.812 50.264 57.52102 53.3325 57.510 181.387  1000   b
-##  x[order(x)] 31.712 34.934 40.85982 38.1455 40.667 139.282  1000  a</code></pre>
+##         expr    min      lq     mean  median      uq     max neval cld
+##      sort(x) 46.625 51.2325 62.27418 55.7530 64.1045 284.907  1000   b
+##  x[order(x)] 32.321 35.5325 43.07524 39.7885 44.3670 242.474  1000  a</code></pre>
 <p>Sí, estás viendo bien: aunque a priori parezca contraintuitivo, es más corto obtener los índices ordenados de un vector, y luego reordenarlo en base a esos índices, que la ordenación directa a través del comando <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (ya que usan algoritmos de ordenación distintos).</p>
 </div>
 <div id="ejercicios-3" class="section level2">

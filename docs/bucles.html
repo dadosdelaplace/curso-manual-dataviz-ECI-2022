@@ -52,6 +52,7 @@
 <li class="book-part">Recursos</li>
 <li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
 <li><a class="" href="recursos-de-aprendizaje.html">📚 Recursos de aprendizaje</a></li>
+<li><a class="" href="pr%C3%A1cticas-evaluables.html">🏅 Prácticas evaluables</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -393,12 +394,12 @@
                                <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">idx</span><span class="op">)</span> <span class="op">{</span>  <span class="va">y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">idx</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">}</span>,
                                times <span class="op">=</span> <span class="fl">1e3</span><span class="op">)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                                     expr      min      lq       mean   median
-##                               x &lt;- idx^2   18.985   49.63   56.38787   57.942
-##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 2237.801 2475.52 2768.63882 2605.205
-##        uq      max neval cld
-##    65.428  179.764  1000  a 
-##  2831.783 9883.802  1000   b</code></pre>
+##                                     expr      min        lq       mean   median
+##                               x &lt;- idx^2   18.055   48.8685   54.46229   56.182
+##  for (i in idx) {     y[i] &lt;- idx[i]^2 } 2162.384 2332.7000 2589.05525 2432.926
+##        uq       max neval cld
+##    63.198   196.483  1000  a 
+##  2609.970 10323.720  1000   b</code></pre>
 <p>Una tarea tan sencilla, <strong>programada en un bucle (segunda fila), tarda 40 veces más que hacerlo de forma vectorial (primera fila)</strong> (elevando cada elemento al cuadrado, iterando internamente, sin necesidad de implementar un bucle).</p>
 </div>
 <div id="ejercicios-6" class="section level2">

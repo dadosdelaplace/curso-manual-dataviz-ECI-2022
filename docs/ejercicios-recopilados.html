@@ -52,6 +52,7 @@
 <li class="book-part">Recursos</li>
 <li><a class="active" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
 <li><a class="" href="recursos-de-aprendizaje.html">📚 Recursos de aprendizaje</a></li>
+<li><a class="" href="pr%C3%A1cticas-evaluables.html">🏅 Prácticas evaluables</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -3441,30 +3442,30 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <code class="sourceCode R"><span class="co"># Una extracción aleatoria</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 14
-##   name     height  mass hair_color skin_color  eye_color birth_year sex   gender
-##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Padmé A…    165    45 brown      light       brown             46 fema… femin…
-## 2 Watto       137    NA black      blue, grey  yellow            NA male  mascu…
-## 3 Biggs D…    183    84 black      light       brown             24 male  mascu…
-## 4 Ackbar      180    83 none       brown mott… orange            41 male  mascu…
-## 5 Beru Wh…    165    75 brown      light       blue              47 fema… femin…
-## 6 Darth M…    175    80 none       red         yellow            54 male  mascu…
-## 7 Lobot       175    79 none       light       blue              37 male  mascu…
+##   name    height  mass hair_color skin_color  eye_color  birth_year sex   gender
+##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Yarael…    264  NA   none       white       yellow             NA male  mascu…
+## 2 San Hi…    191  NA   none       grey        gold               NA male  mascu…
+## 3 Sebulba    112  40   none       grey, red   orange             NA male  mascu…
+## 4 Lumina…    170  56.2 black      yellow      blue               58 fema… femin…
+## 5 Wat Ta…    193  48   none       green, grey unknown            NA male  mascu…
+## 6 Grievo…    216 159   none       brown, whi… green, ye…         NA male  mascu…
+## 7 Mace W…    188  84   none       dark        brown              72 male  mascu…
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># otra (que sale distinta, claro)</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 14
-##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
-##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
-## 1 Leia Or…    150    49 brown      light      brown             19 female femin…
-## 2 Dooku       193    80 white      fair       brown            102 male   mascu…
-## 3 Bossk       190   113 none       green      red               53 male   mascu…
-## 4 Roos Ta…    224    82 none       grey       orange            NA male   mascu…
-## 5 Mon Mot…    150    NA auburn     fair       blue              48 female femin…
-## 6 Chewbac…    228   112 brown      unknown    blue             200 male   mascu…
-## 7 Poggle …    183    80 none       green      yellow            NA male   mascu…
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Greedo      173    74 &lt;NA&gt;        green      black             44 male  mascu…
+## 2 Nien Nu…    160    68 none        grey       black             NA male  mascu…
+## 3 Raymus …    188    79 brown       light      brown             NA male  mascu…
+## 4 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
+## 5 Jango F…    183    79 black       tan        brown             66 male  mascu…
+## 6 Finis V…    170    NA blond       fair       blue              91 male  mascu…
+## 7 Ratts T…     79    15 none        grey, blue unknown           NA male  mascu…
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <!-- tocstop -->

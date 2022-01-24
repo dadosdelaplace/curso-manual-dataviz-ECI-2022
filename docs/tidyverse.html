@@ -52,6 +52,7 @@
 <li class="book-part">Recursos</li>
 <li><a class="" href="ejercicios-recopilados.html">📝 Ejercicios recopilados</a></li>
 <li><a class="" href="recursos-de-aprendizaje.html">📚 Recursos de aprendizaje</a></li>
+<li><a class="" href="pr%C3%A1cticas-evaluables.html">🏅 Prácticas evaluables</a></li>
 <li class="book-part">Toma de contacto</li>
 <li><a class="" href="requisitos.html"><span class="header-section-number">1</span> Requisitos</a></li>
 <li><a class="" href="instalacion.html"><span class="header-section-number">2</span> Instalación</a></li>
@@ -471,13 +472,13 @@ Imagen/gráfica 19.2: Cheet sheet de las opciones del paquete dplyr para la mani
 <code class="sourceCode R"><span class="co"># También podemos hacer una extracción al azar de filas</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># 5 al azar</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 14
-##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Wedge An…    170    77 brown      fair       hazel             21 male  mascu…
-## 2 Nien Nunb    160    68 none       grey       black             NA male  mascu…
-## 3 Taun We      213    NA none       grey       black             NA fema… femin…
-## 4 Beru Whi…    165    75 brown      light      blue              47 fema… femin…
-## 5 Arvel Cr…     NA    NA brown      fair       brown             NA male  mascu…
+##   name     height  mass hair_color skin_color eye_color birth_year sex   gender 
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  
+## 1 Owen La…    178   120 brown, gr… light      blue              52 male  mascul…
+## 2 Arvel C…     NA    NA brown      fair       brown             NA male  mascul…
+## 3 Ki-Adi-…    198    82 white      pale       yellow            92 male  mascul…
+## 4 C-3PO       167    75 &lt;NA&gt;       gold       yellow           112 none  mascul…
+## 5 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascul…
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb1556"><pre class="downlit sourceCode r">
@@ -485,18 +486,18 @@ Imagen/gráfica 19.2: Cheet sheet de las opciones del paquete dplyr para la mani
 <span class="co"># (si fuera sin reemplazamiento, daría error)</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
 <pre><code>## # A tibble: 100 × 14
-##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
-##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-##  1 Shaak …    178  57   none       red, blue,… black             NA fema… femin…
-##  2 Jango …    183  79   black      tan         brown             66 male  mascu…
-##  3 Yoda        66  17   white      green       brown            896 male  mascu…
-##  4 Cordé      157  NA   brown      light       brown             NA fema… femin…
-##  5 Lumina…    170  56.2 black      yellow      blue              58 fema… femin…
-##  6 Shaak …    178  57   none       red, blue,… black             NA fema… femin…
-##  7 Taun We    213  NA   none       grey        black             NA fema… femin…
-##  8 Shaak …    178  57   none       red, blue,… black             NA fema… femin…
-##  9 Eeth K…    171  NA   black      brown       brown             NA male  mascu…
-## 10 Tion M…    206  80   none       grey        black             NA male  mascu…
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Ayla Se…    178  55   none       blue       hazel           48   fema… femin…
+##  2 Luminar…    170  56.2 black      yellow     blue            58   fema… femin…
+##  3 Saesee …    188  NA   none       pale       orange          NA   male  mascu…
+##  4 Palpati…    170  75   grey       pale       yellow          82   male  mascu…
+##  5 Taun We     213  NA   none       grey       black           NA   fema… femin…
+##  6 Anakin …    188  84   blond      fair       blue            41.9 male  mascu…
+##  7 Gregar …    185  85   black      dark       brown           NA   male  mascu…
+##  8 Yoda         66  17   white      green      brown          896   male  mascu…
+##  9 R4-P17       96  NA   none       silver, r… red, blue       NA   none  femin…
+## 10 Poggle …    183  80   none       green      yellow          NA   male  mascu…
 ## # … with 90 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
 ## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Por último, tenemos <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min()</a></code> y <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_max()</a></code> que nos permite <mark><strong>extraer filas en función del mínimo y máximo de una variable</strong></mark>. Por defecto, si hay empate, mostrará todas las filas (aunque supere el número <code>n</code> indicado), salvo que <code>with_ties = FALSE</code>, que decidirá en caso de empate cual mostrarte. Por ejemplo, vamos a filtrar con <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_min(height, n = 5)</a></code> los 5 personasjes más bajitos, y con <code>starwars %&gt;% slice_max(mass, n = 7)</code> los 7 personajes más pesados.</p>
@@ -1636,37 +1637,37 @@ Imagen/gráfica 19.2: Cheet sheet de las opciones del paquete dplyr para la mani
 </h2>
 <p>Antes de pasar a los ejercicios, existe una reciente herramienta que nos va a permitir entender mejor y <mark><strong>visualizar el flujo de trabajo</strong></mark> de las funciones que hemos visto en este entorno <a href="https://tidyverse.tidyverse.org">tidyverse</a>: <a href="https://tidydatatutor.com/" class="uri">https://tidydatatutor.com/</a>. Basta con poner el código que queremos ejecutar, y nos <mark><strong>muestra visualmente las operaciones</strong></mark> en los datos.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-616"></span>
+<span style="display:block;" id="fig:unnamed-chunk-617"></span>
 <img src="img/tidytutor.jpg" alt="Tidytutor." width="70%"><p class="caption">
 Imagen/gráfica 19.3: Tidytutor.
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-617"></span>
+<span style="display:block;" id="fig:unnamed-chunk-618"></span>
 <img src="img/tidytutor1.jpg" alt="Tidytutor." width="70%"><p class="caption">
 Imagen/gráfica 19.4: Tidytutor.
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-618"></span>
+<span style="display:block;" id="fig:unnamed-chunk-619"></span>
 <img src="img/tidytutor2.jpg" alt="Tidytutor." width="70%"><p class="caption">
 Imagen/gráfica 19.5: Tidytutor.
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-619"></span>
+<span style="display:block;" id="fig:unnamed-chunk-620"></span>
 <img src="img/tidytutor3.jpg" alt="Tidytutor." width="70%"><p class="caption">
 Imagen/gráfica 19.6: Tidytutor.
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-620"></span>
+<span style="display:block;" id="fig:unnamed-chunk-621"></span>
 <img src="img/tidytutor4.jpg" alt="Tidytutor." width="70%"><p class="caption">
 Imagen/gráfica 19.7: Tidytutor.
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-621"></span>
+<span style="display:block;" id="fig:unnamed-chunk-622"></span>
 <img src="img/tidytutor5.jpg" alt="Tidytutor." width="70%"><p class="caption">
 Imagen/gráfica 19.8: Tidytutor.
 </p>
@@ -2105,30 +2106,30 @@ Imagen/gráfica 19.8: Tidytutor.
 <code class="sourceCode R"><span class="co"># Una extracción aleatoria</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 14
-##   name    height  mass hair_color skin_color   eye_color birth_year sex   gender
-##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Yoda        66    17 white      green        brown            896 male  mascu…
-## 2 Shaak …    178    57 none       red, blue, … black             NA fema… femin…
-## 3 Luke S…    172    77 blond      fair         blue              19 male  mascu…
-## 4 Yarael…    264    NA none       white        yellow            NA male  mascu…
-## 5 Mace W…    188    84 none       dark         brown             72 male  mascu…
-## 6 Ric Ol…    183    NA brown      fair         blue              NA &lt;NA&gt;  &lt;NA&gt;  
-## 7 Leia O…    150    49 brown      light        brown             19 fema… femin…
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Plo Koon    188  80   none        orange     black           22   male  mascu…
+## 2 Owen La…    178 120   brown, grey light      blue            52   male  mascu…
+## 3 Beru Wh…    165  75   brown       light      blue            47   fema… femin…
+## 4 Boba Fe…    183  78.2 black       fair       brown           31.5 male  mascu…
+## 5 Dexter …    198 102   none        brown      yellow          NA   male  mascu…
+## 6 Lobot       175  79   none        light      blue            37   male  mascu…
+## 7 Ric Olié    183  NA   brown       fair       blue            NA   &lt;NA&gt;  &lt;NA&gt;  
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb1698"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># otra (que sale distinta, claro)</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 14
-##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Mon Mot…    150    NA auburn      fair       blue              48 fema… femin…
-## 2 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
-## 3 Ayla Se…    178    55 none        blue       hazel             48 fema… femin…
-## 4 Dooku       193    80 white       fair       brown            102 male  mascu…
-## 5 San Hill    191    NA none        grey       gold              NA male  mascu…
-## 6 Biggs D…    183    84 black       light      brown             24 male  mascu…
-## 7 Bib For…    180    NA none        pale       pink              NA male  mascu…
+##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+## 1 Roos Ta…    224    82 none       grey       orange            NA male   mascu…
+## 2 Raymus …    188    79 brown      light      brown             NA male   mascu…
+## 3 IG-88       200   140 none       metal      red               15 none   mascu…
+## 4 Dormé       165    NA brown      light      brown             NA female femin…
+## 5 Adi Gal…    184    50 none       dark       blue              NA female femin…
+## 6 Rey          NA    NA brown      light      hazel             NA female femin…
+## 7 Lobot       175    79 none       light      blue              37 male   mascu…
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <!-- tocstop -->
