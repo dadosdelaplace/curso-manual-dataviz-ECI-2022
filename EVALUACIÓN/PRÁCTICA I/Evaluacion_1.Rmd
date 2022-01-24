@@ -1,23 +1,169 @@
 ---
 title: "Mi primer rmarkdown"
-author: "Gabriel Valverde Castilla"
-date: "22/1/2022"
-output: html_document
+author:
+  - name: Gabriel Valverde Castilla
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
 ---
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**Evaluacion_1.Rmd**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/EVALUACI%C3%93N/PR%C3%81CTICA%20I/Evaluacion_1.Rmd): plantilla práctica 1.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/EVALUACI%C3%93N/PR%C3%81CTICA%20I/Evaluacion_1.Rmd>
+
+::::
 
 > En este primer entregable del curso [**Analizando datos, visualizando información y contando historias**](https://github.com/dadosdelaplace/courses-ECI-2022/) de la `ECI 2022` vamos a aplicar lo aprendido hasta ahora realizando un primer análisis descriptivo de la tabla `starwars`. Modifica el código necesario para responder a las preguntas y cuestiones requeridas.
 
 
-# Subsecciones
+# Estructura
 
-> Modifica todas las secciones inferiores de cada pregunta para transformarlas en subsecciones
+El documento final debería tener una sola sección principal (llamada `Estructura`, y dentro de ella un conjunto de subsecciones). **Modifica la cabecera** para incluir conseguir que las subsecciones y secciones estén numeradas.
 
-# Personaliza el título
+## 📝 Personaliza el título
 
-> Modificar el título original de esta plantilla y escribe tu nombre como autor/a del documento.
+> Modifica el título original de esta plantilla y escribe tu nombre como autor/a del documento.
 
- 
-# CV abreviado
+## 📝 Personalizando el texto markdown
 
-> 📝Ejercicio 2: Incluye un breve párrafo introductorio, incluyendo un enlace a la web del curso y crea una nueva sección llamada Análisis Inicial (haz click en la flecha para la solución propuesta).
- 
+> Modifica los párrafos inferiores para que contenga al menos una palabra en negrita, una palabra en cursiva y  un enlace web. El segundo de los párrafos deberá ir precedido de una subsubsección, con su título correspondiente (por ejemplo, "Propósito").
+
+Este material ha sido diseñado como complemento y recursos de apoyo al curso de la Escuela de Invierno de la UCM titulado «Analizando datos, visualizando información, contando historias», celebrado presencialmente del 31 de enero al 4 de febrero de 2022 (16:00 a 21:00 horas, de lunes a viernes).
+
+El objetivo de este curso es introducir a la programación y análisis estadístico en R a toda aquella persona que nunca se haya iniciado en él, sin necesitar conocimientos previos de programación (aunque siempre ayuda, obviamente). No se pretende que adquieras un vasto y experto conocimiento, pero si lo suficiente como para lograr 5 objetivos:
+
+## 📝 CV abreviado
+
+> Incluye en esta subsección un breve párrafo introductorio sobre tu trayectoria (real o ficticia), intentando personalizar el texto todo lo que sepas.
+
+## 📝 Tipos de datos
+
+> Completa la lista de tipos de datos que hemos visto ahora, escribiendo sus principales características.
+
+* **Números**: valores numéricos de longitud 1.
+* **Vectores**: concatenación de elementos del **mismo tipo**.
+
+(continuar la lista)
+
+## 📝 Carga de librerías y datos
+
+> Modifica el chunk inferior (bloque de código) para cargar el paquete `{tidyverse}` PERO que el código no aparezca como cajita en el documento. Modifica también el chunk inferior para imprimir todas las columnas del fichero starwars
+
+```{r}
+# Carga de librerías: debes ocultar la cajita aunque se ejecute
+library(tidyverse)
+```
+
+```{r}
+# Carga de datos (visualiza primeras filas y primeras columnas)
+starwars
+
+# Imprimir todas las columnas
+```
+
+
+## 📝 Datos en tablas
+
+> Con `knitr::kable()` puedes mostrar datos en formato tabla dentro del archivo `.Rmd`. El código inferior nos visualiza solo el primer registro y las 3 primeras columnas. Modifícalo para que nos muestre los 3 primeros personajes y las 4 primeras columnas
+
+```{r}
+knitr::kable(starwars[1, 1:3])
+```
+
+
+## 📝 Propiedades de los datos
+
+> Crea un chunk cuyo código nos sirva para obtener el número total de personajes guardados y el número de variabes medidas. Detalla de qué tipo son cada una de las variables
+
+```{r}
+# Código para calcular el número de personajes
+
+# Código para calcular el número de variables
+
+# Código para mostrar el resumen de variables
+glimpse(starwars)
+```
+
+
+## 📝 Mensajes sobre los datos
+
+> Modifica el chunk inferior para que `n_personajes` contenga el número de personajes de nuestro fichero y `n_variables` el número de variables medidas (basta con guardar lo obtenido en el apartado anterior), incluyendo dicha información dentro del texto.
+
+```{r}
+n_personajes <- 2 # inventado
+n_variables <- 3 # inventado
+```
+
+El fichero `starwars` contiene `r n_personajes` personajes y ... variables.
+
+## 📝 Función NA
+
+> Modifica el chunk inferior para definir una función que, dada una variable, nos determine el número de datos ausentes (NA)
+
+```{r}
+n_ausentes <- function(x) {
+  
+  salida <- 2 # valor inventado
+  return(salida)
+  
+}
+
+# Prueba de la función
+n_ausentes(c(3, NA, 5, 6))
+```
+
+## 📝 Ausentes en las variables
+
+> Aplica la función anterior a cada una de las columnas de starwars para determinar el número de ausentes de nuestras variables. Piensa una forma que hemos visto de aplicar la misma función a las filas o columnas de una estructura rectangular (matrices, data.frame, tibble). Detalla de la mejor forma posible qué variables tienen ausentes (y cuántos)
+
+```{r}
+# Código para determinar el número de ausentes de cada variable
+```
+
+## 📝 Filtra
+
+> Crea un chunk para seleccionar del conjunto de starwars solo las columnas `name, height, mass, eye_color, sex` de aquellos personajes masculinos (`sex = "male"`). Haz uso de `subset()`.
+
+```{r}
+# Filtrando columnas y filas
+```
+
+## 📝 Añadir una nueva variable
+
+> Crea un chunk para añadir una nueva variable al conjunto starwars, llamada `id`, que para cada fila contenga su identificar de fila (1, 2, 3, ..., 87).
+
+```{r}
+# Define una variable id de 1 al número de filas de starwars
+
+# Incluye dicha variable en starwars
+```
+
+## 📝 Índice de masa corporal de los personajes
+
+> Crea un chunk que cosntruya una función tal que, dadas dos variables de peso (en kg) y estatura (en metros), nos devuelva el IMC. Modifica las opciones del chunk para que el código se evalúe pero no aparezca en el documento final generado. Escribe además entre dólares la fórmula del IMC
+
+El IMC se define como $IMC = ...$
+
+```{r}
+# función para calcular el IMC
+IMC_fun <- function(peso, estatura) {
+  
+  salida <- 1 # inventada
+  return(salida)
+}
+# Prueba de la función
+IMC_fun(peso = c(60, 90), estatura = c(1.6, 1.7))
+
+# debes ocultar dicho chunk para que se vea el código pero se evalúe
+```
+
+> Usa dicha función para calcular el IMC de cada personaje e incluirlo como una nueva variable de nuestro conjunto de datos.
+
+## 📝 Insertar imagen
+
+> Haciendo uso de `knitr::include_graphics()`, inserta una imagen de miniyoda para finalizar el documento. Que nunca sobra. La iamgen puedes obtenerla de <https://img.huffingtonpost.com/asset/5dfa51db250000e10598e8b5.jpeg?cache=EwV93gtjT3&ops=1778_1000> Personaliza las opciones del chunk para que la imagen se visualice pero no el código del chunk usado para incluirla.
+
