@@ -77,8 +77,8 @@
 <li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: elecciones y Spotify</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">21</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
@@ -472,7 +472,7 @@
 <pre><code>## [1] "2022-01-24"</code></pre>
 <div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-01-24 12:23:46 CET"</code></pre>
+<pre><code>## [1] "2022-01-24 16:44:54 CET"</code></pre>
 <p>También tenemos disponibles en dicho paquete funciones para extraer facilmente algunas variables temporales como el <strong>día de la semana, el mes o el cuatrimestre</strong>, con las funciones <code><a href="https://rdrr.io/pkg/lubridate/man/year.html">year()</a></code>, <code><a href="https://rdrr.io/r/base/weekday.POSIXt.html">months()</a></code>, <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">day()</a></code> o <code><a href="https://rdrr.io/pkg/lubridate/man/day.html">wday()</a></code> (día de la semana).</p>
 <div class="sourceCode" id="cb570"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fecha</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/now.html">now</a></span><span class="op">(</span><span class="op">)</span>
@@ -489,13 +489,13 @@
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 12</code></pre>
+<pre><code>## [1] 16</code></pre>
 <div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/minute.html">minute</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 23</code></pre>
+<pre><code>## [1] 44</code></pre>
 <div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/second.html">second</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 46.6021</code></pre>
+<pre><code>## [1] 54.14734</code></pre>
 <div class="sourceCode" id="cb584"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/week.html">week</a></span><span class="op">(</span><span class="va">fecha</span><span class="op">)</span> <span class="co"># Número de semana (del año)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>

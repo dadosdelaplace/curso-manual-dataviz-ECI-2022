@@ -99,7 +99,6 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 
 * <mark>[**rtweet: datos de Twitter**](https://docs.ropensci.org/rtweet/)</mark>. De Michael W. Kearney <https://docs.ropensci.org/rtweet/>
 
-
 * <mark>[**owidR: datos de Our World in Data**](https://github.com/piersyork/owidR)</mark>. De [OWiD](https://ourworldindata.org/). <https://github.com/piersyork/owidR>
 
 * <mark>[**eurostat: datos de Eurostat**](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)</mark>. <https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html>
@@ -109,7 +108,7 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 * <mark>[**infoelectoral: datos electorales de España**](https://ropenspain.github.io/infoelectoral/)</mark>. <https://ropenspain.github.io/infoelectoral/>
 
 
-
+* <mark>[**rfishbase: datos de fishbase.org**](https://github.com/ropensci/rfishbase)</mark>. <https://github.com/ropensci/rfishbase>
 
 
 
@@ -123,8 +122,6 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 * <mark>[**patchwork: agregar y componer gráficas**](https://patchwork.data-imaginist.com/)</mark>. De Thomas Lin Pedersen. <https://patchwork.data-imaginist.com/>.>
 
 
-
-
 * <mark>[**plotly: gráficas interactivas**](https://plotly.com/r/)</mark>. <https://plotly.com/r/>
 
 * <mark>[**ggplotly: convertir ggplot2 a plotly**](https://www.rdocumentation.org/packages/plotly/versions/4.10.0/topics/ggplotly)</mark>. <https://www.rdocumentation.org/packages/plotly/versions/4.10.0/topics/ggplotly>
@@ -136,13 +133,23 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 * <mark>[**geomtextpath: curvando el texto ajustándose a una gráfica**](https://allancameron.github.io/geomtextpath/)</mark>. De Allan Cameron y Teun van den Brand. <https://allancameron.github.io/geomtextpath/>
 
 
-* <mark>[**Visualización de datos geográficos**](https://dominicroye.github.io/en/)</mark>. De Dominic Royé. <https://dominicroye.github.io/en/>
-
 * <mark>[**El arte del dato: aprender a construir un ggplot**](https://elartedeldato.com/)</mark>. De Paula Casado. <https://elartedeldato.com/>
+
+* <mark>[**circlize: visualización de datos circulares**](https://jokergoo.github.io/circlize_book/book/)</mark>. De Z. Gu. <https://jokergoo.github.io/circlize_book/book/>
 
 * <mark>[**Tutoriales de visualización de datos**](https://www.cedricscherer.com/)</mark>. De Cedric Scherer. <https://www.cedricscherer.com/>
 
-*## Colores y temas en dataviz (generales) {-}
+
+## Mapas y datos espaciales en R {-}
+
+* <mark>[**Visualización de datos geográficos**](https://dominicroye.github.io/en/)</mark>. De Dominic Royé. <https://dominicroye.github.io/en/>
+
+* <mark>[**mapSpain: visualización de datos en mapas de España en R**](https://dieghernan.github.io/rpubs/mapSpain_RMadrid/#1)</mark>. De Diego Hernangómez. <https://dieghernan.github.io/rpubs/mapSpain_RMadrid/#1>
+
+* <mark>[**layer: paquete para crear capas de mapas**](https://github.com/marcosci/layer)</mark>. De Marco Sciaini y Cédric Scherer  <https://github.com/marcosci/layer>
+
+
+## Colores y temas en dataviz (generales) {-}
 
 * <mark>[**Uso de colores**](https://datawrapper.notion.site/Color-Book-Updates-54905c2bd0bb4c6bae15d99e31a9d5c4)</mark>. De Lisa Charlotte Muth, experta en dataviz en Datawrapper. <https://datawrapper.notion.site/Color-Book-Updates-54905c2bd0bb4c6bae15d99e31a9d5c4>
 
@@ -162,13 +169,15 @@ Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
 
 * <mark>[**corrr: análisis y visualización de correlaciones**](https://corrr.tidymodels.org/)</mark>. Entorno <mark>**tidymodels**</mark>. <https://corrr.tidymodels.org/>
 
+* <mark>[**DataExplorer: análisis exploratorio automatizado**](https://boxuancui.github.io/DataExplorer/)</mark>. Paquete <mark>**DataExplorer**</mark>. <https://boxuancui.github.io/DataExplorer/>
+
+
 
 ## Modelización e inferencia {-}
 
 * <mark>[**Modelos lineales: regresión y GLM**](https://bookdown.org/roback/bookdown-BeyondMLR/)</mark>. De Paul Roback y Julie Legler. <https://bookdown.org/roback/bookdown-BeyondMLR/>
 
 * <mark>[**performance: diagnosis y evaluación de modelos**](https://easystats.github.io/performance/)</mark>.  <https://easystats.github.io/performance/>
-
 
 * <mark>[**Estadística espacial y geoestadística**](https://geocompr.robinlovelace.net/)</mark>. De Robin Lovelace. <https://geocompr.robinlovelace.net/>
 
@@ -184,8 +193,6 @@ Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
 * <mark>[**Inferencia estadística en ciencia de datos**](https://moderndive.com/)</mark>. De Chester Ismay y Albert Y. Kim. <https://moderndive.com/>
 
 * <mark>[**goffda: inferencia de datos funcionales (FDA)**](https://github.com/egarpor/goffda)</mark>. De Eduardo García Portugués y Javier Álvarez Liébana. <https://github.com/egarpor/goffda>
-
-
 
 
 
@@ -235,6 +242,9 @@ Alejandro Jiménez. <https://github.com/aljrico/harrypotter>
 * <mark>[**Visualización de la cuenca hídrica de Francia**](https://www.etiennebacher.com/posts/2021-12-27-mapping-french-rivers-network/)</mark>. De Etienne Bacher <https://www.etiennebacher.com/posts/2021-12-27-mapping-french-rivers-network/>
 
 * <mark>[**ggpattern: rellenos con patrones geométricos en ggplot2**](https://github.com/coolbutuseless/ggpattern)</mark>. De coolbutuseless y Trevor L. Davis. <https://github.com/coolbutuseless/ggpattern>
+
+* <mark>[**Recreando en R la famosa espiral del NYT**](https://bydata.github.io/nyt-corona-spiral-chart/)</mark>. De Ansgar Wolsing <https://bydata.github.io/nyt-corona-spiral-chart/>
+
 
 
 

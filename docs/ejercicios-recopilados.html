@@ -77,8 +77,8 @@
 <li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: elecciones y Spotify</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">21</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
@@ -1803,7 +1803,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
   
   <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Buenas noches"</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
-<pre><code>## Buenos días</code></pre>
+<pre><code>## Buenas tardes</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 6</strong>: realiza el ejercicio anterior pero sin estructura de llaves, de forma concisa con <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. Mira la ayuda si la necesitases poniendo <code><a href="https://rdrr.io/r/base/ifelse.html">? ifelse</a></code>. </summary></p>
@@ -1821,7 +1821,7 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
            <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">14</span> <span class="op">&amp;</span>
                     <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/hour.html">hour</a></span><span class="op">(</span><span class="va">fecha_actual</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">21</span>,
                   <span class="st">"Buenas tardes"</span>, <span class="st">"Buenas noches"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Buenos días</code></pre>
+<pre><code>## Buenas tardes</code></pre>
 <!-- tocstop -->
 </details><p> </p>
 </div>
@@ -3442,30 +3442,30 @@ Imagen/gráfica 0.3: Multiplicación de a y b guardando el resultado pero escrib
 <code class="sourceCode R"><span class="co"># Una extracción aleatoria</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 14
-##   name    height  mass hair_color skin_color  eye_color  birth_year sex   gender
-##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Yarael…    264  NA   none       white       yellow             NA male  mascu…
-## 2 San Hi…    191  NA   none       grey        gold               NA male  mascu…
-## 3 Sebulba    112  40   none       grey, red   orange             NA male  mascu…
-## 4 Lumina…    170  56.2 black      yellow      blue               58 fema… femin…
-## 5 Wat Ta…    193  48   none       green, grey unknown            NA male  mascu…
-## 6 Grievo…    216 159   none       brown, whi… green, ye…         NA male  mascu…
-## 7 Mace W…    188  84   none       dark        brown              72 male  mascu…
+##   name     height  mass hair_color skin_color eye_color birth_year sex   gender 
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  
+## 1 Dooku       193    80 white      fair       brown            102 male  mascul…
+## 2 R5-D4        97    32 &lt;NA&gt;       white, red red               NA none  mascul…
+## 3 Leia Or…    150    49 brown      light      brown             19 fema… femini…
+## 4 Mace Wi…    188    84 none       dark       brown             72 male  mascul…
+## 5 Ric Olié    183    NA brown      fair       blue              NA &lt;NA&gt;  &lt;NA&gt;   
+## 6 Rey          NA    NA brown      light      hazel             NA fema… femini…
+## 7 Poe Dam…     NA    NA brown      light      brown             NA male  mascul…
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <div class="sourceCode" id="cb363"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># otra (que sale distinta, claro)</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 14
-##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
-##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
-## 1 Greedo      173    74 &lt;NA&gt;        green      black             44 male  mascu…
-## 2 Nien Nu…    160    68 none        grey       black             NA male  mascu…
-## 3 Raymus …    188    79 brown       light      brown             NA male  mascu…
-## 4 Owen La…    178   120 brown, grey light      blue              52 male  mascu…
-## 5 Jango F…    183    79 black       tan        brown             66 male  mascu…
-## 6 Finis V…    170    NA blond       fair       blue              91 male  mascu…
-## 7 Ratts T…     79    15 none        grey, blue unknown           NA male  mascu…
+##   name     height  mass hair_color skin_color  eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Grievous    216   159 none       brown, whi… green, y…         NA male  mascu…
+## 2 Jek Ton…    180   110 brown      fair        blue              NA male  mascu…
+## 3 Greedo      173    74 &lt;NA&gt;       green       black             44 male  mascu…
+## 4 R2-D2        96    32 &lt;NA&gt;       white, blue red               33 none  mascu…
+## 5 Lobot       175    79 none       light       blue              37 male  mascu…
+## 6 Jango F…    183    79 black      tan         brown             66 male  mascu…
+## 7 Ayla Se…    178    55 none       blue        hazel             48 fema… femin…
 ## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <!-- tocstop -->

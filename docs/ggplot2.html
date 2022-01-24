@@ -77,8 +77,8 @@
 <li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: elecciones y Spotify</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">21</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
 <li><a class="active" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
@@ -95,7 +95,7 @@
 <p>Una de las principales fortalezas de <code>R</code> frente a <code>Python</code> es el manejo de datos con <a href="https://tidyverse.tidyverse.org">tidyverse</a>, entorno en el que se incluye el paquete <a href="https://ggplot2.tidyverse.org">ggplot2</a>.</p>
 <p>La <mark><strong>visualización de datos o dataviz</strong></mark> debería ser una parte fundamental de todo análisis de datos. No es solo que nuestro trabajo sea más <strong>presentable y estético</strong> (algo fundamental). La visualización de datos es <mark><strong>fundamental para convertir el dato en información</strong></mark>, y usar dicha información para <mark><strong>contar una historia</strong></mark> con nuestros datos: no solo importa lo que cuentas sino <strong>cómo lo cuentas</strong>).</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-677"></span>
+<span style="display:block;" id="fig:unnamed-chunk-697"></span>
 <img src="img/telling-dataviz" alt="Imagen extraída de Reddit &lt;https://www.reddit.com/r/lego/comments/pezxk5/oc_a_lego_data_story_adapted_from_original_image/&gt;." width="70%"><p class="caption">
 Imagen/gráfica 22.1: Imagen extraída de Reddit <a href="https://www.reddit.com/r/lego/comments/pezxk5/oc_a_lego_data_story_adapted_from_original_image/" class="uri">https://www.reddit.com/r/lego/comments/pezxk5/oc_a_lego_data_story_adapted_from_original_image/</a>.
 </p>
@@ -134,7 +134,7 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
 <span class="header-section-number">22.1</span> Primer intento: scatter plot o diagrama de puntos<a class="anchor" aria-label="anchor" href="#primer-intento-scatter-plot-o-diagrama-de-puntos"><i class="fas fa-link"></i></a>
 </h2>
 <p>Veamos un primer intento para entender la filosofía. Imagina que queremos dibujar un <em>scatter plot</em> o <mark><strong>diagrama de (dispersión) de puntos</strong></mark>. Para ello vamos a usar el conjunto de datos <code>gapminder</code> del paquete homónimo, un fichero con datos de esperanzas de vida, poblaciones y renta per cápita de distintos países en distintos momentos temporales.</p>
-<div class="sourceCode" id="cb1791"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1838"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 <span class="va">gapminder</span></code></pre></div>
 <pre><code>## # A tibble: 1,704 × 6
@@ -151,7 +151,7 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
 ##  9 Afghanistan Asia       1992    41.7 16317921      649.
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.
 ## # … with 1,694 more rows</code></pre>
-<div class="sourceCode" id="cb1793"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1840"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1,704
 ## Columns: 6
@@ -162,7 +162,7 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
 ## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
 ## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
 <p>Para empezar con algo sencillo <strong>filtraremos solo los datos del año 1997</strong> haciendo uso de <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>.</p>
-<div class="sourceCode" id="cb1795"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1842"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder_1997</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">1997</span><span class="op">)</span>
 <span class="va">gapminder_1997</span></code></pre></div>
 <pre><code>## # A tibble: 142 × 6
@@ -188,91 +188,91 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
 <li>
 <mark><strong>Elegir geometría</strong></mark>: puntos.</li>
 </ul>
-<div class="sourceCode" id="cb1797"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1844"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># Geometría</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-681-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-701-1.png" width="768"></div>
 <p>Podemos hacer lo mismo pero <strong>cambiando el rol de las coordenadas</strong>, intercambiando lsa variables</p>
-<div class="sourceCode" id="cb1798"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1845"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">gdpPercap</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-682-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-702-1.png" width="768"></div>
 <p>Y podemos repetirlo enfrentando ahora la población en el eje X y la experanza de vida en el eje Y (variable <code>lifeExp</code>).</p>
-<div class="sourceCode" id="cb1799"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1846"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-683-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-703-1.png" width="768"></div>
 <p>A veces nos puede ser más conveniente representar alguna de las variables en <mark><strong>escala logarítmica</strong></mark> (importante: indícalo siempre en el gráfico), lo que podemos hacer facilmente con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10()</a></code> y <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_y_log10()</a></code></p>
-<div class="sourceCode" id="cb1800"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1847"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-684-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-704-1.png" width="768"></div>
 <p><mark><strong>¿Cómo podemos dar color y tamaño a nuestro gráfico?</strong></mark></p>
 <p>La opción más sencilla es indicándole, dentro de <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point()</a></code> el color de la geometría con <code>color = ...</code> (en este caso, el color del punto), mediante un color fijo, bien sea con alguno de los colores reservados que tiene <code>R</code>, bien sea con su <a href="https://htmlcolorcodes.com/es/">código hexadecimal</a></p>
-<div class="sourceCode" id="cb1801"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1848"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Color con palabra reservada</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-685-1.png" width="768"></div>
-<div class="sourceCode" id="cb1802"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-705-1.png" width="768"></div>
+<div class="sourceCode" id="cb1849"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Color en hexadecimal, de la página https://htmlcolorcodes.com/es/</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#2EA2D8"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-685-2.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-705-2.png" width="768"></div>
 <p>De la misma manera podemos indicarle el <mark><strong>tamaño de la geometría</strong></mark> (en este caso del punto) con <code>size = ...</code>, incluso la <mark><strong>transparencia</strong></mark> que queremos para un color dado con <code>alpha = ...</code> (entre 0 - transparente - y 1 - totalmente opaco).</p>
-<div class="sourceCode" id="cb1803"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1850"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Color opaco</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#A02B85"</span>, size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-686-1.png" width="768"></div>
-<div class="sourceCode" id="cb1804"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-706-1.png" width="768"></div>
+<div class="sourceCode" id="cb1851"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># alpha = 50%</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#A02B85"</span>, size <span class="op">=</span> <span class="fl">6</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-686-2.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-706-2.png" width="768"></div>
 <p>Dichos parámetros se los hemos pasado fijos, como si fuera un valor constante pero podemos <mark><strong>mapear los <em>aesthetics</em> de un gráfico</strong></mark> para que <strong>dependan de los datos</strong>, por ejemplo, asignándole un <strong>color a cada continente</strong>.</p>
-<div class="sourceCode" id="cb1805"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1852"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-687-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-707-1.png" width="768"></div>
 <p>Podemos combinarlo con lo que hemos hecho anteriormente e indicarle además que queremos el <strong>tamaño en función de la renta</strong>, con cierto grado de transparencia.</p>
-<div class="sourceCode" id="cb1806"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1853"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-688-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-708-1.png" width="768"></div>
 <p>En lugar de jugar con el color, también podríamos añadir mapear las variables en función de la <strong>forma de la geometría</strong> con <code>shape = ...</code> (en realidad si tuviéramos suficientes variables podríamos incluir, solo con ejes + colores + tamaños + formas + transparencia, hasta 6 variables distintas).</p>
-<div class="sourceCode" id="cb1807"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1854"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            shape <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-689-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-709-1.png" width="768"></div>
 <p>Reflexionemos sobre el gráfico que acabamos de hacer</p>
-<div class="sourceCode" id="cb1808"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1855"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-690-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-710-1.png" width="768"></div>
 <p><strong>Usando los datos</strong> hemos conseguido dibujar en un <strong>gráfico bidimensional 4 variables</strong> (<code>pop</code> y <code>lifeExp</code> en los ejes X,Y, <code>continent</code> como color y <code>gdpPercap</code> como tamaño de la geometría) con muy pocas líneas de código, y <mark><strong>totalmente adaptado y flexible</strong></mark> a nuestras necesidades. Respecto a los colores, si te fijas <code>R</code> <strong>ha elegido automáticamente la paleta</strong> de colores pero podemos <mark><strong>indicarle alguna paleta</strong></mark> concreta de varias maneras.</p>
 <p>La primera y más inmediata es indicarle los colores manualmente.</p>
-<div class="sourceCode" id="cb1809"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1856"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#A02B85"</span>, <span class="st">"#2DE86B"</span>, <span class="st">"#4FB2CA"</span>,
                                 <span class="st">"#E8DA2D"</span>, <span class="st">"#E84C2D"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-691-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-711-1.png" width="768"></div>
 <p>Otra opción es elegir alguna de las paletas disponibles en el paquete <a href="https://github.com/jrnold/ggthemes">ggthemes</a>, como <code><a href="https://rdrr.io/pkg/ggthemes/man/scale_economist.html">scale_color_economist()</a></code>, <code><a href="https://rdrr.io/pkg/ggthemes/man/scale_excel.html">scale_color_excel()</a></code> o <code><a href="https://rdrr.io/pkg/ggthemes/man/scale_color_tableau.html">scale_color_tableau()</a></code>.</p>
-<div class="sourceCode" id="cb1810"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1857"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
 
 <span class="co"># scale_color_economist()</span>
@@ -281,27 +281,27 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_economist.html">scale_color_economist</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-692-1.png" width="768"></div>
-<div class="sourceCode" id="cb1811"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-712-1.png" width="768"></div>
+<div class="sourceCode" id="cb1858"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># scale_color_excel()</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_excel.html">scale_color_excel</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-692-2.png" width="768"></div>
-<div class="sourceCode" id="cb1812"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-712-2.png" width="768"></div>
+<div class="sourceCode" id="cb1859"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># scale_color_tableau()</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_color_tableau.html">scale_color_tableau</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-692-3.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-712-3.png" width="768"></div>
 <p>También existen múltiples paquetes que nos proporcionan paletas de colores basados en películas (paquete <a href="https://github.com/aljrico/harrypotter">harrypotter</a> descargado desde el repositorio de Github), pájaros (paquete <a href="https://github.com/G-Thomson/Manu">Manu</a>) o cuadros (paquete <code>{MetBrewer}</code>).</p>
-<div class="sourceCode" id="cb1813"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1860"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"https://github.com/aljrico/harrypotter"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb1814"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1861"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/aljrico/harrypotter">harrypotter</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -311,8 +311,8 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Paleta de Gryffindor"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-694-1.png" width="768"></div>
-<div class="sourceCode" id="cb1815"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-714-1.png" width="768"></div>
+<div class="sourceCode" id="cb1862"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
@@ -321,10 +321,10 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Paleta de Hufflepuff"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-694-2.png" width="768"></div>
-<div class="sourceCode" id="cb1816"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-714-2.png" width="768"></div>
+<div class="sourceCode" id="cb1863"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"G-Thomson/Manu"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb1817"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1864"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/G-Thomson/Manu">Manu</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -335,20 +335,20 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Paleta del pájaro Takahē - Porphyrio hochstetteri"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-696-1.png" width="768"></div>
-<div class="sourceCode" id="cb1818"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-716-1.png" width="768"></div>
+<div class="sourceCode" id="cb1865"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"BlakeRMills/MetBrewer"</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb1819"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1866"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">MetBrewer</span><span class="op">)</span>
 <span class="fu">MetBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Renoir"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-698-1.png" width="768"></div>
-<div class="sourceCode" id="cb1820"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-718-1.png" width="768"></div>
+<div class="sourceCode" id="cb1867"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">MetBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Monet"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-698-2.png" width="768"></div>
-<div class="sourceCode" id="cb1821"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-718-2.png" width="768"></div>
+<div class="sourceCode" id="cb1868"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">MetBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Hokusai"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-698-3.png" width="768"></div>
-<div class="sourceCode" id="cb1822"><pre class="downlit sourceCode r">
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-718-3.png" width="768"></div>
+<div class="sourceCode" id="cb1869"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
@@ -357,9 +357,9 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Paleta de cuadros de Klimt"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-698-4.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-718-4.png" width="768"></div>
 <p>Los <mark><strong>gráficos pueden además personalizarse añadiendo</strong></mark>, por ejemplo, <strong>títulos y subtítulos de la gráfica</strong> con `labs()</p>
-<div class="sourceCode" id="cb1823"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1870"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
@@ -368,9 +368,9 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Aprendiendo R sin morir en el intento"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-699-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-719-1.png" width="768"></div>
 <p>De la misma manera podemos personalizar el <mark><strong>título que vamos a dar a los ejes</strong></mark> y también el <mark><strong>título de las leyendas</strong></mark>.</p>
-<div class="sourceCode" id="cb1824"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1871"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                            color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
@@ -381,9 +381,9 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
        title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Población vs esperanza de vida (año 1997)"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-700-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-720-1.png" width="768"></div>
 <p>Por último, podemos <mark><strong>dividir/desagregar los gráficos (<em>facetar</em>) por variables</strong></mark>, pintando por ejemplo un <strong>gráfico por continente</strong>, mostrando todos los gráficos a la vez pero por separado, con <code><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap()</a></code>.</p>
-<div class="sourceCode" id="cb1825"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1872"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder_1997</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>, size <span class="op">=</span> <span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -393,9 +393,9 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
        title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Población vs esperanza de vida (año 1997)"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-701-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-721-1.png" width="768"></div>
 <p>Podemos hacer lo mismo pero separando, por ejemplo, por años, con el fichero <strong>original sin filtrar</strong>.</p>
-<div class="sourceCode" id="cb1826"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1873"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">lifeExp</span>, x <span class="op">=</span> <span class="va">pop</span>,
                       size <span class="op">=</span> <span class="va">gdpPercap</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span>
@@ -407,9 +407,9 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
        title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Población vs esperanza de vida (año 1997)"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-702-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-722-1.png" width="768"></div>
 <p>Se sale fuera de esta introducción pero con <code><a href="https://rdrr.io/pkg/ggplot2/man/theme_get.html">theme_update()</a></code> podemos configurar cualquier aspecto del gráfico.</p>
-<div class="sourceCode" id="cb1827"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1874"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme_get.html">theme_update</a></span><span class="op">(</span>
   <span class="co"># Título, subtítulo y caption</span>
   plot.title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">21</span>, face <span class="op">=</span> <span class="st">"bold"</span>, color <span class="op">=</span> <span class="st">"#2a475e"</span><span class="op">)</span>,
@@ -445,7 +445,7 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
        title <span class="op">=</span> <span class="st">"Ejemplo de ggplot2"</span>,
        subtitle <span class="op">=</span> <span class="st">"Aprendiendo R sin morir en el intento"</span>,
        caption <span class="op">=</span> <span class="st">"Autor: Javier Álvarez Liébana | Datos: gapminder"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-703-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-723-1.png" width="768"></div>
 </div>
 <div id="recursos-para-seguir" class="section level2">
 <h2>
@@ -488,7 +488,7 @@ Imagen/gráfica 22.2: Idea detrás de la «Grammar of graphics» de Wilkinson.
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="resumenes.html"><span class="header-section-number">21</span> Resumiendo y relacionado datos</a></div>
+<div class="prev"><a href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></div>
 <div class="next"><a href="bibliograf%C3%ADa.html">Bibliografía</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>

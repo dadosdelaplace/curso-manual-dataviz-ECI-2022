@@ -1,0 +1,294 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# Profundizando tidyverse: encuestas electorales {#tidyverse-2}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script21.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script21.R): profundizando tidyverse.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script21.>
+
+::::
+
+
+Vamos a profundizar un poco en el uso de funciones `{tidyverse}` para el análisis de <mark>**datos de encuestas**</mark>, <mark>**datos de Our World in Data**</mark> y <mark>**datos de Spotify**</mark>
+
+En la denostada <mark>**wikipedia**</mark> se publican de forma **bastante completa** las encuestas electorales previas a las elecciones de un país, en este caso de España. El enlace donde están los datos es <https://en.wikipedia.org/wiki/Opinion_polling_for_the_next_Spanish_general_election>
+
+
+Lo que vamos a hacer primero <mark>**extraer la información de la web**</mark>, analizando desde `R` su código HTML y quedándonos con las <mark>**encuestas de 2021 y 2022**</mark>. Para ello haremos uso del paquete `{rvest}` (cargaremos también `{tidyverse}`):
+
+* `read_html()`: nos permite obtener el código HTML de la web
+* `html_elements()`: nos permite seleccionar elementos de dicho html
+* `html_table()`: nos convierte una tabla HTML en un `tibble`.
+
+De esta manera leeremos el HTML, localizaremos las tablas de datos y seleccionaremos solo las dos primeras (encuestas de 2022 y 2021).
+
+```{r lectura-HTML}
+library(rvest)
+library(tidyverse)
+wiki <-
+  paste0("https://en.wikipedia.org/wiki/Opinion_polling_for_the_next_Spanish_general_election")
+
+# Leemos html
+html <- read_html(wiki)
+
+# Seleccionamos las tablas del HTML
+tablas <- html_elements(html, ".wikitable")
+
+# Obtenemos las dos primeras tablas: encuestas de 2022 y 2021
+encuestas_2022 <- html_table(tablas[[1]])
+encuestas_2022
+
+encuestas_2021 <- html_table(tablas[[2]])
+encuestas_2021
+```
+
+## Nombrar columnas
+
+Dado que la **mayoría de las columnas** tienen como nombre de partido el logo del mismo, vamos a <mark>**renombrar las variables**</mark>.
+
+```{r}
+nombre_cols <-
+  c("casa", "fechas", "muestra", "participacion", "PSOE", "PP",	"Vox",
+    "UP", "Cs", "ERC", "MP", "JxCat",	"PNV",	"EHBildu", "CUP",
+    "CC", "BNG", "NA+", "PRC", "EV", "ventaja")
+names(encuestas_2022) <- names(encuestas_2021) <- nombre_cols
+encuestas_2022
+encuestas_2021
+```
+
+## Eliminar filas
+
+Tras la lectura sin salirnos de `R`, tenemos <mark>**dos tablas de encuestas electorales**</mark>, a las que les vamos a quitar la primera fila (vacía) con `slice(-1)`.
+
+```{r slice}
+encuestas_2022 <- encuestas_2022 %>% slice(-1)
+encuestas_2022
+encuestas_2021 <- encuestas_2021 %>% slice(-1)
+encuestas_2021
+```
+
+## Añadir columna de año
+
+En cada tabla vamos a <mark>**añadir una nueva columna que indique el año**</mark>.
+
+```{r}
+encuestas_2022 <- encuestas_2022 %>% mutate(anno = 2022)
+encuestas_2021 <- encuestas_2021 %>% mutate(anno = 2021)
+```
+
+## Juntar tablas
+
+Dado que queremos <mark>**un solo dataset**</mark> con las encuestas de ambos años, vamos a juntar ambas tablas con `rbind()` para tener una sola tabla `encuestas`.
+
+```{r}
+encuestas <- rbind(encuestas_2022, encuestas_2021)
+```
+
+
+```{r data-table-2}
+DT::datatable(encuestas, options = list(pageLength = 10),
+              caption = "Encuestas de 2021 y 2022")
+```
+
+## Convertir a numéricas
+
+Si te fijas los <mark>**valores de muchas variables son erróneos**</mark>, como tamaño de la muestra o participación: son de tipo texto cuando **deberían ser numéricas**.
+
+```{r}
+encuestas
+```
+
+Para ello vamos antes a <mark>**eliminar las comas**</mark> `","` que separan los millares de los números, con `gsub()`. Dicha orden nos permite <mark>**sustituir en un vector los caracteres**</mark> que queramos. Por ejemplo, de un vector de palabras vamos a cambiar la letra `a` por un punto `*`: primero le indicamos el patrón a buscar, después el valor nuevo que le daremos, y por último la variable en la que lo vamos a aplicar.
+
+```{r}
+variable <- c("hola", "cama", "elefante", "cerrojo", "león", "gata")
+gsub("a", "*", variable)
+```
+
+Con esta función localizaremos las `","` de `muestra` para sustituirlas por `""` (sin nada), y lo mismo haremos con `"?"` en la variable `participacion` con los datos ausentes `"?"`.
+
+
+```{r}
+encuestas_depurado <-
+  encuestas %>%
+  # Quitamos "," como millares en números
+  mutate(muestra = gsub("?", "", gsub(",", "", muestra)),
+         participacion = gsub("?", NA, participacion))
+encuestas_depurado
+```
+
+Tras estos cambios, aunque muchas variables numéricas siguen siendo caracter, ya podemos aplicar la función `as.numeric()`, que aplicaremos a todas las variables menos `casa` y `fechas`, con `mutate_at`, indicándole con `vars()` primero las columnas a seleccionar (aquellas que no contengan la palabra `casa` ni `fechas`), y después la función a aplicar.
+
+```{r warning = FALSE}
+encuestas_depurado <-
+  encuestas_depurado %>%
+  mutate_at(vars(!contains(c("casa", "fechas"))), as.numeric)
+encuestas_depurado
+```
+
+## Convertir las fechas de campo
+
+Las <mark>**fechas del trabajo de campo**</mark> deben ser tratadas previamente:
+
+* las fechas de tipo `"28 Dec–2 Jan"` (por ejemplo, de 2021) deberemos de convertirlas en dos fechas, `2021-12-28` y `2022-01-02`.
+
+* las fechas de tipo `"12–14 Jan"` (por ejemplo, de 2021) deberemos de convertirlas en dos fechas, `2021-01-12` y `2021-01-14`.
+
+* las fechas de tipo `"15 Jan"` (por ejemplo, de 2021), las convertiremos a dos fechas, `2021-01-15` y `2021-01-15`.
+
+Para ello primero que vamos a hacer va a ser <mark>**separar las fechas por los guiones `-`**</mark> con `str_plit()` (que nos devolverá una lista).
+
+```{r}
+fechas_intermedias <- str_split(encuestas_depurado$fechas, "–")
+fechas_intermedias[1:6]
+```
+
+En cada lugar de la lista vemos que tenemos dos fechas en la mayoría de casos: las pondremos en columnas `fecha_inicio` y `fecha_inicial`, devolviendo un `tibble` con `map_dfr` aplicado a la lista
+
+```{r}
+fechas_intermedias <-
+  map_dfr(fechas_intermedias,
+          function(x) { tibble("fecha_inicio" = x[1],
+                               "fecha_final" = x[2]) })
+fechas_intermedias
+```
+
+Los registros donde `fecha_final` está ausente significa que toma el mismo valor que la fecha de inicio, y así lo modificaremos.
+
+```{r}
+fechas_intermedias <-
+  fechas_intermedias %>% 
+  mutate(fecha_final = ifelse(is.na(fecha_final),
+                              fecha_inicio, fecha_final))
+fechas_intermedias
+```
+
+Las fechas que no tenga mes en `fecha_inicio`, asumiremos que es el mismo mes que `fecha_final`: si solo hay números (dos o menos caracteres), obtenemos el mes de la `fecha_final` (últimos 3 caracteres) y lo pegamos al día.
+
+```{r}
+fechas_intermedias <-
+  fechas_intermedias %>% 
+  mutate(fecha_inicio =
+           ifelse(nchar(fecha_inicio) <= 2,
+                  paste(fecha_inicio,
+                        paste0(rev(rev(unlist(str_split(fecha_final, "")))[1:3]),
+                               collapse = "")), fecha_inicio))
+fechas_intermedias
+```
+
+Esas fechas intermedias las vamos añadir como columnas y, pegándole el año, **vamos a convertirlas en datos de tipo fecha**. De todas las fechas nos vamos a quedar solo con la `fecha_final` (recolocando dicha columna tras el nombre de la casa encuestadora).
+
+```{r}
+library(lubridate)
+encuestas_depurado <-
+  bind_cols(encuestas_depurado,
+            fechas_intermedias) %>%
+  mutate(fecha_inicio = dmy(paste(fecha_inicio, anno)),
+         fecha_final = dmy(paste(fecha_final, anno))) %>%
+  select(-c(fechas, anno, fecha_inicio)) %>%
+  relocate(fecha_final, .after = casa)
+encuestas_depurado
+```
+
+
+
+## Limpiamos nombres de encuestas
+
+Por último, vamos <mark>**limpiar los nombres de las encuestas**</mark> eliminando la referencia a los enlaces de la wikipedia
+
+```{r}
+encuestas_depurado <-
+  encuestas_depurado %>%
+  # Limpiamos nombre encuestas
+  mutate(casa = toupper(map_chr(str_split(casa, "\\["),
+                                function (y) { y[1] } )))
+```
+
+```{r echo = FALSE}
+DT::datatable(encuestas_depurado, options = list(pageLength = 10),
+              caption = "Encuestas depuradas de 2021 y 2022")
+```
+
+                                          
+## Consultas
+
+Una vez que tenemos los datos depurados vamos a <mark>**realizar algunas consultas sencillas**</mark> usando `{tidyverse}`.
+
+<mark>**¿Cuáles son las 10 encuestas con mayor tamaño muestral?**</mark>
+
+```{r}
+encuestas_depurado %>% slice_max(muestra, n = 10)
+```
+
+
+<mark>**¿Cuáles son las encuestas más recientes?**</mark>
+
+```{r}
+encuestas_depurado %>% arrange(desc(fecha_final))
+```
+
+<mark>**¿Cuáles son las 5 encuestas en las que el PSOE tiene mayor proyección?**</mark>
+
+```{r}
+encuestas_depurado %>% slice_max(PSOE, n = 5)
+```
+
+<mark>**¿Cuál es la encuesta del CIS en la que el PP tiene mayor proyección?**</mark>
+
+```{r}
+encuestas_depurado %>%
+  filter(casa == "CIS") %>%
+  slice_max(PP, n = 1)
+```
+
+<mark>**¿Cuál es el promedio de las encuestas del PSOE y PP por casa encuestadora?**</mark>
+
+```{r}
+encuestas_depurado %>%
+  select(-fecha_final) %>%
+  group_by(casa) %>%
+  summarise(media_PSOE = mean(PSOE), media_PP = mean(PP)) %>%
+  ungroup()
+```
+
+<mark>**¿Cuál es son las 3 casas encuestadoras más sesgada hacia el PSOE (con mayor diferencia de promedio de PSOE vs PP)? ¿Y hacia el PP?**</mark>
+
+```{r}
+encuestas_depurado %>%
+  select(-fecha_final) %>%
+  group_by(casa) %>%
+  summarise(media_PSOE = mean(PSOE), media_PP = mean(PP)) %>%
+  ungroup() %>%
+  mutate(diferencia = media_PSOE - media_PP) %>%
+  slice_max(diferencia, n = 3)
+```
+
+```{r}
+encuestas_depurado %>%
+  select(-fecha_final) %>%
+  group_by(casa) %>%
+  summarise(media_PSOE = mean(PSOE), media_PP = mean(PP)) %>%
+  ungroup() %>%
+  mutate(diferencia = media_PP - media_PSOE) %>%
+  slice_max(diferencia, n = 3)
+```
+
+

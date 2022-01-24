@@ -136,8 +136,8 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 **Incursión a tidyverse**
 
 * \@ref(tidyverse) [Depuración y transformación](#tidyverse)
-* \@ref(tidyverse-2) [Profundizando tidyverse: elecciones y Spotify](#tidyverse-2)
 * \@ref(resumenes) [Resumiendo y relacionado datos](#resumenes)
+* \@ref(tidyverse-2) [Profundizando tidyverse: elecciones y Spotify](#tidyverse-2)
 * \@ref(ggplot2) [Visualizando datos: incursión a ggplot2](#ggplot2)
 
 ## Código de colores {-} 
