@@ -42,6 +42,22 @@ El objetivo de este curso es introducir a la programación y análisis estadíst
 
 (continuar la lista)
 
+## 📝 Operaciones sencillas
+
+> Modifica el chunk inferior para definir `x` como un vector con los elementos `1, 3, 7`, una matriz de 1's de 3 filas y 4 columnas. Define después un vector lógico `z` de longitud 6. De ese vector lógico definido determina en que lugares tenemos un TRUE y en cuales FALSE.
+
+```{r}
+# Vector de 1, 3 y 7
+x <- c(1, 3)
+
+# Matriz de 1's de 3 filas y 4 columnas
+y <- matriz(0, nrow = 2, ncol = 2)
+
+# Vector lógico de longitud 6
+z <- c(TRUE, FALSE)
+```
+
+
 ## 📝 Carga de librerías y datos
 
 > Modifica el chunk inferior (bloque de código) para cargar el paquete `{tidyverse}` PERO que el código no aparezca como cajita en el documento. Modifica también el chunk inferior para imprimir todas las columnas del fichero starwars
