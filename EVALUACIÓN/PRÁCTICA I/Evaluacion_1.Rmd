@@ -1,0 +1,23 @@
+---
+title: "Mi primer rmarkdown"
+author: "Gabriel Valverde Castilla"
+date: "22/1/2022"
+output: html_document
+---
+
+> En este primer entregable del curso [**Analizando datos, visualizando información y contando historias**](https://github.com/dadosdelaplace/courses-ECI-2022/) de la `ECI 2022` vamos a aplicar lo aprendido hasta ahora realizando un primer análisis descriptivo de la tabla `starwars`. Modifica el código necesario para responder a las preguntas y cuestiones requeridas.
+
+
+# Subsecciones
+
+> Modifica todas las secciones inferiores de cada pregunta para transformarlas en subsecciones
+
+# Personaliza el título
+
+> Modificar el título original de esta plantilla y escribe tu nombre como autor/a del documento.
+
+ 
+# CV abreviado
+
+> 📝Ejercicio 2: Incluye un breve párrafo introductorio, incluyendo un enlace a la web del curso y crea una nueva sección llamada Análisis Inicial (haz click en la flecha para la solución propuesta).
+ 

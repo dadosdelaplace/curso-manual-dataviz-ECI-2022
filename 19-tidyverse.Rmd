@@ -690,10 +690,33 @@ knitr::include_graphics("./img/tidytutor5.jpg")
 
 (haz click en las flechas para ver soluciones)
 
+
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: del fichero `starwars` encuentra todos los personajes que el peso esté entre 60 y 90.
+  <summary>📝<strong>Ejercicio 1</strong>: carga el conjunto de datos `starwars` y determina el tipo de variables, el númwero de filas y el número de columnas.
   
-  Podemos aprovechar para poner en práctica nuestros conocimientos, y crear una **función** que nos diga las películas en las que aparece cada personaje (con su nombre).
+<!-- toc -->
+- Solución:
+
+```{r}
+# carga
+starwars
+
+# dimensiones
+nrow(starwars)
+ncol(starwars)
+dim(starwars)
+
+# Tipos de variables
+glimpse(starwars)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: del conjunto `starwars` encuentra todos los personajes cuyo peso esté entre 60kg y 90kg. Imprime todas las columnas del filtro.
   
 <!-- toc -->
 - Solución:
@@ -711,7 +734,26 @@ print(filtro, width = Inf)
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 2</strong>: añadido al filtro anterior, encuentra todos los personajes de ojos que no sean azules, y que tengan menos de 100 años.
+  <summary>📝<strong>Ejercicio 3</strong>: añadido al filtro anterior, encuentra todos los personajes que además tengan los ojos que no sean azules.
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+# todas columnas
+filtro <-
+  starwars %>%
+  filter(between(mass, 60, 90) & eye_color != "blue")
+print(filtro, width = Inf)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: añadido al filtro anterior, encuentra todos los personajes que además tengan menos de 100 años.
   
 <!-- toc -->
 - Solución:
@@ -728,11 +770,10 @@ print(filtro, width = Inf)
 <!-- tocstop -->
 </details>
 
-
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 3</strong>: añadido al filtro anterior, selecciona solo las columnas `name, mass, eye_color, birth_year`
+  <summary>📝<strong>Ejercicio 5</strong>: añadido al filtro anterior, selecciona solo las columnas `name, mass, eye_color, birth_year`
   
 <!-- toc -->
 - Solución:
@@ -748,7 +789,7 @@ filtro %>% select(c(name, mass, eye_color, birth_year))
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 4</strong>: selecciona solo las columnas que contengan variables numéricas, coloca los años de nacimiento como primera columna y cambia los nombres a castellano.
+  <summary>📝<strong>Ejercicio 5</strong>: selecciona solo las columnas que contengan variables numéricas.
   
 <!-- toc -->
 - Solución:
@@ -763,13 +804,14 @@ starwars %>% select(where(is.numeric))
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 5</strong>: añadido a la selección anterior, coloca los años de nacimiento como primera columna y cambia los nombres a castellano.
+  <summary>📝<strong>Ejercicio 6</strong>: añadido a la selección anterior, coloca los años de nacimiento como primera columna y cambia los nombres a castellano.
   
 <!-- toc -->
 - Solución:
 
 ```{r}
-starwars %>% select(where(is.numeric)) %>%
+starwars %>%
+  select(where(is.numeric)) %>%
   relocate(height, mass, .after = birth_year) %>%
   rename(edad = birth_year, altura = height, peso = mass)
 ```
@@ -780,7 +822,7 @@ starwars %>% select(where(is.numeric)) %>%
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 6</strong>: calcula una nueva columna que indique el número de naves que ha pilotado cada persona (escribe `? starwars` en consola para ver documentación del fichero).
+  <summary>📝<strong>Ejercicio 7</strong>: calcula una nueva columna que indique el número de naves que ha pilotado cada persona (escribe `? starwars` en consola para ver documentación del fichero).
   
 <!-- toc -->
 - Solución:
@@ -804,7 +846,7 @@ starwars %>%
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 7</strong>: con la columna anterior añadido, crea una nueva variable `TRUE/FALSE` que nos diga si ha conducido o no alguna nave, y filtra después solo aquellos personajes que han conducido alguna nave.
+  <summary>📝<strong>Ejercicio 8</strong>: con la columna anterior añadido, crea una nueva variable `TRUE/FALSE` que nos diga si ha conducido o no alguna nave, y filtra después solo aquellos personajes que han conducido alguna nave.
   
 <!-- toc -->
 - Solución:
@@ -822,7 +864,7 @@ starwars_numero_naves %>%
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 8</strong>: calcula el número de películas en las que han salido y ordena a los personajes de mayor a menor número de películas en las que ha aparecido
+  <summary>📝<strong>Ejercicio 9</strong>: calcula el número de películas en las que han salido y ordena a los personajes de mayor a menor número de películas en las que ha aparecido
   
 <!-- toc -->
 - Solución:
@@ -839,17 +881,17 @@ starwars %>% # Calculamos primero el número de películas
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 9</strong>: selecciona 9 personajes al azar.
+  <summary>📝<strong>Ejercicio 10</strong>: selecciona 7 personajes al azar.
   
 <!-- toc -->
 - Solución:
 
 ```{r}
 # Una extracción aleatoria
-starwars %>% slice_sample(n = 9)
+starwars %>% slice_sample(n = 7)
 
 # otra (que sale distinta, claro)
-starwars %>% slice_sample(n = 9)
+starwars %>% slice_sample(n = 7)
 ```
 
 <!-- tocstop -->
@@ -859,17 +901,14 @@ starwars %>% slice_sample(n = 9)
 
 
 <details>
-  <summary>📝<strong>Ejercicio 10</strong>: de la tabla del ejercicio anterior, selecciona los 5 personajes que en más películas han salido y los 5 que menos.
+  <summary>📝<strong>Ejercicio 11</strong>: selecciona los 5 personajes que en más películas han salido y los 5 que menos.
   
 <!-- toc -->
 - Solución:
 
 ```{r}
-# Una extracción aleatoria
-selec_aleatoria <- starwars %>% slice_sample(n = 9)
-
 # personajes que en más películas han salido (metiendo empates)
-selec_aleatoria  %>%
+starwars  %>%
   mutate(n_films = map_int(films, length)) %>%
   slice_max(n_films, n = 5)
 
@@ -895,7 +934,7 @@ starwars %>%
 &nbsp;
 
 <details>
-  <summary>📝<strong>Ejercicio 11</strong>: selecciona las columnas que se refieren a variables de color (ojos, piel, pelo).
+  <summary>📝<strong>Ejercicio 12</strong>: selecciona solo las columnas que se refieren a variables de color (ojos, piel, pelo) (con sufijo `"color"`)
   
 <!-- toc -->
 - Solución:
@@ -910,6 +949,5 @@ starwars %>% select(ends_with("color"))
 
 <!-- tocstop -->
 </details>
-
 
 
