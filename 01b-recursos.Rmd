@@ -119,6 +119,8 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 
 * <mark>[**ggplot2: visualización de datos**](https://ggplot2.tidyverse.org/)</mark>. Entorno <mark>**tidyverse**</mark>. <https://ggplot2.tidyverse.org/>. Manual oficial: <https://ggplot2-book.org/index.html>
 
+* <mark>[**R Graph Gallery**: colección de dataviz en `R`](https://www.r-graph-gallery.com/) <https://www.r-graph-gallery.com/>
+
 * <mark>[**patchwork: agregar y componer gráficas**](https://patchwork.data-imaginist.com/)</mark>. De Thomas Lin Pedersen. <https://patchwork.data-imaginist.com/>.>
 
 
@@ -145,6 +147,8 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 * <mark>[**Visualización de datos geográficos**](https://dominicroye.github.io/en/)</mark>. De Dominic Royé. <https://dominicroye.github.io/en/>
 
 * <mark>[**mapSpain: visualización de datos en mapas de España en R**](https://dieghernan.github.io/rpubs/mapSpain_RMadrid/#1)</mark>. De Diego Hernangómez. <https://dieghernan.github.io/rpubs/mapSpain_RMadrid/#1>
+
+* <mark>[**rasterpic: visualización de mapas con imágenes rasterizados de fondo**](https://dieghernan.github.io/rasterpic/)</mark>. De Diego Hernangómez. <https://dieghernan.github.io/rasterpic/>
 
 * <mark>[**layer: paquete para crear capas de mapas**](https://github.com/marcosci/layer)</mark>. De Marco Sciaini y Cédric Scherer  <https://github.com/marcosci/layer>
 

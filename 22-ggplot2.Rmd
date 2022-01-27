@@ -20,20 +20,28 @@ colorize <- function(x, color) {
 
 Una de las principales fortalezas de `R` frente a `Python` es el manejo de datos con `{tidyverse}`, entorno en el que se incluye el paquete `{ggplot2}`.
 
-La <mark>**visualización de datos o dataviz**</mark> debería ser una parte fundamental de todo análisis de datos. No es solo que nuestro trabajo sea más **presentable y estético** (algo fundamental). La visualización de datos es <mark>**fundamental para convertir el dato en información**</mark>, y usar dicha información para <mark>**contar una historia**</mark> con nuestros datos: no solo importa lo que cuentas sino **cómo lo cuentas**). 
+```{r}
+library(tidyverse)
+```
 
-```{r echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Imagen extraída de Reddit <https://www.reddit.com/r/lego/comments/pezxk5/oc_a_lego_data_story_adapted_from_original_image/>."}
+La <mark>**visualización de datos o dataviz**</mark> debería ser una parte fundamental de todo análisis de datos. No es solo que nuestro trabajo sea más **presentable y estético** (algo fundamental). La visualización de datos es <mark>**fundamental para convertir el dato en información**</mark>, y usar dicha información para <mark>**contar una historia**</mark> con nuestros datos: no solo importa lo que cuentas sino **cómo lo cuentas**. 
+
+```{r echo = FALSE, out.width = "60%", fig.align = "center", fig.cap = "Imagen extraída de Reddit <https://www.reddit.com/r/lego/comments/pezxk5/oc_a_lego_data_story_adapted_from_original_image/>."}
 knitr::include_graphics("./img/telling-dataviz")
 
 ```
 
+<!---
 Uno de los ejemplos más famosos para explicar la **importancia de la visualización de datos** en el análisis exploratorio es el conocido como [**cuarteto de Anscombe**](https://cartasdelaplace.substack.com/p/carta-2): cuatro pares de datos $(X, Y)$ con la misma media de todas las $X$, la misma media de todas las $Y$, la misma correlación en todos los pares y la misma recta de regresión si la pintásemos. Matemáticamente, con dichos indicadores, no podríamos distinguir un conjunto de datos de otro, pero al visualizarlos, son datos totalmente distintos. Algo similar sucede con el <mark>**conjunto de datos `Datasaurus`**</mark> que te visualizo debajo de estas líneas, conjunto creado por el experto en visualización de datos **Alberto Cairo**: mismas medias y varianzas, mismas correlaciones, pero datos totalmente distintos.
 
-```{r include = FALSE}
+-->
+
+```{r include = FALSE, eval = FALSE}
 library(datasauRus)
 library(glue)
 library(ggthemes)
 library(gganimate)
+library(tidyverse)
 
 anotaciones <- datasaurus_dozen %>% group_by(dataset) %>%
   mutate(media_x = mean(x), media_y = mean(y),
@@ -69,13 +77,20 @@ ggplot(datasaurus_dozen,
 ```
 
 
-### Grammar of graphics (gg): entendiendo la gramática ggplot2
+## Grammar of graphics (gg): entendiendo la gramática ggplot2
 
-La idea de la filosofía detrás del paquete `{ggplot2}` (ya incluido en `{tidyverse}`) es <mark>**entender los gráficos como parte integrada del flujo de procesamiento, depuración y modelado**</mark> de los datos, dándoles una gramática _Grammar of Graphics_ (ver <https://ggplot2-book.org/introduction.html>) que nos permite combinar diferentes elementos gráficos y ligarlos a los datos. El objetivo es empezar con un lienzo en blanco e ir <mark>**añadiendo capas**</mark> a tu gráfico, como harías por ejemplo en Photoshop, con la diferencia de que nuestras **capas podemos ligarlas al conjunto de datos**, tanto las capas estéticas como las estadísticas. Y dicho paquete nos permite hacerlo con la misma filosofía con la que hemos procesado los datos
+La idea de la filosofía detrás del paquete `{ggplot2}` (ya incluido en `{tidyverse}`) es <mark>**entender los gráficos como parte integrada del flujo de procesamiento, depuración y modelado**</mark> de los datos, dándoles una gramática, basándose en la idea de [«The Grammar of Graphics» de Leland Wilkinson](https://www.amazon.es/Grammar-Graphics-Statistics-Computing/dp/0387245448). Puedes profundizar en esa idea de _Grammar of Graphics_  en las siguientes <mark>**obras de referencia del dataviz**</mark>
 
- 
+- [«Gramática de las gráficas: pistas para mejorar las representaciones de datos» de Joaquín Sevilla](https://academica-e.unavarra.es/bitstream/handle/2454/15785/Gram%C3%A1tica.pdf)
+- [«Quantitative Graphics in Statistics: A Brief History» de James R. Beniger y Dorothy L. Robyn. The American Statistician (1978)](https://www.jstor.org/stable/2683467)]
+- [«Presentation Graphics» de Leland Wilkinson. International Encyclopedia of the Social & Behavioral Sciences](https://www.cs.uic.edu/~wilkinson/Publications/iesbs.pdf)
+- [«The Visual Display of Quantitative Information» de E. W. Tufte](https://www.amazon.es/Visual-Display-Quantitative-Information/dp/0961392142)
+- [«The Functional Art: an introduction to information graphics and visualization» de Alberto Cairo](https://www.amazon.es/Functional-Art-Voices-That-Matter/dp/0321834739)
 
-```{r grammar, echo = FALSE, out.width = "70%", fig.align = "center", fig.cap = "Idea detrás de la «Grammar of graphics» de Wilkinson."}
+La documentación del paquete puedes consultarla en <https://ggplot2-book.org/introduction.html> y nos permitirá <mark>**combinar**</mark> diferentes elementos gráficos y <mark>**ligarlos a los datos**</mark>. El objetivo es empezar con un lienzo en blanco e ir <mark>**añadiendo capas**</mark> a tu gráfico, como harías por ejemplo en Photoshop, con la diferencia de que nuestras **capas podemos ligarlas al conjunto de datos**, tanto las capas estéticas como las estadísticas. Y dicho paquete nos permite hacerlo con la misma filosofía con la que hemos procesado los datos
+
+
+```{r grammar, echo = FALSE, out.width = "65%", fig.align = "center", fig.cap = "Idea detrás de la «Grammar of graphics» de Wilkinson."}
 knitr::include_graphics("./img/grammar.jpg")
 ```
 
@@ -85,16 +100,22 @@ La ventaja del sistema `{ggplot2}` es poder <mark>**mapear atributos estéticos 
 
 Un gráfico se compondrá de las **siguientes capas**
 
-* **Elementos geométricos (geom)**: puntos, líneas, barras, polígonos, etc.
-* **Transformaciones estadísticas (stat)**: ordenar, resumir, agrupar, etc.
-* **Elementos del espacio aesthetics (scale)**: color, forma, tamaño, leyenda, ejes, etc.
-* **Sistema de coordenadas (coord)**: coordenadas, grids, etc.
-* **Componer gráficas (facet)**: visualizar varias gráficas a la vez.
-* **Temas (theme)**: fuente, tamaño de letra, subtítulos, captions, etc.
+* <mark>**Datos**</mark>: nuestro gráfico estará vinculado a un conjunto de datos.
+* <mark>**Mapeado de elementos (aesthetics)**</mark>: ejes, color, forma, tamaño, etc (en función de los datos)
+* <mark>**Elementos geométricos (geom)**</mark>: puntos, líneas, barras, polígonos, etc.
+* <mark>**Componer gráficas (facet)**</mark>: visualizar varias gráficas a la vez.
+* <mark>**Transformaciones estadísticas (stat)**</mark>: ordenar, resumir, agrupar, etc.
+* <mark>**Sistema de coordenadas (coord)**</mark>: coordenadas, grids, etc.
+* <mark>**Temas (theme)**</mark>: fuente, tamaño de letra, subtítulos, captions, leyenda, ejes, etc.
 
 ## Primer intento: scatter plot o diagrama de puntos
 
-Veamos un primer intento para entender la filosofía. Imagina que queremos dibujar un _scatter plot_ o <mark>**diagrama de (dispersión) de puntos**</mark>. Para ello vamos a usar el conjunto de datos `gapminder` del paquete homónimo, un fichero con datos de esperanzas de vida, poblaciones y renta per cápita de distintos países en distintos momentos temporales.
+Veamos un primer intento para entender la filosofía. Imagina que queremos dibujar un _scatter plot_ o <mark>**diagrama de (dispersión) de puntos**</mark>.
+
+
+### Datos: gapminder
+
+Para ello vamos a usar el conjunto de datos `gapminder`, del paquete homónimo: un fichero con <mark>**datos de esperanzas de vida, poblaciones y renta per cápita**</mark> de distintos países en distintos momentos temporales.
 
 ```{r}
 library(gapminder)
@@ -102,18 +123,18 @@ gapminder
 glimpse(gapminder)
 ```
 
-Para empezar con algo sencillo **filtraremos solo los datos del año 1997** haciendo uso de `filter()`.
+Para empezar con algo sencillo <mark>**filtraremos los datos de 1997**</mark> haciendo uso de `filter()`.
 
 ```{r}
 gapminder_1997 <- gapminder %>% filter(year == 1997)
 gapminder_1997
 ```
 
-Vamos a realizar un diagrama de puntos enfrentando en el eje y la población (variable `pop`) y en el eje x la renta per cápita (variable `gdpPercap`). **¿Qué necesitamos?**
+Vamos a realizar un <mark>**diagrama de puntos**</mark> enfrentando en el <mark>**eje Y**</mark> la población (variable `pop`) y en el <mark>**eje X**</mark> la renta per cápita (variable `gdpPercap`). **¿Qué necesitamos?**
 
 * <mark>**Datos**</mark>: el conjunto filtrado `gapminder_1997`.
-* <mark>**Mapeado**</mark>: indicarle en `aes()` (aesthetics) las variables a pintar en cada coordenada.
-* <mark>**Elegir geometría**</mark>: puntos.
+* <mark>**Mapeado**</mark>: indicarle en `aes()` (<mark>**aesthetics**</mark>) las variables a pintar en cada coordenada. Todo lo que esté asignado dentro de `aes()` dependerá de una variable contenida en los datos. En este caso, el eje X dependerá de la variable `gdpPercap`, y el eje Y de la variable `pop`.
+* <mark>**Elegir una geometría**</mark>: optaremos en este primer caso por puntos.
 
 ```{r}
 ggplot(gapminder_1997, aes(x = gdpPercap, y = pop)) +
@@ -121,349 +142,682 @@ ggplot(gapminder_1997, aes(x = gdpPercap, y = pop)) +
 ```
 
 
+### Mapeado de elementos (aesthetics)
 
-Podemos hacer lo mismo pero **cambiando el rol de las coordenadas**, intercambiando lsa variables
+#### Variables de los ejes
+
+Para profundizar en el mapeado de `aes()` vamos a hacer lo mismo pero <mark>**cambiando el rol de los ejes**</mark>, intercambiando las variables, en este caso `aes(y = gdpPercap, x = pop)`
 
 ```{r}
 ggplot(gapminder_1997, aes(y = gdpPercap, x = pop)) +
   geom_point()
 ```
 
-Y podemos repetirlo enfrentando ahora la población en el eje X y la experanza de vida en el eje Y (variable `lifeExp`).
+La idea podemos repetirla enfrentando ahora la <mark>**esperanza de vida en el eje X**</mark> (variable `lifeExp`) y la <mark>**renta per cápita en el eje Y**</mark> (variable `gdpPercap`).
 
 ```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop)) +
+ggplot(gapminder_1997, aes(y = gdpPercap, x = lifeExp)) +
   geom_point()
 ```
 
-A veces nos puede ser más conveniente representar alguna de las variables en <mark>**escala logarítmica**</mark> (importante: indícalo siempre en el gráfico), lo que podemos hacer facilmente con `scale_x_log10()` y `scale_y_log10()`
+#### Colores, formas, tamaños
 
-```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop)) +
-  geom_point() + scale_x_log10()
-```
 
 <mark>**¿Cómo podemos dar color y tamaño a nuestro gráfico?**</mark>
 
-La opción más sencilla es indicándole, dentro de `geom_point()` el color de la geometría con `color = ...` (en este caso, el color del punto), mediante un color fijo, bien sea con alguno de los colores reservados que tiene `R`, bien sea con su [código hexadecimal](https://htmlcolorcodes.com/es/)
+La opción más sencilla es indicándole, dentro de `geom_point()` el color de la geometría con `color = ...` (en este caso, el <mark>**color del punto**</mark>), mediante un <mark>**color fijo**</mark>, bien sea con alguno de los colores reservados que tiene `R`, bien sea con su [código hexadecimal](https://htmlcolorcodes.com/es/)
 
 ```{r}
 # Color con palabra reservada
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop)) +
-  geom_point(color = "red") +
-  scale_x_log10()
+ggplot(gapminder_1997, aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(color = "red")
 
 # Color en hexadecimal, de la página https://htmlcolorcodes.com/es/
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop)) +
-  geom_point(color = "#2EA2D8") +
-  scale_x_log10()
+ggplot(gapminder_1997, aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(color = "#2EA2D8")
 ```
 
-De la misma manera podemos indicarle el <mark>**tamaño de la geometría**</mark> (en este caso del punto) con `size = ...`, incluso la <mark>**transparencia**</mark> que queremos para un color dado con `alpha = ...` (entre 0 - transparente - y 1 - totalmente opaco).
+De la misma manera podemos indicarle el <mark>**tamaño de la geometría**</mark> (en este caso del punto) con `size = ...`, incluso el <mark>**porcentaje transparencia**</mark> que queremos para un color dado con `alpha = ...` (entre 0 - transparente - y 1 - totalmente opaco).
 
 ```{r}
 # Color opaco
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop)) +
-  geom_point(color = "#A02B85", size = 6) +
-  scale_x_log10()
+ggplot(gapminder_1997, aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(color = "#A02B85", size = 4)
 
 # alpha = 50%
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop)) +
-  geom_point(color = "#A02B85", size = 6, alpha = 0.5) +
-  scale_x_log10()
+ggplot(gapminder_1997, aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(color = "#A02B85", size = 8, alpha = 0.4)
 ```
 
-Dichos parámetros se los hemos pasado fijos, como si fuera un valor constante pero podemos <mark>**mapear los _aesthetics_ de un gráfico**</mark> para que **dependan de los datos**, por ejemplo, asignándole un **color a cada continente**.
+Si te fijas dichos parámetros se los hemos pasado <mark>**fijos y constantes**</mark>, pero podemos <mark>**mapear en `aes()`**</mark> para que **dependan de los datos**, por ejemplo, asignándole un <mark>**color a cada dato en función de su continente**</mark>.
 
 ```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop, color = continent)) +
-  geom_point(size = 5) +
-  scale_x_log10()
+ggplot(gapminder_1997, aes(y = gdpPercap, x = lifeExp, color = continent)) +
+  geom_point(size = 4.5)
 ```
 
-Podemos combinarlo con lo que hemos hecho anteriormente e indicarle además que queremos el **tamaño en función de la renta**, con cierto grado de transparencia. 
+Podemos combinarlo con lo que hemos hecho anteriormente e indicarle además que queremos el <mark>**tamaño en función de la población**</mark>, con cierto grado de transparencia. 
 
 ```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.7) +
-  scale_x_log10()
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp, color = continent, size = pop)) +
+  geom_point(alpha = 0.7)
 ```
 
-En lugar de jugar con el color, también podríamos añadir mapear las variables en función de la **forma de la geometría** con `shape = ...` (en realidad si tuviéramos suficientes variables podríamos incluir, solo con ejes + colores + tamaños + formas + transparencia, hasta 6 variables distintas).
+En lugar de jugar con el color, también podríamos añadir las variables en función de la <mark>**forma de la geometría**</mark> (en este caso la forma de los «puntos») con `shape = ...`, haciéndola depender de `continent` (suficientes variables podríamos incluir, solo con ejes + colores + tamaños + formas + transparencia, hasta 6 variables distintas).
 
 ```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           shape = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.7) +
-  scale_x_log10()
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp, shape = continent, size = pop)) +
+  geom_point(alpha = 0.7)
 ```
 
+### Scales y paletas de colores
 
 Reflexionemos sobre el gráfico que acabamos de hacer
 
 ```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.7) +
-  scale_x_log10()
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.7)
 ```
 
-**Usando los datos** hemos conseguido dibujar en un **gráfico bidimensional 4 variables** (`pop` y `lifeExp` en los ejes X,Y, `continent` como color y `gdpPercap` como tamaño de la geometría) con muy pocas líneas de código, y <mark>**totalmente adaptado y flexible**</mark> a nuestras necesidades. Respecto a los colores, si te fijas `R` **ha elegido automáticamente la paleta** de colores pero podemos <mark>**indicarle alguna paleta**</mark> concreta de varias maneras.
+Usando los datos hemos conseguido dibujar en un <mark>**gráfico bidimensional 4 variables**</mark> (`lifeExp` y `gdpPercap` en los ejes $(X,Y)$, `continent` como color y `pop` como tamaño de la geometría) con muy pocas líneas de código. A veces nos puede ser más conveniente representar alguna de las variables en <mark>**escala logarítmica**</mark> (importante indicarlo en el gráfico), lo que podemos hacer facilmente con `scale_x_log10()` y `scale_y_log10()`
 
-La primera y más inmediata es indicarle los colores manualmente.
-
-
-```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
+```{r scale-log}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
   geom_point(alpha = 0.7) +
-  scale_x_log10() +
+  # Eje Y con escala logarítmica
+  scale_y_log10()
+```
+
+Respecto a los colores, si te fijas `R` **ha elegido automáticamente la paleta** de colores pero podemos <mark>**indicarle alguna paleta**</mark> concreta de varias maneras.
+
+La primera y más inmediata es indicarle los <mark>**colores manualmente**</mark>: con `scale_color_manual` le podemos indicar un vector de colores.
+
+
+```{r scale-color-manual}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.7) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
+  # Escala manual de colores
   scale_color_manual(values = c("#A02B85", "#2DE86B", "#4FB2CA",
                                 "#E8DA2D", "#E84C2D"))
 ```
 
 
-Otra opción es elegir alguna de las paletas disponibles en el paquete `{ggthemes}`, como `scale_color_economist()`, `scale_color_excel()` o `scale_color_tableau()`.
+Otra opción es elegir alguna de las <mark>**paletas de colores**</mark> disponibles en el paquete `{ggthemes}`, como `scale_color_economist()`, `scale_color_excel()` o `scale_color_tableau()`.
 
-```{r}
+```{r ggthemes}
 library(ggthemes)
 
 # scale_color_economist()
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
   scale_color_economist()
 
 # scale_color_excel()
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
   scale_color_excel()
 
 # scale_color_tableau()
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
   scale_color_tableau()
 ```
 
-
-También existen múltiples paquetes que nos proporcionan paletas de colores basados en películas (paquete `{harrypotter}` descargado desde el repositorio de Github), pájaros (paquete `{Manu}`) o cuadros (paquete `{MetBrewer}`).
+También existen múltiples <mark>**paquetes que nos proporcionan paletas**</mark> de colores basados en <mark>**películas**</mark> (paquete `{harrypotter}` descargado desde el repositorio de Github), <mark>**pájaros**</mark> (paquete `{Manu}`) o <mark>**cuadros**</mark> (paquete `{MetBrewer}`).
 
 ```{r eval = FALSE}
 devtools::install_github(repo = "https://github.com/aljrico/harrypotter")
 ```
 
-```{r}
+```{r harrypotter}
 library(harrypotter)
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
   geom_point(alpha = 0.9) +
-  scale_x_log10() +
-  scale_color_hp_d(option = "gryffindor") +
-  labs(title = "Ejemplo de ggplot2",
-       subtitle = "Paleta de Gryffindor",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+  scale_y_log10() +
+  scale_color_hp_d(option = "gryffindor")
 
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
   geom_point(alpha = 0.9) +
-  scale_x_log10() +
-  scale_color_hp_d(option = "hufflepuff") +
-  labs(title = "Ejemplo de ggplot2",
-       subtitle = "Paleta de Hufflepuff",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+  scale_y_log10() +
+  scale_color_hp_d(option = "hufflepuff")
 ```
 
 ```{r eval = FALSE}
 devtools::install_github("G-Thomson/Manu")
 ```
 
-```{r}
+```{r manu}
 library(Manu)
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
   geom_point(alpha = 0.9) +
-  scale_x_log10() +
+  scale_y_log10() +
   # paleta del pájaro Takahē - Porphyrio hochstetteri
-  scale_colour_manual(values = get_pal("Takahe")) +
-  labs(title = "Ejemplo de ggplot2",
-       subtitle = "Paleta del pájaro Takahē - Porphyrio hochstetteri",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+  scale_colour_manual(values = get_pal("Takahe"))
 ```
 
 ```{r eval = FALSE}
 devtools::install_github("BlakeRMills/MetBrewer") 
 ```
 
-```{r}
+```{r metbrewer}
 library(MetBrewer)
 MetBrewer::met.brewer("Renoir")
 MetBrewer::met.brewer("Monet")
 MetBrewer::met.brewer("Hokusai")
 
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
   geom_point(alpha = 0.9) +
-  scale_x_log10() +
-  scale_colour_manual(values = met.brewer("Klimt")) +
-  labs(title = "Ejemplo de ggplot2",
-       subtitle = "Paleta de cuadros de Klimt",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+  scale_y_log10() +
+  scale_colour_manual(values = met.brewer("Klimt"))
 ```
 
+### Geometrías (geom)
 
-Los <mark>**gráficos pueden además personalizarse añadiendo**</mark>, por ejemplo, **títulos y subtítulos de la gráfica** con `labs() 
+Hemos jugado un poco con las formas, tamaños y colores, pero siempre ha sido un <mark>**diagrama de dispersión con puntos**</mark>. Al igual que hemos usado `geom_point()`, podríamos usar otras geometrías como <mark>**líneas**</mark> con `geom_line()`.
 
-```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
-  scale_color_tableau() +
-  labs(title = "Ejemplo de ggplot2",
-       subtitle = "Aprendiendo R sin morir en el intento",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```{r geom-line}
+# Sin separar por continente
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp)) +
+  geom_line(alpha = 0.8) +
+  scale_y_log10() +
+  scale_color_tableau()
+
+# Separando por continente
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent)) +
+  geom_line(alpha = 0.8) +
+  scale_y_log10() +
+  scale_color_tableau()
 ```
 
-De la misma manera podemos personalizar el <mark>**título que vamos a dar a los ejes**</mark> y también el <mark>**título de las leyendas**</mark>.
+Fíjate que la <mark>**filosofía es la misma**</mark>: dado que cada elemento lo podemos tratar de forma individual, pasar de un gráfico a otro es relativamente sencillo, sin más que cambiar `geom_point()` por `geom_line()`.
 
-```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
-  scale_color_tableau() +
-  labs(x = "Población", y = "Esperanza de vida",
-       color = "Continente", size = "Renta per cápita",
-       title = "Ejemplo de ggplot2",
-       subtitle = "Población vs esperanza de vida (año 1997)",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+De la misma manera podemos dibujar un diagrama de dispersión con <mark>**formas hexagonales**</mark> con `geom_hex()`. Ahora el parámetro `color` corresponderá al cortono de la forma, y `fill` al <mark>**relleno de la misma**</mark> (fíjate que también cambiamos `scale_color_tableau()` por `scale_fill_tableau()`)
+
+```{r geom-hex}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           fill = continent, size = pop)) +
+  geom_hex(alpha = 0.8) +
+  scale_y_log10() + scale_fill_tableau()
 ```
 
-Por último, podemos <mark>**dividir/desagregar los gráficos (_facetar_) por variables**</mark>, pintando por ejemplo un **gráfico por continente**, mostrando todos los gráficos a la vez pero por separado, con `facet_wrap()`.
+Con `geom_tile()` también podemos dibujar en <mark>**mosaico**</mark> (como en baldosas).
 
-```{r}
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
-  facet_wrap(~ continent) +
-  labs(x = "Población", y = "Esperanza de vida",
-       color = "Continente", size = "Renta per cápita",
-       title = "Ejemplo de ggplot2",
-       subtitle = "Población vs esperanza de vida (año 1997)",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```{r geom-tile}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_tile(alpha = 0.8) +
+  scale_y_log10() +
+  scale_color_tableau()
 ```
 
-Podemos hacer lo mismo pero separando, por ejemplo, por años, con el fichero **original sin filtrar**.
+Por último, con `geom_text()` podemos hacer que en lugar de una forma geométrica aparezcan <mark>**textos**</mark> que tengamos en alguna variable, que la pasaremos en `aes()` por el parámetro `label` (en este caso, la variable de la que tomará los nombres será `country`).
+
+```{r geom-text}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop, label = country)) +
+  geom_text(alpha = 0.8) +
+  scale_y_log10() +
+  scale_color_tableau()
+```
+
+### Componer (facets)
+
+Hasta ahora hemos pintado una sola gráfica, **codificando** en colores y formas. Pero también podemos <mark>**dividir/desagregar los gráficos (_facetar_) por variables**</mark>, pintando por ejemplo un **gráfico por continente**, mostrando todos los gráficos a la vez pero por separado, con `facet_wrap()`.
+
+```{r facet-wrap-1}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(alpha = 0.9) +
+  scale_y_log10() +
+  facet_wrap(~ continent)
+```
+
+Le podemos pasar <mark>**argumentos opcionales**</mark> para indicarle el número de columnas o de filas que queremos.
+
+```{r facet-wrap-2}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(alpha = 0.9) +
+  scale_y_log10() +
+  facet_wrap(~ continent, nrow = 3)
+```
 
 ```{r}
-ggplot(gapminder, aes(y = lifeExp, x = pop,
-                      size = gdpPercap, color = continent)) +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(alpha = 0.9) +
+  scale_y_log10() +
+  facet_wrap(~ continent, ncol = 4)
+```
+
+De esta manera podríamos incluso visualizar el fichero de datos originales <mark>**incluye hasta 5 variables**</mark>: las variables `pop` y `lifeExp` en los ejes, la variable `gdpPercap` en el tamaño, la variable `continent` en el color y la variable `year` en la composición de `facet_wrap()`.
+
+```{r facet-wrap-3}
+library(MetBrewer)
+ggplot(gapminder,
+       aes(y = lifeExp, x = pop, size = gdpPercap, color = continent)) +
   geom_point(alpha = 0.6) +
   scale_x_log10() +
-  facet_wrap(~ year) +
-  scale_color_tableau() +
-  labs(x = "Población", y = "Esperanza de vida",
-       color = "Continente", size = "Renta per cápita",
-       title = "Ejemplo de ggplot2",
-       subtitle = "Población vs esperanza de vida (año 1997)",
-       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+  scale_colour_manual(values = met.brewer("Klimt")) +
+  facet_wrap(~ year)
+```
+
+Con `facet_grid()` podemos incluso <mark>**organizar una cuadrícula en base a dos variables**</mark>, por ejemplo que haya una <mark>**fila por año**</mark> (vamos a usar la tabla original en los años 1952, 1972, 1982 y 2002) y una <mark>**columna por continente**</mark>.
+
+
+```{r facet-grid}
+ggplot(gapminder %>% filter(year %in% c(1952,  1972, 1982,  2002)),
+       aes(y = gdpPercap, x = lifeExp)) +
+  geom_point(alpha = 0.9) +
+  scale_y_log10() +
+  facet_grid(year ~ continent)
 ```
 
 
-Se sale fuera de esta introducción pero con `theme_update()` podemos configurar cualquier aspecto del gráfico.
+
+### Coordenadas y tema
+
+Los <mark>**gráficos pueden además personalizarse añadiendo**</mark>, por ejemplo, **títulos y subtítulos de la gráfica** con `labs()`, asignando textos a `title`, `subtitle` y `caption`.
 
 ```{r}
-theme_update(
-  # Título, subtítulo y caption
-  plot.title = element_text(size = 21, face = "bold", color = "#2a475e"),
-  plot.subtitle = element_text(size = 11, face = "bold",
-                               color = "black"),
-  plot.caption = element_text(size = 9, color = "black"),
-  # Ejes
-  axis.title = element_text(size = 11, color = "grey30"),
-  # Líneas de los ejes
-  axis.line = element_line(colour = "grey50"),
-  # Fondo dentro de la gr?fica sin formato
-  rect = element_blank(),
-  # Líneas del grid
-  panel.grid = element_line(color = "#b4aea9"),
-  # Sin grid secuendario (intermedio entre el grande)
-  panel.grid.minor = element_blank(),
-  # Grid principal
-  panel.grid.major.x =  element_line(linetype = "dashed"),
-  panel.grid.major.y = element_line(linetype = "dashed"),
-  # Color de fondo
-  plot.background =
-    element_rect(fill = "#fbf9f4", color = "#fbf9f4"),
-  plot.margin = # m?rgenes
-      margin(t = 0.3, b = 0.3, r = 0.5, l = 0.5, "cm"))
-
-ggplot(gapminder_1997, aes(y = lifeExp, x = pop,
-                           color = continent, size = gdpPercap)) +
-  geom_point(alpha = 0.9) +
-  scale_x_log10() +
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
   scale_color_tableau() +
-  labs(x = "Población", y = "Esperanza de vida",
-       color = "Continent", size = "Renta per cápita",
-       title = "Ejemplo de ggplot2",
-       subtitle = "Aprendiendo R sin morir en el intento",
+  labs(title = "EJEMPLO DE SCATTERPLOT CON GGPLOT2",
+       subtitle =
+         "Esperanza vida vs renta per cápita (año 1997)",
        caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
 ```
 
+También podemos personalizar algunos aspectos extras, como el <mark>**título que vamos a dar a los ejes**</mark> o el <mark>**título de las leyendas**</mark>.
+
+```{r}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
+  scale_color_tableau() +
+  labs(x = "Esperanza de vida", y = "Renta per cápita",
+       color = "Continente", size = "Población",
+       title = "EJEMPLO DE SCATTERPLOT CON GGPLOT2",
+       subtitle =
+         "Esperanza vida vs renta per cápita (año 1997)",
+       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```
+
+También podemos <mark>**ocultar algún nombre de las leyendas**</mark> (o ambos) si ya es explícito de lo que se está hablando. Por ejemplo, vamos a indicarle que no queremos el nombre de la leyenda en continentes, haciendo `color = NULL` (la variable que codifica los continentes a `NULL`).
+
+```{r}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
+  scale_color_tableau() +
+  labs(x = "Esperanza de vida",
+       y = "Renta per cápita",
+       color = NULL, size = "Población",
+       title = "EJEMPLO DE SCATTERPLOT CON GGPLOT2",
+       subtitle =
+         "Esperanza vida vs renta per cápita (año 1997)",
+       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```
+
+
+Incluso podemos <mark>**ocultar la leyenda**</mark> en sí de alguna de alguna de las variables con `guides(size = "none")` (en este caso, `size = "none"` nos elimina la leyenda que codifica el tamaño de los puntos).
+
+```{r}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
+  scale_color_tableau() +
+  guides(size = "none") +
+  labs(x = "Esperanza de vida",
+       y = "Renta per cápita",
+       color = NULL, size = "Población",
+       title = "EJEMPLO DE SCATTERPLOT CON GGPLOT2",
+       subtitle =
+         "Esperanza vida vs renta per cápita (año 1997)",
+       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```
+
+```{r}
+ggplot(gapminder_1997,
+       aes(y = gdpPercap, x = lifeExp,
+           color = continent, size = pop)) +
+  geom_point(alpha = 0.8) +
+  # Eje Y con escala logarítmica
+  scale_y_log10() +
+  scale_color_tableau() +
+  guides(size = "none", color = "none") +
+  labs(x = "Esperanza de vida",
+       y = "Renta per cápita",
+       color = NULL, size = "Población",
+       title = "EJEMPLO DE SCATTERPLOT CON GGPLOT2",
+       subtitle =
+         "Esperanza vida vs renta per cápita (año 1997)",
+       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```
+
+
+## Segundo intento: diagrama de barras
+
+Veamos un segundo intento dibujando un <mark>**diagrama de barras**</mark>.
+
+La forma más inmediata de hacerlo es haciendo uso de `geom_col()` para un <mark>**diagrama de barras vertical**</mark>, al que le pasaremos la variable `gdpPercap` a representar en el eje Y (la altura de las barras) y `year`en el eje X (tendremos una barra por año, con la altura del total mundial para ese año)
+
+```{r}
+ggplot(gapminder,
+     aes(y = gdpPercap, x = year)) +
+  geom_col()
+```
+
+Lo que hemos hecho con `geom_col()` es **sumar todos los valores de renta per cápita**, de todos los países, para cada año.
+
+¿Cómo podríamos dibujar, <mark>**para cada año, una barra para cada continente (con su suma)**</mark>?
+
+Primero vamos a obtener los <mark>**datos agrupados por continente y año**</mark>.
+
+```{r}
+gapminder_por_continente <-
+  gapminder %>% group_by(year, continent) %>%
+  summarise(sum_gdpPercap = sum(gdpPercap))
+gapminder_por_continente
+```
+
+Será ese conjunto `gapminder_por_continente` el que usaremos para dibujar nuestro diagrama de barras.
+
+```{r}
+ggplot(gapminder_por_continente,
+     aes(y = sum_gdpPercap, x = year,
+         fill = continent)) +
+  geom_col() +
+  scale_fill_tableau()
+```
+
+Esta forma de dibujar las barras es lo que se conoce como <mark>**formato stack o apilado**</mark>: las barras de cada año las ha apilado unas **encima de otras**. Si queremos que las <mark>**barras desapiladas (por separado)**</mark> indicándole `position = "dodge2"` en la función `geom_col()`
+
+```{r}
+ggplot(gapminder_por_continente,
+     aes(y = sum_gdpPercap, x = year,
+         fill = continent)) +
+  geom_col(position = "dodge2") +
+  scale_fill_tableau()
+```
+
+El formato de barras apiladas nos da una información más limpia en este caso pero <mark>**no permite una buena comparación**</mark> entre contienentes con valores similares, dependiendo además de la renta per cápita global (la altura de la barra total). Para <mark>**facilitar esa comparación**</mark> podemos indicarle `position = "fill"`, que hará cada barra de igual longitud, permitiéndonos visualizar los datos <mark>**en relativo**</mark>.
+
+```{r}
+ggplot(gapminder_por_continente,
+     aes(y = sum_gdpPercap, x = year,
+         fill = continent)) +
+  geom_col(position = "fill") +
+  scale_fill_tableau()
+```
+
+Las barras además pueden ser <mark>**horizontales**</mark>, añadiendo `coord_flip()`. Además vamos a darle un <mark>**título y otros elementos**</mark> que hemos visto anteriormente
+
+```{r}
+ggplot(gapminder_por_continente,
+     aes(y = sum_gdpPercap, x = year,
+         fill = continent)) +
+  geom_col() + coord_flip() +
+  scale_fill_tableau() +
+  labs(x = "Renta per cápita",
+       y = "Año", color = "Continente",
+       title = "EJEMPLO DE DIAGRAMA DE BARRAS CON GGPLOT2",
+       subtitle =
+         "Barras horizontales apiladas (agrupadas por continente y año)",
+       caption = "Autor: Javier Álvarez Liébana | Datos: gapminder")
+```
+
+
+
+## Tercer intento: personalizando el tema
+
+### Datos
+
+En est ocasión vamos a usar los <mark>**datos de Netflix**</mark> proporcionados por Paula Casado en [El Arte del Dato](https://elartedeldato.com/blog/como-anadir-una-anotacion-en-ggplot/), página en la que se basará esta visualización: visualizaremos el número de películas y series de instituto que se han estrenado en Netflix en cada año.
+
+```{r}
+netflix <-
+  read_csv('https://raw.githubusercontent.com/elartedeldato/datasets/main/netflix_titles.csv')
+netflix
+```
+
+Los datos provienen originalmente de [Kaggle](https://www.kaggle.com/shivamb/netflix-shows), y contienen las <mark>**películas y series de Netflix**</mark> hasta enero de 2021. Para visualizar vamos a filtrar las <mark>**películas y series de instituto**</mark>, usando la función `str_detect()` (del paquete `{stringr}`), que nos devolverá `TRUE` si detecta en la variable `description` (pasándola a mayúsculas) el patrón de texto `"HIGH SCHOOL"`.
+
+```{r}
+netflix_hs <- netflix %>%
+  filter(str_detect(toupper(description), "HIGH SCHOOL"))
+netflix_hs 
+```
+
+Tras dicho filtro vamos a añadir el <mark>**año en el que se estrenó**</mark>, con la función `year()` de `{lubridate}`, que nos devuelve el año de una fecha concreta. Esa fecha concreta la vamos a construir con `mdy()`.
+
+```{r}
+library(lubridate)
+mdy("August 26, 2016")
+```
+
+```{r}
+netflix_final <- 
+  netflix_hs %>%
+  mutate(year = year(mdy(date_added))) %>%
+  filter(!is.na(year))
+```
+
+Como ves en `netflix_final` hemos <mark>**eliminado**</mark> aquellos registros de los que no tengamos su año de estreno. 
+
+### Diagrama de barras
+
+Tras la depuración vamos a
+
+* agrupar por año con `group_by(year)`
+* contar el número de elementos en cada uno con `count()`
+
+```{r}
+netflix_resumen <- 
+  netflix_final %>%
+  group_by(year) %>%
+  count() %>%
+  ungroup()
+netflix_resumen
+```
+
+Con estos datos ya estamos condiciones de poder hacer nuestro diagrama de barras.
+
+```{r}
+ggplot(netflix_resumen, aes(x = year, y = n)) +
+  geom_col(fill = "red")
+```
+
+### Modificando la escala de los ejes
+
+Si te fijas solo nos ha mostrado algunos años en el eje X, así le vamos a indicar la <mark>**escala concreta**</mark> que queremos en dicho eje con `scale_x_continuous()`, usando el argumento `breaks` en el que le indicaremos los valores donde queremos que «corte» el eje X (los corte serán los años guardados en `netflix_resumen$year`)
+
+
+```{r}
+ggplot(netflix_resumen, aes(x = year, y = n)) +
+  geom_col(fill = "red") +
+  scale_x_continuous(breaks = netflix_resumen$year)
+```
+  
+Cuando uno de los <mark>**ejes representa una fecha**</mark> podemos indicárselo con `scale_x_date()`, asigándole en `date_breaks` el lapso temporal que queremos en las marcas (por ejemplo, `date_breaks = '1 month'`). Como ejemplo, vamos a visualizar el número de películas y series generales estrenadas en Netflix desde el 1 de julio de 2020.
+  
+```{r}
+ggplot(netflix %>%
+         mutate(date_added = mdy(date_added)) %>%
+         filter(!is.na(date_added) &
+                  date_added > as.Date("2020-07-01")) %>%
+         group_by(date_added) %>% count(),
+       aes(x = date_added, y = n)) +
+  geom_col(fill = "red") +
+  scale_x_date(date_breaks = '1 month') 
+```
+
+
+### Personalizando tema
+
+Lo primero que vamos a hacer es <mark>**añadir título y otras opciones**</mark> del tema que ya conocemos.
+
+```{r}
+ggplot(netflix_resumen, aes(x = year, y = n)) +
+  geom_col(fill = "red") +
+  scale_x_continuous(breaks = netflix_resumen$year) +
+  labs(title = "NETFLIX",
+       subtitle = "Películas y series de instituto",
+       caption = "Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle")
+```
+
+En este caso, al ser datos de Netflix, la propia palabara de es una marca por sí misma, y quizás nos interese <mark>**usar alguna fuente de Google**</mark> para cambiar la fuente por defecto. En este caso vamos a usar la fuente de Netflix, la fuente `Bebas Neue`, y para poder usarla usaremos `font_add_google()`
+
+```{r}
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Bebas Neue",
+                name = "Bebas Neue")
+showtext_auto()
+```
+
+Tras ello vamos a <mark>**personalizar totalmente nuestro tema**</mark>. Lo primero que haremos será «resetear» el tema que podamos tener por defecto  con `theme_void()`. Tras dicho reseteo, le indicaremos con `theme()`
+
+* `legend.position = "none"`: sin leyenda.
+* `plot.title = element_text(family = "Bebas Neue", color = "red", size = 50)`: le indicaremos la fuente, el color y el tamaño de nuestro título.
+
+```{r}
+gg <- ggplot(netflix_resumen, aes(x = year, y = n)) +
+  geom_col(fill = "red") +
+  scale_x_continuous(breaks = netflix_resumen$year) +
+  theme_void() +
+  theme(legend.position = "none",
+        plot.title = element_text(family = "Bebas Neue",
+                                  color = "red", size = 60)) +
+  labs(title = "NETFLIX",
+       subtitle = "Películas y series de instituto",
+       caption = "Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle")
+gg
+```
+
+Ahora el título `"NETFLIX"` está en la fuente de la propia marca, lo que hace nuestro gráfico tenga un contexto más allá de la mera estadística: está intentando comunicar algo y <mark>**llamar la atención con un esquema visual conocido**</mark>.
+
+Tras cambiar la fuente del título vamos a indicarle que el fondo del gráfico sea todo negro.
+
+```{r}
+gg <- 
+  gg +
+  theme(panel.background = element_rect(fill = "black"),
+        plot.background = element_rect(fill = "black", 
+                                       color = "black"))
+gg
+```
+
+También vamos a personalizar el grid horizontal (el que marca las alturas del eje y), indicándole color y tamaño.
+
+```{r}
+gg <- gg +
+  theme(panel.grid.major.y =
+          element_line(size = 0.1, color = "white"))
+gg
+```
+
+
+Vamos a personalizar también la <mark>**fuente del subtítulo y caption**</mark> y los textos de los ejes.
+
+```{r}
+font_add_google(family = "Permanent Marker",
+                name = "Permanent Marker")
+showtext_auto()
+gg <- gg + 
+  theme(plot.subtitle = element_text(family = "Permanent Marker",
+                                     size = 15, color = "white"),
+        plot.caption =  element_text(family = "Permanent Marker",
+                                     color = "white", size = 13),
+        axis.text = 
+          element_text(size = 11, family = "Permanent Marker",
+                       color = "white"))
+gg
+```
+
+Por último vamos a darle un poco de aire <mark>**añadiendo márgenes**</mark>
+
+```{r}
+gg <- gg +
+  theme(plot.margin = margin(t = 4, r = 4, b = 4, l = 8, "pt"))
+gg
+```
+
+Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix.
 
 ## Recursos para seguir
 
-Ahora que ya sabes lo básico para poder empezar a trabajar en un entorno amigable, aunque la idea es que este manual tenga más capítulos (¿los tiene?) para seguir avanzando, por si se me olvida, te dejo una **lista de recursos útiles** para que puedas ir viendo el abanico de opciones que tienes
+En la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/) puedes encontrar tutoriales cortos y sencillos con multitud de trucos para personalizar tus gráficas. En la web <https://www.r-graph-gallery.com/> tienes una colección muy completa de gráficos generados en `{ggplot2}` para aprender y tomar ideas.
 
-* **Código de este manual**: este manual está programado en sí mismo en `R` y los códigos pueden ser consultados libremente en el repositorio de [GitHub](https://github.com/dadosdelaplace/courses-intro-R).
 
-```{r github, echo = FALSE, fig.align = 'center',  include = identical(knitr::pandoc_to(), 'html'), fig.link = 'https://github.com/dadosdelaplace/courses-intro-R', out.width = '70%'}
-knitr::include_graphics('img/me_github.jpg')
+
+## 📝 Ejercicios
+
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: ...</summary>
+
+```{r}
+# a
 ```
 
-* [Cursos y selección de paquetes](https://dadosdelaplace.github.io): **recopilatorio y selección de tutoriales y cursos de `R`** en distintos campos.
+<!-- toc -->
+- Solución:
 
-* [Incursión a los modelos de regresión en `R`](https://bookdown.org/roback/bookdown-BeyondMLR/): manual sobre el uso de distintos modelos predictivos basados los Modelos Lineales Generalizados (GLM).
+...
 
-* [Visualizador de Tidyverse](https://tidydatatutor.com/): permite visualizar las acciones que haces sobre las tablas para entender mejor el código.
-
-* [Tidymodels](https://www.tidymodels.org/start/): para aprender a dominar `{tidymodels}`, un conjunto de paquetes pensados para el Machine Learning con la misma filosofía flexible pero uniforme de `{tidyverse}`. También es interesante [este tutorial](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) para entender un poco los conceptos de data mining y machine learning en R.
-
-* [ggplot2](https://ggplot2.tidyverse.org/index.html): recomiendo mucho las entradas sencillas de [el arte del dato](https://elartedeldato.com/#calendario_adviento) para ir dominando, el trabajo de [Dominic Royé](https://dominicroye.github.io/en/) y el de [Cedric Scherer](https://www.cedricscherer.com/). También existen las gráficas interactivas [plotly](https://plotly.com/ggplot2/) (pasas el ratón y te dan info), y puedes o aprenderlas de 0 o convertir tus [ggplot en interactivos](https://www.rdocumentation.org/packages/plotly/versions/4.10.0/topics/ggplotly)
-
-* [Tablas en R](https://bjnnowak.netlify.app/2021/10/04/r-beautiful-tables-with-gt-and-gtextras/)
-
-
-* **Paquete para aprender `R`**: el paquete `{swirl}` permite ir aprendiendo de forma sencilla (con preguntas tipo test) algunos conceptos básicos de `R` (muchos de ellos vistos en este manual). Puedes consultar la documentación en su [página web](https://swirlstats.com/)
-
-```{r swirl, echo = FALSE, fig.align = 'center',  include = identical(knitr::pandoc_to(), 'html'), fig.link = 'https://swirlstats.com/', out.width = '60%'}
-knitr::include_graphics('img/swirl.png')
-```
-
-* [Tidyverse cookbook](https://rstudio-education.github.io/tidyverse-cookbook/)
-* [Tidyverse skills for data science](https://jhudatascience.org/tidyversecourse/)
-
-```{r tidyverse-png, echo = FALSE, fig.align = 'center',  include = identical(knitr::pandoc_to(), 'html'), fig.link = 'https://www.tidyverse.org/', out.width = '60%'}
-knitr::include_graphics('img/tidyverse.jpg')
-```
-
-* **Visualización de datos en Twitter**: una de las **fortalezas de `R`** es su versatilidad para la visualización de datos. Y al igual que un escritor necesita leer mucho para tomar ideas, hay dos recursos en Twitter que te recomiendo encarecidamente:
-  - El **hashtag #TidyTuesday** es una etiqueta en la que cada semana se plantea el reto de proponer la mejor visualización para un conjunto de datos dado, donde no solo puedes participar con la comunidad sino [ver las visualizaciones de otros usuarios](https://github.com/rfordatascience/tidytuesday) de `R`.
-  - Además he elaborado una [lista de Twitter](https://twitter.com/i/lists/1324478481338683392?s=20) de usuarios que se dedican a la visualización de datos.
-  
-
-* [Datacamp](https://app.datacamp.com/learn/career-tracks/data-scientist-with-r?version=5): compendio de cursos que si superas te dan un certificado y sales con un control muy muy potente de data science en R. Son ejercicios sencillos que se van complicando, y la plataforma funciona con tarifa plana: como un netflix de cursos.
-
-* **Generación de informes desde R**: el paquete `{rmarkdown}` permite [generar directamente informes](https://rmarkdown.rstudio.com/) que mezclen texto, fórmulas matemáticas, gráficas y código `R` (como este mismo manual), sin necesidad de importarlos a otras herramientas de Office.
-
-* [Webs en bookdown](https://bookdown.org/yihui/blogdown/). También se puede crear apps/webs interactivas con código `R`, permitiendo que el usuario selecciona parámetros y se ejecuta código gráficas: ver <https://shiny.rstudio.com/tutorial/>. Un ejemplo es la [web de visualización covid de Asturias](https://dgspasturias.shinyapps.io/panel_de_indicadores_asturias/) que elaboré durante la pandemia para el Gobierno de Asturias (la web en sí está elaborada con `{shiny}`, un paquete de `R` que [permite crear aplicaciones web](https://shiny.rstudio.com/tutorial/)).
-
-
-* **Comunidad de R hispano**: tenemos un [grupo de Discord](https://discord.gg/7ueKQqeaGr) y [grupo de Telegram](https://t.me/hispanoverse) varios usuarios de R en España para compartir recursos.
+<!-- tocstop -->
+</details>
 

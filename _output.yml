@@ -20,7 +20,7 @@ bookdown::bs4_book:
   repo: "https://github.com/dadosdelaplace/courses-ECI-2022"
   search:
     engine: lunr
-  toc_depth: 4
+  toc_depth: 5
 bookdown::gitbook:
   css: css/style.css
   split_by: section
