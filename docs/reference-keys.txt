@@ -278,10 +278,13 @@ geometrías-geom
 componer-facets
 coordenadas-y-tema
 segundo-intento-diagrama-de-barras
-tercer-intento-personalizando-el-tema
+ejercicios-13
+ggplot2_plus
+personalizando-el-tema
 datos-1
 diagrama-de-barras
 modificando-la-escala-de-los-ejes
 personalizando-tema
-recursos-para-seguir
-ejercicios-13
+gráfico-de-coordenadas-polares
+recursos-para-seguir-profundizando
+ejercicios-14

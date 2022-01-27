@@ -80,6 +80,7 @@
 <li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
 <li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
+<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">23</span> Profundizando en ggplot2</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -114,13 +115,13 @@ Imagen/gráfica 4.1: Lanzando a consola nuestras primeras órdenes en RStudio.
 </p>
 </div>
 <p>Lo que ya hemos descubierto en los pasos de la instalación (ver imagen <a href="primeros-pasos.html#fig:inicio-rstudio-2a">4.1</a>) es que la consola de <code>R</code> tiene una función muy básica y evidente: nos sirve de calculadora. Un ejemplo muy simple: si escribimos 3 en la consola y pulsamos <em>ENTER</em>, la consola nos mostrará el resultado de la suma</p>
-<div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p> </p>
 <p><mark><strong>¿Cuál es la diferencia entre una calculadora y un lenguaje de programación?</strong></mark> Imagina que dicha suma 3 la quisiéramos utilizar para un segundo cálculo: ¿y si en lugar de lanzarlo a la consola sin más lo <strong>almacenamos en alguna variable</strong>?</p>
 <p>Como hemos visto en la instalación de <code>RStudio</code>, para <mark><strong>asignar variables</strong></mark> lo haremos con <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>, por ejemplo la orden <code>x &lt;- 1 + 2</code>: una variable de nombre <code>x</code> va a tener asignada lo que valga la suma <code>1 + 2</code></p>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span></code></pre></div>
 <p>Como puedes comprobar, en tu parte superior derecha (nuestro <mark><strong>entorno de variables</strong></mark>), podrás ver como una nueva variable <code>x</code> es ahora visualizada, con su valor asignado (<strong>no se mostrará en consola</strong> salvo que escribas 3 en ella: <code>R</code> asume que no querías visualizarla en consola sino solo guardarla).</p>
 <div class="figure" style="text-align: center">
@@ -129,24 +130,24 @@ Imagen/gráfica 4.1: Lanzando a consola nuestras primeras órdenes en RStudio.
 Imagen/gráfica 4.2: Environment.
 </p>
 </div>
-<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">3</span>
 <span class="va">x</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">*</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>Dicha variable <code>x</code> además podemos reciclarla para definir, por ejemplo, una variable <code>y</code>, restándole una constante. De la misma manera que hemos hecho restas, sumas y multiplicaciones, <code>R</code> tiene todas las operaciones clásicas que podrías tener en una calculadora. Prueba a ejecutar en la consola las órdenes <code>x^2</code>, <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt(x)</a></code> o <code><a href="https://rdrr.io/r/base/MathFun.html">abs(y)</a></code>: <code>R</code> calculará las operaciones <em>elevar al cuadrado</em>, <em>raíz cuadrada</em> y <em>valor absoluto</em> (respectivaemnte) de la variable que tengan entre paréntesis</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">^</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.732051</code></pre>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">5</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
@@ -165,7 +166,7 @@ Imagen/gráfica 4.3: Abriendo nuestro primer script de R.
 </p>
 </div>
 <p>Tras abrirlo tendremos una cuarta ventana: esta será la ventana de nuestros códigos, la ventana más importante ya que es donde <strong>escribiremos lo que queremos ejecutar</strong>. Escribe el <strong>código de la suma de arriba</strong> en ese script y guarda el archivo haciendo click en el botón <code>Save current document</code></p>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb448"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span><span class="fl">2</span>
 <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
@@ -190,13 +191,13 @@ Imagen/gráfica 4.4: Escribiendo y guardando nuestro primer script.
 <p>Durante tu aprendizaje en <code>R</code> va a ser <strong>muy habitual</strong> que las cosas no salgan a la primera, <strong>apareciendo en consola mensajes en un color rojo</strong>. Un <strong>miedo</strong> muy habitual cuando se empieza a programar es pensar que si haces algo mal o aparece algún mensaje de error, el ordenador puede explotar en cualquier momento. <strong>A programar se aprende programando</strong>, así que haz las pruebas que quieras, lo peor que puede pasar es que necesites cerrar sesión en <code>R Studio</code> y abrirlo de nuevo, o en el peor de los casos, desintalarlo y volverlo a iinstalar.</p>
 <p>Dado que el <span class="math inline">\(99.9\%\)</span> de las veces tu código tendrá errores que deberás ir solventando, no está de más conocer los tipos de mensajes que <code>R</code> puede sacarte por consola.</p>
 <p>Los <strong><span style="color: #dc3545;">mensajes de ERROR</span></strong> irán precedidos de la frase <strong><span style="color: #dc3545;">«Error in…»</span></strong>, dándote a veces incluso el tipo de error y la línea de código en la que se ha producido. Veamos un ejemplo intentando sumar un número a una cadena de texto.</p>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="st">"a"</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## Error in "a" + 1: argumento no-numérico para operador binario</code></pre>
 <p>Los <strong>errores son aquellos fallos que seguramente impidan la ejecución</strong> del código. Un <strong>error muy habitual</strong> es intentar acceder a alguna función de algún paquete que, o bien no tenemos instalado, o bien no hemos llamado haciendo uso del <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>: estás intentando leerte un libro de tu biblioteca pero ni siquiera has ido a la tienda a «comprarlo».</p>
 <p> </p>
 <p>Los <strong><span style="color: #ffc107;">mensajes de WARNING</span></strong> irán precedidos de la frase <strong><span style="color: #ffc107;">«Warning in…»</span></strong>, y son los fallos más delicados ya que son <strong>posibles errores o incoherencias</strong> que <code>R</code> detecta en tu código pero que <strong>no van a hacer que tu código deje de ejecutarse</strong>, aunque probablemente no lo haga como a ti te gustaría. Un ejemplo es cuando tratamos de hacer la raiz cuadrada de un número negativo.</p>
-<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb452"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## Warning in sqrt(-1): Se han producido NaNs</code></pre>
 <pre><code>## [1] NaN</code></pre>
@@ -225,7 +226,7 @@ Imagen/gráfica 4.4: Escribiendo y guardando nuestro primer script.
 <p> </p>
 <p><strong><span style="color: #20935E;">Panel de ayuda</span></strong></p>
 <p>Si escribes en la consola <code>? nombre_funcion</code> (por ejemplo, escribe en la consola <code><a href="https://rdrr.io/r/base/MathFun.html">? sqrt</a></code>), en el panel inferior derecho te aparecerá una <mark><strong>documentación de ayuda</strong></mark> de la función para saber que argumentos necesita, como puedes usar la función, qué es lo que te devuelve, ejemplos de uso, etc.</p>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span> <span class="va">sqrt</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-165"></span>
@@ -257,7 +258,7 @@ Imagen/gráfica 4.6: Comentando el código para generar un índice.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Para poner comentarios en el código se usa #</span>
 
 <span class="co"># Definición de variables</span>
@@ -276,7 +277,7 @@ Imagen/gráfica 4.7: Multiplicación de a y b.
 <!-- tocstop -->
 </details><p> </p>
 <details><p><summary>📝<strong>Ejercicio 2</strong>: modifica el código inferior para definir dos variables <code>c</code> y <code>d</code>, con valores <code>3</code> y <code>-1</code>, y calcular la división <code>c/d</code> (<strong>haz click</strong> en la flecha para la solución propuesta).</summary></p>
-<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definición de variables</span>
 <span class="va">c</span> <span class="op">&lt;-</span> 
 <span class="va">d</span> <span class="op">&lt;-</span>
@@ -288,7 +289,7 @@ Imagen/gráfica 4.7: Multiplicación de a y b.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definición de variables</span>
 <span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">3</span>
 <span class="va">d</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">1</span>
@@ -303,7 +304,7 @@ Imagen/gráfica 4.7: Multiplicación de a y b.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Variables</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">5</span>
@@ -327,7 +328,7 @@ Imagen/gráfica 4.8: Multiplicación de a y b guardando el resultado.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Variables</span>
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">2</span>
@@ -336,10 +337,10 @@ Imagen/gráfica 4.8: Multiplicación de a y b guardando el resultado.
 <span class="co"># Resultado</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.732051</code></pre>
 <!-- tocstop -->
@@ -362,7 +363,7 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">3</span> <span class="op">+</span> <span class="fl">4</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span></code></pre></div>
 <!-- tocstop -->
 </details><p> </p>
@@ -371,12 +372,12 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Raíz cuadrada</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">73</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 8.544004</code></pre>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Valor absoluto</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">73</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
@@ -391,7 +392,7 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb473"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">5</span>
 <span class="va">z</span></code></pre></div>
 <pre><code>## [1] 68</code></pre>
@@ -402,7 +403,7 @@ Imagen/gráfica 4.9: Multiplicación de a y b guardando el resultado pero escrib
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb475"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span><span class="op">)</span>
 <span class="va">t</span></code></pre></div>
 <pre><code>## [1] 73</code></pre>

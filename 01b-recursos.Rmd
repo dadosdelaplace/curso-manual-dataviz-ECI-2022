@@ -139,7 +139,11 @@ Recopilación de <mark>**recursos de aprendizaje**</mark> para seguir profundiza
 
 * <mark>[**circlize: visualización de datos circulares**](https://jokergoo.github.io/circlize_book/book/)</mark>. De Z. Gu. <https://jokergoo.github.io/circlize_book/book/>
 
+* <mark>[**ggstream: visualización de datos en flujo**](https://github.com/davidsjoberg/ggstream)</mark>. De Z. Gu. <https://github.com/davidsjoberg/ggstream>
+
+
 * <mark>[**Tutoriales de visualización de datos**](https://www.cedricscherer.com/)</mark>. De Cedric Scherer. <https://www.cedricscherer.com/>
+
 
 
 ## Mapas y datos espaciales en R {-}
