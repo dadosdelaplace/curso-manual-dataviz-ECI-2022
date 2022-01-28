@@ -1,0 +1,610 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# (PART) Incursión a la estadística descriptiva {-}
+
+# Extrayendo información: estadística descriptiva con cualitativas {#descriptiva_cualitativas}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script23.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script23.R): intro a la descriptiva con cualitativas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script23.R>
+::::
+
+Como ya hemos comentado, algunas de las grandes **fortalezas** de `R` frente a `Python` están relacionadas con la disponibilidad de herramientas para <mark>**generar informes**</mark> y herramientas de <mark>**visualización y procesamiento de datos**</mark>. Pero si `R` es tan conocido en ciencias es por ser un lenguaje de programación sencillo para aplicar estadística y Machine Learning, con una inmensa cantidad de paquetes relacionados con ello. En este bloque vamos a introducirnos a la <mark>**estadística descriptiva**</mark> en varios niveles:
+
+- <mark>**Análisis univariante de variables categóricas**</mark>: una sola variable que representa una categoría o cualidad.
+- <mark>**Análisis univariante de variables continuas**</mark>: una sola variable que representa una variable cuantificable numéricamente.
+- <mark>**Análisis multivariante de distintos tipos de variables**</mark>: varias variables a la vez
+
+
+## ¿Qué es la estadística descriptiva?
+
+Una buena definición de estadística puede ser la encontrada en [**wikipedia**](https://es.wikipedia.org/wiki/Estad%C3%ADstica#:~:text=La%20estad%C3%ADstica%20(la%20forma%20femenina,aleatorio%20que%20los%20genera%20siguiendo): 
+
+> La estadística (la forma femenina del término alemán Statistik, derivado a su vez del italiano statista, "hombre de Estado"), es la rama de la matemática que estudia la variabilidad, colección, organización, análisis, interpretación, y presentación de los datos, así como el proceso aleatorio que los genera siguiendo las leyes de la probabilidad.
+
+La **estadística descriptiva** es la herramienta fundamental para obtener esa información, para obtener valor de los datos generados a partir de los sucesos de estudio mediante la <mark> 
+**descripción, visualización y agregación**</mark> de los mismos.
+
+### Población y muestra
+
+El uso primigenio de la estadística, y de donde deriva etimológicamente la palabra, es el <mark>**estudio y organización del Estado**</mark>, por lo que muchos términos hacen referencia a dicho origen. Vamos a <mark>**introducir algunos términos**</mark> usando como ejemplo el conjunto que ya conocemos de `starwars`, en el que tenemos datos de **87 personajes**.
+
+* <mark>**Población**</mark>: el conjunto o <mark>**colección de individuos**</mark> a estudiar (por ejemplo, los cientos de miles de habitantes de los mundos de Star Wars). En general llamaremos población al <mark>**conjunto de posibles elementos o eventos**</mark> de los que podríamos tener observaciones. El problema es que esa población normalmente es <mark>**inaccesible**</mark> su totalidad (en el caso de obtener estadísticas de la estatura de toda la población española, sería inviable medir a los 47 millones de habitantes).
+
+* <mark>**Individuo**</mark>: cada uno de los **elementos** sobre los que vamos a **medir una característica** (normalmente las filas de una tabla)
+
+* <mark>**Muestra**</mark>: una <mark>**selección «representativa»**</mark> de la población total (teórica). En nuestro caso, de los miles de habitantes de los mundos de Star Wars hemos extraído una muestra de 87 personas. La rama de la estadística que se encarga del estudio de cómo obtener esas muestras, en función del objetivo que se tenga, se conoce como <mark>**muestreo**</mark>. 
+
+```{r}
+library(tidyverse)
+
+# Nuestra muestra
+starwars
+```
+
+* <mark>**Tamaño muestral**</mark>: comunmente denotado como $n$, es el número de individuos seleccionados de nuestra población (normalmente el número de filas de nuestros conjuntos de datos).
+
+
+```{r}
+# Tamaño muestral
+nrow(starwars)
+```
+
+### Incursión en lo aleatorio
+
+Un <mark>**experimento aleatorio**</mark> es aquel cuyo resultado inmediato, para cada individuo, no es posible saber con certeza, aunque eso no impida definir y conocer su patrón a <mark>**nivel poblacional (teórico)**</mark>. No sabemos que saldrá en el dado en cada tirada pero sí la probabilidad de cada dígito, pudiendo incluso <mark>**inferir**</mark> resultados de nuestra población en función de nuestras muestras (tiradas): si de 1 millón de veces que tiramos el dado, en el 90% de ellas sale un 1, usando el conocimiento probabilístico de que la probabilidad de cada número debería ser de $1/6$, podríamos inferir que nuestro dado podría estar trucado.
+
+La forma más sencilla de <mark>**generar una muestra aleatoria**</mark> en `R` es con la función `sample()`, indicándole los siguientes argumentos:
+
+* `x`: los valores posibles (lo que se conoce como dominio). Por ejemplo, en el caso de una moneda, serán `"cara"` y `"cruz"`.
+
+* `size`: el número de veces que realizamos la extracción aleatoria (el número de tiradas).
+
+* `replace`: en caso de estar `TRUE`, permitirá que puedan salir valores repetidos (por ejemplo, `cara, cara`). En caso de ser `FALSE`, es como una urna de bolas de forma que tras cada extracción la bola nunca vuelve a la urna: solo se podrá realizar el experimento un máximo de veces igual al número de elementos en `x`
+
+```{r}
+valores_moneda <- c("cara", "cruz")
+sample(x = valores_moneda, size = 30, replace = TRUE)
+```
+
+Si lo ejecutamos de nuevo, al ser aleatorio, saldrán otras **30 tiradas distintas**.
+
+```{r}
+sample(x = valores_moneda, size = 30, replace = TRUE)
+```
+
+En el caso de la moneda es un experimento en el que los posibles sucesos son <mark>**equiprobables**</mark>: ambos tienen la mismas opciones de salir. Si tuviésemos el equivalente a una moneda trucada, donde por ejemplo `"cara"` tuviese un 0.7 de probabilidad y `"cruz"` un 0.3 (la suma debe ser siempre igual 1), obtendríamos tiradas muy diferentes. Para indicarle que las probabilidades asociadas al experimento no son iguales, usaremos el argumento `probs`, pasándole un vector con dichas probabilidades
+
+```{r}
+tirada_equi <- sample(x = valores_moneda, size = 500, replace = TRUE)
+tirada_trucada <- sample(x = valores_moneda, size = 500, prob = c(0.7, 0.3), replace = TRUE)
+
+# Número de caras (de 500 tiradas)
+sum(tirada_equi == "cara")
+sum(tirada_trucada == "cara")
+```
+
+### Características y modalidades
+
+En estadística llamamos <mark>**caracteres**</mark> a cada una de las variables o **columnas de una tabla**, cada una de las **características o cualidades que se miden/estudian** para cada uno de los individuos seleccionados en la muestra. En el caso de `starwars`, podemos extraer su nomnbre con `names()`
+
+```{r}
+# Número de características medidas
+ncol(starwars)
+
+# Características
+names(starwars)
+```
+
+Y para cada una de ellas llamaremos <mark>**modalidades**</mark> a los **diferentes valores que puede adoptar** una característica o variable. En el caso por ejemplo del fichero de `starwars` tenemos distintas opciones:
+
+* `sex`: tiene 4 modalidades `female, hermaphroditic, male, none` (podemos extraerlas con `unique()`, que nos dará los valores únicos de una variable).
+
+```{r}
+unique(starwars$sex)
+```
+
+* `mass`: su modalidad son todos los números reales positivos hasta un peso máximo (es lo que se conoce como una variable continua).
+
+
+En estadística, como en probabilidad, podemos distinguir las variables en función de las modalidades permitidas en dos grandes categorías:
+
+* <mark>**Variables categóricas (nominales o cualitativas)**</mark>. Son variables que representan categorías o cualidades. Ejemplos: color, forma, estado civil, religión, etc. Estas variables las podemos <mark>**subdividir en función de si admiten o no un orden**</mark>:
+  - <mark>**Cualitativas ordinales**</mark>: aunque representen cualidades, tienen una jerarquía de orden. Ejemplos: suspenso-aprobado-notable, sano - herido leve - grave, etc.
+  - <mark>**Cualitativas nominales**</mark>: no admiten (salvo problemas nuestros) una jerarquía de orden. Ejemplos: ateo-católico-musulmán, soltero-casado, homber-mujer, etc.
+  
+* <mark>**Variables cuantitativas**</mark>:  representan una **cantidad numérica** medible, una característica cuantificable matemáticamente. A su vez se pueden subdividir en dos grupos.
+  - <mark>**Cuantitativas discretas**</mark>: se pueden **contar** y **enumerar (aunque sean infinitos)**, detrás de un valor puedo saber cuál viene después (personas, granos de arena, etc).
+  - <mark>**Cuantitativas continuas**</mark>: no solo toman infinitos valores sino que entre dos valores cualesquiera, también hay infinitos términos, no se puede determinar el siguiente valor a uno dado (estaturas, pesos, temperatura, etc).
+
+
+## Análisis univariante: categóricas
+
+Como hemos comentado, vamos a empezar introduciendo algunas técnicas de análisis estadística para <mark>**variables cualitativas o categóricas**</mark> de manera <mark>**univariante**</mark>, variable a variable, analizando cada una de las columnas de un dataset de manera independiente del resto.
+
+### Factores
+
+En el caso de las **variables cualitativa**, llamaremos  <mark>**niveles o modalidades**</mark>  a los <mark>**diferentes valores**</mark> que pueden tomar estos datos. Por ejemplo, en el caso de la variable `sex` del conjunto `starwars`, tenemos 4 niveles permitidos: `female`, `hermaphroditic`, `male` y `none` (amén de datos ausentes). Como ya hemos comentado en algunos apartados anteriores, este tipo de variables se conocen en `R` como <mark>**factores en R**</mark>. Y el paquete fundamental para tratarlos es `{forcats}` (del entorno `{tidyverse}`). Este paquete nos permite fijar los <mark>**niveles**</mark> (guardados internamente como `levels`) que toma una determinada variable categórica para que no puedan generarse equivocaciones, errores en la recolección y generación de datos. Además hace que su análisis sea menos costoso computacionalmente a la hora de hacer búsquedas y comparativas.
+
+Veamos un ejempo sencillo definiendo una variable `estado` que tome los valores `"sano"`, `"leve"` y `"grave"` de la siguiente manera.
+
+```{r}
+estado <-
+  c("grave", "leve", "sano", "sano", "sano", "grave",
+    "grave", "leve", "grave", "sano", "sano")
+estado
+```
+
+La variable `estado` actualmente es de tipo texto, de tipo `chr`, algo que podemos comprobar con `class(estado)`.
+
+```{r}
+class(estado)
+```
+
+Desde un punto de vista estadístico y computacional, para `R` esta variable ahora mismo sería equivalente una variable de nombres. Pero estadísticamente no es lo mismo una variable con nombres (que identifican muchas veces el registro) que una variable categórica como estado que <mark>**solo puede tomar esos 3 niveles**</mark>.
+
+<mark>**¿Cómo convertir una variable a cualitativa o factor?**</mark> Haciendo uso de la función `as_factor` del paquete `{forcats}`.
+
+```{r}
+library(tidyverse)
+estado_fct <- as_factor(estado)
+estado_fct
+class(estado_fct)
+```
+
+No solo ha cambiado la clase de la variable sino que ahora, debajo del valor guardado, nos aparece la frase `Levels: grave leve sano`: son las **modalidades o niveles** de nuestra cualitativa. Imagina que ese día en el hospital no tuviésemos a <mark>**nadie en estado grave**</makr>: aunque ese día nuestra variable no tome dicho valor, el estado `grave` es un nivel permitido que podríamos tener, así que aunque lo eliminemos, por ser un factor, el nivel permanece (no lo tenemos ahora pero es un nivel permitido).-
+
+```{r}
+estado_fct[estado_fct %in% c("sano", "leve")]
+```
+
+Si queremos indicarle que <mark>**elimine un nivel no usado en ese momento**</mark> podemos hacerlo con `fct_drop()`
+
+```{r}
+fct_drop(estado_fct[estado_fct %in% c("sano", "leve")])
+```
+
+Al igual que podemos eliminar niveles podemos <mark>**ampliar los niveles existentes**</mark> (aunque no existan datos de ese nivel en ese momento) con `fct_expand()`
+
+```{r}
+fct_expand(estado_fct, c("UCI", "fallecido"))
+```
+
+Aunque luego veremos como usar el `count()`, para variables de tipo factor podemos <mark>**contar los elementos de cada nivel** de una manera sencilla con `fct_count()`
+
+```{r}
+fct_count(estado_fct)
+```
+
+Si te fijas el orden de los niveles es por orden de aparición en la variable, pero podemos <mark>**ordenarlos por aparición**</mark> con `fct_infreq()`
+
+```{r}
+fct_infreq(estado_fct)
+```
+
+A veces queremos <mark>**agrupar niveles**</mark>, por ejemplo, no permitiendo niveles que no sucedan un mínimo de veces. Con `fct_lump_min(estado_fct, min = 4)` le indicaremos que para que exista el nivel debe de suceder al menos 4 veces (las observaciones que no lo cumplan irán a un nivel genérico llamado `Other`, aunque se puede cambiar con el argumento `other_level`). Podemos hacer algo equivalente pero en función de su frecuencia relativa con `fct_lump_prop()`.
+
+```{r}
+fct_lump_min(estado_fct, min = 3)
+fct_lump_min(estado_fct, min = 5)
+fct_lump_min(estado_fct, min = 5, other_level = "otros")
+```
+
+Como ya hemos usado (y veremos en detalle un poco más adelante), con `count()` también podemos los valores de una variable asociados a cada modalidad. Por ejemplo, vamos a calcular la cantidad de personajes de cada especie (filtrando los ausentes).
+
+```{r}
+starwars %>%
+  filter(!is.na(species)) %>%
+  count(species)
+```
+
+Ahora que sabemos hacerlo podemos dibujar un <mark>**diagrama de barras**</mark> para visualizar el número de personajes de cada especie (con `fill = n` y `scale_fill_continuous_tableau()` asignaremos un gradiente de color en función de la frecuencia).
+
+```{r}
+ggplot(starwars %>%
+         filter(!is.na(species)) %>%
+         count(species),
+       aes(y = species, x = n, fill = n)) +
+  geom_col() +
+  scale_fill_continuous_tableau() +
+  labs(fill = "Frecuencia absoluta",
+       x = "Número de personajes", y = "Especies")
+```
+
+Al tener muchos niveles de `species` con muy pocos elementos, tenemos un gráfico poco claro, así que vamos a indicarle que nos convierta `species` a factor, y que nos <mark>**agrupe aquellas niveles**</mark> que tengan menos de 2 personajes.
+
+
+```{r}
+ggplot(starwars %>%
+         filter(!is.na(species)) %>%
+         mutate(species =
+                  fct_lump_min(species, min = 3,
+                               other_level = "Otras especies")) %>%
+         count(species),
+       aes(y = species, x = n, fill = n)) +
+  geom_col() +
+  scale_fill_continuous_tableau() +
+  labs(fill = "Frecuencia absoluta",
+       x = "Número de personajes", y = "Especies")
+```
+
+Por último vamos a aplicar algunos ajustes del tema que ya hemos visto en apartados anteriores para terminar nuestro gráfico.
+
+```{r}
+library(showtext)
+font_add_google(family = "Roboto", name = "Roboto")
+showtext_auto()
+
+ggplot(starwars %>%
+         filter(!is.na(species)) %>%
+         mutate(species =
+                  fct_lump_min(species, min = 3,
+                               other_level = "Otras especies")) %>%
+         count(species),
+       aes(y = species, x = n, fill = n)) +
+  geom_col() +
+  scale_fill_continuous_tableau() +
+  labs(fill = "Frecuencia absoluta",
+       x = "Número de personajes", y = "Especies") +
+  theme(panel.background = element_rect(fill = "white"),
+        plot.background = element_rect(fill = "white", 
+                                       color = "white"),
+        panel.grid.major.y =
+          element_line(size = 0.05, color = "black"),
+        panel.grid.major.x =
+          element_line(size = 0.1, color = "black"),
+        text = element_text(size = 13),
+        axis.title =
+          element_text(family = "Roboto", size = 23),
+        axis.text.x = element_text(family = "Roboto",
+                                   size = 15),
+        axis.text.y = element_text(family = "Roboto",
+                                   size = 15))
+```
+
+  
+### Tablas de frecuencias
+
+Una de las **primeras cosas** que uno aprende en la asignatura de estadística **descriptiva** es <mark>**saber resumir nuestros datos**</mark> cuando tenemos muchos, y además **muchos valores repetidos**. Vamos a construir la <mark>**tabla de frecuencias**</mark> de la variable `n_films` de nuestro ya conocido conjunto `starwars` (una variable que vamos a crear contando en cuántas películas aparece cada personaje con `map_int()` para aplicar la función `length()` a cada lista de cada personaje guardada en `films`)
+
+```{r}
+library(purrr)
+library(tidyverse)
+starwars_nueva <- starwars %>%
+  mutate(n_films = map_int(films, length))
+```
+
+
+Y lo primero es <mark>**contar**</mark>: ¿cuántos registros hay de cada una de las clases? Para ello usaremos la función `count()`
+
+```{r}
+starwars_nueva %>% count()
+```
+
+Como ves si aplicamos la **función directamente** simplemente nos **cuenta el número de filas** de la tabla, así que vamos a **usar la misma función pero indicándole la variable creada**.
+
+```{r}
+tabla_freq <- starwars_nueva %>% count(n_films)
+tabla_freq
+```
+
+Esa columna `n` es lo que conocemos como <mark>**frecuencias absolutas**</mark>, el **número de veces** que la variable toma dicha valor. 
+
+
+* <mark>**Frecuencias absolutas**</mark>: contar cuántos elementos aparecen de un determinado nivel. Suele ser denotada como $n_i$, para cada nivel $i$.
+* <mark>**Frecuencias relativas**</mark>: contar que proporción del total representa dicha cantidad. Suele ser denotada como $f_i$, para cada nivel $i$.
+
+Esa frecuencia absoluta también podemos calcularla haciendo uso de `table()`, aplicada a la variable extraída de la tabla.
+
+```{r}
+table(starwars_nueva$n_films)
+class(table(starwars_nueva$n_films))
+```
+
+El formato de la salida de `table()` es lo que se conoce como una  <mark>**tabla de contingencia**</mark>. Aplicada a una sola variable es una **tabla unidimensional** con una fila compuesto por los niveles y una segunda con la frecuencia absoluta de cada uno de ellos. Si lo aplicamos a dos variables el resultado será una <mark>**tabla de contigencia bidimensional**</mark>: la primera variable en las filas, la segunda en las columnas, y realizará el conteo bidimensional $n_ij$ para cada par de niveles $(i, j)$
+
+```{r}
+table(starwars_nueva %>% select(sex, n_films))
+```
+
+Una vez que tenemos las frecuencias absolutas, las relativas se pueden calcular de forma sencilla con `prop.table()`, que nos calcula la proporción que representa dicho valor.
+
+```{r}
+# Construimos de cero
+tabla_freq <- starwars_nueva %>%
+  # n: frecuencia absoluta
+  count(n_films) %>%
+  # f_i: frecuencia relativa
+  mutate(f_i = prop.table(n))
+tabla_freq
+```
+
+
+Es importanten observar que `prop.table()` debe aplicarse sobre una <mark>**tabla de contingencia**</mark>. No nos da error al aplicarlo sobre un vector númerico, pero lo que nos dará no son la **frecuencias relativas** del vector numérico si no de un vector que tuviera esos números como **frecuencias absolutas**.
+
+```{r}
+prop.table(starwars_nueva$n_films)
+```
+
+También es posible <mark>**calcular frecuencias absolutas bidimensionales**</mark> por varias variables a la vez dentro de `{tidvyerse}` con el propio `count()`, pasándole dos variables diferentes.
+
+```{r}
+starwars_nueva %>% count(sex, gender)
+```
+
+Podemos también añadir una columna $N_i$ de <mark>**frecuencia absoluta acumulada**</mark>, una columna que nos diga el **número de personajes que han hecho un número de películas igual o menor** que el indicado (usando la función `cumsum()` que nos realiza esa suma acumulada).
+
+
+```{r}
+# Construimos de cero
+tabla_freq <-
+  starwars_nueva %>%
+  # n: frecuencia absoluta
+  count(n_films) %>%
+  mutate(f_i = prop.table(n),
+         N_i = cumsum(n)) # cumsum calcula la suma acumulada
+tabla_freq
+```
+
+Y al igual que sucedía con  $n_i$, la frecuencia absoluta acumulada  $N_i$  podremos también convertirla a <mark>**frecuencia relativa acumulada**</mark>.
+
+```{r}
+# Construimos de cero
+tabla_freq <- starwars_nueva %>%
+  count(n_films) %>%
+  mutate(N_i = cumsum(n)) %>% # cumsum calcula la suma acumulada
+  mutate(f_i = prop.table(n), # prop.table nos devuelve proporciones
+         F_i = cumsum(f_i))
+tabla_freq
+
+# otra forma
+tabla_freq <- starwars_nueva %>%
+  count(n_films) %>%
+  mutate(N_i = cumsum(n)) %>%
+  mutate(f_i = prop.table(n),
+         F_i = prop.table(N_i))
+tabla_freq
+```
+
+Esas **frecuencias relativas** quizás querramos tenerlas expresadas en <mark>**porcentajes**</mark> en lugar de en proporciones, lo que podemos fácilmente multiplicando esas proporciones por 100.
+
+```{r}
+# Pasamos frecuencias relativas a porcentajes
+tabla_freq %>% mutate(f_i = f_i * 100,
+                      F_i = F_i * 100)
+```
+
+Por último, con la tabla `tabla_freq` expresando las frecuencias relativas en proporciones, vamos a cambiar el nombre de las columnas para que tengan los **típicos nombres de una tabla de frecuencias**.
+
+```{r}
+# Renombramos
+tabla_freq <- tabla_freq %>%
+  rename(n_i = n, x_i = n_films)
+tabla_freq
+```
+
+Con el paquete `{DT}` se pueden visualizar tablas en documentos `.Rmd`
+
+```{r, echo = FALSE, message = FALSE}
+library(DT)
+datatable(options =
+            list(pageLength = 10, scrollX = TRUE,
+                 fixedColumns = list(leftColumns = 1),
+                 headerCallback = DT::JS(
+                   "function(thead) {",
+                   "  $(thead).css('font-size', '0.95em');",
+                   "}"
+                   ),
+                 language =
+                   list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')),
+          tabla_freq, rownames = FALSE,
+          caption = "Tabla de frecuencias del número de películas en las que aparecen los personajes de la saga.") %>%
+   formatRound(c("f_i", "F_i"), digits = 3, mark = ".",
+                 dec.mark = getOption("OutDec"))
+```
+
+
+&nbsp;
+
+<mark>**¿Cuál es el color de pelo que más aparece en `starwars`?**</mark>
+
+Vamos a construir su tabla de frecuencias, primero conviertiendo `hair_color` a factor y viendo los niveles de dicha variable, y quedándonos solo con la variables `name` y `hair_color`. Además <mark>**los niveles ausentes los vamos a convertir**</mark> a `"none"`, nivel que ya existe, con `fct_explicit_na()`
+
+```{r}
+starwars_hair <-
+  starwars %>%
+  mutate(hair_color = fct_explicit_na(hair_color, na_level = "none")) %>%
+  select(c(name, hair_color))
+starwars_hair
+```
+
+Tras el preprocesamiento <mark>**construimos nuestra tabla de frecuencias**</mark>.
+
+```{r}
+tabla_freq <- starwars_hair %>%
+  count(hair_color) %>%
+  mutate(N_i = cumsum(n)) %>% # cumsum calcula la suma acumulada
+  mutate(f_i = prop.table(n), # prop.table nos devuelve proporciones
+         F_i = cumsum(f_i))
+tabla_freq
+
+# En porcentaje
+tabla_freq <- 
+  tabla_freq %>% mutate(f_i = 100 * f_i,
+                        F_i = 100 * F_i)
+tabla_freq 
+```
+
+En este caso las **frecuencias acumuladas** no nos aportan ningún significado ya que la variable que estamos resumiendo es cualitativa nominal, no hay un orden entre los colores (cómo si lo había entre el número de películas, que era una variable cuantitativa discreta).
+
+
+### Análisis gráfico
+
+El principal diagrama para variables cualitativas (o cuantitativas discretas) es el <mark>**diagrama de barras**</mark> que ya hemos aprendido a generar y personalizar.
+
+```{r}
+library(showtext)
+font_add_google(family = "Roboto", name = "Roboto")
+showtext_auto()
+
+ggplot(starwars %>%
+         filter(!is.na(species)) %>%
+         mutate(species =
+                  fct_lump_min(species, min = 3,
+                               other_level = "Otras especies")) %>%
+         count(species),
+       aes(y = species, x = n, fill = n)) +
+  geom_col() +
+  scale_fill_continuous_tableau() +
+  labs(fill = "Frecuencia absoluta",
+       x = "Número de personajes", y = "Especies") +
+  theme(panel.background = element_rect(fill = "white"),
+        plot.background = element_rect(fill = "white", 
+                                       color = "white"),
+        panel.grid.major.y =
+          element_line(size = 0.05, color = "black"),
+        panel.grid.major.x =
+          element_line(size = 0.1, color = "black"),
+        text = element_text(size = 13),
+        axis.title =
+          element_text(family = "Roboto", size = 23),
+        axis.text.x = element_text(family = "Roboto",
+                                   size = 15),
+        axis.text.y = element_text(family = "Roboto",
+                                   size = 15))
+```
+
+
+Otra opción con variables cualitativas, en especial para <mark>**visualizar palabras en textos y documentos**</mark> son precisamente las _word cloud_ o nubes de palabras. Con el paquete `{wordcloud2}` podrmeos visualizar las nubes de términos, por ejemplo de las especies de `starwars` (una vez filtrados los datos dusentes y reagrupado aquellas especies con solo un personaje). Con los parámetros `size` y `color` le indicaremos el tamaño base de las palabras y el patrón de colores elegir. Las palabras las visualizará en un tamaño relativo al número de veces que aparece.
+
+```{r}
+# install.packages("wordcloud2)
+library(wordcloud2)
+wordcloud2(starwars %>% drop_na(species) %>%
+             mutate(species =
+                      fct_lump_min(species, min = 2,
+                                   other_level = "otras")) %>% 
+             count(species),
+           size = 0.8, color= 'random-dark')
+```
+
+Otra opción habitual son los <mark>**mosaicos o treemaps**</mark>, representando en una cuadrícula cada una de las categorías, cuya área sea proprocional a las veces que aparece. Lo haremos con `{treemapify}`, dentro de la lógica `{ggplot2}`: los parámetros dentro de `aes()` serán 
+`area` (asociado a la frecuencia absoluta), `fill` (color del relleno) y `label` (nombre). Usaremos una de las paletas de colores de cuadros vistas, en este caso `MetBrewer::met.brewer("Renoir")`.
+
+```{r}
+# install.packages("treemapify")
+library(treemapify)
+ggplot(starwars %>% drop_na(species) %>%
+         mutate(species =
+                      fct_lump_min(species, min = 2,
+                                   other_level = "otras")) %>%
+         count(species),
+       aes(area = n, fill = species, label = species)) +
+  geom_treemap() +
+  scale_fill_manual(values = MetBrewer::met.brewer("Renoir")) +
+  labs(fill = "Especies")
+```
+
+Con `geom_treemap_text()` podemos además escribir el nombre de los niveles, pudiendo eliminar la leyenda.
+
+```{r}
+ggplot(starwars %>% drop_na(species) %>%
+         mutate(species =
+                      fct_lump_min(species, min = 2,
+                                   other_level = "otras")) %>%
+         count(species),
+       aes(area = n, fill = species, label = species)) +
+  geom_treemap() +
+  geom_treemap_text(colour = "white", place = "centre",
+                    size = 17) +
+  scale_fill_manual(values = MetBrewer::met.brewer("Renoir")) +
+  labs(fill = "Especies") +
+  guides(fill = "none")
+```
+
+
+Por último vamos a probar el paquete `{ggparliament}` (puedes ver su [documentación]("https://r-charts.com/part-whole/ggparliament/")), para la <mark>**representación de escaños**</mark> (los partidos que se presentan a unas elecciones son variables cualitativas, y sus escaños sus frecuencias absolutas.
+
+Para ilustrarlo vamos a usar el conjunto `election_data` de dicho paquete, que contiene los <mark>**datos electorales de Rusia, Australia, Alemnia, UK y Estados Unidos**</mark>
+
+
+```{r}
+# install.packages("ggparliament")
+library(ggparliament)
+election_data
+```
+
+Vamos a <mark>**filtrar solo los resultados de Rusia del 2016**</mark>
+
+```{r}
+rusia <- election_data %>%
+  filter(country == "Russia" & year == 2016)
+```
+
+Con la función `parliament_data` construiremos los datos, preparados para ser <mark>**visualizados en formato hemiciclo**</mark> (con `parl_rows` le indicamos las fila del parlamento).
+
+```{r}
+rusia_parlamento <-
+  as_tibble(parliament_data(election_data = rusia, type = "semicircle",
+                            parl_rows = 9, party_seats = rusia$seats))
+rusia_parlamento
+```
+
+Fíjate que por defecto ha incluido ya un color por partido (que podríamos cambiar en `{ggplot2}`. Tras ello, y dentro de la filosofía `{ggplot2}`, podremos representar los datos de nuestro parlamento.
+
+```{r}
+parlamento <-
+  ggplot(rusia_parlamento,
+       aes(x = x, y = y, colour = party_short)) +
+  geom_parliament_seats()
+parlamento
+```
+
+Podemos añadir las etiquetas de los partidos así como el número total de escaños
+
+```{r}
+parlamento +
+  draw_partylabels(type = "semicircle",
+                   party_names = party_long,
+                   party_seats = seats,
+                   party_colours = colour) + 
+  draw_totalseats(n = 450, type = "semicircle")
+```
+
+Con `theme_ggparliament()` tenemos un tema ya preparado para la representación del hemiciclo, y añadimos títulos y colores.
+
+```{r}
+parlamento +
+  draw_totalseats(n = 450, type = "semicircle") +
+  theme_ggparliament() +
+  labs(color = "Partidos",
+       title = "Resultados de las elecciones de Rusia 2016") +
+  scale_colour_manual(values = rusia_parlamento$colour, 
+                      limits = rusia_parlamento$party_short) +
+  theme(plot.margin = margin(t = 4, r = 4, b = 4, l = 8, "pt"),
+        plot.title = element_text(size = 30))
+```
+
+
+## 📝 Ejercicios
+
+en construcción
+

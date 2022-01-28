@@ -133,13 +133,19 @@ El <mark>**objetivo**</mark> de este curso es introducir a la programación y an
 * \@ref(importar-exportar) [Sacando datos de las piedras](#importar-exportar)
 * \@ref(rmarkdown) [Contando los datos: rmarkdown](#rmarkdown)
 
-**Incursión a tidyverse**
+**Incursión a tidyverse y ggplot2**
 
 * \@ref(tidyverse) [Depuración y transformación](#tidyverse)
 * \@ref(resumenes) [Resumiendo y relacionado datos](#resumenes)
 * \@ref(tidyverse-2) [Profundizando tidyverse: elecciones y Spotify](#tidyverse-2)
 * \@ref(ggplot2) [Visualizando datos: incursión a ggplot2](#ggplot2)
 * \@ref(ggplot2_plus) [Profundizando en ggplot2](#ggplot2_plus)
+
+**Introducción a la estadística en R**
+
+* \@ref(descriptiva_cualitativas) [Extrayendo información: estadística descriptiva con cualitativas](#descriptiva_cualitativas)
+* \@ref(descriptiva_cuantitativas) [Extrayendo información: estadística descriptiva con cuantitativas](#descriptiva_cuantitativas)
+* \@ref(resumenes) [Resumiendo y relacionado datos](#resumenes)
 
 
 ## Código de colores {-} 

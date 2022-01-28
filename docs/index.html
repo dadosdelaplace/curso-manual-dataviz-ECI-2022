@@ -26,7 +26,8 @@
 <script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -77,10 +78,13 @@
 <li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
-<li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
-<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">23</span> Profundizando en ggplot2</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: encuestas electorales</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">21</span> Visualizando datos: incursión a ggplot2</a></li>
+<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
+<li class="book-part">Incursión a la estadística descriptiva</li>
+<li><a class="" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
+<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -187,21 +191,31 @@
 <a href="rmarkdown.html#rmarkdown">18</a> <a href="rmarkdown.html#rmarkdown">Contando los datos: rmarkdown</a>
 </li>
 </ul>
-<p><strong>Incursión a tidyverse</strong></p>
+<p><strong>Incursión a tidyverse y ggplot2</strong></p>
 <ul>
 <li>
 <a href="tidyverse.html#tidyverse">19</a> <a href="tidyverse.html#tidyverse">Depuración y transformación</a>
 </li>
 <li>
-<a href="resumenes.html#resumenes">20</a> <a href="resumenes.html#resumenes">Resumiendo y relacionado datos</a>
+<a href="resumenes.html#resumenes">25</a> <a href="resumenes.html#resumenes">Resumiendo y relacionado datos</a>
 </li>
 <li>
-<a href="tidyverse-2.html#tidyverse-2">21</a> <a href="tidyverse-2.html#tidyverse-2">Profundizando tidyverse: elecciones y Spotify</a>
+<a href="tidyverse-2.html#tidyverse-2">20</a> <a href="tidyverse-2.html#tidyverse-2">Profundizando tidyverse: elecciones y Spotify</a>
 </li>
 <li>
-<a href="ggplot2.html#ggplot2">22</a> <a href="ggplot2.html#ggplot2">Visualizando datos: incursión a ggplot2</a>
+<a href="ggplot2.html#ggplot2">21</a> <a href="ggplot2.html#ggplot2">Visualizando datos: incursión a ggplot2</a>
 </li>
 <li>@ref(ggplot2_plus) <a href="ggplot2_plus.html#ggplot2_plus">Profundizando en ggplot2</a>
+</li>
+</ul>
+<p><strong>Introducción a la estadística en R</strong></p>
+<ul>
+<li>@ref(descriptiva_cualitativas) <a href="descriptiva_cualitativas.html#descriptiva_cualitativas">Extrayendo información: estadística descriptiva con cualitativas</a>
+</li>
+<li>@ref(descriptiva_cuantitativas) <a href="descriptiva_cuantitativas.html#descriptiva_cuantitativas">Extrayendo información: estadística descriptiva con cuantitativas</a>
+</li>
+<li>
+<a href="resumenes.html#resumenes">25</a> <a href="resumenes.html#resumenes">Resumiendo y relacionado datos</a>
 </li>
 </ul>
 </div>

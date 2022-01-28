@@ -26,7 +26,8 @@
 <script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -77,10 +78,13 @@
 <li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
-<li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
-<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">23</span> Profundizando en ggplot2</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: encuestas electorales</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">21</span> Visualizando datos: incursión a ggplot2</a></li>
+<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
+<li class="book-part">Incursión a la estadística descriptiva</li>
+<li><a class="" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
+<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -153,7 +157,7 @@ Imagen/gráfica 2.5: Primera pantalla al abrir el ejecutable de R.
 <span class="header-section-number">2.1.1</span> Primera operación: sumar dos números<a class="anchor" aria-label="anchor" href="#primera-operaci%C3%B3n-sumar-dos-n%C3%BAmeros"><i class="fas fa-link"></i></a>
 </h3>
 <p>Para comprobar que está correctamente instalado, abre <code>R</code> y <mark><strong>prueba a escribir</strong></mark> en la pantalla blanca inferior el siguiente código (<mark><strong>recuerda</strong></mark>: los códigos de este manual puedes <strong>copiarlos</strong> directamente de la cajita <mark><strong>haciendo click en el botón</strong></mark> de la esquina superior derecha)</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb440"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>
@@ -174,7 +178,7 @@ Imagen/gráfica 2.6: Primera suma en la consola de R.
 <p> </p>
 <p><strong><span style="color: #ffc107;">WARNING: </span></strong></p>
 <p>Como habrás advertido, en <code>R</code> usaremos <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> para <strong>asignar valores</strong> en lugar de <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>, como una flecha. Usaremos <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> para <strong><span style="color: #ffc107;">indicarle el valor a los argumentos que usemos en funciones</span></strong> y <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> como <strong><span style="color: #ffc107;">operador de comparación</span></strong>: si escribimos <code>2 == 3</code>, le estamos preguntando si 2 es igual a 3.</p>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb442"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">2</span> <span class="op">==</span> <span class="fl">3</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p> </p>
@@ -210,7 +214,7 @@ Imagen/gráfica 2.8: Primer recibimiento de nuestro mejor amigo RStudio.
 <li>
 <strong><span style="color: #4197D2;">Consola</span></strong>: es el nombre para llamar a esa ventana grande que te ocupa buena parte de tu pantalla. Prueba a escribir el mismo código que antes en ella (es el equivalente a la consola de R que hemos abierto al principio).</li>
 </ul>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></code></pre></div>

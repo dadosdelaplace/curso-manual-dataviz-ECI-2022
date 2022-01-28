@@ -22,7 +22,7 @@ colorize <- function(x, color) {
 
 Scripts usados:
 
-* [**script21.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script21.R): profundizando tidyverse.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script21.>
+* [**script20.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script20.R): profundizando tidyverse.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script20.>
 
 ::::
 

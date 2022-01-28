@@ -19,12 +19,21 @@ colorize <- function(x, color) {
 # Profundizando en ggplot2 {#ggplot2_plus}
 
 
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script22.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.R): profundizando en tidyverse.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.R>
+::::
+
+
 ```{r}
 library(tidyverse)
 ```
 
 
 ## Personalizando el tema
+
 
 
 ### Datos
@@ -144,7 +153,7 @@ gg <- ggplot(netflix_resumen, aes(x = year, y = n)) +
   theme_void() +
   theme(legend.position = "none",
         plot.title = element_text(family = "Bebas Neue",
-                                  color = "red", size = 60)) +
+                                  color = "red", size = 80)) +
   labs(title = "NETFLIX",
        subtitle = "Películas y series de instituto",
        caption = "Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle")
@@ -182,11 +191,11 @@ font_add_google(family = "Permanent Marker",
 showtext_auto()
 gg <- gg + 
   theme(plot.subtitle = element_text(family = "Permanent Marker",
-                                     size = 15, color = "white"),
+                                     size = 21, color = "white"),
         plot.caption =  element_text(family = "Permanent Marker",
-                                     color = "white", size = 13),
+                                     color = "white", size = 19),
         axis.text = 
-          element_text(size = 11, family = "Permanent Marker",
+          element_text(size = 15, family = "Permanent Marker",
                        color = "white"))
 gg
 ```
@@ -199,11 +208,33 @@ gg <- gg +
 gg
 ```
 
+Por último con `annotate()` podemos añadir anotaciones al gráfico, por ejemplo, escribiendo el mes de enero en la última barra para remarcar que solo llega hasta enero de 2021, con una fina curva como «flecha».
+
+```{r}
+gg <- gg  +
+  annotate("text", label = "(hasta enero)", 
+           x = 2021, y = 11, hjust = 0.3, vjust = 0, family = "Permanent Marker", size = 5, color='white', angle = 20) +
+  annotate("curve", x = 2021, y = 9, xend = 2021, yend = 5,
+           color = "white")
+gg
+```
+
+
 Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix.
 
+Puedes ver más gráficas y trucos en la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/), de donde ha salido parte de la idea de este capítulo.
+
+## Gráficos stream (de flujo)
+
+en construcción
+
+## Gráficos de cajas y bigotes
+
+en construcción
 
 ## Gráficos en coordenadas polares
 
+en construcción
 
 ```{r florence, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = "Gráfico original de Florence Nightingale", out.width = '50%'}
 knitr::include_graphics("img/rosa_nightingale.jpg")
@@ -288,6 +319,7 @@ En la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/) puedes 
 
 (haz click en las flechas para ver soluciones)
 
+en construcción
 
 <details>
   <summary>📝<strong>Ejercicio 1</strong>: ...</summary>

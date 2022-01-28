@@ -26,7 +26,8 @@
 <script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -77,10 +78,13 @@
 <li><a class="" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
-<li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
-<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">23</span> Profundizando en ggplot2</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: encuestas electorales</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">21</span> Visualizando datos: incursión a ggplot2</a></li>
+<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
+<li class="book-part">Incursión a la estadística descriptiva</li>
+<li><a class="" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
+<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -178,7 +182,7 @@ Imagen/gráfica 12.10: Subcarpeta «CODIGOS».
 </p>
 </div>
 <p>En esa carpeta de códigos vamos a crear de prueba el código llamado <code>variables.R</code> donde vamos a <strong>definir algunas variables</strong> que luego usaremos en el código principal (suele suceder con variables que van a ser fijas como nombres, fechas o codificaciones de variables).</p>
-<div class="sourceCode" id="cb1267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Descripción: script de prueba con variables</span>
 
 <span class="co"># Variables</span>
@@ -199,7 +203,7 @@ Imagen/gráfica 12.11: Escribimos una serie de variables fijas para luego ser us
 <p>Así que eso haremos: desde nuestro archivo principal <code>main.R</code> llamaremos a ese archivo <code>variables.R</code>, para luego usar las variables definidas en él.</p>
 <p><strong>¿Cómo indicarle a <code>R</code> donde está nuestro fichero?</strong></p>
 <p>En <code>R</code>, como en todo lenguaje de programación, podemos consultar lo que el ordenador llama <em>directorio de trabajo</em>: la carpeta «base» desde donde está ejecutando tu código. Dicha ruta de directorio se puede consultar con la función <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code>, pudiendo ver los archivos y carpetas que hay dentro del mismo con el comando <code><a href="https://rdrr.io/r/base/list.files.html">dir()</a></code></p>
-<div class="sourceCode" id="cb1268"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -209,7 +213,7 @@ Imagen/gráfica 12.12: Consultar directorio de trabajo predeterminado y archivos
 </p>
 </div>
 <p>Lo ideal es empezar el código <mark><strong>fijando como directorio de trabajo el directorio donde tengamos nuestro archivo principal</strong></mark><code>main.R</code> y para ello usaremos la función <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>, cuyo argumento será la ruta donde queremos fijarlo. Para hacerlo de forma automática (y que el código pueda ser abierto por ti pero también por otros que no tengan tu misma estructura de carpetas), obtendremos de forma automática la ruta del archivo <code>main.R</code> o del proyecto con la orden <code>rstudioapi::getSourceEditorContext()$path</code>, y después usaremos <code><a href="https://rdrr.io/r/base/basename.html">dirname()</a></code> para quedarnos solo con la ruta de carpetas (eliminando el nombre del fichero al final). Esa será la ruta que le pasaremos a <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>, quedando nuestro directorio de trabajo automáticamente fijado, sin preocuparnos de la ruta</p>
-<div class="sourceCode" id="cb1269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fijamos directorio de trabajo automáticamente</span>
 <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span><span class="op">(</span><span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rstudioapi/man/rstudio-editors.html">getSourceEditorContext</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">path</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -245,17 +249,17 @@ Imagen/gráfica 12.16: Guardamos con la casilla «source on save» activada para
 </div>
 <p>Como vemos en la imagen <a href="proyecto.html#fig:source-on-save">12.16</a>, una vez ejecutado, tenemos en nuestro panel de entorno (parte superior derecha) las variables ya cargadas que teníamos definidas en nuestro fichero <code>variables.R</code>.</p>
 <p>Prueba a escribir algunas funciones que hemos aprendido con dichas variables y vuelve a hacer click en «guardar» con <em>source on save</em> activado.</p>
-<div class="sourceCode" id="cb1270"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sumamos 3 a cada elemento de x</span>
 <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">3</span>
 <span class="va">z</span></code></pre></div>
 <pre><code>## [1]  4  5  3  2 74</code></pre>
-<div class="sourceCode" id="cb1272"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Imprimimos por pantalla la frase unida, y a dicha frase</span>
 <span class="co"># le pegamos nuestro apellido</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">y</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>, <span class="va">apellido</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## hola me llamo Javier Álvarez</code></pre>
-<div class="sourceCode" id="cb1274"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Días que han pasado desde el inicio de año</span>
 <span class="va">dias</span> <span class="op">&lt;-</span> <span class="va">hoy</span> <span class="op">-</span> <span class="va">fecha_origen</span>
 <span class="va">dias</span></code></pre></div>

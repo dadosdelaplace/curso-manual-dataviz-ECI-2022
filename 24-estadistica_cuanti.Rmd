@@ -1,0 +1,33 @@
+```{r echo = FALSE}
+library(knitr)
+
+# Color text
+colorize <- function(x, color) {
+  
+  if (knitr::is_latex_output()) {
+    
+    sprintf("\\textcolor{%s}{%s}", color, x)
+    
+  } else if (knitr::is_html_output()) {
+    
+    sprintf("<span style='color: %s;'>%s</span>", color, x)
+    
+  } else { x }
+}
+```
+
+# Extrayendo información: estadística descriptiva con cuantitativas {#descriptiva_cuantitativas}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script24.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R): intro a la descriptiva con cuantitativas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R>
+::::
+
+en construcción
+
+## 📝 Ejercicios
+
+en construcción
+

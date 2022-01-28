@@ -19,124 +19,12 @@ colorize <- function(x, color) {
 
 # Resumiendo y relacionado datos {#resumenes}
 
-Ahora que **ya sabemos depurar y transformar los datos** con pocas líneas de código, así como extraer la información que nos interese, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con datos:
+Ahora que **ya sabemos depurar y transformar los datos**, y algunas de las características de los tipos de variables, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con datos:
 
 * Realizar <mark>**resúmenes numéricos**</mark> de los datos, de forma general pero también cuando queremos calcular estadísticas desagregadas por grupos.
+* <mark>**Medidas de centralización, dispersión y posición**</mark>
 * <mark>**Relacionar tablas**</mark> entre sí (los famosos _join_).
 
-
-## Tablas de frecuencias
-
-Una de las **primeras cosas** que uno aprende en la asignatura de estadística **descriptiva** es <mark>**saber resumir nuestros datos**</mark> cuando tenemos muchos, y además **muchos valores repetidos**. Vamos a construir la <mark>**tabla de frecuencias**</mark> de la variable `n_films` de nuestro ya conocido conjunto `starwars` (una variable que vamos a crear contando en cuántas películas aparece cada personaje)
-
-```{r}
-library(purrr)
-library(tidyverse)
-starwars_nueva <- starwars %>%
-  mutate(n_films = map_int(films, length))
-```
-
-Y lo primero es <mark>**contar**</mark>: ¿cuántos registros hay de cada una de las clases? Para ello usaremos la función `count()`
-
-```{r}
-starwars_nueva %>% count()
-```
-
-Como ves si aplicamos la **función directamente** simplemente nos **cuenta el número de filas** de la tabla, así que vamos a **usar la misma función pero indicándole la variable**.
-
-```{r}
-tabla_freq <- starwars_nueva %>% count(n_films)
-tabla_freq
-```
-
-Esa columna `n` es lo que conocemos como <mark>**frecuencias absolutas**</mark>, el **número de veces** que la variable toma dicha valor. También es posible **calcular las frecuencias absolutas** por varias variables a la vez.
-
-```{r}
-starwars_nueva %>% count(sex, gender)
-```
-
-Podemos también añadir una columna `N_i` de <mark>**frecuencia absoluta acumulada**</mark>, una columna que nos diga el **número de personajes que han hecho un número de películas igual o menor** que el indicado.
-
-
-```{r}
-# Construimos de cero
-tabla_freq <-
-  starwars_nueva %>%
-  # n: frecuencia absoluta
-  count(n_films) %>%
-  # N_i: frecuencia absoluta acumulada
-  mutate(N_i = cumsum(n)) # cumsum calcula la suma acumulada
-tabla_freq
-```
-
-Y ambas columnas podemos pasarlas a porcentaje o proporción, las **columnas** `f_i` y `F_i` o <mark>**frecuencias relativas**</mark> (no acumulada y acumulada, respectivamente).
-
-```{r}
-# Construimos de cero
-tabla_freq <- starwars_nueva %>%
-  # n: frecuencia absoluta
-  count(n_films) %>%
-  # N_i: frecuencia absoluta acumulada
-  mutate(N_i = cumsum(n)) %>% # cumsum calcula la suma acumulada
-  mutate(f_i = prop.table(n), # prop.table nos devuelve proporciones
-         F_i = cumsum(f_i))
-tabla_freq
-```
-
-Esas **frecuencias relativas** quizás querramos tenerlas expresadas en **porcentajes** en lugar de en proporciones.
-
-```{r}
-# Pasamos frecuencias relativas a porcentajes
-tabla_freq %>% mutate(f_i = f_i * 100,
-                      F_i = F_i * 100)
-```
-
-Por último, con la tabla `tabla_freq` expresando las frecuencias relativas en proporciones, vamos a cambiar el nombre de las columnas para que tengan los **típicos nombres de una tabla de frecuencias**.
-
-```{r}
-# Renombramos
-tabla_freq <- tabla_freq %>%
-  rename(n_i = n, x_i = n_films)
-tabla_freq
-```
-
-```{r, echo = FALSE, message = FALSE}
-library(DT)
-datatable(options =
-            list(pageLength = 10, scrollX = TRUE,
-                 fixedColumns = list(leftColumns = 1),
-                 headerCallback = DT::JS(
-                   "function(thead) {",
-                   "  $(thead).css('font-size', '0.95em');",
-                   "}"
-                   ),
-                 language =
-                   list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')),
-          tabla_freq, rownames = FALSE,
-          caption = "Tabla de frecuencias del número de películas en las que aparecen los personajes de la saga.") %>%
-   formatRound(c("f_i", "F_i"), digits = 3, mark = ".",
-                 dec.mark = getOption("OutDec"))
-```
-
-
-**¿Cómo construir una tabla similar para variables continuas?** La metodología sería la misma solo que antes debemos **agrupar los datos** (por ejemplo, de la variable `height`) en **subintervalos**.
-
-```{r}
-# Construimos de cero
-tabla_freq_continua <-
-  starwars %>%
-  # agrupamos los datos en tramos de 20 en 20
-  mutate(intervalo = cut(height, breaks = seq(65, 265, by = 20))) %>%
-  count(intervalo) %>%
-  mutate(N_i = cumsum(n)) %>% # cumsum calcula la suma acumulada
-  mutate(f_i = prop.table(n), # prop.table nos devuelve proporciones
-         F_i = cumsum(f_i))
-tabla_freq_continua
-```
-
-El problema es que **cuando agrupamos los datos de una variable continua en subintervalos**, aunque nos sirva como **resumen** para tener una idea de como se comporta nuestra variable (y sea **algo necesario para, por ejemplo, construir un «histograma discretizado»**), a la hora de calcular sus estadísticas perdemos información ya que todos los elementos que cae en un intervalo se les **imputará un único valor: la marca de clase, que normalmente es el punto medio del intervalo**.
-
-Vamos a <mark>**calcular resúmenes numéricos**</mark> de las variables sin agrupar aprovechando que `R` el trabajo por nosotros/as.
 
 ## Resúmenes numéricos (summarise y skimr) y por grupos (group_by)
 
@@ -155,21 +43,19 @@ Dicho resumen nos proporciona:
 
 - Variables de tipo **numérico**: `n_missing` (número de ausentes), `complete_rate` (proporción de datos sin ausentes), `mean/sd` (media y cuasidesviación típica), `p0/p25/p50/p75/p100` (cuartiles, percentiles 0%-25%-50%-75%-100%, valores que nos dividen nuestro conjunto en 4 trozos) e `hist` (una especie de histograma/barras sencillo).
 
-Este resumen no solo podemos visualizarlo sino que podemos guardarlo para exportarlo por ejemplo en un `.csv`.
+Este resumen no solo podemos visualizarlo sino que podemos guardarlo para exportarlo por ejemplo en un `.csv`. Sin embargo, aunque el resumen es bastante completo, muchas veces querremos <mark>**generar nuestras propias estadísticas o resúmenes numéricos**</mark>, y para eso vamos a aplicar `summarise()`, que nos calculará estadísticas de nuestros datos.
 
-```{r}
-library(skimr)
-resumen_skim <- starwars %>% skim()
-```
 
-Sin embargo, aunque el resumen es bastante completo, muchas veces querremos <mark>**generar nuestras propias estadísticas o resúmenes numéricos**</mark>, y para eso vamos a aplicar `summarise()`, que nos calculará estadísticas de nuestros datos. Por ejemplo, vamos a **calcular las medidas de centralización (media-mediana-moda)**. Para las dos primeras basta con aplicar las funciones correspondientes.
+### Medidas de centralización y dispersión
+
+Por ejemplo, vamos a <mark>**calcular las medidas de centralización (media-mediana-moda)**</mark>. Para la media y la mediana basta con usar las funciones correspondientes `mean()` y `median()`, dentro de `summarise()`
 
 ```{r}
 starwars %>% summarise(media = mean(mass),
                        mediana = median(mass))
 ```
 
-Como ves nos **devuelve un dato ausente** ya que al existir datos ausentes en la variables, **la media también lo es**. Para evitar ese problema **podemos hacer dos cosas**: eliminar antes los ausentes, o indicarle en la propia media y mediana que haga el cálculo ignorando los valores `NA`.
+Al contrario que las demás órdenes de `{tidyverse}`, la función `summarise()` no nos devuelve la tabla original modificada, sino un resumen de los datos, con las funciones que le hayamos indicdo. Como ves nos **devuelve un dato ausente** ya que al existir datos ausentes en la variables, **la media también lo es**. Para evitar ese problema **podemos hacer dos cosas**: eliminar antes los ausentes, o indicarle en la propia media y mediana que haga el cálculo ignorando los valores `NA`.
 
 ```{r}
 # Primero eliminamos NA
@@ -182,7 +68,11 @@ starwars %>%
             mediana = median(mass, na.rm = TRUE))
 ```
 
-La **media** es una medida de centralización basada en el valor que nos **minimiza el promedio de desviaciones al cuadrado (varianza)** y solo se puede calcular para **variables cuantitativas (discretas o continuas)**.
+Las <mark>**medidas de centralización**</mark> son aquellos parámetros o valores que nos informe en torno a que <mark>**valores**</mark> se concentran los datos. La <mark>**media**</mark> $\overline{x}$ es una medida de centralización basada en el valor que nos **minimiza el promedio de desviaciones al cuadrado**: la media es el valor que está más cerca de todos los puntos a la vez (con la distancia Euclídea, definida como la diferencia al cuadrado)
+
+$$\overline{x} = \frac{1}{N} \sum_{i=1}^{N} x_i, \qquad \overline{x} = \arg \min_{x} \frac{1}{N} \sum_{i=1}^{N} \left(x_i - x \right)^2$$ 
+
+La media <mark>**solo se puede calcular para variables cuantitativas**</mark>: solo podemos calcular medias de números.
 
 ```{r}
 # Media de todas las cuantitativas
@@ -190,7 +80,9 @@ starwars_nueva %>%
   summarise(media = across(where(is.numeric), mean, na.rm = TRUE))
 ```
 
-La **mediana** se define como el **valor que ocupa el centro de los datos CUANDO LOS ORDENAMOS de menor a mayor**, un valor que nos deja por debajo al menos el 50% y por encima al menos el 50%.
+&nbsp;
+
+La <mark>**mediana**</mark> se define como el valor que ocupa el <mark>**centro de los datos cuando los ordenamos de menor a mayor**</mark>, un valor que nos deja por debajo al menos el 50% y por encima al menos el 50%.
 
 ```{r}
 # Media y mediana de todas las cuantitativas
@@ -199,7 +91,7 @@ starwars_nueva %>%
             mediana = across(where(is.numeric), median, na.rm = TRUE))
 ```
 
-La **mediana también se puede calcular para variables cualitativas ordinales (categorías que se puedan ordenar)**. Vamos a construir una variable que sea «muy bajo-bajo-medio-alto-muy alto» según la estatura, y calcular la mediana para dichas categorías.
+La mediana también se puede calcular para <mark>**variables cualitativas ordinales (categorías que se puedan ordenar)**</mark>, además de para variables cuantitativas.. Vamos a construir una variable que sea «muy bajo-bajo-medio-alto-muy alto» según la estatura, y calcular la mediana para dichas categorías.
 
 ```{r}
 categorias <- c("muy bajo", "bajo", "medio", "alto", "muy alto")
@@ -215,8 +107,70 @@ starwars_talla %>%
               categorias[median(as.numeric(talla), na.rm = TRUE)])
 ```
 
-Para la **moda tenemos algún problema mayor** ya que no hay un función en los paquetes `{base}` para su cálculo, así que para ello **usaremos el paquete `{modeest}`**: la función `mfv()` nos calcula la **moda exacta** de una variable numérica discreta o cuantitativa (busca los valores más repetidos), la función `mlv()` nos calcula la **moda estimada** de una variable numérica continua.
+Para la **moda tenemos algún problema mayor** ya que no hay un función en los paquetes `{base}` para su cálculo directo. La <mark>**moda**</mark> se define como el <mark>**valor más repetido**</mark>: si tenemos algo discreto o cualitativo es la barra más alta.
 
+```{r}
+library(tidyverse)
+
+# Carga
+netflix <-
+  read_csv('https://raw.githubusercontent.com/elartedeldato/datasets/main/netflix_titles.csv')
+
+# Películas y series de insti
+netflix_hs <- netflix %>%
+  filter(str_detect(toupper(description), "HIGH SCHOOL"))
+netflix_hs 
+
+# Manipulamos fechas
+library(lubridate)
+netflix_final <- 
+  netflix_hs %>%
+  mutate(year = year(mdy(date_added))) %>%
+  filter(!is.na(year))
+
+netflix_resumen <- 
+  netflix_final %>%
+  group_by(year) %>%
+  count() %>%
+  ungroup()
+
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Bebas Neue", name = "Bebas Neue")
+font_add_google(family = "Permanent Marker", name = "Permanent Marker")
+showtext_auto()
+
+ggplot(netflix_resumen, aes(x = year, y = n)) +
+  geom_col(fill = "red") +
+  scale_x_continuous(breaks = netflix_resumen$year) +
+  theme_void() +
+  theme(legend.position = "none",
+        plot.title = element_text(family = "Bebas Neue",
+                                  color = "red", size = 80)) +
+  labs(title = "NETFLIX",
+       subtitle = "Películas y series de instituto",
+       caption = "Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle") +
+  theme(panel.background = element_rect(fill = "black"),
+        plot.background = element_rect(fill = "black", 
+                                       color = "black"),
+        panel.grid.major.y =
+          element_line(size = 0.1, color = "white"),
+        plot.subtitle = element_text(family = "Permanent Marker",
+                                     size = 21, color = "white"),
+        plot.caption =  element_text(family = "Permanent Marker",
+                                     color = "white", size = 19),
+        axis.text = 
+          element_text(size = 15, family = "Permanent Marker",
+                       color = "white"),
+        plot.margin = margin(t = 4, r = 4, b = 4, l = 8, "pt")) +
+  annotate("text", label = "Moda", 
+           x = 2020.7, y = 47, hjust = 0.2, vjust = 0, family = "Permanent Marker", size = 6, color = 'white', angle = 10) +
+  annotate("curve", x = 2020.3, y = 48, xend = 2020, yend = 44,
+           color = "white")
+```
+
+
+Para calcularla podemos usar el paquete `{modeest}`: la función `mfv()` nos calcula la **moda exacta** de una variable numérica discreta o cuantitativa (busca los valores más repetidos), la función `mlv()` nos calcula la **moda estimada** de una variable numérica continua.
 
 ```{r, warning = FALSE}
 library(modeest)
@@ -233,7 +187,7 @@ resumen
 
 Fíjate que el resumen ha agrupado todas las modas y medianas que hemos calculado a la vez: **la salida de nuestro resumen es una lista, con tablas a su vez dentro**.
 
-De la misma manera podemos pedirle que nos calcule <mark>**medidas de dispersión (varianza, desv. típica y cv)**</mark>, de cómo de dispersos están los datos respecto a un centro, normalmente la media, y <mark>**medidas de localización (percentiles)**</mark>.
+De la misma manera podemos pedirle que nos calcule <mark>**medidas de dispersión (varianza, desv. típica y cv)**</mark>, que nos indican cómo de dispersos están los datos respecto a un centro, normalmente la media, y <mark>**medidas de localización (percentiles)**</mark> (valores que nos parten los datos en trozos iguales)
 
 ```{r, warning = FALSE}
 starwars %>%
@@ -247,7 +201,7 @@ starwars %>%
             p87 = quantile(mass, probs = c(0.87), na.rm = TRUE))
 ``` 
 
-Haciendo uso de cosas ya vistas podemos, por ejemplo, **calcular el coeficiente de variación (CV)** de todas las variables numéricas para poder decidir cual es más o menos dispersa.
+Haciendo uso de cosas ya vistas podemos, por ejemplo, <mark>**calcular el coeficiente de variación (CV)**</mark> de todas las variables numéricas para poder decidir cual es más o menos dispersa.
 
 ```{r, warning = FALSE}
 resumen <- 
@@ -347,6 +301,8 @@ notas %>% rowwise() %>%
 ```
 
 Solos nos falta poner la guinda a lo aprendido a esta introducción: vamos a ver como podemos <mark>**relacionar dos conjuntos de datos distintos entre sí**</mark>.
+
+
 
 ## Relacionar datos (joins)
 
@@ -467,5 +423,5 @@ knitr::include_graphics("./img/inner_join.png")
 
 ## 📝 Ejercicios
 
-en breve
+en construcción (cuarteto de anscombe)
 

@@ -26,7 +26,8 @@
 <script src="libs/datatables-binding-0.18/datatables.js"></script><link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script><script src="libs/wordcloud2-0.0.1/hover.js"></script><script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="css/style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -77,10 +78,13 @@
 <li><a class="active" href="rmarkdown.html"><span class="header-section-number">18</span> Contando los datos: rmarkdown</a></li>
 <li class="book-part">Incursión a tidyverse</li>
 <li><a class="" href="tidyverse.html"><span class="header-section-number">19</span> Depuración y transformación</a></li>
-<li><a class="" href="resumenes.html"><span class="header-section-number">20</span> Resumiendo y relacionado datos</a></li>
-<li><a class="" href="tidyverse-2.html"><span class="header-section-number">21</span> Profundizando tidyverse: encuestas electorales</a></li>
-<li><a class="" href="ggplot2.html"><span class="header-section-number">22</span> Visualizando datos: incursión a ggplot2</a></li>
-<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">23</span> Profundizando en ggplot2</a></li>
+<li><a class="" href="tidyverse-2.html"><span class="header-section-number">20</span> Profundizando tidyverse: encuestas electorales</a></li>
+<li><a class="" href="ggplot2.html"><span class="header-section-number">21</span> Visualizando datos: incursión a ggplot2</a></li>
+<li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
+<li class="book-part">Incursión a la estadística descriptiva</li>
+<li><a class="" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
+<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
 
@@ -101,7 +105,7 @@
 </ul>
 </div>
 <p>Si se tuvieran que destacar una lista <strong>fortalezas</strong> de <code>R</code> frente a <code>Python</code>, creo que dos estarían en los primeros puestos. La primera sería las opciones de visualización y procesamiento de datos (y su sencillez). Y la segunda, para mí, es sin duda sus <mark><strong>opciones para generar informes</strong></mark>, incluso <mark><strong>libros, webs, apuntes y hasta diapositivas</strong></mark> (tienes algunos de los paquetes en la lista de recursos). Y la base de todos ellos es el paquete <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>.</p>
-<div class="sourceCode" id="cb1568"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1570"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rmarkdown"</span><span class="op">)</span></code></pre></div>
 <p><mark><strong>¿Cuál es la ventaja de generarlos desde <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>?</strong></mark></p>
 <p>La más obvia es que, al hacerlo desde <code>RStudio</code>, puedes generar un informe o una presentación de unos datos sin salirte del entorno de programación en el que estás trabajando: <mark><strong>analizar los datos, resumirlos y comunicarlos desde el mismo entorno de trabajo</strong></mark>. La segunda ventaja es que nos va a permitir <mark><strong>integrar fácilmente código <code>R</code></strong></mark>, de forma que no solo podremos integrar las salidas de nuestro trabajo sino también el código con el que lo hemos generado.</p>
@@ -176,12 +180,12 @@ Imagen/gráfica 18.3: Creando el primer fichero .rmd
 <li>
 <code>output</code>: <code>html_document</code> (le indicamos el <mark><strong>formato de salida</strong></mark>, en este caso un documento <code>HTML</code>)</li>
 </ul>
-<div class="sourceCode" id="cb1569"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1569-1" data-line-number="1"><span class="op">---</span></a>
-<a class="sourceLine" id="cb1569-2" data-line-number="2">title<span class="op">:</span><span class="st"> "Probando Probando"</span></a>
-<a class="sourceLine" id="cb1569-3" data-line-number="3">author<span class="op">:</span><span class="st"> "Señor X"</span></a>
-<a class="sourceLine" id="cb1569-4" data-line-number="4">date<span class="op">:</span><span class="st"> "11/7/2014"</span></a>
-<a class="sourceLine" id="cb1569-5" data-line-number="5">output<span class="op">:</span><span class="st"> </span>html_document</a>
-<a class="sourceLine" id="cb1569-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb1571"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1571-1" data-line-number="1"><span class="op">---</span></a>
+<a class="sourceLine" id="cb1571-2" data-line-number="2">title<span class="op">:</span><span class="st"> "Probando Probando"</span></a>
+<a class="sourceLine" id="cb1571-3" data-line-number="3">author<span class="op">:</span><span class="st"> "Señor X"</span></a>
+<a class="sourceLine" id="cb1571-4" data-line-number="4">date<span class="op">:</span><span class="st"> "11/7/2014"</span></a>
+<a class="sourceLine" id="cb1571-5" data-line-number="5">output<span class="op">:</span><span class="st"> </span>html_document</a>
+<a class="sourceLine" id="cb1571-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
 <p>Tras tunear nuestra cabecera <strong>borraremos todo lo que viene después</strong> para empezar desde cero.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unnamed-chunk-556"></span>
@@ -239,7 +243,7 @@ Imagen/gráfica 18.8: Encabezado/final del chunk
 </p>
 </div>
 <p>Dentro de dicha cajita (que tiene ahora otro color en el documento) escribiremos <mark><strong>código <code>R</code></strong></mark>, como lo veníamos haciendo hasta ahora. Vamos por ejemplo a definir dos variables y su suma de la siguiente manera, escribiendo dicho código en nuestro <code>.Rmd</code> (dentro de ese <em>chunk</em>)</p>
-<div class="sourceCode" id="cb1570"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1572"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Código R</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
@@ -392,10 +396,10 @@ Imagen/gráfica 18.23: Salida
 <span class="header-section-number">18.3.1</span> Personalizando la cabecera<a class="anchor" aria-label="anchor" href="#personalizando-la-cabecera"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una primera personalización en la cabecera puede ser <mark><strong>automatizar la fecha</strong></mark>, indicándole que sea la fecha del momento en el que se genere el informe con <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date()</a></code></p>
-<div class="sourceCode" id="cb1572"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1574"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2022-01-28"</code></pre>
-<div class="sourceCode" id="cb1574"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1576"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d de %B de %Y'</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "28 de January de 2022"</code></pre>
 <p>El código <code>R</code> podemos introducirlo en la cabecera entre las comillas.</p>
@@ -437,47 +441,47 @@ Imagen/gráfica 18.28: Numeración de secciones
 <span class="header-section-number">18.3.2</span> Estilos<a class="anchor" aria-label="anchor" href="#estilos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Al inicio del documento podemos incluir estilos .css (o incluir un archivo externo). Puedes ver la opciones en el archivo <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd">segundo_rmarkdown.Rmd</a> en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd</a>.</p>
-<div class="sourceCode" id="cb1576"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1576-1" data-line-number="1"><span class="op">&lt;</span>style<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb1576-2" data-line-number="2"><span class="co">#TOC {</span></a>
-<a class="sourceLine" id="cb1576-3" data-line-number="3"><span class="st">  </span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1576-4" data-line-number="4"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1576-5" data-line-number="5">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>16px; </a>
-<a class="sourceLine" id="cb1576-6" data-line-number="6">  border<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1576-7" data-line-number="7"><span class="er">}</span></a>
-<a class="sourceLine" id="cb1576-8" data-line-number="8"><span class="co">#header {</span></a>
-<a class="sourceLine" id="cb1576-9" data-line-number="9">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
-<a class="sourceLine" id="cb1576-10" data-line-number="10"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1576-11" data-line-number="11"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
-<a class="sourceLine" id="cb1576-12" data-line-number="12">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1576-13" data-line-number="13">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
-<a class="sourceLine" id="cb1576-14" data-line-number="14"><span class="er">}</span></a>
-<a class="sourceLine" id="cb1576-15" data-line-number="15">body {</a>
-<a class="sourceLine" id="cb1576-16" data-line-number="16">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1576-17" data-line-number="17"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1576-18" data-line-number="18">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1576-19" data-line-number="19">}</a>
-<a class="sourceLine" id="cb1576-20" data-line-number="20">pre {</a>
-<a class="sourceLine" id="cb1576-21" data-line-number="21">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1576-22" data-line-number="22"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F8F8FF;</span></a>
-<a class="sourceLine" id="cb1576-23" data-line-number="23">}</a>
-<a class="sourceLine" id="cb1576-24" data-line-number="24">h1.title {</a>
-<a class="sourceLine" id="cb1576-25" data-line-number="25">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
-<a class="sourceLine" id="cb1576-26" data-line-number="26"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1576-27" data-line-number="27"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
-<a class="sourceLine" id="cb1576-28" data-line-number="28">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1576-29" data-line-number="29">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
-<a class="sourceLine" id="cb1576-30" data-line-number="30">}</a>
-<a class="sourceLine" id="cb1576-31" data-line-number="31">h4.author {</a>
-<a class="sourceLine" id="cb1576-32" data-line-number="32">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1576-33" data-line-number="33"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1576-34" data-line-number="34">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1576-35" data-line-number="35">}</a>
-<a class="sourceLine" id="cb1576-36" data-line-number="36">h4.date {</a>
-<a class="sourceLine" id="cb1576-37" data-line-number="37">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;  </span></a>
-<a class="sourceLine" id="cb1576-38" data-line-number="38"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1576-39" data-line-number="39">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1576-40" data-line-number="40">}</a>
-<a class="sourceLine" id="cb1576-41" data-line-number="41"><span class="op">&lt;</span><span class="er">/</span>style<span class="op">&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb1578"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1578-1" data-line-number="1"><span class="op">&lt;</span>style<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb1578-2" data-line-number="2"><span class="co">#TOC {</span></a>
+<a class="sourceLine" id="cb1578-3" data-line-number="3"><span class="st">  </span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1578-4" data-line-number="4"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1578-5" data-line-number="5">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>16px; </a>
+<a class="sourceLine" id="cb1578-6" data-line-number="6">  border<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1578-7" data-line-number="7"><span class="er">}</span></a>
+<a class="sourceLine" id="cb1578-8" data-line-number="8"><span class="co">#header {</span></a>
+<a class="sourceLine" id="cb1578-9" data-line-number="9">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
+<a class="sourceLine" id="cb1578-10" data-line-number="10"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1578-11" data-line-number="11"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
+<a class="sourceLine" id="cb1578-12" data-line-number="12">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1578-13" data-line-number="13">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
+<a class="sourceLine" id="cb1578-14" data-line-number="14"><span class="er">}</span></a>
+<a class="sourceLine" id="cb1578-15" data-line-number="15">body {</a>
+<a class="sourceLine" id="cb1578-16" data-line-number="16">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1578-17" data-line-number="17"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1578-18" data-line-number="18">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1578-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb1578-20" data-line-number="20">pre {</a>
+<a class="sourceLine" id="cb1578-21" data-line-number="21">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1578-22" data-line-number="22"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F8F8FF;</span></a>
+<a class="sourceLine" id="cb1578-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb1578-24" data-line-number="24">h1.title {</a>
+<a class="sourceLine" id="cb1578-25" data-line-number="25">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
+<a class="sourceLine" id="cb1578-26" data-line-number="26"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1578-27" data-line-number="27"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
+<a class="sourceLine" id="cb1578-28" data-line-number="28">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1578-29" data-line-number="29">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
+<a class="sourceLine" id="cb1578-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb1578-31" data-line-number="31">h4.author {</a>
+<a class="sourceLine" id="cb1578-32" data-line-number="32">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1578-33" data-line-number="33"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1578-34" data-line-number="34">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1578-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb1578-36" data-line-number="36">h4.date {</a>
+<a class="sourceLine" id="cb1578-37" data-line-number="37">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;  </span></a>
+<a class="sourceLine" id="cb1578-38" data-line-number="38"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1578-39" data-line-number="39">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1578-40" data-line-number="40">}</a>
+<a class="sourceLine" id="cb1578-41" data-line-number="41"><span class="op">&lt;</span><span class="er">/</span>style<span class="op">&gt;</span></a></code></pre></div>
 </div>
 <div id="mostrando-imágenes" class="section level3">
 <h3>
