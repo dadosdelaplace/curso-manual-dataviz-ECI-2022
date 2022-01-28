@@ -108,23 +108,23 @@
 </h2>
 <p>Hasta ahora, si quisiéramos trabajar con los datos de una persona y lo imaginamos en un Excel, hemos <mark><strong>aprendido algunos tipos básicos</strong></mark> que pueden tomar las celdas, y hemos <mark><strong>aprendido a formar columnas</strong></mark> (vectores, colecciones de elementos del mismo tipo).</p>
 <p>Pero hasta ahora cada columna la hemos tratado por separado: una colección de números, otra de caracteres, otra de fechas… De momento solo <strong>hemos visto solo datos en <mark>una dimensión</mark></strong>: una sola variable de <span class="math inline">\(n\)</span> elementos.</p>
-<div class="sourceCode" id="cb942"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Ejemplos de variables unidimensionales (vectores)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="cn">NA</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]  1  4 NA -2  0</code></pre>
-<div class="sourceCode" id="cb944"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="cn">NA</span>, <span class="st">"b"</span>, <span class="st">"c"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "a" NA  "b" "c"</code></pre>
-<div class="sourceCode" id="cb946"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE FALSE  TRUE</code></pre>
 <p>Pero cuando analizamos datos solemos tener varias variables distintas de cada individuo, por ejemplo, la <strong>estatura y el peso de una persona</strong>. Necesitamos una <mark><strong>«tabla»</strong></mark>. Necesitamos una manera de <mark><strong>unir distintas variables numéricas</strong></mark>, todas de <mark><strong>IGUAL longitud</strong></mark>. Y ese conjunto de variables (del <mark><strong>mismo tipo</strong></mark> e <mark><strong>igual longitud</strong></mark>), dispuestas en columnas, es lo que conocemos como <mark><strong>matrices</strong></mark>: una <strong>«tabla» de valores del mismo tipo</strong>, con filas y columnas.</p>
 <p>Vamos a empezar definiendo una <strong>matriz sencilla</strong>: imagina que tenemos las estaturas y pesos de 5 personas.</p>
-<div class="sourceCode" id="cb948"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">estaturas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">150</span>, <span class="fl">160</span>, <span class="fl">170</span>, <span class="fl">180</span>, <span class="fl">190</span><span class="op">)</span>
 <span class="va">pesos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">70</span>, <span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p>¿Cómo <strong>juntar las dos variables</strong> creando nuestro <mark><strong>primer conjunto de datos</strong></mark>? Vamos a crear una matriz, un conjunto de números organizado en <strong>2 columnas (una por variable)</strong> y <strong>5 filas o registros (una por persona)</strong>. Para ello usaremos la función <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code>, que nos <mark><strong>concatena vectores de igual longitud en columnas</strong></mark>.</p>
-<div class="sourceCode" id="cb949"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb963"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">estaturas</span>, <span class="va">pesos</span><span class="op">)</span> <span class="co"># Construimos la matriz por columnas</span>
 <span class="va">datos_matriz</span> <span class="co"># nuestra primera matriz</span></code></pre></div>
 <pre><code>##      estaturas pesos
@@ -134,22 +134,22 @@
 ## [4,]       180    90
 ## [5,]       190   100</code></pre>
 <p>Nuestro primer conjunto de datos :) Podemos <strong>visualizar la matriz</strong> en un formato «excelizado» con la función <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code></p>
-<div class="sourceCode" id="cb951"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb965"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-303"></span>
+<span style="display:block;" id="fig:unnamed-chunk-312"></span>
 <img src="img/datos_matriz_1.jpg" alt="Nuestra primera matriz de datos" width="50%"><p class="caption">
 Imagen/gráfica 8.1: Nuestra primera matriz de datos
 </p>
 </div>
 <p>También podemos <mark><strong>construir la matriz por filas</strong></mark> con el comando <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code>, que nos permite añadir filas a una matriz o construirla desde cero (aunque lo habitual es tener cada variable en una columna y cada individuo en una fila).</p>
-<div class="sourceCode" id="cb952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb966"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">estaturas</span>, <span class="va">pesos</span><span class="op">)</span> <span class="co"># Construimos la matriz por filas</span></code></pre></div>
 <pre><code>##           [,1] [,2] [,3] [,4] [,5]
 ## estaturas  150  160  170  180  190
 ## pesos       60   70   80   90  100</code></pre>
 <p>Para practicar vamos a definir otro ejemplo, con las <strong>edades, teléfonos y códigos postales</strong> de una serie de individuos (fíjate que he metido adrede datos ausentes, ya que a veces no tendremos datos de algunas personas).</p>
-<div class="sourceCode" id="cb954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb968"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>, <span class="fl">24</span>, <span class="fl">56</span>, <span class="fl">31</span>, <span class="fl">20</span>, <span class="fl">87</span>, <span class="fl">73</span><span class="op">)</span> <span class="co"># vector numérico de longitud 7</span>
 <span class="va">tlf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">683839390</span>, <span class="fl">621539732</span>, <span class="fl">618211286</span>, <span class="cn">NA</span>, <span class="fl">914727164</span>, <span class="cn">NA</span><span class="op">)</span>
 <span class="va">cp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">33007</span>, <span class="fl">28019</span>, <span class="fl">37005</span>, <span class="fl">18003</span>, <span class="fl">33091</span>, <span class="fl">25073</span>, <span class="fl">17140</span><span class="op">)</span>
@@ -166,7 +166,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,]     87 914727164 25073
 ## [7,]     73        NA 17140</code></pre>
 <p>De nuevo tenemos una tabla de números: <mark><strong>una columna por variable y una fila por registro</strong></mark>. Los comandos <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> y <code><a href="https://rdrr.io/r/base/cbind.html">rbind()</a></code> no solo nos permiten crear matrices desde cero sino también <strong>añadir filas o columnas</strong> a matrices existentes.</p>
-<div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Añadimos una fila</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">datos_matriz</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">27</span>, <span class="fl">620125780</span>, <span class="fl">28051</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##      edades       tlf    cp
@@ -178,7 +178,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,]     87 914727164 25073
 ## [7,]     73        NA 17140
 ## [8,]     27 620125780 28051</code></pre>
-<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Añadimos una columna</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">datos_matriz</span>, <span class="st">"estaturas"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">155</span>, <span class="fl">170</span>, <span class="fl">181</span>, <span class="fl">174</span>, <span class="cn">NA</span>, <span class="fl">165</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##      edades       tlf    cp estaturas
@@ -190,25 +190,25 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,]     87 914727164 25073        NA
 ## [7,]     73        NA 17140       165</code></pre>
 <p>Como ves, ahora nuestros <mark><strong>datos están tabulados</strong></mark>, tienen dos dimensiones. ¿Cómo saber las <mark><strong>dimensiones</strong></mark> que tiene una matriz? Prueba a ejecutar la función <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code>.</p>
-<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 7 3</code></pre>
 <p>Fíjate que <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> devuelve un vector de 2 elementos (las dos dimensiones), por lo que para acceder al <strong>número de filas</strong> deberemos ejecutar <code>dim(x)[1]</code> (y <code>dim(x)[2]</code> para el <strong>número de columnas</strong>).</p>
-<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb964"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>También tenemos a nuestra disposición las funciones <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> y <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code>, que nos devuelven directamente el <mark><strong>número de filas y columnas</strong></mark>.</p>
-<div class="sourceCode" id="cb966"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb968"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Igual que a veces es útil generar un vector de elementos repetidos, también podemos definir una <mark><strong>matriz de números repetidos</strong></mark> (por ejemplo, de ceros), con la función <code><a href="https://rdrr.io/r/base/matrix.html">matrix()</a></code>, indicándole el número de filas y columnas.</p>
-<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fl">5</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="co"># 5 filas, 3 columnas, todo 0's</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    0    0    0
@@ -217,7 +217,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [4,]    0    0    0
 ## [5,]    0    0    0</code></pre>
 <p>También podemos definir una <mark><strong>matriz a partir de un vector numérico</strong></mark>, reorganizando los valores en forma de matriz (con una dimensión tal que <code>filas * columnas = longitud del vector</code>), sabiendo que los <strong>elementos se van colocando por columnas</strong> (primeros valores en la primera columna, de arriba a abajo).</p>
-<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># Matriz con el vector 1:5 con 5 columnas (ergo 3 filas)</span>
 <span class="va">z</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
@@ -226,7 +226,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [3,]    3    6    9   12   15</code></pre>
 <p> </p>
 <p>Dada una matriz también podemos «darle vuelta» (lo que se conoce como <mark><strong>matriz transpuesta</strong></mark>, donde filas pasan a ser columnas y viceversa) con la función <code><a href="https://rdrr.io/r/base/t.html">t()</a></code>.</p>
-<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span></code></pre></div>
 <pre><code>##      edades       tlf    cp
 ## [1,]     14        NA 33007
@@ -236,14 +236,14 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [5,]     20        NA 33091
 ## [6,]     87 914727164 25073
 ## [7,]     73        NA 17140</code></pre>
-<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb990"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span> <span class="co"># Matriz transpuesta</span></code></pre></div>
 <pre><code>##         [,1]      [,2]      [,3]      [,4]  [,5]      [,6]  [,7]
 ## edades    14        24        56        31    20        87    73
 ## tlf       NA 683839390 621539732 618211286    NA 914727164    NA
 ## cp     33007     28019     37005     18003 33091     25073 17140</code></pre>
 <p>Con las matrices sucede como con los vectores: cuando <mark><strong>aplicamos una operación aritmética</strong></mark>, se la estamos aplicando <mark><strong>elemento a elemento</strong></mark>, por ejemplo, dividir entre 5 o sumar una constante</p>
-<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span> <span class="op">/</span> <span class="fl">5</span></code></pre></div>
 <pre><code>##      edades       tlf     cp
 ## [1,]    2.8        NA 6601.4
@@ -253,7 +253,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [5,]    4.0        NA 6618.2
 ## [6,]   17.4 182945433 5014.6
 ## [7,]   14.6        NA 3428.0</code></pre>
-<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span> <span class="op">+</span> <span class="fl">3</span></code></pre></div>
 <pre><code>##      edades       tlf    cp
 ## [1,]     17        NA 33010
@@ -264,7 +264,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,]     90 914727167 25076
 ## [7,]     76        NA 17143</code></pre>
 <p>También podemos crear <strong>matrices de otros tipos de datos</strong>, siempre y cuando las columnas sean del <mark><strong>mismo tipo e igual longitud</strong></mark>, por ejemplo una matriz de caracteres o una matriz de valores lógicos</p>
-<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matriz de caracteres</span>
 <span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Javier"</span>, <span class="st">"Carlos"</span>, <span class="st">"María"</span>, <span class="st">"Paloma"</span><span class="op">)</span>
 <span class="va">apellidos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Álvarez"</span>, <span class="st">"García"</span>, <span class="st">"Pérez"</span>, <span class="st">"Liébana"</span><span class="op">)</span>
@@ -274,7 +274,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [2,] "Carlos" "García" 
 ## [3,] "María"  "Pérez"  
 ## [4,] "Paloma" "Liébana"</code></pre>
-<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matriz de valores lógicos</span>
 <span class="va">var1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">var2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
@@ -285,7 +285,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [3,] FALSE FALSE
 ## [4,] FALSE  TRUE
 ## [5,]  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">var1</span>, <span class="va">var2</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>##      var1 var2
 ## [1,]    2    2
@@ -298,18 +298,18 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 <span class="header-section-number">8.1.1</span> Acceder a elementos<a class="anchor" aria-label="anchor" href="#acceder-a-elementos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Si recuerdas para los vectores, usábamos el operador <code>[i]</code> para acceder al elemento i-ésimo.</p>
-<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">10</span>, <span class="fl">67</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>
 <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="co"># accedemos al tercer elemento </span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb990"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">]</span> <span class="co"># accedemos al tercer y quinto elemento</span></code></pre></div>
 <pre><code>## [1] 10 -1</code></pre>
-<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1006"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="co"># accedemos al primero, segundo, tercero, cuarto elemento</span></code></pre></div>
 <pre><code>## [1]  1  2 10 67</code></pre>
 <p>En el caso de las matrices la lógica será la misma: para <mark><strong>acceder a la fila i-ésima de la matriz</strong></mark> se usa el operador <code>[i, ]</code> (dejando libre el índice de la columna), mientras que para <strong>acceder a la columna j-ésima de la matriz</strong> se usaría el operador <code>[, j]</code> (dejando libre el índice de la fila). Para <strong>acceder conjuntamente al elemento <code>(i, j)</code></strong> se usa el operador <code>[i, j]</code>.</p>
-<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1008"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span></code></pre></div>
 <pre><code>##      edades       tlf    cp
 ## [1,]     14        NA 33007
@@ -319,19 +319,19 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [5,]     20        NA 33091
 ## [6,]     87 914727164 25073
 ## [7,]     73        NA 17140</code></pre>
-<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1010"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">]</span> <span class="co"># elemento (1, 3)</span></code></pre></div>
 <pre><code>##    cp 
 ## 33007</code></pre>
-<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1012"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span> <span class="co"># fila 1</span></code></pre></div>
 <pre><code>## edades    tlf     cp 
 ##     14     NA  33007</code></pre>
-<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span> <span class="co"># columna 3</span></code></pre></div>
 <pre><code>## [1] 33007 28019 37005 18003 33091 25073 17140</code></pre>
 <p>Si las <strong>columnas tienen nombres</strong> también podemos hacer uso de ellos para acceder a las columnas</p>
-<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"edades"</span>, <span class="st">"tlf"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>##      edades       tlf
 ## [1,]     14        NA
@@ -342,7 +342,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,]     87 914727164
 ## [7,]     73        NA</code></pre>
 <p>Incluso podemos <strong>asignar nombres a las filas de una matriz</strong> con <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code> y acceder a filas y columnas por nombres.</p>
-<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1018"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">datos_matriz</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Javi"</span>, <span class="st">"Laura"</span>, <span class="st">"Patricia"</span>, <span class="st">"Carlos"</span>,
                              <span class="st">"Juan"</span>, <span class="st">"Luis"</span>, <span class="st">"Carla"</span><span class="op">)</span>
 <span class="va">datos_matriz</span><span class="op">[</span><span class="st">"Javi"</span>, <span class="st">"edades"</span><span class="op">]</span></code></pre></div>
@@ -354,7 +354,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 </h3>
 <p>Normalmente, para explicar las operaciones con matrices en un lenguaje de programación al uso, necesitaríamos hablar de una herramienta llamada <strong>bucles</strong>. Lo mencionaremos más adelante pero no los vamos a necesitar de momento.</p>
 <p>Imagina que tuviésemos nuestra matriz de estaturas y pesos.</p>
-<div class="sourceCode" id="cb1006"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1020"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">estaturas</span>, <span class="va">pesos</span><span class="op">)</span>
 <span class="va">datos_matriz</span></code></pre></div>
 <pre><code>##      estaturas pesos
@@ -364,18 +364,18 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [4,]       180    90
 ## [5,]       190   100</code></pre>
 <p>¿Cómo podemos <mark><strong>aplicar una operación para cada una de las filas o columnas</strong></mark> de una matriz? Imagina que queremos obtener la <mark><strong>media de cada columna</strong></mark>: con la <mark><strong>función <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code></strong></mark> le indicaremos como argumentos a) la matriz; b) el sentido de la operación (<code>MARGIN = 1</code> hará la <strong>opearción por filas</strong>, <code>MARGIN = 2</code> hará la <strong>opearción por columnas</strong>); y c) la función a aplicar.</p>
-<div class="sourceCode" id="cb1008"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1022"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Media por columnas (MARGIN = 2)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">datos_matriz</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></code></pre></div>
 <pre><code>## estaturas     pesos 
 ##       170        80</code></pre>
 <p>El resultado es un vector de longitud 2 (la media de las estaturas y la media del peso). La <strong>misma operación la podemos realizar por filas</strong> con <code>MARGIN = 1</code> (aunque en este caso no tiene mucho sentido hacer la media de variables con magnitudes distintas)</p>
-<div class="sourceCode" id="cb1010"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1024"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Media por filas (MARGIN = 1)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">datos_matriz</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 105 115 125 135 145</code></pre>
 <p>Si la función a aplicar requiere de <strong>argumentos extras</strong>, por ejemplo indicarle que ignore los datos ausentes con <code>na.rm = TRUE</code>, se lo podemos indicar al final como argumento extra.</p>
-<div class="sourceCode" id="cb1012"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">edades</span>, <span class="va">tlf</span>, <span class="va">cp</span><span class="op">)</span> 
 
 <span class="co"># Media por columnas (MARGIN = 2) ignorando los ausentes</span>
@@ -395,7 +395,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 <li>Siempre que sean del <mark><strong>mismo tipo y longitud</strong></mark>, hemos aprendido a juntar en un mismo objeto (matrices) variables distintas (edades, estaturas, alturas, por ejemplo).</li>
 </ul>
 <p>Retomemos nuestra matriz de datos, en la que teníamos para cada individuo guardado las edades (<code>edades</code>), teléfonos (<code>tlf</code>) y códigos postales (<code>cp</code>), y probemos a ver que pasa cuando seleccionamos la columna de edades y le sumamos un año a todas las personas</p>
-<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span></code></pre></div>
 <pre><code>##      edades       tlf    cp
 ## [1,]     14        NA 33007
@@ -405,17 +405,17 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [5,]     20        NA 33091
 ## [6,]     87 914727164 25073
 ## [7,]     73        NA 17140</code></pre>
-<div class="sourceCode" id="cb1016"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Sumamos un año a todas las personas</span>
 <span class="va">datos_matriz</span><span class="op">[</span>, <span class="st">"edades"</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## [1] 15 25 57 32 21 88 74</code></pre>
 <p>¿Qué sucede si ahora <strong>añadimos una columna con los nombres</strong> de cada persona?</p>
-<div class="sourceCode" id="cb1018"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sonia"</span>, <span class="st">"Carla"</span>, <span class="st">"Pepito"</span>, <span class="st">"Carlos"</span>, <span class="st">"Lara"</span>, <span class="st">"Sandra"</span>, <span class="st">"Javi"</span><span class="op">)</span>
 <span class="va">datos_matriz_nueva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nombres</span>, <span class="va">datos_matriz</span><span class="op">)</span></code></pre></div>
 <p><mark><strong>¿Has visto lo que ha sucedido?</strong></mark></p>
 <p>Como una matriz <mark><strong>SOLO puede tener un tipo de dato</strong></mark> (todo números, todo texto, todo lógicas, etc), al añadir una variable de tipo texto, <code>R</code> se ha visto obligado a <strong>convertir los números en texto</strong> poniéndole comillas a los datos que tenemos: hemos roto la <mark><strong>integridad de los datos</strong></mark>. De hecho, como ahora los números con caracteres, <strong>no podremos sumar</strong> un año a cada persona como antes.</p>
-<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz_nueva</span><span class="op">[</span>, <span class="st">"edades"</span><span class="op">]</span> <span class="op">+</span> <span class="fl">1</span></code></pre></div>
 <pre><code>## Error in datos_matriz_nueva[, "edades"] + 1: argumento no-numérico para operador binario</code></pre>
 <p> </p>
@@ -425,14 +425,14 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 <li>Mismo tipo de dato (o todo números o todo caracteres, pero sin mezclar).</li>
 </ul>
 <p>Esto es bastante limitante ya que en la vida real nuestros <mark><strong>datos tendrán variables de todo tipo</strong></mark>. Veamos un ejemplo real: supongamos que queremos guardar de 7 personas las variables de texto <code>nombres</code> y <code>apellidos</code>.</p>
-<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Nombres</span>
 <span class="va">nombres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sonia"</span>, <span class="st">"Carla"</span>, <span class="st">"Pepito"</span>, <span class="st">"Carlos"</span>, <span class="st">"Lara"</span>, <span class="st">"Sandra"</span>, <span class="st">"Javi"</span><span class="op">)</span>
 
 <span class="co"># Apellidos</span>
 <span class="va">apellidos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"González"</span>, <span class="st">"Fernández"</span>, <span class="st">"Martínez"</span>, <span class="st">"Liébana"</span>, <span class="st">"García"</span>, <span class="st">"Ortiz"</span><span class="op">)</span></code></pre></div>
 <p>Hasta aquí no habría ningún problema ya que podemos crear una <strong>matriz de caracteres</strong>.</p>
-<div class="sourceCode" id="cb1022"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nombres</span>, <span class="va">apellidos</span><span class="op">)</span>
 <span class="va">matriz</span></code></pre></div>
 <pre><code>##      nombres  apellidos  
@@ -444,7 +444,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,] "Sandra" "García"   
 ## [7,] "Javi"   "Ortiz"</code></pre>
 <p>De esas 7 personas también disponemos información de si están o no casadas (representado en un valor lógico, <code>casado</code>) y algunos valores numéricos (<code>edades</code>, <code>cp</code> y <code>tlf</code>).</p>
-<div class="sourceCode" id="cb1024"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1038"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Código postal</span>
 <span class="va">cp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28019</span>, <span class="fl">28001</span>, <span class="fl">34005</span>, <span class="fl">18410</span>, <span class="fl">33007</span>, <span class="fl">34500</span>, <span class="fl">28017</span><span class="op">)</span>
 
@@ -457,7 +457,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 <span class="co"># Estado civil (no lo sabemos de una persona)</span>
 <span class="va">casado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Por último, vamos a añadir a cada persona una fecha de registro en el sistema (<code>fecha_creacion</code>, imagina que fuese la fecha de expedición del DNI).</p>
-<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Fecha de creación (fecha en el que esa persona entra en el sistema)</span>
 <span class="co"># lo convertimos a tipo fecha</span>
 <span class="va">fecha_creacion</span> <span class="op">&lt;-</span>
@@ -476,7 +476,7 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 <code>fecha_creacion</code> de tipo <strong>fecha</strong>.</li>
 </ul>
 <p>¿Qué sucedería si <mark><strong>intentamos mezclar todo en una matriz</strong></mark>? Vamos a unir las columnas con <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code>.</p>
-<div class="sourceCode" id="cb1026"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1040"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Juntamos todo en una matriz (juntamos por columnas)</span>
 <span class="va">datos_matriz</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nombres</span>, <span class="va">apellidos</span>, <span class="va">edades</span>, <span class="va">tlf</span>, <span class="va">cp</span>, <span class="va">casado</span>, <span class="va">fecha_creacion</span><span class="op">)</span>
@@ -490,17 +490,17 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## [6,] "Sandra" "García"    "19"   NA          "34500" "FALSE" "18450"       
 ## [7,] "Javi"   "Ortiz"     "50"   "688921344" "28017" "FALSE" "10984"</code></pre>
 <p>Dado que en una <strong>matriz solo podemos almacenar datos del mismo tipo</strong>, los <mark><strong>números los convierte a texto</strong></mark>, las variables lógicas las convierte a texto (<code>TRUE</code> ahora es un valor lógico, <code>"TRUE"</code> es un texto, como <code>"Pepito"</code>, sin significado lógico de verdadero/falso) y las fechas las ha convertido a texto (aunque las veas igual, ya no son de tipo de fecha, son texto y no podemos operar con ellas).</p>
-<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1042"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Días entre la primera y el segundo elemento de fecha de creación</span>
 <span class="va">fecha_creacion</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">fecha_creacion</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## Time difference of 143 days</code></pre>
-<div class="sourceCode" id="cb1030"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1044"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_matriz</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">]</span> <span class="op">-</span> <span class="va">datos_matriz</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">7</span><span class="op">]</span></code></pre></div>
 <pre><code>## Error in datos_matriz[1, 7] - datos_matriz[2, 7]: argumento no-numérico para operador binario</code></pre>
 <p> </p>
 <p>El último salto en nuestro camino hacia los conjuntos de datos en <code>R</code> será este: vamos a aprender como <mark><strong>juntar variables de distinto tipo</strong></mark>, sin cambiar su naturaleza, como lo haríamos en una tabla de Excel.</p>
 <p>El formato de tabla de datos en <code>R</code> que vamos a empezar a usar desde ya se llama <mark><strong><code>data.frame</code></strong></mark>, y no es más que una <mark><strong>colección de variables de igual longitud pero cada una puede ser de un tipo distinto</strong></mark>. Para crear un <code>data.frame</code> basta con usar la función <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>, pasándole como argumentos (separados por comas) las variables que queremos reunir.</p>
-<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1046"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Creamos nuestro primer data.frame</span>
 <span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">nombres</span>, <span class="va">apellidos</span>, <span class="va">edades</span>, <span class="va">tlf</span>, <span class="va">cp</span>,
                     <span class="va">casado</span>, <span class="va">fecha_creacion</span><span class="op">)</span>
@@ -513,11 +513,11 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## 5    Lara   Liébana     27        NA 33007   TRUE     2017-03-21
 ## 6  Sandra    García     19        NA 34500  FALSE     2020-07-07
 ## 7    Javi     Ortiz     50 688921344 28017  FALSE     2000-01-28</code></pre>
-<div class="sourceCode" id="cb1034"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "data.frame"</code></pre>
 <p>Al igual que con las matrices, podemos crearlas <strong>indicando además el nombre de las columnas</strong>.</p>
-<div class="sourceCode" id="cb1036"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1050"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"nombre"</span> <span class="op">=</span> <span class="va">nombres</span>, <span class="st">"apellido"</span> <span class="op">=</span> <span class="va">apellidos</span>, 
                     <span class="st">"edad"</span> <span class="op">=</span> <span class="va">edades</span>, <span class="st">"teléfono"</span> <span class="op">=</span> <span class="va">tlf</span>, 
                     <span class="st">"cp"</span> <span class="op">=</span> <span class="va">cp</span>, <span class="st">"casado"</span> <span class="op">=</span> <span class="va">casado</span>,
@@ -532,14 +532,14 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## 6 Sandra    García   19        NA 34500  FALSE     2020-07-07
 ## 7   Javi     Ortiz   50 688921344 28017  FALSE     2000-01-28</code></pre>
 <p><mark><strong>¡TENEMOS NUESTRO PRIMER CONJUNTO DE DATOS!</strong></mark> Puedes <mark><strong>visualizarlo de nuevo</strong></mark> escribiendo su nombre en consola o con la función <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code></p>
-<div class="sourceCode" id="cb1038"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1052"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">tabla</span><span class="op">)</span></code></pre></div>
 <div id="selección-de-columnas-y-filas" class="section level3">
 <h3>
 <span class="header-section-number">8.2.1</span> Selección de columnas y filas<a class="anchor" aria-label="anchor" href="#selecci%C3%B3n-de-columnas-y-filas"><i class="fas fa-link"></i></a>
 </h3>
 <p>Si tenemos un <code>data.frame</code> ya creado y queremos <mark><strong>añadir una columna</strong></mark> es tan simple como usar la función <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> que ya hemos visto para concatenar la columna. Vamos añadir por ejemplo una nueva variable, el <strong>número de hermanos</strong> de cada individuo.</p>
-<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Añadimos una nueva columna con nº de hermanos/as</span>
 <span class="va">hermanos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span>
 <span class="va">tabla</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">tabla</span>, <span class="st">"n_hermanos"</span> <span class="op">=</span> <span class="va">hermanos</span><span class="op">)</span>
@@ -553,14 +553,14 @@ Imagen/gráfica 8.1: Nuestra primera matriz de datos
 ## 6 Sandra    García   19        NA 34500  FALSE     2020-07-07          3
 ## 7   Javi     Ortiz   50 688921344 28017  FALSE     2000-01-28          0</code></pre>
 <p>Si queremos <mark><strong>acceder a una columna, fila o elemento en concreto</strong></mark>, los <code>data.frame</code> tienen las <strong>mismas ventajas que una matriz</strong>, así que bastaría con usar los mismos operadores.</p>
-<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span> <span class="co"># Accedemos a la tercera columna</span></code></pre></div>
 <pre><code>## [1] 45 67 NA 31 27 19 50</code></pre>
-<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla</span><span class="op">[</span><span class="fl">5</span>, <span class="op">]</span> <span class="co"># Accedemos a la quinta fila</span></code></pre></div>
 <pre><code>##   nombre apellido edad teléfono    cp casado fecha_registro n_hermanos
 ## 5   Lara  Liébana   27       NA 33007   TRUE     2017-03-21          2</code></pre>
-<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla</span><span class="op">[</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">]</span> <span class="co"># Accedemos a la tercera variable del quinto registro</span></code></pre></div>
 <pre><code>## [1] 27</code></pre>
 <p>Un <code>data.frame</code> <strong>no solo tiene las ventajas de una matriz</strong> si no que también tiene las <mark><strong>ventajas de una «base» de datos</strong></mark>. Por ejemplo, podemos <strong>aceder a las variables</strong> por el índice de columna que ocupan pero <mark><strong>también acceder a las columnas por su nombre</strong></mark>, poniendo el nombre de la tabla, el símbolo <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> y, con el tabulador, nos aparecerá un menú de columnas a elegir.</p>
@@ -576,17 +576,17 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <span class="header-section-number">8.2.2</span> Primer análisis de datos: arrestos en EE. UU.<a class="anchor" aria-label="anchor" href="#primer-an%C3%A1lisis-de-datos-arrestos-en-ee.-uu."><i class="fas fa-link"></i></a>
 </h3>
 <p>Además del conjunto de datos <code>tabla</code> que hemos construido artificialmente, vamos a instalar (sino lo hemos hecho nunca en este ordenador) un paquete muy útil en <code>R</code> llamado <code>{datasets}</code>.</p>
-<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Paquetes necesarios</span>
 <span class="co"># install.packages("datasets") # Descomentar si nunca se ha instalado</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span></code></pre></div>
 <p>Ahora si escribimos <code>datasets::</code> y pulsamos tabulador, se nos abre un desplegable con <mark><strong>distintos conjuntos de datos reales</strong></mark> para ser usados: el paquete <code>datasets</code> nos proporciona <code>data.frames</code> de prueba para que podamos usarlos.</p>
 <p>Vamos a jugar con el conjunto de datos <code><a href="https://rdrr.io/r/datasets/USArrests.html">datasets::USArrests</a></code>, que contiene <mark><strong>estadísticas de arrestos en 1973 (por cada 100 000 habitantes)</strong></mark> por agresión, asesinato y violación, en cada uno de los 50 estados de Estaods Unidos.</p>
-<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/USArrests.html">USArrests</a></span>
 <span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <p><mark><strong>¿Cómo visualizar la cabecera de la tabla?</strong></mark> Con la función <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
-<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <pre><code>##            Murder Assault UrbanPop Rape
 ## Alabama      13.2     236       58 21.2
@@ -596,12 +596,12 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 ## California    9.0     276       91 40.6
 ## Colorado      7.9     204       78 38.7</code></pre>
 <p><mark><strong>¿Cómo obtener el nombre de las variables?</strong></mark> Con la función <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
-<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1065"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Murder"   "Assault"  "UrbanPop" "Rape"</code></pre>
 <p>El conjunto contiene los 3 tipos de delito mencionados (para cada estado), y además el porcentaje de población que vive en áreas urbanas. Esto lo podemos saber ejecutando la <mark><strong>ayuda</strong></mark> con <code><a href="https://rdrr.io/r/datasets/USArrests.html">? datasets::USArrests</a></code>.</p>
 <p><mark><strong>¿Cómo obtener el nombre de las filas (de los estados)?</strong></mark> Con la función <code><a href="https://rdrr.io/r/base/row.names.html">row.names()</a></code>.</p>
-<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"      
 ##  [5] "California"     "Colorado"       "Connecticut"    "Delaware"      
@@ -617,24 +617,24 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 ## [45] "Vermont"        "Virginia"       "Washington"     "West Virginia" 
 ## [49] "Wisconsin"      "Wyoming"</code></pre>
 <p><mark><strong>¿Cómo averiguar el número de registros y el número de variables?</strong></mark> Con las funciones <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code>, <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> y <code><a href="https://rdrr.io/r/base/nrow.html">ncol()</a></code>.</p>
-<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 50  4</code></pre>
-<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 50</code></pre>
-<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p><mark><strong>¿Cómo seleccionar solo las columnas <code>Murder</code> y <code>Assault</code> para el segundo y el décimo estado?</strong></mark></p>
-<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">USArrests</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Murder"</span>, <span class="st">"Assault"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>##         Murder Assault
 ## Alaska    10.0     263
 ## Georgia   17.4     211</code></pre>
 <p> </p>
 <p><mark><strong>¿Cómo cambiar el nombre de las variables?</strong></mark> Con la función <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>.</p>
-<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"asesinato"</span>, <span class="st">"agresion"</span>,
                       <span class="st">"pobl_urbana"</span>, <span class="st">"violacion"</span><span class="op">)</span></code></pre></div>
 <p> </p>
@@ -649,7 +649,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <code>select</code>: un vector que contenga el nombre de las <mark><strong>columnas que queremos seleccionar</strong></mark> (a lo mejor solo queremos filtrar por filas pero quizás también por columnas).</li>
 </ul>
 <p>Por ejemplo, vamos a <strong>seleccionar solo los delitos de asesinato de aquellos estados cuyo porcentaje de población urbana sea superior al 70%</strong>.</p>
-<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">USArrests</span>, subset <span class="op">=</span> <span class="va">pobl_urbana</span> <span class="op">&gt;</span> <span class="fl">70</span>,
        select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"asesinato"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##               asesinato
@@ -673,7 +673,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 ## Utah                3.2
 ## Washington          4.0</code></pre>
 <p>Como sucedía en otros contextos, podemos combinar condiciones lógicas, seleccionando por ejemplo <strong>aquellos estados cuyo porcentaje de población urbana sea inferior al 70%</strong> y donde las <strong>agresiones sean superiores a 250 por cada 100 000 habitantes</strong>, pero luego seleccionando solo dos variables.</p>
-<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">USArrests</span>, subset <span class="op">=</span> <span class="va">pobl_urbana</span> <span class="op">&lt;</span> <span class="fl">70</span> <span class="op">&amp;</span> <span class="va">agresion</span> <span class="op">&gt;</span> <span class="fl">250</span>,
        select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"asesinato"</span>, <span class="st">"violacion"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##                asesinato violacion
@@ -700,7 +700,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 </h2>
 <p>(haz click en las flechas para ver soluciones)</p>
 <details><p><summary><strong>Ejercicio 1</strong>: modifica el código para definir una matriz <code>x</code> de ceros de 3 filas y 7 columnas.</summary></p>
-<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1082"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Matriz</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="va">x</span></code></pre></div>
@@ -708,7 +708,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Matriz</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">7</span><span class="op">)</span>
 <span class="va">x</span></code></pre></div>
@@ -721,7 +721,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="fl">5</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
 ## [1,]  0.2  0.2  0.2  0.2  0.2  0.2  0.2
@@ -732,7 +732,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Transpuesta</span>
 <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
@@ -743,19 +743,19 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 ## [5,]    0    0    0
 ## [6,]    0    0    0
 ## [7,]    0    0    0</code></pre>
-<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Dimensiones transpuesta: pasa de ser 3x7 a 7x3</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 7 3</code></pre>
-<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># número de columnas de la transpuesta</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="co"># número de filas de la transpuesta</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 4</strong>: el siguiente código define una matriz de dimensiones <code>4 x 3</code> y calcula la suma por columnas. Modifica el código para que realice la suma por filas.</summary></p>
-<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Matriz</span>
 <span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
@@ -766,7 +766,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Matriz</span>
 <span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
@@ -778,18 +778,18 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Matriz</span>
 <span class="va">matriz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
 <span class="co">#  media de todos</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">matriz</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 6.5</code></pre>
-<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Media por filas (MARGIN = 1 ya que es una operación por filas)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 5 6 7 8</code></pre>
-<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Media por filas (MARGIN = 2 ya que es una operación por filas)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz</span>, MARGIN <span class="op">=</span> <span class="fl">2</span>, FUN <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1]  2.5  6.5 10.5</code></pre>
@@ -799,7 +799,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Ozone"   "Solar.R" "Wind"    "Temp"    "Month"   "Day"</code></pre>
@@ -809,19 +809,19 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Dimensiones</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 153   6</code></pre>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 153</code></pre>
-<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 8</strong>: modifica el código inferior para que nos filtre solo los datos del mes de julio.</summary></p>
-<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos filas</span>
 <span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">.</span>, subset <span class="op">=</span> <span class="va">Month</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span>
 <span class="va">filtro_fila</span></code></pre></div>
@@ -829,7 +829,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos filas</span>
 <span class="va">filtro_fila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="va">Month</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span>
 <span class="va">filtro_fila</span></code></pre></div>
@@ -870,7 +870,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos filas</span>
 <span class="va">filtro_fila</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="op">!</span><span class="op">(</span><span class="va">Month</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -969,14 +969,14 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 ## 153    20     223 11.5   68     9  30</code></pre>
 </details><p> </p>
 <details><p><summary><strong>Ejercicio 10</strong>: modifica el siguiente código para quedarte solo con las variable <code>Ozone</code> y <code>Temp</code>.</summary></p>
-<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filtro_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">.</span>,  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ozone"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">filtro_col</span></code></pre></div>
 <p></p>
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos columnas</span>
 <span class="va">filtro_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>,  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ozone"</span>, <span class="st">"Temp"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">filtro_col</span></code></pre></div>
@@ -1139,7 +1139,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Todo de una vez</span>
 <span class="va">filtro</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">airquality</span>, subset <span class="op">=</span> <span class="va">Month</span> <span class="op">==</span> <span class="fl">8</span>,
                  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Temp"</span>, <span class="st">"Wind"</span><span class="op">)</span><span class="op">)</span>
@@ -1181,11 +1181,11 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filas borradas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">filtro</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 122</code></pre>
-<div class="sourceCode" id="cb1111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Cambiamos nombres a castellano del conjunto filtrado</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">filtro</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"temperatura"</span>, <span class="st">"viento"</span><span class="op">)</span></code></pre></div>
 </details><p> </p>
@@ -1193,7 +1193,7 @@ Imagen/gráfica 8.2: Menú desplegable de variables (columnas) de un data.frame.
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Construimos las fechas (pegamos año-mes-día con "-")</span>
 <span class="va">fechas</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"1973"</span>, <span class="va">airquality</span><span class="op">$</span><span class="va">Month</span>, <span class="va">airquality</span><span class="op">$</span><span class="va">Day</span>,

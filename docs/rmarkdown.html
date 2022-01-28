@@ -101,7 +101,7 @@
 </ul>
 </div>
 <p>Si se tuvieran que destacar una lista <strong>fortalezas</strong> de <code>R</code> frente a <code>Python</code>, creo que dos estarían en los primeros puestos. La primera sería las opciones de visualización y procesamiento de datos (y su sencillez). Y la segunda, para mí, es sin duda sus <mark><strong>opciones para generar informes</strong></mark>, incluso <mark><strong>libros, webs, apuntes y hasta diapositivas</strong></mark> (tienes algunos de los paquetes en la lista de recursos). Y la base de todos ellos es el paquete <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>.</p>
-<div class="sourceCode" id="cb1554"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1568"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"rmarkdown"</span><span class="op">)</span></code></pre></div>
 <p><mark><strong>¿Cuál es la ventaja de generarlos desde <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a>?</strong></mark></p>
 <p>La más obvia es que, al hacerlo desde <code>RStudio</code>, puedes generar un informe o una presentación de unos datos sin salirte del entorno de programación en el que estás trabajando: <mark><strong>analizar los datos, resumirlos y comunicarlos desde el mismo entorno de trabajo</strong></mark>. La segunda ventaja es que nos va a permitir <mark><strong>integrar fácilmente código <code>R</code></strong></mark>, de forma que no solo podremos integrar las salidas de nuestro trabajo sino también el código con el que lo hemos generado.</p>
@@ -128,14 +128,14 @@
 <span class="header-section-number">18.2</span> Creando nuestro primer informe<a class="anchor" aria-label="anchor" href="#creando-nuestro-primer-informe"><i class="fas fa-link"></i></a>
 </h2>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-543"></span>
+<span style="display:block;" id="fig:unnamed-chunk-552"></span>
 <img src="img/file_rmarkdown.jpg" alt="Creando el primer fichero .rmd" width="40%"><p class="caption">
 Imagen/gráfica 18.1: Creando el primer fichero .rmd
 </p>
 </div>
 <p>En la imagen anterior tienes el menú para crear el primero fichero con extensión <code>.rmd</code> (la extensión de los archivos <code>R Markdown</code>). Tras hacer click en el botón <code>File &lt;&lt; New File &lt;&lt; R Markdown</code>, nos aparecerá el <strong>siguiente menú</strong>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-544"></span>
+<span style="display:block;" id="fig:unnamed-chunk-553"></span>
 <img src="img/new_rmd.jpg" alt="Creando el primer fichero .rmd" width="50%"><p class="caption">
 Imagen/gráfica 18.2: Creando el primer fichero .rmd
 </p>
@@ -150,7 +150,7 @@ Imagen/gráfica 18.2: Creando el primer fichero .rmd
 </ul>
 <p>De momento <mark><strong>dejaremos marcado el formato HTML</strong></mark> que viene por defecto, y escribiremos el título de nuestro documento. Tras ello tendremos <mark><strong>nuestro archivo .Rmd</strong></mark> (fíjate arriba que ya no es un script <code>.R</code> como los que hemos abierto hasta ahora)</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-545"></span>
+<span style="display:block;" id="fig:unnamed-chunk-554"></span>
 <img src="img/new_rmd.jpg" alt="Creando el primer fichero .rmd" width="50%"><p class="caption">
 Imagen/gráfica 18.3: Creando el primer fichero .rmd
 </p>
@@ -176,15 +176,15 @@ Imagen/gráfica 18.3: Creando el primer fichero .rmd
 <li>
 <code>output</code>: <code>html_document</code> (le indicamos el <mark><strong>formato de salida</strong></mark>, en este caso un documento <code>HTML</code>)</li>
 </ul>
-<div class="sourceCode" id="cb1555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1555-1" data-line-number="1"><span class="op">---</span></a>
-<a class="sourceLine" id="cb1555-2" data-line-number="2">title<span class="op">:</span><span class="st"> "Probando Probando"</span></a>
-<a class="sourceLine" id="cb1555-3" data-line-number="3">author<span class="op">:</span><span class="st"> "Señor X"</span></a>
-<a class="sourceLine" id="cb1555-4" data-line-number="4">date<span class="op">:</span><span class="st"> "11/7/2014"</span></a>
-<a class="sourceLine" id="cb1555-5" data-line-number="5">output<span class="op">:</span><span class="st"> </span>html_document</a>
-<a class="sourceLine" id="cb1555-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb1569"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1569-1" data-line-number="1"><span class="op">---</span></a>
+<a class="sourceLine" id="cb1569-2" data-line-number="2">title<span class="op">:</span><span class="st"> "Probando Probando"</span></a>
+<a class="sourceLine" id="cb1569-3" data-line-number="3">author<span class="op">:</span><span class="st"> "Señor X"</span></a>
+<a class="sourceLine" id="cb1569-4" data-line-number="4">date<span class="op">:</span><span class="st"> "11/7/2014"</span></a>
+<a class="sourceLine" id="cb1569-5" data-line-number="5">output<span class="op">:</span><span class="st"> </span>html_document</a>
+<a class="sourceLine" id="cb1569-6" data-line-number="6"><span class="op">---</span></a></code></pre></div>
 <p>Tras tunear nuestra cabecera <strong>borraremos todo lo que viene después</strong> para empezar desde cero.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-547"></span>
+<span style="display:block;" id="fig:unnamed-chunk-556"></span>
 <img src="img/rmd_vacio.jpg" alt="Fichero .Rmd vacío, solo con la cabecera" width="65%"><p class="caption">
 Imagen/gráfica 18.4: Fichero .Rmd vacío, solo con la cabecera
 </p>
@@ -201,7 +201,7 @@ Imagen/gráfica 18.4: Fichero .Rmd vacío, solo con la cabecera
 </blockquote>
 <p>Una vez que hemos escrito el textos vamos a <mark><strong>guardar el archivo <code>.Rmd</code></strong></mark> haciendo click en el botón Guardar (yo he llamado al archivo <code>primer_rmarkdown.Rmd</code>). Tras guardar el documento, <mark><strong>tejeremos</strong></mark> nuestro documento haciendo click en el <mark><strong>botón Knit</strong></mark>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-548"></span>
+<span style="display:block;" id="fig:unnamed-chunk-557"></span>
 <img src="img/primer_html_rmd.jpg" alt="Primer informe html" width="70%"><p class="caption">
 Imagen/gráfica 18.5: Primer informe html
 </p>
@@ -213,14 +213,14 @@ Imagen/gráfica 18.5: Primer informe html
 <li><p>Vamos añadir un <mark><strong>enlace</strong></mark>, <a href="https://www.ucm.es/eci//cursoecic02-pre" class="uri">https://www.ucm.es/eci//cursoecic02-pre</a>, asociándolo al título <code>«Analizando datos, visualizando información, contando historias»</code>. Para ello el título lo ponemos entre corchetes y justo detrás el enlace entre paréntesis <code>[«Analizando datos, visualizando información, contando historias»](https://www.ucm.es/eci//cursoecic02-pre)</code></p></li>
 </ul>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-549"></span>
+<span style="display:block;" id="fig:unnamed-chunk-558"></span>
 <img src="img/rmd_2.jpg" alt="Tuneando nuestro primer informe html" width="70%"><p class="caption">
 Imagen/gráfica 18.6: Tuneando nuestro primer informe html
 </p>
 </div>
 <p>Tras hacerlo volvemos a clickar en <code>Knit</code> para tejer el informe y obtendremos la siguiente salida.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-550"></span>
+<span style="display:block;" id="fig:unnamed-chunk-559"></span>
 <img src="img/html_rmd_2.jpg" alt="Salida del informe html" width="70%"><p class="caption">
 Imagen/gráfica 18.7: Salida del informe html
 </p>
@@ -233,27 +233,27 @@ Imagen/gráfica 18.7: Salida del informe html
 </h3>
 <p>Para <mark><strong>añadir código <code>R</code></strong></mark> debemos crear nuestras <mark><strong>cajas de código llamadas <em>chunks</em></strong></mark>: altos en el camino en nuestro texto <em>markdown</em> donde podremos incluir código. Para incluir uno deberá de ir encabezado de la siguiente forma.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-551"></span>
+<span style="display:block;" id="fig:unnamed-chunk-560"></span>
 <img src="img/chunk_1.jpg" alt="Encabezado/final del chunk" width="70%"><p class="caption">
 Imagen/gráfica 18.8: Encabezado/final del chunk
 </p>
 </div>
 <p>Dentro de dicha cajita (que tiene ahora otro color en el documento) escribiremos <mark><strong>código <code>R</code></strong></mark>, como lo veníamos haciendo hasta ahora. Vamos por ejemplo a definir dos variables y su suma de la siguiente manera, escribiendo dicho código en nuestro <code>.Rmd</code> (dentro de ese <em>chunk</em>)</p>
-<div class="sourceCode" id="cb1556"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1570"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Código R</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
 <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-553"></span>
+<span style="display:block;" id="fig:unnamed-chunk-562"></span>
 <img src="img/rmd_3.jpg" alt="Primer chunk" width="70%"><p class="caption">
 Imagen/gráfica 18.9: Primer chunk
 </p>
 </div>
 <p>Como ves dentro de esos <em>chunks</em> puedes <strong>comentar código</strong> como siempre con <code>#</code> (ahora veremos que hace <code>#</code> fuera de esas cajas de código). Tras hacerlo tejemos de nuevo y obtenemos ahora un documento que tiene una caja de código y su salida, en este caso <code>x + y</code>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-554"></span>
+<span style="display:block;" id="fig:unnamed-chunk-563"></span>
 <img src="img/html_rmd_3.jpg" alt="Salida del html con el primer chunk" width="70%"><p class="caption">
 Imagen/gráfica 18.10: Salida del html con el primer chunk
 </p>
@@ -261,14 +261,14 @@ Imagen/gráfica 18.10: Salida del html con el primer chunk
 <p>Somos capaces de escribir en un mismo documento texto con cierto formato, código <code>R</code> y la salida del resultado, permitiéndonos generar informes (ya veremos como incluir gráficas). De hecho, lo más práctico para <mark><strong>tomar apuntes de <code>R</code></strong></mark> es ir anotando lo aprendido en un archivo <code>.Rmd</code>, permitiéndonos incluir explicaciones a nuestros códigos y salidas.</p>
 <p>Los <em>chunk</em> de código pueden tener un <mark><strong>nombre o etiqueta</strong></mark>, de forma que podamos referenciarlos de nuevo para no repetir código. Si la etiqueta es por ejemplo <code>chunk-1</code> (no se pueden poner espacios, preferiblemente solo letras y guiones), se añadirá como se muestra en la imagen inferior.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-555"></span>
+<span style="display:block;" id="fig:unnamed-chunk-564"></span>
 <img src="img/chunk_repe_tag.jpg" alt="Etiquetando un chunk y reciclándolo" width="70%"><p class="caption">
 Imagen/gráfica 18.11: Etiquetando un chunk y reciclándolo
 </p>
 </div>
 <p>Así queda nuestra salida: con un <em>chunk</em> que hemos escrito y otro que no hemos tenido que escribir ya que hemos usado la etiqueta del que ya teníamos escrito.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-556"></span>
+<span style="display:block;" id="fig:unnamed-chunk-565"></span>
 <img src="img/html_tag_chunk.jpg" alt="Salida tras etiquetar un chunk y reciclándolo" width="70%"><p class="caption">
 Imagen/gráfica 18.12: Salida tras etiquetar un chunk y reciclándolo
 </p>
@@ -286,34 +286,34 @@ Imagen/gráfica 18.12: Salida tras etiquetar un chunk y reciclándolo
 <li>Creamos una subsección que se titule <code>## Chunks de código</code> donde incluiremos los dos <em>chunks</em> que tenemos hasta ahora.</li>
 </ul>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-557"></span>
+<span style="display:block;" id="fig:unnamed-chunk-566"></span>
 <img src="img/secciones_rmd.jpg" alt="Secciones en el archivo .rmd" width="70%"><p class="caption">
 Imagen/gráfica 18.13: Secciones en el archivo .rmd
 </p>
 </div>
 <p>De esta forma podemos <mark><strong>organizar nuestro documento en secciones y subsecciones</strong></mark>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-558"></span>
+<span style="display:block;" id="fig:unnamed-chunk-567"></span>
 <img src="img/secciones_rmd.jpg" alt="Secciones en la salida" width="70%"><p class="caption">
 Imagen/gráfica 18.14: Secciones en la salida
 </p>
 </div>
 <p>Además podemos incluir tras el título (y entre llaves <code>{}</code>) etiquetas (con la almohadilla <code>{#etiqueta}</code>) para luego referenciar dichas secciones en el documento. Vamos a etiqueta <code># Primer informe {#seccion-1}</code> y <code>## Chunks de código {#chunks}</code>. Añadiremos una nueva sección donde haremos las referencias a dichas secciones como <code>[Sección](#seccion-1)</code> y <code>[Subsección](#chunks)</code>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-559"></span>
+<span style="display:block;" id="fig:unnamed-chunk-568"></span>
 <img src="img/ref_rmd.jpg" alt="Referencias a secciones y subsecciones" width="70%"><p class="caption">
 Imagen/gráfica 18.15: Referencias a secciones y subsecciones
 </p>
 </div>
 <p>También podemos organizar nuestro código creando listas, usando <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> como ítems.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-560"></span>
+<span style="display:block;" id="fig:unnamed-chunk-569"></span>
 <img src="img/items_rmd.jpg" alt="Creando ítems en el rmd" width="70%"><p class="caption">
 Imagen/gráfica 18.16: Creando ítems en el rmd
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-561"></span>
+<span style="display:block;" id="fig:unnamed-chunk-570"></span>
 <img src="img/items_html.jpg" alt="Salida tras crear ítems" width="70%"><p class="caption">
 Imagen/gráfica 18.17: Salida tras crear ítems
 </p>
@@ -325,26 +325,26 @@ Imagen/gráfica 18.17: Salida tras crear ítems
 </h3>
 <p>No sé si te has fijado que <mark><strong>en cada chunk aparece una botón de <em>play</em></strong></mark>: pulsándolo podemos tener la ejecución y salida de cada chunk en nuestro <code>.Rmd</code>, sin tener que esperar a «tejer» (con <code>Knit</code>) todo el documento para <strong>ver lo que vamos ejecutando</strong>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-562"></span>
+<span style="display:block;" id="fig:unnamed-chunk-571"></span>
 <img src="img/play_chunk.jpg" alt="Ejecutar chunk a chunk" width="70%"><p class="caption">
 Imagen/gráfica 18.18: Ejecutar chunk a chunk
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-563"></span>
+<span style="display:block;" id="fig:unnamed-chunk-572"></span>
 <img src="img/chunk_ejecutado.jpg" alt="Chunk ejecutado" width="70%"><p class="caption">
 Imagen/gráfica 18.19: Chunk ejecutado
 </p>
 </div>
 <p>Además podemos <mark><strong>incluir código <code>R</code></strong></mark> dentro de la línea de texto. Por ejemplo, podemos definir una variable para luego mostarla como 3 (en lugar de mostrar el texto <code>x</code> ejecuta el código <code>R</code> mostrando la variable).</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-564"></span>
+<span style="display:block;" id="fig:unnamed-chunk-573"></span>
 <img src="img/codigo_inline_rmd.jpg" alt="Código inline" width="70%"><p class="caption">
 Imagen/gráfica 18.20: Código inline
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-565"></span>
+<span style="display:block;" id="fig:unnamed-chunk-574"></span>
 <img src="img/codigo_inline_html.jpg" alt="Salida del código inline" width="70%"><p class="caption">
 Imagen/gráfica 18.21: Salida del código inline
 </p>
@@ -369,13 +369,13 @@ Imagen/gráfica 18.21: Salida del código inline
 </h3>
 <p>Por último en este primer documento vamos a añadir una subsección <code>## Variables y ecuaciones</code> donde añadiremos un <em>chunk</em> asignando la suma <code>x + y</code> a una variable <code>z</code>, escribiendo antes en texto el nombre de la variable (<code>z</code>) y la fórmula (<code>$z = x + y$</code>).</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-566"></span>
+<span style="display:block;" id="fig:unnamed-chunk-575"></span>
 <img src="img/variables_rmd.jpg" alt="Variables y ecuaciones" width="70%"><p class="caption">
 Imagen/gráfica 18.22: Variables y ecuaciones
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-567"></span>
+<span style="display:block;" id="fig:unnamed-chunk-576"></span>
 <img src="img/variables_html.jpg" alt="Salida" width="70%"><p class="caption">
 Imagen/gráfica 18.23: Salida
 </p>
@@ -392,41 +392,41 @@ Imagen/gráfica 18.23: Salida
 <span class="header-section-number">18.3.1</span> Personalizando la cabecera<a class="anchor" aria-label="anchor" href="#personalizando-la-cabecera"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una primera personalización en la cabecera puede ser <mark><strong>automatizar la fecha</strong></mark>, indicándole que sea la fecha del momento en el que se genere el informe con <code><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date()</a></code></p>
-<div class="sourceCode" id="cb1558"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1572"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2022-01-28"</code></pre>
-<div class="sourceCode" id="cb1560"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1574"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d de %B de %Y'</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "28 de January de 2022"</code></pre>
 <p>El código <code>R</code> podemos introducirlo en la cabecera entre las comillas.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-569"></span>
+<span style="display:block;" id="fig:unnamed-chunk-578"></span>
 <img src="img/cabecera_yaml_2.jpg" alt="Personalizando cabecera" width="70%"><p class="caption">
 Imagen/gráfica 18.24: Personalizando cabecera
 </p>
 </div>
 <p>También podemos indicarle en la cabecera que <mark><strong>añadamos un índice</strong></mark> (toc, por sus siglas en inglés) al documento con <code>toc: true</code>.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-570"></span>
+<span style="display:block;" id="fig:unnamed-chunk-579"></span>
 <img src="img/toc_cabecera.jpg" alt="Índice" width="70%"><p class="caption">
 Imagen/gráfica 18.25: Índice
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-571"></span>
+<span style="display:block;" id="fig:unnamed-chunk-580"></span>
 <img src="img/index_html.jpg" alt="Índice" width="70%"><p class="caption">
 Imagen/gráfica 18.26: Índice
 </p>
 </div>
 <p>Además con <code>toc_depth:</code> podemos indicarle la profundidad de ese índice (hasta donde queremos que indexe, si subsecciones, subsubsecciones, etc), y <code>number_sections: true</code> nos hará que las secciones se numeren.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-572"></span>
+<span style="display:block;" id="fig:unnamed-chunk-581"></span>
 <img src="img/numerar_indice.jpg" alt="Numeración de secciones" width="70%"><p class="caption">
 Imagen/gráfica 18.27: Numeración de secciones
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-573"></span>
+<span style="display:block;" id="fig:unnamed-chunk-582"></span>
 <img src="img/numerar_indice_html.jpg" alt="Numeración de secciones" width="70%"><p class="caption">
 Imagen/gráfica 18.28: Numeración de secciones
 </p>
@@ -437,47 +437,47 @@ Imagen/gráfica 18.28: Numeración de secciones
 <span class="header-section-number">18.3.2</span> Estilos<a class="anchor" aria-label="anchor" href="#estilos"><i class="fas fa-link"></i></a>
 </h3>
 <p>Al inicio del documento podemos incluir estilos .css (o incluir un archivo externo). Puedes ver la opciones en el archivo <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd">segundo_rmarkdown.Rmd</a> en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/segundo_rmarkdown.Rmd</a>.</p>
-<div class="sourceCode" id="cb1562"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1562-1" data-line-number="1"><span class="op">&lt;</span>style<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb1562-2" data-line-number="2"><span class="co">#TOC {</span></a>
-<a class="sourceLine" id="cb1562-3" data-line-number="3"><span class="st">  </span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1562-4" data-line-number="4"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1562-5" data-line-number="5">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>16px; </a>
-<a class="sourceLine" id="cb1562-6" data-line-number="6">  border<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1562-7" data-line-number="7"><span class="er">}</span></a>
-<a class="sourceLine" id="cb1562-8" data-line-number="8"><span class="co">#header {</span></a>
-<a class="sourceLine" id="cb1562-9" data-line-number="9">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
-<a class="sourceLine" id="cb1562-10" data-line-number="10"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1562-11" data-line-number="11"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
-<a class="sourceLine" id="cb1562-12" data-line-number="12">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1562-13" data-line-number="13">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
-<a class="sourceLine" id="cb1562-14" data-line-number="14"><span class="er">}</span></a>
-<a class="sourceLine" id="cb1562-15" data-line-number="15">body {</a>
-<a class="sourceLine" id="cb1562-16" data-line-number="16">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1562-17" data-line-number="17"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1562-18" data-line-number="18">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1562-19" data-line-number="19">}</a>
-<a class="sourceLine" id="cb1562-20" data-line-number="20">pre {</a>
-<a class="sourceLine" id="cb1562-21" data-line-number="21">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1562-22" data-line-number="22"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F8F8FF;</span></a>
-<a class="sourceLine" id="cb1562-23" data-line-number="23">}</a>
-<a class="sourceLine" id="cb1562-24" data-line-number="24">h1.title {</a>
-<a class="sourceLine" id="cb1562-25" data-line-number="25">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
-<a class="sourceLine" id="cb1562-26" data-line-number="26"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1562-27" data-line-number="27"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
-<a class="sourceLine" id="cb1562-28" data-line-number="28">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1562-29" data-line-number="29">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
-<a class="sourceLine" id="cb1562-30" data-line-number="30">}</a>
-<a class="sourceLine" id="cb1562-31" data-line-number="31">h4.author {</a>
-<a class="sourceLine" id="cb1562-32" data-line-number="32">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
-<a class="sourceLine" id="cb1562-33" data-line-number="33"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1562-34" data-line-number="34">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1562-35" data-line-number="35">}</a>
-<a class="sourceLine" id="cb1562-36" data-line-number="36">h4.date {</a>
-<a class="sourceLine" id="cb1562-37" data-line-number="37">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;  </span></a>
-<a class="sourceLine" id="cb1562-38" data-line-number="38"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
-<a class="sourceLine" id="cb1562-39" data-line-number="39">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
-<a class="sourceLine" id="cb1562-40" data-line-number="40">}</a>
-<a class="sourceLine" id="cb1562-41" data-line-number="41"><span class="op">&lt;</span><span class="er">/</span>style<span class="op">&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb1576"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1576-1" data-line-number="1"><span class="op">&lt;</span>style<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb1576-2" data-line-number="2"><span class="co">#TOC {</span></a>
+<a class="sourceLine" id="cb1576-3" data-line-number="3"><span class="st">  </span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1576-4" data-line-number="4"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1576-5" data-line-number="5">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>16px; </a>
+<a class="sourceLine" id="cb1576-6" data-line-number="6">  border<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1576-7" data-line-number="7"><span class="er">}</span></a>
+<a class="sourceLine" id="cb1576-8" data-line-number="8"><span class="co">#header {</span></a>
+<a class="sourceLine" id="cb1576-9" data-line-number="9">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
+<a class="sourceLine" id="cb1576-10" data-line-number="10"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1576-11" data-line-number="11"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
+<a class="sourceLine" id="cb1576-12" data-line-number="12">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1576-13" data-line-number="13">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
+<a class="sourceLine" id="cb1576-14" data-line-number="14"><span class="er">}</span></a>
+<a class="sourceLine" id="cb1576-15" data-line-number="15">body {</a>
+<a class="sourceLine" id="cb1576-16" data-line-number="16">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1576-17" data-line-number="17"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1576-18" data-line-number="18">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1576-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb1576-20" data-line-number="20">pre {</a>
+<a class="sourceLine" id="cb1576-21" data-line-number="21">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1576-22" data-line-number="22"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F8F8FF;</span></a>
+<a class="sourceLine" id="cb1576-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb1576-24" data-line-number="24">h1.title {</a>
+<a class="sourceLine" id="cb1576-25" data-line-number="25">  color<span class="op">:</span><span class="st"> </span><span class="co">#F08080;</span></a>
+<a class="sourceLine" id="cb1576-26" data-line-number="26"><span class="st">  </span>background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1576-27" data-line-number="27"><span class="st">  </span>opacity<span class="op">:</span><span class="st"> </span><span class="fl">0.6</span>;</a>
+<a class="sourceLine" id="cb1576-28" data-line-number="28">  font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1576-29" data-line-number="29">  font<span class="op">-</span>size<span class="op">:</span><span class="st"> </span>20px;</a>
+<a class="sourceLine" id="cb1576-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb1576-31" data-line-number="31">h4.author {</a>
+<a class="sourceLine" id="cb1576-32" data-line-number="32">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;</span></a>
+<a class="sourceLine" id="cb1576-33" data-line-number="33"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1576-34" data-line-number="34">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1576-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb1576-36" data-line-number="36">h4.date {</a>
+<a class="sourceLine" id="cb1576-37" data-line-number="37">  color<span class="op">:</span><span class="st"> </span><span class="co">#708090;  </span></a>
+<a class="sourceLine" id="cb1576-38" data-line-number="38"><span class="st">  </span>font<span class="op">-</span>family<span class="op">:</span><span class="st"> </span>Calibri;</a>
+<a class="sourceLine" id="cb1576-39" data-line-number="39">  background<span class="op">-</span>color<span class="op">:</span><span class="st"> </span><span class="co">#F5F5F5;</span></a>
+<a class="sourceLine" id="cb1576-40" data-line-number="40">}</a>
+<a class="sourceLine" id="cb1576-41" data-line-number="41"><span class="op">&lt;</span><span class="er">/</span>style<span class="op">&gt;</span></a></code></pre></div>
 </div>
 <div id="mostrando-imágenes" class="section level3">
 <h3>
@@ -485,13 +485,13 @@ Imagen/gráfica 18.28: Numeración de secciones
 </h3>
 <p>Por último, con <code><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">knitr::include_graphics()</a></code> podremos <mark><strong>incluir imágenes</strong></mark>, bien que tengamos en nuestro local, o bien a través de la ruta web de la imagen. Con <code>out.width</code> podremos modular el tamaño que queremos que ocupe la imagen, con <code>fig.align = 'center'</code> la centramos y con <code>fig.cap = 'Ejemplo de imagen'</code> ponemos un pie de foto</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-575"></span>
+<span style="display:block;" id="fig:unnamed-chunk-584"></span>
 <img src="img/knitr_imagen.jpg" alt="Incluir imagen" width="70%"><p class="caption">
 Imagen/gráfica 18.29: Incluir imagen
 </p>
 </div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:unnamed-chunk-576"></span>
+<span style="display:block;" id="fig:unnamed-chunk-585"></span>
 <img src="img/imagen_rmd_html.jpg" alt="Incluir imagen" width="60%"><p class="caption">
 Imagen/gráfica 18.30: Incluir imagen
 </p>

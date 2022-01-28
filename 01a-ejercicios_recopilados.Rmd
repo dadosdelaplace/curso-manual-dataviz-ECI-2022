@@ -2453,7 +2453,7 @@ encuestas_2021 <- html_table(tablas[[2]])
 encuestas_2021
 ```
 
-### Nombrar columnas
+### Nombrar columnas {-}
 
 Dado que la **mayoría de las columnas** tienen como nombre de partido el logo del mismo, vamos a <mark>**renombrar las variables**</mark>.
 
@@ -2467,7 +2467,7 @@ encuestas_2022
 encuestas_2021
 ```
 
-### Eliminar filas
+### Eliminar filas {-}
 
 Tras la lectura sin salirnos de `R`, tenemos <mark>**dos tablas de encuestas electorales**</mark>, a las que les vamos a quitar la primera fila (vacía) con `slice(-1)`.
 
@@ -2478,7 +2478,7 @@ encuestas_2021 <- encuestas_2021 %>% slice(-1)
 encuestas_2021
 ```
 
-### Añadir columna de año
+### Añadir columna de año {-}
 
 En cada tabla vamos a <mark>**añadir una nueva columna que indique el año**</mark>.
 
@@ -2487,7 +2487,7 @@ encuestas_2022 <- encuestas_2022 %>% mutate(anno = 2022)
 encuestas_2021 <- encuestas_2021 %>% mutate(anno = 2021)
 ```
 
-### Juntar tablas
+### Juntar tablas {-}
 
 Dado que queremos <mark>**un solo dataset**</mark> con las encuestas de ambos años, vamos a juntar ambas tablas con `rbind()` para tener una sola tabla `encuestas`.
 
@@ -2501,7 +2501,7 @@ DT::datatable(encuestas, options = list(pageLength = 10),
               caption = "Encuestas de 2021 y 2022")
 ```
 
-### Convertir a numéricas
+### Convertir a numéricas {-}
 
 Si te fijas los <mark>**valores de muchas variables son erróneos**</mark>, como tamaño de la muestra o participación: son de tipo texto cuando **deberían ser numéricas**.
 
@@ -2537,7 +2537,7 @@ encuestas_depurado <-
 encuestas_depurado
 ```
 
-### Convertir las fechas de campo
+### Convertir las fechas de campo {-}
 
 Las <mark>**fechas del trabajo de campo**</mark> deben ser tratadas previamente:
 
@@ -2603,7 +2603,7 @@ encuestas_depurado
 
 
 
-### Limpiamos nombres de encuestas
+### Limpiamos nombres de encuestas {-}
 
 Por último, vamos <mark>**limpiar los nombres de las encuestas**</mark> eliminando la referencia a los enlaces de la wikipedia
 
@@ -2621,7 +2621,7 @@ DT::datatable(encuestas_depurado, options = list(pageLength = 10),
 ```
 
                                           
-### Consultas
+### Consultas {-}
 
 Una vez que tenemos los datos depurados vamos a <mark>**realizar algunas consultas sencillas**</mark> usando `{tidyverse}`.
 
@@ -2684,4 +2684,264 @@ encuestas_depurado %>%
   slice_max(diferencia, n = 3)
 ```
 
+
+
+
+## Visualizando datos: incursión a ggplot2 {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script22.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.R): incursión a ggplot2.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.>
+
+::::
+
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: del conjunto `starwars` (del entorno de paquetes `{tidyverse}`), filtra solo los registros que no tenga ausente `NA` en las columnas `mass, height, eye_color` </summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+library(tidyverse)
+# Eliminamos NA
+starwars_filtro <- starwars %>% drop_na(c(mass, height, eye_color))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: con ese conjunto filtrado dibuja un diagrama de puntos enfrentando `x = height` en el eje X e `y = mass` en el eje Y.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+ggplot(starwars_filtro, aes(x = height, y = mass)) +
+  geom_point()
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: modifica el código del gráfico anterior para asignar el tamaño de los puntos en función de la variable `mass`.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+ggplot(starwars_filtro,
+       aes(x = height, y = mass, size = mass)) +
+  geom_point()
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: modifica el código del gráfico anterior para asignar el color en función de su color de ojos guardado en `eye_color`. Antes procesa la variable para quedarte con colores reales: si hay dos colores, quédate con el primero; el color `"hazel"` pásalo a `"brown"`; los colores `"unknown"` pásalo a gris.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+# Transformar colores
+starwars_filtro <-
+   starwars_filtro %>%
+    mutate(eye_color =
+             case_when(eye_color == "blue-gray" ~ "blue",
+                       eye_color == "hazel" ~ "brown",
+                       eye_color == "unknown" ~ "gray",
+                       eye_color == "green, yellow" ~ "green",
+                       TRUE ~ eye_color))
+
+# Visualizamos
+ggplot(starwars_filtro,
+       aes(x = height, y = mass, size = mass, color = eye_color)) +
+  geom_point() +
+  scale_color_manual(values =
+                       c("black", "blue", "brown", "gray", "green",
+                         "orange", "red", "white", "yellow"))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: repite el gráfico anterior localizando ese dato con un peso extremadamente elevado (outlier), elimínalo y vuelve a repetir la visualización.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+# Localizamos el valor
+starwars_filtro %>% slice_max(mass, n = 5)
+starwars_filtro %>% slice_max(mass, n = 5) %>% pull(name)
+starwars_filtro <- starwars_filtro %>%
+  filter(name != "Jabba Desilijic Tiure")
+
+# Visualizamos
+ggplot(starwars_filtro,
+       aes(x = height, y = mass,
+           size = mass, color = eye_color)) +
+  geom_point() +
+  scale_color_manual(values =
+                       c("black", "blue", "brown", "gray", "green",
+                         "orange", "red", "white", "yellow"))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: repite el gráfico anterior eliminando la leyenda del tamaño del punto y cambia el título de la leyenda del color de ojos a castellano. Añade además transparencia `alpha = 0.6` a los puntos.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+ggplot(starwars_filtro,
+       aes(x = height, y = mass,
+           size = mass, color = eye_color)) +
+  geom_point(alpha = 0.6) +
+  guides(size = "none") +
+  scale_color_manual(values =
+                       c("black", "blue", "brown", "gray", "green",
+                         "orange", "red", "white", "yellow")) +
+  labs(color = "color de ojos")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: repite el gráfico modificando los títulos de los ejes (a castellano) y escribiendo título, subtítulo y caption.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+ggplot(starwars_filtro,
+       aes(x = height, y = mass,
+           size = mass, color = eye_color)) +
+  geom_point(alpha = 0.6) +
+  guides(size = "none") +
+  scale_color_manual(values =
+                       c("black", "blue", "brown", "gray", "green",
+                         "orange", "red", "white", "yellow")) +
+  labs(color = "color de ojos",
+       x = "altura (cm)", y = "peso (kg)",
+       title = "STARWARS",
+       subtitle = "Diagrama de puntos altura vs peso",
+       caption = "Autor: Javier Álvarez Liébana | Datos: starwars")
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: repite el gráfico anterior explicitando los cortes en los ejes con `scale_x_continuous()` y `scale_y_continuous()`: el eje X de 60 a 240 (de 30 en 30 cada marca), el eje Y de 20 a 160 (de 20 en 20 cada marca).</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+ggplot(starwars_filtro,
+       aes(x = height, y = mass,
+           size = mass, color = eye_color)) +
+    geom_point(alpha = 0.6) +
+    guides(size = "none") +
+    scale_color_manual(values =
+                           c("black", "blue", "brown", "gray", "green",
+                             "orange", "red", "white", "yellow")) +
+  scale_y_continuous(breaks = seq(20, 160, by = 20)) +
+  scale_x_continuous(breaks = seq(60, 240, by = 30)) +
+  labs(color = "color de ojos",
+       x = "altura (cm)", y = "peso (kg)",
+       title = "STARWARS",
+       subtitle = "Diagrama de puntos altura vs peso",
+       caption = "Autor: Javier Álvarez Liébana | Datos: starwars")
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 9</strong>: del conjunto de datos original, elimina los registros que tengan ausente la variable `sex`. Agrupa por dicha variable y contabiliza los personajes de cada sexo. Visualízalo en un diagrama de barras vertical, con la escala de colores de `scale_fill_tableau()`, cambiando el nombre de leyenda y de ejes, y poniéndo títulos y subtítulos.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+
+```{r}
+library(ggthemes)
+starwars_filtro <- starwars %>% drop_na(sex)
+
+# Vertical
+ggplot(starwars_filtro %>% group_by(sex) %>% count(),
+       aes(x = sex, y = n, fill = sex)) +
+  geom_col() +
+  scale_fill_tableau() +
+  labs(fill = "Sexo",
+       x = "Sexo", y = "Número de personajes",
+       title = "STARWARS",
+       subtitle = "Diagrama de barras verticales",
+       caption = "Autor: Javier Álvarez Liébana | Datos: starwars")
+
+# Horizontal
+ggplot(starwars_filtro %>% group_by(sex) %>% count(),
+       aes(x = sex, y = n, fill = sex)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_tableau() +
+  labs(fill = "Sexo",
+       x = "Sexo", y = "Número de personajes",
+       title = "STARWARS",
+       subtitle = "Diagrama de barras vertical",
+       caption = "Autor: Javier Álvarez Liébana | Datos: starwars")
+```
+
+<!-- tocstop -->
+</details>
 

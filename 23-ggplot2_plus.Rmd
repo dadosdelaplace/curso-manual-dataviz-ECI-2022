@@ -205,6 +205,79 @@ Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por l
 ## Gráficos en coordenadas polares
 
 
+```{r florence, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = "Gráfico original de Florence Nightingale", out.width = '50%'}
+knitr::include_graphics("img/rosa_nightingale.jpg")
+```
+
+```{r}
+library(HistData)
+Nightingale
+```
+
+```{r}
+datos <-
+  Nightingale %>% 
+  select(Date, Month, Year, contains("rate"))
+```
+
+```{r}
+datos <-
+  datos %>%
+  pivot_longer(cols = 4:6, names_to = "Cause",
+               values_to = "Rate")
+```
+
+```{r}
+datos <-
+  datos %>%
+  rename(fecha = Date, mes = Month,
+         year = Year, causa = Cause, frec = Rate) %>%
+  mutate(causa = gsub(".rate", "", causa),
+         periodo =
+           ifelse(fecha <= as.Date("1855-03-01"),
+                  "Abril 1854 - Marzo 1855",
+                  "Abril 1855 - Marzo 1856"))
+```
+
+
+```{r}
+ggplot(datos %>% filter(periodo == "Abril 1854 - Marzo 1855"),
+       aes(mes, frec, fill = causa)) + 
+  geom_col()
+```
+
+```{r}
+ggplot(datos %>% filter(periodo == "Abril 1855 - Marzo 1856"),
+       aes(mes, frec, fill = causa)) + 
+  geom_col()
+```
+
+```{r}
+ggplot(datos, aes(mes, frec, fill = causa)) + 
+  geom_col() +
+  facet_wrap(~ periodo)
+```
+
+```{r}
+ggplot(datos, aes(mes, frec, fill = causa)) + 
+  geom_col() +
+  facet_wrap(~ periodo) +
+  labs(title = "dasda",
+       x = "dsad", y = "odeme")
+```
+
+
+```{r}
+ggplot(datos, aes(mes, frec, fill = causa)) + 
+  geom_col(width = 1, position = "identity") +
+  coord_polar() +
+  facet_wrap(~ periodo) +
+  scale_fill_manual(values =
+                      c("skyblue3", "grey30", "firebrick")) +
+  scale_y_sqrt()
+```
+
+
 ## Recursos para seguir profundizando
 
 En la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/) puedes encontrar tutoriales cortos y sencillos con multitud de trucos para personalizar tus gráficas. En la web <https://www.r-graph-gallery.com/> tienes una colección muy completa de gráficos generados en `{ggplot2}` para aprender y tomar ideas.

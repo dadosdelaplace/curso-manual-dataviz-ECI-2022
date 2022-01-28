@@ -93,7 +93,7 @@
 <h1>
 <span class="header-section-number">Capítulo 23</span> Profundizando en ggplot2<a class="anchor" aria-label="anchor" href="#ggplot2_plus"><i class="fas fa-link"></i></a>
 </h1>
-<div class="sourceCode" id="cb1955"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1969"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
 <div id="personalizando-el-tema" class="section level2">
 <h2>
@@ -104,7 +104,7 @@
 <span class="header-section-number">23.1.1</span> Datos<a class="anchor" aria-label="anchor" href="#datos-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>En est ocasión vamos a usar los <mark><strong>datos de Netflix</strong></mark> proporcionados por Paula Casado en <a href="https://elartedeldato.com/blog/como-anadir-una-anotacion-en-ggplot/">El Arte del Dato</a>, página en la que se basará esta visualización: visualizaremos el número de películas y series de instituto que se han estrenado en Netflix en cada año.</p>
-<div class="sourceCode" id="cb1956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/elartedeldato/datasets/main/netflix_titles.csv'</span><span class="op">)</span>
 <span class="va">netflix</span></code></pre></div>
@@ -124,7 +124,7 @@
 ## # … with 7,777 more rows, and 3 more variables: duration &lt;chr&gt;,
 ## #   listed_in &lt;chr&gt;, description &lt;chr&gt;</code></pre>
 <p>Los datos provienen originalmente de <a href="https://www.kaggle.com/shivamb/netflix-shows">Kaggle</a>, y contienen las <mark><strong>películas y series de Netflix</strong></mark> hasta enero de 2021. Para visualizar vamos a filtrar las <mark><strong>películas y series de instituto</strong></mark>, usando la función <code><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect()</a></code> (del paquete <a href="http://stringr.tidyverse.org">stringr</a>), que nos devolverá <code>TRUE</code> si detecta en la variable <code>description</code> (pasándola a mayúsculas) el patrón de texto <code>"HIGH SCHOOL"</code>.</p>
-<div class="sourceCode" id="cb1958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix_hs</span> <span class="op">&lt;-</span> <span class="va">netflix</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">description</span><span class="op">)</span>, <span class="st">"HIGH SCHOOL"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">netflix_hs</span> </code></pre></div>
@@ -144,11 +144,11 @@
 ## # … with 140 more rows, and 3 more variables: duration &lt;chr&gt;, listed_in &lt;chr&gt;,
 ## #   description &lt;chr&gt;</code></pre>
 <p>Tras dicho filtro vamos a añadir el <mark><strong>año en el que se estrenó</strong></mark>, con la función <code><a href="https://rdrr.io/pkg/lubridate/man/year.html">year()</a></code> de <a href="https://lubridate.tidyverse.org">lubridate</a>, que nos devuelve el año de una fecha concreta. Esa fecha concreta la vamos a construir con <code><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy()</a></code>.</p>
-<div class="sourceCode" id="cb1960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1974"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="st">"August 26, 2016"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2016-08-26"</code></pre>
-<div class="sourceCode" id="cb1962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix_final</span> <span class="op">&lt;-</span> 
   <span class="va">netflix_hs</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/year.html">year</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="va">date_added</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -166,7 +166,7 @@
 <li>contar el número de elementos en cada uno con <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code>
 </li>
 </ul>
-<div class="sourceCode" id="cb1963"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1977"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix_resumen</span> <span class="op">&lt;-</span> 
   <span class="va">netflix_final</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -186,23 +186,23 @@
 ## 8  2020    46
 ## 9  2021     6</code></pre>
 <p>Con estos datos ya estamos condiciones de poder hacer nuestro diagrama de barras.</p>
-<div class="sourceCode" id="cb1965"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1979"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-766-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-775-1.png" width="768"></div>
 </div>
 <div id="modificando-la-escala-de-los-ejes" class="section level3">
 <h3>
 <span class="header-section-number">23.1.3</span> Modificando la escala de los ejes<a class="anchor" aria-label="anchor" href="#modificando-la-escala-de-los-ejes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Si te fijas solo nos ha mostrado algunos años en el eje X, así le vamos a indicar la <mark><strong>escala concreta</strong></mark> que queremos en dicho eje con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous()</a></code>, usando el argumento <code>breaks</code> en el que le indicaremos los valores donde queremos que «corte» el eje X (los corte serán los años guardados en <code>netflix_resumen$year</code>)</p>
-<div class="sourceCode" id="cb1966"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">netflix_resumen</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-767-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-776-1.png" width="768"></div>
 <p>Cuando uno de los <mark><strong>ejes representa una fecha</strong></mark> podemos indicárselo con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_date.html">scale_x_date()</a></code>, asigándole en <code>date_breaks</code> el lapso temporal que queremos en las marcas (por ejemplo, <code>date_breaks = '1 month'</code>). Como ejemplo, vamos a visualizar el número de películas y series generales estrenadas en Netflix desde el 1 de julio de 2020.</p>
-<div class="sourceCode" id="cb1967"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1981"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>date_added <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="va">date_added</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">date_added</span><span class="op">)</span> <span class="op">&amp;</span>
@@ -211,23 +211,23 @@
        <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date_added</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_date.html">scale_x_date</a></span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">'1 month'</span><span class="op">)</span> </code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-768-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-777-1.png" width="768"></div>
 </div>
 <div id="personalizando-tema" class="section level3">
 <h3>
 <span class="header-section-number">23.1.4</span> Personalizando tema<a class="anchor" aria-label="anchor" href="#personalizando-tema"><i class="fas fa-link"></i></a>
 </h3>
 <p>Lo primero que vamos a hacer es <mark><strong>añadir título y otras opciones</strong></mark> del tema que ya conocemos.</p>
-<div class="sourceCode" id="cb1968"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">netflix_resumen</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"NETFLIX"</span>,
        subtitle <span class="op">=</span> <span class="st">"Películas y series de instituto"</span>,
        caption <span class="op">=</span> <span class="st">"Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-769-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-778-1.png" width="768"></div>
 <p>En este caso, al ser datos de Netflix, la propia palabara de es una marca por sí misma, y quizás nos interese <mark><strong>usar alguna fuente de Google</strong></mark> para cambiar la fuente por defecto. En este caso vamos a usar la fuente de Netflix, la fuente <code>Bebas Neue</code>, y para poder usarla usaremos <code><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google()</a></code></p>
-<div class="sourceCode" id="cb1969"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1983"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/sysfonts">sysfonts</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Bebas Neue"</span>,
@@ -240,7 +240,7 @@
 <li>
 <code>plot.title = element_text(family = "Bebas Neue", color = "red", size = 50)</code>: le indicaremos la fuente, el color y el tamaño de nuestro título.</li>
 </ul>
-<div class="sourceCode" id="cb1970"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1984"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">netflix_resumen</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span>
@@ -252,26 +252,26 @@
        subtitle <span class="op">=</span> <span class="st">"Películas y series de instituto"</span>,
        caption <span class="op">=</span> <span class="st">"Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle"</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-771-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-780-1.png" width="768"></div>
 <p>Ahora el título <code>"NETFLIX"</code> está en la fuente de la propia marca, lo que hace nuestro gráfico tenga un contexto más allá de la mera estadística: está intentando comunicar algo y <mark><strong>llamar la atención con un esquema visual conocido</strong></mark>.</p>
 <p>Tras cambiar la fuente del título vamos a indicarle que el fondo del gráfico sea todo negro.</p>
-<div class="sourceCode" id="cb1971"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1985"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> 
   <span class="va">gg</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>,
         plot.background <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"black"</span>, 
                                        color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-772-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-781-1.png" width="768"></div>
 <p>También vamos a personalizar el grid horizontal (el que marca las alturas del eje y), indicándole color y tamaño.</p>
-<div class="sourceCode" id="cb1972"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1986"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> <span class="va">gg</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>panel.grid.major.y <span class="op">=</span>
           <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-773-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-782-1.png" width="768"></div>
 <p>Vamos a personalizar también la <mark><strong>fuente del subtítulo y caption</strong></mark> y los textos de los ejes.</p>
-<div class="sourceCode" id="cb1973"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1987"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Permanent Marker"</span>,
                 name <span class="op">=</span> <span class="st">"Permanent Marker"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span>
@@ -284,13 +284,13 @@
           <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, family <span class="op">=</span> <span class="st">"Permanent Marker"</span>,
                        color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-774-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-783-1.png" width="768"></div>
 <p>Por último vamos a darle un poco de aire <mark><strong>añadiendo márgenes</strong></mark></p>
-<div class="sourceCode" id="cb1974"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1988"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> <span class="va">gg</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">4</span>, l <span class="op">=</span> <span class="fl">8</span>, <span class="st">"pt"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-775-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-784-1.png" width="768"></div>
 <p>Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix.</p>
 </div>
 </div>
@@ -298,6 +298,115 @@
 <h2>
 <span class="header-section-number">23.2</span> Gráficos en coordenadas polares<a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos-en-coordenadas-polares"><i class="fas fa-link"></i></a>
 </h2>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:florence"></span>
+<img src="img/rosa_nightingale.jpg" alt="Gráfico original de Florence Nightingale" width="50%"><p class="caption">
+Imagen/gráfica 23.1: Gráfico original de Florence Nightingale
+</p>
+</div>
+<div class="sourceCode" id="cb1989"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">HistData</span><span class="op">)</span>
+<span class="va">Nightingale</span></code></pre></div>
+<pre><code>##          Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+## 1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+## 2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+## 3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+## 4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+## 5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+## 6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+## 7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+## 8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+## 9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+## 10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+## 11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+## 12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+## 13 1855-04-01   Apr 1855 32252     477     48    57        177.5        17.9
+## 14 1855-05-01   May 1855 35473     508     49    37        171.8        16.6
+## 15 1855-06-01   Jun 1855 38863     802    209    31        247.6        64.5
+## 16 1855-07-01   Jul 1855 42647     382    134    33        107.5        37.7
+## 17 1855-08-01   Aug 1855 44614     483    164    25        129.9        44.1
+## 18 1855-09-01   Sep 1855 47751     189    276    20         47.5        69.4
+## 19 1855-10-01   Oct 1855 46852     128     53    18         32.8        13.6
+## 20 1855-11-01   Nov 1855 37853     178     33    32         56.4        10.5
+## 21 1855-12-01   Dec 1855 43217      91     18    28         25.3         5.0
+## 22 1856-01-01   Jan 1856 44212      42      2    48         11.4         0.5
+## 23 1856-02-01   Feb 1856 43485      24      0    19          6.6         0.0
+## 24 1856-03-01   Mar 1856 46140      15      0    35          3.9         0.0
+##    Other.rate
+## 1         7.0
+## 2         4.6
+## 3         2.5
+## 4         9.6
+## 5        11.9
+## 6        27.7
+## 7        50.1
+## 8        42.8
+## 9        48.0
+## 10      120.0
+## 11      140.1
+## 12       68.6
+## 13       21.2
+## 14       12.5
+## 15        9.6
+## 16        9.3
+## 17        6.7
+## 18        5.0
+## 19        4.6
+## 20       10.1
+## 21        7.8
+## 22       13.0
+## 23        5.2
+## 24        9.1</code></pre>
+<div class="sourceCode" id="cb1991"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos</span> <span class="op">&lt;-</span>
+  <span class="va">Nightingale</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">Month</span>, <span class="va">Year</span>, <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"rate"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1992"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos</span> <span class="op">&lt;-</span>
+  <span class="va">datos</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, names_to <span class="op">=</span> <span class="st">"Cause"</span>,
+               values_to <span class="op">=</span> <span class="st">"Rate"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1993"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos</span> <span class="op">&lt;-</span>
+  <span class="va">datos</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span><span class="op">(</span>fecha <span class="op">=</span> <span class="va">Date</span>, mes <span class="op">=</span> <span class="va">Month</span>,
+         year <span class="op">=</span> <span class="va">Year</span>, causa <span class="op">=</span> <span class="va">Cause</span>, frec <span class="op">=</span> <span class="va">Rate</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>causa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">".rate"</span>, <span class="st">""</span>, <span class="va">causa</span><span class="op">)</span>,
+         periodo <span class="op">=</span>
+           <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">fecha</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"1855-03-01"</span><span class="op">)</span>,
+                  <span class="st">"Abril 1854 - Marzo 1855"</span>,
+                  <span class="st">"Abril 1855 - Marzo 1856"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb1994"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">periodo</span> <span class="op">==</span> <span class="st">"Abril 1854 - Marzo 1855"</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">mes</span>, <span class="va">frec</span>, fill <span class="op">=</span> <span class="va">causa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-789-1.png" width="768"></div>
+<div class="sourceCode" id="cb1995"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">periodo</span> <span class="op">==</span> <span class="st">"Abril 1855 - Marzo 1856"</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">mes</span>, <span class="va">frec</span>, fill <span class="op">=</span> <span class="va">causa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-790-1.png" width="768"></div>
+<div class="sourceCode" id="cb1996"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">mes</span>, <span class="va">frec</span>, fill <span class="op">=</span> <span class="va">causa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">periodo</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-791-1.png" width="768"></div>
+<div class="sourceCode" id="cb1997"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">mes</span>, <span class="va">frec</span>, fill <span class="op">=</span> <span class="va">causa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">periodo</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"dasda"</span>,
+       x <span class="op">=</span> <span class="st">"dsad"</span>, y <span class="op">=</span> <span class="st">"odeme"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-792-1.png" width="768"></div>
+<div class="sourceCode" id="cb1998"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">mes</span>, <span class="va">frec</span>, fill <span class="op">=</span> <span class="va">causa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">1</span>, position <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_polar.html">coord_polar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">periodo</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span>
+                      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"skyblue3"</span>, <span class="st">"grey30"</span>, <span class="st">"firebrick"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_y_sqrt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-793-1.png" width="768"></div>
 </div>
 <div id="recursos-para-seguir-profundizando" class="section level2">
 <h2>

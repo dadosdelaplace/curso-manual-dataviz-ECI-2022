@@ -18,6 +18,14 @@ colorize <- function(x, color) {
 
 # Visualizando datos: incursión a ggplot2 {#ggplot2}
 
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script22.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.R): incursión a ggplot2.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.>
+
+::::
+
 Una de las principales fortalezas de `R` frente a `Python` es el manejo de datos con `{tidyverse}`, entorno en el que se incluye el paquete `{ggplot2}`.
 
 ```{r}
@@ -840,8 +848,8 @@ ggplot(starwars_filtro,
 
 
 ```{r}
-starwars_filtro <-
-  starwars %>% drop_na(sex)
+library(ggthemes)
+starwars_filtro <- starwars %>% drop_na(sex)
 
 # Vertical
 ggplot(starwars_filtro %>% group_by(sex) %>% count(),
