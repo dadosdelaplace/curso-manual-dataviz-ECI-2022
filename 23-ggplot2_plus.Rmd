@@ -202,7 +202,7 @@ gg
 Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix.
 
 
-## Gráfico de coordenadas polares
+## Gráficos en coordenadas polares
 
 
 ## Recursos para seguir profundizando
@@ -218,10 +218,6 @@ En la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/) puedes 
 
 <details>
   <summary>📝<strong>Ejercicio 1</strong>: ...</summary>
-
-```{r}
-# a
-```
 
 <!-- toc -->
 - Solución:

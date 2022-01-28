@@ -93,7 +93,7 @@
 <h1>
 <span class="header-section-number">Capítulo 23</span> Profundizando en ggplot2<a class="anchor" aria-label="anchor" href="#ggplot2_plus"><i class="fas fa-link"></i></a>
 </h1>
-<div class="sourceCode" id="cb1944"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1955"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
 <div id="personalizando-el-tema" class="section level2">
 <h2>
@@ -104,7 +104,7 @@
 <span class="header-section-number">23.1.1</span> Datos<a class="anchor" aria-label="anchor" href="#datos-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>En est ocasión vamos a usar los <mark><strong>datos de Netflix</strong></mark> proporcionados por Paula Casado en <a href="https://elartedeldato.com/blog/como-anadir-una-anotacion-en-ggplot/">El Arte del Dato</a>, página en la que se basará esta visualización: visualizaremos el número de películas y series de instituto que se han estrenado en Netflix en cada año.</p>
-<div class="sourceCode" id="cb1945"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1956"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/elartedeldato/datasets/main/netflix_titles.csv'</span><span class="op">)</span>
 <span class="va">netflix</span></code></pre></div>
@@ -124,7 +124,7 @@
 ## # … with 7,777 more rows, and 3 more variables: duration &lt;chr&gt;,
 ## #   listed_in &lt;chr&gt;, description &lt;chr&gt;</code></pre>
 <p>Los datos provienen originalmente de <a href="https://www.kaggle.com/shivamb/netflix-shows">Kaggle</a>, y contienen las <mark><strong>películas y series de Netflix</strong></mark> hasta enero de 2021. Para visualizar vamos a filtrar las <mark><strong>películas y series de instituto</strong></mark>, usando la función <code><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect()</a></code> (del paquete <a href="http://stringr.tidyverse.org">stringr</a>), que nos devolverá <code>TRUE</code> si detecta en la variable <code>description</code> (pasándola a mayúsculas) el patrón de texto <code>"HIGH SCHOOL"</code>.</p>
-<div class="sourceCode" id="cb1947"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix_hs</span> <span class="op">&lt;-</span> <span class="va">netflix</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/stringr/man/str_detect.html">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">description</span><span class="op">)</span>, <span class="st">"HIGH SCHOOL"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">netflix_hs</span> </code></pre></div>
@@ -144,11 +144,11 @@
 ## # … with 140 more rows, and 3 more variables: duration &lt;chr&gt;, listed_in &lt;chr&gt;,
 ## #   description &lt;chr&gt;</code></pre>
 <p>Tras dicho filtro vamos a añadir el <mark><strong>año en el que se estrenó</strong></mark>, con la función <code><a href="https://rdrr.io/pkg/lubridate/man/year.html">year()</a></code> de <a href="https://lubridate.tidyverse.org">lubridate</a>, que nos devuelve el año de una fecha concreta. Esa fecha concreta la vamos a construir con <code><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy()</a></code>.</p>
-<div class="sourceCode" id="cb1949"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1960"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="st">"August 26, 2016"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "2016-08-26"</code></pre>
-<div class="sourceCode" id="cb1951"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1962"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix_final</span> <span class="op">&lt;-</span> 
   <span class="va">netflix_hs</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/year.html">year</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="va">date_added</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -166,7 +166,7 @@
 <li>contar el número de elementos en cada uno con <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code>
 </li>
 </ul>
-<div class="sourceCode" id="cb1952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1963"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">netflix_resumen</span> <span class="op">&lt;-</span> 
   <span class="va">netflix_final</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -186,23 +186,23 @@
 ## 8  2020    46
 ## 9  2021     6</code></pre>
 <p>Con estos datos ya estamos condiciones de poder hacer nuestro diagrama de barras.</p>
-<div class="sourceCode" id="cb1954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1965"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-758-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-766-1.png" width="768"></div>
 </div>
 <div id="modificando-la-escala-de-los-ejes" class="section level3">
 <h3>
 <span class="header-section-number">23.1.3</span> Modificando la escala de los ejes<a class="anchor" aria-label="anchor" href="#modificando-la-escala-de-los-ejes"><i class="fas fa-link"></i></a>
 </h3>
 <p>Si te fijas solo nos ha mostrado algunos años en el eje X, así le vamos a indicar la <mark><strong>escala concreta</strong></mark> que queremos en dicho eje con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous()</a></code>, usando el argumento <code>breaks</code> en el que le indicaremos los valores donde queremos que «corte» el eje X (los corte serán los años guardados en <code>netflix_resumen$year</code>)</p>
-<div class="sourceCode" id="cb1955"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1966"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">netflix_resumen</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-759-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-767-1.png" width="768"></div>
 <p>Cuando uno de los <mark><strong>ejes representa una fecha</strong></mark> podemos indicárselo con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_date.html">scale_x_date()</a></code>, asigándole en <code>date_breaks</code> el lapso temporal que queremos en las marcas (por ejemplo, <code>date_breaks = '1 month'</code>). Como ejemplo, vamos a visualizar el número de películas y series generales estrenadas en Netflix desde el 1 de julio de 2020.</p>
-<div class="sourceCode" id="cb1956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1967"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>date_added <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lubridate/man/ymd.html">mdy</a></span><span class="op">(</span><span class="va">date_added</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">date_added</span><span class="op">)</span> <span class="op">&amp;</span>
@@ -211,23 +211,23 @@
        <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date_added</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_date.html">scale_x_date</a></span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">'1 month'</span><span class="op">)</span> </code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-760-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-768-1.png" width="768"></div>
 </div>
 <div id="personalizando-tema" class="section level3">
 <h3>
 <span class="header-section-number">23.1.4</span> Personalizando tema<a class="anchor" aria-label="anchor" href="#personalizando-tema"><i class="fas fa-link"></i></a>
 </h3>
 <p>Lo primero que vamos a hacer es <mark><strong>añadir título y otras opciones</strong></mark> del tema que ya conocemos.</p>
-<div class="sourceCode" id="cb1957"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1968"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">netflix_resumen</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"NETFLIX"</span>,
        subtitle <span class="op">=</span> <span class="st">"Películas y series de instituto"</span>,
        caption <span class="op">=</span> <span class="st">"Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-761-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-769-1.png" width="768"></div>
 <p>En este caso, al ser datos de Netflix, la propia palabara de es una marca por sí misma, y quizás nos interese <mark><strong>usar alguna fuente de Google</strong></mark> para cambiar la fuente por defecto. En este caso vamos a usar la fuente de Netflix, la fuente <code>Bebas Neue</code>, y para poder usarla usaremos <code><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google()</a></code></p>
-<div class="sourceCode" id="cb1958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1969"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/sysfonts">sysfonts</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Bebas Neue"</span>,
@@ -240,7 +240,7 @@
 <li>
 <code>plot.title = element_text(family = "Bebas Neue", color = "red", size = 50)</code>: le indicaremos la fuente, el color y el tamaño de nuestro título.</li>
 </ul>
-<div class="sourceCode" id="cb1959"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">netflix_resumen</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">netflix_resumen</span><span class="op">$</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span>
@@ -252,26 +252,26 @@
        subtitle <span class="op">=</span> <span class="st">"Películas y series de instituto"</span>,
        caption <span class="op">=</span> <span class="st">"Basada en El Arte del Dato (https://elartedeldato.com) | Datos: Kaggle"</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-763-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-771-1.png" width="768"></div>
 <p>Ahora el título <code>"NETFLIX"</code> está en la fuente de la propia marca, lo que hace nuestro gráfico tenga un contexto más allá de la mera estadística: está intentando comunicar algo y <mark><strong>llamar la atención con un esquema visual conocido</strong></mark>.</p>
 <p>Tras cambiar la fuente del título vamos a indicarle que el fondo del gráfico sea todo negro.</p>
-<div class="sourceCode" id="cb1960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1971"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> 
   <span class="va">gg</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>,
         plot.background <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"black"</span>, 
                                        color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-764-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-772-1.png" width="768"></div>
 <p>También vamos a personalizar el grid horizontal (el que marca las alturas del eje y), indicándole color y tamaño.</p>
-<div class="sourceCode" id="cb1961"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> <span class="va">gg</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>panel.grid.major.y <span class="op">=</span>
           <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-765-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-773-1.png" width="768"></div>
 <p>Vamos a personalizar también la <mark><strong>fuente del subtítulo y caption</strong></mark> y los textos de los ejes.</p>
-<div class="sourceCode" id="cb1962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1973"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Permanent Marker"</span>,
                 name <span class="op">=</span> <span class="st">"Permanent Marker"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span>
@@ -284,19 +284,19 @@
           <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, family <span class="op">=</span> <span class="st">"Permanent Marker"</span>,
                        color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-766-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-774-1.png" width="768"></div>
 <p>Por último vamos a darle un poco de aire <mark><strong>añadiendo márgenes</strong></mark></p>
-<div class="sourceCode" id="cb1963"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1974"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gg</span> <span class="op">&lt;-</span> <span class="va">gg</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">4</span>, l <span class="op">=</span> <span class="fl">8</span>, <span class="st">"pt"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">gg</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-767-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-775-1.png" width="768"></div>
 <p>Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix.</p>
 </div>
 </div>
-<div id="gráfico-de-coordenadas-polares" class="section level2">
+<div id="gráficos-en-coordenadas-polares" class="section level2">
 <h2>
-<span class="header-section-number">23.2</span> Gráfico de coordenadas polares<a class="anchor" aria-label="anchor" href="#gr%C3%A1fico-de-coordenadas-polares"><i class="fas fa-link"></i></a>
+<span class="header-section-number">23.2</span> Gráficos en coordenadas polares<a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos-en-coordenadas-polares"><i class="fas fa-link"></i></a>
 </h2>
 </div>
 <div id="recursos-para-seguir-profundizando" class="section level2">
@@ -311,8 +311,6 @@
 </h2>
 <p>(haz click en las flechas para ver soluciones)</p>
 <details><p><summary>📝<strong>Ejercicio 1</strong>: …</summary></p>
-<div class="sourceCode" id="cb1964"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># a</span></code></pre></div>
 <!-- toc -->
 <ul>
 <li>Solución:</li>
@@ -337,7 +335,7 @@
 <li><a class="nav-link" href="#personalizando-tema"><span class="header-section-number">23.1.4</span> Personalizando tema</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#gr%C3%A1fico-de-coordenadas-polares"><span class="header-section-number">23.2</span> Gráfico de coordenadas polares</a></li>
+<li><a class="nav-link" href="#gr%C3%A1ficos-en-coordenadas-polares"><span class="header-section-number">23.2</span> Gráficos en coordenadas polares</a></li>
 <li><a class="nav-link" href="#recursos-para-seguir-profundizando"><span class="header-section-number">23.3</span> Recursos para seguir profundizando</a></li>
 <li><a class="nav-link" href="#ejercicios-14"><span class="header-section-number">23.4</span> 📝 Ejercicios</a></li>
 </ul>
@@ -357,7 +355,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 27-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 28-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

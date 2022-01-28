@@ -285,6 +285,6 @@ datos-1
 diagrama-de-barras
 modificando-la-escala-de-los-ejes
 personalizando-tema
-gráfico-de-coordenadas-polares
+gráficos-en-coordenadas-polares
 recursos-para-seguir-profundizando
 ejercicios-14

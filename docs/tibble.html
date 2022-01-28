@@ -127,7 +127,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <ul>
 <li>Permiten <mark><strong>imprimir por consola la tabla con mayor información</strong></mark> de las variables, y <strong>solo imprime por defecto las primeras filas</strong> (todas si son 20 o menos, 10 si son más de 20 filas).</li>
 </ul>
-<div class="sourceCode" id="cb1394"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
 
 <span class="co"># data.frame</span>
@@ -188,7 +188,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 48 48 c 58  FALSE
 ## 49 49 d 59   TRUE
 ## 50 50 e 60  FALSE</code></pre>
-<div class="sourceCode" id="cb1396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># tibble</span>
 <span class="va">tabla_tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">50</span>,
              <span class="st">"y"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>,
@@ -210,7 +210,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 10    10 e        20 FALSE 
 ## # … with 40 more rows</code></pre>
 <p>Puedes imprimir las filas y columnas que quieras con <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, pero por defecto te aseguras de <strong>no saturar la consola</strong>.</p>
-<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1396"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tabla_tb</span>, n <span class="op">=</span> <span class="fl">13</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 50 × 4
 ##        x y         z logica
@@ -233,7 +233,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <li><p>Mantiene la <mark><strong>integridad de los datos</strong></mark> (no cambia los tipos de las variables y hace una carga de datos inteligente, interpretando las fechas como tal, por ejemplo).</p></li>
 <li><p>La <strong>función <code><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble()</a></code> construye las variables secuencialmente</strong>, pudiendo hacer uso en la propia definición de variables recién definidas en dicha definición.</p></li>
 </ul>
-<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># data.frame</span>
 <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
            <span class="st">"y"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>,
@@ -246,7 +246,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 3 3 c 13  FALSE   3
 ## 4 4 d 14   TRUE   2
 ## 5 5 e 15  FALSE  74</code></pre>
-<div class="sourceCode" id="cb1402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1400"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># tibble</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"x"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
        <span class="st">"y"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span><span class="op">)</span>,
@@ -264,11 +264,11 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <ul>
 <li>Si <strong>accedes a una columna que no existe avisa</strong> con un warning.</li>
 </ul>
-<div class="sourceCode" id="cb1404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1402"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># data.frame</span>
 <span class="va">tabla_df</span><span class="op">$</span><span class="va">variable_inexistente</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb1406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># tibble</span>
 <span class="va">tabla_tb</span><span class="op">$</span><span class="va">variable_inexistente</span></code></pre></div>
 <pre><code>## Warning: Unknown or uninitialised column: `variable_inexistente`.</code></pre>
@@ -276,12 +276,12 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <ul>
 <li>No solo no te cambiará el tipo de datos sino que <strong>no te cambiará el nombre de las variables</strong> (los <code>data.frame</code> transforma los caracteres que no sean letras).</li>
 </ul>
-<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># data.frame</span>
 <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">":)"</span> <span class="op">=</span> <span class="st">"emoticono"</span>, <span class="st">" "</span> <span class="op">=</span> <span class="st">"en blanco"</span>, <span class="st">"2000"</span> <span class="op">=</span> <span class="st">"número"</span><span class="op">)</span></code></pre></div>
 <pre><code>##         X..        X.  X2000
 ## 1 emoticono en blanco número</code></pre>
-<div class="sourceCode" id="cb1411"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1409"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># tibble</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">":)"</span> <span class="op">=</span> <span class="st">"emoticono"</span>, <span class="st">" "</span> <span class="op">=</span> <span class="st">"en blanco"</span>, <span class="st">"2000"</span> <span class="op">=</span> <span class="st">"número"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
@@ -295,7 +295,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <p> </p>
 <p>Puedes <mark><strong>consultar</strong></mark> más funcionalidades de dichos datos en <a href="https://tibble.tidyverse.org/" class="uri">https://tibble.tidyverse.org/</a> pero están son las principales ventajas.</p>
 <p>Una de ellas es la <mark><strong>función <code><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse()</a></code></strong></mark>, que nos permite obtener el <mark><strong>resumen de columnas</strong></mark> (no es para tener un resumen de los datos sino para ver las variables que tenemos y su tipo).</p>
-<div class="sourceCode" id="cb1413"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">tabla_tb</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 50
 ## Columns: 4
@@ -311,7 +311,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <p> </p>
 <p><strong><span style="color: #20935E;">Convertir a tibble</span></strong></p>
 <p>Si ya tienes un <code>data.frame</code> es altamente recomendable convertirlo a tibble con <code><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble()</a></code> (del paquete <a href="https://dplyr.tidyverse.org">dplyr</a>)</p>
-<div class="sourceCode" id="cb1415"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1413"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">tabla_df</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 50 × 4
@@ -342,7 +342,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 </ul>
 <p>Recuerda que podemos cargar elementos de un paquete (en este caso <code>{datasets}</code>) cargando <code><a href="https://rdrr.io/r/base/library.html">library(datasets)</a></code> y luego el elemento, o bien <code><a href="https://rdrr.io/r/datasets/airquality.html">datasets::airquality</a></code> (prefijo::nombre).</p>
 <p>La respuesta: NO. Tienes muchas formas de comprobarlo si imprimes el conjunto por defecto.</p>
-<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1415"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
 <span class="va">airquality</span></code></pre></div>
 <pre><code>##     Ozone Solar.R Wind Temp Month Day
@@ -499,7 +499,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 151    14     191 14.3   75     9  28
 ## 152    18     131  8.0   76     9  29
 ## 153    20     223 11.5   68     9  30</code></pre>
-<div class="sourceCode" id="cb1419"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1417"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "data.frame"</code></pre>
 <ul>
@@ -515,7 +515,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <li>Solución:</li>
 </ul>
 <p>Así debería de salir si fuera <code>tibble</code>.</p>
-<div class="sourceCode" id="cb1421"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1419"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="va">airquality_tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span>
 <span class="va">airquality_tb</span></code></pre></div>
@@ -533,7 +533,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ##  9     8      19  20.1    61     5     9
 ## 10    NA     194   8.6    69     5    10
 ## # … with 143 more rows</code></pre>
-<div class="sourceCode" id="cb1423"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1421"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">airquality_tb</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 <!-- tocstop -->
@@ -544,7 +544,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <li>Solución:</li>
 </ul>
 <p>Un ejemplo:</p>
-<div class="sourceCode" id="cb1425"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1423"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">17</span>, <span class="st">"c"</span> <span class="op">=</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 3
 ##       a     b     c
@@ -557,7 +557,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 6     6    16    96
 ## 7     7    17   119</code></pre>
 <p>Si lo intentamos con un <code>data.frame</code>, intentará buscar una variable real que tengamos guardada que se llame <code>a</code> y <code>b</code>, sin encontrarlas.</p>
-<div class="sourceCode" id="cb1427"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1425"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"b"</span> <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">17</span>, <span class="st">"c"</span> <span class="op">=</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span></code></pre></div>
 <pre><code>##   a  b   c
 ## 1 1 11 -35
@@ -575,7 +575,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <li>Solución:</li>
 </ul>
 <p>Las variables solo con caracteres del alfabeto se podrán acceder sin necesidad de comillas.</p>
-<div class="sourceCode" id="cb1429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1427"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Definimos el tibble</span>
 <span class="va">datos_tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"variable"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"tercera falsa :)"</span> <span class="op">=</span> <span class="fl">0</span>,
                    <span class="st">"2"</span> <span class="op">=</span> <span class="fl">11</span><span class="op">:</span><span class="fl">17</span><span class="op">)</span>
@@ -583,14 +583,14 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <span class="co"># Accedemos a sus columnas</span>
 <span class="va">datos_tb</span><span class="op">$</span><span class="va">variable</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
-<div class="sourceCode" id="cb1431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1429"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">$</span><span class="va">`tercera falsa :)`</span></code></pre></div>
 <pre><code>## [1] 0 0 0 0 0 0 0</code></pre>
-<div class="sourceCode" id="cb1433"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">$</span><span class="va">`2`</span></code></pre></div>
 <pre><code>## [1] 11 12 13 14 15 16 17</code></pre>
 <p>También se puede acceder por el orden que ocupan:</p>
-<div class="sourceCode" id="cb1435"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 1
 ##   variable
@@ -602,7 +602,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 5        5
 ## 6        6
 ## 7        7</code></pre>
-<div class="sourceCode" id="cb1437"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1435"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 1
 ##   `tercera falsa :)`
@@ -614,7 +614,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 5                  0
 ## 6                  0
 ## 7                  0</code></pre>
-<div class="sourceCode" id="cb1439"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 1
 ##     `2`
@@ -627,7 +627,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 6    16
 ## 7    17</code></pre>
 <p>Y también por el nombre entre corchetes (doble corchete extrae la variable fuera del tibble, corchete simple en formato tibble):</p>
-<div class="sourceCode" id="cb1441"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1439"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="st">"variable"</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 1
 ##   variable
@@ -639,10 +639,10 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 5        5
 ## 6        6
 ## 7        7</code></pre>
-<div class="sourceCode" id="cb1443"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1441"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[[</span><span class="st">"variable"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5 6 7</code></pre>
-<div class="sourceCode" id="cb1445"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1443"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="st">"tercera falsa :)"</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 1
 ##   `tercera falsa :)`
@@ -654,7 +654,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 5                  0
 ## 6                  0
 ## 7                  0</code></pre>
-<div class="sourceCode" id="cb1447"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1445"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">datos_tb</span><span class="op">[</span><span class="st">"2"</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 1
 ##     `2`
@@ -673,7 +673,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <ul>
 <li>Solución:</li>
 </ul>
-<div class="sourceCode" id="cb1449"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># starwars</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="va">starwars</span></code></pre></div>
@@ -692,7 +692,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
 ## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
 ## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
-<div class="sourceCode" id="cb1451"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span> <span class="co"># resumen de columnas</span></code></pre></div>
 <pre><code>## Rows: 87
 ## Columns: 14
@@ -710,10 +710,10 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## $ films      &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of the Sith", "Return…
 ## $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
 ## $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
-<div class="sourceCode" id="cb1453"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1451"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span> <span class="co"># dimensiones</span></code></pre></div>
 <pre><code>## [1] 87 14</code></pre>
-<div class="sourceCode" id="cb1455"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1453"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># gapminder</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 <span class="va">gapminder</span></code></pre></div>
@@ -731,7 +731,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ##  9 Afghanistan Asia       1992    41.7 16317921      649.
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.
 ## # … with 1,694 more rows</code></pre>
-<div class="sourceCode" id="cb1457"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/pillar/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span> <span class="co"># resumen de columnas</span></code></pre></div>
 <pre><code>## Rows: 1,704
 ## Columns: 6
@@ -741,7 +741,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 ## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
 ## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
 ## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
-<div class="sourceCode" id="cb1459"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1457"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span> <span class="co"># dimensiones</span></code></pre></div>
 <pre><code>## [1] 1704    6</code></pre>
 <!-- tocstop -->
@@ -775,7 +775,7 @@ Imagen/gráfica 15.1: Flujo deseable de datos según Hadley Wickham, extraída d
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 27-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 28-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

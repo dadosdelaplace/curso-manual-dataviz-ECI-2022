@@ -15,7 +15,7 @@ output:
 
 # Estructura
 
-El documento final debería tener una sola sección principal (llamada `Estructura`, y dentro de ella un conjunto de subsecciones). **Modifica la cabecera** para incluir conseguir que las subsecciones y secciones estén numeradas.
+El documento final debería tener una sola sección principal (llamada `Estructura`, y dentro de ella un conjunto de subsecciones). **Modifica la cabecera** para conseguir que las subsecciones y secciones estén numeradas.
 
 ## 📝 Personaliza el título
 
@@ -176,3 +176,6 @@ IMC_fun(peso = c(60, 90), estatura = c(1.6, 1.7))
 
 > Haciendo uso de `knitr::include_graphics()`, inserta una imagen de miniyoda para finalizar el documento. Que nunca sobra. La iamgen puedes obtenerla de <https://img.huffingtonpost.com/asset/5dfa51db250000e10598e8b5.jpeg?cache=EwV93gtjT3&ops=1778_1000> Personaliza las opciones del chunk para que la imagen se visualice pero no el código del chunk usado para incluirla.
 
+## 📝 Genera un HTML
+
+> Haz click en knit y genera un documento HTML. Sube al Teams tanto el HTML como el archivo .rmd
