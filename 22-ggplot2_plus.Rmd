@@ -224,9 +224,6 @@ Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por l
 
 Puedes ver más gráficas y trucos en la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/), de donde ha salido parte de la idea de este capítulo.
 
-## Gráficos stream (de flujo)
-
-en construcción
 
 ## Gráficos de cajas y bigotes
 

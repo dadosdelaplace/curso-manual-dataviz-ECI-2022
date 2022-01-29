@@ -629,6 +629,11 @@ ggplot(gapminder_por_continente,
 
 
 
+
+## Tercer intento: gráfico de líneas
+
+en construcción
+ 
 ## 📝 Ejercicios
 
 (haz click en las flechas para ver soluciones)
