@@ -36,7 +36,7 @@ Como ya hemos comentado, algunas de las grandes **fortalezas** de `R` frente a `
 
 ## ¿Qué es la estadística descriptiva?
 
-Una buena definición de estadística puede ser la encontrada en [**wikipedia**](https://es.wikipedia.org/wiki/Estad%C3%ADstica#:~:text=La%20estad%C3%ADstica%20(la%20forma%20femenina,aleatorio%20que%20los%20genera%20siguiendo): 
+Una buena definición de estadística puede ser la encontrada en wikipedia:
 
 > La estadística (la forma femenina del término alemán Statistik, derivado a su vez del italiano statista, "hombre de Estado"), es la rama de la matemática que estudia la variabilidad, colección, organización, análisis, interpretación, y presentación de los datos, así como el proceso aleatorio que los genera siguiendo las leyes de la probabilidad.
 
