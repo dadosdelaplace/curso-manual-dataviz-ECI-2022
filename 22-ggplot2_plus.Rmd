@@ -220,89 +220,248 @@ gg
 ```
 
 
-Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix.
+Hemos pasado de un gráfico de barras cualquiera a un gráfico que ya solo por la estética nos lleva automáticamente a Netflix. Puedes ver más gráficas y trucos en la web de Paula Casado [**El Arte del Dato**](https://elartedeldato.com/), de donde ha salido parte de la idea de este capítulo.
 
-Puedes ver más gráficas y trucos en la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/), de donde ha salido parte de la idea de este capítulo.
-
-
-## Gráficos de cajas y bigotes
-
-en construcción
 
 ## Gráficos en coordenadas polares
 
-en construcción
+«Florence, sé enfermera», 1837. Dios no sabía que se anunciaba a la mujer que cambió la visualización de datos.
+
+<mark>**Florence Nightingale**</mark> (nacida en 1820 en Toscana), tras formarse en la Kaiserswerth luterana en el cuidado de marginados, fue enviada el 21 de octubre de 1854 para mejorar las <mark>**condiciones sanitarias de los soldados británicos en la guerra de Crimea (1854-1856)**</mark>.
+
+Horrorizada, Florence observó las condiciones en las que se atendía a los soldados heridos. De esa observación contabilizó una <mark>**tasa de mortalidad de 1174 por cada 10 000 soldados**</mark>: 1023 se debía a enfermedades infecciosas. A su regreso a Londres se dedicó a reunir estadísticas para demostrar que los soldados fallecían por las condiciones sanitarias: eran muertes evitables.
+
+<mark>**¿Cómo demostrar algo así a tus superiores cuando era vista como una mera niñera de enfermos?**</mark> «Lograr a través de los ojos lo que no somos capaces de transmitir a las mentes de los ciudadanos a través de sus oídos insensibles». A través de la visualización de datos
+
+Es en ese momento cuando creó el famoso <mark>**diagrama de la Rosa o de área polar**</mark>.
+
+
+El gráfico fue una absoluta revolución ya que permitía representar tres variables a la vez: 
+
+* **tiempo** (cada gajo es un mes)
+* **nº de muertes** (área del gajo)
+* **causa de la muerte** (color del gajo): azules para enfermedades infecciosas, rojas para heridas, negras para otras causas.
 
 ```{r florence, echo = FALSE, fig.align = 'center',  include = identical(knitr:::pandoc_to(), 'html'), fig.cap = "Gráfico original de Florence Nightingale", out.width = '50%'}
 knitr::include_graphics("img/rosa_nightingale.jpg")
 ```
 
+Florence quería demostrar que el enorme nº de bajas debidas a enfermedades infecciosas era <mark>**evitable**</mark> y así lo hizo con el gráfico de la izquierda, comparado con el de la derecha: al margen de junio de 1855, el % de muertes por enfermedades (área azul) descendió tras sus medidas para mejorar las condiciones de los hospitales.
+
+El 8 de febrero de 1955, The Times la describió como la <mark>**«ángel guardián» de los hospitales**</mark>, y al finalizar la contienda, fue recibida como una heroína, conocida como <mark>**«The Lady with the Lamp» tras un poema de H. W. Longfellow**</mark> publicado en 1857. Años después se convirtió en la primera mujer en la Royal Statistical Society y renunció a su puesto para crear las primeras escuelas de enfermería.
+
+&nbsp;
+
+Vamos a intentar recrear su brillante visualización. Los datos los podemos obtener de un paquete muy interesante con datos relacionados con eventos de la <mark>**historia de la estadística y dataviz**</mark>, el paquete `{HistData}`, y el conjunto `Nightingale`
+
 ```{r}
 library(HistData)
 Nightingale
+glimpse(Nightingale)
 ```
+
+De los datos solo nos interesan las variables de fecha `Date, Month, Year` y las tasas relativas (que contienen `"rate"` en el nombre).
 
 ```{r}
 datos <-
   Nightingale %>% 
   select(Date, Month, Year, contains("rate"))
+datos
 ```
+
+Tras la selección de variables vamos a convertir los datos a _tidy data_, pasando todos los valores de tasas e mortalidad a la misma columna `tasa`, y las causas de la muerte a una columna llamada `causa`. Además renombramos las variables de fecha.
 
 ```{r}
 datos <-
   datos %>%
-  pivot_longer(cols = 4:6, names_to = "Cause",
-               values_to = "Rate")
+  pivot_longer(cols = 4:6, names_to = "causa",
+               values_to = "tasa") %>%
+  rename(fecha = Date, mes = Month, year = Year) 
+datos
 ```
+
+Por último vamos a eliminar `".rate"` de las causas, y traducirlas a castellano, así como crear una nueva variable llamada `periodo` que nos dirá si fuese antes del 1 de marzo de 1855 o después (para recrear los gráficos por separado, antes y después de las intervenciones llevadas a cabo por Nightingale).
 
 ```{r}
 datos <-
   datos %>%
-  rename(fecha = Date, mes = Month,
-         year = Year, causa = Cause, frec = Rate) %>%
   mutate(causa = gsub(".rate", "", causa),
+         causa =
+           case_when(causa == "Disease" ~ "infecciosas",
+                     causa == "Wounds" ~ "heridas",
+                     causa == "Other" ~ "otras",
+                     TRUE ~ "otras"),
          periodo =
-           ifelse(fecha <= as.Date("1855-03-01"),
-                  "Abril 1854 - Marzo 1855",
-                  "Abril 1855 - Marzo 1856"))
+           factor(ifelse(fecha >= as.Date("1855-04-01"),
+                            "APRIL 1855 TO MARCH 1856",
+                            "APRIL 1854 TO MARCH 1855"),
+                     levels = c("APRIL 1855 TO MARCH 1856",
+                                "APRIL 1854 TO MARCH 1855")))
+datos
 ```
 
+La manera más inmediata de representar las tasas por causa es hacer uso de un <mark>**sencillo diagrama de barras apiladas**</mark>, cada periodo por separado, con un título, subtítulo y caption.
 
 ```{r}
-ggplot(datos %>% filter(periodo == "Abril 1854 - Marzo 1855"),
-       aes(mes, frec, fill = causa)) + 
-  geom_col()
-```
-
-```{r}
-ggplot(datos %>% filter(periodo == "Abril 1855 - Marzo 1856"),
-       aes(mes, frec, fill = causa)) + 
-  geom_col()
-```
-
-```{r}
-ggplot(datos, aes(mes, frec, fill = causa)) + 
+ggplot(datos %>%
+         filter(periodo == "APRIL 1854 TO MARCH 1855"),
+       aes(mes, tasa, fill = causa)) + 
   geom_col() +
-  facet_wrap(~ periodo)
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST (April 1854 - March 1855)",
+       caption = "Author: J. Álvarez Liébana | Data: HistData")
 ```
 
+
 ```{r}
-ggplot(datos, aes(mes, frec, fill = causa)) + 
+ggplot(datos %>%
+         filter(periodo == "APRIL 1855 TO MARCH 1856"),
+       aes(mes, tasa, fill = causa)) + 
   geom_col() +
-  facet_wrap(~ periodo) +
-  labs(title = "dasda",
-       x = "dsad", y = "odeme")
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST (April 1855 - March 1856)",
+       caption = "Author: J. Álvarez Liébana | Data: HistData")
+```
+
+Ambos periodos podemos juntarlos en una misma gráfica con `facet_wrap()`
+
+```{r}
+ggplot(datos, aes(mes, tasa, fill = causa)) + 
+  geom_col() +
+  facet_wrap( ~ periodo) +
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST",
+       caption = "Author: J. Álvarez Liébana | Data: HistData")
 ```
 
 
+Vamos a ir acercándonos al gráfico de Florence Nighitingale, proporcionando <mark>**colores similares a los originales para las causas de fallecimiento**</mark>
+
 ```{r}
-ggplot(datos, aes(mes, frec, fill = causa)) + 
-  geom_col(width = 1, position = "identity") +
-  coord_polar() +
-  facet_wrap(~ periodo) +
+ggplot(datos, aes(mes, tasa, fill = causa)) + 
+  geom_col() +
+  facet_wrap( ~ periodo)  +
   scale_fill_manual(values =
-                      c("skyblue3", "grey30", "firebrick")) +
-  scale_y_sqrt()
+                      c("#C42536", "#5aa7d1", "#6B6B6B")) +
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST",
+       caption = "Author: J. Álvarez Liébana | Data: HistData")
+```
+
+Nuestros datos <mark>**abarcan dos periodos**</mark>: de abril 1854 a marzo 1855, y de abril 1855 a marzo 1856. Para tener los datos ordenados cronológicamente, vamos a indicarle que el año irá desde abril a marzo, en ese orden los meses, con `fct_relevel`, del paquete `{forcats}` incluido en `{tidyverse}`.
+
+```{r}
+datos <- 
+  datos %>%
+  mutate(mes =
+           fct_relevel(mes, "Apr", "May", "Jun", "Jul",
+                       "Aug", "Sep", "Oct", "Nov", "Dec",
+                       "Jan", "Feb", "Mar"))
+
+gg <-
+  ggplot(datos, aes(mes, tasa, fill = causa)) + 
+  geom_col() +
+  facet_wrap( ~ periodo)  +
+  scale_fill_manual(values =
+                      c("#C42536", "#5aa7d1", "#6B6B6B")) +
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST",
+       caption = "Author: J. Álvarez Liébana | Data: HistData")
+gg
+```
+
+Como habrás advertido, el gráfico original está en <mark>**coordenadas polares**</mark>, coordenadas en torno a un círculo. Para convertir nuestro gráfico a coordenadas polares basta con usar `coord_polar()`. Además los meses originales están desde julio hasta junio ordenados cronológicamente.
+
+```{r}
+datos <- 
+  datos %>%
+  mutate(mes =
+           fct_relevel(mes, "Jul", "Aug", "Sep", "Oct",
+                       "Nov", "Dec", "Jan", "Feb",
+                       "Mar", "Apr", "May", "Jun"))
+
+ggplot(datos, aes(mes, tasa, fill = causa)) + 
+  geom_col(width = 1) +
+  coord_polar() +
+  scale_fill_manual(values =
+                      c("#C42536", "#5aa7d1", "#6B6B6B")) +
+  facet_wrap( ~ periodo) +
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST",
+       caption = "Author: J. Álvarez Liébana | Data: HistData")
+```
+
+Dado que en el gráfico original no hay marcas en el eje Y, vamos eliminar el eje Y, vamos a darle etiquetas correctas a los meses (como en el original), y vamos a cambiar la escala del eje Y con `scale_y_sqrt()` (para que las diferencias no sean tan exageradas entre un círculo y otro por la escala).
+
+```{r}
+gg <- 
+  ggplot(datos, aes(mes, tasa, fill = causa)) + 
+  geom_col(width = 1) +
+  coord_polar() +
+  scale_fill_manual(values =
+                      c("#C42536", "#5aa7d1", "#6B6B6B")) +
+  scale_y_sqrt() +
+  scale_x_discrete(labels =
+                     c("JULY", "AUGUST", "SEPT.",
+                       "OCTOBER", "NOVEMBER", "DECEMBER",
+                       "JANUARY", "FEBRUARY", "MARCH",
+                       "APRIL", "MAY", "JUNE")) +
+  facet_wrap( ~ periodo) +
+  labs(fill = "Causas",
+       title = "DIAGRAM OF THE CAUSES OF MORTALITY",
+       subtitle = "IN THE ARMY IN THE EAST",
+       caption = "Author: J. Álvarez Liébana | Data: HistData") 
+gg + theme(axis.title.y = element_blank(),
+           axis.text.y = element_blank(),
+           axis.ticks.y = element_blank())
+```
+
+Por último podemos personalizar el fondo, los ejes, los títulos, el ángulo de las etiquetas de los meses, etc.
+
+```{r}
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Roboto",
+                name = "Roboto")
+font_add_google(family = "Cinzel Decorative",
+                name = "Cinzel Decorative")
+font_add_google(family = "Quattrocento",
+                name = "Quattrocento")
+
+showtext_auto()
+
+angulo <- seq(-20, -340, length.out = 12)
+gg + theme_void() +
+  theme(
+    # Eje y limpio
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    # Eje x (el radial)
+    axis.text.x =
+      element_text(face = "bold", size = 9, angle = angulo,
+                   family = "Roboto"),
+    panel.grid.major.x = element_line(size = 0.01, color = "black"),
+    legend.position = "bottom",
+    plot.background = element_rect(fill = alpha("cornsilk", 0.5)),
+    plot.title =
+      element_text(hjust = 0.5, size = 21,
+                   family = "Cinzel Decorative"),
+    plot.subtitle =
+      element_text(hjust = 0.5, size = 15,
+                   family = "Cinzel Decorative"),
+    plot.caption =
+      element_text(size = 9, family = "Quattrocento"),
+    strip.text =
+      element_text(hjust = 0.5, size = 7,
+                   family = "Quattrocento"),
+    plot.margin = margin(t = 5, r = 7, b = 5, l = 7, "pt"))
 ```
 
 
@@ -310,22 +469,341 @@ ggplot(datos, aes(mes, frec, fill = causa)) +
 
 En la web de Paula Casado [El Arte del Dato](https://elartedeldato.com/) puedes encontrar tutoriales cortos y sencillos con multitud de trucos para personalizar tus gráficas. En la web <https://www.r-graph-gallery.com/> tienes una colección muy completa de gráficos generados en `{ggplot2}` para aprender y tomar ideas.
 
-
-
 ## 📝 Ejercicios
 
 (haz click en las flechas para ver soluciones)
 
-en construcción
+El ejercicio está basado en el gráfico de [Tobias Stadler](https://tobias-stalder.netlify.app/), cuyo código original puedes encontrarlo en [Github](https://github.com/toebR/Tidy-Tuesday/blob/master/hiking/script.R), al tutorial de [Tomás Capretto](https://tcapretto.netlify.app/) y al material en [R Graph Gallery](https://www.r-graph-gallery.com/web-circular-barplot-with-R-and-ggplot2.html).
+
+Se ruega citar la autoría del gráfico añadiendo el siguiente `caption`
+
+```{r}
+caption_chart <- "Dataviz by Tobias Stalder\ntobias-stalder.netlify.app\nSource: TidyX Crew (Ellis Hughes, Patrick Ward)\n Data: github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-11-24/readme.md"
+```
+
+Los datos provienen originalmente de la «Washington Trails Association», con datos de sendas de senderismo en Washington. Tienes el archivo `hiking.csv` en la carpeta `DATOS`. Los datos han sido descargados desde <https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-11-24>
+
 
 <details>
-  <summary>📝<strong>Ejercicio 1</strong>: ...</summary>
+  <summary>📝<strong>Ejercicio 1</strong>: carga los datos `hiking.csv` y muestra las variables.</summary>
+
 
 <!-- toc -->
 - Solución:
 
-...
+```{r}
+library(tidyverse)
+hike_data <- read_csv("./DATOS/hiking.csv")
+hike_data 
+glimpse(hike_data)
+```
 
 <!-- tocstop -->
 </details>
 
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>:  transforma la variable `location` para obtener la region (es la primera palabra, antes del `" -- "`. Para ello puedes usar la función `word()`, que nos permite seleccionar la palabra enésima de una frase, indicándole en `sep = ...` el separado entre palabra y palabra. Conviértela a factor la nueva variable `region`.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+```{r}
+hike_data <-
+  hike_data %>%
+  mutate(region = as_factor(word(location, 1, sep = " -- ")))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>:  transforma la variable `length` para obtener la longitud en millas de la ruta. Está en formato `"12.7 miles, roundtrip"`, así que puedes volver a usar la función `word()`, y pasar luego la cadena de texto a número.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+```{r}
+hike_data <-
+  hike_data %>%
+  mutate(miles = as.numeric(word(length, 1)))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: calcula la longitud total (acumulada)  y la media de desnivel (`gain`), con las rutas agrupadas por la variable `region`, así como el número de rutas por región. </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+resumen <-
+  hike_data %>%
+  group_by(region) %>%
+  summarise(sum_miles = sum(miles),
+            mean_gain = round(mean(as.numeric(gain))),
+            n = n())
+resumen
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: dibuja un diagrama de barras con la región en el eje X, la suma de millas en el eje Y y el relleno en función del número de rutas. </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+ggplot(resumen,
+       aes(x = region, y = sum_miles, fill = n)) +
+  geom_col() +
+  labs(caption = caption_chart)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: repite el ejercicio anterior pero personaliza el tema dando un título a los ejes y una fuente de tamaño adecuada para el eje X. Usa la función `str_wrap()` para convertir los nombres de regiones en párrafos con salto de línea, indicándole en `width` la anchura máxima (no romperá palabras a mitad).</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+ggplot(resumen,
+       aes(x = str_wrap(region, width = 7),
+           y = sum_miles, fill = n)) +
+  geom_col() +
+  labs(caption = caption_chart,
+       fill = "Nº de rutas",
+       y = "Suma acumulada de millas",
+       x = "Región") +
+  theme(axis.title.x = element_text(face = "bold", size = 13),
+        axis.title.y = element_text(face = "bold", size = 13),
+        axis.text.x = element_text(face = "bold", size = 9),
+        axis.text.y = element_text(face = "bold", size = 9))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: repite el ejercicio anterior pero usando `scale_fill_gradientn()` para dar una escala de colores continua (en forma de gradiente) con cuatro colores. Introduce en `geom_col()` una transparencia de `alpha = 0.8`</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- 
+  ggplot(resumen,
+       aes(x = str_wrap(region, width = 7),
+           y = sum_miles, fill = n)) +
+  geom_col(alpha = 0.8) +
+  scale_fill_gradientn("Cantidad de rutas",
+                       colours =
+                         c("#6C5B7B", "#C06C84", "#F67280", "#F8B195")) +
+  labs(caption = caption_chart,
+       fill = "Nº de rutas",
+       y = "Suma acumulada de millas",
+       x = "Región") +
+  theme(axis.title.x = element_text(face = "bold", size = 13),
+        axis.title.y = element_text(face = "bold", size = 13),
+        axis.text.x = element_text(face = "bold", size = 9),
+        axis.text.y = element_text(face = "bold", size = 9))
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: usa `geom_point()` para añadir al gráfico anterior la media de desnivel de las rutas. Pon por ejemplo `size = 3`, `alpha = 0.85` y `color = "gray20"`.</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- 
+  gg +
+  geom_point(aes(x = str_wrap(region, 7), y = mean_gain),
+             size = 3, color = "gray20", alpha = 0.85)
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 9</strong>: usa `coord_polar()` para convertir el gráfico anterior a coordenadas polares.</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- gg + coord_polar()
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 10</strong>: usa `geom_segment()` para añadir líneas que vayan del centro hacía fuera, pasando por los puntos de desnivel. Hay que pensar que lo tuviésemos en vertical, indicándole la posición inicial `x` y final `xend` del segmento (en este caso, para cada región, así que `x = str_wrap(region, 7)`), y la posición inicial `y = 0` e `yend` un poco más que el máximo de desnivel.</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- gg +
+  geom_segment(aes(x = str_wrap(region, 7), y = 0,
+                   xend = str_wrap(region, 7),
+                   yend = max(mean_gain) * 1.2),
+               linetype = "dashed", color = "gray20") 
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 11</strong>: ordena los gajos en orden ascendente con `reorder()`. </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- 
+  ggplot(resumen,
+       aes(x = reorder(str_wrap(region, width = 7), sum_miles),
+           y = sum_miles, fill = n)) +
+  geom_col(alpha = 0.8) +
+  scale_fill_gradientn("Cantidad de rutas",
+                       colours =
+                         c("#6C5B7B", "#C06C84", "#F67280", "#F8B195")) +
+  labs(caption = caption_chart,
+       fill = "Nº de rutas",
+       y = "Suma acumulada de millas",
+       x = "Región") +
+  theme(axis.title.x = element_text(face = "bold", size = 10),
+        axis.title.y = element_text(face = "bold", size = 10),
+        axis.text.x = element_text(face = "bold", size = 7),
+        axis.text.y = element_text(face = "bold", size = 7)) +
+  geom_point(aes(x = reorder(str_wrap(region, 7), sum_miles),
+                 y = mean_gain),
+             size = 3, color = "gray20", alpha = 0.85) +
+  coord_polar() +
+  geom_segment(aes(x = reorder(str_wrap(region, 7), sum_miles),
+                   y = 0,
+                   xend = str_wrap(region, 7),
+                   yend = max(mean_gain) * 1.2),
+               linetype = "dashed", color = "gray20") 
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 12</strong>: con `annotate()` añade en uno de los gajos la indicación de que la altura hasta el punto nos indica el desnivel medio. Usaremos además la fuente `"Libre Caslon Text"`, muy similar a la del gráfico original </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Libre Caslon Text",
+                name = "Libre Caslon Text")
+showtext_auto()
+gg <- gg +
+  annotate(x = 11.2, y = 1500, label = "Desnivel medio",
+           geom = "text", angle = -78, color = "gray20",
+           size = 2, family = "Libre Caslon Text")
+gg
+```
+
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 13</strong>: con `annotate()` añade en uno de los gajos la indicación de que el radio del gajo nos indica la longitud acumulada de las rutas de esa región. Usaremos además la fuente `"Libre Caslon Text"`, muy similar a la del gráfico original </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Libre Caslon Text",
+                name = "Libre Caslon Text")
+showtext_auto()
+gg <- gg +
+  annotate(x = 11, y = 3200, label = "Longitud acum.",
+           geom = "text", angle = 18, color = "gray20",
+           size = 2, family = "Libre Caslon Text") 
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+
+Por último hacemos que los gajos no empiecen del centro, y añadimos algún ajuste estético más (ver el [post original](https://www.r-graph-gallery.com/web-circular-barplot-with-R-and-ggplot2.html))
+
+```{r}
+gg + 
+  scale_y_continuous(limits = c(-1500, 3500),
+                     expand = c(0, 0),
+                     breaks = c(0, 1000, 2000, 3000)) +
+  # Make the guide for the fill discrete
+  guides(fill =
+           guide_colorsteps(barwidth = 11, barheight = 0.7,
+                            title.position = "top",
+                            title.hjust = .5)) +
+  labs(title = "Senderismo en Washington",
+       caption = caption_chart) +
+  theme(text = element_text(color = "gray20",
+                            family = "Libre Caslon Text"),
+        legend.position = "bottom",
+        panel.background =
+          element_rect(fill = "white", color = "white"),
+        panel.grid = element_blank(),
+        panel.grid.major.x = element_blank())
+```
+
+
+ 

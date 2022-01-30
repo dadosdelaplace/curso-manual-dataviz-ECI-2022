@@ -2945,3 +2945,629 @@ ggplot(starwars_filtro %>% group_by(sex) %>% count(),
 <!-- tocstop -->
 </details>
 
+
+
+## Profundizando en ggplot2 {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script22.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.R): profundizando en ggplot2.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script22.>
+
+::::
+
+(haz click en las flechas para ver soluciones)
+
+El ejercicio está basado en el gráfico de [Tobias Stadler](https://tobias-stalder.netlify.app/), cuyo código original puedes encontrarlo en [Github](https://github.com/toebR/Tidy-Tuesday/blob/master/hiking/script.R), al tutorial de [Tomás Capretto](https://tcapretto.netlify.app/) y al material en [R Graph Gallery](https://www.r-graph-gallery.com/web-circular-barplot-with-R-and-ggplot2.html).
+
+Se ruega citar la autoría del gráfico añadiendo el siguiente `caption`
+
+```{r}
+caption_chart <- "Dataviz by Tobias Stalder\ntobias-stalder.netlify.app\nSource: TidyX Crew (Ellis Hughes, Patrick Ward)\n Data: github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-11-24/readme.md"
+```
+
+Los datos provienen originalmente de la «Washington Trails Association», con datos de sendas de senderismo en Washington. Tienes el archivo `hiking.csv` en la carpeta `DATOS`. Los datos han sido descargados desde <https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-11-24>
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: carga los datos `hiking.csv` y muestra las variables.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+```{r}
+library(tidyverse)
+hike_data <- read_csv("./DATOS/hiking.csv")
+hike_data 
+glimpse(hike_data)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>:  transforma la variable `location` para obtener la region (es la primera palabra, antes del `" -- "`. Para ello puedes usar la función `word()`, que nos permite seleccionar la palabra enésima de una frase, indicándole en `sep = ...` el separado entre palabra y palabra. Conviértela a factor la nueva variable `region`.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+```{r}
+hike_data <-
+  hike_data %>%
+  mutate(region = as_factor(word(location, 1, sep = " -- ")))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>:  transforma la variable `length` para obtener la longitud en millas de la ruta. Está en formato `"12.7 miles, roundtrip"`, así que puedes volver a usar la función `word()`, y pasar luego la cadena de texto a número.</summary>
+
+
+<!-- toc -->
+- Solución:
+
+```{r}
+hike_data <-
+  hike_data %>%
+  mutate(miles = as.numeric(word(length, 1)))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: calcula la longitud total (acumulada)  y la media de desnivel (`gain`), con las rutas agrupadas por la variable `region`, así como el número de rutas por región. </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+resumen <-
+  hike_data %>%
+  group_by(region) %>%
+  summarise(sum_miles = sum(miles),
+            mean_gain = round(mean(as.numeric(gain))),
+            n = n())
+resumen
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: dibuja un diagrama de barras con la región en el eje X, la suma de millas en el eje Y y el relleno en función del número de rutas. </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+ggplot(resumen,
+       aes(x = region, y = sum_miles, fill = n)) +
+  geom_col() +
+  labs(caption = caption_chart)
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 6</strong>: repite el ejercicio anterior pero personaliza el tema dando un título a los ejes y una fuente de tamaño adecuada para el eje X. Usa la función `str_wrap()` para convertir los nombres de regiones en párrafos con salto de línea, indicándole en `width` la anchura máxima (no romperá palabras a mitad).</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+ggplot(resumen,
+       aes(x = str_wrap(region, width = 7),
+           y = sum_miles, fill = n)) +
+  geom_col() +
+  labs(caption = caption_chart,
+       fill = "Nº de rutas",
+       y = "Suma acumulada de millas",
+       x = "Región") +
+  theme(axis.title.x = element_text(face = "bold", size = 13),
+        axis.title.y = element_text(face = "bold", size = 13),
+        axis.text.x = element_text(face = "bold", size = 9),
+        axis.text.y = element_text(face = "bold", size = 9))
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 7</strong>: repite el ejercicio anterior pero usando `scale_fill_gradientn()` para dar una escala de colores continua (en forma de gradiente) con cuatro colores. Introduce en `geom_col()` una transparencia de `alpha = 0.8`</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- 
+  ggplot(resumen,
+       aes(x = str_wrap(region, width = 7),
+           y = sum_miles, fill = n)) +
+  geom_col(alpha = 0.8) +
+  scale_fill_gradientn("Cantidad de rutas",
+                       colours =
+                         c("#6C5B7B", "#C06C84", "#F67280", "#F8B195")) +
+  labs(caption = caption_chart,
+       fill = "Nº de rutas",
+       y = "Suma acumulada de millas",
+       x = "Región") +
+  theme(axis.title.x = element_text(face = "bold", size = 13),
+        axis.title.y = element_text(face = "bold", size = 13),
+        axis.text.x = element_text(face = "bold", size = 9),
+        axis.text.y = element_text(face = "bold", size = 9))
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 8</strong>: usa `geom_point()` para añadir al gráfico anterior la media de desnivel de las rutas. Pon por ejemplo `size = 3`, `alpha = 0.85` y `color = "gray20"`.</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- 
+  gg +
+  geom_point(aes(x = str_wrap(region, 7), y = mean_gain),
+             size = 3, color = "gray20", alpha = 0.85)
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 9</strong>: usa `coord_polar()` para convertir el gráfico anterior a coordenadas polares.</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- gg + coord_polar()
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 10</strong>: usa `geom_segment()` para añadir líneas que vayan del centro hacía fuera, pasando por los puntos de desnivel. Hay que pensar que lo tuviésemos en vertical, indicándole la posición inicial `x` y final `xend` del segmento (en este caso, para cada región, así que `x = str_wrap(region, 7)`), y la posición inicial `y = 0` e `yend` un poco más que el máximo de desnivel.</summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- gg +
+  geom_segment(aes(x = str_wrap(region, 7), y = 0,
+                   xend = str_wrap(region, 7),
+                   yend = max(mean_gain) * 1.2),
+               linetype = "dashed", color = "gray20") 
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 11</strong>: ordena los gajos en orden ascendente con `reorder()`. </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+gg <- 
+  ggplot(resumen,
+       aes(x = reorder(str_wrap(region, width = 7), sum_miles),
+           y = sum_miles, fill = n)) +
+  geom_col(alpha = 0.8) +
+  scale_fill_gradientn("Cantidad de rutas",
+                       colours =
+                         c("#6C5B7B", "#C06C84", "#F67280", "#F8B195")) +
+  labs(caption = caption_chart,
+       fill = "Nº de rutas",
+       y = "Suma acumulada de millas",
+       x = "Región") +
+  theme(axis.title.x = element_text(face = "bold", size = 10),
+        axis.title.y = element_text(face = "bold", size = 10),
+        axis.text.x = element_text(face = "bold", size = 7),
+        axis.text.y = element_text(face = "bold", size = 7)) +
+  geom_point(aes(x = reorder(str_wrap(region, 7), sum_miles),
+                 y = mean_gain),
+             size = 3, color = "gray20", alpha = 0.85) +
+  coord_polar() +
+  geom_segment(aes(x = reorder(str_wrap(region, 7), sum_miles),
+                   y = 0,
+                   xend = str_wrap(region, 7),
+                   yend = max(mean_gain) * 1.2),
+               linetype = "dashed", color = "gray20") 
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 12</strong>: con `annotate()` añade en uno de los gajos la indicación de que la altura hasta el punto nos indica el desnivel medio. Usaremos además la fuente `"Libre Caslon Text"`, muy similar a la del gráfico original </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Libre Caslon Text",
+                name = "Libre Caslon Text")
+showtext_auto()
+gg <- gg +
+  annotate(x = 11.2, y = 1500, label = "Desnivel medio",
+           geom = "text", angle = -78, color = "gray20",
+           size = 2, family = "Libre Caslon Text")
+gg
+```
+
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 13</strong>: con `annotate()` añade en uno de los gajos la indicación de que el radio del gajo nos indica la longitud acumulada de las rutas de esa región. Usaremos además la fuente `"Libre Caslon Text"`, muy similar a la del gráfico original </summary>
+
+<!-- toc -->
+- Solución:
+
+```{r}
+library(sysfonts)
+library(showtext)
+font_add_google(family = "Libre Caslon Text",
+                name = "Libre Caslon Text")
+showtext_auto()
+gg <- gg +
+  annotate(x = 11, y = 3200, label = "Longitud acum.",
+           geom = "text", angle = 18, color = "gray20",
+           size = 2, family = "Libre Caslon Text") 
+gg
+```
+
+<!-- tocstop -->
+</details>
+
+
+Por último hacemos que los gajos no empiecen del centro, y añadimos algún ajuste estético más (ver el [post original](https://www.r-graph-gallery.com/web-circular-barplot-with-R-and-ggplot2.html))
+
+```{r}
+gg + 
+  scale_y_continuous(limits = c(-1500, 3500),
+                     expand = c(0, 0),
+                     breaks = c(0, 1000, 2000, 3000)) +
+  # Make the guide for the fill discrete
+  guides(fill =
+           guide_colorsteps(barwidth = 11, barheight = 0.7,
+                            title.position = "top",
+                            title.hjust = .5)) +
+  labs(title = "Senderismo en Washington",
+       caption = caption_chart) +
+  theme(text = element_text(color = "gray20",
+                            family = "Libre Caslon Text"),
+        legend.position = "bottom",
+        panel.background =
+          element_rect(fill = "white", color = "white"),
+        panel.grid = element_blank(),
+        panel.grid.major.x = element_blank())
+```
+
+
+ 
+
+
+## Extrayendo información: estadística descriptiva con cualitativas {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script23.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script23.R): intro a la descriptiva con cualitativas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script23.R>
+::::
+
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: usando `{dplyr}` de `{tidvyerse}` calcula la tabla de frecuencias absolutas de la variable`skin_color` del conjunto de datos de `starwars`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+library(tidyverse)
+starwars %>% count(skin_color) 
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero reagrupa los niveles poco frecuentes (poco frecuente definido como que aparezca dos o menos veces) con `fct_lump_min()`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+starwars %>%
+  mutate(fskin_color =
+           fct_lump_min(skin_color, min = 3)) %>%
+  count(fskin_color) 
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: añade a la tabla anterior la tabla de frecuencias relativas de la columna `skin_color`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+freq_skin <-
+  starwars %>%
+  mutate(fskin_color =
+           fct_lump_min(skin_color, min = 3)) %>%
+  count(fskin_color) %>% 
+  rename(ni = n) %>% 
+  mutate(fi = ni / sum(ni))
+freq_skin
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: recategoriza la variable `height` usando la función `cut` con 6 cortes (filtrando antes los valores ausentes). Formatea esa nueva columna como un factor, calculando sus frecuencias y agrupa para no tener clases con menos de 7 valores. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+starwars_fheight <-
+  starwars %>%
+  filter(!is.na(height)) %>%
+  mutate(fheight = factor(cut(height, breaks = 6))) 
+
+# Frecuencias
+fct_count(starwars_fheight$fheight)
+
+# Reagrupamos
+starwars_fheight <-
+  starwars_fheight %>%
+  mutate(fheight =
+           fct_lump_min(fheight, min = 7,
+                        other_level = "otros"))
+fct_count(starwars_fheight$fheight)
+```
+
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: genera las frecuencias acumuladas resultantes de la columna recategorizada del ejercicio anterior. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+freq_fheight <-
+  starwars_fheight %>% 
+  count(fheight) %>%
+  rename(ni = n) %>% 
+  mutate(fi = ni / sum(ni),
+         Ni = cumsum(ni),
+         Fi = cumsum(fi))
+freq_fheight
+```
+
+<!-- tocstop -->
+</details>
+
+
+
+
+
+
+## Extrayendo información: estadística descriptiva con cuantitativas continuas {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script24.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R): intro a la descriptiva con cuantitativas continuas.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R>
+::::
+
+(haz click en las flechas para ver soluciones)
+
+En la carpeta `DATOS`, en el fichero `coches.csv`, dispones de una tabla que contiene información de distintos tipos de vehículos. La información que contiene es:
+
+* `name`: nombre del vehículo
+* `sports_car, suv, wagon, minivan, pickup, all_wheel, rear_wheel`: variables lógicas, nos dicen si son de ese tipo o no.
+* `msrp`: precio de fábrica
+* `dealer_cost`: precio de coste
+* `eng_size`: tamaño del motor
+* `ncyl`: número de cilindros
+* `city_mpg, hwy_mpg`: consumo en distintos entornos
+* `weight, wheel_base, length, width`: distintas medidas de dimensión del vehículo
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: genera una columna de tipo factor que aglutine las columnas binarias `sports_car, suv, wagon, minivan, pickup` en una sola que contenga el tipo (por ejemplo, si `suv` es `TRUE`, esa columna contendrá `"suv"`) </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+library(tidyverse)
+coches <- read_csv("./DATOS/coches.csv")
+coches <-
+  coches %>%
+  mutate(tipo =
+           case_when(sports_car ~ "sports_car",
+                     suv ~ "suv",
+                     wagon ~ "wagon",
+                     minivan ~ "minivan",
+                     pickup ~ "pickup",
+                     all_wheel ~ "all_wheel",
+                     rear_wheel ~ "rear_wheel",
+                     TRUE ~ "otros"),
+         tipo = as_factor(tipo)) %>%
+  select(-c(sports_car, suv, wagon, minivan, pickup))
+fct_count(coches$tipo)
+```
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: para ver si hay diferencia de consumo, ¿podrías calcular la media y desviación de `city_mpg` y `hwy_mpg`? Haz un diagrama que permita hacernos una idea de cómo se distribuye el consumo. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+coches %>% 
+  summarise_at(vars(c("city_mpg", "hwy_mpg")),mean, na.rm = TRUE)
+coches %>% 
+  summarise_at(vars(c("city_mpg", "hwy_mpg")),
+               sd, na.rm = TRUE)
+
+# densidades
+ggplot(coches %>%
+         pivot_longer(cols = c("city_mpg", "hwy_mpg"),
+                      names_to = "consumo",
+                      values_to = "values") %>%
+         drop_na(values),
+       aes(x = values, fill = consumo)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_discrete(labels = c("Ciudad", "Autopista"))
+  labs(y = "densidad", x = "consumo (mpg)",
+       fill = "Consumo")
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: para ver si hay diferencia de consumo por tipo de coche, calcula la media de `city_mpg` y `hwy_mpg` para los distintos tipos de coche. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+coches %>% 
+  group_by(tipo) %>% 
+  summarise_at(vars(c("city_mpg", "hwy_mpg")),
+               c(mean = mean, sd = sd), na.rm = TRUE)
+
+
+ggplot(coches %>% filter(tipo != "otros") %>%
+         pivot_longer(cols = c("city_mpg", "hwy_mpg"),
+                      names_to = "consumo",
+                      values_to = "values") %>%
+         drop_na(values), aes(x = values, fill = consumo)) + geom_density(alpha = 0.5) + facet_wrap( ~ tipo)
+```
+
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: a la vista de los resultados previos, seleccionar los 3 tipos de mayor consumo, filtra la tabla y representa la variable `cyl` con un gráfico de violín </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+coches_filtro <- 
+  coches %>% 
+  filter(tipo %in%
+           c("wagon", "all_wheel", "sports_car"))
+
+library(ggthemes)
+ggplot(coches_filtro,
+       aes(x = tipo, y = ncyl,
+           fill = tipo, color = tipo)) +
+  geom_violin(alpha = 0.5, bw = 0.5) +
+  scale_fill_tableau(labels = c("todo terreno", 
+                                "deportivo",
+                                "ranchera/familiar")) +
+  scale_color_tableau() +
+  guides(color = "none") +
+  scale_x_discrete(labels = c("todo terreno", "deportivo",
+                              "ranchera/familiar")) +
+  labs(fill = "Tipos de coche",
+       x = "Tipos de coche", y = "Cilindrada")
+```
+
+<!-- tocstop -->
+</details>
+
+## Resumiendo y relacionado datos {-}
+
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script25.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R): resumiendo y relacionando datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R>
+::::
+
+en construcción (cuarteto de anscombe)
+

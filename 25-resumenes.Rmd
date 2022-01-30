@@ -19,6 +19,14 @@ colorize <- function(x, color) {
 
 # Resumiendo y relacionado datos {#resumenes}
 
+:::: {.blackbox data-latex=""}
+
+Scripts usados:
+
+* [**script25.R**](https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R): resumiendo y relacionando datos.  Ver en <https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R>
+::::
+
+
 Ahora que **ya sabemos depurar y transformar los datos**, y algunas de las características de los tipos de variables, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con datos:
 
 * Realizar <mark>**resúmenes numéricos**</mark> de los datos, de forma general pero también cuando queremos calcular estadísticas desagregadas por grupos.
@@ -187,7 +195,67 @@ resumen
 
 Fíjate que el resumen ha agrupado todas las modas y medianas que hemos calculado a la vez: **la salida de nuestro resumen es una lista, con tablas a su vez dentro**.
 
-De la misma manera podemos pedirle que nos calcule <mark>**medidas de dispersión (varianza, desv. típica y cv)**</mark>, que nos indican cómo de dispersos están los datos respecto a un centro, normalmente la media, y <mark>**medidas de localización (percentiles)**</mark> (valores que nos parten los datos en trozos iguales)
+&nbsp;
+
+Veamos un ejemplo sintético de <mark>**distribuciones multimodales**</mark>, generando con `rnorm()` (genera datos aleatorias provenientes de una distribución normal) un conjunto <mark>**unimodal**</mark>, <mark>**bimodal**</mark> y <mark>**trimodal**</mark>, los 3 con la misma media.
+
+```{r}
+n <- 900
+
+# Datos
+datos <-
+  tibble("unimod" = rnorm(n, 5, 1),
+         "bimod" = c(rnorm(n/2, 3, 1), rnorm(n/2, 7, 1)),
+         "trimod" = c(rnorm(n/3, 2, 1), rnorm(n/3, 5, 1),
+                      rnorm(n/3, 8, 1)))
+
+# Tidy data
+datos <-
+  pivot_longer(datos, cols = everything(),
+               names_to = "tipo", values_to = "values")
+
+# Estadisticas
+datos %>% 
+  group_by(tipo) %>% 
+  summarise(media = mean(values),
+            mediana = median(values))
+```
+
+  
+Sólo utilizando la media estos casos son indistiguibles, ya que en todos los casos la media y mediana coinciden, pero si podemos hacerlo visualizando sus densidades.
+
+```{r}
+library(ggridges)
+ggplot(datos,
+       aes(y = tipo, x = values, fill = tipo)) +
+  geom_density_ridges(alpha = 0.7, height = 1) +
+  scale_fill_manual(values = met.brewer("Klimt")) +
+  labs(fill = "Distribución",
+       y = "Distribución",
+       title = "DISTRIBUCIONES MULTIMODALES")
+```
+
+Con `stat_density_ridges()` podemos además marcar algunos valores, como por ejemplo los cuartiles.
+
+```{r}
+ggplot(datos,
+       aes(y = tipo, x = values, fill = tipo)) +
+  geom_density_ridges(alpha = 0.7, height = 1) +
+  stat_density_ridges(quantile_lines = TRUE,
+                      quantiles = c(0.25, 0.5, 0.75),
+                      color = "black", alpha = .8,
+                      size = 0.7) + 
+  scale_fill_manual(values = met.brewer("Klimt")) +
+  labs(fill = "Distribución",
+       y = "Distribución",
+       title = "DISTRIBUCIONES MULTIMODALES")
+```
+
+
+
+De la misma manera podemos pedirle que nos calcule <mark>**medidas de dispersión (varianza, desv. típica y cv)**</mark>, que nos indican cómo de dispersos están los datos respecto a un centro, normalmente la media, y <mark>**medidas de localización (percentiles)**</mark> (valores que nos parten los datos en trozos iguales). Dada una proporción de los datos $0 < p < 1$, el <mark>**cuantil de orden $p$**</mark> de una variable cuantitativa, denotado como $Q_p$, es el valor más pequeño tal que su frecuencia relativa acumulada es mayor o igual que $p$: es el número más pequeño que deja a su izquierda (incluyéndolo a él) como mínimo la fracción $p$ de los datos (la propia mediana es el cuantil $Q_{0.5}$.
+
+
 
 ```{r, warning = FALSE}
 starwars %>%

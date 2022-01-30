@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Capítulo 25 Resumiendo y relacionado datos | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="Ahora que ya sabemos depurar y transformar los datos, y algunas de las características de los tipos de variables, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con...">
+<meta name="description" content="Scripts usados: script25.R: resumiendo y relacionando datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R  Ahora que ya sabemos depurar y transformar los...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="Capítulo 25 Resumiendo y relacionado datos | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Ahora que ya sabemos depurar y transformar los datos, y algunas de las características de los tipos de variables, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con...">
+<meta property="og:description" content="Scripts usados: script25.R: resumiendo y relacionando datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R  Ahora que ya sabemos depurar y transformar los...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Capítulo 25 Resumiendo y relacionado datos | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Ahora que ya sabemos depurar y transformar los datos, y algunas de las características de los tipos de variables, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con...">
+<meta name="twitter:description" content="Scripts usados: script25.R: resumiendo y relacionando datos. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R  Ahora que ya sabemos depurar y transformar los...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -83,7 +83,7 @@
 <li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
 <li class="book-part">Incursión a la estadística descriptiva</li>
 <li><a class="" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
-<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas</a></li>
 <li><a class="active" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
@@ -97,6 +97,14 @@
 <h1>
 <span class="header-section-number">Capítulo 25</span> Resumiendo y relacionado datos<a class="anchor" aria-label="anchor" href="#resumenes"><i class="fas fa-link"></i></a>
 </h1>
+<div class="blackbox">
+<p>Scripts usados:</p>
+<ul>
+<li>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R"><strong>script25.R</strong></a>: resumiendo y relacionando datos. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script25.R</a>
+</li>
+</ul>
+</div>
 <p>Ahora que <strong>ya sabemos depurar y transformar los datos</strong>, y algunas de las características de los tipos de variables, en esta sección vamos a aprender dos cosas básicas a la hora de trabajar con datos:</p>
 <ul>
 <li>Realizar <mark><strong>resúmenes numéricos</strong></mark> de los datos, de forma general pero también cuando queremos calcular estadísticas desagregadas por grupos.</li>
@@ -109,12 +117,12 @@
 <span class="header-section-number">25.1</span> Resúmenes numéricos (summarise y skimr) y por grupos (group_by)<a class="anchor" aria-label="anchor" href="#res%C3%BAmenes-num%C3%A9ricos-summarise-y-skimr-y-por-grupos-group_by"><i class="fas fa-link"></i></a>
 </h2>
 <p>Antes de pasar a ver <strong>cómo generar nuestras propias estadísticas de los datos</strong>, veamos la funcionalidad de un maravilloso paquete llamado <a href="https://docs.ropensci.org/skimr/">skimr</a>, que nos permite tener en un vistazo un <mark><strong>resumen numérico</strong></mark> muy completo de nuestros datos, con <strong>histograma/diagrama de barras incluido</strong>.</p>
-<div class="sourceCode" id="cb2016"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/skimr/">skimr</a></span><span class="op">)</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:unnamed-chunk-805">Tabla 25.1: </span>Data summary</caption>
+<span id="tab:unnamed-chunk-882">Tabla 25.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -359,7 +367,7 @@
 <span class="header-section-number">25.1.1</span> Medidas de centralización y dispersión<a class="anchor" aria-label="anchor" href="#medidas-de-centralizaci%C3%B3n-y-dispersi%C3%B3n"><i class="fas fa-link"></i></a>
 </h3>
 <p>Por ejemplo, vamos a <mark><strong>calcular las medidas de centralización (media-mediana-moda)</strong></mark>. Para la media y la mediana basta con usar las funciones correspondientes <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> y <code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>, dentro de <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code></p>
-<div class="sourceCode" id="cb2017"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span>,
                        mediana <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
@@ -367,7 +375,7 @@
 ##   &lt;dbl&gt;   &lt;dbl&gt;
 ## 1    NA      NA</code></pre>
 <p>Al contrario que las demás órdenes de <a href="https://tidyverse.tidyverse.org">tidyverse</a>, la función <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> no nos devuelve la tabla original modificada, sino un resumen de los datos, con las funciones que le hayamos indicdo. Como ves nos <strong>devuelve un dato ausente</strong> ya que al existir datos ausentes en la variables, <strong>la media también lo es</strong>. Para evitar ese problema <strong>podemos hacer dos cosas</strong>: eliminar antes los ausentes, o indicarle en la propia media y mediana que haga el cálculo ignorando los valores <code>NA</code>.</p>
-<div class="sourceCode" id="cb2019"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Primero eliminamos NA</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span>, mediana <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">mass</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -375,7 +383,7 @@
 ##   media mediana
 ##   &lt;dbl&gt;   &lt;dbl&gt;
 ## 1  97.3      79</code></pre>
-<div class="sourceCode" id="cb2021"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Al realizar el cálculo los ignora</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mass</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -387,7 +395,7 @@
 <p>Las <mark><strong>medidas de centralización</strong></mark> son aquellos parámetros o valores que nos informe en torno a que <mark><strong>valores</strong></mark> se concentran los datos. La <mark><strong>media</strong></mark><span class="math inline">\(\overline{x}\)</span> es una medida de centralización basada en el valor que nos <strong>minimiza el promedio de desviaciones al cuadrado</strong>: la media es el valor que está más cerca de todos los puntos a la vez (con la distancia Euclídea, definida como la diferencia al cuadrado)</p>
 <p><span class="math display">\[\overline{x} = \frac{1}{N} \sum_{i=1}^{N} x_i, \qquad \overline{x} = \arg \min_{x} \frac{1}{N} \sum_{i=1}^{N} \left(x_i - x \right)^2\]</span></p>
 <p>La media <mark><strong>solo se puede calcular para variables cuantitativas</strong></mark>: solo podemos calcular medias de números.</p>
-<div class="sourceCode" id="cb2023"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Media de todas las cuantitativas</span>
 <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -397,7 +405,7 @@
 ## 1         174.  97.3        87.6     1.99</code></pre>
 <p> </p>
 <p>La <mark><strong>mediana</strong></mark> se define como el valor que ocupa el <mark><strong>centro de los datos cuando los ordenamos de menor a mayor</strong></mark>, un valor que nos deja por debajo al menos el 50% y por encima al menos el 50%.</p>
-<div class="sourceCode" id="cb2025"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Media y mediana de todas las cuantitativas</span>
 <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -407,7 +415,7 @@
 ##          &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;          &lt;int&gt; &lt;dbl&gt;       &lt;dbl&gt;
 ## 1         174.  97.3        87.6     1.99            180    79          52</code></pre>
 <p>La mediana también se puede calcular para <mark><strong>variables cualitativas ordinales (categorías que se puedan ordenar)</strong></mark>, además de para variables cuantitativas.. Vamos a construir una variable que sea «muy bajo-bajo-medio-alto-muy alto» según la estatura, y calcular la mediana para dichas categorías.</p>
-<div class="sourceCode" id="cb2027"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">categorias</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"muy bajo"</span>, <span class="st">"bajo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>, <span class="st">"muy alto"</span><span class="op">)</span>
 <span class="va">starwars_talla</span> <span class="op">&lt;-</span> 
   <span class="va">starwars</span> <span class="op">%&gt;%</span>
@@ -424,7 +432,7 @@
 ##   &lt;chr&gt;  
 ## 1 alto</code></pre>
 <p>Para la <strong>moda tenemos algún problema mayor</strong> ya que no hay un función en los paquetes <code>{base}</code> para su cálculo directo. La <mark><strong>moda</strong></mark> se define como el <mark><strong>valor más repetido</strong></mark>: si tenemos algo discreto o cualitativo es la barra más alta.</p>
-<div class="sourceCode" id="cb2029"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="co"># Carga</span>
@@ -450,7 +458,7 @@
 ## 10 s297    Movie Across… Julien … Sarah … Canada  April 1, …         2015 TV-MA 
 ## # … with 140 more rows, and 3 more variables: duration &lt;chr&gt;, listed_in &lt;chr&gt;,
 ## #   description &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb2031"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Manipulamos fechas</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="va">netflix_final</span> <span class="op">&lt;-</span> 
@@ -497,9 +505,9 @@
            x <span class="op">=</span> <span class="fl">2020.7</span>, y <span class="op">=</span> <span class="fl">47</span>, hjust <span class="op">=</span> <span class="fl">0.2</span>, vjust <span class="op">=</span> <span class="fl">0</span>, family <span class="op">=</span> <span class="st">"Permanent Marker"</span>, size <span class="op">=</span> <span class="fl">6</span>, color <span class="op">=</span> <span class="st">'white'</span>, angle <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"curve"</span>, x <span class="op">=</span> <span class="fl">2020.3</span>, y <span class="op">=</span> <span class="fl">48</span>, xend <span class="op">=</span> <span class="fl">2020</span>, yend <span class="op">=</span> <span class="fl">44</span>,
            color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-811-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-888-1.png" width="768"></div>
 <p>Para calcularla podemos usar el paquete <a href="https://github.com/paulponcet/modeest">modeest</a>: la función <code><a href="https://rdrr.io/pkg/statip/man/mfv.html">mfv()</a></code> nos calcula la <strong>moda exacta</strong> de una variable numérica discreta o cuantitativa (busca los valores más repetidos), la función <code><a href="https://rdrr.io/pkg/modeest/man/mlv.html">mlv()</a></code> nos calcula la <strong>moda estimada</strong> de una variable numérica continua.</p>
-<div class="sourceCode" id="cb2032"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paulponcet/modeest">modeest</a></span><span class="op">)</span>
 
 <span class="co"># Media y mediana y moda de mass y n_films</span>
@@ -515,8 +523,61 @@
 ##        &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;int&gt;        &lt;int&gt;     &lt;dbl&gt;
 ## 1       97.3     1.99           79        1            1      80.3</code></pre>
 <p>Fíjate que el resumen ha agrupado todas las modas y medianas que hemos calculado a la vez: <strong>la salida de nuestro resumen es una lista, con tablas a su vez dentro</strong>.</p>
-<p>De la misma manera podemos pedirle que nos calcule <mark><strong>medidas de dispersión (varianza, desv. típica y cv)</strong></mark>, que nos indican cómo de dispersos están los datos respecto a un centro, normalmente la media, y <mark><strong>medidas de localización (percentiles)</strong></mark> (valores que nos parten los datos en trozos iguales)</p>
-<div class="sourceCode" id="cb2034"><pre class="downlit sourceCode r">
+<p> </p>
+<p>Veamos un ejemplo sintético de <mark><strong>distribuciones multimodales</strong></mark>, generando con <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> (genera datos aleatorias provenientes de una distribución normal) un conjunto <mark><strong>unimodal</strong></mark>, <mark><strong>bimodal</strong></mark> y <mark><strong>trimodal</strong></mark>, los 3 con la misma media.</p>
+<div class="sourceCode" id="cb2163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">900</span>
+
+<span class="co"># Datos</span>
+<span class="va">datos</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"unimod"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span>,
+         <span class="st">"bimod"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
+         <span class="st">"trimod"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span>,
+                      <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Tidy data</span>
+<span class="va">datos</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">datos</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
+               names_to <span class="op">=</span> <span class="st">"tipo"</span>, values_to <span class="op">=</span> <span class="st">"values"</span><span class="op">)</span>
+
+<span class="co"># Estadisticas</span>
+<span class="va">datos</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">tipo</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>,
+            mediana <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   tipo   media mediana
+##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+## 1 bimod   5.00    5.14
+## 2 trimod  5.00    5.05
+## 3 unimod  4.94    4.94</code></pre>
+<p>Sólo utilizando la media estos casos son indistiguibles, ya que en todos los casos la media y mediana coinciden, pero si podemos hacerlo visualizando sus densidades.</p>
+<div class="sourceCode" id="cb2165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/">ggridges</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">tipo</span>, x <span class="op">=</span> <span class="va">values</span>, fill <span class="op">=</span> <span class="va">tipo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span>, height <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Klimt"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Distribución"</span>,
+       y <span class="op">=</span> <span class="st">"Distribución"</span>,
+       title <span class="op">=</span> <span class="st">"DISTRIBUCIONES MULTIMODALES"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-891-1.png" width="768"></div>
+<p>Con <code><a href="https://rdrr.io/pkg/ggridges/man/stat_density_ridges.html">stat_density_ridges()</a></code> podemos además marcar algunos valores, como por ejemplo los cuartiles.</p>
+<div class="sourceCode" id="cb2166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">tipo</span>, x <span class="op">=</span> <span class="va">values</span>, fill <span class="op">=</span> <span class="va">tipo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span>, height <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggridges/man/stat_density_ridges.html">stat_density_ridges</a></span><span class="op">(</span>quantile_lines <span class="op">=</span> <span class="cn">TRUE</span>,
+                      quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span><span class="op">)</span>,
+                      color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">.8</span>,
+                      size <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Klimt"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Distribución"</span>,
+       y <span class="op">=</span> <span class="st">"Distribución"</span>,
+       title <span class="op">=</span> <span class="st">"DISTRIBUCIONES MULTIMODALES"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-892-1.png" width="768"></div>
+<p>De la misma manera podemos pedirle que nos calcule <mark><strong>medidas de dispersión (varianza, desv. típica y cv)</strong></mark>, que nos indican cómo de dispersos están los datos respecto a un centro, normalmente la media, y <mark><strong>medidas de localización (percentiles)</strong></mark> (valores que nos parten los datos en trozos iguales). Dada una proporción de los datos <span class="math inline">\(0 &lt; p &lt; 1\)</span>, el <mark><strong>cuantil de orden <span class="math inline">\(p\)</span></strong></mark> de una variable cuantitativa, denotado como <span class="math inline">\(Q_p\)</span>, es el valor más pequeño tal que su frecuencia relativa acumulada es mayor o igual que <span class="math inline">\(p\)</span>: es el número más pequeño que deja a su izquierda (incluyéndolo a él) como mínimo la fracción <span class="math inline">\(p\)</span> de los datos (la propia mediana es el cuantil <span class="math inline">\(Q_{0.5}\)</span>.</p>
+<div class="sourceCode" id="cb2167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mass</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
             mediana <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">mass</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -531,7 +592,7 @@
 ##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1  97.3      79  80.3 28716.  169.  1.74  46.6  111.</code></pre>
 <p>Haciendo uso de cosas ya vistas podemos, por ejemplo, <mark><strong>calcular el coeficiente de variación (CV)</strong></mark> de todas las variables numéricas para poder decidir cual es más o menos dispersa.</p>
-<div class="sourceCode" id="cb2036"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resumen</span> <span class="op">&lt;-</span> 
   <span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -542,13 +603,13 @@
 ##   height  mass birth_year
 ##    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
 ## 1   174.  97.3       87.6</code></pre>
-<div class="sourceCode" id="cb2038"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resumen</span><span class="op">$</span><span class="va">var</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   height   mass birth_year
 ##    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
 ## 1  1209. 28716.     23929.</code></pre>
-<div class="sourceCode" id="cb2040"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">resumen</span><span class="op">$</span><span class="va">cv</span> <span class="co"># más homogénea la altura por tener menos CV.</span></code></pre></div>
 <pre><code>##      height     mass birth_year
 ## 1 0.1994197 1.741382   1.766587</code></pre>
@@ -559,7 +620,7 @@
 </h3>
 <p>Una de las funcionalidades más potentes es la opción de <mark><strong>añadir antes una agrupación</strong></mark> con <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code>. Esta función per se no cambia los datos sino que cambia la forma en la que se aplicarán las funciones posteriores, realizándose por <strong>desagregadas grupos</strong>.</p>
 <p>Imagina que queremos calcular la <strong>media de altura y peso</strong> de cada personaje PERO desagregada por cada una de las clases que tenemos en la variable <code>sex</code>.</p>
-<div class="sourceCode" id="cb2042"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media_altura <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
             media_peso <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mass</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -573,7 +634,7 @@
 ## 4 none                   131.       69.8
 ## 5 &lt;NA&gt;                   181.       48</code></pre>
 <p>Lo que obtenemos no es la media de todos los personajes sino la <strong>media desagregada por grupo</strong>, grupo marcado por la variable <code>sex</code>. Las <strong>agrupaciones pueden estar en función de varias variables</strong> a la vez.</p>
-<div class="sourceCode" id="cb2044"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">gender</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media_altura <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">height</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
             media_peso <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mass</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -588,7 +649,7 @@
 ## 5 none           masculine         140        69.8
 ## 6 &lt;NA&gt;           &lt;NA&gt;              181.       48</code></pre>
 <p>Dicha función también es muy útil cuando queremos <strong>realizar un filtro de registros en base al número de cada clase</strong>: por ejemplo, vamos a filtrar los registros que pertenezcan a una clase de <code>sex</code> que tenga al menos 10 individuos dentro de dicho grupo.</p>
-<div class="sourceCode" id="cb2046"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -602,7 +663,7 @@
 ## 4 none               6
 ## 5 &lt;NA&gt;               4</code></pre>
 <p>Si te fijas solo deberíamos filtrar los registros que sean <code>female</code> y <code>male</code>. Vamos a hacerlo de forma automática en base a dicho <strong>umbral</strong>.</p>
-<div class="sourceCode" id="cb2048"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Podemos filtrar por grupos solo aquellos que superen un</span>
 <span class="co"># un umbral mínimo</span>
 <span class="va">starwars</span> <span class="op">%&gt;%</span> 
@@ -625,7 +686,7 @@
 ## # … with 66 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
 ## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
 <p>Para comprobar rápidamente que efectivamente solo ha filtrado aquellos grupos con más de 10 elementos en ellos podemos <strong>añadir <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code></strong>.</p>
-<div class="sourceCode" id="cb2050"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/context.html">n</a></span><span class="op">(</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -637,7 +698,7 @@
 ## 1 female    16
 ## 2 male      60</code></pre>
 <p>Los resúmenes y las agrupaciones podemos <strong>combinarlas de todas las formas que nos imaginemos</strong>, por ejemplo, calculando la media desagregada por sexo y género pero solo de las variables numéricas.</p>
-<div class="sourceCode" id="cb2052"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="co"># doble agrupación</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">gender</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -657,7 +718,7 @@
 <span class="header-section-number">25.1.3</span> Rowwise: operaciones por filas<a class="anchor" aria-label="anchor" href="#rowwise-operaciones-por-filas"><i class="fas fa-link"></i></a>
 </h3>
 <p>Por último veamos un ejemplo de una <strong>opción muy útil usada antes de una operación que es</strong> <code><a href="https://rdrr.io/pkg/dplyr/man/rowwise.html">rowwise()</a></code>: toda operación que venga después se aplicará <mark><strong>en cada fila por separado</strong></mark>. Para el ejemplo vamos a definir un fichero <em>dummy</em> de notas en mates, lengua y dibujo de 50 alumnos. Para ello usamos la función <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>: le decimos que seleccione aleatoriamente <code>size = 50</code> notas de un conjunto de notas posibles (<code>0:10</code>), y que lo haga con reemplazamiento (<code>replace = TRUE</code>, es decir, que dos alumnos puedan tener la misma nota)</p>
-<div class="sourceCode" id="cb2054"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">notas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"mates"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">50</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                 <span class="st">"lengua"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">50</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
                 <span class="st">"dibujo"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">50</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
@@ -665,36 +726,36 @@
 <pre><code>## # A tibble: 50 × 3
 ##    mates lengua dibujo
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-##  1    10     10      6
-##  2     6      1     10
-##  3     0      7      8
-##  4     7      6      3
-##  5     3     10     10
-##  6     1     10      5
-##  7     7      7      1
-##  8     2      1      2
-##  9     3      0      4
-## 10     9      9      5
+##  1     3     10      7
+##  2     0      3      6
+##  3     9      6      3
+##  4     1      7      1
+##  5     1      0      1
+##  6     3     10      6
+##  7     4      4     10
+##  8     0      9      4
+##  9     8      2      0
+## 10     2      3     10
 ## # … with 40 more rows</code></pre>
 <p>Una vez que tenemos 3 notas aleatorias por cada uno de los 50 alumnos, <strong>¿qué sucede si yo quiero calcular la nota media del curso?</strong></p>
-<div class="sourceCode" id="cb2056"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">notas</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>media_curso <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">mates</span>, <span class="va">lengua</span>, <span class="va">dibujo</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 50 × 4
 ##    mates lengua dibujo media_curso
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt;       &lt;dbl&gt;
-##  1    10     10      6        5.13
-##  2     6      1     10        5.13
-##  3     0      7      8        5.13
-##  4     7      6      3        5.13
-##  5     3     10     10        5.13
-##  6     1     10      5        5.13
-##  7     7      7      1        5.13
-##  8     2      1      2        5.13
-##  9     3      0      4        5.13
-## 10     9      9      5        5.13
+##  1     3     10      7        4.77
+##  2     0      3      6        4.77
+##  3     9      6      3        4.77
+##  4     1      7      1        4.77
+##  5     1      0      1        4.77
+##  6     3     10      6        4.77
+##  7     4      4     10        4.77
+##  8     0      9      4        4.77
+##  9     8      2      0        4.77
+## 10     2      3     10        4.77
 ## # … with 40 more rows</code></pre>
 <p>Como ves si aplicamos la media de las tres variables, en cada fila el valor de <code>media_curso</code> es idéntico ya que nos ha hecho la <strong>media global</strong>: ha tomado las 50 filas, las 3 columnas, y ha hecho la media de 150 datos. Cuando en realidad a nosotros nos gustaría <strong>sacar una media por registro</strong>, que para cada alumno tengamos la media de las asignaturas.</p>
-<div class="sourceCode" id="cb2058"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Aplicado por fila</span>
 <span class="va">notas</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rowwise.html">rowwise</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>media_curso <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">mates</span>, <span class="va">lengua</span>, <span class="va">dibujo</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -702,16 +763,16 @@
 ## # Rowwise: 
 ##    mates lengua dibujo media_curso
 ##    &lt;int&gt;  &lt;int&gt;  &lt;int&gt;       &lt;dbl&gt;
-##  1    10     10      6        8.67
-##  2     6      1     10        5.67
-##  3     0      7      8        5   
-##  4     7      6      3        5.33
-##  5     3     10     10        7.67
-##  6     1     10      5        5.33
-##  7     7      7      1        5   
-##  8     2      1      2        1.67
-##  9     3      0      4        2.33
-## 10     9      9      5        7.67
+##  1     3     10      7       6.67 
+##  2     0      3      6       3    
+##  3     9      6      3       6    
+##  4     1      7      1       3    
+##  5     1      0      1       0.667
+##  6     3     10      6       6.33 
+##  7     4      4     10       6    
+##  8     0      9      4       4.33 
+##  9     8      2      0       3.33 
+## 10     2      3     10       5    
 ## # … with 40 more rows</code></pre>
 <p>Solos nos falta poner la guinda a lo aprendido a esta introducción: vamos a ver como podemos <mark><strong>relacionar dos conjuntos de datos distintos entre sí</strong></mark>.</p>
 </div>
@@ -735,7 +796,7 @@ Imagen/gráfica 25.1: Esquema con los principales tipos de join, extraído de <a
 <li><p><strong>Full join</strong>: nos quedamos con <strong>todas las filas de <code>A</code> y <code>B</code></strong>, tengan o no correspondencia en la otra tabla (si no está en una de ellas, las columnas correspondientes quedarán como campo ausente).</p></li>
 </ul>
 <p>Esos <strong>campos clave (keys)</strong> serán las columnas que usaremos para definir los cruces. Para los ejemplos usaremos las tablas del paquete <a href="https://github.com/hadley/nycflights13">nycflights13</a>.</p>
-<div class="sourceCode" id="cb2060"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></code></pre></div>
 <p>Dicho paquete cuenta con las siguientes <strong>tablas</strong>:</p>
 <ul>
@@ -751,7 +812,7 @@ Imagen/gráfica 25.1: Esquema con los principales tipos de join, extraído de <a
 <code>weather</code>: datos meteorológicos horarios de las estaciones LGA, JFK y EWR.</li>
 </ul>
 <p>Veamos un ejemplo: imagina que queremos <strong>completar en la tabla de vuelos los datos de cada una de las aerolíneas que operan dichos vuelos</strong>. Vamos a seleccionar unas pocas columnas para que sea más fácil de visualizar.</p>
-<div class="sourceCode" id="cb2061"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Seleccionamos antes columnas para que sea más corto</span>
 <span class="va">flights_filtrada</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">year</span><span class="op">:</span><span class="va">day</span>, <span class="va">arr_time</span>, <span class="va">carrier</span><span class="op">:</span><span class="va">dest</span><span class="op">)</span>
@@ -771,7 +832,7 @@ Imagen/gráfica 25.1: Esquema con los principales tipos de join, extraído de <a
 ## 10  2013     1     1      753 AA         301 N3ALAA  LGA    ORD  
 ## # … with 336,766 more rows</code></pre>
 <p>Queremos <strong>TODAS las filas de los vuelos</strong>, todos sus registros, pero <strong>añadiendo la información</strong> que tenemos de la aerolínea que opere los vuelos, así que haremos un <strong>LEFT JOIN</strong> de <code>flights</code> vs <code>airlines</code>. El campo común que nos permite cruzarla, la <strong>clave (key)</strong> es el código abreviado de las aerolíneas (variable <code>carrier</code>).</p>
-<div class="sourceCode" id="cb2063"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2196"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Mismas filas pero con una nueva columna: siempre que sea</span>
 <span class="co"># posible el cruce tendrá la info de la aerolínea</span>
 <span class="va">l_join_flights_airlines</span> <span class="op">&lt;-</span>
@@ -792,7 +853,7 @@ Imagen/gráfica 25.1: Esquema con los principales tipos de join, extraído de <a
 ## 10  2013     1     1      753 AA         301 N3ALAA  LGA    ORD   American Airl…
 ## # … with 336,766 more rows</code></pre>
 <p>Si te fijas ahora tenemos en <code>l_join_flights_airlines</code> las mismas 336776 filas pero con una columna más: la tabla <code>airlines</code> tenía 2 columnas, una la común con <code>flights</code> y en otra la nueva que se ha incorporado a la tabla. <strong>¿Y si en <code>flights</code> había algún vuelo operado por alguna aerolínea que no estuviese en <code>airlines</code>?</strong></p>
-<div class="sourceCode" id="cb2065"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Filtramos</span>
 <span class="va">l_join_flights_airlines</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 0 × 10
@@ -800,14 +861,14 @@ Imagen/gráfica 25.1: Esquema con los principales tipos de join, extraído de <a
 ## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 ## #   name &lt;chr&gt;</code></pre>
 <p>En este caso todos los registros de la primera tabla tenían su correspondencia en la segunda tabla. Veamos un ejemplo donde suceda eso, quitándole algunas filas a <code>airlines</code>, quitando las aerolíneas con códigos <code>"B6"</code>.</p>
-<div class="sourceCode" id="cb2067"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">airlines_filtrada</span> <span class="op">&lt;-</span> <span class="va">airlines</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">carrier</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B6"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">l_join</span> <span class="op">&lt;-</span> <span class="va">flights_filtrada</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">airlines_filtrada</span>, by <span class="op">=</span> <span class="st">"carrier"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">l_join</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 54635    10</code></pre>
 <p>En el anterior ejemplo tenemos 54 635 filas que cuyo nombre está ausente, es decir, 54 635 filas de <code>flights</code> que no tienen correspondencia en la tabla filtrada <code>airlines_filtrada</code>. Ahora las <strong>filas que no han encontrado su <em>match</em> en la segunda tabla están como campo ausente</strong>.</p>
-<div class="sourceCode" id="cb2069"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l_join</span></code></pre></div>
 <pre><code>## # A tibble: 336,776 × 10
 ##     year month   day arr_time carrier flight tailnum origin dest  name          
@@ -830,7 +891,7 @@ Imagen/gráfica 25.2: Esquema del left join, extraído de <a href="https://r4ds.
 </p>
 </div>
 <p>La misma lógica para los <strong>RIGHT JOIN</strong> y los <strong>FULL JOIN</strong>. En este último tendremos bastantes datos ausentes, ya que todos los registros que no estén en ambas tablas tendrán una parte de sus variables como <code>NA</code></p>
-<div class="sourceCode" id="cb2071"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"key_1"</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, <span class="st">"valor_1"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>
 <span class="va">tabla2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"key_2"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span>,
                  <span class="st">"valor_2"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -847,7 +908,7 @@ Imagen/gráfica 25.2: Esquema del left join, extraído de <a href="https://r4ds.
 ## 5     5 x5      x5     
 ## 6     6 x6      x6     
 ## 7     7 x7      &lt;NA&gt;</code></pre>
-<div class="sourceCode" id="cb2073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Right</span>
 <span class="va">tabla1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">tabla2</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"key_1"</span> <span class="op">=</span> <span class="st">"key_2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 3
@@ -860,7 +921,7 @@ Imagen/gráfica 25.2: Esquema del left join, extraído de <a href="https://r4ds.
 ## 5     0 &lt;NA&gt;    x0     
 ## 6     9 &lt;NA&gt;    x9     
 ## 7    10 &lt;NA&gt;    x10</code></pre>
-<div class="sourceCode" id="cb2075"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Full</span>
 <span class="va">tabla1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">tabla2</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"key_1"</span> <span class="op">=</span> <span class="st">"key_2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 3
@@ -889,7 +950,7 @@ Imagen/gráfica 25.4: Esquema del full join, extraído de <a href="https://r4ds.
 </p>
 </div>
 <p>Un tipo de join especial son los <strong>INNER JOIN</strong>. Hasta ahora la tabla resultante tenía al menos tantas filas como tuviese la tabla más pequeña en el cruce. En el caso de los <strong>INNER JOIN</strong> vamos a <strong>reducir el tamaño</strong> ya que solo nos quedaremos con <strong>aquellos registros que podamos encontrar en ambas</strong>, de forma que <strong>el cruce nunca generará datos ausentes</strong>.</p>
-<div class="sourceCode" id="cb2077"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Inner</span>
 <span class="va">tabla1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">tabla2</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"key_1"</span> <span class="op">=</span> <span class="st">"key_2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
@@ -915,7 +976,7 @@ Imagen/gráfica 25.5: Esquema del inner join, extraído de <a href="https://r4ds
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></div>
+<div class="prev"><a href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas</a></div>
 <div class="next"><a href="bibliograf%C3%ADa.html">Bibliografía</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -947,7 +1008,7 @@ Imagen/gráfica 25.5: Esquema del inner join, extraído de <a href="https://r4ds
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 28-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 30-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

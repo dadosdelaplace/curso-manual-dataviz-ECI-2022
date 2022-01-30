@@ -136,7 +136,7 @@ En estadística, como en probabilidad, podemos distinguir las variables en funci
   - <mark>**Cuantitativas continuas**</mark>: no solo toman infinitos valores sino que entre dos valores cualesquiera, también hay infinitos términos, no se puede determinar el siguiente valor a uno dado (estaturas, pesos, temperatura, etc).
 
 
-## Análisis univariante: categóricas
+## Análisis univariante: cualitativas nominales
 
 Como hemos comentado, vamos a empezar introduciendo algunas técnicas de análisis estadística para <mark>**variables cualitativas o categóricas**</mark> de manera <mark>**univariante**</mark>, variable a variable, analizando cada una de las columnas de un dataset de manera independiente del resto.
 
@@ -170,7 +170,7 @@ estado_fct
 class(estado_fct)
 ```
 
-No solo ha cambiado la clase de la variable sino que ahora, debajo del valor guardado, nos aparece la frase `Levels: grave leve sano`: son las **modalidades o niveles** de nuestra cualitativa. Imagina que ese día en el hospital no tuviésemos a <mark>**nadie en estado grave**</makr>: aunque ese día nuestra variable no tome dicho valor, el estado `grave` es un nivel permitido que podríamos tener, así que aunque lo eliminemos, por ser un factor, el nivel permanece (no lo tenemos ahora pero es un nivel permitido).-
+No solo ha cambiado la clase de la variable sino que ahora, debajo del valor guardado, nos aparece la frase `Levels: grave leve sano`: son las **modalidades o niveles** de nuestra cualitativa. Imagina que ese día en el hospital no tuviésemos a <mark>**nadie en estado grave**</mark>: aunque ese día nuestra variable no tome dicho valor, el estado `grave` es un nivel permitido que podríamos tener, así que aunque lo eliminemos, por ser un factor, el nivel permanece (no lo tenemos ahora pero es un nivel permitido).-
 
 ```{r}
 estado_fct[estado_fct %in% c("sano", "leve")]
@@ -604,7 +604,227 @@ parlamento +
 ```
 
 
+## Análisis univariante: cualitativas ordinales
+
+Ahora que <mark>**sabemos describir datos cualitativos**</mark> utilizando algunos conceptos fundamentales, vamos a profundizar en el análisis de un tipo de dato cuantitativo que son los <mark>**datos ordinales**</mark>.
+
+Las variables ordinales son también cualidades no numéricas de objetos e individuos, pero en este caso tienen una <mark>**jerarquía de orden**</mark> que no solo permite ordenar sino <mark>*acumular*</mark>  observaciones, es decir, estudiar cuantos elementos se acumulan por encima o por debajo de un **nivel**, qué variación hay de un **nivel** a otro, etc. Las variables ordinales no se caracterizan sólo por sus $k$ <mark>**niveles**</mark>  $l_1,...l_k$, también se caracterizan por su <mark>**relación de orden**</mark> $l_1 <...<l_k$
+
+Estos tipo de datos son muy frecuentes, por ejemplo, en <mark>**estudios demográficos**</mark>, en conceptos como nivel socioeconómico, nivel de estudios  y en <mark>**encuestas de opinión**</mark> donde se suelen usar las escalas tipo [Likert](http://es.wikipedia.org/wiki/Escalas_Likert).
+
+
+El concepto clave aquí es por lo tanto la <mark>**frecuencia acumulada**</mark>, que de nuevo podrá ser <mark>**absoluta**</mark> o <mark>**relativa**</mark>. La función `cumsum()` es la función fundamental para calcular estos valores sobre un conjunto de datos. 
+
+
+### Tablas de frecuencias para ordinales
+
+ Vamos a construir la <mark>**tabla de frecuencias acumuladas**</mark> de la lista de notas del curso anterior, cuyos  <mark>**niveles**</mark> son: `"suspenso"`, `"aprobado"`, `"notable"` y `"sobresaliente"`. Su <mark>**orden**</mark> lo consideramos como: `"suspenso"` < `"aprobado"` < `"notable"` < `"sobresaliente"`. Las calificaciones que han obtenido son las siguientes:
+
+```{r}
+notas_curso <-
+  c("aprobado", "aprobado", "notable", "suspenso",
+    "suspenso", "aprobado", "notable", "sobresaliente",
+    "aprobado", "aprobado", "suspenso", "suspenso",
+    "suspenso", "aprobado", "sobresaliente", "notable",
+    "notable", "sobresaliente", "suspenso", "aprobado")
+notas_curso
+```
+
+Lo primero será ver cuántos registros hay de cada clase y con cuanta frecuencia aparecen. Para eso vamos a utilizar de nuevo la función `count()` tras pasar nuestros datos a formato `tibble`.
+
+```{r}
+notas_curso <- tibble("notas" = notas_curso)
+
+# Frecuencias absolutas + relativas
+notas_freq <-
+  notas_curso %>%
+  count(notas) %>%
+  mutate(f = n / sum(n))
+notas_freq
+```
+
+Observamos que tenemos las siguientes calificaciones: `r notas_freq %>% filter(notas == "suspenso") %>% pull(n)` suspensos, `r notas_freq %>% filter(notas == "aprobado") %>% pull(n)` aprobados, `r notas_freq %>% filter(notas == "notable") %>% pull(n)` notables y `r notas_freq %>% filter(notas == "sobresaliente") %>% pull(n)` sobresalientes. Sin embargo, esto no responde a la pregunta de <mark>**cuántos de los alumnos han obtenido una calificación inferior a notable**</mark>. Para ello vamos a calcular la <mark>**tabla de frecuencias acumuladas**</mark>: 
+
+* $n_i$: frecuencia absoluta
+* $N_i$: absoluta acumulada
+* $f_i$: relativa
+* $F_i$: acumulada.
+
+Para ello antes vamos a convertir la variable a factor, indicándole que es ordinal, con los niveles ordeandos y `ordered = TRUE`
+
+```{r}
+notas_curso <- notas_curso %>%
+  mutate(notas =
+           factor(notas,
+                  levels = c("suspenso", "aprobado",
+                             "notable", "sobresaliente"),
+                  ordered = TRUE))
+notas_curso %>% pull(notas)
+```
+
+
+```{r}
+notas_freq_acum <-
+  notas_curso %>%
+  count(notas) %>%
+  rename(n_i = n) %>%
+  mutate(f_i = n_i / sum(n_i),
+         N_i = cumsum(n_i),
+         F_i = cumsum(N_i))
+notas_freq_acum
+```
+
+```{r echo = FALSE}
+library(DT)
+datatable(notas_freq_acum)
+```
+
+Podemos visualizar tanto las acmuladas como las no acumuladas con un diagrama de barras.
+
+```{r}
+library(MetBrewer)
+ggplot(notas_freq_acum,
+       aes(x = notas, y = n_i,
+           fill = as.factor(n_i))) +
+  geom_col(alpha = 0.7) +
+  scale_fill_manual(values = met.brewer("Klimt")) +
+  guides(fill = "none") +
+  labs(x = "Notas", y = "Frec. absolutas acumuladas",
+       title = "FRECUENCIAS ABSOLUTAS Y RELATIVAS")
+
+ggplot(notas_freq_acum,
+       aes(x = notas, y = N_i,
+           fill = as.factor(N_i))) +
+  geom_col(alpha = 0.7) +
+  scale_fill_manual(values = met.brewer("Klimt")) +
+  guides(fill = "none") +
+  labs(x = "Notas", y = "Frec. absolutas acumuladas",
+       title = "FRECUENCIAS ABSOLUTAS Y RELATIVAS")
+
+ggplot(notas_freq_acum,
+       aes(x = notas, y = F_i,
+           fill = as.factor(F_i))) +
+  geom_col(alpha = 0.7) +
+  scale_fill_manual(values = met.brewer("Klimt")) +
+  guides(fill = "none") +
+  labs(x = "Notas", y = "Frec. relativas acumuladas",
+       title = "FRECUENCIAS ABSOLUTAS Y RELATIVAS")
+```
+
+Puedes ampliar sobre cómo recategorizar variables continuas en ordinales en \@ref(tidyverse) [Depuración y transformación](#tidyverse)
+
+
 ## 📝 Ejercicios
 
-en construcción
+(haz click en las flechas para ver soluciones)
+
+
+<details>
+  <summary>📝<strong>Ejercicio 1</strong>: usando `{dplyr}` de `{tidvyerse}` calcula la tabla de frecuencias absolutas de la variable`skin_color` del conjunto de datos de `starwars`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+library(tidyverse)
+starwars %>% count(skin_color) 
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero reagrupa los niveles poco frecuentes (poco frecuente definido como que aparezca dos o menos veces) con `fct_lump_min()`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+starwars %>%
+  mutate(fskin_color =
+           fct_lump_min(skin_color, min = 3)) %>%
+  count(fskin_color) 
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+
+<details>
+  <summary>📝<strong>Ejercicio 3</strong>: añade a la tabla anterior la tabla de frecuencias relativas de la columna `skin_color`. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+freq_skin <-
+  starwars %>%
+  mutate(fskin_color =
+           fct_lump_min(skin_color, min = 3)) %>%
+  count(fskin_color) %>% 
+  rename(ni = n) %>% 
+  mutate(fi = ni / sum(ni))
+freq_skin
+```
+
+<!-- tocstop -->
+</details>
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 4</strong>: recategoriza la variable `height` usando la función `cut` con 6 cortes (filtrando antes los valores ausentes). Formatea esa nueva columna como un factor, calculando sus frecuencias y agrupa para no tener clases con menos de 7 valores. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+starwars_fheight <-
+  starwars %>%
+  filter(!is.na(height)) %>%
+  mutate(fheight = factor(cut(height, breaks = 6))) 
+
+# Frecuencias
+fct_count(starwars_fheight$fheight)
+
+# Reagrupamos
+starwars_fheight <-
+  starwars_fheight %>%
+  mutate(fheight =
+           fct_lump_min(fheight, min = 7,
+                        other_level = "otros"))
+fct_count(starwars_fheight$fheight)
+```
+
+
+<!-- tocstop -->
+</details>
+
+
+&nbsp;
+
+<details>
+  <summary>📝<strong>Ejercicio 5</strong>: genera las frecuencias acumuladas resultantes de la columna recategorizada del ejercicio anterior. </summary>
+  
+<!-- toc -->
+- Solución:
+
+```{r}
+freq_fheight <-
+  starwars_fheight %>% 
+  count(fheight) %>%
+  rename(ni = n) %>% 
+  mutate(fi = ni / sum(ni),
+         Ni = cumsum(ni),
+         Fi = cumsum(fi))
+freq_fheight
+```
+
+<!-- tocstop -->
+</details>
+
 

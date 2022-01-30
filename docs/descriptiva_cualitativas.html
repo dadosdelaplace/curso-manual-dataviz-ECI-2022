@@ -83,7 +83,7 @@
 <li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
 <li class="book-part">Incursión a la estadística descriptiva</li>
 <li><a class="active" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
-<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas</a></li>
 <li><a class="" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
@@ -118,7 +118,7 @@
 <h2>
 <span class="header-section-number">23.1</span> ¿Qué es la estadística descriptiva?<a class="anchor" aria-label="anchor" href="#qu%C3%A9-es-la-estad%C3%ADstica-descriptiva"><i class="fas fa-link"></i></a>
 </h2>
-<p>Una buena definición de estadística puede ser la encontrada en [<strong>wikipedia</strong>](<a href="https://es.wikipedia.org/wiki/Estad%C3%ADstica#" class="uri">https://es.wikipedia.org/wiki/Estad%C3%ADstica#</a>:~:text=La%20estad%C3%ADstica%20(la%20forma%20femenina,aleatorio%20que%20los%20genera%20siguiendo):</p>
+<p>Una buena definición de estadística puede ser la encontrada en wikipedia:</p>
 <blockquote>
 <p>La estadística (la forma femenina del término alemán Statistik, derivado a su vez del italiano statista, “hombre de Estado”), es la rama de la matemática que estudia la variabilidad, colección, organización, análisis, interpretación, y presentación de los datos, así como el proceso aleatorio que los genera siguiendo las leyes de la probabilidad.</p>
 </blockquote>
@@ -133,7 +133,7 @@
 <li><p><mark><strong>Individuo</strong></mark>: cada uno de los <strong>elementos</strong> sobre los que vamos a <strong>medir una característica</strong> (normalmente las filas de una tabla)</p></li>
 <li><p><mark><strong>Muestra</strong></mark>: una <mark><strong>selección «representativa»</strong></mark> de la población total (teórica). En nuestro caso, de los miles de habitantes de los mundos de Star Wars hemos extraído una muestra de 87 personas. La rama de la estadística que se encarga del estudio de cómo obtener esas muestras, en función del objetivo que se tenga, se conoce como <mark><strong>muestreo</strong></mark>.</p></li>
 </ul>
-<div class="sourceCode" id="cb1924"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1991"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="co"># Nuestra muestra</span>
@@ -157,7 +157,7 @@
 <li>
 <mark><strong>Tamaño muestral</strong></mark>: comunmente denotado como <span class="math inline">\(n\)</span>, es el número de individuos seleccionados de nuestra población (normalmente el número de filas de nuestros conjuntos de datos).</li>
 </ul>
-<div class="sourceCode" id="cb1926"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1993"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Tamaño muestral</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 87</code></pre>
@@ -173,40 +173,40 @@
 <li><p><code>size</code>: el número de veces que realizamos la extracción aleatoria (el número de tiradas).</p></li>
 <li><p><code>replace</code>: en caso de estar <code>TRUE</code>, permitirá que puedan salir valores repetidos (por ejemplo, <code>cara, cara</code>). En caso de ser <code>FALSE</code>, es como una urna de bolas de forma que tras cada extracción la bola nunca vuelve a la urna: solo se podrá realizar el experimento un máximo de veces igual al número de elementos en <code>x</code></p></li>
 </ul>
-<div class="sourceCode" id="cb1928"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1995"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">valores_moneda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cara"</span>, <span class="st">"cruz"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">valores_moneda</span>, size <span class="op">=</span> <span class="fl">30</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "cruz" "cara" "cruz" "cruz" "cruz" "cara" "cara" "cruz" "cruz" "cruz"
-## [11] "cara" "cara" "cruz" "cruz" "cruz" "cruz" "cara" "cara" "cara" "cara"
-## [21] "cara" "cruz" "cruz" "cara" "cruz" "cara" "cruz" "cara" "cara" "cruz"</code></pre>
+<pre><code>##  [1] "cruz" "cruz" "cruz" "cruz" "cara" "cara" "cruz" "cruz" "cruz" "cara"
+## [11] "cruz" "cara" "cara" "cruz" "cara" "cara" "cara" "cruz" "cruz" "cara"
+## [21] "cruz" "cara" "cruz" "cara" "cruz" "cara" "cruz" "cara" "cara" "cruz"</code></pre>
 <p>Si lo ejecutamos de nuevo, al ser aleatorio, saldrán otras <strong>30 tiradas distintas</strong>.</p>
-<div class="sourceCode" id="cb1930"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1997"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">valores_moneda</span>, size <span class="op">=</span> <span class="fl">30</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "cara" "cruz" "cruz" "cara" "cruz" "cruz" "cruz" "cara" "cruz" "cruz"
-## [11] "cara" "cruz" "cruz" "cara" "cara" "cruz" "cara" "cruz" "cara" "cruz"
-## [21] "cara" "cara" "cruz" "cruz" "cruz" "cruz" "cara" "cara" "cruz" "cara"</code></pre>
+<pre><code>##  [1] "cara" "cara" "cruz" "cara" "cara" "cruz" "cruz" "cara" "cara" "cruz"
+## [11] "cara" "cruz" "cruz" "cruz" "cruz" "cruz" "cara" "cruz" "cruz" "cruz"
+## [21] "cara" "cara" "cara" "cruz" "cara" "cara" "cara" "cara" "cruz" "cara"</code></pre>
 <p>En el caso de la moneda es un experimento en el que los posibles sucesos son <mark><strong>equiprobables</strong></mark>: ambos tienen la mismas opciones de salir. Si tuviésemos el equivalente a una moneda trucada, donde por ejemplo <code>"cara"</code> tuviese un 0.7 de probabilidad y <code>"cruz"</code> un 0.3 (la suma debe ser siempre igual 1), obtendríamos tiradas muy diferentes. Para indicarle que las probabilidades asociadas al experimento no son iguales, usaremos el argumento <code>probs</code>, pasándole un vector con dichas probabilidades</p>
-<div class="sourceCode" id="cb1932"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1999"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tirada_equi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">valores_moneda</span>, size <span class="op">=</span> <span class="fl">500</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">tirada_trucada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">valores_moneda</span>, size <span class="op">=</span> <span class="fl">500</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># Número de caras (de 500 tiradas)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tirada_equi</span> <span class="op">==</span> <span class="st">"cara"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 239</code></pre>
-<div class="sourceCode" id="cb1934"><pre class="downlit sourceCode r">
+<pre><code>## [1] 259</code></pre>
+<div class="sourceCode" id="cb2001"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tirada_trucada</span> <span class="op">==</span> <span class="st">"cara"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 357</code></pre>
+<pre><code>## [1] 352</code></pre>
 </div>
 <div id="características-y-modalidades" class="section level3">
 <h3>
 <span class="header-section-number">23.1.3</span> Características y modalidades<a class="anchor" aria-label="anchor" href="#caracter%C3%ADsticas-y-modalidades"><i class="fas fa-link"></i></a>
 </h3>
 <p>En estadística llamamos <mark><strong>caracteres</strong></mark> a cada una de las variables o <strong>columnas de una tabla</strong>, cada una de las <strong>características o cualidades que se miden/estudian</strong> para cada uno de los individuos seleccionados en la muestra. En el caso de <code>starwars</code>, podemos extraer su nomnbre con <code><a href="https://rdrr.io/r/base/names.html">names()</a></code></p>
-<div class="sourceCode" id="cb1936"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2003"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Número de características medidas</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 14</code></pre>
-<div class="sourceCode" id="cb1938"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2005"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Características</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "name"       "height"     "mass"       "hair_color" "skin_color"
@@ -217,7 +217,7 @@
 <li>
 <code>sex</code>: tiene 4 modalidades <code>female, hermaphroditic, male, none</code> (podemos extraerlas con <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>, que nos dará los valores únicos de una variable).</li>
 </ul>
-<div class="sourceCode" id="cb1940"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2007"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">starwars</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "male"           "none"           "female"         "hermaphroditic"
 ## [5] NA</code></pre>
@@ -248,9 +248,9 @@
 </ul>
 </div>
 </div>
-<div id="análisis-univariante-categóricas" class="section level2">
+<div id="análisis-univariante-cualitativas-nominales" class="section level2">
 <h2>
-<span class="header-section-number">23.2</span> Análisis univariante: categóricas<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-univariante-categ%C3%B3ricas"><i class="fas fa-link"></i></a>
+<span class="header-section-number">23.2</span> Análisis univariante: cualitativas nominales<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-univariante-cualitativas-nominales"><i class="fas fa-link"></i></a>
 </h2>
 <p>Como hemos comentado, vamos a empezar introduciendo algunas técnicas de análisis estadística para <mark><strong>variables cualitativas o categóricas</strong></mark> de manera <mark><strong>univariante</strong></mark>, variable a variable, analizando cada una de las columnas de un dataset de manera independiente del resto.</p>
 <div id="factores" class="section level3">
@@ -259,7 +259,7 @@
 </h3>
 <p>En el caso de las <strong>variables cualitativa</strong>, llamaremos <mark><strong>niveles o modalidades</strong></mark> a los <mark><strong>diferentes valores</strong></mark> que pueden tomar estos datos. Por ejemplo, en el caso de la variable <code>sex</code> del conjunto <code>starwars</code>, tenemos 4 niveles permitidos: <code>female</code>, <code>hermaphroditic</code>, <code>male</code> y <code>none</code> (amén de datos ausentes). Como ya hemos comentado en algunos apartados anteriores, este tipo de variables se conocen en <code>R</code> como <mark><strong>factores en R</strong></mark>. Y el paquete fundamental para tratarlos es <a href="https://forcats.tidyverse.org">forcats</a> (del entorno <a href="https://tidyverse.tidyverse.org">tidyverse</a>). Este paquete nos permite fijar los <mark><strong>niveles</strong></mark> (guardados internamente como <code>levels</code>) que toma una determinada variable categórica para que no puedan generarse equivocaciones, errores en la recolección y generación de datos. Además hace que su análisis sea menos costoso computacionalmente a la hora de hacer búsquedas y comparativas.</p>
 <p>Veamos un ejempo sencillo definiendo una variable <code>estado</code> que tome los valores <code>"sano"</code>, <code>"leve"</code> y <code>"grave"</code> de la siguiente manera.</p>
-<div class="sourceCode" id="cb1942"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2009"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">estado</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grave"</span>, <span class="st">"leve"</span>, <span class="st">"sano"</span>, <span class="st">"sano"</span>, <span class="st">"sano"</span>, <span class="st">"grave"</span>,
     <span class="st">"grave"</span>, <span class="st">"leve"</span>, <span class="st">"grave"</span>, <span class="st">"sano"</span>, <span class="st">"sano"</span><span class="op">)</span>
@@ -267,37 +267,37 @@
 <pre><code>##  [1] "grave" "leve"  "sano"  "sano"  "sano"  "grave" "grave" "leve"  "grave"
 ## [10] "sano"  "sano"</code></pre>
 <p>La variable <code>estado</code> actualmente es de tipo texto, de tipo <code>chr</code>, algo que podemos comprobar con <code><a href="https://rdrr.io/r/base/class.html">class(estado)</a></code>.</p>
-<div class="sourceCode" id="cb1944"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2011"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">estado</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "character"</code></pre>
 <p>Desde un punto de vista estadístico y computacional, para <code>R</code> esta variable ahora mismo sería equivalente una variable de nombres. Pero estadísticamente no es lo mismo una variable con nombres (que identifican muchas veces el registro) que una variable categórica como estado que <mark><strong>solo puede tomar esos 3 niveles</strong></mark>.</p>
 <p><mark><strong>¿Cómo convertir una variable a cualitativa o factor?</strong></mark> Haciendo uso de la función <code>as_factor</code> del paquete <a href="https://forcats.tidyverse.org">forcats</a>.</p>
-<div class="sourceCode" id="cb1946"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2013"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">estado_fct</span> <span class="op">&lt;-</span> <span class="fu">as_factor</span><span class="op">(</span><span class="va">estado</span><span class="op">)</span>
 <span class="va">estado_fct</span></code></pre></div>
 <pre><code>##  [1] grave leve  sano  sano  sano  grave grave leve  grave sano  sano 
 ## Levels: grave leve sano</code></pre>
-<div class="sourceCode" id="cb1948"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2015"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">estado_fct</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "factor"</code></pre>
-<p>No solo ha cambiado la clase de la variable sino que ahora, debajo del valor guardado, nos aparece la frase <code>Levels: grave leve sano</code>: son las <strong>modalidades o niveles</strong> de nuestra cualitativa. Imagina que ese día en el hospital no tuviésemos a <mark><strong>nadie en estado grave</strong>: aunque ese día nuestra variable no tome dicho valor, el estado <code>grave</code> es un nivel permitido que podríamos tener, así que aunque lo eliminemos, por ser un factor, el nivel permanece (no lo tenemos ahora pero es un nivel permitido).-</mark></p>
-<div class="sourceCode" id="cb1950"><pre class="downlit sourceCode r">
+<p>No solo ha cambiado la clase de la variable sino que ahora, debajo del valor guardado, nos aparece la frase <code>Levels: grave leve sano</code>: son las <strong>modalidades o niveles</strong> de nuestra cualitativa. Imagina que ese día en el hospital no tuviésemos a <mark><strong>nadie en estado grave</strong></mark>: aunque ese día nuestra variable no tome dicho valor, el estado <code>grave</code> es un nivel permitido que podríamos tener, así que aunque lo eliminemos, por ser un factor, el nivel permanece (no lo tenemos ahora pero es un nivel permitido).-</p>
+<div class="sourceCode" id="cb2017"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">estado_fct</span><span class="op">[</span><span class="va">estado_fct</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sano"</span>, <span class="st">"leve"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] leve sano sano sano leve sano sano
 ## Levels: grave leve sano</code></pre>
 <p>Si queremos indicarle que <mark><strong>elimine un nivel no usado en ese momento</strong></mark> podemos hacerlo con <code>fct_drop()</code></p>
-<div class="sourceCode" id="cb1952"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2019"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_drop</span><span class="op">(</span><span class="va">estado_fct</span><span class="op">[</span><span class="va">estado_fct</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sano"</span>, <span class="st">"leve"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] leve sano sano sano leve sano sano
 ## Levels: leve sano</code></pre>
 <p>Al igual que podemos eliminar niveles podemos <mark><strong>ampliar los niveles existentes</strong></mark> (aunque no existan datos de ese nivel en ese momento) con <code>fct_expand()</code></p>
-<div class="sourceCode" id="cb1954"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2021"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_expand</span><span class="op">(</span><span class="va">estado_fct</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"UCI"</span>, <span class="st">"fallecido"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] grave leve  sano  sano  sano  grave grave leve  grave sano  sano 
 ## Levels: grave leve sano UCI fallecido</code></pre>
 <p>Aunque luego veremos como usar el <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code>, para variables de tipo factor podemos <mark><strong>contar los elementos de cada nivel</strong> de una manera sencilla con <code>fct_count()</code></mark></p>
-<div class="sourceCode" id="cb1956"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2023"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_count</span><span class="op">(</span><span class="va">estado_fct</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   f         n
@@ -306,25 +306,25 @@
 ## 2 leve      2
 ## 3 sano      5</code></pre>
 <p>Si te fijas el orden de los niveles es por orden de aparición en la variable, pero podemos <mark><strong>ordenarlos por aparición</strong></mark> con <code>fct_infreq()</code></p>
-<div class="sourceCode" id="cb1958"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2025"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_infreq</span><span class="op">(</span><span class="va">estado_fct</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] grave leve  sano  sano  sano  grave grave leve  grave sano  sano 
 ## Levels: sano grave leve</code></pre>
 <p>A veces queremos <mark><strong>agrupar niveles</strong></mark>, por ejemplo, no permitiendo niveles que no sucedan un mínimo de veces. Con <code>fct_lump_min(estado_fct, min = 4)</code> le indicaremos que para que exista el nivel debe de suceder al menos 4 veces (las observaciones que no lo cumplan irán a un nivel genérico llamado <code>Other</code>, aunque se puede cambiar con el argumento <code>other_level</code>). Podemos hacer algo equivalente pero en función de su frecuencia relativa con <code>fct_lump_prop()</code>.</p>
-<div class="sourceCode" id="cb1960"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2027"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">estado_fct</span>, min <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] grave Other sano  sano  sano  grave grave Other grave sano  sano 
 ## Levels: grave sano Other</code></pre>
-<div class="sourceCode" id="cb1962"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2029"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">estado_fct</span>, min <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] Other Other sano  sano  sano  Other Other Other Other sano  sano 
 ## Levels: sano Other</code></pre>
-<div class="sourceCode" id="cb1964"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2031"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">estado_fct</span>, min <span class="op">=</span> <span class="fl">5</span>, other_level <span class="op">=</span> <span class="st">"otros"</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] otros otros sano  sano  sano  otros otros otros otros sano  sano 
 ## Levels: sano otros</code></pre>
 <p>Como ya hemos usado (y veremos en detalle un poco más adelante), con <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code> también podemos los valores de una variable asociados a cada modalidad. Por ejemplo, vamos a calcular la cantidad de personajes de cada especie (filtrando los ausentes).</p>
-<div class="sourceCode" id="cb1966"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2033"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span></code></pre></div>
@@ -343,7 +343,7 @@
 ## 10 Gungan        3
 ## # … with 27 more rows</code></pre>
 <p>Ahora que sabemos hacerlo podemos dibujar un <mark><strong>diagrama de barras</strong></mark> para visualizar el número de personajes de cada especie (con <code>fill = n</code> y <code><a href="https://rdrr.io/pkg/ggthemes/man/scale_colour_gradient_tableau.html">scale_fill_continuous_tableau()</a></code> asignaremos un gradiente de color en función de la frecuencia).</p>
-<div class="sourceCode" id="cb1968"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2035"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>,
@@ -352,9 +352,9 @@
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_colour_gradient_tableau.html">scale_fill_continuous_tableau</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Frecuencia absoluta"</span>,
        x <span class="op">=</span> <span class="st">"Número de personajes"</span>, y <span class="op">=</span> <span class="st">"Especies"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-775-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-816-1.png" width="768"></div>
 <p>Al tener muchos niveles de <code>species</code> con muy pocos elementos, tenemos un gráfico poco claro, así que vamos a indicarle que nos convierta <code>species</code> a factor, y que nos <mark><strong>agrupe aquellas niveles</strong></mark> que tengan menos de 2 personajes.</p>
-<div class="sourceCode" id="cb1969"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2036"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>species <span class="op">=</span>
@@ -366,9 +366,9 @@
   <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_colour_gradient_tableau.html">scale_fill_continuous_tableau</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Frecuencia absoluta"</span>,
        x <span class="op">=</span> <span class="st">"Número de personajes"</span>, y <span class="op">=</span> <span class="st">"Especies"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-776-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-817-1.png" width="768"></div>
 <p>Por último vamos a aplicar algunos ajustes del tema que ya hemos visto en apartados anteriores para terminar nuestro gráfico.</p>
-<div class="sourceCode" id="cb1970"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2037"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Roboto"</span>, name <span class="op">=</span> <span class="st">"Roboto"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span>
@@ -398,27 +398,27 @@
                                    size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Roboto"</span>,
                                    size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-777-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-818-1.png" width="768"></div>
 </div>
 <div id="tablas-de-frecuencias" class="section level3">
 <h3>
 <span class="header-section-number">23.2.2</span> Tablas de frecuencias<a class="anchor" aria-label="anchor" href="#tablas-de-frecuencias"><i class="fas fa-link"></i></a>
 </h3>
 <p>Una de las <strong>primeras cosas</strong> que uno aprende en la asignatura de estadística <strong>descriptiva</strong> es <mark><strong>saber resumir nuestros datos</strong></mark> cuando tenemos muchos, y además <strong>muchos valores repetidos</strong>. Vamos a construir la <mark><strong>tabla de frecuencias</strong></mark> de la variable <code>n_films</code> de nuestro ya conocido conjunto <code>starwars</code> (una variable que vamos a crear contando en cuántas películas aparece cada personaje con <code><a href="https://rdrr.io/pkg/purrr/man/map.html">map_int()</a></code> para aplicar la función <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> a cada lista de cada personaje guardada en <code>films</code>)</p>
-<div class="sourceCode" id="cb1971"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2038"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">starwars_nueva</span> <span class="op">&lt;-</span> <span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n_films <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/map.html">map_int</a></span><span class="op">(</span><span class="va">films</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Y lo primero es <mark><strong>contar</strong></mark>: ¿cuántos registros hay de cada una de las clases? Para ello usaremos la función <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code></p>
-<div class="sourceCode" id="cb1972"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2039"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars_nueva</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##       n
 ##   &lt;int&gt;
 ## 1    87</code></pre>
 <p>Como ves si aplicamos la <strong>función directamente</strong> simplemente nos <strong>cuenta el número de filas</strong> de la tabla, así que vamos a <strong>usar la misma función pero indicándole la variable creada</strong>.</p>
-<div class="sourceCode" id="cb1974"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2041"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_freq</span> <span class="op">&lt;-</span> <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">n_films</span><span class="op">)</span>
 <span class="va">tabla_freq</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 2
@@ -439,16 +439,16 @@
 <mark><strong>Frecuencias relativas</strong></mark>: contar que proporción del total representa dicha cantidad. Suele ser denotada como <span class="math inline">\(f_i\)</span>, para cada nivel <span class="math inline">\(i\)</span>.</li>
 </ul>
 <p>Esa frecuencia absoluta también podemos calcularla haciendo uso de <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>, aplicada a la variable extraída de la tabla.</p>
-<div class="sourceCode" id="cb1976"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2043"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">starwars_nueva</span><span class="op">$</span><span class="va">n_films</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  1  2  3  4  5  6  7 
 ## 46 18 13  2  5  2  1</code></pre>
-<div class="sourceCode" id="cb1978"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2045"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">starwars_nueva</span><span class="op">$</span><span class="va">n_films</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "table"</code></pre>
 <p>El formato de la salida de <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> es lo que se conoce como una <mark><strong>tabla de contingencia</strong></mark>. Aplicada a una sola variable es una <strong>tabla unidimensional</strong> con una fila compuesto por los niveles y una segunda con la frecuencia absoluta de cada uno de ellos. Si lo aplicamos a dos variables el resultado será una <mark><strong>tabla de contigencia bidimensional</strong></mark>: la primera variable en las filas, la segunda en las columnas, y realizará el conteo bidimensional <span class="math inline">\(n_ij\)</span> para cada par de niveles <span class="math inline">\((i, j)\)</span></p>
-<div class="sourceCode" id="cb1980"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2047"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">starwars_nueva</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">n_films</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##                 n_films
 ## sex               1  2  3  4  5  6  7
@@ -457,7 +457,7 @@
 ##   male           32 12  9  2  4  1  0
 ##   none            3  1  0  0  0  1  1</code></pre>
 <p>Una vez que tenemos las frecuencias absolutas, las relativas se pueden calcular de forma sencilla con <code><a href="https://rdrr.io/r/base/prop.table.html">prop.table()</a></code>, que nos calcula la proporción que representa dicho valor.</p>
-<div class="sourceCode" id="cb1982"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2049"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Construimos de cero</span>
 <span class="va">tabla_freq</span> <span class="op">&lt;-</span> <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span>
   <span class="co"># n: frecuencia absoluta</span>
@@ -476,7 +476,7 @@
 ## 6       6     2 0.0230
 ## 7       7     1 0.0115</code></pre>
 <p>Es importanten observar que <code><a href="https://rdrr.io/r/base/prop.table.html">prop.table()</a></code> debe aplicarse sobre una <mark><strong>tabla de contingencia</strong></mark>. No nos da error al aplicarlo sobre un vector númerico, pero lo que nos dará no son la <strong>frecuencias relativas</strong> del vector numérico si no de un vector que tuviera esos números como <strong>frecuencias absolutas</strong>.</p>
-<div class="sourceCode" id="cb1984"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2051"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/prop.table.html">prop.table</a></span><span class="op">(</span><span class="va">starwars_nueva</span><span class="op">$</span><span class="va">n_films</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 0.028901734 0.034682081 0.040462428 0.023121387 0.028901734 0.017341040
 ##  [7] 0.017341040 0.005780347 0.005780347 0.034682081 0.017341040 0.011560694
@@ -494,7 +494,7 @@
 ## [79] 0.011560694 0.011560694 0.005780347 0.005780347 0.005780347 0.005780347
 ## [85] 0.005780347 0.005780347 0.017341040</code></pre>
 <p>También es posible <mark><strong>calcular frecuencias absolutas bidimensionales</strong></mark> por varias variables a la vez dentro de <code>{tidvyerse}</code> con el propio <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code>, pasándole dos variables diferentes.</p>
-<div class="sourceCode" id="cb1986"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2053"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars_nueva</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">gender</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   sex            gender        n
@@ -506,7 +506,7 @@
 ## 5 none           masculine     5
 ## 6 &lt;NA&gt;           &lt;NA&gt;          4</code></pre>
 <p>Podemos también añadir una columna <span class="math inline">\(N_i\)</span> de <mark><strong>frecuencia absoluta acumulada</strong></mark>, una columna que nos diga el <strong>número de personajes que han hecho un número de películas igual o menor</strong> que el indicado (usando la función <code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code> que nos realiza esa suma acumulada).</p>
-<div class="sourceCode" id="cb1988"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2055"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Construimos de cero</span>
 <span class="va">tabla_freq</span> <span class="op">&lt;-</span>
   <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span>
@@ -526,7 +526,7 @@
 ## 6       6     2 0.0230    86
 ## 7       7     1 0.0115    87</code></pre>
 <p>Y al igual que sucedía con <span class="math inline">\(n_i\)</span>, la frecuencia absoluta acumulada <span class="math inline">\(N_i\)</span> podremos también convertirla a <mark><strong>frecuencia relativa acumulada</strong></mark>.</p>
-<div class="sourceCode" id="cb1990"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2057"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Construimos de cero</span>
 <span class="va">tabla_freq</span> <span class="op">&lt;-</span> <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">n_films</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -544,7 +544,7 @@
 ## 5       5     5    84 0.0575 0.966
 ## 6       6     2    86 0.0230 0.989
 ## 7       7     1    87 0.0115 1</code></pre>
-<div class="sourceCode" id="cb1992"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2059"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># otra forma</span>
 <span class="va">tabla_freq</span> <span class="op">&lt;-</span> <span class="va">starwars_nueva</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">n_films</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -563,7 +563,7 @@
 ## 6       6     2    86 0.0230 0.164 
 ## 7       7     1    87 0.0115 0.166</code></pre>
 <p>Esas <strong>frecuencias relativas</strong> quizás querramos tenerlas expresadas en <mark><strong>porcentajes</strong></mark> en lugar de en proporciones, lo que podemos fácilmente multiplicando esas proporciones por 100.</p>
-<div class="sourceCode" id="cb1994"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2061"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Pasamos frecuencias relativas a porcentajes</span>
 <span class="va">tabla_freq</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>f_i <span class="op">=</span> <span class="va">f_i</span> <span class="op">*</span> <span class="fl">100</span>,
                       F_i <span class="op">=</span> <span class="va">F_i</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></code></pre></div>
@@ -578,7 +578,7 @@
 ## 6       6     2    86  2.30 16.4 
 ## 7       7     1    87  1.15 16.6</code></pre>
 <p>Por último, con la tabla <code>tabla_freq</code> expresando las frecuencias relativas en proporciones, vamos a cambiar el nombre de las columnas para que tengan los <strong>típicos nombres de una tabla de frecuencias</strong>.</p>
-<div class="sourceCode" id="cb1996"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2063"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Renombramos</span>
 <span class="va">tabla_freq</span> <span class="op">&lt;-</span> <span class="va">tabla_freq</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span><span class="op">(</span>n_i <span class="op">=</span> <span class="va">n</span>, x_i <span class="op">=</span> <span class="va">n_films</span><span class="op">)</span>
@@ -594,11 +594,11 @@
 ## 6     6     2    86 0.0230 0.164 
 ## 7     7     1    87 0.0115 0.166</code></pre>
 <p>Con el paquete <a href="https://github.com/rstudio/DT">DT</a> se pueden visualizar tablas en documentos <code>.Rmd</code></p>
-<div id="htmlwidget-077685eaa4d0092d612d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-077685eaa4d0092d612d">{"x":{"filter":"none","caption":"<caption>Tabla de frecuencias del número de películas en las que aparecen los personajes de la saga.<\/caption>","data":[[1,2,3,4,5,6,7],[46,18,13,2,5,2,1],[46,64,77,79,84,86,87],[0.528735632183908,0.206896551724138,0.149425287356322,0.0229885057471264,0.0574712643678161,0.0229885057471264,0.0114942528735632],[0.0879541108986616,0.122370936902486,0.147227533460803,0.151051625239006,0.160611854684512,0.164435946462715,0.166347992351816]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>x_i<\/th>\n      <th>n_i<\/th>\n      <th>N_i<\/th>\n      <th>f_i<\/th>\n      <th>F_i<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"fixedColumns":{"leftColumns":1},"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.95em');\n}","language":{"url":"//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"},"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"className":"dt-right","targets":[0,1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.headerCallback","options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><p> </p>
+<div id="htmlwidget-80ba5cc7848f9d58b5e8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-80ba5cc7848f9d58b5e8">{"x":{"filter":"none","caption":"<caption>Tabla de frecuencias del número de películas en las que aparecen los personajes de la saga.<\/caption>","data":[[1,2,3,4,5,6,7],[46,18,13,2,5,2,1],[46,64,77,79,84,86,87],[0.528735632183908,0.206896551724138,0.149425287356322,0.0229885057471264,0.0574712643678161,0.0229885057471264,0.0114942528735632],[0.0879541108986616,0.122370936902486,0.147227533460803,0.151051625239006,0.160611854684512,0.164435946462715,0.166347992351816]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>x_i<\/th>\n      <th>n_i<\/th>\n      <th>N_i<\/th>\n      <th>f_i<\/th>\n      <th>F_i<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"scrollX":true,"fixedColumns":{"leftColumns":1},"headerCallback":"function(thead) {\n  $(thead).css('font-size', '0.95em');\n}","language":{"url":"//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"},"columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \".\", \".\");\n  }"},{"className":"dt-right","targets":[0,1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.headerCallback","options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script><p> </p>
 <p><mark><strong>¿Cuál es el color de pelo que más aparece en <code>starwars</code>?</strong></mark></p>
 <p>Vamos a construir su tabla de frecuencias, primero conviertiendo <code>hair_color</code> a factor y viendo los niveles de dicha variable, y quedándonos solo con la variables <code>name</code> y <code>hair_color</code>. Además <mark><strong>los niveles ausentes los vamos a convertir</strong></mark> a <code>"none"</code>, nivel que ya existe, con <code>fct_explicit_na()</code></p>
-<div class="sourceCode" id="cb1998"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2065"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">starwars_hair</span> <span class="op">&lt;-</span>
   <span class="va">starwars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>hair_color <span class="op">=</span> <span class="fu">fct_explicit_na</span><span class="op">(</span><span class="va">hair_color</span>, na_level <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -619,7 +619,7 @@
 ## 10 Obi-Wan Kenobi     auburn, white
 ## # … with 77 more rows</code></pre>
 <p>Tras el preprocesamiento <mark><strong>construimos nuestra tabla de frecuencias</strong></mark>.</p>
-<div class="sourceCode" id="cb2000"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2067"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tabla_freq</span> <span class="op">&lt;-</span> <span class="va">starwars_hair</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">hair_color</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>N_i <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># cumsum calcula la suma acumulada</span>
@@ -641,7 +641,7 @@
 ## 10 none             42    82 0.483  0.943 
 ## 11 unknown           1    83 0.0115 0.954 
 ## 12 white             4    87 0.0460 1</code></pre>
-<div class="sourceCode" id="cb2002"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2069"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># En porcentaje</span>
 <span class="va">tabla_freq</span> <span class="op">&lt;-</span> 
   <span class="va">tabla_freq</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>f_i <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="va">f_i</span>,
@@ -669,7 +669,7 @@
 <span class="header-section-number">23.2.3</span> Análisis gráfico<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-gr%C3%A1fico"><i class="fas fa-link"></i></a>
 </h3>
 <p>El principal diagrama para variables cualitativas (o cuantitativas discretas) es el <mark><strong>diagrama de barras</strong></mark> que ya hemos aprendido a generar y personalizar.</p>
-<div class="sourceCode" id="cb2004"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2071"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Roboto"</span>, name <span class="op">=</span> <span class="st">"Roboto"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span>
@@ -699,9 +699,9 @@
                                    size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,
         axis.text.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Roboto"</span>,
                                    size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-793-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-834-1.png" width="768"></div>
 <p>Otra opción con variables cualitativas, en especial para <mark><strong>visualizar palabras en textos y documentos</strong></mark> son precisamente las <em>word cloud</em> o nubes de palabras. Con el paquete <a href="https://github.com/lchiffon/wordcloud2">wordcloud2</a> podrmeos visualizar las nubes de términos, por ejemplo de las especies de <code>starwars</code> (una vez filtrados los datos dusentes y reagrupado aquellas especies con solo un personaje). Con los parámetros <code>size</code> y <code>color</code> le indicaremos el tamaño base de las palabras y el patrón de colores elegir. Las palabras las visualizará en un tamaño relativo al número de veces que aparece.</p>
-<div class="sourceCode" id="cb2005"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2072"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("wordcloud2)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lchiffon/wordcloud2">wordcloud2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html">wordcloud2</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -710,10 +710,10 @@
                                    other_level <span class="op">=</span> <span class="st">"otras"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
              <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>,
            size <span class="op">=</span> <span class="fl">0.8</span>, color<span class="op">=</span> <span class="st">'random-dark'</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-9f8685c255393dc53db5" style="width:768px;height:480px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9f8685c255393dc53db5">{"x":{"word":["Droid","Gungan","Human","Kaminoan","Mirialan","Twi'lek","Wookiee","Zabrak","otras"],"freq":[6,3,35,2,2,2,2,2,29],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":4.11428571428571,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script><p>Otra opción habitual son los <mark><strong>mosaicos o treemaps</strong></mark>, representando en una cuadrícula cada una de las categorías, cuya área sea proprocional a las veces que aparece. Lo haremos con <a href="https://wilkox.org/treemapify/">treemapify</a>, dentro de la lógica <a href="https://ggplot2.tidyverse.org">ggplot2</a>: los parámetros dentro de <code><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes()</a></code> serán
+<div id="htmlwidget-25e69ee582256e93d080" style="width:768px;height:480px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-25e69ee582256e93d080">{"x":{"word":["Droid","Gungan","Human","Kaminoan","Mirialan","Twi'lek","Wookiee","Zabrak","otras"],"freq":[6,3,35,2,2,2,2,2,29],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":4.11428571428571,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script><p>Otra opción habitual son los <mark><strong>mosaicos o treemaps</strong></mark>, representando en una cuadrícula cada una de las categorías, cuya área sea proprocional a las veces que aparece. Lo haremos con <a href="https://wilkox.org/treemapify/">treemapify</a>, dentro de la lógica <a href="https://ggplot2.tidyverse.org">ggplot2</a>: los parámetros dentro de <code><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes()</a></code> serán
 <code>area</code> (asociado a la frecuencia absoluta), <code>fill</code> (color del relleno) y <code>label</code> (nombre). Usaremos una de las paletas de colores de cuadros vistas, en este caso <code><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">MetBrewer::met.brewer("Renoir")</a></code>.</p>
-<div class="sourceCode" id="cb2006"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2073"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("treemapify")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkox.org/treemapify/">treemapify</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -725,9 +725,9 @@
   <span class="fu"><a href="https://rdrr.io/pkg/treemapify/man/geom_treemap.html">geom_treemap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">MetBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Renoir"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Especies"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-795-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-836-1.png" width="768"></div>
 <p>Con <code><a href="https://rdrr.io/pkg/treemapify/man/geom_treemap_text.html">geom_treemap_text()</a></code> podemos además escribir el nombre de los niveles, pudiendo eliminar la leyenda.</p>
-<div class="sourceCode" id="cb2007"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2074"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span>
          <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>species <span class="op">=</span>
                       <span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">species</span>, min <span class="op">=</span> <span class="fl">2</span>,
@@ -740,10 +740,10 @@
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">MetBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Renoir"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Especies"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-796-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-837-1.png" width="768"></div>
 <p>Por último vamos a probar el paquete <a href="https://github.com/robwhickman/ggparliament">ggparliament</a> (puedes ver su <a href="%22https://r-charts.com/part-whole/ggparliament/%22">documentación</a>), para la <mark><strong>representación de escaños</strong></mark> (los partidos que se presentan a unas elecciones son variables cualitativas, y sus escaños sus frecuencias absolutas.</p>
 <p>Para ilustrarlo vamos a usar el conjunto <code>election_data</code> de dicho paquete, que contiene los <mark><strong>datos electorales de Rusia, Australia, Alemnia, UK y Estados Unidos</strong></mark></p>
-<div class="sourceCode" id="cb2008"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2075"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("ggparliament")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/robwhickman/ggparliament">ggparliament</a></span><span class="op">)</span>
 <span class="va">election_data</span></code></pre></div>
@@ -1078,11 +1078,11 @@
 ## 163         FDP    80          1 #FFED00
 ## 164         CSU    45          1 #008AC5</code></pre>
 <p>Vamos a <mark><strong>filtrar solo los resultados de Rusia del 2016</strong></mark></p>
-<div class="sourceCode" id="cb2010"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2077"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rusia</span> <span class="op">&lt;-</span> <span class="va">election_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Russia"</span> <span class="op">&amp;</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">2016</span><span class="op">)</span></code></pre></div>
 <p>Con la función <code>parliament_data</code> construiremos los datos, preparados para ser <mark><strong>visualizados en formato hemiciclo</strong></mark> (con <code>parl_rows</code> le indicamos las fila del parlamento).</p>
-<div class="sourceCode" id="cb2011"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2078"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rusia_parlamento</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggparliament/man/parliament_data.html">parliament_data</a></span><span class="op">(</span>election_data <span class="op">=</span> <span class="va">rusia</span>, type <span class="op">=</span> <span class="st">"semicircle"</span>,
                             parl_rows <span class="op">=</span> <span class="fl">9</span>, party_seats <span class="op">=</span> <span class="va">rusia</span><span class="op">$</span><span class="va">seats</span><span class="op">)</span><span class="op">)</span>
@@ -1102,24 +1102,24 @@
 ## 10  2016 Russia  Duma  Communist  CPRF           42          0 #D50000 -2.00
 ## # … with 440 more rows, and 3 more variables: y &lt;dbl&gt;, row &lt;int&gt;, theta &lt;dbl&gt;</code></pre>
 <p>Fíjate que por defecto ha incluido ya un color por partido (que podríamos cambiar en <a href="https://ggplot2.tidyverse.org">ggplot2</a>. Tras ello, y dentro de la filosofía <a href="https://ggplot2.tidyverse.org">ggplot2</a>, podremos representar los datos de nuestro parlamento.</p>
-<div class="sourceCode" id="cb2013"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2080"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">parlamento</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">rusia_parlamento</span>,
        <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, colour <span class="op">=</span> <span class="va">party_short</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggparliament/man/geom_parliament_seats.html">geom_parliament_seats</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">parlamento</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-800-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-841-1.png" width="768"></div>
 <p>Podemos añadir las etiquetas de los partidos así como el número total de escaños</p>
-<div class="sourceCode" id="cb2014"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2081"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">parlamento</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggparliament/man/draw_partylabels.html">draw_partylabels</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"semicircle"</span>,
                    party_names <span class="op">=</span> <span class="va">party_long</span>,
                    party_seats <span class="op">=</span> <span class="va">seats</span>,
                    party_colours <span class="op">=</span> <span class="va">colour</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://rdrr.io/pkg/ggparliament/man/draw_totalseats.html">draw_totalseats</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">450</span>, type <span class="op">=</span> <span class="st">"semicircle"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-801-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-842-1.png" width="768"></div>
 <p>Con <code><a href="https://rdrr.io/pkg/ggparliament/man/theme_ggparliament.html">theme_ggparliament()</a></code> tenemos un tema ya preparado para la representación del hemiciclo, y añadimos títulos y colores.</p>
-<div class="sourceCode" id="cb2015"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2082"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">parlamento</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggparliament/man/draw_totalseats.html">draw_totalseats</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">450</span>, type <span class="op">=</span> <span class="st">"semicircle"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggparliament/man/theme_ggparliament.html">theme_ggparliament</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -1129,20 +1129,277 @@
                       limits <span class="op">=</span> <span class="va">rusia_parlamento</span><span class="op">$</span><span class="va">party_short</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="fl">4</span>, b <span class="op">=</span> <span class="fl">4</span>, l <span class="op">=</span> <span class="fl">8</span>, <span class="st">"pt"</span><span class="op">)</span>,
         plot.title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-802-1.png" width="768"></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-843-1.png" width="768"></div>
+</div>
+</div>
+<div id="análisis-univariante-cualitativas-ordinales" class="section level2">
+<h2>
+<span class="header-section-number">23.3</span> Análisis univariante: cualitativas ordinales<a class="anchor" aria-label="anchor" href="#an%C3%A1lisis-univariante-cualitativas-ordinales"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ahora que <mark><strong>sabemos describir datos cualitativos</strong></mark> utilizando algunos conceptos fundamentales, vamos a profundizar en el análisis de un tipo de dato cuantitativo que son los <mark><strong>datos ordinales</strong></mark>.</p>
+<p>Las variables ordinales son también cualidades no numéricas de objetos e individuos, pero en este caso tienen una <mark><strong>jerarquía de orden</strong></mark> que no solo permite ordenar sino <mark><em>acumular</em></mark> observaciones, es decir, estudiar cuantos elementos se acumulan por encima o por debajo de un <strong>nivel</strong>, qué variación hay de un <strong>nivel</strong> a otro, etc. Las variables ordinales no se caracterizan sólo por sus <span class="math inline">\(k\)</span> <mark><strong>niveles</strong></mark><span class="math inline">\(l_1,...l_k\)</span>, también se caracterizan por su <mark><strong>relación de orden</strong></mark><span class="math inline">\(l_1 &lt;...&lt;l_k\)</span></p>
+<p>Estos tipo de datos son muy frecuentes, por ejemplo, en <mark><strong>estudios demográficos</strong></mark>, en conceptos como nivel socioeconómico, nivel de estudios y en <mark><strong>encuestas de opinión</strong></mark> donde se suelen usar las escalas tipo <a href="http://es.wikipedia.org/wiki/Escalas_Likert">Likert</a>.</p>
+<p>El concepto clave aquí es por lo tanto la <mark><strong>frecuencia acumulada</strong></mark>, que de nuevo podrá ser <mark><strong>absoluta</strong></mark> o <mark><strong>relativa</strong></mark>. La función <code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code> es la función fundamental para calcular estos valores sobre un conjunto de datos.</p>
+<div id="tablas-de-frecuencias-para-ordinales" class="section level3">
+<h3>
+<span class="header-section-number">23.3.1</span> Tablas de frecuencias para ordinales<a class="anchor" aria-label="anchor" href="#tablas-de-frecuencias-para-ordinales"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vamos a construir la <mark><strong>tabla de frecuencias acumuladas</strong></mark> de la lista de notas del curso anterior, cuyos <mark><strong>niveles</strong></mark> son: <code>"suspenso"</code>, <code>"aprobado"</code>, <code>"notable"</code> y <code>"sobresaliente"</code>. Su <mark><strong>orden</strong></mark> lo consideramos como: <code>"suspenso"</code> &lt; <code>"aprobado"</code> &lt; <code>"notable"</code> &lt; <code>"sobresaliente"</code>. Las calificaciones que han obtenido son las siguientes:</p>
+<div class="sourceCode" id="cb2083"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">notas_curso</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aprobado"</span>, <span class="st">"aprobado"</span>, <span class="st">"notable"</span>, <span class="st">"suspenso"</span>,
+    <span class="st">"suspenso"</span>, <span class="st">"aprobado"</span>, <span class="st">"notable"</span>, <span class="st">"sobresaliente"</span>,
+    <span class="st">"aprobado"</span>, <span class="st">"aprobado"</span>, <span class="st">"suspenso"</span>, <span class="st">"suspenso"</span>,
+    <span class="st">"suspenso"</span>, <span class="st">"aprobado"</span>, <span class="st">"sobresaliente"</span>, <span class="st">"notable"</span>,
+    <span class="st">"notable"</span>, <span class="st">"sobresaliente"</span>, <span class="st">"suspenso"</span>, <span class="st">"aprobado"</span><span class="op">)</span>
+<span class="va">notas_curso</span></code></pre></div>
+<pre><code>##  [1] "aprobado"      "aprobado"      "notable"       "suspenso"     
+##  [5] "suspenso"      "aprobado"      "notable"       "sobresaliente"
+##  [9] "aprobado"      "aprobado"      "suspenso"      "suspenso"     
+## [13] "suspenso"      "aprobado"      "sobresaliente" "notable"      
+## [17] "notable"       "sobresaliente" "suspenso"      "aprobado"</code></pre>
+<p>Lo primero será ver cuántos registros hay de cada clase y con cuanta frecuencia aparecen. Para eso vamos a utilizar de nuevo la función <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code> tras pasar nuestros datos a formato <code>tibble</code>.</p>
+<div class="sourceCode" id="cb2085"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">notas_curso</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span><span class="st">"notas"</span> <span class="op">=</span> <span class="va">notas_curso</span><span class="op">)</span>
+
+<span class="co"># Frecuencias absolutas + relativas</span>
+<span class="va">notas_freq</span> <span class="op">&lt;-</span>
+  <span class="va">notas_curso</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">notas</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>f <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+<span class="va">notas_freq</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##   notas             n     f
+##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt;
+## 1 aprobado          7  0.35
+## 2 notable           4  0.2 
+## 3 sobresaliente     3  0.15
+## 4 suspenso          6  0.3</code></pre>
+<p>Observamos que tenemos las siguientes calificaciones: 6 suspensos, 7 aprobados, 4 notables y 3 sobresalientes. Sin embargo, esto no responde a la pregunta de <mark><strong>cuántos de los alumnos han obtenido una calificación inferior a notable</strong></mark>. Para ello vamos a calcular la <mark><strong>tabla de frecuencias acumuladas</strong></mark>:</p>
+<ul>
+<li>
+<span class="math inline">\(n_i\)</span>: frecuencia absoluta</li>
+<li>
+<span class="math inline">\(N_i\)</span>: absoluta acumulada</li>
+<li>
+<span class="math inline">\(f_i\)</span>: relativa</li>
+<li>
+<span class="math inline">\(F_i\)</span>: acumulada.</li>
+</ul>
+<p>Para ello antes vamos a convertir la variable a factor, indicándole que es ordinal, con los niveles ordeandos y <code>ordered = TRUE</code></p>
+<div class="sourceCode" id="cb2087"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">notas_curso</span> <span class="op">&lt;-</span> <span class="va">notas_curso</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>notas <span class="op">=</span>
+           <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">notas</span>,
+                  levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"suspenso"</span>, <span class="st">"aprobado"</span>,
+                             <span class="st">"notable"</span>, <span class="st">"sobresaliente"</span><span class="op">)</span>,
+                  ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+<span class="va">notas_curso</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="va">notas</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1] aprobado      aprobado      notable       suspenso      suspenso     
+##  [6] aprobado      notable       sobresaliente aprobado      aprobado     
+## [11] suspenso      suspenso      suspenso      aprobado      sobresaliente
+## [16] notable       notable       sobresaliente suspenso      aprobado     
+## Levels: suspenso &lt; aprobado &lt; notable &lt; sobresaliente</code></pre>
+<div class="sourceCode" id="cb2089"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">notas_freq_acum</span> <span class="op">&lt;-</span>
+  <span class="va">notas_curso</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">notas</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span><span class="op">(</span>n_i <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>f_i <span class="op">=</span> <span class="va">n_i</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n_i</span><span class="op">)</span>,
+         N_i <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">n_i</span><span class="op">)</span>,
+         F_i <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">N_i</span><span class="op">)</span><span class="op">)</span>
+<span class="va">notas_freq_acum</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 5
+##   notas           n_i   f_i   N_i   F_i
+##   &lt;ord&gt;         &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+## 1 suspenso          6  0.3      6     6
+## 2 aprobado          7  0.35    13    19
+## 3 notable           4  0.2     17    36
+## 4 sobresaliente     3  0.15    20    56</code></pre>
+<div id="htmlwidget-604a8a6e769444fefb9d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-604a8a6e769444fefb9d">{"x":{"filter":"none","data":[["1","2","3","4"],["suspenso","aprobado","notable","sobresaliente"],[6,7,4,3],[0.3,0.35,0.2,0.15],[6,13,17,20],[6,19,36,56]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>notas<\/th>\n      <th>n_i<\/th>\n      <th>f_i<\/th>\n      <th>N_i<\/th>\n      <th>F_i<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>Podemos visualizar tanto las acmuladas como las no acumuladas con un diagrama de barras.</p>
+<div class="sourceCode" id="cb2091"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">MetBrewer</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">notas_freq_acum</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">notas</span>, y <span class="op">=</span> <span class="va">n_i</span>,
+           fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">n_i</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Klimt"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Notas"</span>, y <span class="op">=</span> <span class="st">"Frec. absolutas acumuladas"</span>,
+       title <span class="op">=</span> <span class="st">"FRECUENCIAS ABSOLUTAS Y RELATIVAS"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-849-1.png" width="768"></div>
+<div class="sourceCode" id="cb2092"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">notas_freq_acum</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">notas</span>, y <span class="op">=</span> <span class="va">N_i</span>,
+           fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">N_i</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Klimt"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Notas"</span>, y <span class="op">=</span> <span class="st">"Frec. absolutas acumuladas"</span>,
+       title <span class="op">=</span> <span class="st">"FRECUENCIAS ABSOLUTAS Y RELATIVAS"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-849-2.png" width="768"></div>
+<div class="sourceCode" id="cb2093"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">notas_freq_acum</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">notas</span>, y <span class="op">=</span> <span class="va">F_i</span>,
+           fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">F_i</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/MetBrewer/man/met.brewer.html">met.brewer</a></span><span class="op">(</span><span class="st">"Klimt"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Notas"</span>, y <span class="op">=</span> <span class="st">"Frec. relativas acumuladas"</span>,
+       title <span class="op">=</span> <span class="st">"FRECUENCIAS ABSOLUTAS Y RELATIVAS"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-849-3.png" width="768"></div>
+<p>Puedes ampliar sobre cómo recategorizar variables continuas en ordinales en <a href="tidyverse.html#tidyverse">19</a> <a href="tidyverse.html#tidyverse">Depuración y transformación</a></p>
 </div>
 </div>
 <div id="ejercicios-14" class="section level2">
 <h2>
-<span class="header-section-number">23.3</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">23.4</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-14"><i class="fas fa-link"></i></a>
 </h2>
-<p>en construcción</p>
+<p>(haz click en las flechas para ver soluciones)</p>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: usando <a href="https://dplyr.tidyverse.org">dplyr</a> de <code>{tidvyerse}</code> calcula la tabla de frecuencias absolutas de la variable<code>skin_color</code> del conjunto de datos de <code>starwars</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2094"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">starwars</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">skin_color</span><span class="op">)</span> </code></pre></div>
+<pre><code>## # A tibble: 31 × 2
+##    skin_color              n
+##    &lt;chr&gt;               &lt;int&gt;
+##  1 blue                    2
+##  2 blue, grey              2
+##  3 brown                   4
+##  4 brown mottle            1
+##  5 brown, white            1
+##  6 dark                    6
+##  7 fair                   17
+##  8 fair, green, yellow     1
+##  9 gold                    1
+## 10 green                   6
+## # … with 21 more rows</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: repite el ejercicio anterior pero reagrupa los niveles poco frecuentes (poco frecuente definido como que aparezca dos o menos veces) con <code>fct_lump_min()</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2096"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>fskin_color <span class="op">=</span>
+           <span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">skin_color</span>, min <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">fskin_color</span><span class="op">)</span> </code></pre></div>
+<pre><code>## # A tibble: 8 × 2
+##   fskin_color     n
+##   &lt;fct&gt;       &lt;int&gt;
+## 1 brown           4
+## 2 dark            6
+## 3 fair           17
+## 4 green           6
+## 5 grey            6
+## 6 light          11
+## 7 pale            5
+## 8 Other          32</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: añade a la tabla anterior la tabla de frecuencias relativas de la columna <code>skin_color</code>. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2098"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">freq_skin</span> <span class="op">&lt;-</span>
+  <span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>fskin_color <span class="op">=</span>
+           <span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">skin_color</span>, min <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">fskin_color</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span><span class="op">(</span>ni <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>fi <span class="op">=</span> <span class="va">ni</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ni</span><span class="op">)</span><span class="op">)</span>
+<span class="va">freq_skin</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 3
+##   fskin_color    ni     fi
+##   &lt;fct&gt;       &lt;int&gt;  &lt;dbl&gt;
+## 1 brown           4 0.0460
+## 2 dark            6 0.0690
+## 3 fair           17 0.195 
+## 4 green           6 0.0690
+## 5 grey            6 0.0690
+## 6 light          11 0.126 
+## 7 pale            5 0.0575
+## 8 Other          32 0.368</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: recategoriza la variable <code>height</code> usando la función <code>cut</code> con 6 cortes (filtrando antes los valores ausentes). Formatea esa nueva columna como un factor, calculando sus frecuencias y agrupa para no tener clases con menos de 7 valores. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars_fheight</span> <span class="op">&lt;-</span>
+  <span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>fheight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">height</span>, breaks <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
 
+<span class="co"># Frecuencias</span>
+<span class="fu">fct_count</span><span class="op">(</span><span class="va">starwars_fheight</span><span class="op">$</span><span class="va">fheight</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   f             n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 (65.8,99]     7
+## 2 (99,132]      2
+## 3 (132,165]    10
+## 4 (165,198]    51
+## 5 (198,231]     9
+## 6 (231,264]     2</code></pre>
+<div class="sourceCode" id="cb2102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Reagrupamos</span>
+<span class="va">starwars_fheight</span> <span class="op">&lt;-</span>
+  <span class="va">starwars_fheight</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>fheight <span class="op">=</span>
+           <span class="fu">fct_lump_min</span><span class="op">(</span><span class="va">fheight</span>, min <span class="op">=</span> <span class="fl">7</span>,
+                        other_level <span class="op">=</span> <span class="st">"otros"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">fct_count</span><span class="op">(</span><span class="va">starwars_fheight</span><span class="op">$</span><span class="va">fheight</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 2
+##   f             n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 (65.8,99]     7
+## 2 (132,165]    10
+## 3 (165,198]    51
+## 4 (198,231]     9
+## 5 otros         4</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 5</strong>: genera las frecuencias acumuladas resultantes de la columna recategorizada del ejercicio anterior. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">freq_fheight</span> <span class="op">&lt;-</span>
+  <span class="va">starwars_fheight</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">fheight</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/rename.html">rename</a></span><span class="op">(</span>ni <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>fi <span class="op">=</span> <span class="va">ni</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ni</span><span class="op">)</span>,
+         Ni <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">ni</span><span class="op">)</span>,
+         Fi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">fi</span><span class="op">)</span><span class="op">)</span>
+<span class="va">freq_fheight</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 5
+##   fheight      ni     fi    Ni     Fi
+##   &lt;fct&gt;     &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;
+## 1 (65.8,99]     7 0.0864     7 0.0864
+## 2 (132,165]    10 0.123     17 0.210 
+## 3 (165,198]    51 0.630     68 0.840 
+## 4 (198,231]     9 0.111     77 0.951 
+## 5 otros         4 0.0494    81 1</code></pre>
+<!-- tocstop -->
+</details>
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></div>
-<div class="next"><a href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></div>
+<div class="next"><a href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -1155,13 +1412,16 @@
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#an%C3%A1lisis-univariante-categ%C3%B3ricas"><span class="header-section-number">23.2</span> Análisis univariante: categóricas</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#an%C3%A1lisis-univariante-cualitativas-nominales"><span class="header-section-number">23.2</span> Análisis univariante: cualitativas nominales</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#factores"><span class="header-section-number">23.2.1</span> Factores</a></li>
 <li><a class="nav-link" href="#tablas-de-frecuencias"><span class="header-section-number">23.2.2</span> Tablas de frecuencias</a></li>
 <li><a class="nav-link" href="#an%C3%A1lisis-gr%C3%A1fico"><span class="header-section-number">23.2.3</span> Análisis gráfico</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ejercicios-14"><span class="header-section-number">23.3</span> 📝 Ejercicios</a></li>
+<li>
+<a class="nav-link" href="#an%C3%A1lisis-univariante-cualitativas-ordinales"><span class="header-section-number">23.3</span> Análisis univariante: cualitativas ordinales</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#tablas-de-frecuencias-para-ordinales"><span class="header-section-number">23.3.1</span> Tablas de frecuencias para ordinales</a></li></ul>
+</li>
+<li><a class="nav-link" href="#ejercicios-14"><span class="header-section-number">23.4</span> 📝 Ejercicios</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1179,7 +1439,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 28-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 30-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

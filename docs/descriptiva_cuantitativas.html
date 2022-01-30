@@ -4,17 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Capítulo 24 Extrayendo información: estadística descriptiva con cuantitativas | Analizando datos, visualizando información, contando historias</title>
+<title>Capítulo 24 Extrayendo información: estadística descriptiva con cuantitativas continuas | Analizando datos, visualizando información, contando historias</title>
 <meta name="author" content="Javier Álvarez Liébana y Gabriel Valverde Castilla">
-<meta name="description" content="Scripts usados: script24.R: intro a la descriptiva con cuantitativas. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R  en construcción  24.1 📝 Ejercicios en...">
+<meta name="description" content="Scripts usados: script24.R: intro a la descriptiva con cuantitativas continuas. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R  Aunque hemos aprendido...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="Capítulo 24 Extrayendo información: estadística descriptiva con cuantitativas | Analizando datos, visualizando información, contando historias">
+<meta property="og:title" content="Capítulo 24 Extrayendo información: estadística descriptiva con cuantitativas continuas | Analizando datos, visualizando información, contando historias">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/img/logo_R.png">
-<meta property="og:description" content="Scripts usados: script24.R: intro a la descriptiva con cuantitativas. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R  en construcción  24.1 📝 Ejercicios en...">
+<meta property="og:description" content="Scripts usados: script24.R: intro a la descriptiva con cuantitativas continuas. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R  Aunque hemos aprendido...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Capítulo 24 Extrayendo información: estadística descriptiva con cuantitativas | Analizando datos, visualizando información, contando historias">
-<meta name="twitter:description" content="Scripts usados: script24.R: intro a la descriptiva con cuantitativas. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R  en construcción  24.1 📝 Ejercicios en...">
+<meta name="twitter:title" content="Capítulo 24 Extrayendo información: estadística descriptiva con cuantitativas continuas | Analizando datos, visualizando información, contando historias">
+<meta name="twitter:description" content="Scripts usados: script24.R: intro a la descriptiva con cuantitativas continuas. Ver en https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R  Aunque hemos aprendido...">
 <meta name="twitter:image" content="/img/logo_R.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -83,7 +83,7 @@
 <li><a class="" href="ggplot2_plus.html"><span class="header-section-number">22</span> Profundizando en ggplot2</a></li>
 <li class="book-part">Incursión a la estadística descriptiva</li>
 <li><a class="" href="descriptiva_cualitativas.html"><span class="header-section-number">23</span> Extrayendo información: estadística descriptiva con cualitativas</a></li>
-<li><a class="active" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
+<li><a class="active" href="descriptiva_cuantitativas.html"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas</a></li>
 <li><a class="" href="resumenes.html"><span class="header-section-number">25</span> Resumiendo y relacionado datos</a></li>
 <li><a class="" href="bibliograf%C3%ADa.html">Bibliografía</a></li>
 </ul>
@@ -95,23 +95,543 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="descriptiva_cuantitativas" class="section level1">
 <h1>
-<span class="header-section-number">Capítulo 24</span> Extrayendo información: estadística descriptiva con cuantitativas<a class="anchor" aria-label="anchor" href="#descriptiva_cuantitativas"><i class="fas fa-link"></i></a>
+<span class="header-section-number">Capítulo 24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas<a class="anchor" aria-label="anchor" href="#descriptiva_cuantitativas"><i class="fas fa-link"></i></a>
 </h1>
 <div class="blackbox">
 <p>Scripts usados:</p>
 <ul>
 <li>
-<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R"><strong>script24.R</strong></a>: intro a la descriptiva con cuantitativas. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R</a>
+<a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R"><strong>script24.R</strong></a>: intro a la descriptiva con cuantitativas continuas. Ver en <a href="https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R" class="uri">https://github.com/dadosdelaplace/courses-ECI-2022/blob/main/scripts/script24.R</a>
 </li>
 </ul>
 </div>
-<p>en construcción</p>
+<p>Aunque hemos aprendido algunas formas de agrupar variables continuas en categorías y subintervalos, el problema es que cuando lo hacemos estamos <mark><strong>pagando un precio</strong></mark>: tenemos un resumen de los datos a cambio de <mark><strong>perder información de los mismos</strong></mark>: todos los elementos que cae en un intervalo se les <mark><strong>imputará un único valor</strong></mark>: la <strong>marca de clase</strong> (que normalmente es el punto medio del intervalo).</p>
+<div id="basados-en-puntos" class="section level2">
+<h2>
+<span class="header-section-number">24.1</span> Basados en puntos<a class="anchor" aria-label="anchor" href="#basados-en-puntos"><i class="fas fa-link"></i></a>
+</h2>
+<p>El tratamiento de las frecuencias de datos cuantitativos es similar al de los datos ordinales, excepto por un detalle: no se tienen en cuenta todos los niveles posibles, sino solo los observados.</p>
+<p>Vamos a analizar un <mark><strong>conjunto de datos</strong></mark> muy interesante, que contiene las respuestas a las preguntas <mark><strong>«¿qué probabilidad (%) asignarías al término …?</strong></mark> Dicha pregunta se realizaó para distintos términos como «casi sin opciones» (almost no chance), «en mayor medida» (about even), «probable» (probable) o «casi seguro» (almost certainly), con el objetivo de comprender <mark><strong>cómo la gente percibe el vocabulario</strong></mark> relativo a la probabilidad. Los datos y gráficos han sido basados en el trabajo de <a href="https://github.com/zonination/perceptions">Zoni Nation</a> y <a href="https://www.data-to-viz.com/story/OneNumOneCatSeveralObs.html">data-to-viz.com</a></p>
+<div class="sourceCode" id="cb2106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/zonination/perceptions/master/probly.csv"</span><span class="op">)</span>
+<span class="va">datos</span></code></pre></div>
+<pre><code>## # A tibble: 46 × 17
+##    `Almost Certainly` `Highly Likely` `Very Good Chanc… Probable Likely Probably
+##                 &lt;dbl&gt;           &lt;dbl&gt;             &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+##  1                 95              80                85       75     66       75
+##  2                 95              75                75       51     75       51
+##  3                 95              85                85       70     75       70
+##  4                 95              85                85       70     75       70
+##  5                 98              95                80       70     70       75
+##  6                 95              99                85       90     75       75
+##  7                 85              95                65       80     40       45
+##  8                 97              95                75       70     70       80
+##  9                 95              95                80       70     65       80
+## 10                 90              85                90       70     75       70
+## # … with 36 more rows, and 11 more variables: We Believe &lt;dbl&gt;,
+## #   Better Than Even &lt;dbl&gt;, About Even &lt;dbl&gt;, We Doubt &lt;dbl&gt;, Improbable &lt;dbl&gt;,
+## #   Unlikely &lt;dbl&gt;, Probably Not &lt;dbl&gt;, Little Chance &lt;dbl&gt;,
+## #   Almost No Chance &lt;dbl&gt;, Highly Unlikely &lt;dbl&gt;, Chances Are Slight &lt;dbl&gt;</code></pre>
+<p>Vamos a visualizar la <mark><strong>media de las probabilidades</strong></mark> asignadas para cada caso, con un diagrama de barras. Pero antes debemos de <mark><strong>transformar el dataset a tidydata</strong></mark> con <code><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer()</a></code>.</p>
+<div class="sourceCode" id="cb2108"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_pivot</span> <span class="op">&lt;-</span>
+  <span class="va">datos</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/tidyselect/man/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
+               names_to <span class="op">=</span> <span class="st">"termino"</span>, values_to <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>
+<span class="va">datos_pivot</span></code></pre></div>
+<pre><code>## # A tibble: 782 × 2
+##    termino           prob
+##    &lt;chr&gt;            &lt;dbl&gt;
+##  1 Almost Certainly    95
+##  2 Highly Likely       80
+##  3 Very Good Chance    85
+##  4 Probable            75
+##  5 Likely              66
+##  6 Probably            75
+##  7 We Believe          66
+##  8 Better Than Even    55
+##  9 About Even          50
+## 10 We Doubt            40
+## # … with 772 more rows</code></pre>
+<p>Tras ello, <mark><strong>seleccionamos los términos</strong></mark><code>Almost No Chance</code>, <code>Chances Are Slight</code>, <code>Improbable</code>, <code>About Even</code>, <code>Probable</code> y <code>Almost Certainly</code>. Además vamos a <mark><strong>reordenar los niveles de factor</strong></mark> de la variable <code>termino</code> con <code>fct_reorder()</code> (del paquete <a href="https://forcats.tidyverse.org">forcats</a>)</p>
+<div class="sourceCode" id="cb2110"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datos_final</span> <span class="op">&lt;-</span>
+  <span class="va">datos_pivot</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">termino</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Almost No Chance"</span>, <span class="st">"Chances Are Slight"</span>,
+                        <span class="st">"Improbable"</span>, <span class="st">"About Even"</span>,
+                        <span class="st">"Probable"</span>, <span class="st">"Almost Certainly"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>termino <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">termino</span>, <span class="va">prob</span><span class="op">)</span><span class="op">)</span>
+<span class="va">datos_final</span></code></pre></div>
+<pre><code>## # A tibble: 276 × 2
+##    termino             prob
+##    &lt;fct&gt;              &lt;dbl&gt;
+##  1 Almost Certainly      95
+##  2 Probable              75
+##  3 About Even            50
+##  4 Improbable            20
+##  5 Almost No Chance       5
+##  6 Chances Are Slight    25
+##  7 Almost Certainly      95
+##  8 Probable              51
+##  9 About Even            50
+## 10 Improbable            49
+## # … with 266 more rows</code></pre>
+<p>Tras preprocesar los datos, usamos <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col()</a></code> para visualizar los datos medios.</p>
+<div class="sourceCode" id="cb2112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">termino</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">prob</span><span class="op">)</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">termino</span>, y <span class="op">=</span> <span class="va">media</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-859-1.png" width="768"></div>
+<p>Con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer()</a></code> vamos a darle una <mark><strong>paleta de colores divergente</strong></mark> al relleno, de rojo (poca probabilidad) a azul (mucha probabilidad) con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer(palette = "RdBu")</a></code>. Además con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_x_discrete(labels = ...)</a></code> vamos a <mark><strong>etiquetar correctamente los valores</strong></mark> del eje x. Además definiremos un tema para los siguientes gráficos.</p>
+<div class="sourceCode" id="cb2113"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/sysfonts">sysfonts</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Roboto"</span>, name <span class="op">=</span> <span class="st">"Roboto"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext_auto</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme_get.html">theme_set</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html">theme_void</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Roboto"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme_get.html">theme_update</a></span><span class="op">(</span>
+  axis.text.x <span class="op">=</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, face <span class="op">=</span> <span class="st">"bold"</span>, size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,
+  axis.text.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>,
+  axis.line.x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+  panel.grid.major.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey90"</span>, size <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span>,
+  plot.background <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,
+  plot.title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">element_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, face <span class="op">=</span> <span class="st">"bold"</span>,
+                            size <span class="op">=</span> <span class="fl">27</span><span class="op">)</span>,
+  plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">15</span>, r <span class="op">=</span> <span class="fl">15</span>, l <span class="op">=</span> <span class="fl">15</span>, b <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">termino</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">prob</span><span class="op">)</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">termino</span>, y <span class="op">=</span> <span class="va">media</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_bar.html">geom_col</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-860-1.png" width="768"></div>
+<p>En este caso, para cada variable cualitativa <code>termino</code>, la variable <code>prob</code> es una <mark><strong>variable cuantitativa continua</strong></mark>, por lo que quizas este tipo de gráficos no tengan mucho sentido ya que resumen demasiado los datos.</p>
+<p><mark><strong>¿Cómo podemos visualizar una variable continua?</strong></mark></p>
+<p>Una primera opción es usar <mark><strong>diagramas de puntos</strong></mark>. Para ello primero a preprocesar el conjunto de <code>starwars</code>, <strong>filtrando los ausentes</strong> en <code>height</code> y <code>species</code>, y recategorizando la variable <code>species</code> en humanos o no humanos.</p>
+<div class="sourceCode" id="cb2114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars_altura</span> <span class="op">&lt;-</span>
+  <span class="va">starwars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">height</span>, <span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>human <span class="op">=</span> <span class="fu">as_factor</span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Human"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Tras el preprocesado vamos a <mark><strong>visualizar con puntos</strong></mark> la estatura (variable continua) de cada uno de los dos grupos, haciendo uso de un paquete muy útil llamado <a href="https://github.com/eclarke/ggbeeswarm">ggbeeswarm</a>, un paquete que nos permite con <code><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_quasirandom.html">geom_quasirandom()</a></code> una visualización con puntos de forma que los valores repetidos los reparte <strong>aleatoriamente a lo ancho</strong>, obteniendo nubes de puntos en lugar de columnas de puntos.
+Además le indicaremos con <code><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_x_discrete()</a></code> las etiquetas de nuestras categorías (que por defecto sería en inglés, <code>FALSE</code> vs <code>TRUE</code>)</p>
+<div class="sourceCode" id="cb2115"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/eclarke/ggbeeswarm">ggbeeswarm</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">starwars_altura</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">human</span>, y <span class="op">=</span> <span class="va">height</span>,
+           fill <span class="op">=</span> <span class="va">human</span>, color <span class="op">=</span> <span class="va">human</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_quasirandom.html">geom_quasirandom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4.5</span>, width <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NO"</span>, <span class="st">"SÍ"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"¿Son humanos?"</span>,
+       y <span class="op">=</span> <span class="st">"Altura (cm)"</span>,
+       title <span class="op">=</span> <span class="st">"ALTURA DE LOS PERSONAJES DE STARWARS"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-862-1.png" width="768"></div>
+<p>Podemos repetir el gráfico con nuestro conjunto de percepciones de probabilidad.</p>
+<div class="sourceCode" id="cb2116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">termino</span>, y <span class="op">=</span> <span class="va">prob</span>,
+           fill <span class="op">=</span> <span class="va">termino</span>, color <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_quasirandom.html">geom_quasirandom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3.5</span>, width <span class="op">=</span> <span class="fl">0.5</span>,
+                   alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_quasirandom.html">geom_quasirandom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3.5</span>, width <span class="op">=</span> <span class="fl">0.5</span>, shape <span class="op">=</span> <span class="fl">1</span>,
+                   color <span class="op">=</span> <span class="st">"black"</span>, stroke <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Términos"</span>, x <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-863-1.png" width="768"></div>
+</div>
+<div id="cajas-y-bigotes" class="section level2">
+<h2>
+<span class="header-section-number">24.2</span> Cajas y bigotes<a class="anchor" aria-label="anchor" href="#cajas-y-bigotes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Otra opción es con los famosos <mark><strong>gráficos de cajas y bigotes</strong></mark> con <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot()</a></code></p>
+<div class="sourceCode" id="cb2117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">termino</span>, y <span class="op">=</span> <span class="va">prob</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-864-1.png" width="768"></div>
+<p>Un <mark><strong>diagrama de caja y bigotes o box plot</strong></mark>, es un gráfico que resume algunos datos estadísticos en relación a la <mark><strong>mediana</strong></mark> y <mark><strong>medidas de posición</strong></mark> (percentiles)</p>
+<ul>
+<li><p>Los lados inferior y superior de la caja representan el <mark><strong>primer y tercer cuartil</strong></mark>, por lo que la altura de la caja es igual al rango intercuartílico: dentro están el 50% de los datos centrales en torno a la mediana.</p></li>
+<li><p>La línea gruesa que divide la caja marca la <mark><strong>mediana</strong></mark>.</p></li>
+<li><p>Las <mark><strong>líneas (bigotes)</strong></mark> que salen de las cajas llegan hasta el primer/último dato que no supere 1.5 veces el rango intercuartílico (diferencia entre tercer y primer cuartil). Los <mark><strong>puntos alejados</strong></mark> representan los <mark><strong>datos atípicos o outliers</strong></mark></p></li>
+</ul>
+<p>Es decir, el bigote inferior marca el menor valor por debajo de la caja intercuartílica a distancia menor o igual que 1.5 veces la altura de dicha caja, y el superior marca el mayor valor por encima de la caja intercuartílica a distancia menor o igual que 1.5 veces la altura de dicha caja.</p>
+<p> </p>
+<p>Podemos añadir, además del gráfico resumido, los propios datos con <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_jitter.html">geom_jitter()</a></code>, que nos añadirá los puntos como una especie de «gotelé aleatorio» (la altura es la de los datos pero la anchura la disemina)</p>
+<div class="sourceCode" id="cb2118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">termino</span>, y <span class="op">=</span> <span class="va">prob</span>,
+           color <span class="op">=</span> <span class="va">termino</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.25</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-865-1.png" width="768"></div>
+<div class="sourceCode" id="cb2119"><pre class="downlit sourceCode r">
+<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<pre><code>## $fill
+## [1] "Términos"
+## 
+## $y
+## [1] "Probabilidad (%)"
+## 
+## $title
+## [1] "Percepción de la probabilidad"
+## 
+## attr(,"class")
+## [1] "labels"</code></pre>
+<p>Con <code><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip()</a></code> podemos <mark><strong>invertir los ejes</strong></mark></p>
+<div class="sourceCode" id="cb2121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">termino</span>, y <span class="op">=</span> <span class="va">prob</span>,
+           color <span class="op">=</span> <span class="va">termino</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.25</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-866-1.png" width="768"></div>
+</div>
+<div id="histogramas-y-densidad" class="section level2">
+<h2>
+<span class="header-section-number">24.3</span> Histogramas y densidad<a class="anchor" aria-label="anchor" href="#histogramas-y-densidad"><i class="fas fa-link"></i></a>
+</h2>
+<p>Una opción también muy habitual son los <mark><strong>gráficos de densidad</strong></mark>, que nos representan una versión continua de la distribución empírica de probabilidad.</p>
+<div class="sourceCode" id="cb2122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prob</span>, color <span class="op">=</span> <span class="va">termino</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-867-1.png" width="768"></div>
+<p>Podemos incluso tomar los datos originales y hacer un <mark><strong>panel de las distribuciones</strong></mark> de las probabilidades asignadas, componiendo con <code><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap()</a></code>.</p>
+<div class="sourceCode" id="cb2123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_pivot</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>termino <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">termino</span>, <span class="va">prob</span><span class="op">)</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prob</span>, color <span class="op">=</span> <span class="va">termino</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_color_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">termino</span>, scale <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-868-1.png" width="768"></div>
+<p>Las <mark><strong>funciones de densidad</strong></mark> suelen ser aproximadas por lo que se conoce como <mark><strong>histograma</strong></mark> (que no diagrama de barras). El histograma <mark><strong>segmenta en tramos el conjunto de posibles valores</strong></mark> y representa la frecuencia de cada uno de esos segmentos como si de un diagrama de barras se tratara (¡pero no lo es! aquí la anchura de la barra no es algo estético sino que representa la amplitud del intervalo). Para pintarlos basta con repetir el proceso anterior, sustituyendo <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">geom_density()</a></code> por <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram()</a></code></p>
+<div class="sourceCode" id="cb2124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_pivot</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>termino <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">termino</span>, <span class="va">prob</span><span class="op">)</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prob</span>, color <span class="op">=</span> <span class="va">termino</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_color_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">termino</span>, scale <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-869-1.png" width="768"></div>
+<p>Por defecto nos pinta 30 barras pero podemos indicarle que pinte más o menos, por ejemplo 10 barras con <code>bins = 10</code>.</p>
+<div class="sourceCode" id="cb2125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_pivot</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>termino <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">termino</span>, <span class="va">prob</span><span class="op">)</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prob</span>, color <span class="op">=</span> <span class="va">termino</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">10</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_color_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">termino</span>, scale <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-870-1.png" width="768"></div>
+<p>A veces puede ser interesante <mark><strong>superponer las densidades</strong></mark>, lo cual lo podemos hacer con <code><a href="https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html">geom_density_ridges()</a></code>, del paquete <a href="https://wilkelab.org/ggridges/">ggridges</a>.</p>
+<div class="sourceCode" id="cb2126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/">ggridges</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_pivot</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>termino <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">termino</span>, <span class="va">prob</span><span class="op">)</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">termino</span>, x <span class="op">=</span> <span class="va">prob</span>, fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggridges/man/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_fill_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_viridis.html">scale_color_viridis_d</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Términos"</span>,
+       y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-871-1.png" width="768"></div>
+<p>Como hemos comentado, los <mark><strong>gráficos de densidad</strong></mark> son una versión continua, asintótica si queremos, de un histograma (algo así como la integral lo es a la suma infinita), asumiendo que los intervalos se pudieran ir haciendo tan pequeños como queramos, generado una curva continua. Las densidades mejoran la robustez al histograma que puede variar mucho en función de los tramos de agregación elegidos.</p>
+</div>
+<div id="gráficos-de-violín" class="section level2">
+<h2>
+<span class="header-section-number">24.4</span> Gráficos de violín<a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos-de-viol%C3%ADn"><i class="fas fa-link"></i></a>
+</h2>
+<p>Una <mark><strong>alternativa a los gráficos de cajas y bigotes</strong></mark>, con el objetivo de poder ver la distribución real que dicho gráfico nos simplifica, son los <mark><strong>gráficos de violín</strong></mark>, que podemos realizar con <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin()</a></code>.</p>
+<div class="sourceCode" id="cb2127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">termino</span>, x <span class="op">=</span> <span class="va">prob</span>,
+           fill <span class="op">=</span> <span class="va">termino</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-872-1.png" width="768"></div>
+<p>Podemos añadir la línea de contorno del mismo color, y para distinguirlo del relleno, vamos a <mark><strong>clarear</strong></mark> el color con <code>lighten</code>, del paquete <a href="https://colorspace.R-Forge.R-project.org/">colorspace</a> (con <code>after_scale</code>, para que el mapeado lo realiza tras evaluar y escalar los datos).</p>
+<div class="sourceCode" id="cb2128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://colorspace.R-Forge.R-project.org/">colorspace</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">termino</span>, x <span class="op">=</span> <span class="va">prob</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">termino</span>, color <span class="op">=</span> <span class="va">termino</span>,
+                  fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes_eval.html">after_scale</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/lighten.html">lighten</a></span><span class="op">(</span><span class="va">fill</span>, <span class="fl">.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+              size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-873-1.png" width="768"></div>
+<p>Dentro de <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin()</a></code>, con el parámetro <code>bw</code> podemos ajustar el <mark><strong>ancho de banda</strong></mark>: a mayor valor, más suaves serán las figuras.</p>
+<div class="sourceCode" id="cb2129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">termino</span>, x <span class="op">=</span> <span class="va">prob</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">termino</span>, color <span class="op">=</span> <span class="va">termino</span>,
+                  fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes_eval.html">after_scale</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/lighten.html">lighten</a></span><span class="op">(</span><span class="va">fill</span>, <span class="fl">.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+              size <span class="op">=</span> <span class="fl">1</span>, bw <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-874-1.png" width="768"></div>
+<p>Como todos los gráficos podemos invertir la dirección, pasando de horizontal a vertical, con <code><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip()</a></code>.</p>
+<div class="sourceCode" id="cb2130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">termino</span>, x <span class="op">=</span> <span class="va">prob</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">termino</span>, color <span class="op">=</span> <span class="va">termino</span>,
+                  fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes_eval.html">after_scale</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/lighten.html">lighten</a></span><span class="op">(</span><span class="va">fill</span>, <span class="fl">.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+              size <span class="op">=</span> <span class="fl">1</span>, bw <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-875-1.png" width="768"></div>
+</div>
+<div id="half-eye-plots" class="section level2">
+<h2>
+<span class="header-section-number">24.5</span> Half-eye plots<a class="anchor" aria-label="anchor" href="#half-eye-plots"><i class="fas fa-link"></i></a>
+</h2>
+<p>El paquete <a href="https://mjskay.github.io/ggdist/">ggdist</a> también contiene numerosas herramientas para visualizar distribuciones continuas e intervalos, como la función <code><a href="http://mjskay.github.io/ggdist/reference/stat_sample_slabinterval.html">stat_halfeye()</a></code> que nos permite visualizar los conocidos como <mark><strong>half-eye plots</strong></mark> (con <code>adjust</code> podemos ajustar el ancho de banda con el que estima la densidad). En este caso además nos pinta la mediana como un punto.</p>
+<div class="sourceCode" id="cb2131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">datos_final</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">termino</span>, x <span class="op">=</span> <span class="va">prob</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_sample_slabinterval.html">stat_halfeye</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">termino</span>,
+                   fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes_eval.html">after_scale</a></span><span class="op">(</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org//reference/lighten.html">lighten</a></span><span class="op">(</span><span class="va">fill</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+               .width <span class="op">=</span> <span class="fl">0.5</span>, adjust <span class="op">=</span> <span class="fl">0.7</span>, point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span>, fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Probabilidad (%)"</span>,
+       title <span class="op">=</span> <span class="st">"Percepción de la probabilidad"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-876-1.png" width="768"></div>
+</div>
 <div id="ejercicios-15" class="section level2">
 <h2>
-<span class="header-section-number">24.1</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-15"><i class="fas fa-link"></i></a>
+<span class="header-section-number">24.6</span> 📝 Ejercicios<a class="anchor" aria-label="anchor" href="#ejercicios-15"><i class="fas fa-link"></i></a>
 </h2>
-<p>en construcción</p>
+<p>(haz click en las flechas para ver soluciones)</p>
+<p>En la carpeta <code>DATOS</code>, en el fichero <code>coches.csv</code>, dispones de una tabla que contiene información de distintos tipos de vehículos. La información que contiene es:</p>
+<ul>
+<li>
+<code>name</code>: nombre del vehículo</li>
+<li>
+<code>sports_car, suv, wagon, minivan, pickup, all_wheel, rear_wheel</code>: variables lógicas, nos dicen si son de ese tipo o no.</li>
+<li>
+<code>msrp</code>: precio de fábrica</li>
+<li>
+<code>dealer_cost</code>: precio de coste</li>
+<li>
+<code>eng_size</code>: tamaño del motor</li>
+<li>
+<code>ncyl</code>: número de cilindros</li>
+<li>
+<code>city_mpg, hwy_mpg</code>: consumo en distintos entornos</li>
+<li>
+<code>weight, wheel_base, length, width</code>: distintas medidas de dimensión del vehículo</li>
+</ul>
+<details><p><summary>📝<strong>Ejercicio 1</strong>: genera una columna de tipo factor que aglutine las columnas binarias <code>sports_car, suv, wagon, minivan, pickup</code> en una sola que contenga el tipo (por ejemplo, si <code>suv</code> es <code>TRUE</code>, esa columna contendrá <code>"suv"</code>) </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">coches</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"./DATOS/coches.csv"</span><span class="op">)</span>
+<span class="va">coches</span> <span class="op">&lt;-</span>
+  <span class="va">coches</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>tipo <span class="op">=</span>
+           <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/case_when.html">case_when</a></span><span class="op">(</span><span class="va">sports_car</span> <span class="op">~</span> <span class="st">"sports_car"</span>,
+                     <span class="va">suv</span> <span class="op">~</span> <span class="st">"suv"</span>,
+                     <span class="va">wagon</span> <span class="op">~</span> <span class="st">"wagon"</span>,
+                     <span class="va">minivan</span> <span class="op">~</span> <span class="st">"minivan"</span>,
+                     <span class="va">pickup</span> <span class="op">~</span> <span class="st">"pickup"</span>,
+                     <span class="va">all_wheel</span> <span class="op">~</span> <span class="st">"all_wheel"</span>,
+                     <span class="va">rear_wheel</span> <span class="op">~</span> <span class="st">"rear_wheel"</span>,
+                     <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"otros"</span><span class="op">)</span>,
+         tipo <span class="op">=</span> <span class="fu">as_factor</span><span class="op">(</span><span class="va">tipo</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sports_car</span>, <span class="va">suv</span>, <span class="va">wagon</span>, <span class="va">minivan</span>, <span class="va">pickup</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">fct_count</span><span class="op">(</span><span class="va">coches</span><span class="op">$</span><span class="va">tipo</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 2
+##   f              n
+##   &lt;fct&gt;      &lt;int&gt;
+## 1 otros        166
+## 2 all_wheel     25
+## 3 rear_wheel    54
+## 4 sports_car    49
+## 5 suv           60
+## 6 wagon         30
+## 7 minivan       20
+## 8 pickup        24</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 2</strong>: para ver si hay diferencia de consumo, ¿podrías calcular la media y desviación de <code>city_mpg</code> y <code>hwy_mpg</code>? Haz un diagrama que permita hacernos una idea de cómo se distribuye el consumo. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">coches</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise_all.html">summarise_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/vars.html">vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"city_mpg"</span>, <span class="st">"hwy_mpg"</span><span class="op">)</span><span class="op">)</span>,<span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   city_mpg hwy_mpg
+##      &lt;dbl&gt;   &lt;dbl&gt;
+## 1     20.1    26.9</code></pre>
+<div class="sourceCode" id="cb2136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">coches</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise_all.html">summarise_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/vars.html">vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"city_mpg"</span>, <span class="st">"hwy_mpg"</span><span class="op">)</span><span class="op">)</span>,
+               <span class="va">sd</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   city_mpg hwy_mpg
+##      &lt;dbl&gt;   &lt;dbl&gt;
+## 1     5.21    5.70</code></pre>
+<div class="sourceCode" id="cb2138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># densidades</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">coches</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"city_mpg"</span>, <span class="st">"hwy_mpg"</span><span class="op">)</span>,
+                      names_to <span class="op">=</span> <span class="st">"consumo"</span>,
+                      values_to <span class="op">=</span> <span class="st">"values"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">values</span>, fill <span class="op">=</span> <span class="va">consumo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_colour_discrete.html">scale_fill_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ciudad"</span>, <span class="st">"Autopista"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-878-1.png" width="768"></div>
+<div class="sourceCode" id="cb2139"><pre class="downlit sourceCode r">
+<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"densidad"</span>, x <span class="op">=</span> <span class="st">"consumo (mpg)"</span>,
+       fill <span class="op">=</span> <span class="st">"Consumo"</span><span class="op">)</span></code></pre></div>
+<pre><code>## $y
+## [1] "densidad"
+## 
+## $x
+## [1] "consumo (mpg)"
+## 
+## $fill
+## [1] "Consumo"
+## 
+## attr(,"class")
+## [1] "labels"</code></pre>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 3</strong>: para ver si hay diferencia de consumo por tipo de coche, calcula la media de <code>city_mpg</code> y <code>hwy_mpg</code> para los distintos tipos de coche. </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">coches</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">tipo</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise_all.html">summarise_at</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/vars.html">vars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"city_mpg"</span>, <span class="st">"hwy_mpg"</span><span class="op">)</span><span class="op">)</span>,
+               <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="va">mean</span>, sd <span class="op">=</span> <span class="va">sd</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 8 × 5
+##   tipo       city_mpg_mean hwy_mpg_mean city_mpg_sd hwy_mpg_sd
+##   &lt;fct&gt;              &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+## 1 otros               23.6         31.3        6.19       5.49
+## 2 all_wheel           18.6         25.8        1.71       1.83
+## 3 rear_wheel          18.0         25.5        1.48       2.35
+## 4 sports_car          18.6         25.7        2.53       2.72
+## 5 suv                 16.2         20.6        2.73       3.22
+## 6 wagon               21.0         27.8        4.22       4.45
+## 7 minivan             17.9         24.4        1.45       2.46
+## 8 pickup              16.7         21.2        3.24       3.82</code></pre>
+<div class="sourceCode" id="cb2143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">coches</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">tipo</span> <span class="op">!=</span> <span class="st">"otros"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"city_mpg"</span>, <span class="st">"hwy_mpg"</span><span class="op">)</span>,
+                      names_to <span class="op">=</span> <span class="st">"consumo"</span>,
+                      values_to <span class="op">=</span> <span class="st">"values"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="fu"><a href="https://rdrr.io/pkg/tidyr/man/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">values</span>, fill <span class="op">=</span> <span class="va">consumo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">tipo</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-879-1.png" width="768"></div>
+<!-- tocstop -->
+</details><p> </p>
+<details><p><summary>📝<strong>Ejercicio 4</strong>: a la vista de los resultados previos, seleccionar los 3 tipos de mayor consumo, filtra la tabla y representa la variable <code>cyl</code> con un gráfico de violín </summary></p>
+<!-- toc -->
+<ul>
+<li>Solución:</li>
+</ul>
+<div class="sourceCode" id="cb2144"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">coches_filtro</span> <span class="op">&lt;-</span> 
+  <span class="va">coches</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">tipo</span> <span class="op">%in%</span>
+           <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"wagon"</span>, <span class="st">"all_wheel"</span>, <span class="st">"sports_car"</span><span class="op">)</span><span class="op">)</span>
 
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">coches_filtro</span>,
+       <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tipo</span>, y <span class="op">=</span> <span class="va">ncyl</span>,
+           fill <span class="op">=</span> <span class="va">tipo</span>, color <span class="op">=</span> <span class="va">tipo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_violin.html">geom_violin</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span>, bw <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_color_tableau.html">scale_fill_tableau</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"todo terreno"</span>, 
+                                <span class="st">"deportivo"</span>,
+                                <span class="st">"ranchera/familiar"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/scale_color_tableau.html">scale_color_tableau</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"todo terreno"</span>, <span class="st">"deportivo"</span>,
+                              <span class="st">"ranchera/familiar"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Tipos de coche"</span>,
+       x <span class="op">=</span> <span class="st">"Tipos de coche"</span>, y <span class="op">=</span> <span class="st">"Cilindrada"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="curso_R_ECI_files/figure-html/unnamed-chunk-880-1.png" width="768"></div>
+<!-- tocstop -->
+</details>
 </div>
 </div>
   <div class="chapter-nav">
@@ -120,8 +640,13 @@
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#descriptiva_cuantitativas"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas</a></li>
-<li><a class="nav-link" href="#ejercicios-15"><span class="header-section-number">24.1</span> 📝 Ejercicios</a></li>
+<li><a class="nav-link" href="#descriptiva_cuantitativas"><span class="header-section-number">24</span> Extrayendo información: estadística descriptiva con cuantitativas continuas</a></li>
+<li><a class="nav-link" href="#basados-en-puntos"><span class="header-section-number">24.1</span> Basados en puntos</a></li>
+<li><a class="nav-link" href="#cajas-y-bigotes"><span class="header-section-number">24.2</span> Cajas y bigotes</a></li>
+<li><a class="nav-link" href="#histogramas-y-densidad"><span class="header-section-number">24.3</span> Histogramas y densidad</a></li>
+<li><a class="nav-link" href="#gr%C3%A1ficos-de-viol%C3%ADn"><span class="header-section-number">24.4</span> Gráficos de violín</a></li>
+<li><a class="nav-link" href="#half-eye-plots"><span class="header-section-number">24.5</span> Half-eye plots</a></li>
+<li><a class="nav-link" href="#ejercicios-15"><span class="header-section-number">24.6</span> 📝 Ejercicios</a></li>
 </ul>
 
       <div class="book-extra">
@@ -139,7 +664,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 28-01-2022.</p>
+    <p>"<strong>Analizando datos, visualizando información, contando historias</strong>" was written by Javier Álvarez Liébana y Gabriel Valverde Castilla. It was last built on Última actualización: 30-01-2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

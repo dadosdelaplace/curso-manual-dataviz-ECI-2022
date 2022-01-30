@@ -190,15 +190,12 @@ Una opción muy común es <mark>**cargar datos desde paquetes que ya los tienen 
 Dicho paquete contiene la función `search_eurostat()`, que nos <mark>**permite buscar conjuntos de datos por palabras clave**</mark> (nos muestra una tabla con los datasets y sus códigos).
 
 
-```{r eurostat}
+```{r eurostat, eval = FALSE}
 library(eurostat) # instalar la primera vez
 
 # Buscamos datos por palabras clave
 datos_disponibles <- search_eurostat("passengers")
-datos_disponibles
-```
 
-```{r eval = FALSE}
 # Mostramos la lista de los datos
 View(datos_disponibles)
 ``` 
